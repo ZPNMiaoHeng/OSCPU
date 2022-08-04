@@ -85,7 +85,7 @@ compile_chisel() {
 
         cd $PROJECT_PATH
         mkdir vsrc 1>/dev/null 2>&1
-        mill -i oscpu.runMain TopMain -td vsrc -j 4
+        mill -i oscpu.runMain TopMain -td vsrc
         if [ $? -ne 0 ]; then
             echo "Failed to compile chisel!!!"
             exit 1
