@@ -9,10 +9,10 @@ object difftest extends SbtModule {
   override def millSourcePath = os.pwd / "difftest"
   override def scalaVersion = "2.12.13"
   override def ivyDeps = Agg(
-    ivy"edu.berkeley.cs::chisel3:3.4.3",
+    ivy"edu.berkeley.cs::chisel3:3.5.3",
   )
   override def scalacPluginIvyDeps = Agg(
-    ivy"edu.berkeley.cs:::chisel3-plugin:3.4.3",
+    ivy"edu.berkeley.cs:::chisel3-plugin:3.5.3",
     ivy"org.scalamacros:::paradise:2.1.1"
   )
 }
@@ -30,10 +30,10 @@ object oscpu extends SbtModule { m =>
     "-P:chiselplugin:useBundlePlugin"
   )
   override def ivyDeps = Agg(
-    ivy"edu.berkeley.cs::chisel3:3.4.3",
+    ivy"edu.berkeley.cs::chisel3:3.5.3",
   )
   override def scalacPluginIvyDeps = Agg(
-    ivy"edu.berkeley.cs:::chisel3-plugin:3.4.3",
+    ivy"edu.berkeley.cs:::chisel3-plugin:3.5.3",
     ivy"org.scalamacros:::paradise:2.1.1"
   )
   object test extends Tests with Utest {
