@@ -8,9 +8,9 @@ test:
 milltest:
 	mill -j 4 -i __.test
 diff:
-	./build.sh -e $(TARGET) -d -s -a "-i inst_diff.bin" -m "EMU_TRACE=1" -b  
+	./build.sh -e $(TARGET) -d -s -a "-i inst_diff.bin --dump-wave -b 0" -m "EMU_TRACE=1" -b  
 vcd:
 	./build.sh -e $(TARGET) -d -w
 
 clean:
-	./build.sh -e $(TARGET) -d -s -a 
+	./build.sh -e $(TARGET) -c
