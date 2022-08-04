@@ -7,13 +7,48 @@ class Core extends Module {
     val imem = new RomIO
     val dmem = new RamIO
   })
+  val alu     = Module(new ALU)
+  val dataMem = Module(new DataMem)
+  val nextpc  = Module(new NextPC)
+  val MemtoReg = decode.memCtr.MemtoReg
+  val InstResW = (Fill(32,alu.io.Result(31)) ## alu.io.Result(31, 0))
 
+  val WData = MuxCase(0.U, List(
+      (MemtoReg === "b00".U) -> alu.io.Result,
+      (MemtoReg === "b01".U) -> dataMem.io.DataOut,
+      (MemtoReg === "b10".U) -> InstResW
+  ))
+  
   val fetch = Module(new InstFetch)
   fetch.io.imem <> io.imem
+  fetch.io.nextPC := nextpc.io.NextPC
 
   val decode = Module(new Decode)
   decode.io.inst := fetch.io.inst
+  decode.io.rdData := fetch.io.inst
+  decode.io.pc := fetch.io.inst
 
+  alu.io.PC := pc
+  alu.aluIO <> decode.aluIO
+  alu.io.MemtoReg := decode.memCtr.MemtoReg
+
+  dataMem.io.Addr   := alu.io.Result
+  dataMem.io.DataIn := decode.aluIO.data.rData2
+  
+  dataMem.io.MemOP  := decode.memCtr.MemOP
+  dataMem.io.MemWr  := decode.memCtr.MemWr
+  dataMem.io.MemtoReg := decode.memCtr.MemtoReg
+//    dataMem.io.memCtr <> decode.memCtr
+
+  nextpc.io.PC     := pc
+  nextpc.io.Imm    := decode.aluIO.data.imm
+  nextpc.io.Rs1    := decode.aluIO.data.rData1
+  
+  nextpc.io.Branch := decode.io.Branch
+  nextpc.io.Less   := alu.io.Less
+  nextpc.io.Zero   := alu.io.Zero
+
+/*
   val rf = Module(new RegFile)
   rf.io.rs1Addr := decode.io.rs1_addr
   rf.io.rs2Addr := decode.io.rs2_addr
@@ -26,7 +61,7 @@ class Core extends Module {
   execution.io.in2 := Mux(decode.io.rs2_en, rf.io.rs2Data, decode.io.imm)
   execution.io.dmem <> io.dmem
   rf.io.rdData := execution.io.out
-
+*/
   /* ----- Difftest ------------------------------ */
 
   val dt_ic = Module(new DifftestInstrCommit)
