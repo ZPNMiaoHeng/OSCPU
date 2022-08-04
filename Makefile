@@ -11,8 +11,6 @@ run:
 vcd:
 	./build.sh -e $(TARGET) -d -w
 
-cleanO:
-	rm -rf ./build ./out
 clean:
 	./build.sh -e $(TARGET) -c
 

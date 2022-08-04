@@ -1,6 +1,9 @@
 #include ../../Makefile
 
-milltest:
-	mill -j 4 -i __.test
+test:
+	mill -i __.test
+clean:
+	rm -rf ./build ./out
 
-//.PHONY milltest
+
+.PHONY: clean milltest 
