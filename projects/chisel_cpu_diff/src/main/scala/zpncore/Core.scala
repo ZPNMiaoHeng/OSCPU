@@ -15,17 +15,17 @@ class Core extends Module {
   decode.io.inst := fetch.io.inst
 
   val rf = Module(new RegFile)
-  rf.io.rs1_addr := decode.io.rs1_addr
-  rf.io.rs2_addr := decode.io.rs2_addr
-  rf.io.rd_addr := decode.io.rd_addr
-  rf.io.rd_en := decode.io.rd_en
+  rf.io.rs1Addr := decode.io.rs1_addr
+  rf.io.rs2Addr := decode.io.rs2_addr
+  rf.io.rdAddr := decode.io.rd_addr
+  rf.io.rdEn := decode.io.rd_en
 
   val execution = Module(new Execution)
   execution.io.opcode := decode.io.opcode
-  execution.io.in1 := Mux(decode.io.rs1_en, rf.io.rs1_data, 0.U)
-  execution.io.in2 := Mux(decode.io.rs2_en, rf.io.rs2_data, decode.io.imm)
+  execution.io.in1 := Mux(decode.io.rs1_en, rf.io.rs1Data, 0.U)
+  execution.io.in2 := Mux(decode.io.rs2_en, rf.io.rs2Data, decode.io.imm)
   execution.io.dmem <> io.dmem
-  rf.io.rd_data := execution.io.out
+  rf.io.rdData := execution.io.out
 
   /* ----- Difftest ------------------------------ */
 
