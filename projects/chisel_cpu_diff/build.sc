@@ -27,7 +27,7 @@ object oscpu extends SbtModule { m =>
     "-feature",
     "-Xcheckinit",
     // Enables autoclonetype2 in 3.4.x (on by default in 3.5)
-    "-P:chiselplugin:useBundlePlugin"
+    //"-P:chiselplugin:useBundlePlugin"
   )
   override def ivyDeps = Agg(
     ivy"edu.berkeley.cs::chisel3:3.5.3",
