@@ -10,7 +10,7 @@ milltest:
 diff:
 	./build.sh -e $(TARGET) -d -s -a "-i inst_diff.bin" -m "EMU_TRACE=1" -b  
 vcd:
-	./build.sh -e $(TARGET) -d -s -aw
+	./build.sh -e $(TARGET) -d -w
 
 clean:
-	./build.sh -e $(TARGET) -d -s -a "c
+	./build.sh -e $(TARGET) -d -s -a 
