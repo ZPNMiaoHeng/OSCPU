@@ -13,7 +13,7 @@ class ContrGen extends Module {
 
 //    val Branch = Output(UInt(3.W))
     val immOp = Output(UInt(3.W))
-//    val aluCtr = new AluCtr
+    val aluCtr = new AluCtr
 //    val memCtr = new MemCtr
 //    val regCtrl = new RegCtrlIO
   })
@@ -100,18 +100,12 @@ class ContrGen extends Module {
     instDivw || instMulw
 //  io.typeW := typeW
 
-/** !!!! 
+/*
   io.aluCtr.aluA := Mux(instAuipc || typeJ, 1.U, 0.U)                     /** 0 -> rs1; 1 -> pc */
 
   io.aluCtr.aluB := MuxCase("b01".U, List(
     (typeR || typeB) -> "b00".U,
     (typeJ) -> "b10".U))                                          // 00 -> rs2; 01 -> imm; 10 -> 4
-*/
-/**
-  io.ALUBsrc := MuxCase("b11".U, Array(                               /** 00 -> rs2; 01 -> imm; 10 -> 4; 11 ->0 */
-    ( typeR || typeB) -> "b00".U,
-    ( typeJ         ) -> "b10".U,
-    ( typeI || typeU) -> "b01".U))
 */
     val aluAdd  = instAdd  || instAddiw || instJalr|| instLbu || instLb    ||
                   instLh   || instLhu   || instLw  || instLwu || instLd    ||
@@ -130,7 +124,7 @@ class ContrGen extends Module {
     val aluDiv  = instDiv || instDivw
     val aluMul  = instMul || instMulw
   /** mul and div */
-/*
+
   io.aluCtr.aluOp := MuxCase("b0000".U, List(                                                                  // 加法器， 加法
     aluSub                                          -> "b1000".U,               // 加法器， 减法
     aluSll                                          -> "b0001".U ,              // 移位器， 左移
@@ -146,7 +140,7 @@ class ContrGen extends Module {
     aluOr                                           -> "b0110".U,               // 逻辑或
     aluMul                                          -> "b1110".U,               // 乘法
     aluAnd                                          -> "b0111".U))
-
+/*
   io.Branch  := MuxCase("b000".U, List( 
           (instJal)  -> "b001".U,
           (instJalr) -> "b010".U,

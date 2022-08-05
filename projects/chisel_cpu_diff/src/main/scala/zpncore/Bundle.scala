@@ -14,8 +14,8 @@ class RegCtrlIO extends Bundle {
 }
 
 class AluCtr extends Bundle {
-  val aluA = Output(UInt(1.W))
-  val aluB = Output(UInt(2.W))
+//  val aluA = Output(UInt(1.W))
+//  val aluB = Output(UInt(2.W))
   val aluOp = Output(UInt(4.W))
 }
 

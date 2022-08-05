@@ -6,7 +6,7 @@ import chisel3.experimental.FlatIO
  ** Improve: 1. Add module improve;  2. Shifter Module; 3.MUL and div
  ** Module improve: Sub->Add module
  */
-
+/*
  class ALU extends Module {
      val io = IO(new Bundle {
          val MemtoReg = Input(UInt(2.W))
@@ -75,3 +75,4 @@ import chisel3.experimental.FlatIO
     io.Zero := (aluResult === 0.U)
     io.Result := Mux(io.MemtoReg(1) === 1.U, Cat(Fill(32, aluResult(31)), aluResult(31, 0)), aluResult)
     }
+    */

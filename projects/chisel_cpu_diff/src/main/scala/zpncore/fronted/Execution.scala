@@ -13,7 +13,7 @@ class Execution extends Module {
   io.out := 0.U
 
   // ADDI
-  when (io.opcode === 1.U) {
+  when (io.opcode === 0.U) {
     io.out := io.in1 + io.in2
   }
 
