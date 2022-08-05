@@ -258,13 +258,13 @@ module Decode(
     .io_regCtrl_rdAddr(con_io_regCtrl_rdAddr),
     .io_regCtrl_rdEn(con_io_regCtrl_rdEn)
   );
-  assign io_rs1_addr = con_io_regCtrl_rs2Addr; // @[Decode.scala 37:15]
-  assign io_rs1_en = con_io_regCtrl_rs1En; // @[Decode.scala 41:13]
-  assign io_rs2_addr = con_io_regCtrl_rs1Addr; // @[Decode.scala 38:15]
-  assign io_rs2_en = con_io_regCtrl_rs2En; // @[Decode.scala 42:13]
-  assign io_rd_addr = con_io_regCtrl_rdAddr; // @[Decode.scala 39:14]
-  assign io_rd_en = con_io_regCtrl_rdEn; // @[Decode.scala 43:12]
-  assign io_opcode = {{1'd0}, con_io_aluCtr_aluOp}; // @[Decode.scala 51:13]
+  assign io_rs1_addr = con_io_regCtrl_rs2Addr; // @[Decode.scala 31:15]
+  assign io_rs1_en = con_io_regCtrl_rs1En; // @[Decode.scala 35:13]
+  assign io_rs2_addr = con_io_regCtrl_rs1Addr; // @[Decode.scala 32:15]
+  assign io_rs2_en = con_io_regCtrl_rs2En; // @[Decode.scala 36:13]
+  assign io_rd_addr = con_io_regCtrl_rdAddr; // @[Decode.scala 33:14]
+  assign io_rd_en = con_io_regCtrl_rdEn; // @[Decode.scala 37:12]
+  assign io_opcode = {{1'd0}, con_io_aluCtr_aluOp}; // @[Decode.scala 39:13]
   assign io_imm = imm_io_imm; // @[Decode.scala 26:10]
   assign imm_io_inst = io_inst; // @[Decode.scala 21:15]
   assign imm_io_immOp = con_io_immOp; // @[Decode.scala 22:16]

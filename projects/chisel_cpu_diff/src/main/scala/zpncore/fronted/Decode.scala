@@ -25,29 +25,17 @@ class Decode extends Module {
 //  io.aluIO.ctrl <> con.io.aluCtr
   io.imm := imm.io.imm
 
-  val inst = io.inst
-  val opcode = WireInit(UInt(8.W), 0.U)
 
   // Only example here, use your own control flow!
-/*  
-  when (inst === ADDI) {
-    opcode := 1.U
-  }
-*/
-  io.rs1_addr := con.io.regCtrl.rs2Addr//inst(19, 15)
-  io.rs2_addr := con.io.regCtrl.rs1Addr//inst(24, 20)
-  io.rd_addr := con.io.regCtrl.rdAddr//inst(11, 7)
+
+  io.rs1_addr := con.io.regCtrl.rs2Addr     //inst(19, 15)
+  io.rs2_addr := con.io.regCtrl.rs1Addr     //inst(24, 20)
+  io.rd_addr := con.io.regCtrl.rdAddr       //inst(11, 7)
   
-  io.rs1_en := con.io.regCtrl.rs1En//false.B
-  io.rs2_en := con.io.regCtrl.rs2En//false.B
-  io.rd_en := con.io.regCtrl.rdEn //false.B
-/*
-  when (inst === ADDI) {
-    io.rs1_en := true.B
-    io.rs2_en := false.B
-    io.rd_en := true.B
-  }
-  */
+  io.rs1_en := con.io.regCtrl.rs1En         //false.B
+  io.rs2_en := con.io.regCtrl.rs2En         //false.B
+  io.rd_en := con.io.regCtrl.rdEn           //false.B
+
   io.opcode := con.io.aluCtr.aluOp
 
 }
