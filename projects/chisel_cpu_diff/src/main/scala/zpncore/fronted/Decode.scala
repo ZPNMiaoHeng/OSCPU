@@ -34,20 +34,20 @@ class Decode extends Module {
     opcode := 1.U
   }
 */
-  io.rs1_addr := inst(19, 15)
-  io.rs2_addr := inst(24, 20)
-  io.rd_addr := inst(11, 7)
+  io.rs1_addr := con.io.regCtrl.rs2Addr//inst(19, 15)
+  io.rs2_addr := con.io.regCtrl.rs1Addr//inst(24, 20)
+  io.rd_addr := con.io.regCtrl.rdAddr//inst(11, 7)
   
-  io.rs1_en := false.B
-  io.rs2_en := false.B
-  io.rd_en := false.B
-
+  io.rs1_en := con.io.regCtrl.rs1En//false.B
+  io.rs2_en := con.io.regCtrl.rs2En//false.B
+  io.rd_en := con.io.regCtrl.rdEn //false.B
+/*
   when (inst === ADDI) {
     io.rs1_en := true.B
     io.rs2_en := false.B
     io.rd_en := true.B
   }
-  
+  */
   io.opcode := con.io.aluCtr.aluOp
 
 }

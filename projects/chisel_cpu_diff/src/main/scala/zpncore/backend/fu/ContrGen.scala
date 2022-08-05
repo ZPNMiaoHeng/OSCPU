@@ -15,7 +15,7 @@ class ContrGen extends Module {
     val immOp = Output(UInt(3.W))
     val aluCtr = new AluCtr
 //    val memCtr = new MemCtr
-//    val regCtrl = new RegCtrlIO
+    val regCtrl = new RegCtrlIO
   })
 
   val inst = io.inst
@@ -148,9 +148,9 @@ class ContrGen extends Module {
           (instBne)  -> "b101".U,
           (instBlt || instBltu) -> "b110".U,
           (instBge || instBgeu) -> "b111".U))
-
-//  io.regCtrl.rs1En := ~(instLui || instAuipc || instJal)  /** ecall */
-//  io.regCtrl.rs2En :=  (typeR || typeB || typeS)
+*/
+  io.regCtrl.rs1En := ~(instLui || instAuipc || instJal)  /** ecall */
+  io.regCtrl.rs2En :=  (typeR || typeB || typeS)
   io.regCtrl.rs1Addr := Mux(Ebreak, "b01010".U, inst(19, 15))
   io.regCtrl.rs2Addr := inst(24, 20)
 
@@ -173,6 +173,7 @@ class ContrGen extends Module {
     typeB -> "b011".U,
     (instJal) -> "b100".U))
 */
+/*
   io.memCtr.MemtoReg := MuxCase("b00".U, List(                                                                                              // alu.R -> Reg
     (instLb || instLh || instLw || instLd || instLbu || instLhu)                -> "b01".U,                               // Mem   -> Reg
 //    (instAddw || instAddiw || instSlliw || instSlliw || instSrliw || instSraiw || instRemw) -> "b10".U,                               // alu.R截断32位，符号扩展 -> Reg
