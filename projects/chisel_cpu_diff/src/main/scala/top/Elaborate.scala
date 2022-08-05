@@ -17,26 +17,21 @@ object Elaborate extends App {
 
     val top = parseArgs("TopModule", args)
 
-//  (new ChiselStage).execute(args, Seq(ChiselGeneratorAnnotation(() => new top())))
-//  (new chisel3.stage.ChiselStage).execute(args, Seq(chisel3.stage.ChiselGeneratorAnnotation(() => new Fetch())))
-//  (new chisel3.stage.ChiselStage).execute(args, Seq(chisel3.stage.ChiselGeneratorAnnotation(() => new regFile())))
-//  (new chisel3.stage.ChiselStage).execute(args, Seq(chisel3.stage.ChiselGeneratorAnnotation(() => new Decode())))
-//  (new chisel3.stage.ChiselStage).execute(args, Seq(chisel3.stage.ChiselGeneratorAnnotation(() => new ImmGen())))
-//  (new chisel3.stage.ChiselStage).execute(args, Seq(chisel3.stage.ChiselGeneratorAnnotation(() => new ContrGen())))
-//  (new chisel3.stage.ChiselStage).execute(args, Seq(chisel3.stage.ChiselGeneratorAnnotation(() => new BranchCond())))
-//  (new chisel3.stage.ChiselStage).execute(args, Seq(chisel3.stage.ChiselGeneratorAnnotation(() => new NextPC())))
-/*
   if(top == "ALU") {
     (new ChiselStage).execute(args, Seq(
       ChiselGeneratorAnnotation(() => new ALU())))
-  } else if(top == "riscv64Top") {
-    println("------------------- Generate riscv64Top.v ---------------- ")
+  } else if(top == "Decode") {
+    println("------------------- Generate Decode.v ---------------- ")
     (new ChiselStage).execute(args, Seq(
-      ChiselGeneratorAnnotation(() => new riscv64Top())))
-  } else if(top == "Fetch") {
-    println("------------------- Fetch.v---------------- ")
+      ChiselGeneratorAnnotation(() => new Decode())))
+  } else if(top == "Core") {
+    println("------------------- Generate Core.v ---------------- ")
     (new ChiselStage).execute(args, Seq(
-      ChiselGeneratorAnnotation(() => new Fetch())))
+      ChiselGeneratorAnnotation(() => new Core())))
+  } else if(top == "InstFetch") {
+    println("------------------- InstFetch.v---------------- ")
+    (new ChiselStage).execute(args, Seq(
+      ChiselGeneratorAnnotation(() => new InstFetch())))
   } /*
     else if(top == "Axi") {
     println("--------Axi.v---------------- ")
@@ -58,8 +53,22 @@ object Elaborate extends App {
     println("--------Mul---------------- ")
     (new ChiselStage).execute(args, Seq(
       ChiselGeneratorAnnotation(() => new Mul())))
+  } else if (top == "RegFile") {
+    println("--------RegFile---------------- ")
+    (new ChiselStage).execute(args, Seq(
+      ChiselGeneratorAnnotation(() => new RegFile())))
+  } else if (top == "DataMem") {
+    println("--------DataMem---------------- ")
+    (new ChiselStage).execute(args, Seq(
+      ChiselGeneratorAnnotation(() => new DataMem())))
+  } else if (top == "NextPC") {
+    println("--------NextPC---------------- ")
+    (new ChiselStage).execute(args, Seq(
+      ChiselGeneratorAnnotation(() => new NextPC())))
+  } else if (top == "ContrGen") {
+    println("--------ContrGen---------------- ")
+    (new ChiselStage).execute(args, Seq(
+      ChiselGeneratorAnnotation(() => new ContrGen())))
   }
-*/
 
-//  (new chisel3.stage.ChiselStage).execute(args, Seq(chisel3.stage.ChiselGeneratorAnnotation(() => new Adder())))
 }

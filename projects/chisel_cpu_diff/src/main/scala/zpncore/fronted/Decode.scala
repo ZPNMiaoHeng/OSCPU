@@ -17,7 +17,7 @@ class Decode extends Module {
     val rdData = Input(UInt(64.W))
     val pc = Input(UInt(32.W))
 
-    val Branch = Output(UInt(3.W))  //!
+    val Branch = Output(UInt(3.W)) 
   })
   val aluIO = FlatIO(new AluIO)
   val memCtr = FlatIO(new MemCtr)
@@ -42,6 +42,7 @@ class Decode extends Module {
 
   memCtr <> con.io.memCtr
   aluIO.ctrl <> con.io.aluCtr
+
   aluIO.data.rData1 := regs.io.rs1Data
   aluIO.data.rData2 := regs.io.rs2Data
   aluIO.data.imm := imm.io.imm

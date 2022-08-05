@@ -114,7 +114,7 @@ class ContrGen extends Module {
     (typeR || typeB) -> "b00".U,
     (typeJ) -> "b10".U))                                          // 00 -> rs2; 01 -> imm; 10 -> 4
 
-  /**
+/**
   io.ALUBsrc := MuxCase("b11".U, Array(                               /** 00 -> rs2; 01 -> imm; 10 -> 4; 11 ->0 */
     ( typeR || typeB) -> "b00".U,
     ( typeJ         ) -> "b10".U,
@@ -178,7 +178,7 @@ class ContrGen extends Module {
           (instSd || instSb || instSw || instSh)-> "b010".U,                                               // S Type
           (instBeq || instBne || instBlt || instBge || instBltu || instBgeu) -> "b011".U,     // B
           (instJal) -> "b100".U))                                             // J Type
-  /**
+/**
   io.ExtOP := MuxCase("b111".U, Array(
     typeI -> "b000".U,
     typeU -> "b001".U,
@@ -200,5 +200,4 @@ class ContrGen extends Module {
           (instLd || instSd) -> "b011".U,
           instLbu            -> "b100".U,
           instLhu            -> "b101".U))
-
 }

@@ -1,6 +1,7 @@
 import chisel3._
 import chisel3.util.experimental._
 import difftest._
+import utils._
 
 class Core extends Module {
   val io = IO(new Bundle {
@@ -10,13 +11,14 @@ class Core extends Module {
   val alu     = Module(new ALU)
   val dataMem = Module(new DataMem)
   val nextpc  = Module(new NextPC)
-  val MemtoReg = decode.memCtr.MemtoReg
-  val InstResW = (Fill(32,alu.io.Result(31)) ## alu.io.Result(31, 0))
 
-  val WData = MuxCase(0.U, List(
-      (MemtoReg === "b00".U) -> alu.io.Result,
-      (MemtoReg === "b01".U) -> dataMem.io.DataOut,
-      (MemtoReg === "b10".U) -> InstResW
+  val MemtoReg = decode.memCtr.MemtoReg
+//  val InstResW = (Fill(32,alu.io.Result(31)) ## alu.io.Result(31, 0))
+  val InstResW = SignExt(alu.io.Result(31,0), 64)
+  val wData = LookupTreeDefault(MemtoReg, 0.U, List(
+      ("b00".U) -> alu.io.Result,
+      ("b01".U) -> dataMem.io.rdData,
+      ("b10".U) -> InstResW
   ))
   
   val fetch = Module(new InstFetch)
@@ -25,10 +27,10 @@ class Core extends Module {
 
   val decode = Module(new Decode)
   decode.io.inst := fetch.io.inst
-  decode.io.rdData := fetch.io.inst
-  decode.io.pc := fetch.io.inst
+  decode.io.rdData := wData
+  decode.io.pc := fetch.io.pc
 
-  alu.io.PC := pc
+  alu.io.PC := fetch.io.pc
   alu.aluIO <> decode.aluIO
   alu.io.MemtoReg := decode.memCtr.MemtoReg
 
@@ -39,8 +41,9 @@ class Core extends Module {
   dataMem.io.MemWr  := decode.memCtr.MemWr
   dataMem.io.MemtoReg := decode.memCtr.MemtoReg
 //    dataMem.io.memCtr <> decode.memCtr
+  dataMem.io.dmem <> io.dmem
 
-  nextpc.io.PC     := pc
+  nextpc.io.PC     := fetch.io.pc
   nextpc.io.Imm    := decode.aluIO.data.imm
   nextpc.io.Rs1    := decode.aluIO.data.rData1
   
@@ -74,9 +77,9 @@ class Core extends Module {
   dt_ic.io.skip     := false.B
   dt_ic.io.isRVC    := false.B
   dt_ic.io.scFailed := false.B
-  dt_ic.io.wen      := RegNext(decode.io.rd_en)
-  dt_ic.io.wdata    := RegNext(execution.io.out)
-  dt_ic.io.wdest    := RegNext(decode.io.rd_addr)
+  dt_ic.io.wen      := RegNext(dataMem.io.dmem.wen)
+  dt_ic.io.wdata    := RegNext(dataMem.io.dmem.wdata)
+  dt_ic.io.wdest    := RegNext(dataMem.io.dmem.addr)
 
   val dt_ae = Module(new DifftestArchEvent)
   dt_ae.io.clock        := clock

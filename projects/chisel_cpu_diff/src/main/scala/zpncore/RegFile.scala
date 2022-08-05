@@ -4,8 +4,8 @@ import difftest._
 
 class RegFile extends Module {
   val io = IO(new Bundle {
-    val rs1En = Input(UInt(1.W)
-    val rs2En = Input(UInt(1.W)
+    val rs1En = Input(UInt(1.W))
+    val rs2En = Input(UInt(1.W))
     val rs1Addr = Input(UInt(5.W))
     val rs2Addr = Input(UInt(5.W))
     val rs1Data = Output(UInt(64.W))
@@ -18,7 +18,7 @@ class RegFile extends Module {
   val rf = RegInit(VecInit(Seq.fill(32)(0.U(64.W))))
 
   when (io.rdEn && (io.rdAddr =/= 0.U)) {
-    rf(io.rdAddr) := io.rdData;
+    rf(io.rdAddr) := io.rdData
   }
 
   io.rs1Data := Mux((io.rs1Addr =/= 0.U && io.rs1En =/= 0.U), rf(io.rs1Addr), 0.U)
