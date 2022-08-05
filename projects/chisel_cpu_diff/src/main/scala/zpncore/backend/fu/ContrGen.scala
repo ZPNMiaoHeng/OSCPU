@@ -11,7 +11,7 @@ class ContrGen extends Module {
   val io = IO(new Bundle {
     val inst = Input(UInt(32.W))
 
-//    val Branch = Output(UInt(3.W))
+    val Branch = Output(UInt(3.W))
     val immOp = Output(UInt(3.W))
     val aluCtr = new AluCtr
     val memCtr = new MemCtr
@@ -34,17 +34,17 @@ class ContrGen extends Module {
   val instSlti    = inst === SLTI 
   val instSltiu   = inst === SLTIU
   val instAddiw   = inst === ADDIW           
-  val instSlliw   = inst === SLLIW
-  val instSrliw   = inst === SRLIW
-  val instSraiw   = inst === SRAIW
+  val instSlliw   = inst === SLLIW                   // 0.B //Mux("b001_00110".U === instOF && 0.U === io.inst(30), true.B, false.B)
+  val instSrliw   = inst === SRLIW                   // 0.B // Mux("b101_00110".U === instOF && 0.U === io.inst(30), true.B, false.B)
+  val instSraiw   = inst === SRAIW                   // 0.B //Mux("b101_00110".U === instOF && 1.U === io.inst(30), true.B, false.B)
   val instJalr    = inst === JALR
-  val instLb      = inst === LB
-  val instLh      = inst === LH
+  val instLb      = inst === LB                 // 0.B // Mux("b000_00000".U === instOF, true.B, false.B)
+  val instLh      = inst === LH                 // 0.B // Mux("b001_00000".U === instOF, true.B, false.B)
   val instLw      = inst === LW
   val instLd      = inst === LD
   val instLbu     = inst === LBU
-  val instLhu     = inst === LHU
-  val instLwu     = inst === LWU
+  val instLhu     = inst === LHU                // 0.B // Mux("b101_00000".U === instOF, true.B, false.B)
+  val instLwu     = inst === LWU                 // ???
   val typeI       = instAddi   || instAndi   || instXori   || instOri   || instSlli  || instSrli  ||
                     instSrai   || instSlti   || instSltiu  || instAddiw || instSlliw || instSrliw ||
                     instSraiw  || instLb     || instLh     || instLw    || instLd    || instLbu   || 
@@ -100,7 +100,6 @@ class ContrGen extends Module {
     instDivw || instMulw
 //  io.typeW := typeW
 
-
   io.aluCtr.aluA := Mux(instAuipc || typeJ, 1.U, 0.U)                     /** 0 -> rs1; 1 -> pc */
 
   io.aluCtr.aluB := MuxCase("b01".U, List(
@@ -140,7 +139,7 @@ class ContrGen extends Module {
     aluOr                                           -> "b0110".U,               // 逻辑或
     aluMul                                          -> "b1110".U,               // 乘法
     aluAnd                                          -> "b0111".U))
-/*
+
   io.Branch  := MuxCase("b000".U, List( 
           (instJal)  -> "b001".U,
           (instJalr) -> "b010".U,
@@ -148,7 +147,7 @@ class ContrGen extends Module {
           (instBne)  -> "b101".U,
           (instBlt || instBltu) -> "b110".U,
           (instBge || instBgeu) -> "b111".U))
-*/
+
   io.regCtrl.rs1En := ~(instLui || instAuipc || instJal)  /** ecall */
   io.regCtrl.rs2En :=  (typeR || typeB || typeS)
   io.regCtrl.rs1Addr := Mux(Ebreak, "b01010".U, inst(19, 15))
@@ -173,14 +172,12 @@ class ContrGen extends Module {
     typeB -> "b011".U,
     (instJal) -> "b100".U))
 */
-
   io.memCtr.MemtoReg := MuxCase("b00".U, List(                                                                                              // alu.R -> Reg
     (instLb || instLh || instLw || instLd || instLbu || instLhu)                -> "b01".U,                               // Mem   -> Reg
 //    (instAddw || instAddiw || instSlliw || instSlliw || instSrliw || instSraiw || instRemw) -> "b10".U,                               // alu.R截断32位，符号扩展 -> Reg
     (typeW)                                                                     -> "b10".U
 //    (instBeq || instBne || instBlt || instBge || instBltu || instBgeu)          -> "b11".U                                // 无用信号
   ))
-
   io.memCtr.MemWr    := Mux(instSb || instSh || instSw || instSd, 1.U, 0.U)
   io.memCtr.MemOP    := MuxCase("b111".U, List(
           (instLb || instSb) -> "b000".U,
@@ -189,14 +186,4 @@ class ContrGen extends Module {
           (instLd || instSd) -> "b011".U,
           instLbu            -> "b100".U,
           instLhu            -> "b101".U))
-
-// ----------------------------------------------------------------
-  io.immOp := MuxCase("b111".U, List(
-          (instAddi || instAddiw  || instSlti || instSltiu || instXori || instOri || instAndi || instSlli || instSlliw ||
-              instSrli || instSrliw || instSrai || instSraiw || instJalr || instLb || instLh || instLw || instLd || instLbu || instLhu ) -> "b000".U,                        // I Type
-          (instAuipc || instLui)  -> "b001".U,                             // U Type
-          (instSd || instSb || instSw || instSh)-> "b010".U,                                               // S Type
-          (instBeq || instBne || instBlt || instBge || instBltu || instBgeu) -> "b011".U,     // B
-          (instJal) -> "b100".U))                                             // J Type
-
 }

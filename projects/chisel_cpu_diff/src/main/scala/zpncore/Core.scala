@@ -1,54 +1,51 @@
 import chisel3._
 import chisel3.util.experimental._
 import difftest._
+import utils._
 
 class Core extends Module {
   val io = IO(new Bundle {
     val imem = new RomIO
     val dmem = new RamIO
   })
-
-  val fetch = Module(new InstFetch)
-  fetch.io.imem <> io.imem
-
-  val decode = Module(new Decode)
-  decode.io.inst := fetch.io.inst
-
-  val rf = Module(new RegFile)
-  rf.io.rs1_addr := decode.io.rs1_addr
-  rf.io.rs2_addr := decode.io.rs2_addr
-  rf.io.rd_addr := decode.io.rd_addr
-  rf.io.rd_en := decode.io.rd_en
-
-//  val execution = Module(new Execution)
-//  execution.io.opcode := decode.io.opcode
-//  execution.io.in1 := Mux(decode.io.rs1_en, rf.io.rs1_data, 0.U)
-//  execution.io.in2 := Mux(decode.io.rs2_en, rf.io.rs2_data, decode.io.imm)
-//  execution.io.dmem <> io.dmem
-
-  val alu = Module(new ALU)
-  val dataMem = Module(new DataMem)
-//  alu.aluIO <> decode.io.aluIO
-
-  alu.aluIO.ctrl <> decode.io.ctrl
-  alu.io.MemtoReg := 0.U
-  alu.aluIO.data.rData1 := rf.io.rs1_data
-  alu.aluIO.data.rData2 := rf.io.rs2_data
-  alu.aluIO.data.imm := decode.io.imm
-
-  //alu.io.MemtoReg := decode.io.memCtr.MemtoReg
-
-
-  rf.io.rd_data := alu.io.Result
-//  rf.io.rd_data := execution.io.out
-
-  dataMem.io.Addr   := alu.io.Result
-  dataMem.io.DataIn := rf.io.rs2_data  //decode.io.aluIO.data.rData2
   
-  dataMem.io.MemOP  := decode.io.memCtr.MemOP
-  dataMem.io.MemWr  := decode.io.memCtr.MemWr
-  dataMem.io.MemtoReg := decode.io.memCtr.MemtoReg
+  val fetch = Module(new InstFetch)
+  val decode = Module(new Decode)
+  val alu     = Module(new ALU)
+  val dataMem = Module(new DataMem)
+  val nextpc  = Module(new NextPC)
+
+  val MemtoReg = decode.io.memCtr.MemtoReg
+  val InstResW = SignExt(alu.io.Result(31,0), 64)
+  val wData = LookupTreeDefault(MemtoReg, 0.U, List(
+      ("b00".U) -> alu.io.Result,
+      ("b01".U) -> dataMem.io.rdData,
+      ("b10".U) -> InstResW
+  ))
+  
+//------------------- Fetch------------------------------
+  fetch.io.imem <> io.imem
+  fetch.io.nextPC := nextpc.io.NextPC
+//------------------- Decode-----------------------------
+  decode.io.inst := fetch.io.inst
+  decode.io.rdData := wData
+//------------------- ALU--------------------------------
+  alu.io.PC := fetch.io.pc
+  alu.aluIO <> decode.io.aluIO
+  alu.io.MemtoReg := decode.io.memCtr.MemtoReg
+//------------------- DataMem----------------------------
+  dataMem.io.Addr   := alu.io.Result
+  dataMem.io.DataIn := decode.io.aluIO.data.rData2
+  dataMem.io.memCtr <> decode.io.memCtr
   dataMem.io.dmem <> io.dmem
+//-------------------NextPC------------------------------
+  nextpc.io.PC     := fetch.io.pc
+  nextpc.io.Imm    := decode.io.aluIO.data.imm
+  nextpc.io.Rs1    := decode.io.aluIO.data.rData1
+  nextpc.io.Branch := decode.io.Branch
+  nextpc.io.Less   := alu.io.Less
+  nextpc.io.Zero   := alu.io.Zero
+
 
   /* ----- Difftest ------------------------------ */
 
@@ -62,9 +59,9 @@ class Core extends Module {
   dt_ic.io.skip     := false.B
   dt_ic.io.isRVC    := false.B
   dt_ic.io.scFailed := false.B
-  dt_ic.io.wen      := RegNext(decode.io.rd_en)
-  dt_ic.io.wdata    := RegNext(alu.io.Result)
-  dt_ic.io.wdest    := RegNext(decode.io.rd_addr)
+  dt_ic.io.wen      := RegNext(dataMem.io.dmem.wen)
+  dt_ic.io.wdata    := RegNext(dataMem.io.dmem.wdata)
+  dt_ic.io.wdest    := RegNext(dataMem.io.dmem.addr)
 
   val dt_ae = Module(new DifftestArchEvent)
   dt_ae.io.clock        := clock

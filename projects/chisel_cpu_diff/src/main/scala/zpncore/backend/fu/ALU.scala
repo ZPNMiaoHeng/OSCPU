@@ -7,20 +7,18 @@ import chisel3.experimental.FlatIO
  ** Module improve: Sub->Add module
  */
 
-class ALU extends Module {
-    val io = IO(new Bundle {
-        val MemtoReg = Input(UInt(2.W))
-//         val PC = Input(UInt(32.W))
+ class ALU extends Module {
+     val io = IO(new Bundle {
+         val MemtoReg = Input(UInt(2.W))
+         val PC = Input(UInt(32.W))
 
-        val Result = Output(UInt(64.W))
-//         val Less   = Output(UInt(1.W))
-//         val Zero   = Output(UInt(1.W))
-    })
+         val Result = Output(UInt(64.W))
+         val Less   = Output(UInt(1.W))
+         val Zero   = Output(UInt(1.W))
+     })
     val aluIO = FlatIO(Flipped(new AluIO))
 
-//    val Asrc  = Mux(aluIO.ctrl.aluA === 0.U, aluIO.data.rData1, io.PC)                           //op1R
-    val Asrc  = Mux(aluIO.ctrl.aluA === 0.U, aluIO.data.rData1, 0.U)                           //op1R
-
+    val Asrc  = Mux(aluIO.ctrl.aluA === 0.U, aluIO.data.rData1, io.PC)                           //op1R
     val in1 = Mux(io.MemtoReg(1), (Mux(aluIO.ctrl.aluOp === "b1101".U, 
       Cat(Fill(32, Asrc(31)), Asrc(31, 0)), Cat(Fill(32, 0.U), Asrc(31, 0)))),
         Asrc)
@@ -72,8 +70,8 @@ class ALU extends Module {
        
        ("b0111".U) -> andRes))
 
-//    val less = Mux(aluIO.ctrl.aluOp(3) === 1.U, sLTURes, sLTRes)
-//    io.Less := less
-//    io.Zero := (aluResult === 0.U)
+    val less = Mux(aluIO.ctrl.aluOp(3) === 1.U, sLTURes, sLTRes)
+    io.Less := less
+    io.Zero := (aluResult === 0.U)
     io.Result := Mux(io.MemtoReg(1) === 1.U, Cat(Fill(32, aluResult(31)), aluResult(31, 0)), aluResult)
-}
+    }

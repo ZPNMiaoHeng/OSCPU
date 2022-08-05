@@ -16,7 +16,7 @@ object Elaborate extends App {
   }
 
     val top = parseArgs("TopModule", args)
-/*
+
   if(top == "ALU") {
     (new ChiselStage).execute(args, Seq(
       ChiselGeneratorAnnotation(() => new ALU())))
@@ -70,5 +70,5 @@ object Elaborate extends App {
     (new ChiselStage).execute(args, Seq(
       ChiselGeneratorAnnotation(() => new ContrGen())))
   }
-*/
+
 }
