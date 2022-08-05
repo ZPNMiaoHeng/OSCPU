@@ -13,6 +13,7 @@ class DataMem extends BlackBox with HasBlackBoxInline {
   
 //    val memCtr = Flipped(new MemCtr)
     val DataOut = Output(UInt(64.W))
+    
   })
 //  io.DataOut := io.DataIn
   setInline("DataMem.v",
