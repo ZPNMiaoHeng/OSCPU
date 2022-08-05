@@ -12,8 +12,11 @@ class Decode extends Module {
     val rs2_en = Output(Bool())
     val rd_addr = Output(UInt(5.W))
     val rd_en = Output(Bool())
-    val opcode = Output(UInt(5.W))
+//    val opcode = Output(UInt(5.W))
     val imm = Output(UInt(64.W))
+
+    val ctrl = new AluCtr
+    val memCtr = new MemCtr
   })
   
   val imm  = Module(new ImmGen)
@@ -22,6 +25,8 @@ class Decode extends Module {
   imm.io.immOp := con.io.immOp
 
   con.io.inst := io.inst
+  io.memCtr <> con.io.memCtr
+  io.ctrl <> con.io.aluCtr
 //  io.aluIO.ctrl <> con.io.aluCtr
   io.imm := imm.io.imm
 
@@ -33,6 +38,6 @@ class Decode extends Module {
   io.rs2_en := con.io.regCtrl.rs2En         //false.B
   io.rd_en := con.io.regCtrl.rdEn           //false.B
 
-  io.opcode := con.io.aluCtr.aluOp
+//  io.opcode := con.io.aluCtr.aluOp
 
 }

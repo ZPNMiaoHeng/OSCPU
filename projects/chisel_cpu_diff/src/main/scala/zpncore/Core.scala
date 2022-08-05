@@ -20,19 +20,35 @@ class Core extends Module {
   rf.io.rd_addr := decode.io.rd_addr
   rf.io.rd_en := decode.io.rd_en
 
-  val execution = Module(new Execution)
-  execution.io.opcode := decode.io.opcode
-  execution.io.in1 := Mux(decode.io.rs1_en, rf.io.rs1_data, 0.U)
-  execution.io.in2 := Mux(decode.io.rs2_en, rf.io.rs2_data, decode.io.imm)
-  execution.io.dmem <> io.dmem
+//  val execution = Module(new Execution)
+//  execution.io.opcode := decode.io.opcode
+//  execution.io.in1 := Mux(decode.io.rs1_en, rf.io.rs1_data, 0.U)
+//  execution.io.in2 := Mux(decode.io.rs2_en, rf.io.rs2_data, decode.io.imm)
+//  execution.io.dmem <> io.dmem
 
-  //val alu = Module(new ALU)
-  //alu.aluIO <> decode.io.aluIO
+  val alu = Module(new ALU)
+  val dataMem = Module(new DataMem)
+//  alu.aluIO <> decode.io.aluIO
+
+  alu.aluIO.ctrl <> decode.io.ctrl
+  alu.io.MemtoReg := 0.U
+  alu.aluIO.data.rData1 := rf.io.rs1_data
+  alu.aluIO.data.rData2 := rf.io.rs2_data
+  alu.aluIO.data.imm := decode.io.imm
 
   //alu.io.MemtoReg := decode.io.memCtr.MemtoReg
 
 
-  rf.io.rd_data := execution.io.out
+  rf.io.rd_data := alu.io.Result
+//  rf.io.rd_data := execution.io.out
+
+  dataMem.io.Addr   := alu.io.Result
+  dataMem.io.DataIn := rf.io.rs2_data  //decode.io.aluIO.data.rData2
+  
+  dataMem.io.MemOP  := decode.io.memCtr.MemOP
+  dataMem.io.MemWr  := decode.io.memCtr.MemWr
+  dataMem.io.MemtoReg := decode.io.memCtr.MemtoReg
+  dataMem.io.dmem <> io.dmem
 
   /* ----- Difftest ------------------------------ */
 
@@ -47,7 +63,7 @@ class Core extends Module {
   dt_ic.io.isRVC    := false.B
   dt_ic.io.scFailed := false.B
   dt_ic.io.wen      := RegNext(decode.io.rd_en)
-  dt_ic.io.wdata    := RegNext(execution.io.out)
+  dt_ic.io.wdata    := RegNext(alu.io.Result)
   dt_ic.io.wdest    := RegNext(decode.io.rd_addr)
 
   val dt_ae = Module(new DifftestArchEvent)

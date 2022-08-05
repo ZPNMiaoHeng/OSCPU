@@ -14,7 +14,7 @@ class ContrGen extends Module {
 //    val Branch = Output(UInt(3.W))
     val immOp = Output(UInt(3.W))
     val aluCtr = new AluCtr
-//    val memCtr = new MemCtr
+    val memCtr = new MemCtr
     val regCtrl = new RegCtrlIO
   })
 
@@ -34,17 +34,17 @@ class ContrGen extends Module {
   val instSlti    = inst === SLTI 
   val instSltiu   = inst === SLTIU
   val instAddiw   = inst === ADDIW           
-  val instSlliw   = inst === SLLIW                   // 0.B //Mux("b001_00110".U === instOF && 0.U === io.inst(30), true.B, false.B)
-  val instSrliw   = inst === SRLIW                   // 0.B // Mux("b101_00110".U === instOF && 0.U === io.inst(30), true.B, false.B)
-  val instSraiw   = inst === SRAIW                   // 0.B //Mux("b101_00110".U === instOF && 1.U === io.inst(30), true.B, false.B)
+  val instSlliw   = inst === SLLIW
+  val instSrliw   = inst === SRLIW
+  val instSraiw   = inst === SRAIW
   val instJalr    = inst === JALR
-  val instLb      = inst === LB                 // 0.B // Mux("b000_00000".U === instOF, true.B, false.B)
-  val instLh      = inst === LH                 // 0.B // Mux("b001_00000".U === instOF, true.B, false.B)
+  val instLb      = inst === LB
+  val instLh      = inst === LH
   val instLw      = inst === LW
   val instLd      = inst === LD
   val instLbu     = inst === LBU
-  val instLhu     = inst === LHU                // 0.B // Mux("b101_00000".U === instOF, true.B, false.B)
-  val instLwu     = inst === LWU                 // ???
+  val instLhu     = inst === LHU
+  val instLwu     = inst === LWU
   val typeI       = instAddi   || instAndi   || instXori   || instOri   || instSlli  || instSrli  ||
                     instSrai   || instSlti   || instSltiu  || instAddiw || instSlliw || instSrliw ||
                     instSraiw  || instLb     || instLh     || instLw    || instLd    || instLbu   || 
@@ -100,13 +100,13 @@ class ContrGen extends Module {
     instDivw || instMulw
 //  io.typeW := typeW
 
-/*
+
   io.aluCtr.aluA := Mux(instAuipc || typeJ, 1.U, 0.U)                     /** 0 -> rs1; 1 -> pc */
 
   io.aluCtr.aluB := MuxCase("b01".U, List(
     (typeR || typeB) -> "b00".U,
     (typeJ) -> "b10".U))                                          // 00 -> rs2; 01 -> imm; 10 -> 4
-*/
+
     val aluAdd  = instAdd  || instAddiw || instJalr|| instLbu || instLb    ||
                   instLh   || instLhu   || instLw  || instLwu || instLd    ||
                   instSb   || instSh    || instSw  || instSd  || instAuipc ||
@@ -173,7 +173,7 @@ class ContrGen extends Module {
     typeB -> "b011".U,
     (instJal) -> "b100".U))
 */
-/*
+
   io.memCtr.MemtoReg := MuxCase("b00".U, List(                                                                                              // alu.R -> Reg
     (instLb || instLh || instLw || instLd || instLbu || instLhu)                -> "b01".U,                               // Mem   -> Reg
 //    (instAddw || instAddiw || instSlliw || instSlliw || instSrliw || instSraiw || instRemw) -> "b10".U,                               // alu.R截断32位，符号扩展 -> Reg
@@ -189,7 +189,7 @@ class ContrGen extends Module {
           (instLd || instSd) -> "b011".U,
           instLbu            -> "b100".U,
           instLhu            -> "b101".U))
-*/
+
 // ----------------------------------------------------------------
   io.immOp := MuxCase("b111".U, List(
           (instAddi || instAddiw  || instSlti || instSltiu || instXori || instOri || instAndi || instSlli || instSlliw ||
