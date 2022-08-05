@@ -11,11 +11,11 @@ class ContrGen extends Module {
   val io = IO(new Bundle {
     val inst = Input(UInt(32.W))
 
-    val Branch = Output(UInt(3.W))
+//    val Branch = Output(UInt(3.W))
     val immOp = Output(UInt(3.W))
-    val aluCtr = new AluCtr
-    val memCtr = new MemCtr
-    val regCtrl = new RegCtrlIO
+//    val aluCtr = new AluCtr
+//    val memCtr = new MemCtr
+//    val regCtrl = new RegCtrlIO
   })
 
   val inst = io.inst
@@ -100,12 +100,13 @@ class ContrGen extends Module {
     instDivw || instMulw
 //  io.typeW := typeW
 
+/** !!!! 
   io.aluCtr.aluA := Mux(instAuipc || typeJ, 1.U, 0.U)                     /** 0 -> rs1; 1 -> pc */
 
   io.aluCtr.aluB := MuxCase("b01".U, List(
     (typeR || typeB) -> "b00".U,
     (typeJ) -> "b10".U))                                          // 00 -> rs2; 01 -> imm; 10 -> 4
-
+*/
 /**
   io.ALUBsrc := MuxCase("b11".U, Array(                               /** 00 -> rs2; 01 -> imm; 10 -> 4; 11 ->0 */
     ( typeR || typeB) -> "b00".U,
@@ -129,7 +130,7 @@ class ContrGen extends Module {
     val aluDiv  = instDiv || instDivw
     val aluMul  = instMul || instMulw
   /** mul and div */
-
+/*
   io.aluCtr.aluOp := MuxCase("b0000".U, List(                                                                  // 加法器， 加法
     aluSub                                          -> "b1000".U,               // 加法器， 减法
     aluSll                                          -> "b0001".U ,              // 移位器， 左移
@@ -192,4 +193,14 @@ class ContrGen extends Module {
           (instLd || instSd) -> "b011".U,
           instLbu            -> "b100".U,
           instLhu            -> "b101".U))
+*/
+// ----------------------------------------------------------------
+  io.immOp := MuxCase("b111".U, List(
+          (instAddi || instAddiw  || instSlti || instSltiu || instXori || instOri || instAndi || instSlli || instSlliw ||
+              instSrli || instSrliw || instSrai || instSraiw || instJalr || instLb || instLh || instLw || instLd || instLbu || instLhu ) -> "b000".U,                        // I Type
+          (instAuipc || instLui)  -> "b001".U,                             // U Type
+          (instSd || instSb || instSw || instSh)-> "b010".U,                                               // S Type
+          (instBeq || instBne || instBlt || instBge || instBltu || instBgeu) -> "b011".U,     // B
+          (instJal) -> "b100".U))                                             // J Type
+
 }

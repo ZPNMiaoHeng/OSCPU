@@ -76,6 +76,79 @@ end // initial
 `endif
 `endif // SYNTHESIS
 endmodule
+module ImmGen(
+  input  [31:0] io_inst,
+  input  [2:0]  io_immOp,
+  output [63:0] io_imm
+);
+  wire [51:0] _immType_0_T_2 = io_inst[31] ? 52'hfffffffffffff : 52'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] immType_0 = {_immType_0_T_2,io_inst[31:20]}; // @[ImmGen.scala 18:41]
+  wire [31:0] _immType_1_T_2 = io_inst[31] ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] immType_1 = {_immType_1_T_2,io_inst[31:12],12'h0}; // @[ImmGen.scala 19:59]
+  wire [63:0] immType_2 = {_immType_0_T_2,io_inst[31:25],io_inst[11:7]}; // @[ImmGen.scala 20:59]
+  wire [64:0] _immType_3_T_11 = {_immType_0_T_2,io_inst[31],io_inst[7],io_inst[30:25],io_inst[11:8],1'h0}; // @[ImmGen.scala 21:113]
+  wire [42:0] _immType_4_T_2 = io_inst[31] ? 43'h7ffffffffff : 43'h0; // @[Bitwise.scala 74:12]
+  wire [63:0] immType_4 = {_immType_4_T_2,io_inst[31],io_inst[19:12],io_inst[20],io_inst[30:21],1'h0}; // @[ImmGen.scala 22:113]
+  wire [63:0] _GEN_1 = 3'h1 == io_immOp ? immType_1 : immType_0; // @[ImmGen.scala 24:{10,10}]
+  wire [63:0] _GEN_2 = 3'h2 == io_immOp ? immType_2 : _GEN_1; // @[ImmGen.scala 24:{10,10}]
+  wire [63:0] immType_3 = _immType_3_T_11[63:0]; // @[ImmGen.scala 16:21 21:16]
+  wire [63:0] _GEN_3 = 3'h3 == io_immOp ? immType_3 : _GEN_2; // @[ImmGen.scala 24:{10,10}]
+  assign io_imm = 3'h4 == io_immOp ? immType_4 : _GEN_3; // @[ImmGen.scala 24:{10,10}]
+endmodule
+module ContrGen(
+  input  [31:0] io_inst,
+  output [2:0]  io_immOp
+);
+  wire [31:0] _instLui_T = io_inst & 32'h7f; // @[ContrGen.scala 23:26]
+  wire  instLui = 32'h37 == _instLui_T; // @[ContrGen.scala 23:26]
+  wire  instAuipc = 32'h17 == _instLui_T; // @[ContrGen.scala 24:26]
+  wire [31:0] _instAddi_T = io_inst & 32'h707f; // @[ContrGen.scala 27:26]
+  wire  instAddi = 32'h13 == _instAddi_T; // @[ContrGen.scala 27:26]
+  wire  instAndi = 32'h7013 == _instAddi_T; // @[ContrGen.scala 28:26]
+  wire  instXori = 32'h4013 == _instAddi_T; // @[ContrGen.scala 29:26]
+  wire  instOri = 32'h6013 == _instAddi_T; // @[ContrGen.scala 30:26]
+  wire [31:0] _instSlli_T = io_inst & 32'hfc00707f; // @[ContrGen.scala 31:26]
+  wire  instSlli = 32'h1013 == _instSlli_T; // @[ContrGen.scala 31:26]
+  wire  instSrli = 32'h5013 == _instSlli_T; // @[ContrGen.scala 32:26]
+  wire  instSrai = 32'h40005013 == _instSlli_T; // @[ContrGen.scala 33:26]
+  wire  instSlti = 32'h2013 == _instAddi_T; // @[ContrGen.scala 34:26]
+  wire  instSltiu = 32'h3013 == _instAddi_T; // @[ContrGen.scala 35:26]
+  wire  instAddiw = 32'h1b == _instAddi_T; // @[ContrGen.scala 36:26]
+  wire [31:0] _instSlliw_T = io_inst & 32'hfe00707f; // @[ContrGen.scala 37:26]
+  wire  instSlliw = 32'h101b == _instSlliw_T; // @[ContrGen.scala 37:26]
+  wire  instSrliw = 32'h501b == _instSlliw_T; // @[ContrGen.scala 38:26]
+  wire  instSraiw = 32'h4000501b == _instSlliw_T; // @[ContrGen.scala 39:26]
+  wire  instJalr = 32'h67 == _instAddi_T; // @[ContrGen.scala 40:26]
+  wire  instLb = 32'h3 == _instAddi_T; // @[ContrGen.scala 41:26]
+  wire  instLh = 32'h1003 == _instAddi_T; // @[ContrGen.scala 42:26]
+  wire  instLw = 32'h2003 == _instAddi_T; // @[ContrGen.scala 43:26]
+  wire  instLd = 32'h3003 == _instAddi_T; // @[ContrGen.scala 44:26]
+  wire  instLbu = 32'h4003 == _instAddi_T; // @[ContrGen.scala 45:26]
+  wire  instLhu = 32'h5003 == _instAddi_T; // @[ContrGen.scala 46:26]
+  wire  instJal = 32'h6f == _instLui_T; // @[ContrGen.scala 53:26]
+  wire  instBeq = 32'h63 == _instAddi_T; // @[ContrGen.scala 82:27]
+  wire  instBne = 32'h1063 == _instAddi_T; // @[ContrGen.scala 83:27]
+  wire  instBlt = 32'h4063 == _instAddi_T; // @[ContrGen.scala 84:27]
+  wire  instBge = 32'h5063 == _instAddi_T; // @[ContrGen.scala 85:27]
+  wire  instBltu = 32'h6063 == _instAddi_T; // @[ContrGen.scala 86:27]
+  wire  instBgeu = 32'h7063 == _instAddi_T; // @[ContrGen.scala 87:27]
+  wire  typeB = instBeq | instBne | instBlt | instBge | instBltu | instBgeu; // @[ContrGen.scala 88:74]
+  wire  instSb = 32'h23 == _instAddi_T; // @[ContrGen.scala 90:27]
+  wire  instSh = 32'h1023 == _instAddi_T; // @[ContrGen.scala 91:27]
+  wire  instSw = 32'h2023 == _instAddi_T; // @[ContrGen.scala 92:27]
+  wire  instSd = 32'h3023 == _instAddi_T; // @[ContrGen.scala 93:27]
+  wire  _io_immOp_T_8 = instAddi | instAddiw | instSlti | instSltiu | instXori | instOri | instAndi | instSlli |
+    instSlliw | instSrli; // @[ContrGen.scala 199:120]
+  wire  _io_immOp_T_18 = _io_immOp_T_8 | instSrliw | instSrai | instSraiw | instJalr | instLb | instLh | instLw | instLd
+     | instLbu | instLhu; // @[ContrGen.scala 200:125]
+  wire  _io_immOp_T_19 = instAuipc | instLui; // @[ContrGen.scala 201:22]
+  wire  _io_immOp_T_22 = instSd | instSb | instSw | instSh; // @[ContrGen.scala 202:39]
+  wire [2:0] _io_immOp_T_28 = instJal ? 3'h4 : 3'h7; // @[Mux.scala 101:16]
+  wire [2:0] _io_immOp_T_29 = typeB ? 3'h3 : _io_immOp_T_28; // @[Mux.scala 101:16]
+  wire [2:0] _io_immOp_T_30 = _io_immOp_T_22 ? 3'h2 : _io_immOp_T_29; // @[Mux.scala 101:16]
+  wire [2:0] _io_immOp_T_31 = _io_immOp_T_19 ? 3'h1 : _io_immOp_T_30; // @[Mux.scala 101:16]
+  assign io_immOp = _io_immOp_T_18 ? 3'h0 : _io_immOp_T_31; // @[Mux.scala 101:16]
+endmodule
 module Decode(
   input  [31:0] io_inst,
   output [4:0]  io_rs1_addr,
@@ -85,15 +158,31 @@ module Decode(
   output [7:0]  io_opcode,
   output [63:0] io_imm
 );
-  wire [52:0] _imm_i_T_2 = io_inst[31] ? 53'h1fffffffffffff : 53'h0; // @[Bitwise.scala 74:12]
-  wire [31:0] _T = io_inst & 32'h707f; // @[Decode.scala 23:14]
-  wire  _T_1 = 32'h13 == _T; // @[Decode.scala 23:14]
-  assign io_rs1_addr = io_inst[19:15]; // @[Decode.scala 27:22]
-  assign io_rs1_en = 32'h13 == _T; // @[Decode.scala 35:14]
-  assign io_rd_addr = io_inst[11:7]; // @[Decode.scala 29:21]
-  assign io_rd_en = 32'h13 == _T; // @[Decode.scala 35:14]
-  assign io_opcode = {{7'd0}, _T_1}; // @[Decode.scala 41:13]
-  assign io_imm = {_imm_i_T_2,io_inst[30:20]}; // @[Cat.scala 31:58]
+  wire [31:0] imm_io_inst; // @[Decode.scala 19:20]
+  wire [2:0] imm_io_immOp; // @[Decode.scala 19:20]
+  wire [63:0] imm_io_imm; // @[Decode.scala 19:20]
+  wire [31:0] con_io_inst; // @[Decode.scala 20:20]
+  wire [2:0] con_io_immOp; // @[Decode.scala 20:20]
+  wire [31:0] _T = io_inst & 32'h707f; // @[Decode.scala 32:14]
+  wire  _T_1 = 32'h13 == _T; // @[Decode.scala 32:14]
+  ImmGen imm ( // @[Decode.scala 19:20]
+    .io_inst(imm_io_inst),
+    .io_immOp(imm_io_immOp),
+    .io_imm(imm_io_imm)
+  );
+  ContrGen con ( // @[Decode.scala 20:20]
+    .io_inst(con_io_inst),
+    .io_immOp(con_io_immOp)
+  );
+  assign io_rs1_addr = io_inst[19:15]; // @[Decode.scala 36:22]
+  assign io_rs1_en = 32'h13 == _T; // @[Decode.scala 44:14]
+  assign io_rd_addr = io_inst[11:7]; // @[Decode.scala 38:21]
+  assign io_rd_en = 32'h13 == _T; // @[Decode.scala 44:14]
+  assign io_opcode = {{7'd0}, _T_1}; // @[Decode.scala 50:13]
+  assign io_imm = imm_io_imm; // @[Decode.scala 25:10]
+  assign imm_io_inst = io_inst; // @[Decode.scala 21:15]
+  assign imm_io_immOp = con_io_immOp; // @[Decode.scala 22:16]
+  assign con_io_inst = io_inst; // @[Decode.scala 24:15]
 endmodule
 module RegFile(
   input         clock,

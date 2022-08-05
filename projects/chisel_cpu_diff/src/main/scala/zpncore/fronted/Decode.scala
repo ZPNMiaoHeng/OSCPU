@@ -5,6 +5,7 @@ import Instructions._
 class Decode extends Module {
   val io = IO(new Bundle {
     val inst = Input(UInt(32.W))
+
     val rs1_addr = Output(UInt(5.W))
     val rs1_en = Output(Bool())
     val rs2_addr = Output(UInt(5.W))
@@ -14,6 +15,14 @@ class Decode extends Module {
     val opcode = Output(UInt(8.W))
     val imm = Output(UInt(64.W))
   })
+  
+  val imm  = Module(new ImmGen)
+  val con  = Module(new ContrGen)
+  imm.io.inst := io.inst
+  imm.io.immOp := con.io.immOp
+
+  con.io.inst := io.inst
+  io.imm := imm.io.imm
 
   val inst = io.inst
   val opcode = WireInit(UInt(8.W), 0.U)
@@ -39,5 +48,5 @@ class Decode extends Module {
   }
   
   io.opcode := opcode
-  io.imm := imm_i
+
 }
