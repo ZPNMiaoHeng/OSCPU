@@ -4,18 +4,15 @@ import chisel3.util._
 class InstFetch extends Module {
   val io = IO(new Bundle {
     val imem = new RomIO
-    val nextPC = Input(UInt(32.W))
     val pc = Output(UInt(32.W))
     val inst = Output(UInt(32.W))
-
   })
 
   val pc_en = RegInit(false.B)
   pc_en := true.B
 
   val pc = RegInit("h80000000".U(32.W))
-//  pc := pc + 4.U
-  pc := io.nextPC
+  pc := pc + 4.U
 
   io.imem.en := true.B
   io.imem.addr := pc.asUInt()
