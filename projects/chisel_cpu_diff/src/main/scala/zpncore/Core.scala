@@ -26,6 +26,12 @@ class Core extends Module {
   execution.io.in2 := Mux(decode.io.rs2_en, rf.io.rs2_data, decode.io.imm)
   execution.io.dmem <> io.dmem
 
+  //val alu = Module(new ALU)
+  //alu.aluIO <> decode.io.aluIO
+
+  //alu.io.MemtoReg := decode.io.memCtr.MemtoReg
+
+
   rf.io.rd_data := execution.io.out
 
   /* ----- Difftest ------------------------------ */

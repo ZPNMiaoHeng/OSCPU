@@ -180,6 +180,7 @@ class ContrGen extends Module {
     (typeW)                                                                     -> "b10".U
 //    (instBeq || instBne || instBlt || instBge || instBltu || instBgeu)          -> "b11".U                                // 无用信号
   ))
+
   io.memCtr.MemWr    := Mux(instSb || instSh || instSw || instSd, 1.U, 0.U)
   io.memCtr.MemOP    := MuxCase("b111".U, List(
           (instLb || instSb) -> "b000".U,

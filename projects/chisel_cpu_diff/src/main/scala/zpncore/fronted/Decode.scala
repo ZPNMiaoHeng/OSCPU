@@ -25,9 +25,6 @@ class Decode extends Module {
 //  io.aluIO.ctrl <> con.io.aluCtr
   io.imm := imm.io.imm
 
-
-  // Only example here, use your own control flow!
-
   io.rs1_addr := con.io.regCtrl.rs2Addr     //inst(19, 15)
   io.rs2_addr := con.io.regCtrl.rs1Addr     //inst(24, 20)
   io.rd_addr := con.io.regCtrl.rdAddr       //inst(11, 7)
