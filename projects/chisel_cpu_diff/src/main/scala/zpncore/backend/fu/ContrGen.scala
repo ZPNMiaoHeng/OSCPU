@@ -159,22 +159,15 @@ class ContrGen extends Module {
 
   io.immOp := MuxCase("b111".U, List(
           (instAddi || instAddiw  || instSlti || instSltiu || instXori || instOri || instAndi || instSlli || instSlliw ||
-              instSrli || instSrliw || instSrai || instSraiw || instJalr || instLb || instLh || instLw || instLd || instLbu || instLhu ) -> "b000".U,                        // I Type
-          (instAuipc || instLui)  -> "b001".U,                             // U Type
+           instSrli || instSrliw  || instSrai || instSraiw || instJalr || instLb || instLh || 
+           instLw   || instLwu    ||  instLd || instLbu || instLhu ) -> "b000".U,                          // I Type
+          (instAuipc || instLui)  -> "b001".U,                                                             // U Type
           (instSd || instSb || instSw || instSh)-> "b010".U,                                               // S Type
-          (instBeq || instBne || instBlt || instBge || instBltu || instBgeu) -> "b011".U,     // B
-          (instJal) -> "b100".U))                                             // J Type
-/**
-  io.ExtOP := MuxCase("b111".U, Array(
-    typeI -> "b000".U,
-    typeU -> "b001".U,
-    typeS -> "b010".U,
-    typeB -> "b011".U,
-    (instJal) -> "b100".U))
-*/
+          (instBeq || instBne || instBlt || instBge || instBltu || instBgeu) -> "b011".U,                  // B Type
+          (instJal) -> "b100".U))                                                                          // J Type
+
   io.memCtr.MemtoReg := MuxCase("b00".U, List(                                                                                              // alu.R -> Reg
-    (instLb || instLh || instLw || instLd || instLbu || instLhu)                -> "b01".U,                               // Mem   -> Reg
-//    (instAddw || instAddiw || instSlliw || instSlliw || instSrliw || instSraiw || instRemw) -> "b10".U,                               // alu.R截断32位，符号扩展 -> Reg
+    (instLb || instLh || instLw || instLwu || instLd || instLbu || instLhu)                -> "b01".U,                               // Mem   -> Reg
     (typeW)                                                                     -> "b10".U
 //    (instBeq || instBne || instBlt || instBge || instBltu || instBgeu)          -> "b11".U                                // 无用信号
   ))
@@ -184,6 +177,7 @@ class ContrGen extends Module {
           (instLh || instSh) -> "b001".U,
           (instLw || instSw) -> "b010".U,
           (instLd || instSd) -> "b011".U,
-          instLbu            -> "b100".U,
-          instLhu            -> "b101".U))
+          (instLbu ) -> "b100".U,
+          (instLhu ) -> "b101".U,
+          (instLwu ) -> "b110".U))
 }

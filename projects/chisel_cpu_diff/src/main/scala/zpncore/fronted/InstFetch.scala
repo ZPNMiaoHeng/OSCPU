@@ -9,10 +9,6 @@ class InstFetch extends Module {
     val inst = Output(UInt(32.W))
 
   })
-
-//  val pc_en = RegInit(false.B)
-//  pc_en := true.B
-
   val pc = RegInit("h7fff_fffc".U(32.W))
 //  val pc = RegInit("h8000_0000".U(32.W))
   pc := io.nextPC
