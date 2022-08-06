@@ -2,8 +2,12 @@ import chisel3._
 import chisel3.util._
 import Constant._
 import utils._
+/**
+  ** 内存使用第三期环境，访存指令需要进行8字节对齐处理
+  ** 
+  */
 
-class DataMem extends Module {//BlackBox with HasBlackBoxInline {
+class DataMem extends Module {
   val io = IO(new Bundle {
     val Addr    = Input(UInt(64.W))
     val DataIn  = Input(UInt(64.W))
@@ -20,9 +24,21 @@ class DataMem extends Module {//BlackBox with HasBlackBoxInline {
   val alignBits = io.Addr % 8.U
   io.dmem.wdata := io.DataIn << alignBits * 8.U
   io.dmem.wmask := LookupTreeDefault(io.memCtr.MemOP, 0.U, List(
-    "b000".U -> "h0000_0000_0000_00ff".U,
-    "b001".U -> "h0000_0000_0000_ffff".U,
-    "b010".U -> "h0000_0000_ffff_ffff".U,
+    "b000".U -> LookupTreeDefault(alignBits, "h0000_0000_0000_00ff".U, List(
+      1.U -> "h0000_0000_0000_ff00".U,
+      2.U -> "h0000_0000_00ff_0000".U,
+      3.U -> "h0000_0000_ff00_0000".U,
+      4.U -> "h0000_00ff_0000_0000".U,
+      5.U -> "h0000_ff00_0000_0000".U,
+      6.U -> "h00ff_0000_0000_ff00".U,
+      7.U -> "hff00_0000_0000_0000".U
+    )),
+    "b001".U -> LookupTreeDefault(alignBits,  "h0000_0000_0000_ffff".U, List(
+      2.U -> "h0000_0000_ffff_0000".U,
+      4.U -> "h0000_ffff_0000_0000".U,
+      6.U -> "hffff_0000_0000_0000".U,
+    )),
+    "b010".U -> Mux(alignBits === 0.U, "h0000_0000_ffff_ffff".U, "hffff_ffff_0000_0000".U),
     "b011".U -> "hffff_ffff_ffff_ffff".U
   ))
 
