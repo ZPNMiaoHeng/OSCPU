@@ -1,6 +1,10 @@
 import chisel3._
 import chisel3.util._
 import difftest._
+/**
+  ** 总线：第一次测试 读取指令阶段
+  ** --访存数据不变，取指阶段换成总线--
+  */
 
 class SimTop extends Module {
   val io = IO(new Bundle {
@@ -14,7 +18,18 @@ class SimTop extends Module {
   val core = Module(new Core)
 
   val mem = Module(new Ram2r1w)
-  mem.io.imem <> core.io.imem
+  val top = Module(new AxiLite2Axi)
+  top.io.imem <> core.io.imem
+  
+  io.memAXI_0.aw <> top.io.out.aw
+  io.memAXI_0.w  <> top.io.out.w
+  io.memAXI_0.b  <> top.io.out.b
+  io.memAXI_0.ar <> top.io.out.ar
+  io.memAXI_0.r  <> top.io.out.r
+
+//  mem.io.imem <> core.io.imem
+
+
   mem.io.dmem <> core.io.dmem
 
   io.uart.out.valid := false.B

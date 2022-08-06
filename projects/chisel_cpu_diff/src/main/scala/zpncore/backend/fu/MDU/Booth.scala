@@ -2,21 +2,21 @@ import chisel3._
 import chisel3.util._
 import utils._
 
-trait MulConstant {
+trait MulConstant1 {
   val BoothWidth = 132
 }
 
-class BoothIIO extends Bundle with MulConstant {
+class BoothIIO extends Bundle with MulConstant1 {
   val y = Output(Vec(3, UInt(1.W)))
   val x = Output(UInt(BoothWidth.W))
 }
 
-class BoothOIO extends Bundle with MulConstant {
+class BoothOIO extends Bundle with MulConstant1 {
   val p = Output(UInt(BoothWidth.W))
   val c = Output(UInt(1.W))
 }
 
-class Booth extends Module with MulConstant {
+class Booth extends Module with MulConstant1 {
   val io = IO (new Bundle {
     val in = Flipped(new BoothIIO)
     val out = new BoothOIO

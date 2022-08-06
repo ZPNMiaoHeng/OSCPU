@@ -11,18 +11,29 @@ trait Constant {
   val XLEN = 64
   val WLEN = 32
 
-
   val SIZE_B  = "b00".U
   val SIZE_H  = "b01".U
   val SIZE_W  = "b10".U
   val SIZE_D  = "b11".U
+
+  val REQ_READ  = 0.U
+  val REQ_WRITE = 1.U
 }
+
+/*
+trait AxiParameters {
+  val AxiAddrWidth = 32
+  val AxiDataWidth = 64
+  val AxiIdWidth = 4
+  val AxiUserWidth = 1
+}
+*/
 
 trait AxiParameters {
   val RwDataWidth = 64
   val RwAddrWidth = 32
   val AxiDataWidth = 64
-  val AxiAddrWidth = 64
+  val AxiAddrWidth = 32
   val AxiIdWidth = 4
   val AxiStrbWidth = AxiDataWidth / 8
   val AxiUserWidth = 1

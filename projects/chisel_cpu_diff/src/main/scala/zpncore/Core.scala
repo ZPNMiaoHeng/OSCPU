@@ -5,7 +5,8 @@ import utils._
 
 class Core extends Module {
   val io = IO(new Bundle {
-    val imem = new RomIO
+    val imem = new CoreInst
+//    val imem = new RomIO  
     val dmem = new RamIO
   })
   
