@@ -30,7 +30,7 @@ class DataMem extends Module {
       3.U -> "h0000_0000_ff00_0000".U,
       4.U -> "h0000_00ff_0000_0000".U,
       5.U -> "h0000_ff00_0000_0000".U,
-      6.U -> "h00ff_0000_0000_ff00".U,
+      6.U -> "h00ff_0000_0000_0000".U,
       7.U -> "hff00_0000_0000_0000".U
     )),
     "b001".U -> LookupTreeDefault(alignBits,  "h0000_0000_0000_ffff".U, List(
