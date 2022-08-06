@@ -1,15 +1,12 @@
 import chisel3._
 import chisel3.util._
 import Instructions._
+import Constant._
 import utils._
-//import Constant._
-/** 
-  * 生成控制信号
-  * 
-  */
+
 class ContrGen extends Module {
   val io = IO(new Bundle {
-    val inst = Input(UInt(32.W))
+    val inst = Input(UInt(WLEN.W))
 
     val Branch = Output(UInt(3.W))
     val immOp = Output(UInt(3.W))

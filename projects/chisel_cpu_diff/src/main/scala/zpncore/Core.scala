@@ -46,7 +46,6 @@ class Core extends Module {
   nextpc.io.Less   := alu.io.Less
   nextpc.io.Zero   := alu.io.Zero
 
-
   /* ----- Difftest ------------------------------ */
 
   val dt_ic = Module(new DifftestInstrCommit)

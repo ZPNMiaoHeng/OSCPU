@@ -3,7 +3,7 @@ import chisel3.util._
 
 import Constant._
 /* 可以采用DecoupledIO 添加握手信号  */
-
+//--------------------------- ContrIO -----------------------------------
 class RegCtrlIO extends Bundle {
   val rs1En = Output(UInt(1.W))
   val rs2En = Output(UInt(1.W))
@@ -35,7 +35,19 @@ class AluIO extends Bundle {
   val ctrl = new AluCtr
   val data = new DataSrcIO
 }
+//--------------------------- RamIO -----------------------------------
+class RomIO extends Bundle {
+  val en = Output(Bool())
+  val addr = Output(UInt(64.W))
+  val rdata = Input(UInt(64.W))
+}
 
+class RamIO extends RomIO {
+  val wdata = Output(UInt(64.W))
+  val wmask = Output(UInt(64.W))
+  val wen = Output(Bool())
+}
+//--------------------------- AxiIO ------------------------------
 class InstIO extends ZpnCoreBundle {
 //  val inst_valid  = Output(Bool())
 //  val inst_ready  = Input(Bool())
@@ -50,7 +62,6 @@ class AxiInst extends InstIO {
 class CoreInst extends InstIO {
   val instRead   = Input(UInt(32.W))
 }
-
 
 /* Data */
 
@@ -121,8 +132,8 @@ class AxiIO extends Bundle {
 }
 
 class PcIO extends Bundle {
-  val PC = Input(UInt(PCWidth.W))
-  val nextPC = Output(UInt(PCWidth.W))
+  val PC = Input(UInt(WLEN.W))
+  val nextPC = Output(UInt(WLEN.W))
 }
 
 

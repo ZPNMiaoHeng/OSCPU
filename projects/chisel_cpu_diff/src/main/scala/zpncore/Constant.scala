@@ -8,8 +8,7 @@ import chisel3.util._
 
 trait Constant {
   val RW_DATA_WIDTH = 64
-  val PCWidth = 64
-  val InstWidth = 64
+  val WLEN = 32
   val XLEN = 64
 
   val SIZE_B  = "b00".U

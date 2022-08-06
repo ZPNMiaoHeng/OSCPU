@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.util._
+import Constant._
 import utils._
 /**
   * Branch -> nextPC
@@ -7,15 +8,15 @@ import utils._
   */
 class NextPC extends Module {
   val io = IO(new Bundle {
-    val PC     = Input(UInt(32.W))
-    val Imm    = Input(UInt(64.W))
-    val Rs1    = Input(UInt(64.W))
+    val PC     = Input(UInt(WLEN.W))
+    val Imm    = Input(UInt(XLEN.W))
+    val Rs1    = Input(UInt(XLEN.W))
 
     val Branch = Input(UInt(3.W))
     val Less   = Input(UInt(1.W))
     val Zero   = Input(UInt(1.W))
 
-    val NextPC = Output(UInt(32.W))
+    val NextPC = Output(UInt(WLEN.W))
   })
 
   val less = Mux(io.Branch === "b111".U, ~io.Less, io.Less)

@@ -1,18 +1,6 @@
 import chisel3._
 import chisel3.util._
 
-class RomIO extends Bundle {
-  val en = Output(Bool())
-  val addr = Output(UInt(64.W))
-  val rdata = Input(UInt(64.W))
-}
-
-class RamIO extends RomIO {
-  val wdata = Output(UInt(64.W))
-  val wmask = Output(UInt(64.W))
-  val wen = Output(Bool())
-}
-
 class ram_2r1w extends BlackBox with HasBlackBoxResource {
   val io = IO(new Bundle {
     val clk = Input(Clock())

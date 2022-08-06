@@ -1,6 +1,7 @@
 import chisel3._
 import chisel3.util._
 import Instructions._
+import Constant._
 
 /**
   * IDU module is output instruction parameter and instruction type
@@ -12,8 +13,8 @@ import Instructions._
 
 class Decode extends Module {
   val io = IO(new Bundle {  
-    val inst = Input(UInt(32.W))
-    val rdData = Input(UInt(64.W))
+    val inst = Input(UInt(WLEN.W))
+    val rdData = Input(UInt(XLEN.W))
 
     val Branch = Output(UInt(3.W)) 
     val aluIO = new AluIO

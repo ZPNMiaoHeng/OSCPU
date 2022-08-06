@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.util._
+import Constant._
 /** 通过输入指令类型从而得到立即数 
   * I->000; U->001; S->010;
   * B->011; J->100
@@ -7,10 +8,10 @@ import chisel3.util._
   */
 class ImmGen extends Module {
   val io = IO(new Bundle {
-    val inst  = Input(UInt(32.W))
+    val inst  = Input(UInt(WLEN.W))
     val immOp = Input(UInt(3.W))
 
-    val imm   = Output(UInt(64.W))
+    val imm   = Output(UInt(XLEN.W))
   })
 
   val immType = Wire(Vec(5, UInt(64.W)))

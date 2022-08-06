@@ -9,12 +9,12 @@ import utils._
 
 class DataMem extends Module {
   val io = IO(new Bundle {
-    val Addr    = Input(UInt(64.W))
-    val DataIn  = Input(UInt(64.W))
+    val Addr    = Input(UInt(XLEN.W))
+    val DataIn  = Input(UInt(XLEN.W))
 
     val memCtr = Flipped(new MemCtr)
     val dmem = new RamIO
-    val rdData = Output(UInt(64.W))
+    val rdData = Output(UInt(XLEN.W))
   })
 
   io.dmem.en := !(io.Addr < "h8000_0000".U || io.Addr > "h8800_0000".U) &&
