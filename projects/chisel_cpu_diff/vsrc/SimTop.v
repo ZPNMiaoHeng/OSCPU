@@ -1598,14 +1598,13 @@ module AxiLite2Axi(
   reg [1:0] r_state; // @[Axi.scala 25:24]
   wire [1:0] _GEN_2 = r_done ? 2'h3 : r_state; // @[Axi.scala 45:20 46:17 25:24]
   wire [1:0] _GEN_3 = 2'h3 == r_state ? 2'h0 : r_state; // @[Axi.scala 33:20 50:15 25:24]
-  wire [31:0] _axi_addr_T_2 = io_imem_inst_addr + 32'h4; // @[Axi.scala 56:62]
-  wire [31:0] _axi_addr_T_3 = _axi_addr_T_2 & 32'hfffffff0; // @[Axi.scala 56:69]
-  reg [63:0] inst_read_h; // @[Axi.scala 98:28]
-  reg [63:0] inst_read_l; // @[Axi.scala 99:28]
-  assign io_out_ar_valid = r_state == 2'h1; // @[Axi.scala 58:28]
-  assign io_out_ar_bits_addr = r_state == 2'h1 ? _axi_addr_T_3 : 32'h0; // @[Axi.scala 56:21]
-  assign io_out_r_ready = 1'h1; // @[Axi.scala 71:15]
-  assign io_imem_inst_ready = r_state == 2'h3; // @[Axi.scala 96:30]
+  wire [31:0] _axi_addr_T_1 = io_imem_inst_addr & 32'hfffffff0; // @[Axi.scala 61:61]
+  reg [63:0] inst_read_h; // @[Axi.scala 104:28]
+  reg [63:0] inst_read_l; // @[Axi.scala 105:28]
+  assign io_out_ar_valid = r_state == 2'h1; // @[Axi.scala 64:28]
+  assign io_out_ar_bits_addr = r_state == 2'h1 ? _axi_addr_T_1 : 32'h0; // @[Axi.scala 61:21]
+  assign io_out_r_ready = 1'h1; // @[Axi.scala 77:15]
+  assign io_imem_inst_ready = r_state == 2'h3; // @[Axi.scala 102:30]
   assign io_imem_inst_read = {inst_read_h,inst_read_l}; // @[Cat.scala 31:58]
   always @(posedge clock) begin
     if (reset) begin // @[Axi.scala 25:24]
@@ -1621,18 +1620,18 @@ module AxiLite2Axi(
     end else begin
       r_state <= _GEN_3;
     end
-    if (reset) begin // @[Axi.scala 98:28]
-      inst_read_h <= 64'h0; // @[Axi.scala 98:28]
-    end else if (r_hs) begin // @[Axi.scala 101:15]
-      if (io_out_r_bits_last) begin // @[Axi.scala 102:28]
-        inst_read_h <= io_out_r_bits_data; // @[Axi.scala 103:19]
+    if (reset) begin // @[Axi.scala 104:28]
+      inst_read_h <= 64'h0; // @[Axi.scala 104:28]
+    end else if (r_hs) begin // @[Axi.scala 107:15]
+      if (io_out_r_bits_last) begin // @[Axi.scala 108:28]
+        inst_read_h <= io_out_r_bits_data; // @[Axi.scala 109:19]
       end
     end
-    if (reset) begin // @[Axi.scala 99:28]
-      inst_read_l <= 64'h0; // @[Axi.scala 99:28]
-    end else if (r_hs) begin // @[Axi.scala 101:15]
-      if (!(io_out_r_bits_last)) begin // @[Axi.scala 102:28]
-        inst_read_l <= io_out_r_bits_data; // @[Axi.scala 106:19]
+    if (reset) begin // @[Axi.scala 105:28]
+      inst_read_l <= 64'h0; // @[Axi.scala 105:28]
+    end else if (r_hs) begin // @[Axi.scala 107:15]
+      if (!(io_out_r_bits_last)) begin // @[Axi.scala 108:28]
+        inst_read_l <= io_out_r_bits_data; // @[Axi.scala 112:19]
       end
     end
   end
