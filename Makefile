@@ -6,7 +6,7 @@
 #************************************************************************************************
 #* Modefly：
 #************************************************************************************************
-
+VSRC = DIR = ./projects/chisel_cpu_diff/vsrc
 DIR = ./projects/chisel_cpu_diff/vsrc/SimTop.v
 TARGET = chisel_cpu_diff
 TOOLS = ./build.sh -e $(TARGET)
@@ -33,5 +33,6 @@ vcd:
 
 clean:
 	$(TOOLS) -c
+	rm -rf $(VSRC)
 
 .PHONY : run test verilog clean 
