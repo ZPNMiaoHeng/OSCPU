@@ -18,18 +18,26 @@ class InstFetch extends Module {
 
   })
   val pc = RegInit("h7fff_fffc".U(WLEN.W))
-  pc := io.nextPC
+
+
+  val fire = io.imem.inst_valid && io.imem.inst_ready
+//  pc := Mux(fire, ) 
+ 
+  when(fire) {
+    pc := nextPC
+    io.inst := io.imem.inst_read
+  }  
+
 
 //  io.imem.en := true.B
 //  io.imem.addr := pc.asUInt()
+
   io.imem.inst_valid := true.B
   io.imem.inst_req := REQ_READ                    //!false.B
   io.imem.inst_addr := pc.asUInt()
   io.imem.inst_size := SIZE_W
 
-  val fire = io.imem.inst_valid && io.imem.inst_ready
-
   io.pc := pc
 //  io.inst := io.imem.rdata(31, 0)
-  io.inst := Mux(fire, io.imem.inst_read, 0.U)
+//  io.inst := Mux(fire, io.imem.inst_read, 0.U)
 }

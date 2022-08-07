@@ -3,7 +3,7 @@ import chisel3.util._
 
 import Constant._
 
-class /*AxiLiteAR*/ AxiLite2Axi  extends Module {
+class AxiLite2Axi  extends Module {
   val io = IO(new Bundle {
     val out = new AxiIO
     val imem = Flipped(new AxiInst)

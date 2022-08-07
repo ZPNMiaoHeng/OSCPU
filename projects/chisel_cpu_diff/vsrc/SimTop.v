@@ -13,11 +13,11 @@ module InstFetch(
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
   reg [31:0] pc; // @[InstFetch.scala 20:19]
-  wire  fire = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 30:33]
-  assign io_imem_inst_valid = 1'h1; // @[InstFetch.scala 25:22]
-  assign io_imem_inst_addr = pc; // @[InstFetch.scala 27:21]
-  assign io_pc = pc; // @[InstFetch.scala 32:9]
-  assign io_inst = fire ? io_imem_inst_read : 32'h0; // @[InstFetch.scala 34:17]
+  wire  fire = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 23:33]
+  assign io_imem_inst_valid = 1'h1; // @[InstFetch.scala 27:22]
+  assign io_imem_inst_addr = fire ? pc : 32'h0; // @[InstFetch.scala 29:27]
+  assign io_pc = pc; // @[InstFetch.scala 34:9]
+  assign io_inst = fire ? io_imem_inst_read : 32'h0; // @[InstFetch.scala 36:17]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 20:19]
       pc <= 32'h7ffffffc; // @[InstFetch.scala 20:19]

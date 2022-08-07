@@ -1,15 +1,15 @@
 #************************************************************************************************
-#* V 1.1.1
+#* V 1.2.1
 #* Date: Six, 6/8 2022
 #* run_riscv：riscv-tests , TOP 指定文件名
 #* riscv_tests：riscv-tests , TOP 指定文件
+#************************************************************************************************
+#* Modefly：
 #************************************************************************************************
 
 DIR = ./projects/chisel_cpu_diff/vsrc/SimTop.v
 TARGET = chisel_cpu_diff
 TOOLS = ./build.sh -e $(TARGET)
-TOPC = inst_diff
-FLASS = 
 TOP=
 
 cpu_tests:
@@ -25,8 +25,11 @@ run_riscv:
 run_cpu:
 	$(TOOLS) -d -b -s -a "-i non-output/cpu-tests/$(TOP)-cpu-tests.bin --dump-wave -b 0" -m "EMU_TRACE=1"
 
+axi:
+	$(TOOLS) -d -b -s -a "-i inst_diff.bin --dump-wave -b 0" -m "EMU_TRACE=1 WITH_DRAMSIM3=1"
+
 vcd:
-	$(TOOLS) -w
+	$(TOOLS) -d -w
 
 clean:
 	$(TOOLS) -c
