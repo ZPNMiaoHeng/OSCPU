@@ -52,14 +52,8 @@ class AxiLite2Axi  extends Module {
   }
 
     // ------------------Write Transaction------------------
-/*
-  val axi_addr = 0.U
-  when( r_state === r_inst_addr ) {
-     axi_addr := in1.inst_addr & "hffff_fff0".U(32.W)
-  }
-*/
-  val axi_addr = Mux(r_state === r_inst_addr, in1.inst_addr & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
-//  val axi_addr = Mux(r_state === r_inst_addr, (in1.inst_addr + 4.U) & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
+//  val axi_addr = Mux(r_state === r_inst_addr, in1.inst_addr & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
+  val axi_addr = in1.inst_addr & "hffff_fff0".U(32.W) // Byte alignment
 
   out.ar.valid := (r_state === r_inst_addr)
   out.ar.bits.addr := axi_addr
