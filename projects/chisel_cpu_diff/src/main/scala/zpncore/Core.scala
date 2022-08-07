@@ -54,13 +54,13 @@ class Core extends Module {
   dt_ic.io.clock    := clock
   dt_ic.io.coreid   := 0.U
   dt_ic.io.index    := 0.U
-  dt_ic.io.valid    := true.B
+  dt_ic.io.valid    := RegNext(fetch.io.done) // true.B
   dt_ic.io.pc       := RegNext(fetch.io.pc)
   dt_ic.io.instr    := RegNext(fetch.io.inst)
   dt_ic.io.skip     := false.B
   dt_ic.io.isRVC    := false.B
   dt_ic.io.scFailed := false.B
-  dt_ic.io.wen      := RegNext(wEna)   //(dataMem.io.dmem.wen)
+  dt_ic.io.wen      := RegNext(dataMem.io.dmem.wen)       //RegNext(wEna)   
   dt_ic.io.wdata    := RegNext(dataMem.io.dmem.wdata)
   dt_ic.io.wdest    := RegNext(dataMem.io.dmem.addr)
 
