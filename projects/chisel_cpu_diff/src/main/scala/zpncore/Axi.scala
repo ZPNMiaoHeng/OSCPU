@@ -19,7 +19,7 @@ class AxiLite2Axi  extends Module {
   val ar_hs = out.ar.ready && out.ar.valid                                     // fire_ar
   val r_hs = out.r.ready && out.r.valid                                       // fire_r
   
-  val r_done = r_hs && out.r.bits.last
+  val r_done = r_hs && out.r.bits.last                                        //* 主机得到data和last完成信号
 
   val r_idle :: r_inst_addr :: r_inst_read :: r_inst_done :: Nil = Enum(4)
   val r_state = RegInit(r_idle)

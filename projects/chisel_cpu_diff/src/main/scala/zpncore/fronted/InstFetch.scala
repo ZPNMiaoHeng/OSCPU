@@ -23,6 +23,7 @@ class InstFetch extends Module {
   when(fire) {
     pc := io.nextPC
     inst := io.imem.inst_read
+    io.imem.inst_valid := false.B 
   }
 
   io.imem.inst_req := REQ_READ                    //!false.B
