@@ -1,14 +1,14 @@
 module InstFetch(
-  input         clock,
-  input         reset,
-  output        io_imem_inst_valid,
-  input         io_imem_inst_ready,
-  output [31:0] io_imem_inst_addr,
-  input  [63:0] io_imem_inst_read,
-  input  [31:0] io_nextPC,
-  output [31:0] io_pc,
-  output [31:0] io_inst,
-  output        io_fetchDone
+  input          clock,
+  input          reset,
+  output         io_imem_inst_valid,
+  input          io_imem_inst_ready,
+  output [31:0]  io_imem_inst_addr,
+  input  [127:0] io_imem_inst_read,
+  input  [31:0]  io_nextPC,
+  output [31:0]  io_pc,
+  output [31:0]  io_inst,
+  output         io_fetchDone
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -19,14 +19,15 @@ module InstFetch(
   reg  fetchDone; // @[InstFetch.scala 19:26]
   reg [63:0] inst; // @[InstFetch.scala 20:21]
   wire  fire = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 23:33]
-  wire [31:0] _GEN_3 = pc % 32'h8; // @[InstFetch.scala 26:22]
-  wire [3:0] alignment = _GEN_3[3:0]; // @[InstFetch.scala 26:22]
-  wire [31:0] _GEN_0 = alignment == 4'h4 ? io_imem_inst_read[31:0] : io_imem_inst_read[63:32]; // @[InstFetch.scala 29:29 30:12 32:12]
+  wire [31:0] _GEN_6 = pc % 32'h10; // @[InstFetch.scala 26:22]
+  wire [4:0] alignment = _GEN_6[4:0]; // @[InstFetch.scala 26:22]
+  wire [63:0] _GEN_0 = 5'hc == alignment ? {{32'd0}, io_imem_inst_read[31:0]} : inst; // @[InstFetch.scala 29:23 40:14 20:21]
+  wire [63:0] _GEN_1 = 5'h8 == alignment ? {{32'd0}, io_imem_inst_read[127:96]} : _GEN_0; // @[InstFetch.scala 29:23 37:14]
   assign io_imem_inst_valid = 1'h1; // @[InstFetch.scala 22:22]
-  assign io_imem_inst_addr = pc; // @[InstFetch.scala 37:21]
-  assign io_pc = pc; // @[InstFetch.scala 40:9]
-  assign io_inst = inst[31:0]; // @[InstFetch.scala 41:11]
-  assign io_fetchDone = fetchDone; // @[InstFetch.scala 42:16]
+  assign io_imem_inst_addr = pc; // @[InstFetch.scala 54:21]
+  assign io_pc = pc; // @[InstFetch.scala 57:9]
+  assign io_inst = inst[31:0]; // @[InstFetch.scala 58:11]
+  assign io_fetchDone = fetchDone; // @[InstFetch.scala 59:16]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 18:19]
       pc <= 32'h7ffffffc; // @[InstFetch.scala 18:19]
@@ -41,7 +42,13 @@ module InstFetch(
     if (reset) begin // @[InstFetch.scala 20:21]
       inst <= 64'h0; // @[InstFetch.scala 20:21]
     end else if (fire) begin // @[InstFetch.scala 27:14]
-      inst <= {{32'd0}, _GEN_0};
+      if (5'h0 == alignment) begin // @[InstFetch.scala 29:23]
+        inst <= {{32'd0}, io_imem_inst_read[63:32]}; // @[InstFetch.scala 31:14]
+      end else if (5'h4 == alignment) begin // @[InstFetch.scala 29:23]
+        inst <= {{32'd0}, io_imem_inst_read[95:64]}; // @[InstFetch.scala 34:14]
+      end else begin
+        inst <= _GEN_1;
+      end
     end
   end
 // Register and memory initialization
@@ -1131,17 +1138,17 @@ module NextPC(
   assign io_NextPC = _io_NextPC_T_11[31:0]; // @[NextPC.scala 32:13]
 endmodule
 module Core(
-  input         clock,
-  input         reset,
-  input         io_imem_inst_ready,
-  output [31:0] io_imem_inst_addr,
-  input  [63:0] io_imem_inst_read,
-  output        io_dmem_en,
-  output [63:0] io_dmem_addr,
-  input  [63:0] io_dmem_rdata,
-  output [63:0] io_dmem_wdata,
-  output [63:0] io_dmem_wmask,
-  output        io_dmem_wen
+  input          clock,
+  input          reset,
+  input          io_imem_inst_ready,
+  output [31:0]  io_imem_inst_addr,
+  input  [127:0] io_imem_inst_read,
+  output         io_dmem_en,
+  output [63:0]  io_dmem_addr,
+  input  [63:0]  io_dmem_rdata,
+  output [63:0]  io_dmem_wdata,
+  output [63:0]  io_dmem_wmask,
+  output         io_dmem_wen
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -1158,7 +1165,7 @@ module Core(
   wire  fetch_io_imem_inst_valid; // @[Core.scala 13:21]
   wire  fetch_io_imem_inst_ready; // @[Core.scala 13:21]
   wire [31:0] fetch_io_imem_inst_addr; // @[Core.scala 13:21]
-  wire [63:0] fetch_io_imem_inst_read; // @[Core.scala 13:21]
+  wire [127:0] fetch_io_imem_inst_read; // @[Core.scala 13:21]
   wire [31:0] fetch_io_nextPC; // @[Core.scala 13:21]
   wire [31:0] fetch_io_pc; // @[Core.scala 13:21]
   wire [31:0] fetch_io_inst; // @[Core.scala 13:21]
@@ -1752,7 +1759,7 @@ module SimTop(
   wire  core_reset; // @[SimTop.scala 18:20]
   wire  core_io_imem_inst_ready; // @[SimTop.scala 18:20]
   wire [31:0] core_io_imem_inst_addr; // @[SimTop.scala 18:20]
-  wire [63:0] core_io_imem_inst_read; // @[SimTop.scala 18:20]
+  wire [127:0] core_io_imem_inst_read; // @[SimTop.scala 18:20]
   wire  core_io_dmem_en; // @[SimTop.scala 18:20]
   wire [63:0] core_io_dmem_addr; // @[SimTop.scala 18:20]
   wire [63:0] core_io_dmem_rdata; // @[SimTop.scala 18:20]
@@ -1848,7 +1855,7 @@ module SimTop(
   assign core_clock = clock;
   assign core_reset = reset;
   assign core_io_imem_inst_ready = top_io_imem_inst_ready; // @[SimTop.scala 22:15]
-  assign core_io_imem_inst_read = top_io_imem_inst_read[63:0]; // @[SimTop.scala 22:15]
+  assign core_io_imem_inst_read = top_io_imem_inst_read; // @[SimTop.scala 22:15]
   assign core_io_dmem_rdata = mem_io_dmem_rdata; // @[SimTop.scala 33:15]
   assign mem_clock = clock;
   assign mem_io_dmem_en = core_io_dmem_en; // @[SimTop.scala 33:15]

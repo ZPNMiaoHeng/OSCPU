@@ -23,14 +23,31 @@ class InstFetch extends Module {
   val fire = io.imem.inst_valid && io.imem.inst_ready
  
   fetchDone := Mux(fire, true.B, false.B)                //* 取指信号完成标志
-  val alignment = pc % 8.U
+  val alignment = pc % 16.U
   when(fire) {
     pc := io.nextPC
-    when(alignment === 4.U) {
+    switch(alignment) {
+      is(0.U) {
+        inst := io.imem.inst_read(63, 32)
+      }
+      is(4.U) {
+        inst := io.imem.inst_read(95, 64)
+      }
+      is(8.U) {
+        inst := io.imem.inst_read(127, 96)
+      }
+      is (12.U) {
+        inst := io.imem.inst_read(31, 0)
+      }
+    }
+/*    
+    when(alignment === 12.U) {
       inst := io.imem.inst_read(31, 0)
-    } .otherwise {
+    } .elsewhen(alignment === 0.U) { 
+    .otherwise {
       inst := io.imem.inst_read(63, 32)
     }
+    */
   }
 
   io.imem.inst_req := REQ_READ                    //!false.B
