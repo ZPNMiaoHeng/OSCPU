@@ -12,17 +12,17 @@ class InstFetch extends Module {
     val nextPC = Input(UInt(WLEN.W))
     val pc = Output(UInt(WLEN.W))
     val inst = Output(UInt(WLEN.W))
-    val done = Output(Bool())
+    val fetchDone = Output(Bool())
 
   })
   val pc = RegInit("h7fff_fffc".U(WLEN.W))
-  val done = RegInit(false.B) 
+  val fetchDone = RegInit(false.B) 
   val inst = RegInit(0.U(XLEN.W))
 
   io.imem.inst_valid := true.B
   val fire = io.imem.inst_valid && io.imem.inst_ready
  
-  done := Mux(fire, true.B, false.B)                //* 取指信号完成标志
+  fetchDone := Mux(fire, true.B, false.B)                //* 取指信号完成标志
   when(fire) {
     pc := io.nextPC
     inst := io.imem.inst_read
@@ -34,7 +34,7 @@ class InstFetch extends Module {
 
   io.pc := pc
   io.inst := inst
-  io.done := done
+  io.fetchDone := fetchDone
 }
 
 
