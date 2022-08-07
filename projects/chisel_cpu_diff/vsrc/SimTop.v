@@ -21,7 +21,7 @@ module InstFetch(
   wire  fire = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 23:33]
   wire [31:0] _GEN_3 = pc % 32'h8; // @[InstFetch.scala 26:22]
   wire [3:0] alignment = _GEN_3[3:0]; // @[InstFetch.scala 26:22]
-  wire [31:0] _GEN_0 = alignment == 4'h0 ? io_imem_inst_read[31:0] : io_imem_inst_read[63:32]; // @[InstFetch.scala 29:29 30:12 32:12]
+  wire [31:0] _GEN_0 = alignment == 4'h4 ? io_imem_inst_read[31:0] : io_imem_inst_read[63:32]; // @[InstFetch.scala 29:29 30:12 32:12]
   assign io_imem_inst_valid = 1'h1; // @[InstFetch.scala 22:22]
   assign io_imem_inst_addr = pc; // @[InstFetch.scala 37:21]
   assign io_pc = pc; // @[InstFetch.scala 40:9]

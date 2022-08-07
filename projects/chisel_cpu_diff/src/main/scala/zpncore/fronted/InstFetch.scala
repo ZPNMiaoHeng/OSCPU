@@ -26,7 +26,7 @@ class InstFetch extends Module {
   val alignment = pc % 8.U
   when(fire) {
     pc := io.nextPC
-    when(alignment === 0.U) {
+    when(alignment === 4.U) {
       inst := io.imem.inst_read(31, 0)
     } .otherwise {
       inst := io.imem.inst_read(63, 32)
