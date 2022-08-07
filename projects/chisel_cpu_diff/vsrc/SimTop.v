@@ -4,7 +4,7 @@ module InstFetch(
   output        io_imem_inst_valid,
   input         io_imem_inst_ready,
   output [31:0] io_imem_inst_addr,
-  input  [31:0] io_imem_inst_read,
+  input  [63:0] io_imem_inst_read,
   input  [31:0] io_nextPC,
   output [31:0] io_pc,
   output [31:0] io_inst,
@@ -19,16 +19,19 @@ module InstFetch(
   reg  fetchDone; // @[InstFetch.scala 19:26]
   reg [63:0] inst; // @[InstFetch.scala 20:21]
   wire  fire = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 23:33]
+  wire [31:0] _GEN_3 = pc % 32'h8; // @[InstFetch.scala 26:22]
+  wire [3:0] alignment = _GEN_3[3:0]; // @[InstFetch.scala 26:22]
+  wire [31:0] _GEN_0 = alignment == 4'h0 ? io_imem_inst_read[31:0] : io_imem_inst_read[63:32]; // @[InstFetch.scala 29:29 30:12 32:12]
   assign io_imem_inst_valid = 1'h1; // @[InstFetch.scala 22:22]
-  assign io_imem_inst_addr = pc; // @[InstFetch.scala 32:21]
-  assign io_pc = pc; // @[InstFetch.scala 35:9]
-  assign io_inst = inst[31:0]; // @[InstFetch.scala 36:11]
-  assign io_fetchDone = fetchDone; // @[InstFetch.scala 37:16]
+  assign io_imem_inst_addr = pc; // @[InstFetch.scala 37:21]
+  assign io_pc = pc; // @[InstFetch.scala 40:9]
+  assign io_inst = inst[31:0]; // @[InstFetch.scala 41:11]
+  assign io_fetchDone = fetchDone; // @[InstFetch.scala 42:16]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 18:19]
       pc <= 32'h7ffffffc; // @[InstFetch.scala 18:19]
-    end else if (fire) begin // @[InstFetch.scala 26:14]
-      pc <= io_nextPC; // @[InstFetch.scala 27:8]
+    end else if (fire) begin // @[InstFetch.scala 27:14]
+      pc <= io_nextPC; // @[InstFetch.scala 28:8]
     end
     if (reset) begin // @[InstFetch.scala 19:26]
       fetchDone <= 1'h0; // @[InstFetch.scala 19:26]
@@ -37,8 +40,8 @@ module InstFetch(
     end
     if (reset) begin // @[InstFetch.scala 20:21]
       inst <= 64'h0; // @[InstFetch.scala 20:21]
-    end else if (fire) begin // @[InstFetch.scala 26:14]
-      inst <= {{32'd0}, io_imem_inst_read}; // @[InstFetch.scala 28:10]
+    end else if (fire) begin // @[InstFetch.scala 27:14]
+      inst <= {{32'd0}, _GEN_0};
     end
   end
 // Register and memory initialization
@@ -1132,7 +1135,7 @@ module Core(
   input         reset,
   input         io_imem_inst_ready,
   output [31:0] io_imem_inst_addr,
-  input  [31:0] io_imem_inst_read,
+  input  [63:0] io_imem_inst_read,
   output        io_dmem_en,
   output [63:0] io_dmem_addr,
   input  [63:0] io_dmem_rdata,
@@ -1155,7 +1158,7 @@ module Core(
   wire  fetch_io_imem_inst_valid; // @[Core.scala 13:21]
   wire  fetch_io_imem_inst_ready; // @[Core.scala 13:21]
   wire [31:0] fetch_io_imem_inst_addr; // @[Core.scala 13:21]
-  wire [31:0] fetch_io_imem_inst_read; // @[Core.scala 13:21]
+  wire [63:0] fetch_io_imem_inst_read; // @[Core.scala 13:21]
   wire [31:0] fetch_io_nextPC; // @[Core.scala 13:21]
   wire [31:0] fetch_io_pc; // @[Core.scala 13:21]
   wire [31:0] fetch_io_inst; // @[Core.scala 13:21]
@@ -1749,7 +1752,7 @@ module SimTop(
   wire  core_reset; // @[SimTop.scala 18:20]
   wire  core_io_imem_inst_ready; // @[SimTop.scala 18:20]
   wire [31:0] core_io_imem_inst_addr; // @[SimTop.scala 18:20]
-  wire [31:0] core_io_imem_inst_read; // @[SimTop.scala 18:20]
+  wire [63:0] core_io_imem_inst_read; // @[SimTop.scala 18:20]
   wire  core_io_dmem_en; // @[SimTop.scala 18:20]
   wire [63:0] core_io_dmem_addr; // @[SimTop.scala 18:20]
   wire [63:0] core_io_dmem_rdata; // @[SimTop.scala 18:20]
@@ -1845,7 +1848,7 @@ module SimTop(
   assign core_clock = clock;
   assign core_reset = reset;
   assign core_io_imem_inst_ready = top_io_imem_inst_ready; // @[SimTop.scala 22:15]
-  assign core_io_imem_inst_read = top_io_imem_inst_read[31:0]; // @[SimTop.scala 22:15]
+  assign core_io_imem_inst_read = top_io_imem_inst_read[63:0]; // @[SimTop.scala 22:15]
   assign core_io_dmem_rdata = mem_io_dmem_rdata; // @[SimTop.scala 33:15]
   assign mem_clock = clock;
   assign mem_io_dmem_en = core_io_dmem_en; // @[SimTop.scala 33:15]

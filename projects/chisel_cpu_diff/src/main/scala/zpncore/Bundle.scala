@@ -63,7 +63,7 @@ class AxiInst extends INSTIO {
 }
 
 class CoreInst extends INSTIO {
-  val inst_read   = Input(UInt(32.W))
+  val inst_read   = Input(UInt(64.W))
 }
 /* Data */
 class DATAIO extends Bundle {

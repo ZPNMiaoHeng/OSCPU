@@ -23,9 +23,14 @@ class InstFetch extends Module {
   val fire = io.imem.inst_valid && io.imem.inst_ready
  
   fetchDone := Mux(fire, true.B, false.B)                //* 取指信号完成标志
+  val alignment = pc % 8.U
   when(fire) {
     pc := io.nextPC
-    inst := io.imem.inst_read
+    when(alignment === 0.U) {
+      inst := io.imem.inst_read(31, 0)
+    } .otherwise {
+      inst := io.imem.inst_read(63, 32)
+    }
   }
 
   io.imem.inst_req := REQ_READ                    //!false.B

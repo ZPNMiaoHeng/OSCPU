@@ -106,6 +106,7 @@ class AxiLite2Axi  extends Module {
       inst_read_l := out.r.bits.data
     }
   }
+  
   in1.inst_read := Cat(inst_read_h, inst_read_l)
 
 }
