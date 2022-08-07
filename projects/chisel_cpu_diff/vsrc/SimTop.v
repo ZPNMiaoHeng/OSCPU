@@ -8,7 +8,7 @@ module InstFetch(
   input  [31:0] io_nextPC,
   output [31:0] io_pc,
   output [31:0] io_inst,
-  output        io_done
+  output        io_fetchDone
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
@@ -16,24 +16,24 @@ module InstFetch(
   reg [63:0] _RAND_2;
 `endif // RANDOMIZE_REG_INIT
   reg [31:0] pc; // @[InstFetch.scala 18:19]
-  reg  done; // @[InstFetch.scala 19:21]
+  reg  fetchDone; // @[InstFetch.scala 19:26]
   reg [63:0] inst; // @[InstFetch.scala 20:21]
   wire  fire = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 23:33]
   assign io_imem_inst_valid = 1'h1; // @[InstFetch.scala 22:22]
   assign io_imem_inst_addr = pc; // @[InstFetch.scala 32:21]
   assign io_pc = pc; // @[InstFetch.scala 35:9]
   assign io_inst = inst[31:0]; // @[InstFetch.scala 36:11]
-  assign io_done = done; // @[InstFetch.scala 37:11]
+  assign io_fetchDone = fetchDone; // @[InstFetch.scala 37:16]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 18:19]
       pc <= 32'h7ffffffc; // @[InstFetch.scala 18:19]
     end else if (fire) begin // @[InstFetch.scala 26:14]
       pc <= io_nextPC; // @[InstFetch.scala 27:8]
     end
-    if (reset) begin // @[InstFetch.scala 19:21]
-      done <= 1'h0; // @[InstFetch.scala 19:21]
+    if (reset) begin // @[InstFetch.scala 19:26]
+      fetchDone <= 1'h0; // @[InstFetch.scala 19:26]
     end else begin
-      done <= fire; // @[InstFetch.scala 25:8]
+      fetchDone <= fire; // @[InstFetch.scala 25:13]
     end
     if (reset) begin // @[InstFetch.scala 20:21]
       inst <= 64'h0; // @[InstFetch.scala 20:21]
@@ -80,7 +80,7 @@ initial begin
   _RAND_0 = {1{`RANDOM}};
   pc = _RAND_0[31:0];
   _RAND_1 = {1{`RANDOM}};
-  done = _RAND_1[0:0];
+  fetchDone = _RAND_1[0:0];
   _RAND_2 = {2{`RANDOM}};
   inst = _RAND_2[63:0];
 `endif // RANDOMIZE_REG_INIT
@@ -1159,7 +1159,7 @@ module Core(
   wire [31:0] fetch_io_nextPC; // @[Core.scala 13:21]
   wire [31:0] fetch_io_pc; // @[Core.scala 13:21]
   wire [31:0] fetch_io_inst; // @[Core.scala 13:21]
-  wire  fetch_io_done; // @[Core.scala 13:21]
+  wire  fetch_io_fetchDone; // @[Core.scala 13:21]
   wire  decode_clock; // @[Core.scala 14:22]
   wire  decode_reset; // @[Core.scala 14:22]
   wire [31:0] decode_io_inst; // @[Core.scala 14:22]
@@ -1277,7 +1277,7 @@ module Core(
     .io_nextPC(fetch_io_nextPC),
     .io_pc(fetch_io_pc),
     .io_inst(fetch_io_inst),
-    .io_done(fetch_io_done)
+    .io_fetchDone(fetch_io_fetchDone)
   );
   Decode decode ( // @[Core.scala 14:22]
     .clock(decode_clock),
@@ -1401,7 +1401,7 @@ module Core(
   assign decode_reset = reset;
   assign decode_io_inst = fetch_io_inst; // @[Core.scala 31:18]
   assign decode_io_rdData = 2'h2 == decode_io_memCtr_MemtoReg ? InstResW : _wData_T_3; // @[Mux.scala 81:58]
-  assign decode_io_fetchDone = fetch_io_done; // @[Core.scala 33:23]
+  assign decode_io_fetchDone = fetch_io_fetchDone; // @[Core.scala 33:23]
   assign alu_io_MemtoReg = decode_io_memCtr_MemtoReg; // @[Core.scala 37:19]
   assign alu_io_PC = fetch_io_pc; // @[Core.scala 35:13]
   assign alu_ctrl_aluA = decode_io_aluIO_ctrl_aluA; // @[Core.scala 36:13]
@@ -1468,10 +1468,10 @@ module Core(
   assign dt_cs_mideleg = 64'h0; // @[Core.scala 111:27]
   assign dt_cs_medeleg = 64'h0; // @[Core.scala 112:27]
   always @(posedge clock) begin
-    dt_ic_io_valid_REG <= fetch_io_done; // @[Core.scala 57:31]
+    dt_ic_io_valid_REG <= fetch_io_fetchDone; // @[Core.scala 57:31]
     dt_ic_io_pc_REG <= fetch_io_pc; // @[Core.scala 58:31]
     dt_ic_io_instr_REG <= fetch_io_inst; // @[Core.scala 59:31]
-    dt_ic_io_wen_REG <= dataMem_io_dmem_wen; // @[Core.scala 63:31]
+    dt_ic_io_wen_REG <= dataMem_io_dmem_wen & fetch_io_fetchDone; // @[Core.scala 26:34]
     dt_ic_io_wdata_REG <= dataMem_io_dmem_wdata; // @[Core.scala 64:31]
     dt_ic_io_wdest_REG <= dataMem_io_dmem_addr; // @[Core.scala 65:31]
     if (reset) begin // @[Core.scala 74:26]

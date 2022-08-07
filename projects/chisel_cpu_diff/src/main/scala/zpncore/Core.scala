@@ -60,7 +60,7 @@ class Core extends Module {
   dt_ic.io.skip     := false.B
   dt_ic.io.isRVC    := false.B
   dt_ic.io.scFailed := false.B
-  dt_ic.io.wen      := RegNext(dataMem.io.dmem.wen)       //RegNext(wEna)   
+  dt_ic.io.wen      := RegNext(wEna)   //RegNext(dataMem.io.dmem.wen)
   dt_ic.io.wdata    := RegNext(dataMem.io.dmem.wdata)
   dt_ic.io.wdest    := RegNext(dataMem.io.dmem.addr)
 
