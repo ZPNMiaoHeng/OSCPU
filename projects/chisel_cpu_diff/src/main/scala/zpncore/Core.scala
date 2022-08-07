@@ -23,13 +23,14 @@ class Core extends Module {
       ("b01".U) -> dataMem.io.rdData,
       ("b10".U) -> InstResW
   ))
-  
+  val wEna = dataMem.io.dmem.wen && fetch.io.done
 //------------------- Fetch------------------------------
   fetch.io.imem <> io.imem
   fetch.io.nextPC := nextpc.io.NextPC
 //------------------- Decode-----------------------------
   decode.io.inst := fetch.io.inst
   decode.io.rdData := wData
+  decode.io.fetchDone := fetch.io.done
 //------------------- ALU--------------------------------
   alu.io.PC := fetch.io.pc
   alu.aluIO <> decode.io.aluIO
@@ -59,7 +60,7 @@ class Core extends Module {
   dt_ic.io.skip     := false.B
   dt_ic.io.isRVC    := false.B
   dt_ic.io.scFailed := false.B
-  dt_ic.io.wen      := RegNext(dataMem.io.dmem.wen)
+  dt_ic.io.wen      := RegNext(wEna)   //(dataMem.io.dmem.wen)
   dt_ic.io.wdata    := RegNext(dataMem.io.dmem.wdata)
   dt_ic.io.wdest    := RegNext(dataMem.io.dmem.addr)
 

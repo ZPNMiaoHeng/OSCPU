@@ -33,8 +33,8 @@ always @( posedge clk ) begin
   end
   else if ( handshake_done ) begin
     pc <= if_addr;
-    if_addr <= if_addr + 4;
-    fetched <= 1;
+    if_addr <= if_addr + 4;              // 握手成功后，将nextPC赋值
+    fetched <= 1;                        // 取指完成信号
     inst <= if_data_read[31:0];
   end
   else begin
