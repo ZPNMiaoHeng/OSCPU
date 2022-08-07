@@ -10,13 +10,13 @@ module InstFetch(
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] pc; // @[InstFetch.scala 20:19]
+  reg [31:0] pc; // @[InstFetch.scala 21:19]
   assign io_imem_addr = {{32'd0}, pc}; // @[InstFetch.scala 25:16]
   assign io_pc = pc; // @[InstFetch.scala 33:9]
   assign io_inst = io_imem_rdata[31:0]; // @[InstFetch.scala 34:27]
   always @(posedge clock) begin
-    if (reset) begin // @[InstFetch.scala 20:19]
-      pc <= 32'h80000000; // @[InstFetch.scala 20:19]
+    if (reset) begin // @[InstFetch.scala 21:19]
+      pc <= 32'h7ffffffc; // @[InstFetch.scala 21:19]
     end else begin
       pc <= io_nextPC; // @[InstFetch.scala 22:6]
     end
