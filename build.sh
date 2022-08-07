@@ -86,6 +86,10 @@ compile_chisel() {
         cd $PROJECT_PATH
         mkdir vsrc 1>/dev/null 2>&1
         mill -i oscpu.runMain TopMain -td vsrc
+        sed -i 's/io_memAXI_0_w_bits_data,/io_memAXI_0_w_bits_data[3:0],/g' ./vsrc/SimTop.v
+	    sed -i 's/io_memAXI_0_r_bits_data,/io_memAXI_0_r_bits_data[3:0],/g' ./vsrc/SimTop.v
+	    sed -i 's/io_memAXI_0_w_bits_data =/io_memAXI_0_w_bits_data[0] =/g' ./vsrc/SimTop.v
+	    sed -i 's/ io_memAXI_0_r_bits_data;/ io_memAXI_0_r_bits_data[0];/g' ./vsrc/SimTop.v
 #        make emu
         if [ $? -ne 0 ]; then
             echo "Failed to compile chisel!!!"

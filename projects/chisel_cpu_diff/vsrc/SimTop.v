@@ -1680,7 +1680,7 @@ module SimTop(
   output [3:0]  io_memAXI_0_aw_bits_qos,
   input         io_memAXI_0_w_ready,
   output        io_memAXI_0_w_valid,
-  output [63:0] io_memAXI_0_w_bits_data,
+  output [63:0] io_memAXI_0_w_bits_data[3:0],
   output [7:0]  io_memAXI_0_w_bits_strb,
   output        io_memAXI_0_w_bits_last,
   output        io_memAXI_0_b_ready,
@@ -1703,7 +1703,7 @@ module SimTop(
   output        io_memAXI_0_r_ready,
   input         io_memAXI_0_r_valid,
   input  [1:0]  io_memAXI_0_r_bits_resp,
-  input  [63:0] io_memAXI_0_r_bits_data,
+  input  [63:0] io_memAXI_0_r_bits_data[3:0],
   input  [3:0]  io_memAXI_0_r_bits_id,
   input         io_memAXI_0_r_bits_user,
   input         io_memAXI_0_r_bits_last
@@ -1789,7 +1789,7 @@ module SimTop(
   assign io_memAXI_0_aw_bits_cache = 4'h0; // @[SimTop.scala 24:18]
   assign io_memAXI_0_aw_bits_qos = 4'h0; // @[SimTop.scala 24:18]
   assign io_memAXI_0_w_valid = 1'h0; // @[SimTop.scala 25:18]
-  assign io_memAXI_0_w_bits_data = 64'h0; // @[SimTop.scala 25:18]
+  assign io_memAXI_0_w_bits_data[0] = 64'h0; // @[SimTop.scala 25:18]
   assign io_memAXI_0_w_bits_strb = 8'h0; // @[SimTop.scala 25:18]
   assign io_memAXI_0_w_bits_last = 1'h0; // @[SimTop.scala 25:18]
   assign io_memAXI_0_b_ready = 1'h0; // @[SimTop.scala 26:18]
@@ -1820,7 +1820,7 @@ module SimTop(
   assign top_reset = reset;
   assign top_io_out_ar_ready = io_memAXI_0_ar_ready; // @[SimTop.scala 27:18]
   assign top_io_out_r_valid = io_memAXI_0_r_valid; // @[SimTop.scala 28:18]
-  assign top_io_out_r_bits_data = io_memAXI_0_r_bits_data; // @[SimTop.scala 28:18]
+  assign top_io_out_r_bits_data = io_memAXI_0_r_bits_data[0]; // @[SimTop.scala 28:18]
   assign top_io_out_r_bits_last = io_memAXI_0_r_bits_last; // @[SimTop.scala 28:18]
   assign top_io_imem_inst_addr = core_io_imem_inst_addr; // @[SimTop.scala 22:15]
 endmodule
