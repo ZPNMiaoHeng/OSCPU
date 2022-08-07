@@ -14,9 +14,10 @@ class InstFetch extends Module {
     val inst = Output(UInt(WLEN.W))
 
   })
+//  val pc = RegInit("h8000_0000".U(WLEN.W))
   val pc = RegInit("h7fff_fffc".U(WLEN.W))
   val inst = RegInit(0.U(XLEN.W))
-  io.imem.inst_valid := true.B
+  io.imem.inst_valid := MUx( true.B, false.B )
   val fire = io.imem.inst_valid && io.imem.inst_ready
  
   when(fire) {
