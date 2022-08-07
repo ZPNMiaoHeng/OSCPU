@@ -24,6 +24,7 @@ class InstFetch extends Module {
  
   fetchDone := Mux(fire, true.B, false.B)                //* 取指信号完成标志
 //  val alignment = pc % 16.U
+  
   when(fire) {
     pc := io.nextPC
 /*
