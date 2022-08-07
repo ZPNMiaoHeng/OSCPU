@@ -24,8 +24,8 @@ class InstFetch extends Module {
 //  pc := Mux(fire, ) 
  
   when(fire) {
-    pc := nextPC
-    io.inst := io.imem.inst_read
+    pc := io.nextPC
+//    io.inst := io.imem.inst_read
   }  
 
 
@@ -39,5 +39,5 @@ class InstFetch extends Module {
 
   io.pc := pc
 //  io.inst := io.imem.rdata(31, 0)
-//  io.inst := Mux(fire, io.imem.inst_read, 0.U)
+  io.inst := Mux(fire, io.imem.inst_read, 0.U)
 }

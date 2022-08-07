@@ -14,15 +14,15 @@ module InstFetch(
 `endif // RANDOMIZE_REG_INIT
   reg [31:0] pc; // @[InstFetch.scala 20:19]
   wire  fire = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 23:33]
-  assign io_imem_inst_valid = 1'h1; // @[InstFetch.scala 35:22]
-  assign io_imem_inst_addr = pc; // @[InstFetch.scala 37:21]
-  assign io_pc = pc; // @[InstFetch.scala 40:9]
-  assign io_inst = fire ? io_imem_inst_read : 32'h0; // @[InstFetch.scala 42:17]
+  assign io_imem_inst_valid = 1'h1; // @[InstFetch.scala 27:22]
+  assign io_imem_inst_addr = fire ? pc : 32'h0; // @[InstFetch.scala 29:27]
+  assign io_pc = pc; // @[InstFetch.scala 34:9]
+  assign io_inst = fire ? io_imem_inst_read : 32'h0; // @[InstFetch.scala 36:17]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 20:19]
       pc <= 32'h7ffffffc; // @[InstFetch.scala 20:19]
-    end else if (fire) begin // @[InstFetch.scala 26:14]
-      pc <= io_nextPC; // @[InstFetch.scala 27:8]
+    end else begin
+      pc <= io_nextPC; // @[InstFetch.scala 21:6]
     end
   end
 // Register and memory initialization
