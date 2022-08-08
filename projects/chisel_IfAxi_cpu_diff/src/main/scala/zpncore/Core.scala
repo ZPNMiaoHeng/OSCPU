@@ -5,8 +5,8 @@ import utils._
 
 class Core extends Module {
   val io = IO(new Bundle {
-//    val imem = new CoreInst
-    val imem = new RomIO  
+    val imem = new CoreInst
+//    val imem = new RomIO  
     val dmem = new RamIO
   })
   
@@ -23,13 +23,21 @@ class Core extends Module {
       ("b01".U) -> dataMem.io.rdData,
       ("b10".U) -> InstResW
   ))
-  
+  val wEna = dataMem.io.dmem.wen && fetch.io.fetchDone
 //------------------- Fetch------------------------------
-  fetch.io.imem <> io.imem
+//  fetch.io.imem <> io.imem
+  io.imem.inst_valid := fetch.io.imem.inst_valid
+  io.imem.inst_req := fetch.io.imem.inst_req                                // request signals:1 -> true
+  io.imem.inst_addr := nextpc.io.NextPC          //! nextpc当做下一条取指地址                          //fetch.io.imem.inst_addr  
+  io.imem.inst_size := fetch.io.imem.inst_size 
+  fetch.io.imem.inst_read := io.imem.inst_read 
+  
+  fetch.io.imem.inst_ready := io.imem.inst_ready
   fetch.io.nextPC := nextpc.io.NextPC
 //------------------- Decode-----------------------------
   decode.io.inst := fetch.io.inst
   decode.io.rdData := wData
+  decode.io.fetchDone := fetch.io.fetchDone
 //------------------- ALU--------------------------------
   alu.io.PC := fetch.io.pc
   alu.aluIO <> decode.io.aluIO
@@ -47,19 +55,21 @@ class Core extends Module {
   nextpc.io.Less   := alu.io.Less
   nextpc.io.Zero   := alu.io.Zero
 
+  nextpc.io.fetchDone := fetch.io.fetchDone
+
   /* ----- Difftest ------------------------------ */
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
   dt_ic.io.coreid   := 0.U
   dt_ic.io.index    := 0.U
-  dt_ic.io.valid    := true.B
+  dt_ic.io.valid    := RegNext(fetch.io.fetchDone) // true.B
   dt_ic.io.pc       := RegNext(fetch.io.pc)
   dt_ic.io.instr    := RegNext(fetch.io.inst)
   dt_ic.io.skip     := false.B
   dt_ic.io.isRVC    := false.B
   dt_ic.io.scFailed := false.B
-  dt_ic.io.wen      := RegNext(dataMem.io.dmem.wen)
+  dt_ic.io.wen      := RegNext(wEna)   //RegNext(dataMem.io.dmem.wen)
   dt_ic.io.wdata    := RegNext(dataMem.io.dmem.wdata)
   dt_ic.io.wdest    := RegNext(dataMem.io.dmem.addr)
 

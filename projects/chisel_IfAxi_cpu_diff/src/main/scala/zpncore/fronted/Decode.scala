@@ -15,6 +15,7 @@ class Decode extends Module {
   val io = IO(new Bundle {  
     val inst = Input(UInt(WLEN.W))
     val rdData = Input(UInt(XLEN.W))
+    val fetchDone = Input(Bool())
 
     val Branch = Output(UInt(3.W)) 
     val aluIO = new AluIO
@@ -27,6 +28,7 @@ class Decode extends Module {
 
   regs.io.ctrl <> con.io.regCtrl
   regs.io.rdData := io.rdData
+  regs.io.fetchDone := io.fetchDone
 
   imm.io.inst := io.inst
   imm.io.immOp := con.io.immOp
