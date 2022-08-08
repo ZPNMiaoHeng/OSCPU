@@ -5,7 +5,6 @@ import utils._
 
 class Core extends Module {
   val io = IO(new Bundle {
-//    val imem = new CoreInst
     val imem = new RomIO  
     val dmem = new RamIO
   })
@@ -16,36 +15,37 @@ class Core extends Module {
   val dataMem = Module(new DataMem)
   val nextpc  = Module(new NextPC)
 
-  val MemtoReg = decode.io.memCtr.MemtoReg
-  val InstResW = SignExt(alu.io.Result(31,0), 64)
-  val wData = LookupTreeDefault(MemtoReg, 0.U, List(
-      ("b00".U) -> alu.io.Result,
-      ("b01".U) -> dataMem.io.rdData,
-      ("b10".U) -> InstResW
-  ))
-  
-//------------------- Fetch------------------------------
+  val wb = Module(new WriteBack)
+//------------------- IF --------------------------------
   fetch.io.imem <> io.imem
-  fetch.io.nextPC := nextpc.io.NextPC
-//------------------- Decode-----------------------------
+  fetch.io.nextPC := nextpc.io.nextPC
+
+//------------------- ID --------------------------------
   decode.io.inst := fetch.io.inst
-  decode.io.rdData := wData
-//------------------- ALU--------------------------------
-  alu.io.PC := fetch.io.pc
+  decode.io.rdData := wb.io.wData
+
+//------------------- EX --------------------------------
+  alu.io.pc := fetch.io.pc
   alu.aluIO <> decode.io.aluIO
-  alu.io.MemtoReg := decode.io.memCtr.MemtoReg
-//------------------- DataMem----------------------------
-  dataMem.io.Addr   := alu.io.Result
-  dataMem.io.DataIn := decode.io.aluIO.data.rData2
+  alu.io.memtoReg := decode.io.memCtr.memtoReg
+
+  nextpc.io.pc := fetch.io.pc
+  nextpc.io.imm := decode.io.aluIO.data.imm
+  nextpc.io.rs1Data := decode.io.aluIO.data.rData1
+  nextpc.io.branch := decode.io.branch
+  nextpc.io.less   := alu.io.less
+  nextpc.io.zero   := alu.io.zero
+
+//------------------- MEM -------------------------------
+  dataMem.io.memAddr := alu.io.aluRes
+  dataMem.io.memDataIn := decode.io.aluIO.data.rData2
   dataMem.io.memCtr <> decode.io.memCtr
   dataMem.io.dmem <> io.dmem
-//-------------------NextPC------------------------------
-  nextpc.io.PC     := fetch.io.pc
-  nextpc.io.Imm    := decode.io.aluIO.data.imm
-  nextpc.io.Rs1    := decode.io.aluIO.data.rData1
-  nextpc.io.Branch := decode.io.Branch
-  nextpc.io.Less   := alu.io.Less
-  nextpc.io.Zero   := alu.io.Zero
+
+//------------------- WB ---------------------------------
+  wb.io.memtoReg := decode.io.memCtr.memtoReg
+  wb.io.aluRes := alu.io.aluRes
+  wb.io.memData := dataMem.io.rdData
 
   /* ----- Difftest ------------------------------ */
 

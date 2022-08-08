@@ -17,9 +17,6 @@ class RegFile extends Module {
     rf(io.ctrl.rdAddr) := io.rdData
   }
 
-//  io.rs1Data := Mux((io.ctrl.rs1Addr =/= 0.U ), rf(io.ctrl.rs1Addr), 0.U)
-//  io.rs2Data := Mux((io.ctrl.rs2Addr =/= 0.U ), rf(io.ctrl.rs2Addr), 0.U)
-
   io.rs1Data := Mux((io.ctrl.rs1Addr =/= 0.U && io.ctrl.rs1En =/= 0.U), rf(io.ctrl.rs1Addr), 0.U)
   io.rs2Data := Mux((io.ctrl.rs2Addr =/= 0.U && io.ctrl.rs2En =/= 0.U), rf(io.ctrl.rs2Addr), 0.U)
 

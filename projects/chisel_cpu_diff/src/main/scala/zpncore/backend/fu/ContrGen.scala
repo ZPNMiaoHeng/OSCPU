@@ -8,7 +8,7 @@ class ContrGen extends Module {
   val io = IO(new Bundle {
     val inst = Input(UInt(WLEN.W))
 
-    val Branch = Output(UInt(3.W))
+    val branch = Output(UInt(3.W))
     val immOp = Output(UInt(3.W))
     val aluCtr = new AluCtr
     val memCtr = new MemCtr
@@ -137,7 +137,7 @@ class ContrGen extends Module {
     aluMul                                          -> "b1110".U,               // 乘法
     aluAnd                                          -> "b0111".U))
 
-  io.Branch  := MuxCase("b000".U, List( 
+  io.branch := MuxCase("b000".U, List( 
           (instJal)  -> "b001".U,
           (instJalr) -> "b010".U,
           (instBeq)  -> "b100".U,
@@ -163,13 +163,13 @@ class ContrGen extends Module {
           (instBeq || instBne || instBlt || instBge || instBltu || instBgeu) -> "b011".U,                  // B Type
           (instJal) -> "b100".U))                                                                          // J Type
 
-  io.memCtr.MemtoReg := MuxCase("b00".U, List(                                                                                              // alu.R -> Reg
+  io.memCtr.memtoReg := MuxCase("b00".U, List(                                                                                              // alu.R -> Reg
     (instLb || instLh || instLw || instLwu || instLd || instLbu || instLhu)                -> "b01".U,                               // Mem   -> Reg
     (typeW)                                                                     -> "b10".U
 //    (instBeq || instBne || instBlt || instBge || instBltu || instBgeu)          -> "b11".U                                // 无用信号
   ))
-  io.memCtr.MemWr    := Mux(instSb || instSh || instSw || instSd, 1.U, 0.U)
-  io.memCtr.MemOP    := MuxCase("b111".U, List(
+  io.memCtr.memWr    := Mux(instSb || instSh || instSw || instSd, 1.U, 0.U)
+  io.memCtr.memOP    := MuxCase("b111".U, List(
           (instLb || instSb) -> "b000".U,
           (instLh || instSh) -> "b001".U,
           (instLw || instSw) -> "b010".U,

@@ -11,20 +11,20 @@ import utils._
 
  class ALU extends Module {
      val io = IO(new Bundle {
-         val MemtoReg = Input(UInt(2.W))
-         val PC = Input(UInt(WLEN.W))
+         val memtoReg = Input(UInt(2.W))
+         val pc = Input(UInt(WLEN.W))
 
-         val Result = Output(UInt(XLEN.W))
-         val Less   = Output(UInt(1.W))
-         val Zero   = Output(UInt(1.W))
+         val aluRes = Output(UInt(XLEN.W))
+         val less   = Output(UInt(1.W))
+         val zero   = Output(UInt(1.W))
      })
     val aluIO = FlatIO(Flipped(new AluIO))
 
-    val Asrc = Mux(aluIO.ctrl.aluA === 0.U, aluIO.data.rData1, io.PC)                           //op1R
+    val Asrc = Mux(aluIO.ctrl.aluA === 0.U, aluIO.data.rData1, io.pc)                           //op1R
 
-    val instW = io.MemtoReg(1)
+    val instW = io.memtoReg(1)
     val in1 = Mux(instW, (Mux(aluIO.ctrl.aluOp === "b1101".U, 
-    SignExt(Asrc(31, 0), XLEN), ZeroExt(Asrc(31, 0), XLEN))),
+      SignExt(Asrc(31, 0), XLEN), ZeroExt(Asrc(31, 0), XLEN))),
         Asrc)
 
     val in2  = MuxLookup(aluIO.ctrl.aluB, 0.U, List(
@@ -75,8 +75,7 @@ import utils._
        
        ("b0111".U) -> andRes))
 
-    val less = Mux(aluIO.ctrl.aluOp(3) === 1.U, sLTURes, sLTRes)
-    io.Less := less
-    io.Zero := (aluResult === 0.U)
-    io.Result := Mux(instW, SignExt(aluResult(31, 0), XLEN), aluResult)
+    io.less := Mux(aluIO.ctrl.aluOp(3) === 1.U, sLTURes, sLTRes)
+    io.zero := (aluResult === 0.U)
+    io.aluRes := Mux(instW, SignExt(aluResult(31, 0), XLEN), aluResult)
     }

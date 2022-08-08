@@ -9,21 +9,27 @@ import utils._
 
 class DataMem extends Module {
   val io = IO(new Bundle {
-    val Addr    = Input(UInt(XLEN.W))
-    val DataIn  = Input(UInt(XLEN.W))
+    val memAddr = Input(UInt(XLEN.W))
+    val memDataIn = Input(UInt(XLEN.W))
 
     val memCtr = Flipped(new MemCtr)
     val dmem = new RamIO
     val rdData = Output(UInt(XLEN.W))
+
+    val in = Input(new BUS_R)
+    val out = Output(new BUS_R)
   })
 
-  io.dmem.en := !(io.Addr < "h8000_0000".U || io.Addr > "h8800_0000".U) &&
-       ((io.memCtr.MemtoReg === "b01".U) || (io.memCtr.MemWr === 1.U))
-  io.dmem.addr := io.Addr
-  io.dmem.wen := !(io.Addr < "h8000_0000".U || io.Addr > "h8800_0000".U) && (io.memCtr.MemWr === 1.U)
-  val alignBits = io.Addr % 8.U
-  io.dmem.wdata := io.DataIn << alignBits * 8.U
-  io.dmem.wmask := LookupTreeDefault(io.memCtr.MemOP, 0.U, List(
+  val memAddr = io.memAddr
+  val memtoReg = io.memCtr.memtoReg
+  io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
+       ((memtoReg === "b01".U) || (io.memCtr.memWr === 1.U))
+  io.dmem.addr := memAddr
+  io.dmem.wen := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) && (io.memCtr.memWr === 1.U)
+  val alignBits = memAddr % 8.U
+  io.dmem.wdata := io.memDataIn << alignBits * 8.U
+
+  io.dmem.wmask := LookupTreeDefault(io.memCtr.memOP, 0.U, List(
     "b000".U -> LookupTreeDefault(alignBits, "h0000_0000_0000_00ff".U, List(
       1.U -> "h0000_0000_0000_ff00".U,
       2.U -> "h0000_0000_00ff_0000".U,
@@ -43,7 +49,7 @@ class DataMem extends Module {
   ))
 
   val rdata = io.dmem.rdata >> alignBits * 8.U
-  val rData = LookupTreeDefault(io.memCtr.MemOP, 0.U, List(
+  val rData = LookupTreeDefault(io.memCtr.memOP, 0.U, List(
     "b000".U -> SignExt(rdata(7 , 0), XLEN),
     "b001".U -> SignExt(rdata(15, 0), XLEN),
     "b010".U -> SignExt(rdata(31, 0), XLEN), 
@@ -52,5 +58,5 @@ class DataMem extends Module {
     "b101".U -> ZeroExt(rdata(15, 0), XLEN),
     "b110".U -> ZeroExt(rdata(31, 0), XLEN)
   ))
-  io.rdData := Mux(io.memCtr.MemWr === 1.U, 0.U, rData)
+  io.rdData := Mux(io.memCtr.memWr === 1.U, 0.U, rData)
 }

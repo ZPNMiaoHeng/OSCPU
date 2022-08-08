@@ -20,9 +20,9 @@ class AluCtr extends Bundle {
 }
 
 class MemCtr extends Bundle {
-  val MemtoReg = Output(UInt(2.W))
-  val MemWr = Output(UInt(1.W))
-  val MemOP = Output(UInt(3.W))
+  val memtoReg = Output(UInt(2.W))
+  val memWr = Output(UInt(1.W))
+  val memOP = Output(UInt(3.W))
 }
 
 class DataSrcIO extends Bundle {
