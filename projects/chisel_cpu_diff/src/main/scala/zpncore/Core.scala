@@ -25,7 +25,14 @@ class Core extends Module {
   ))
   val wEna = dataMem.io.dmem.wen && fetch.io.fetchDone
 //------------------- Fetch------------------------------
-  fetch.io.imem <> io.imem
+//  fetch.io.imem <> io.imem
+  io.imem.inst_valid := fetch.io.imem.inst_valid
+  io.imem.inst_req := fetch.io.imem.inst_req                                // request signals:1 -> true
+  io.imem.inst_addr := nextpc.io.NextPC          //! nextpc当做下一条取指地址                          //fetch.io.imem.inst_addr  
+  io.imem.inst_size := fetch.io.imem.inst_size 
+  fetch.io.imem.inst_read := io.imem.inst_read 
+  
+  fetch.io.imem.inst_ready := io.imem.inst_ready
   fetch.io.nextPC := nextpc.io.NextPC
 //------------------- Decode-----------------------------
   decode.io.inst := fetch.io.inst
