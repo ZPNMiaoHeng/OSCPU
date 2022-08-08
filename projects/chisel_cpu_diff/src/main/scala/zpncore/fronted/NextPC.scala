@@ -15,10 +15,11 @@ class NextPC extends Module {
     val Branch = Input(UInt(3.W))
     val Less   = Input(UInt(1.W))
     val Zero   = Input(UInt(1.W))
+    val fetchDone = Input(Bool())
 
     val NextPC = Output(UInt(WLEN.W))
   })
-
+  val NextPC = RegInit("h8000_0000".U(XLEN.W))
   val less = Mux(io.Branch === "b111".U, ~io.Less, io.Less)
 
   val PCsrc = MuxCase("b01".U, Array(
@@ -29,10 +30,14 @@ class NextPC extends Module {
     (io.Branch === "b010".U)                                                    -> "b11".U                        // rs1 + imm
   ))
 
-  io.NextPC := LookupTreeDefault(PCsrc, "h8000_0000".U, List(
+  val NextPCT = LookupTreeDefault(PCsrc, "h8000_0000".U, List(
     "b00".U -> (io.PC +  4.U   ),
     "b10".U -> (io.PC + io.Imm ),
     "b11".U -> (io.Rs1 + io.Imm)
   ))
-  
+
+  when(io.fetchDone) {
+    NextPC := NextPCT
+  }
+    io.NextPC := NextPC
 }
