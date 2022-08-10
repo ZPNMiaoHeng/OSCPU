@@ -9,88 +9,87 @@ class Core extends Module {
     val dmem = new RamIO
   })
   
-  val fetch = Module(new InstFetch)
+  val IF = Module(new InstFetch)
   val IfRegId = Module(new PipelineReg)
-  val decode = Module(new Decode)
+  val ID = Module(new Decode)
   val IdRegEx = Module(new PipelineReg)
-  val ex = Module(new Execution)
+  val EX = Module(new Execution)
   val ExRegMem = Module(new PipelineReg)
-  val mem = Module(new DataMem)
+  val MEM = Module(new DataMem)
   val MemRegWb = Module(new PipelineReg)
-  val wb = Module(new WriteBack)
+  val WB = Module(new WriteBack)
 
-  val stallEn = decode.io.bubbleId && ex.io.bubbleEx
+  val stallEn = ID.io.bubbleId && EX.io.bubbleEx
 //* ----------------------------------------------------------------
   val flushIfIdEn = false.B
-  val flushIdExEn = Mux(mem.io.pcSrc =/= 0.U, true.B, false.B)
-  val flushExMemEn = Mux(mem.io.pcSrc =/= 0.U, true.B, false.B)
+  val flushIdExEn = Mux(MEM.io.pcSrc =/= 0.U, true.B, false.B) ||  stallEn
+  val flushExMemEn = Mux(MEM.io.pcSrc =/= 0.U, true.B, false.B)
   val flushMemWbEn = false.B
 
   val stallIfIdEn = stallEn
-  val stallIdExEn = stallEn
+  val stallIdExEn = false.B   //stallEn
   val stallExMemEn = false.B
   val stallMemWbEn = false.B
 //------------------- IF --------------------------------
-  fetch.io.imem <> io.imem
-  fetch.io.pcSrc := mem.io.pcSrc
-  fetch.io.nextPC := mem.io.nextPC       //! 分支预测
-  fetch.io.stall := stallEn
+  IF.io.imem <> io.imem
+  IF.io.pcSrc := MEM.io.pcSrc
+  IF.io.nextPC := MEM.io.nextPC       //! 分支预测
+  IF.io.stall := stallEn
 
-  IfRegId.io.in <> fetch.io.out
+  IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
   IfRegId.io.flush := flushIfIdEn
 //------------------- ID --------------------------------
-  decode.io.in <> IfRegId.io.out
-  decode.io.rdEn := wb.io.rdEn
-  decode.io.rdAddr := wb.io.rdAddr
-  decode.io.rdData := wb.io.rdData
+  ID.io.in <> IfRegId.io.out
+  ID.io.rdEn := WB.io.rdEn
+  ID.io.rdAddr := WB.io.rdAddr
+  ID.io.rdData := WB.io.rdData
 //* Bypass
-  decode.io.exeRdEn := ex.io.exeRdEn
-  decode.io.exeRdAddr := ex.io.exeRdAddr
-  decode.io.exeRdData := ex.io.exeRdData
-  decode.io.memRdEn := mem.io.memRdEn
-  decode.io.memRdAddr := mem.io.memRdAddr
-  decode.io.memRdData := mem.io.memRdData
-  decode.io.wbRdEn := wb.io.wbRdEn
-  decode.io.wbRdAddr := wb.io.wbRdAddr
-  decode.io.wbRdData := wb.io.wbRdData
+  ID.io.exeRdEn := EX.io.exeRdEn
+  ID.io.exeRdAddr := EX.io.exeRdAddr
+  ID.io.exeRdData := EX.io.exeRdData
+  ID.io.memRdEn := MEM.io.memRdEn
+  ID.io.memRdAddr := MEM.io.memRdAddr
+  ID.io.memRdData := MEM.io.memRdData
+  ID.io.wbRdEn := WB.io.wbRdEn
+  ID.io.wbRdAddr := WB.io.wbRdAddr
+  ID.io.wbRdData := WB.io.wbRdData
 
-  IdRegEx.io.in <> decode.io.out
+  IdRegEx.io.in <> ID.io.out
   IdRegEx.io.stall := stallIdExEn
   IdRegEx.io.flush := flushIdExEn
 //------------------- EX --------------------------------
-  ex.io.in <> IdRegEx.io.out
+  EX.io.in <> IdRegEx.io.out
 
-  ExRegMem.io.in <> ex.io.out
+  ExRegMem.io.in <> EX.io.out
   ExRegMem.io.stall := stallExMemEn
   ExRegMem.io.flush := flushExMemEn
 //------------------- MEM -------------------------------
-  mem.io.in <> ExRegMem.io.out
-  mem.io.dmem <> io.dmem
+  MEM.io.in <> ExRegMem.io.out
+  MEM.io.dmem <> io.dmem
 
-  MemRegWb.io.in <> mem.io.out
+  MemRegWb.io.in <> MEM.io.out
   MemRegWb.io.stall := stallMemWbEn
   MemRegWb.io.flush := flushMemWbEn
 //------------------- WB ---------------------------------
-  wb.io.in <> MemRegWb.io.out
-
+  WB.io.in <> MemRegWb.io.out
 
   /* ----- Difftest ------------------------------ */
-  val valid = wb.io.ready_cmt && !stallEn
+  val valid = WB.io.ready_cmt && !stallEn
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
   dt_ic.io.coreid   := 0.U
   dt_ic.io.index    := 0.U
   dt_ic.io.valid    := RegNext(valid)
-  dt_ic.io.pc       := RegNext(wb.io.pc)
-  dt_ic.io.instr    := RegNext(wb.io.inst)
+  dt_ic.io.pc       := RegNext(WB.io.pc)
+  dt_ic.io.instr    := RegNext(WB.io.inst)
   dt_ic.io.skip     := false.B
   dt_ic.io.isRVC    := false.B
   dt_ic.io.scFailed := false.B
-  dt_ic.io.wen      := RegNext(wb.io.rdEn)
-  dt_ic.io.wdata    := RegNext(wb.io.rdData)
-  dt_ic.io.wdest    := RegNext(wb.io.rdAddr)
+  dt_ic.io.wen      := RegNext(WB.io.rdEn)
+  dt_ic.io.wdata    := RegNext(WB.io.rdData)
+  dt_ic.io.wdest    := RegNext(WB.io.rdAddr)
 
   val dt_ae = Module(new DifftestArchEvent)
   dt_ae.io.clock        := clock
@@ -111,9 +110,9 @@ class Core extends Module {
   val dt_te = Module(new DifftestTrapEvent)
   dt_te.io.clock    := clock
   dt_te.io.coreid   := 0.U
-  dt_te.io.valid    := (wb.io.inst === "h0000006b".U)
+  dt_te.io.valid    := (WB.io.inst === "h0000006b".U)
   dt_te.io.code     := rf_a0(2, 0)
-  dt_te.io.pc       := wb.io.pc
+  dt_te.io.pc       := WB.io.pc
   dt_te.io.cycleCnt := cycle_cnt
   dt_te.io.instrCnt := instr_cnt
 

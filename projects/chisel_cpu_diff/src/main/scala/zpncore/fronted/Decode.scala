@@ -66,7 +66,7 @@ class Decode extends Module {
   val rdRs2HitEx = io.exeRdEn && (rs2Addr === io.exeRdAddr) && (rs2Addr =/= 0.U)
   val rdRs2HitMem = io.memRdEn && (rs2Addr === io.memRdAddr) && (rs2Addr =/= 0.U)
   val rdRs2HitWb = io.wbRdEn && (rs2Addr === io.wbRdAddr) && (rs2Addr =/= 0.U)
-
+//* bypass：EX > MEM > WB
   val rs1Data = Mux(con.io.regCtrl.rs1En, 
     Mux(rdRs1HitEx, io.exeRdData, 
     Mux(rdRs1HitMem, io.memRdData,
@@ -93,7 +93,7 @@ class Decode extends Module {
   )) ,0.U )
   */
 
-  val idValid = true.B // io.in.valid
+  val idValid = io.in.valid
   val idPC = io.in.pc
   val idInst = io.in.inst
   val idTypeL = con.io.typeL
@@ -132,7 +132,7 @@ class Decode extends Module {
   io.out.pcSrc    := 0.U
   io.out.nextPC   := 0.U
   io.out.aluRes   := 0.U
-  io.out.memData    := 0.U
+  io.out.memData  := 0.U
 
   io.bubbleId := rdRs1HitEx || rdRs2HitEx
 }

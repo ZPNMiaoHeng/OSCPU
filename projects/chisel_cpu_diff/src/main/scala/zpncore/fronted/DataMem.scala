@@ -73,7 +73,7 @@ class DataMem extends Module {
   val wData = Mux(memWr === 1.U, 0.U, rData)
 
 //*----------------------------------------------------------------
-  val memValid = true.B // io.in.valid
+  val memValid = io.in.valid
   val memPC = io.in.pc
   val memInst = io.in.inst
   val memTypeL = io.in.typeL
@@ -99,7 +99,7 @@ class DataMem extends Module {
   io.out.valid    := memValid
   io.out.pc       := memPC
   io.out.inst     := memInst
-  io.out.typeL := memTypeL
+  io.out.typeL    := memTypeL
   io.out.aluA     := memAluA
   io.out.aluB     := memAluB
   io.out.aluOp    := memAluOp

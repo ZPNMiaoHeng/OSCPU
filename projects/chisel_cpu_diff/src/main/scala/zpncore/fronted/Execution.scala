@@ -36,7 +36,7 @@ class Execution extends Module {
 
     val pcSrc = nextPC.io.pcSrc
 //----------------------------------------------------------------
-  val exeValid = true.B // io.in.valid
+  val exeValid = io.in.valid
   val exePC = io.in.pc
   val exeInst = io.in.inst
   val exeTypeL = io.in.typeL

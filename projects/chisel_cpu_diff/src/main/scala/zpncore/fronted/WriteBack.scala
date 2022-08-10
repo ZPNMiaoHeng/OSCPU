@@ -35,7 +35,7 @@ class WriteBack extends Module {
   io.rdEn := io.in.rdEn
   io.rdAddr := io.in.rdAddr
   io.rdData := rdData
-  io.ready_cmt  := io.in.inst =/= 0.U && io.in.valid
+  io.ready_cmt := io.in.inst =/= 0.U && io.in.valid
 
   io.wbRdEn := io.in.rdEn
   io.wbRdAddr := io.in.rdAddr

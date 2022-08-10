@@ -1,11 +1,6 @@
 import chisel3._
 import chisel3.util._
 import Constant._
-/**
-  ** 将ram中RomIo接口换成Axi取指接口
-  ** 添加握手信号
-  */
-
 
 class InstFetch extends Module {
   val io = IO(new Bundle {
@@ -19,19 +14,20 @@ class InstFetch extends Module {
 
     val out = Output(new BUS_R)
   })
-  val pc = RegInit("h7fff_fff8".U(WLEN.W)) 
+  val pc = RegInit("h7fff_fff8".U(WLEN.W))
+
   val ifPC = Mux(io.stall, pc,
      Mux(io.pcSrc === 0.U, pc + 4.U ,io.nextPC))
 
-    pc := ifPC
-    io.imem.en := true.B
+    pc := ifPC                                                 // 更新pc寄存器, 保存pc值得篮子
+    io.imem.en := ~io.stall                                    // stall -> 取指pc和addr暂停
     io.imem.addr := ifPC
     
   val ifInst = io.imem.rdata(31, 0)
 //*  io.pc := pc
 //*  io.inst := io.imem.rdata(31, 0)
 //------------------- IF ----------------------------
-  io.out.valid    := true.B
+  io.out.valid    := true.B //~io.stall || io.stall
   io.out.pc       := ifPC
   io.out.inst     := ifInst
   io.out.typeL    := false.B
@@ -51,5 +47,5 @@ class InstFetch extends Module {
   io.out.pcSrc    := 0.U
   io.out.nextPC   := 0.U
   io.out.aluRes   := 0.U
-  io.out.memData    := 0.U
+  io.out.memData  := 0.U
 }
