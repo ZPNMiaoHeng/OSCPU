@@ -59,13 +59,13 @@ class Decode extends Module {
 //*  io.branch := con.io.branch
   val rs1Addr = con.io.regCtrl.rs1Addr
   val rs2Addr = con.io.regCtrl.rs2Addr
-  val rdRs1HitEx = io.exeRdEn && (rs1Addr === io.exeRdAddr)
-  val rdRs1HitMem = io.memRdEn && (rs1Addr === io.memRdAddr)
-  val rdRs1HitWb = io.wbRdEn && (rs1Addr === io.wbRdAddr)
+  val rdRs1HitEx = io.exeRdEn && (rs1Addr === io.exeRdAddr) && (rs1Addr =/= 0.U)
+  val rdRs1HitMem = io.memRdEn && (rs1Addr === io.memRdAddr) && (rs1Addr =/= 0.U)
+  val rdRs1HitWb = io.wbRdEn && (rs1Addr === io.wbRdAddr) && (rs1Addr =/= 0.U)
   
-  val rdRs2HitEx = io.exeRdEn && (rs2Addr === io.exeRdAddr)
-  val rdRs2HitMem = io.memRdEn && (rs2Addr === io.memRdAddr)
-  val rdRs2HitWb = io.wbRdEn && (rs2Addr === io.wbRdAddr)
+  val rdRs2HitEx = io.exeRdEn && (rs2Addr === io.exeRdAddr) && (rs2Addr =/= 0.U)
+  val rdRs2HitMem = io.memRdEn && (rs2Addr === io.memRdAddr) && (rs2Addr =/= 0.U)
+  val rdRs2HitWb = io.wbRdEn && (rs2Addr === io.wbRdAddr) && (rs2Addr =/= 0.U)
 
   val rs1Data = Mux(con.io.regCtrl.rs1En, 
     Mux(rdRs1HitEx, io.exeRdData, 

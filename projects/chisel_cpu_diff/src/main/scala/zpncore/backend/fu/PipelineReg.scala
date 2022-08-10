@@ -19,13 +19,13 @@ class BUS_R extends Bundle {
   val memOp = UInt(3.W)
 
   val rdEn = Bool()
-  val rdAddr = UInt(8.W)
+  val rdAddr = UInt(5.W)
   val rdData = UInt(XLEN.W)
   val rs1Data = UInt(XLEN.W)
   val rs2Data = UInt(XLEN.W)
   val imm = UInt(XLEN.W)
   val pcSrc = UInt(2.W)
-  val nextPC = UInt(XLEN.W)
+  val nextPC = UInt(WLEN.W)
   val aluRes = UInt(XLEN.W)
   val memData = UInt(XLEN.W)
 
@@ -35,7 +35,7 @@ class BUS_R extends Bundle {
   def flush() : Unit = {
     valid    := false.B
     pc       := 0.U
-    inst     := 0.U
+    inst     := 0.U   //"h00000013".U   // nop
     typeL    := false.B
 
     aluA     := 0.U

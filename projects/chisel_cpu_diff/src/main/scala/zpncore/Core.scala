@@ -21,9 +21,9 @@ class Core extends Module {
 
   val stallEn = decode.io.bubbleId && ex.io.bubbleEx
 //* ----------------------------------------------------------------
-  val flushIfIdEn = Mux(ex.io.pcSrc =/= 0.U, true.B, false.B)
-  val flushIdExEn = Mux(ex.io.pcSrc =/= 0.U, true.B, false.B)
-  val flushExMemEn = false.B
+  val flushIfIdEn = false.B
+  val flushIdExEn = Mux(mem.io.pcSrc =/= 0.U, true.B, false.B)
+  val flushExMemEn = Mux(mem.io.pcSrc =/= 0.U, true.B, false.B)
   val flushMemWbEn = false.B
 
   val stallIfIdEn = stallEn
@@ -32,8 +32,8 @@ class Core extends Module {
   val stallMemWbEn = false.B
 //------------------- IF --------------------------------
   fetch.io.imem <> io.imem
-  fetch.io.pcSrc := ex.io.pcSrc
-  fetch.io.nextPC := ex.io.nextPC       //! 分支预测
+  fetch.io.pcSrc := mem.io.pcSrc
+  fetch.io.nextPC := mem.io.nextPC       //! 分支预测
   fetch.io.stall := stallEn
 
   IfRegId.io.in <> fetch.io.out

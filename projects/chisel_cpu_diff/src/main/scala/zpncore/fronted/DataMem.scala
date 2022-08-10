@@ -22,6 +22,9 @@ class DataMem extends Module {
     val memRdEn = Output(Bool())
     val memRdAddr = Output(UInt(5.W))
     val memRdData = Output(UInt(XLEN.W))
+
+    val pcSrc = Output(UInt(2.W))
+    val nextPC = Output(UInt(WLEN.W))
   })
 
   val memAddr =   io.in.aluRes                       //* io.memAddr
@@ -118,4 +121,7 @@ class DataMem extends Module {
   io.memRdEn := io.in.rdEn
   io.memRdAddr := memRdAddr
   io.memRdData := io.in.aluRes
+
+  io.pcSrc := memPCSrc
+  io.nextPC := memNextPC           //nextPC.io.nextPC
 }

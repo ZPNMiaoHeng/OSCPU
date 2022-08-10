@@ -83,6 +83,7 @@ class Execution extends Module {
   io.exeRdEn := io.in.rdEn
   io.exeRdAddr := exeRdAddr
   io.exeRdData := exeAluRes
+  
 //  io.pcSrc := pcSrc
 //  io.nextPC := nextPC.io.nextPC
   io.bubbleEx := io.in.typeL
