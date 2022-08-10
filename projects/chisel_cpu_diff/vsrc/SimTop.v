@@ -1297,7 +1297,7 @@ module Decode(
     .io_regCtrl_rs1Addr(con_io_regCtrl_rs1Addr),
     .io_regCtrl_rs2Addr(con_io_regCtrl_rs2Addr)
   );
-  assign io_bubbleId = rdRs1HitEx & rdRs2HitEx; // @[Decode.scala 137:29]
+  assign io_bubbleId = rdRs1HitEx | rdRs2HitEx; // @[Decode.scala 137:29]
   assign io_out_pc = io_in_pc; // @[Decode.scala 116:19]
   assign io_out_inst = io_in_inst; // @[Decode.scala 117:19]
   assign io_out_typeL = con_io_typeL; // @[Decode.scala 118:19]
