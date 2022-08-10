@@ -5,12 +5,12 @@ import Constant._
 /* 可以采用DecoupledIO 添加握手信号  */
 //--------------------------- ContrIO -----------------------------------
 class RegCtrlIO extends Bundle {
-  val rs1En = Output(UInt(1.W))
-  val rs2En = Output(UInt(1.W))
+  val rs1En = Output(Bool())
+  val rs2En = Output(Bool())
   val rs1Addr = Output(UInt(5.W))
   val rs2Addr = Output(UInt(5.W))
-  val rdAddr = Output(UInt(5.W))
-  val rdEn = Output(Bool())
+//  val rdAddr = Output(UInt(5.W))
+//  val rdEn = Output(Bool())
 }
 
 class AluCtr extends Bundle {

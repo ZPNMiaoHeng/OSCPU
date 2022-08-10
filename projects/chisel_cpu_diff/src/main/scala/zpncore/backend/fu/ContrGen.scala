@@ -10,6 +10,10 @@ class ContrGen extends Module {
 
     val branch = Output(UInt(3.W))
     val immOp = Output(UInt(3.W))
+    val rdEn = Output(Bool())
+    val rdAddr = Output(UInt(5.W))
+    val typeL = Output(Bool())
+    
     val aluCtr = new AluCtr
     val memCtr = new MemCtr
     val regCtrl = new RegCtrlIO
@@ -45,7 +49,9 @@ class ContrGen extends Module {
   val typeI       = instAddi   || instAndi   || instXori   || instOri   || instSlli  || instSrli  ||
                     instSrai   || instSlti   || instSltiu  || instAddiw || instSlliw || instSrliw ||
                     instSraiw  || instLb     || instLh     || instLw    || instLd    || instLbu   || 
-                    instLhu    || instLwu 
+                    instLhu    || instLwu
+  val typeL = instLb || instLh || instLw || instLd || instLbu || 
+             instLhu || instLwu
 // J type 1
   val instJal     = inst === JAL                   // Mux("b11011".U  === io.inst(6,2), true.B, false.B)
   val typeJ       = instJal || instJalr
@@ -151,8 +157,8 @@ class ContrGen extends Module {
   io.regCtrl.rs2Addr := inst(24, 20)
 
   val wRegEn = ~(typeS || typeB || Ebreak )  /** Ecall Mret */
-  io.regCtrl.rdEn := wRegEn
-  io.regCtrl.rdAddr := Mux(wRegEn, inst(11, 7), 0.U)
+  io.rdEn := wRegEn
+  io.rdAddr := Mux(wRegEn, inst(11, 7), 0.U)
 
   io.immOp := MuxCase("b111".U, List(
           (instAddi || instAddiw  || instSlti || instSltiu || instXori || instOri || instAndi || instSlli || instSlliw ||
@@ -177,4 +183,6 @@ class ContrGen extends Module {
           (instLbu ) -> "b100".U,
           (instLhu ) -> "b101".U,
           (instLwu ) -> "b110".U))
+
+  io.typeL := typeL
 }

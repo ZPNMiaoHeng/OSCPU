@@ -9,27 +9,35 @@ import utils._
 
 class DataMem extends Module {
   val io = IO(new Bundle {
-    val memAddr = Input(UInt(XLEN.W))
-    val memDataIn = Input(UInt(XLEN.W))
+//*    val memAddr = Input(UInt(XLEN.W))
+//*    val memDataIn = Input(UInt(XLEN.W))
 
-    val memCtr = Flipped(new MemCtr)
+//*    val memCtr = Flipped(new MemCtr)
     val dmem = new RamIO
-    val rdData = Output(UInt(XLEN.W))
+//*    val rdData = Output(UInt(XLEN.W))
 
     val in = Input(new BUS_R)
     val out = Output(new BUS_R)
+
+    val memRdEn = Output(Bool())
+    val memRdAddr = Output(UInt(5.W))
+    val memRdData = Output(UInt(XLEN.W))
   })
 
-  val memAddr = io.memAddr
-  val memtoReg = io.memCtr.memtoReg
-  io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
-       ((memtoReg === "b01".U) || (io.memCtr.memWr === 1.U))
-  io.dmem.addr := memAddr
-  io.dmem.wen := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) && (io.memCtr.memWr === 1.U)
-  val alignBits = memAddr % 8.U
-  io.dmem.wdata := io.memDataIn << alignBits * 8.U
+  val memAddr =   io.in.aluRes                       //* io.memAddr
+  val memtoReg =  io.in.memtoReg                     //* io.memCtr.memtoReg
+  val memOP =     io.in.memOp                        //* io.memCtr.memOp
+  val memWr =     io.in.memWr                        //* io.memCtr.memWr
+  val memDataIn =  io.in.rs2Data                     //* io.memDataIn
 
-  io.dmem.wmask := LookupTreeDefault(io.memCtr.memOP, 0.U, List(
+  io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
+       ((memtoReg === "b01".U) || (memWr === 1.U))
+  io.dmem.addr := memAddr
+  io.dmem.wen := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) && (memWr === 1.U)
+  val alignBits = memAddr % 8.U
+  io.dmem.wdata := memDataIn << alignBits * 8.U
+
+  io.dmem.wmask := LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> LookupTreeDefault(alignBits, "h0000_0000_0000_00ff".U, List(
       1.U -> "h0000_0000_0000_ff00".U,
       2.U -> "h0000_0000_00ff_0000".U,
@@ -49,7 +57,7 @@ class DataMem extends Module {
   ))
 
   val rdata = io.dmem.rdata >> alignBits * 8.U
-  val rData = LookupTreeDefault(io.memCtr.memOP, 0.U, List(
+  val rData = LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> SignExt(rdata(7 , 0), XLEN),
     "b001".U -> SignExt(rdata(15, 0), XLEN),
     "b010".U -> SignExt(rdata(31, 0), XLEN), 
@@ -58,5 +66,56 @@ class DataMem extends Module {
     "b101".U -> ZeroExt(rdata(15, 0), XLEN),
     "b110".U -> ZeroExt(rdata(31, 0), XLEN)
   ))
-  io.rdData := Mux(io.memCtr.memWr === 1.U, 0.U, rData)
+//*  io.rdData := Mux(memWr === 1.U, 0.U, rData)
+  val wData = Mux(memWr === 1.U, 0.U, rData)
+
+//*----------------------------------------------------------------
+  val memValid = true.B // io.in.valid
+  val memPC = io.in.pc
+  val memInst = io.in.inst
+  val memTypeL = io.in.typeL
+  val memAluA = io.in.aluA
+  val memAluB = io.in.aluB
+  val memAluOp = io.in.aluOp
+  val memBranch = io.in.branch
+  val memMemtoReg = io.in.memtoReg
+  val memMemWr = io.in.memWr
+  val memMemOp = io.in.memOp
+  val memRdEn   = io.in.rdEn
+  val memRdAddr = io.in.rdAddr
+  val memRdData = 0.U
+  val memRs1Data = io.in.rs1Data
+  val memRs2Data = io.in.rs2Data
+  val memImm = io.in.imm
+  val memPCSrc = io.in.pcSrc
+  val memNextPC = io.in.nextPC
+  val memAluRes = io.in.aluRes
+  val memWData = wData
+
+//----------------------------------------------------------------
+  io.out.valid    := memValid
+  io.out.pc       := memPC
+  io.out.inst     := memInst
+  io.out.typeL := memTypeL
+  io.out.aluA     := memAluA
+  io.out.aluB     := memAluB
+  io.out.aluOp    := memAluOp
+  io.out.branch   := memBranch
+  io.out.memtoReg := memMemtoReg
+  io.out.memWr    := memMemWr
+  io.out.memOp    := memMemOp
+  io.out.rdEn     := memRdEn
+  io.out.rdAddr   := memRdAddr
+  io.out.rdData   := memRdData
+  io.out.rs1Data  := memRs1Data
+  io.out.rs2Data  := memRs2Data
+  io.out.imm      := memImm
+  io.out.pcSrc    := memPCSrc
+  io.out.nextPC   := memNextPC
+  io.out.aluRes   := memAluRes
+  io.out.memData  := memWData
+
+  io.memRdEn := io.in.rdEn
+  io.memRdAddr := memRdAddr
+  io.memRdData := io.in.aluRes
 }
