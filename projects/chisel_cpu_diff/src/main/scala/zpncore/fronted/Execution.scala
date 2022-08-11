@@ -36,10 +36,9 @@ class Execution extends Module {
     nextPC.io.zero := alu.io.zero
 
     val pcSrc = nextPC.io.pcSrc
-//    val aluResW = SignExt(io.in.aluRes(31,0), 64)
 //----------------------------------------------------------------
   val exeValid = io.in.valid
-  val exePC = io.in.pc             //! TODO: emm，好像jal跳转pc值需要改变
+  val exePC = io.in.pc
   val exeInst = io.in.inst
   val exeTypeL = io.in.typeL
   val exeAluA = io.in.aluA
@@ -56,7 +55,7 @@ class Execution extends Module {
   val exeRs2Data = io.in.rs2Data
   val exeImm = io.in.imm
   val exePCSrc = pcSrc
-  val exeNextPC = nextPC.io.nextPC  // TODO: 如果J指令跳转的话，需要修改。
+  val exeNextPC = nextPC.io.nextPC
   val exeAluRes = alu.io.aluRes
 
 //----------------------------------------------------------------
@@ -84,10 +83,10 @@ class Execution extends Module {
 
   io.exeRdEn := io.in.rdEn
   io.exeRdAddr := exeRdAddr
-  io.exeRdData :=exeAluRes // Mux(io.in.memtoReg(1) === 1.U, aluResW ,exeAluRes)    // 考虑w类型指令
+  io.exeRdData :=exeAluRes
   
   io.bubbleEx := io.in.typeL
 
   io.pcSrc := exePCSrc
-  io.nextPC := exeNextPC           //nextPC.io.nextPC
+  io.nextPC := exeNextPC
 }

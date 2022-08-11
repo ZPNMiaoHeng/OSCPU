@@ -57,6 +57,8 @@ class Decode extends Module {
 
 //*  io.memCtr <> con.io.memCtr
 //*  io.branch := con.io.branch
+
+//* bypass control signals
   val rs1Addr = con.io.regCtrl.rs1Addr
   val rs2Addr = con.io.regCtrl.rs2Addr
   val rdRs1HitEx = io.exeRdEn && (rs1Addr === io.exeRdAddr) && (rs1Addr =/= 0.U)
@@ -93,8 +95,8 @@ class Decode extends Module {
   val idRdEn   = con.io.rdEn
   val idRdAddr = con.io.rdAddr
   val idRdData = 0.U
-  val idRs1Data = rs1Data     //regs.io.rs1Data
-  val idRs2Data = rs2Data     //regs.io.rs2Data
+  val idRs1Data = rs1Data
+  val idRs2Data = rs2Data
   val idImm = imm.io.imm
 
 //----------------------------------------------------------------
