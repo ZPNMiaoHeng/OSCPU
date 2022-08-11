@@ -39,7 +39,7 @@ class WriteBack extends Module {
 
   io.wbRdEn := io.in.rdEn
   io.wbRdAddr := io.in.rdAddr
-  io.wbRdData := io.in.aluRes
+  io.wbRdData := rdData
 
 }
   

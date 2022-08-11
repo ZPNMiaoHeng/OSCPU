@@ -61,6 +61,8 @@ class BUS_R extends Bundle {
 //    bp_targer := 0.U
   }
 }
+//  val ready = true.B
+//  val fire = io.in.valid && ready
 
 class PipelineReg extends Module {
   val io = IO(new Bundle {
@@ -68,11 +70,12 @@ class PipelineReg extends Module {
     val out     = Output(new BUS_R)
     val flush   = Input(Bool())
     val stall   = Input(Bool())
+//    val ready = Input(Bool())
   })
 
   val reg = RegInit(0.U.asTypeOf(new BUS_R))
 
-  when (io.flush && !io.stall) {
+  when (/*fire &&*/ io.flush/* && !io.stall*/) {
     reg.flush()
   } .elsewhen (!io.stall) {
     reg := io.in

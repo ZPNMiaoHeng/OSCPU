@@ -16,8 +16,8 @@ class InstFetch extends Module {
   })
   val pc = RegInit("h7fff_fff8".U(WLEN.W))
 
-  val ifPC = Mux(io.stall, pc,
-     Mux(io.pcSrc === 0.U, pc + 4.U ,io.nextPC))
+  val ifPC = Mux(io.pcSrc =/= 0.U ,io.nextPC ,
+              Mux(io.stall, pc, pc + 4.U))
 
     pc := ifPC                                                 // 更新pc寄存器, 保存pc值得篮子
     io.imem.en := ~io.stall                                    // stall -> 取指pc和addr暂停
@@ -27,7 +27,7 @@ class InstFetch extends Module {
 //*  io.pc := pc
 //*  io.inst := io.imem.rdata(31, 0)
 //------------------- IF ----------------------------
-  io.out.valid    := true.B //~io.stall || io.stall
+  io.out.valid    := true.B       //~io.stall || io.stall
   io.out.pc       := ifPC
   io.out.inst     := ifInst
   io.out.typeL    := false.B

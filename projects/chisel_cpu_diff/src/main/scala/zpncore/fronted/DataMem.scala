@@ -23,8 +23,8 @@ class DataMem extends Module {
     val memRdAddr = Output(UInt(5.W))
     val memRdData = Output(UInt(XLEN.W))
 
-    val pcSrc = Output(UInt(2.W))
-    val nextPC = Output(UInt(WLEN.W))
+//    val pcSrc = Output(UInt(2.W))
+//    val nextPC = Output(UInt(WLEN.W))
   })
 
   val memAddr =   io.in.aluRes                       //* io.memAddr
@@ -72,6 +72,12 @@ class DataMem extends Module {
 //*  io.rdData := Mux(memWr === 1.U, 0.U, rData)
   val wData = Mux(memWr === 1.U, 0.U, rData)
 
+  val resW = SignExt(io.in.aluRes(31,0), 64)
+  val memBPData = LookupTreeDefault(io.in.memtoReg, 0.U, List(
+      ("b00".U) -> io.in.aluRes,
+      ("b01".U) -> wData,
+      ("b10".U) -> resW
+  ))
 //*----------------------------------------------------------------
   val memValid = io.in.valid
   val memPC = io.in.pc
@@ -120,8 +126,8 @@ class DataMem extends Module {
 
   io.memRdEn := io.in.rdEn
   io.memRdAddr := memRdAddr
-  io.memRdData := Mux(memTypeL, memData ,io.in.aluRes)
+  io.memRdData := memBPData
 
-  io.pcSrc := memPCSrc
-  io.nextPC := memNextPC           //nextPC.io.nextPC
+//  io.pcSrc := memPCSrc
+//  io.nextPC := memNextPC           //nextPC.io.nextPC
 }
