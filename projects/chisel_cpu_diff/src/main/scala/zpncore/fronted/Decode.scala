@@ -77,25 +77,11 @@ class Decode extends Module {
     Mux(rdRs2HitMem, io.memRdData,
     Mux(rdRs2HitWb, io.wbRdData, regs.io.rs2Data))) ,0.U )
 
-/*
-  val rs1Data = Mux(con.io.regCtrl.rs1En,
-   LookupTreeDefault(con.io.regCtrl.rs1Addr,  regs.io.rs1Data, List(
-    io.exeRdAddr -> io.exeRdData,
-    io.memRdAddr -> io.memRdData,
-    io.wbRdAddr -> io.wbRdData
-  )) ,0.U )
-
-  val rs2Data = Mux(con.io.regCtrl.rs2En,
-   LookupTreeDefault(con.io.regCtrl.rs2Addr,  regs.io.rs2Data, List(
-    io.exeRdAddr -> io.exeRdData,
-    io.memRdAddr -> io.memRdData,
-    io.wbRdAddr -> io.wbRdData
-  )) ,0.U )
-  */
 
   val idValid = io.in.valid
   val idPC = io.in.pc
   val idInst = io.in.inst
+  
   val idTypeL = con.io.typeL
   val idAluA = con.io.aluCtr.aluA
   val idAluB = con.io.aluCtr.aluB

@@ -93,7 +93,7 @@ class DataMem extends Module {
   val memPCSrc = io.in.pcSrc
   val memNextPC = io.in.nextPC
   val memAluRes = io.in.aluRes
-  val memWData = wData
+  val memData = wData
 
 //----------------------------------------------------------------
   io.out.valid    := memValid
@@ -116,11 +116,11 @@ class DataMem extends Module {
   io.out.pcSrc    := memPCSrc
   io.out.nextPC   := memNextPC
   io.out.aluRes   := memAluRes
-  io.out.memData  := memWData
+  io.out.memData  := memData
 
   io.memRdEn := io.in.rdEn
   io.memRdAddr := memRdAddr
-  io.memRdData := io.in.aluRes
+  io.memRdData := Mux(memTypeL, memData ,io.in.aluRes)
 
   io.pcSrc := memPCSrc
   io.nextPC := memNextPC           //nextPC.io.nextPC

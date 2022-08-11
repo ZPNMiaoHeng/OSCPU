@@ -7,9 +7,6 @@ class Execution extends Module {
         val in = Input(new BUS_R)
         val out = Output(new BUS_R)
 
-//        val pcSrc = Output(UInt(2.W))
-//        val nextPC = Output(UInt(WLEN.W))
-        
         val exeRdEn = Output(Bool())
         val exeRdAddr = Output(UInt(WLEN.W))
         val exeRdData = Output(UInt(XLEN.W))
@@ -84,7 +81,5 @@ class Execution extends Module {
   io.exeRdAddr := exeRdAddr
   io.exeRdData := exeAluRes
   
-//  io.pcSrc := pcSrc
-//  io.nextPC := nextPC.io.nextPC
   io.bubbleEx := io.in.typeL
 }

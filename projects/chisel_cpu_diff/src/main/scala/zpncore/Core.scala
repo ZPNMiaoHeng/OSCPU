@@ -75,7 +75,7 @@ class Core extends Module {
   WB.io.in <> MemRegWb.io.out
 
   /* ----- Difftest ------------------------------ */
-  val valid = WB.io.ready_cmt && !stallEn
+  val valid = WB.io.ready_cmt   // && !stallEn
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
