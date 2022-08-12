@@ -5,8 +5,8 @@ import utils._
 
 class Core extends Module {
   val io = IO(new Bundle {
-//    val imem = new CoreInst
-    val imem = new RomIO
+    val imem = new CoreInst
+//    val imem = new RomIO
     val dmem = new RamIO
   })
   
@@ -23,7 +23,7 @@ class Core extends Module {
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
   val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx
 // 判断IF是否从总线上取出指令（IF结束），若未完成，暂停流水线
-  val AXIIFDone = false.B //IF.io.IFDone
+  val AXIIFDone = false.B //!IF.io.IFDone
 
 //* ----------------------------------------------------------------
   val flushIfIdEn = false.B
@@ -36,13 +36,15 @@ class Core extends Module {
   val stallExMemEn = AXIIFDone
   val stallMemWbEn = AXIIFDone
 //------------------- IF --------------------------------
-  IF.io.imem <> io.imem
+//  IF.io.imem <> io.imem
 
-//  io.imem.inst_valid := fetch.io.imem.inst_valid
-//  io.imem.inst_req := fetch.io.imem.inst_req                                // request signals:1 -> true
-//  io.imem.inst_addr := nextpc.io.NextPC          //! nextpc当做下一条取指地址                          //fetch.io.imem.inst_addr  
-//  io.imem.inst_size := fetch.io.imem.inst_size 
+  io.imem.inst_valid := IF.io.imem.inst_valid
+  io.imem.inst_req := IF.io.imem.inst_req                                // request signals:1 -> true
+  io.imem.inst_addr := IF.io.imem.inst_addr  //EX.io.nextPC          //! nextpc当做下一条取指地址
+  io.imem.inst_size := IF.io.imem.inst_size 
+  IF.io.imem.inst_read := io.imem.inst_read
 
+  IF.io.imem.inst_ready := io.imem.inst_ready  //!
   IF.io.pcSrc := EX.io.pcSrc
   IF.io.nextPC := EX.io.nextPC
   IF.io.stall := EXLHitID
