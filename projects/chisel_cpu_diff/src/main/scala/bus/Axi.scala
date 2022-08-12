@@ -3,7 +3,7 @@ import chisel3.util._
 
 import Constant._
 
-class /*AxiLiteAR*/ AxiLite2Axi  extends Module {
+class AxiLite2Axi  extends Module {
   val io = IO(new Bundle {
     val out = new AxiIO
     val imem = Flipped(new AxiInst)
@@ -19,7 +19,7 @@ class /*AxiLiteAR*/ AxiLite2Axi  extends Module {
   val ar_hs = out.ar.ready && out.ar.valid                                     // fire_ar
   val r_hs = out.r.ready && out.r.valid                                       // fire_r
   
-  val r_done = r_hs && out.r.bits.last
+  val r_done = r_hs && out.r.bits.last                                        //* 主机得到data和last完成信号
 
   val r_idle :: r_inst_addr :: r_inst_read :: r_inst_done :: Nil = Enum(4)
   val r_state = RegInit(r_idle)
@@ -52,8 +52,8 @@ class /*AxiLiteAR*/ AxiLite2Axi  extends Module {
   }
 
     // ------------------Write Transaction------------------
-
-  val axi_addr = Mux(r_state === r_inst_addr, in1.inst_addr & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
+  val axi_addr = Mux(r_state === r_inst_addr, (in1.inst_addr ) & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
+//  val axi_addr = (in1.inst_addr + 4.U) & "hffff_fff0".U(32.W) // Byte alignment
 
   out.ar.valid := (r_state === r_inst_addr)
   out.ar.bits.addr := axi_addr
@@ -106,6 +106,27 @@ class /*AxiLiteAR*/ AxiLite2Axi  extends Module {
       inst_read_l := out.r.bits.data
     }
   }
-  in1.inst_read := Cat(inst_read_h, inst_read_l)
+  
+  val alignment = in1.inst_addr % 16.U                              //* 16字节对齐（总线一次读取128bits）
+  in1.inst_read := Cat(inst_read_h, inst_read_l) >> alignment * 8.U
 
+//  in1.inst_read += LookupTreeDefault(alignment, 0.U, List(
+
+//  ))
+/*
+   switch(alignment) {
+      is(0.U) {
+        inst := io.imem.inst_read(63, 32)
+      }
+      is(4.U) {
+        inst := io.imem.inst_read(95, 64)
+      }
+      is(8.U) {
+        inst := io.imem.inst_read(127, 96)
+      }
+      is (12.U) {
+        inst := io.imem.inst_read(31, 0)
+      }
+    }
+*/
 }

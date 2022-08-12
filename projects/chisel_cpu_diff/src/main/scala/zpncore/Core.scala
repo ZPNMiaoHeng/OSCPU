@@ -5,7 +5,8 @@ import utils._
 
 class Core extends Module {
   val io = IO(new Bundle {
-    val imem = new RomIO  
+//    val imem = new CoreInst
+    val imem = new RomIO
     val dmem = new RamIO
   })
   
@@ -18,23 +19,33 @@ class Core extends Module {
   val MEM = Module(new DataMem)
   val MemRegWb = Module(new PipelineReg)
   val WB = Module(new WriteBack)
+//*-----------------------------------------------------------------
+// EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
+  val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx
+// 判断IF是否从总线上取出指令（IF结束），若未完成，暂停流水线
+  val AXIIFDone = false.B //IF.io.IFDone
 
-  val stallEn = ID.io.bubbleId && EX.io.bubbleEx
 //* ----------------------------------------------------------------
-  val flushIfIdEn = false.B //Mux(MEM.io.pcSrc =/= 0.U, true.B, false.B)
-  val flushIdExEn = Mux(EX.io.pcSrc =/= 0.U, true.B, false.B) ||  stallEn
-  val flushExMemEn = false.B  //Mux(MEM.io.pcSrc =/= 0.U, true.B, false.B)
+  val flushIfIdEn = false.B
+  val flushIdExEn = Mux(EX.io.pcSrc =/= 0.U, true.B, false.B) || EXLHitID
+  val flushExMemEn = false.B
   val flushMemWbEn = false.B
 
-  val stallIfIdEn = stallEn
-  val stallIdExEn = false.B   //stallEn
-  val stallExMemEn = false.B
-  val stallMemWbEn = false.B
+  val stallIfIdEn = EXLHitID || AXIIFDone
+  val stallIdExEn = AXIIFDone
+  val stallExMemEn = AXIIFDone
+  val stallMemWbEn = AXIIFDone
 //------------------- IF --------------------------------
   IF.io.imem <> io.imem
+
+//  io.imem.inst_valid := fetch.io.imem.inst_valid
+//  io.imem.inst_req := fetch.io.imem.inst_req                                // request signals:1 -> true
+//  io.imem.inst_addr := nextpc.io.NextPC          //! nextpc当做下一条取指地址                          //fetch.io.imem.inst_addr  
+//  io.imem.inst_size := fetch.io.imem.inst_size 
+
   IF.io.pcSrc := EX.io.pcSrc
   IF.io.nextPC := EX.io.nextPC
-  IF.io.stall := stallEn
+  IF.io.stall := EXLHitID
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
