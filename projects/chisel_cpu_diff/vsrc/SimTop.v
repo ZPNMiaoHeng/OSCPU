@@ -2057,7 +2057,8 @@ module Core(
   reg [63:0] cycle_cnt; // @[Core.scala 112:26]
   reg [63:0] instr_cnt; // @[Core.scala 113:26]
   wire [63:0] _cycle_cnt_T_1 = cycle_cnt + 64'h1; // @[Core.scala 115:26]
-  wire [63:0] _instr_cnt_T_1 = instr_cnt + 64'h1; // @[Core.scala 116:26]
+  wire [63:0] _GEN_0 = {{63'd0}, WB_io_ready_cmt}; // @[Core.scala 116:26]
+  wire [63:0] _instr_cnt_T_1 = instr_cnt + _GEN_0; // @[Core.scala 116:26]
   wire [63:0] rf_a0_0 = ID_rf_10;
   InstFetch IF ( // @[Core.scala 13:18]
     .clock(IF_clock),
