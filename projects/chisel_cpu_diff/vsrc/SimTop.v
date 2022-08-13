@@ -13,23 +13,60 @@ module InstFetch(
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
+  reg [31:0] _RAND_1;
+  reg [31:0] _RAND_2;
 `endif // RANDOMIZE_REG_INIT
   reg [31:0] pc; // @[InstFetch.scala 18:19]
-  wire [31:0] _ifPC_T_2 = pc + 32'h4; // @[InstFetch.scala 27:36]
-  wire [31:0] _ifPC_T_3 = io_stall ? pc : _ifPC_T_2; // @[InstFetch.scala 27:18]
-  wire [31:0] ifPC = io_pcSrc != 2'h0 ? io_nextPC : _ifPC_T_3; // @[InstFetch.scala 26:17]
-  assign io_imem_en = ~io_stall; // @[InstFetch.scala 38:17]
-  assign io_imem_addr = {{32'd0}, ifPC}; // @[InstFetch.scala 39:16]
-  assign io_out_valid = ~io_stall; // @[InstFetch.scala 41:17]
-  assign io_out_pc = io_pcSrc != 2'h0 ? io_nextPC : _ifPC_T_3; // @[InstFetch.scala 26:17]
-  assign io_out_inst = io_imem_rdata[31:0]; // @[InstFetch.scala 40:29]
+  wire  jump = io_pcSrc != 2'h0; // @[InstFetch.scala 29:23]
+  reg [1:0] cnt; // @[InstFetch.scala 30:20]
+  reg  jumpEn; // @[InstFetch.scala 31:23]
+  wire [1:0] _GEN_3 = jump ? 2'h3 : 2'h1; // @[InstFetch.scala 52:18 54:13 57:13]
+  wire [1:0] _GEN_4 = ~jump ? 2'h1 : cnt; // @[InstFetch.scala 62:19 63:13 30:20]
+  wire  _GEN_5 = 2'h3 == cnt | jumpEn; // @[InstFetch.scala 35:16 61:14 31:23]
+  wire [1:0] _GEN_6 = 2'h3 == cnt ? _GEN_4 : cnt; // @[InstFetch.scala 35:16 30:20]
+  wire [31:0] _ifPC_T_1 = pc + 32'h4; // @[InstFetch.scala 69:36]
+  wire [31:0] _ifPC_T_2 = io_stall ? pc : _ifPC_T_1; // @[InstFetch.scala 69:18]
+  wire [31:0] ifPC = jumpEn ? io_nextPC : _ifPC_T_2; // @[InstFetch.scala 68:17]
+  assign io_imem_en = ~io_stall; // @[InstFetch.scala 83:17]
+  assign io_imem_addr = {{32'd0}, ifPC}; // @[InstFetch.scala 84:16]
+  assign io_out_valid = ~io_stall; // @[InstFetch.scala 86:17]
+  assign io_out_pc = jumpEn ? io_nextPC : _ifPC_T_2; // @[InstFetch.scala 68:17]
+  assign io_out_inst = io_imem_rdata[31:0]; // @[InstFetch.scala 85:29]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 18:19]
       pc <= 32'h7ffffff8; // @[InstFetch.scala 18:19]
-    end else if (io_pcSrc != 2'h0) begin // @[InstFetch.scala 26:17]
+    end else if (jumpEn) begin // @[InstFetch.scala 68:17]
       pc <= io_nextPC;
-    end else if (!(io_stall)) begin // @[InstFetch.scala 27:18]
-      pc <= _ifPC_T_2;
+    end else if (!(io_stall)) begin // @[InstFetch.scala 69:18]
+      pc <= _ifPC_T_1;
+    end
+    if (reset) begin // @[InstFetch.scala 30:20]
+      cnt <= 2'h0; // @[InstFetch.scala 30:20]
+    end else if (2'h0 == cnt) begin // @[InstFetch.scala 35:16]
+      if (jump) begin // @[InstFetch.scala 38:18]
+        cnt <= 2'h1; // @[InstFetch.scala 39:13]
+      end
+    end else if (2'h1 == cnt) begin // @[InstFetch.scala 35:16]
+      if (jump) begin // @[InstFetch.scala 43:18]
+        cnt <= 2'h2; // @[InstFetch.scala 45:13]
+      end else begin
+        cnt <= 2'h0; // @[InstFetch.scala 48:13]
+      end
+    end else if (2'h2 == cnt) begin // @[InstFetch.scala 35:16]
+      cnt <= _GEN_3;
+    end else begin
+      cnt <= _GEN_6;
+    end
+    if (reset) begin // @[InstFetch.scala 31:23]
+      jumpEn <= 1'h0; // @[InstFetch.scala 31:23]
+    end else if (2'h0 == cnt) begin // @[InstFetch.scala 35:16]
+      jumpEn <= 1'h0; // @[InstFetch.scala 37:14]
+    end else if (2'h1 == cnt) begin // @[InstFetch.scala 35:16]
+      jumpEn <= jump;
+    end else if (2'h2 == cnt) begin // @[InstFetch.scala 35:16]
+      jumpEn <= jump;
+    end else begin
+      jumpEn <= _GEN_5;
     end
   end
 // Register and memory initialization
@@ -70,6 +107,10 @@ initial begin
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
   pc = _RAND_0[31:0];
+  _RAND_1 = {1{`RANDOM}};
+  cnt = _RAND_1[1:0];
+  _RAND_2 = {1{`RANDOM}};
+  jumpEn = _RAND_2[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial

@@ -23,6 +23,50 @@ class InstFetch extends Module {
 //  val fire = io.imem.inst_valid && io.imem.inst_ready //* 握手成功，从总线上取出数据
 //  IFDone := Mux(fire, true.B, false.B)                //* 取指完成标志
 
+//* 2Bit分支预测器：00/01 为不跳转， 10/11 为跳转
+//* pcSrc =/= 0.U 要跳转
+/*
+  val jump = io.pcSrc =/= 0.U                
+  val cnt = RegInit(0.U(2.W))
+  val jumpEn = 
+
+  switch (cnt) {
+    is("b00".U) {
+      jumpEn := false.B
+      when(jump) { 
+        cnt := "b01".U
+        }
+    }
+    is("b01".U) {
+      when(jump) {
+        jumpEn := true.B
+        cnt := "b10".U
+      } .otherwise {
+        jumpEn := false.B
+        cnt := "b00".U
+      }
+    }
+    is("b10".U) {
+      when(jump) {
+        jumpEn := true.B
+        cnt := "b11".U
+      } .otherwise {
+        jumpEn := false.B
+        cnt := "b01".U
+      }
+    }
+    is("b11".U) {
+      jumpEn := true.B
+      when(!jump) {
+        cnt := "b01".U
+      }
+    }
+  }
+
+  val ifPC = Mux(jumpEn ,io.nextPC ,
+              Mux(io.stall, pc, pc + 4.U))
+*/
+//* ----------------------------------------------------------------
   val ifPC = Mux(io.pcSrc =/= 0.U ,io.nextPC ,
               Mux(io.stall, pc, pc + 4.U))
 /*
