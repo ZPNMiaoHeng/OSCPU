@@ -27,17 +27,17 @@ class InstFetch extends Module {
               Mux(io.stall, pc, pc + 4.U),
                 io.nextPC),
                   pc)
-  IFDone := fire
+  IFDone := fire                                      //* PC改变需要打一拍，才能获得当前inst
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
   io.imem.inst_req := REQ_READ
   io.imem.inst_addr := pc.asUInt()
   io.imem.inst_size := SIZE_W
-  io.IFDone := IFDone                                    //* fire有效，取到inst，取指阶段完成
+  io.IFDone := fire                                   //* fire有效，取到inst，取指阶段完成
 
 //------------------- IF ----------------------------
-  io.out.valid    := fire //true.B       //~io.stall || io.stall
+  io.out.valid    := fire
   io.out.pc       := ifPC  //pc           //* pc需要打一拍等待ifinst取指
   io.out.inst     := ifInst
   io.out.typeL    := false.B

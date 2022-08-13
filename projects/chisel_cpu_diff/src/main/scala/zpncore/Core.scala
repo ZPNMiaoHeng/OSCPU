@@ -22,8 +22,8 @@ class Core extends Module {
 //*-----------------------------------------------------------------
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
   val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx
-// 判断IF是否从总线上取出指令（IF结束），若未完成，暂停流水线
-  val AXIIFDone = !IF.io.IFDone
+// IFDone true-> 流水线流动
+  val AXIIFStall = !IF.io.IFDone
 
 //* ----------------------------------------------------------------
   val flushIfIdEn = false.B
@@ -31,10 +31,10 @@ class Core extends Module {
   val flushExMemEn = false.B
   val flushMemWbEn = false.B
 
-  val stallIfIdEn = EXLHitID || AXIIFDone
-  val stallIdExEn = AXIIFDone
-  val stallExMemEn = AXIIFDone
-  val stallMemWbEn = AXIIFDone
+  val stallIfIdEn = EXLHitID || AXIIFStall
+  val stallIdExEn = AXIIFStall
+  val stallExMemEn = AXIIFStall
+  val stallMemWbEn = AXIIFStall
 //------------------- IF --------------------------------
 //  IF.io.imem <> io.imem
 
@@ -89,7 +89,7 @@ class Core extends Module {
   WB.io.in <> MemRegWb.io.out
 
   /* ----- Difftest ------------------------------ */
-  val valid = WB.io.ready_cmt   // && !stallEn
+  val valid = WB.io.ready_cmt && IF.io.IFDone
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
@@ -116,7 +116,7 @@ class Core extends Module {
   val instr_cnt = RegInit(0.U(64.W))
 
   cycle_cnt := cycle_cnt + 1.U
-  instr_cnt := instr_cnt + 1.U
+  instr_cnt := instr_cnt + valid
 
   val rf_a0 = WireInit(0.U(64.W))
   BoringUtils.addSink(rf_a0, "rf_a0")

@@ -2,7 +2,6 @@ import chisel3._
 import chisel3.util._
 import Constant._
 
-
 class BUS_R extends Bundle {
   val valid = Bool()
   val pc = UInt(WLEN.W)
