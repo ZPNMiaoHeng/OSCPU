@@ -7,26 +7,28 @@ module InstFetch(
   input  [1:0]  io_pcSrc,
   input  [31:0] io_nextPC,
   input         io_stall,
+  output        io_out_valid,
   output [31:0] io_out_pc,
   output [31:0] io_out_inst
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] pc; // @[InstFetch.scala 17:19]
-  wire [31:0] _ifPC_T_2 = pc + 32'h4; // @[InstFetch.scala 26:36]
-  wire [31:0] _ifPC_T_3 = io_stall ? pc : _ifPC_T_2; // @[InstFetch.scala 26:18]
-  wire [31:0] ifPC = io_pcSrc != 2'h0 ? io_nextPC : _ifPC_T_3; // @[InstFetch.scala 25:17]
-  assign io_imem_en = ~io_stall; // @[InstFetch.scala 37:19]
-  assign io_imem_addr = {{32'd0}, ifPC}; // @[InstFetch.scala 38:18]
-  assign io_out_pc = io_pcSrc != 2'h0 ? io_nextPC : _ifPC_T_3; // @[InstFetch.scala 25:17]
-  assign io_out_inst = io_imem_rdata[31:0]; // @[InstFetch.scala 39:29]
+  reg [31:0] pc; // @[InstFetch.scala 18:19]
+  wire [31:0] _ifPC_T_2 = pc + 32'h4; // @[InstFetch.scala 27:36]
+  wire [31:0] _ifPC_T_3 = io_stall ? pc : _ifPC_T_2; // @[InstFetch.scala 27:18]
+  wire [31:0] ifPC = io_pcSrc != 2'h0 ? io_nextPC : _ifPC_T_3; // @[InstFetch.scala 26:17]
+  assign io_imem_en = ~io_stall; // @[InstFetch.scala 38:17]
+  assign io_imem_addr = {{32'd0}, ifPC}; // @[InstFetch.scala 39:16]
+  assign io_out_valid = ~io_stall; // @[InstFetch.scala 41:17]
+  assign io_out_pc = io_pcSrc != 2'h0 ? io_nextPC : _ifPC_T_3; // @[InstFetch.scala 26:17]
+  assign io_out_inst = io_imem_rdata[31:0]; // @[InstFetch.scala 40:29]
   always @(posedge clock) begin
-    if (reset) begin // @[InstFetch.scala 17:19]
-      pc <= 32'h7ffffff8; // @[InstFetch.scala 17:19]
-    end else if (io_pcSrc != 2'h0) begin // @[InstFetch.scala 25:17]
+    if (reset) begin // @[InstFetch.scala 18:19]
+      pc <= 32'h7ffffff8; // @[InstFetch.scala 18:19]
+    end else if (io_pcSrc != 2'h0) begin // @[InstFetch.scala 26:17]
       pc <= io_nextPC;
-    end else if (!(io_stall)) begin // @[InstFetch.scala 26:18]
+    end else if (!(io_stall)) begin // @[InstFetch.scala 27:18]
       pc <= _ifPC_T_2;
     end
   end
@@ -1705,6 +1707,7 @@ module Core(
   wire [1:0] IF_io_pcSrc; // @[Core.scala 13:18]
   wire [31:0] IF_io_nextPC; // @[Core.scala 13:18]
   wire  IF_io_stall; // @[Core.scala 13:18]
+  wire  IF_io_out_valid; // @[Core.scala 13:18]
   wire [31:0] IF_io_out_pc; // @[Core.scala 13:18]
   wire [31:0] IF_io_out_inst; // @[Core.scala 13:18]
   wire  IfRegId_clock; // @[Core.scala 14:23]
@@ -2069,6 +2072,7 @@ module Core(
     .io_pcSrc(IF_io_pcSrc),
     .io_nextPC(IF_io_nextPC),
     .io_stall(IF_io_stall),
+    .io_out_valid(IF_io_out_valid),
     .io_out_pc(IF_io_out_pc),
     .io_out_inst(IF_io_out_inst)
   );
@@ -2451,7 +2455,7 @@ module Core(
   assign IF_io_stall = ID_io_bubbleId & EX_io_bubbleEx; // @[Core.scala 24:33]
   assign IfRegId_clock = clock;
   assign IfRegId_reset = reset;
-  assign IfRegId_io_in_valid = 1'h1; // @[Core.scala 50:17]
+  assign IfRegId_io_in_valid = IF_io_out_valid; // @[Core.scala 50:17]
   assign IfRegId_io_in_pc = IF_io_out_pc; // @[Core.scala 50:17]
   assign IfRegId_io_in_inst = IF_io_out_inst; // @[Core.scala 50:17]
   assign IfRegId_io_in_typeL = 1'h0; // @[Core.scala 50:17]

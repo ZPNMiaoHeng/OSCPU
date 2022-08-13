@@ -85,9 +85,9 @@ class Core extends Module {
 //------------------- WB ---------------------------------
   WB.io.in <> MemRegWb.io.out
 
-  /* ----- Difftest ------------------------------ */
+/* ----- Difftest ------------------------------ */
   val valid = WB.io.ready_cmt   // && !stallEn
-
+//* 指令提交
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
   dt_ic.io.coreid   := 0.U
@@ -113,7 +113,7 @@ class Core extends Module {
   val instr_cnt = RegInit(0.U(64.W))
 
   cycle_cnt := cycle_cnt + 1.U
-  instr_cnt := instr_cnt + valid//1.U
+  instr_cnt := instr_cnt + valid   //1.U
 
   val rf_a0 = WireInit(0.U(64.W))
   BoringUtils.addSink(rf_a0, "rf_a0")
