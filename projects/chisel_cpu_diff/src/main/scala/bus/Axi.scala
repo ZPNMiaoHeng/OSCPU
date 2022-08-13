@@ -52,7 +52,7 @@ class AxiLite2Axi  extends Module {
   }
 
     // ------------------Write Transaction------------------
-  val axi_addr = Mux(r_state === r_inst_addr, (in1.inst_addr ) & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
+  val axi_addr = Mux(r_state === r_inst_addr, (in1.inst_addr) & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
 //  val axi_addr = (in1.inst_addr + 4.U) & "hffff_fff0".U(32.W) // Byte alignment
 
   out.ar.valid := (r_state === r_inst_addr)
@@ -110,9 +110,6 @@ class AxiLite2Axi  extends Module {
   val alignment = in1.inst_addr % 16.U                              //* 16字节对齐（总线一次读取128bits）
   in1.inst_read := Cat(inst_read_h, inst_read_l) >> alignment * 8.U
 
-//  in1.inst_read += LookupTreeDefault(alignment, 0.U, List(
-
-//  ))
 /*
    switch(alignment) {
       is(0.U) {
