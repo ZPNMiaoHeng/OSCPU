@@ -9,7 +9,8 @@ import utils._
 
 class DataMem extends Module {
   val io = IO(new Bundle {
-    val dmem = new RamIO
+//    val dmem = new RamIO 
+    val dmem = new CoreData //!
 
     val in = Input(new BUS_R)
     val out = Output(new BUS_R)
@@ -20,20 +21,53 @@ class DataMem extends Module {
   })
 
   val memAddr =   io.in.aluRes
-  val memtoReg =  io.in.memtoReg
+  val memtoReg =  io.in.memtoReg          // 01-> Load inst
   val memOP =     io.in.memOp
-  val memWr =     io.in.memWr
-  val memDataIn =  io.in.rs2Data
+  val memWr =     io.in.memWr             // 1-> Store inst
+  val memDataIn = io.in.rs2Data
+//*--------------------------------------------------------------------------------------------
+  io.dmem.data_valid := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
+       ((memtoReg === "b01".U) || (memWr === 1.U))  //* Load and store
+  val dmemFire = io.dmem.data_valid && io.dmem.data_ready
+  io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
+  io.dmem.data_addr := memAddr(31, 0)
+  io.dmem.data_size :=  //!!!
+  io.dmem.data_strb := LookupTreeDefault(memOP, 0.U, List(
+    "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                      // Sb
+      1.U -> "b0000_0010".U,
+      2.U -> "b0000_0100".U,
+      3.U -> "b0000_1000".U,
+      4.U -> "b0001_0000".U,
+      5.U -> "b0010_0000".U,
+      6.U -> "b0100_0000".U,
+      7.U -> "b1000_0000".U
+    )),
+    "b001".U -> LookupTreeDefault(alignBits,  "b0000_0011".U, List(                      // Sh
+      2.U -> "b0000_1100".U,
+      4.U -> "b0011_0000".U,
+      6.U -> "b1100_0000".U
+    )),
+    "b010".U -> Mux(alignBits === 0.U, "b0000_1111".U, "b1111_0000".U),                  // Sw
+    "b011".U -> "b1111_1111".U                                                           // Sd
+  ))
 
+  := io.dmem.data_read
+
+  val alignBits = memAddr % 8.U
+  io.dmem.data_write := memDataIn << alignBits * 8.U
+
+//*---------------------------------------------------------------------------------------------
+/*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
        ((memtoReg === "b01".U) || (memWr === 1.U))
+
   io.dmem.addr := memAddr
   io.dmem.wen := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) && (memWr === 1.U)
   val alignBits = memAddr % 8.U
   io.dmem.wdata := memDataIn << alignBits * 8.U
 
   io.dmem.wmask := LookupTreeDefault(memOP, 0.U, List(
-    "b000".U -> LookupTreeDefault(alignBits, "h0000_0000_0000_00ff".U, List(
+    "b000".U -> LookupTreeDefault(alignBits, "h0000_0000_0000_00ff".U, List(                      // Sb
       1.U -> "h0000_0000_0000_ff00".U,
       2.U -> "h0000_0000_00ff_0000".U,
       3.U -> "h0000_0000_ff00_0000".U,
@@ -42,15 +76,15 @@ class DataMem extends Module {
       6.U -> "h00ff_0000_0000_0000".U,
       7.U -> "hff00_0000_0000_0000".U
     )),
-    "b001".U -> LookupTreeDefault(alignBits,  "h0000_0000_0000_ffff".U, List(
+    "b001".U -> LookupTreeDefault(alignBits,  "h0000_0000_0000_ffff".U, List(                      // Sh
       2.U -> "h0000_0000_ffff_0000".U,
       4.U -> "h0000_ffff_0000_0000".U,
-      6.U -> "hffff_0000_0000_0000".U,
+      6.U -> "hffff_0000_0000_0000".U
     )),
-    "b010".U -> Mux(alignBits === 0.U, "h0000_0000_ffff_ffff".U, "hffff_ffff_0000_0000".U),
-    "b011".U -> "hffff_ffff_ffff_ffff".U
+    "b010".U -> Mux(alignBits === 0.U, "h0000_0000_ffff_ffff".U, "hffff_ffff_0000_0000".U),         // Sw
+    "b011".U -> "hffff_ffff_ffff_ffff".U                                                            // Sd
   ))
-
+*/
   val rdata = io.dmem.rdata >> alignBits * 8.U
   val rData = LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> SignExt(rdata(7 , 0), XLEN),

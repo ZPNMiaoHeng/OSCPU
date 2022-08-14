@@ -70,8 +70,8 @@ class DATAIO extends Bundle {
   val data_ready  = Input(Bool())
   val data_req    = Output(Bool())
   val data_addr   = Output(UInt(AxiAddrWidth.W)) 
-  val data_size   = Output(UInt(2.W)) 
-  val data_strb   = Output(UInt(8.W)) 
+  val data_size   = Output(UInt(2.W))                      //???
+  val data_strb   = Output(UInt(8.W))                      //???写请求选通信号，表示哪些写请求数据的哪些字节为有效数据
 }
 
 class AxiData extends DATAIO   {
