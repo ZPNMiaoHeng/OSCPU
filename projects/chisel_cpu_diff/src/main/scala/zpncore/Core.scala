@@ -22,19 +22,28 @@ class Core extends Module {
 //*-----------------------------------------------------------------
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
   val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx
+
 // IFDone true-> 流水线流动
-  val AXIIFStall = !IF.io.IFDone
+  val BubbleStall = Mux(IF.io.IFDone,
+                    Mux(EXLHitID, true.B, false.B),
+                      false.B)
+//  val AXIIFStall = !IF.io.IFDone 
 
 //* ----------------------------------------------------------------
-  val flushIfIdEn = false.B
-  val flushIdExEn = Mux(EX.io.pcSrc =/= 0.U, true.B, false.B) || EXLHitID
+  val flushIfIdEn  = false.B
+  val flushIdExEn  = Mux(IF.io.IFDone, 
+                      Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
+                       true.B, false.B),
+                        false.B)
   val flushExMemEn = false.B
   val flushMemWbEn = false.B
 
-  val stallIfIdEn = EXLHitID || AXIIFStall
-  val stallIdExEn = AXIIFStall
-  val stallExMemEn = AXIIFStall
-  val stallMemWbEn = AXIIFStall
+//* ------------------------------------------------------------------
+// IF未完成，流水线暂停
+  val stallIfIdEn =  !IF.io.IFDone || EXLHitID//BubbleStall   //AXIIFStall || AXIBuStall
+  val stallIdExEn =  !IF.io.IFDone    //AXIIFStall
+  val stallExMemEn = !IF.io.IFDone    //AXIIFStall
+  val stallMemWbEn = !IF.io.IFDone    //AXIIFStall
 //------------------- IF --------------------------------
 //  IF.io.imem <> io.imem
 
@@ -48,7 +57,7 @@ class Core extends Module {
   
   IF.io.pcSrc := EX.io.pcSrc
   IF.io.nextPC := EX.io.nextPC
-  IF.io.stall := EXLHitID
+  IF.io.stall := EXLHitID//BubbleStall
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn

@@ -16,10 +16,10 @@ FLASS +=  WITH_DRAMSIM3=1
 TOP=
 
 cpu_tests:
-	$(TOOLS) -b -r "non-output/cpu-tests" -m "EMU_TRACE=1"
+	$(TOOLS) -b -r "non-output/cpu-tests" -m "$(FLASS)"
 
 riscv_tests:
-	$(TOOLS) -b -r "non-output/riscv-tests" -m "EMU_TRACE=1"
+	$(TOOLS) -b -r "non-output/riscv-tests" -m "$(FLASS)"
 
 run_riscv:
 	$(TOOLS) -d -b -s -a "-i non-output/riscv-tests/$(TOP)-riscv-tests.bin --dump-wave -b 0" -m "$(FLASS)"
