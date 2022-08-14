@@ -35,8 +35,6 @@ class Execution extends Module {
     nextPC.io.less := alu.io.less
     nextPC.io.zero := alu.io.zero
 
-//    val pcSrc = RegInit(0.U(2.W))
-//    val nextPC = RegInit(0.U(WLEN.W))
 //----------------------------------------------------------------
   val exeValid = io.in.valid
   val exePC = io.in.pc
@@ -55,7 +53,7 @@ class Execution extends Module {
   val exeRs1Data = io.in.rs1Data
   val exeRs2Data = io.in.rs2Data
   val exeImm = io.in.imm
-  val exePCSrc = nextPC.io.pcSrc      //pcSrc
+  val exePCSrc = nextPC.io.pcSrc
   val exeNextPC = nextPC.io.nextPC
   val exeAluRes = alu.io.aluRes
 

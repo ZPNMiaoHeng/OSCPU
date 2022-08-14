@@ -9,12 +9,7 @@ import utils._
 
 class DataMem extends Module {
   val io = IO(new Bundle {
-//*    val memAddr = Input(UInt(XLEN.W))
-//*    val memDataIn = Input(UInt(XLEN.W))
-
-//*    val memCtr = Flipped(new MemCtr)
     val dmem = new RamIO
-//*    val rdData = Output(UInt(XLEN.W))
 
     val in = Input(new BUS_R)
     val out = Output(new BUS_R)
@@ -24,11 +19,11 @@ class DataMem extends Module {
     val memRdData = Output(UInt(XLEN.W))
   })
 
-  val memAddr =   io.in.aluRes                       //* io.memAddr
-  val memtoReg =  io.in.memtoReg                     //* io.memCtr.memtoReg
-  val memOP =     io.in.memOp                        //* io.memCtr.memOp
-  val memWr =     io.in.memWr                        //* io.memCtr.memWr
-  val memDataIn =  io.in.rs2Data                     //* io.memDataIn
+  val memAddr =   io.in.aluRes
+  val memtoReg =  io.in.memtoReg
+  val memOP =     io.in.memOp
+  val memWr =     io.in.memWr
+  val memDataIn =  io.in.rs2Data
 
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
        ((memtoReg === "b01".U) || (memWr === 1.U))
@@ -66,7 +61,6 @@ class DataMem extends Module {
     "b101".U -> ZeroExt(rdata(15, 0), XLEN),
     "b110".U -> ZeroExt(rdata(31, 0), XLEN)
   ))
-//*  io.rdData := Mux(memWr === 1.U, 0.U, rData)
   val wData = Mux(memWr === 1.U, 0.U, rData)
 
   val resW = SignExt(io.in.aluRes(31,0), 64)

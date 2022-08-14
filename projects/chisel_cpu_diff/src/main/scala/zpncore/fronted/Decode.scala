@@ -12,14 +12,9 @@ import utils._
 
 class Decode extends Module {
   val io = IO(new Bundle {  
-//*    val inst = Input(UInt(WLEN.W))
     val rdEn = Input(Bool())               // 流水线结束才会写回
     val rdAddr = Input(UInt(5.W))
     val rdData = Input(UInt(XLEN.W))
-
-//*    val branch = Output(UInt(3.W)) 
-//*    val aluIO = new AluIO
-//*    val memCtr = new MemCtr
 
     val in = Input(new BUS_R)
 
@@ -49,14 +44,6 @@ class Decode extends Module {
   imm.io.inst := io.in.inst
   imm.io.immOp := con.io.immOp
   con.io.inst := io.in.inst
-
-//*  io.aluIO.ctrl <> con.io.aluCtr
-//*  io.aluIO.data.rData1 := regs.io.rs1Data
-//*  io.aluIO.data.rData2 := regs.io.rs2Data
-//*  io.aluIO.data.imm := imm.io.imm
-
-//*  io.memCtr <> con.io.memCtr
-//*  io.branch := con.io.branch
 
 //* bypass control signals
   val rs1Addr = con.io.regCtrl.rs1Addr
