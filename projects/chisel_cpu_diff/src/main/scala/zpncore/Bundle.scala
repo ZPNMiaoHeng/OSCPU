@@ -48,17 +48,6 @@ class RamIO extends RomIO {
   val wen = Output(Bool())
 }
 //--------------------------- AxiIO ------------------------------
-/*
-trait AxiParameters {
-  val AxiAddrWidth = 32
-  val AxiDataWidth = 64
-  val AxiIdWidth = 4
-  val AxiUserWidth = 1
-}
-
-object AxiParameters extends AxiParameters { }
-*/
-
 /* Inst */
 class INSTIO extends Bundle {
   val inst_valid  = Output(Bool())

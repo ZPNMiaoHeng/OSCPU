@@ -20,15 +20,6 @@ trait Constant {
   val REQ_WRITE = 1.U
 }
 
-/*
-trait AxiParameters {
-  val AxiAddrWidth = 32
-  val AxiDataWidth = 64
-  val AxiIdWidth = 4
-  val AxiUserWidth = 1
-}
-*/
-
 trait AxiParameters {
   val RwDataWidth = 64
   val RwAddrWidth = 32
