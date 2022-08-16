@@ -19,7 +19,7 @@ class ICache extends Module {
   val in = io.imem
   val out = io.out
   val cacheLineNum = 128
-  val cacheWData = WireInit(0.U(128.W))    //* 写 cacheLine
+  val cacheWData = RegInit(0.U(128.W))    //* 写 cacheLine
   val cacheRData = WireInit(0.U(128.W))    //* 读 cacheLine
   val cacheWEn = WireInit(false.B)
   val fillCacheDone = WireInit(false.B)
