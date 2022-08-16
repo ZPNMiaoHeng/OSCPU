@@ -110,20 +110,4 @@ class AxiLite2Axi  extends Module {
   val alignment = in1.inst_addr % 16.U                              //* 16字节对齐（总线一次读取128bits）
   in1.inst_read := Cat(inst_read_h, inst_read_l) >> alignment * 8.U
 
-/*
-   switch(alignment) {
-      is(0.U) {
-        inst := io.imem.inst_read(63, 32)
-      }
-      is(4.U) {
-        inst := io.imem.inst_read(95, 64)
-      }
-      is(8.U) {
-        inst := io.imem.inst_read(127, 96)
-      }
-      is (12.U) {
-        inst := io.imem.inst_read(31, 0)
-      }
-    }
-*/
 }
