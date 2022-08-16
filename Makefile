@@ -1,10 +1,12 @@
 #************************************************************************************************
-#* V 1.2.1
-#* Date: Six, 6/8 2022
-#* run_riscv：riscv-tests , TOP 指定文件名
-#* riscv_tests：riscv-tests , TOP 指定文件
+#* V 1.2.2
+#* Date: 8/16 2022
+#* **********************************************************************************************
+# run_riscv：riscv-tests TOP=指定文件名
+# riscv_tests：riscv-tests TOP=指定文件名
+# 总线测试：打开FLASS +=
 #************************************************************************************************
-#* Modefly：
+# Modefly：添加coremark测试，不记录波形
 #************************************************************************************************
 VSRC = DIR = ./projects/chisel_cpu_diff/vsrc
 DIR = ./projects/chisel_cpu_diff/vsrc/SimTop.v
@@ -40,4 +42,4 @@ clean:
 	$(TOOLS) -c
 	rm -rf $(VSRC)
 
-.PHONY : run test verilog clean 
+.PHONY : clean cpu_tests riscv_tests coremark run_riscv run_cpu axi vcd
