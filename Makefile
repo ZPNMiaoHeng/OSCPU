@@ -21,6 +21,9 @@ cpu_tests:
 riscv_tests:
 	$(TOOLS) -b -r "non-output/riscv-tests" -m "$(FLASS)"
 
+coremark:
+	$(TOOLS) -d -b -s -a "-i non-output/coremark/coremark.bin " -m "$(FLASS)"
+
 run_riscv:
 	$(TOOLS) -d -b -s -a "-i non-output/riscv-tests/$(TOP)-riscv-tests.bin --dump-wave -b 0" -m "$(FLASS)"
 
