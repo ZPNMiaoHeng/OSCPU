@@ -101,7 +101,8 @@ class ICache extends Module {
   out.inst_req := Mux(sAxiEn, REQ_READ, 0.U)
   out.inst_addr := Mux(sAxiEn, validAddr, 0.U)
   out.inst_size := Mux(sAxiEn, SIZE_W, 0.U)
-  cacheWData := Mux(sAxiEn && out.inst_ready, out.inst_addr, 0.U)
+  cacheWData := Mux(sAxiEn && out.inst_ready, out.inst_read, 0.U)
+//  val AxiRData := out.inst_read
 
   /* cacheLine、set */
   val sFillEn = state === s_FILL_CACHE
