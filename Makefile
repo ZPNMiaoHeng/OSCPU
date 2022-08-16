@@ -12,7 +12,7 @@ DIR = ./projects/chisel_cpu_diff/vsrc/SimTop.v
 TARGET = chisel_cpu_diff
 TOOLS = ./build.sh -e $(TARGET)
 FLASS = EMU_TRACE=1
-FLASS +=  WITH_DRAMSIM3=1
+FLASS += WITH_DRAMSIM3=1
 TOP=
 
 cpu_tests:

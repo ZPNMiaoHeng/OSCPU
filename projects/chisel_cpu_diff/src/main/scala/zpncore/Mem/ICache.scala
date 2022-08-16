@@ -14,8 +14,8 @@ class ICache extends Module {
   val io = IO(new Bundle {
     val imem = Flipped(new CoreInst)
     val out  = new AxiInst
-    )}
-}
+  })
+
   val in = io.imem
   val out = io.out
   val cacheLineNum = 128
@@ -47,6 +47,7 @@ class ICache extends Module {
   val way0Hit = way0V(reqIndex) && (way0Tag(reqIndex) === reqTag)  //* 两路组相连 Hit情况
   val way1Hit = way1V(reqIndex) && (way1Tag(reqIndex) === reqTag)
   val cacheRIndex = Mux(way0Hit, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))
+  val cacheWIndex = WireInit(0.U(8.W))
   val cacheHit = way0Hit || way1Hit
 //  val cacheMiss = !cacheHit
 
@@ -87,6 +88,7 @@ class ICache extends Module {
 //------------------------------------------------------------------------------------------//
   val sReadEn = state === s_READ_CACHE                             // 在Cache中读取相对应的指令
   val rData = Mux(sReadEn && cacheHit, cacheRData, 0.U)
+  in.inst_ready := sReadEn && cacheHit
   in.inst_read := LookupTreeDefault(reqOff(3, 2), 0.U , List(
     "b00".U -> rData(31 , 0 ),
     "b01".U -> rData(63 , 32),
@@ -105,6 +107,7 @@ class ICache extends Module {
   val sFillEn = state === s_FILL_CACHE
 
   val ageWay0En = (way0Age(reqIndex) === 0.U) && sFillEn        //* 年龄替换算法
+  val ageWay1En = (way1Age(reqIndex) === 0.U) && sFillEn        //* 年龄替换算法
   val cacheLineWay =   Mux(ageWay0En, 0.U, 1.U)                 //* 0.U->way0, 1.U->way1
   way0Age(reqIndex) := Mux(ageWay0En, 1.U, 0.U)
   way1Age(reqIndex) := Mux(ageWay0En, 0.U, 1.U)
@@ -114,11 +117,11 @@ class ICache extends Module {
   when(ageWay0En) {                                             //* 更新wayV与wayTag
     way0Tag(reqIndex) := reqTag
     way0V(reqIndex) := true.B
-  } .otherwise {
+  } .elsewhen(ageWay1En) {
     way1Tag(reqIndex) := reqTag
     way1V(reqIndex) := true.B
   }
-
+}
 
 class S011HD1P_X32Y2D128 extends BlackBox with HasBlackBoxResource {
   val io = IO(new Bundle {
