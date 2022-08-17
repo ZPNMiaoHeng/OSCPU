@@ -6,9 +6,9 @@ import utils._
 class Core extends Module {
   val io = IO(new Bundle {
     val imem = new CoreInst
-    val dmem = new CoreData    //!
+//    val dmem = new CoreData    //!
 //    val imem = new RomIO
-//    val dmem = new RamIO
+    val dmem = new RamIO
   })
   
   val IF = Module(new InstFetch)

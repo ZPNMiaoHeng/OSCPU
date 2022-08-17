@@ -25,13 +25,15 @@ class DataMem extends Module {
   val memOP =     io.in.memOp
   val memWr =     io.in.memWr             // 1-> Store inst
   val memDataIn = io.in.rs2Data
-//*--------------------------------------------------------------------------------------------
+//*------------------------------------ AXI4 访存 --------------------------------------------------------
+/*
   io.dmem.data_valid := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
-       ((memtoReg === "b01".U) || (memWr === 1.U))  //* Load and store
+       ((memtoReg === "b01".U) || (memWr === 1.U))                                      //? Load and store
   val dmemFire = io.dmem.data_valid && io.dmem.data_ready
+
   io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
-  io.dmem.data_addr := memAddr(31, 0)
-  io.dmem.data_size :=  //!!!
+  io.dmem.data_addr := memAddr//(31, 0)
+  io.dmem.data_size :=  SIZE_W                //!!!
   io.dmem.data_strb := LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                      // Sb
       1.U -> "b0000_0010".U,
@@ -51,13 +53,13 @@ class DataMem extends Module {
     "b011".U -> "b1111_1111".U                                                           // Sd
   ))
 
-  := io.dmem.data_read
+  := io.dmem.data_read   //? 从总线上读回来的数据
 
   val alignBits = memAddr % 8.U
   io.dmem.data_write := memDataIn << alignBits * 8.U
+*/
+//*------------------------------------ ram 访存 ---------------------------------------------------------
 
-//*---------------------------------------------------------------------------------------------
-/*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
        ((memtoReg === "b01".U) || (memWr === 1.U))
 
@@ -84,7 +86,7 @@ class DataMem extends Module {
     "b010".U -> Mux(alignBits === 0.U, "h0000_0000_ffff_ffff".U, "hffff_ffff_0000_0000".U),         // Sw
     "b011".U -> "hffff_ffff_ffff_ffff".U                                                            // Sd
   ))
-*/
+
   val rdata = io.dmem.rdata >> alignBits * 8.U
   val rData = LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> SignExt(rdata(7 , 0), XLEN),
@@ -103,7 +105,7 @@ class DataMem extends Module {
       ("b01".U) -> wData,
       ("b10".U) -> resW
   ))
-//*----------------------------------------------------------------
+//----------------------------------------------------------------
   val memValid = io.in.valid
   val memPC = io.in.pc
   val memInst = io.in.inst

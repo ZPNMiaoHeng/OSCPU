@@ -7,7 +7,7 @@
   ** 5. 添加dirty寄存器：
   */
 
-/*
+
 import chisel3._
 import chisel3.util._
 
@@ -44,4 +44,4 @@ class DCache extends Module {
   val state = RegInit(s_IDLE)
 
 }
-*/
+
