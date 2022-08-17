@@ -117,10 +117,7 @@ class AxiLite2Axi  extends Module {
     data_ok := false.B
   } 
     // ------------------Write Transaction------------------
-//  val axi_addr = Mux(r_state === r_inst_addr, (in1.inst_addr) & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
-  val axi_addr  = Mux(r_state === r_inst_addr, in1.inst_addr & "hffff_fff0".U(32.W), 
-                  Mux(r_state === r_data_addr, in2.data_addr & "hffff_fff0".U(32.W), 0.U))    //!
-  val axi_waddr = Mux(data_ok, Cat(in2.data_addr(31, 4), "b1000".U), in2.data_addr & "hffff_fff0".U(32.W)) //!
+  val axi_addr = Mux(r_state === r_inst_addr, (in1.inst_addr) & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
 
   out.ar.valid := (r_state === r_inst_addr || r_state === r_data_addr)
   out.ar.bits.addr := axi_addr
@@ -179,8 +176,8 @@ class AxiLite2Axi  extends Module {
     }
   }
   
-  val alignment = in1.inst_addr % 16.U                              //* 16字节对齐（总线一次读取128bits）
-  in1.inst_read := Cat(inst_read_h, inst_read_l) >> alignment * 8.U
-  in2.data_read := Cat(data_read_h, data_read_l) >> alignment * 8.U //!
+//  val alignment = in1.inst_addr % 16.U                              //* 16字节对齐（总线一次读取128bits）:接core时2使用
+//  in1.inst_read := Cat(inst_read_h, inst_read_l) >> alignment * 8.U
 
+  in1.inst_read := Cat(inst_read_h, inst_read_l)
 }
