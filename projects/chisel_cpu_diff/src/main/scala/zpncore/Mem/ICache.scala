@@ -37,8 +37,6 @@ class ICache extends Module {
   val s_IDLE :: s_READ_CACHE :: s_AXI_FILL :: s_FILL_CACHE :: Nil = Enum(4)
   val state = RegInit(s_IDLE)
 
-//  val reqAddr = RegInit(0.U(32.W))
-//  val validAddr = Mux(state === s_READ_CACHE), in.inst_addr, reqAddr)  //* 更新inst
   val validAddr = in.inst_addr
   val reqTag = validAddr(31,11)
   val reqIndex = validAddr(10, 4)
@@ -49,7 +47,6 @@ class ICache extends Module {
   val cacheRIndex = Mux(way0Hit, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))
   val cacheWIndex = WireInit(0.U(8.W))
   val cacheHit = way0Hit || way1Hit
-//  val cacheMiss = !cacheHit
 
   val req = Module(new S011HD1P_X32Y2D128)
   req.io.CLK := clock
@@ -102,7 +99,6 @@ class ICache extends Module {
   out.inst_addr := Mux(sAxiEn, validAddr, 0.U)
   out.inst_size := Mux(sAxiEn, SIZE_W, 0.U)
   cacheWData := Mux(sAxiEn && out.inst_ready, out.inst_read, 0.U)
-//  val AxiRData := out.inst_read
 
   /* cacheLine、set */
   val sFillEn = state === s_FILL_CACHE
