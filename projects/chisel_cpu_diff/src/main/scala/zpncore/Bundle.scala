@@ -75,7 +75,7 @@ class DATAIO extends Bundle {
 }
 
 class AxiData extends DATAIO   {
-  val data_read   = Input(UInt(RW_DATA_WIDTH.W))
+  val data_read   = Input(UInt(RW_DATA_WIDTH.W))           // 128
   val data_write  = Output(UInt(RW_DATA_WIDTH.W)) 
 }
 
@@ -105,7 +105,7 @@ class AxiA extends AxiLiteA with AxiIdUser {
 
 class AxiLiteW extends Bundle   {
   val data = Output(UInt(AxiDataWidth.W))
-  val strb = Output(UInt((AxiDataWidth / 8).W))
+  val strb = Output(UInt((AxiDataWidth / 8).W))   // 64/8
 }
 
 class AxiW extends AxiLiteW {

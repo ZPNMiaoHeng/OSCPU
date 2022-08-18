@@ -18,9 +18,10 @@ class SimTop extends Module {
   val core = Module(new Core)
   val icache = Module(new ICache)
 
-  val mem = Module(new Ram2r1w)
+//!  val mem = Module(new Ram2r1w)
   val top = Module(new AxiLite2Axi)
 
+  top.io.dmem <> core.io.dmem //!
 //  top.io.imem <> core.io.imem
   core.io.imem  <> icache.io.imem
   icache.io.out <> top.io.imem
@@ -32,7 +33,7 @@ class SimTop extends Module {
   io.memAXI_0.r  <> top.io.out.r
 
 //  mem.io.imem <> core.io.imem
-  mem.io.dmem <> core.io.dmem
+//!  mem.io.dmem <> core.io.dmem
 
   io.uart.out.valid := false.B
   io.uart.out.ch := 0.U

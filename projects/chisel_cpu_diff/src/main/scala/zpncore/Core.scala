@@ -6,9 +6,9 @@ import utils._
 class Core extends Module {
   val io = IO(new Bundle {
     val imem = new CoreInst
-//    val dmem = new CoreData    //!
+    val dmem = new CoreData    //!
 //    val imem = new RomIO
-    val dmem = new RamIO
+//    val dmem = new RamIO
   })
   
   val IF = Module(new InstFetch)
@@ -35,10 +35,15 @@ class Core extends Module {
 
 //* ------------------------------------------------------------------
 // IF未完成，流水线暂停
-  val stallIfIdEn =  !IF.io.IFDone || EXLHitID
-  val stallIdExEn =  !IF.io.IFDone
-  val stallExMemEn = !IF.io.IFDone
-  val stallMemWbEn = !IF.io.IFDone
+  val flowIfIdEn = IF.io.IFDone || MEM.io.memDone || !EXLHitID
+  val flowIdExEn = IF.io.IFDone || MEM.io.memDone
+  val flowExMemEn = IF.io.IFDone || MEM.io.memDone
+  val flowMemWbEn = IF.io.IFDone || MEM.io.memDone
+
+  val stallIfIdEn = !flowIfIdEn // !IF.io.IFDone || !MEM.io.memDone || EXLHitID
+  val stallIdExEn = !flowIdExEn // !IF.io.IFDone || !MEM.io.memDone
+  val stallExMemEn = !flowExMemEn // !IF.io.IFDone || !MEM.io.memDone
+  val stallMemWbEn = !flowMemWbEn // !IF.io.IFDone || !MEM.io.memDone
 //------------------- IF --------------------------------
 //  IF.io.imem <> io.imem
 
