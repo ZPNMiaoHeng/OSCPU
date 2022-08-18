@@ -47,10 +47,10 @@ class Core extends Module {
   val stallMemWbEn = !flowMemWbEn
 */
 
-  val stallIfIdEn =  !IF.io.IFDone || MEM.io.memAxi || EXLHitID
-  val stallIdExEn =  !IF.io.IFDone || MEM.io.memAxi
-  val stallExMemEn = !IF.io.IFDone || MEM.io.memAxi
-  val stallMemWbEn = !IF.io.IFDone || MEM.io.memAxi
+  val stallIfIdEn =  !IF.io.IFDone || MEM.io.memDone/*Axi*/ || EXLHitID
+  val stallIdExEn =  !IF.io.IFDone || MEM.io.memDone/*Axi*/
+  val stallExMemEn = !IF.io.IFDone || MEM.io.memDone/*Axi*/
+  val stallMemWbEn = !IF.io.IFDone || MEM.io.memDone/*Axi*/
 
 //------------------- IF --------------------------------
 //  IF.io.imem <> io.imem
@@ -65,7 +65,7 @@ class Core extends Module {
   
   IF.io.pcSrc := EX.io.pcSrc
   IF.io.nextPC := EX.io.nextPC
-  IF.io.stall := EXLHitID || MEM.io.memAxi
+  IF.io.stall := EXLHitID || MEM.io.memDone//Axi
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
@@ -107,7 +107,7 @@ class Core extends Module {
 
   /* ----- Difftest ------------------------------ */
 //  val mem_valid = RegNext(MEM.io.memAxi)
-  val valid = WB.io.ready_cmt && IF.io.IFDone && !MEM.io.memAxi
+  val valid = WB.io.ready_cmt && IF.io.IFDone && !MEM.io.memDone//Axi
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock

@@ -18,7 +18,7 @@ class InstFetch extends Module {
   val inst = RegInit(0.U(WLEN.W))
   val IFDone = RegInit(false.B)
 
-  io.imem.inst_valid := true.B                        //* IF valid一直有效，请求AXI传输指令
+  io.imem.inst_valid := true.B // !io.stall //true.B                        //* IF valid一直有效，请求AXI传输指令
   val fire = io.imem.inst_valid && io.imem.inst_ready //* 握手成功，从总线上取出指令
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)

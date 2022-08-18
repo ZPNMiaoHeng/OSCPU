@@ -19,8 +19,8 @@ class DataMem extends Module {
     val memRdAddr = Output(UInt(5.W))
     val memRdData = Output(UInt(XLEN.W))
 
-//    val memDone = Output(Bool())
-    val memAxi = Output(Bool())
+    val memDone = Output(Bool())
+//    val memAxi = Output(Bool())
   })
 
   val memAddr =   io.in.aluRes
@@ -82,9 +82,11 @@ class DataMem extends Module {
   } 
 */
 
-  io.memAxi := dmemEn && (!dmemFire)
-
-//  io.memDone := memDone
+//  memAxi := dmemEn && (!dmemFire)
+//  io.memAxi := memAxi
+  
+  val memAxi = dmemEn && (!dmemFire)
+  io.memDone := memAxi
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
