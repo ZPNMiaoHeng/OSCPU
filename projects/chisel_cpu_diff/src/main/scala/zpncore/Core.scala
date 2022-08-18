@@ -35,15 +35,23 @@ class Core extends Module {
 
 //* ------------------------------------------------------------------
 // IF未完成，流水线暂停
-  val flowIfIdEn = IF.io.IFDone || MEM.io.memDone || !EXLHitID
-  val flowIdExEn = IF.io.IFDone || MEM.io.memDone
+/*
+  val flowIfIdEn = IF.io.IFDone  || MEM.io.memDone
+  val flowIdExEn = IF.io.IFDone  || MEM.io.memDone
   val flowExMemEn = IF.io.IFDone || MEM.io.memDone
   val flowMemWbEn = IF.io.IFDone || MEM.io.memDone
 
-  val stallIfIdEn = !flowIfIdEn // !IF.io.IFDone || !MEM.io.memDone || EXLHitID
-  val stallIdExEn = !flowIdExEn // !IF.io.IFDone || !MEM.io.memDone
-  val stallExMemEn = !flowExMemEn // !IF.io.IFDone || !MEM.io.memDone
-  val stallMemWbEn = !flowMemWbEn // !IF.io.IFDone || !MEM.io.memDone
+  val stallIfIdEn = !flowIfIdEn || EXLHitID
+  val stallIdExEn = !flowIdExEn
+  val stallExMemEn = !flowExMemEn
+  val stallMemWbEn = !flowMemWbEn
+*/
+
+  val stallIfIdEn =  !IF.io.IFDone || MEM.io.memAxi || EXLHitID
+  val stallIdExEn =  !IF.io.IFDone || MEM.io.memAxi
+  val stallExMemEn = !IF.io.IFDone || MEM.io.memAxi
+  val stallMemWbEn = !IF.io.IFDone || MEM.io.memAxi
+
 //------------------- IF --------------------------------
 //  IF.io.imem <> io.imem
 
@@ -57,7 +65,7 @@ class Core extends Module {
   
   IF.io.pcSrc := EX.io.pcSrc
   IF.io.nextPC := EX.io.nextPC
-  IF.io.stall := EXLHitID
+  IF.io.stall := EXLHitID || MEM.io.memAxi
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
@@ -98,7 +106,8 @@ class Core extends Module {
   WB.io.in <> MemRegWb.io.out
 
   /* ----- Difftest ------------------------------ */
-  val valid = WB.io.ready_cmt && IF.io.IFDone
+//  val mem_valid = RegNext(MEM.io.memAxi)
+  val valid = WB.io.ready_cmt && IF.io.IFDone && !MEM.io.memAxi
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock

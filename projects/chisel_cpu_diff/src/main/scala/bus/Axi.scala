@@ -169,7 +169,7 @@ class AxiLite2Axi  extends Module {
 
   /* AXI <-> IF */
   in1.inst_ready := (r_state === r_inst_done)  // 指令读取完成
-  in2.data_ready := (r_state === r_data_done) || (w_state === w_data_done && data_ok) //! Load and Store 
+  in2.data_ready := (r_state === r_data_done) || (w_state === w_data_done && data_ok)            //! Load and Store
   
   val inst_read_h = RegInit(0.U(64.W))
   val inst_read_l = RegInit(0.U(64.W))
@@ -188,9 +188,9 @@ class AxiLite2Axi  extends Module {
   }
   
   val alignment = in1.inst_addr % 16.U                              // 16字节对齐（总线一次读取128bits）:接core时2使用
-  in1.inst_read := Cat(inst_read_h, inst_read_l) >> alignment * 8.U
+//  in1.inst_read := Cat(inst_read_h, inst_read_l) >> alignment * 8.U
   in2.data_read := Cat(data_read_h, data_read_l) >> alignment * 8.U
 
-//  in1.inst_read := Cat(inst_read_h, inst_read_l)
+  in1.inst_read := Cat(inst_read_h, inst_read_l)
 }
 

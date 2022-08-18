@@ -1,12 +1,13 @@
 #************************************************************************************************
-#* V 1.2.2
-#* Date: 8/16 2022
+#* V 1.2.3
+#* Date: 8/18 2022
 #* **********************************************************************************************
 # run_riscv：riscv-tests TOP=指定文件名
 # riscv_tests：riscv-tests TOP=指定文件名
 # 总线测试：需要取消注释 FLASS +=  WITH_DRAMSIM3=1
 #************************************************************************************************
-# Modefly：添加coremark测试，不记录波形
+# Modefly：修改回归测试命令
+#************************************************************************************************
 # EXAMPLE: make run_riscv TOP=add   // 测试riscv目录下add执行
 #************************************************************************************************
 TARGET = chisel_cpu_diff
@@ -15,10 +16,10 @@ FLASS = EMU_TRACE=1
 FLASS += WITH_DRAMSIM3=1
 TOP=
 
-cpu_tests:
+test_cpu:
 	$(TOOLS) -b -r "non-output/cpu-tests" -m "$(FLASS)"
 
-riscv_tests:
+test_riscv:
 	$(TOOLS) -b -r "non-output/riscv-tests" -m "$(FLASS)"
 
 coremark:
@@ -40,4 +41,4 @@ clean:
 	$(TOOLS) -c
 	rm -rf $(VSRC)
 
-.PHONY : clean cpu_tests riscv_tests coremark run_riscv run_cpu axi vcd
+.PHONY : clean test_cpu test_riscv coremark run_riscv run_cpu axi vcd

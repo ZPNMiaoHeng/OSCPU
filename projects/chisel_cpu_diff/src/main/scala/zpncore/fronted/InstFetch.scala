@@ -28,7 +28,7 @@ class InstFetch extends Module {
               Mux(io.stall, pc, pc + 4.U),
                 io.nextPC),
                   pc)
-  IFDone := RegNext(fire)                                      //! 接上ICache， PC改变需要打2拍，才能获得当前inst
+  IFDone := fire //RegNext(fire)                                      //! 接上ICache， PC改变需要打2拍，才能获得当前inst
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
