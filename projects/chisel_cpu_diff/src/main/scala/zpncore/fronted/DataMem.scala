@@ -28,6 +28,7 @@ class DataMem extends Module {
   val memOP =     io.in.memOp
   val memWr =     io.in.memWr             // 1-> Store inst
   val memDataIn = io.in.rs2Data
+  val memAxi = RegInit(false.B)
 
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
   val LDInst = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
@@ -40,7 +41,7 @@ class DataMem extends Module {
   
   io.dmem.data_write := memDataIn << alignBits * 8.U
   io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
-  io.dmem.data_addr := memAddr               //(31, 0)
+  io.dmem.data_addr := memAddr
   io.dmem.data_size := SIZE_W                //!!!
   io.dmem.data_strb := LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                       // Sb
@@ -61,10 +62,12 @@ class DataMem extends Module {
     "b011".U -> "b1111_1111".U                                                           // Sd
   ))
 
-  val rdata = Mux(dmemFire, io.dmem.data_read >> alignBits * 8.U, 0.U)                                      //? 从总线上读回来的数据
+//  val rdata = Mux(dmemFire, io.dmem.data_read >> alignBits * 8.U, 0.U)          //? 从总线上读回来的数据
+  val rdata = Mux(dmemFire, io.dmem.data_read, 0.U)                               //* 从总线上读回来的数据已经对齐处理
   
   val memAxi = dmemEn && (!dmemFire)  // mem触发总线上访存
   io.memDone := !memAxi
+//  io.memDone := Mux(!memAxi, Mux(io.IFDone, ))
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
