@@ -4,6 +4,7 @@ import Constant._
 import utils._
 /**
   ** 内存使用第三期环境，访存指令需要进行8字节对齐处理
+  ** memDone 默认为完成状态，只有触发访存指令时才会变为无效
   ** 
   */
 
@@ -20,7 +21,6 @@ class DataMem extends Module {
     val memRdData = Output(UInt(XLEN.W))
 
     val memDone = Output(Bool())
-//    val memAxi = Output(Bool())
   })
 
   val memAddr =   io.in.aluRes
@@ -28,12 +28,12 @@ class DataMem extends Module {
   val memOP =     io.in.memOp
   val memWr =     io.in.memWr             // 1-> Store inst
   val memDataIn = io.in.rs2Data
-//  val memDone = RegInit(true.B)
 
-//  val memAxi = RegInit(false.B)
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
-  val dmemEn = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
+  val LDInst = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
        ((memtoReg === "b01".U) || (memWr === 1.U))                                      //? Load and store
+  val  dmemEn = Mux(LDInst, true.B, false.B)
+
   io.dmem.data_valid := dmemEn
   val dmemFire = io.dmem.data_valid && io.dmem.data_ready
   val alignBits = memAddr % 8.U
@@ -62,31 +62,9 @@ class DataMem extends Module {
   ))
 
   val rdata = Mux(dmemFire, io.dmem.data_read >> alignBits * 8.U, 0.U)                                      //? 从总线上读回来的数据
-/*
-  memDone := Mux(dmemEn, false.B,               // 触发总线访存时，拉低信号，阻塞流水线
-                  Mux(dmemFire, true.B,                                                  // 完成总线访存
-                    false.B))
-                    */
-/*
-  when(dmemEn) {
-    memAxi := true.B
-  } .elsewhen(dmemFire) {
-    memAxi := false.B
-  }
-*/
-/*  
-  when(dmemFire) {
-    memAxi := false.B
-  }  .elsewhen(dmemEn) {
-    memAxi := true.B
-  } 
-*/
-
-//  memAxi := dmemEn && (!dmemFire)
-//  io.memAxi := memAxi
   
-  val memAxi = dmemEn && (!dmemFire)
-  io.memDone := memAxi
+  val memAxi = dmemEn && (!dmemFire)  // mem触发总线上访存
+  io.memDone := !memAxi
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&

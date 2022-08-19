@@ -25,7 +25,7 @@ class Core extends Module {
   val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx
 
 //* ----------------------------------------------------------------
-  val flushIfIdEn  = false.B
+  val flushIfIdEn  = !MEM.io.memDone//false.B
   val flushIdExEn  = Mux(IF.io.IFDone, 
                       Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
                        true.B, false.B),
@@ -34,23 +34,11 @@ class Core extends Module {
   val flushMemWbEn = false.B
 
 //* ------------------------------------------------------------------
-// IF未完成，流水线暂停
-/*
-  val flowIfIdEn = IF.io.IFDone  || MEM.io.memDone
-  val flowIdExEn = IF.io.IFDone  || MEM.io.memDone
-  val flowExMemEn = IF.io.IFDone || MEM.io.memDone
-  val flowMemWbEn = IF.io.IFDone || MEM.io.memDone
-
-  val stallIfIdEn = !flowIfIdEn || EXLHitID
-  val stallIdExEn = !flowIdExEn
-  val stallExMemEn = !flowExMemEn
-  val stallMemWbEn = !flowMemWbEn
-*/
-
-  val stallIfIdEn =  !IF.io.IFDone || MEM.io.memDone/*Axi*/ || EXLHitID
-  val stallIdExEn =  !IF.io.IFDone || MEM.io.memDone/*Axi*/
-  val stallExMemEn = !IF.io.IFDone || MEM.io.memDone/*Axi*/
-  val stallMemWbEn = !IF.io.IFDone || MEM.io.memDone/*Axi*/
+// 流水线暂停：IF总线取指未完成、MEM总线访问未完成、发生访存指令数据冒险
+  val stallIfIdEn =  !IF.io.IFDone || !MEM.io.memDone || EXLHitID
+  val stallIdExEn =  !IF.io.IFDone || !MEM.io.memDone
+  val stallExMemEn = !IF.io.IFDone || !MEM.io.memDone
+  val stallMemWbEn = !IF.io.IFDone || !MEM.io.memDone
 
 //------------------- IF --------------------------------
 //  IF.io.imem <> io.imem
@@ -65,7 +53,7 @@ class Core extends Module {
   
   IF.io.pcSrc := EX.io.pcSrc
   IF.io.nextPC := EX.io.nextPC
-  IF.io.stall := EXLHitID || MEM.io.memDone//Axi
+  IF.io.stall := EXLHitID || !MEM.io.memDone
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
@@ -107,7 +95,7 @@ class Core extends Module {
 
   /* ----- Difftest ------------------------------ */
 //  val mem_valid = RegNext(MEM.io.memAxi)
-  val valid = WB.io.ready_cmt && IF.io.IFDone && !MEM.io.memDone//Axi
+  val valid = WB.io.ready_cmt && IF.io.IFDone && MEM.io.memDone
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock

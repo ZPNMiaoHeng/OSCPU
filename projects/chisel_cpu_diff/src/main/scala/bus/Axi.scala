@@ -187,7 +187,7 @@ class AxiLite2Axi  extends Module {
     }
   }
   
-  val alignment = in1.inst_addr % 16.U                              // 16字节对齐（总线一次读取128bits）:接core时2使用
+  val alignment = in2.data_addr % 16.U                              // 16字节对齐（总线一次读取128bits）:接core时2使用
 //  in1.inst_read := Cat(inst_read_h, inst_read_l) >> alignment * 8.U
   in2.data_read := Cat(data_read_h, data_read_l) >> alignment * 8.U
 
