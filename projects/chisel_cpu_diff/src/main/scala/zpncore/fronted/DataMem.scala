@@ -16,6 +16,7 @@ class DataMem extends Module {
     val in = Input(new BUS_R)
     val out = Output(new BUS_R)
 
+//    val IFDone = Input(Bool())
     val memRdEn = Output(Bool())
     val memRdAddr = Output(UInt(5.W))
     val memRdData = Output(UInt(XLEN.W))
@@ -28,7 +29,7 @@ class DataMem extends Module {
   val memOP =     io.in.memOp
   val memWr =     io.in.memWr             // 1-> Store inst
   val memDataIn = io.in.rs2Data
-  val memAxi = RegInit(false.B)
+//  val memAxi = RegInit(false.B)
 
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
   val LDInst = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
@@ -66,8 +67,9 @@ class DataMem extends Module {
   val rdata = Mux(dmemFire, io.dmem.data_read, 0.U)                               //* 从总线上读回来的数据已经对齐处理
   
   val memAxi = dmemEn && (!dmemFire)  // mem触发总线上访存
-  io.memDone := !memAxi
-//  io.memDone := Mux(!memAxi, Mux(io.IFDone, ))
+//  io.memDone := Mux(dmemEn, Mux(io.IFDone, RegNext(!memAxi), !memAxi), !memAxi)
+//  io.memDone := Mux(io.IFDone, !memAxi, RegNext(!memAxi))
+//  io.memDone := !memAxi
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&

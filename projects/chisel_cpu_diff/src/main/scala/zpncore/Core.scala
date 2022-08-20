@@ -86,6 +86,7 @@ class Core extends Module {
 //------------------- MEM -------------------------------
   MEM.io.in <> ExRegMem.io.out
   MEM.io.dmem <> io.dmem
+//  MEM.io.IFDone := IF.io.IFDone
 
   MemRegWb.io.in <> MEM.io.out
   MemRegWb.io.stall := stallMemWbEn
