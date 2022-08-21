@@ -30,7 +30,7 @@ class DataMem extends Module {
   val memOP =     io.in.memOp
   val memWr =     io.in.memWr             // 1-> Store inst
   val memDataIn = io.in.rs2Data
-  val memAxi = RegInit(false.B)
+//1  val memAxi = RegInit(false.B)
 
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
   val dmemEn = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
@@ -68,10 +68,10 @@ class DataMem extends Module {
   
 //  val memAxiTmp = Mux(!io.stall, Mux(dmemEn && (!dmemFire), 
 //                    true.B, false.B), memAxi)  // mem触发总线上访存, 状态控制，等待取指完成IFDone
-  val memAxiTmp = Mux(dmemEn && !dmemFire, true.B, false.B)
+//1  val memAxiTmp = Mux(dmemEn && !dmemFire, true.B, false.B)  
+//1  memAxi := memAxiTmp 
 
-  memAxi := memAxiTmp 
-
+  val memAxi = Mux(dmemEn && !dmemFire, true.B, false.B)
   io.memDone := !memAxi
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
