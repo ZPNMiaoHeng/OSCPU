@@ -25,7 +25,7 @@ class Core extends Module {
   val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx
 
 //* ----------------------------------------------------------------
-  val flushIfIdEn  = !MEM.io.memDone//false.B
+  val flushIfIdEn  = false.B  //   !MEM.io.memDone
   val flushIdExEn  = Mux(IF.io.IFDone, 
                       Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
                        true.B, false.B),
@@ -86,7 +86,7 @@ class Core extends Module {
 //------------------- MEM -------------------------------
   MEM.io.in <> ExRegMem.io.out
   MEM.io.dmem <> io.dmem
-//  MEM.io.IFDone := IF.io.IFDone
+  MEM.io.stall := !IF.io.IFDone
 
   MemRegWb.io.in <> MEM.io.out
   MemRegWb.io.stall := stallMemWbEn

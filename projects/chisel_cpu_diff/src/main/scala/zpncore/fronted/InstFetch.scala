@@ -5,7 +5,7 @@
   ** 2. 暂停状态，将IF模块内一切暂停，IFDone拉高；
   **   a. 暂停触发：访存指令数据冒险，MEM模块触发总线访存；
   ** 3. IFDone无效（未完成取指）暂停流水线一切。
-  ******************************************************************
+    ****************************************************************
   ** Modified: stall有效时，valid拉低不再去读取指令，IFDone拉高
   */
 
@@ -23,15 +23,15 @@ class InstFetch extends Module {
 
     val out = Output(new BUS_R)
 
-    val IFDone = Output(Bool())                       //* 有效时才取到指令。后面流水级才能运行，否则处于暂停状态
+    val IFDone = Output(Bool())                          //* 有效时才取到指令。后面流水级才能运行，否则处于暂停状态
   })
-  val pc = RegInit("h8000_0000".U(WLEN.W))            //* nextPC = 0x8000_0000,可以取到正确指令
+  val pc = RegInit("h8000_0000".U(WLEN.W))               //* nextPC = 0x8000_0000,可以取到正确指令
   val inst = RegInit(0.U(WLEN.W))
   val IFDone = RegInit(false.B)
 
   io.imem.inst_valid := !io.stall                        //* IF valid一直有效，请求AXI传输指令
   val fire = Mux(io.stall, true.B, 
-              io.imem.inst_valid && io.imem.inst_ready) //* 握手成功，从总线上取出指令
+              io.imem.inst_valid && io.imem.inst_ready)  //* 握手成功，从总线上取出指令,第一个周期肯定为低
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
   val ifPC = Mux(IFDone,

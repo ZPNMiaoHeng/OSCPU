@@ -16,7 +16,8 @@ class DataMem extends Module {
     val in = Input(new BUS_R)
     val out = Output(new BUS_R)
 
-//    val IFDone = Input(Bool())
+    val stall = Input(Bool())
+
     val memRdEn = Output(Bool())
     val memRdAddr = Output(UInt(5.W))
     val memRdData = Output(UInt(XLEN.W))
@@ -29,20 +30,19 @@ class DataMem extends Module {
   val memOP =     io.in.memOp
   val memWr =     io.in.memWr             // 1-> Store inst
   val memDataIn = io.in.rs2Data
-//  val memAxi = RegInit(false.B)
+  val memAxi = RegInit(false.B)
 
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
-  val LDInst = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
-       ((memtoReg === "b01".U) || (memWr === 1.U))                                      //? Load and store
-  val  dmemEn = Mux(LDInst, true.B, false.B)
+  val dmemEn = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
+                  ((memtoReg === "b01".U) || (memWr === 1.U))
 
+  io.dmem.data_addr := memAddr
   io.dmem.data_valid := dmemEn
   val dmemFire = io.dmem.data_valid && io.dmem.data_ready
   val alignBits = memAddr % 8.U
   
   io.dmem.data_write := memDataIn << alignBits * 8.U
   io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
-  io.dmem.data_addr := memAddr
   io.dmem.data_size := SIZE_W                //!!!
   io.dmem.data_strb := LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                       // Sb
@@ -66,9 +66,12 @@ class DataMem extends Module {
 //  val rdata = Mux(dmemFire, io.dmem.data_read >> alignBits * 8.U, 0.U)          //? 从总线上读回来的数据
   val rdata = Mux(dmemFire, io.dmem.data_read, 0.U)                               //* 从总线上读回来的数据已经对齐处理
   
-  val memAxi = dmemEn && (!dmemFire)  // mem触发总线上访存
-//  io.memDone := Mux(dmemEn, Mux(io.IFDone, RegNext(!memAxi), !memAxi), !memAxi)
-//  io.memDone := Mux(io.IFDone, !memAxi, RegNext(!memAxi))
+//  val memAxiTmp = Mux(!io.stall, Mux(dmemEn && (!dmemFire), 
+//                    true.B, false.B), memAxi)  // mem触发总线上访存, 状态控制，等待取指完成IFDone
+  val memAxiTmp = Mux(dmemEn && !dmemFire, true.B, false.B)
+
+  memAxi := memAxiTmp 
+
   io.memDone := !memAxi
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
