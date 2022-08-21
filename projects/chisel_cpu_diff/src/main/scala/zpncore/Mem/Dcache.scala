@@ -7,7 +7,6 @@
   ** 5. 添加dirty寄存器：
   */
 
-
 import chisel3._
 import chisel3.util._
 
@@ -27,7 +26,7 @@ class DCache extends Module {
 //  val cacheRData = WireInit(0.U(128.W))    //* 读 cacheLine
 //  val cacheWEn = WireInit(false.B)
 //  val fillCacheDone = WireInit(false.B)
-//*way0 and way1
+//way0 and way1
   val way0Tag = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(21.W))))
   val way0V = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))
   val way0Off = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(4.W))))
@@ -44,4 +43,3 @@ class DCache extends Module {
   val state = RegInit(s_IDLE)
 
 }
-
