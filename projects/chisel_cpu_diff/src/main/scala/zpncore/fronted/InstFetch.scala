@@ -1,3 +1,8 @@
+/**
+  ** Date 8/21
+  ** Modified: stall有效时，valid拉低不再去读取指令，IFDone拉高
+  */
+
 import chisel3._
 import chisel3.util._
 import Constant._
@@ -18,15 +23,21 @@ class InstFetch extends Module {
   val inst = RegInit(0.U(WLEN.W))
   val IFDone = RegInit(false.B)
 
-  io.imem.inst_valid := true.B                        //* IF valid一直有效，请求AXI传输指令
-  val fire = io.imem.inst_valid && io.imem.inst_ready //* 握手成功，从总线上取出指令
+  io.imem.inst_valid := !io.stall //true.B                        //* IF valid一直有效，请求AXI传输指令
+  val fire = Mux(io.stall, true.B, 
+              io.imem.inst_valid && io.imem.inst_ready) //* 握手成功，从总线上取出指令
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
+//  val ifInst = Mux(fire,
+//                Mux(io.pcSrc === 0.U,
+//                  Mux(io.stall, inst, io.imem.inst_read ),
+//                    io.imem.inst_read),
+//                      inst)
   val ifPC = Mux(IFDone,
-            Mux(io.pcSrc === 0.U, 
-              Mux(io.stall, pc, pc + 4.U),
-                io.nextPC),
-                  pc)
+              Mux(io.pcSrc === 0.U, 
+                Mux(io.stall, pc, pc + 4.U),
+                  io.nextPC),
+                    pc)
   IFDone := fire                                      //* PC改变需要打一拍，才能获得当前inst
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
@@ -35,6 +46,25 @@ class InstFetch extends Module {
   io.imem.inst_addr := pc.asUInt()
   io.imem.inst_size := SIZE_W
   io.IFDone := fire                                   //* fire有效，取到inst，取指阶段完成
+/*
+  io.imem.inst_valid := true.B                        // IF valid一直有效，请求AXI传输指令
+  val fire = io.imem.inst_valid && io.imem.inst_ready // 握手成功，从总线上取出指令
+// 握手成功，从总线上取到指令，更新寄存器PC与inst
+  val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
+  val ifPC = Mux(IFDone,
+            Mux(io.pcSrc === 0.U, 
+              Mux(io.stall, pc, pc + 4.U),
+                io.nextPC),
+                  pc)
+  IFDone := fire                                      // PC改变需要打一拍，才能获得当前inst
+  pc := ifPC                                          // 更新pc/inst寄存器值,并保持当前寄存器状态 
+  inst := ifInst
+
+  io.imem.inst_req := REQ_READ
+  io.imem.inst_addr := pc.asUInt()
+  io.imem.inst_size := SIZE_W
+  io.IFDone := fire                                   // fire有效，取到inst，取指阶段完成
+*/
 
 //------------------- IF ----------------------------
   io.out.valid    := fire
