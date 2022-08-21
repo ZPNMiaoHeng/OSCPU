@@ -7,10 +7,6 @@
   ** 5. 添加dirty寄存器：
   */
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 84e80d7e5c9617f4b0f9144a9a80bafc9697887a
 import chisel3._
 import chisel3.util._
 
