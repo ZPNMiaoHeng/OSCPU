@@ -1,12 +1,12 @@
 /**
-<<<<<<< HEAD
-  ** 取指：IFDone
-  ** 默认是未完成，只有外接传回来ready，握手成功，才会有效
-  *? 当发生Mem暂停时，要将IFDone拉高吧？？
-=======
   ** Date 8/21
+  ** 设计思路：
+  ** 1. 从0x8000_0000开始取指，等握手成功取到指令；
+  ** 2. 暂停状态，将IF模块内一切暂停，IFDone拉高；
+  **   a. 暂停触发：访存指令数据冒险，MEM模块触发总线访存；
+  ** 3. IFDone无效（未完成取指）暂停流水线一切。
+  ******************************************************************
   ** Modified: stall有效时，valid拉低不再去读取指令，IFDone拉高
->>>>>>> AXIICACHE
   */
 
 import chisel3._
@@ -39,19 +39,19 @@ class InstFetch extends Module {
                 Mux(io.stall, pc, pc + 4.U),
                   io.nextPC),
                     pc)
-  IFDone := fire                                      //* PC改变需要打一拍，才能获得当前inst
+  IFDone := fire                                        //* PC改变需要打一拍，才能获得当前inst
 
-  pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
+  pc := ifPC                                            //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
   io.imem.inst_req := REQ_READ
   io.imem.inst_addr := pc.asUInt()
   io.imem.inst_size := SIZE_W
-  io.IFDone := fire                                   //* fire有效，取到inst，取指阶段完成
+  io.IFDone := fire                                      //* fire有效，取到inst，取指阶段完成
 
 //------------------- IF ----------------------------
   io.out.valid    := fire
-  io.out.pc       := ifPC           //* pc需要打一拍等待ifinst取指
+  io.out.pc       := ifPC
   io.out.inst     := ifInst
   io.out.typeL    := false.B
   io.out.aluA     := 0.U

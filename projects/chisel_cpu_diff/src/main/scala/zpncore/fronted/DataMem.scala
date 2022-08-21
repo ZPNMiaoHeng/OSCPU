@@ -1,12 +1,12 @@
-import chisel3._
-import chisel3.util._
-import Constant._
-import utils._
 /**
   ** 内存使用第三期环境，访存指令需要进行8字节对齐处理
   ** memDone 默认为完成状态，只有触发访存指令时才会变为无效
   ** 
   */
+import chisel3._
+import chisel3.util._
+import Constant._
+import utils._
 
 class DataMem extends Module {
   val io = IO(new Bundle {
@@ -69,7 +69,7 @@ class DataMem extends Module {
   val memAxi = dmemEn && (!dmemFire)  // mem触发总线上访存
 //  io.memDone := Mux(dmemEn, Mux(io.IFDone, RegNext(!memAxi), !memAxi), !memAxi)
 //  io.memDone := Mux(io.IFDone, !memAxi, RegNext(!memAxi))
-//  io.memDone := !memAxi
+  io.memDone := !memAxi
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&

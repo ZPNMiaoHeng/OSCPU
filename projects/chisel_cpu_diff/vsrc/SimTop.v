@@ -18,40 +18,42 @@ module InstFetch(
   reg [31:0] _RAND_1;
   reg [31:0] _RAND_2;
 `endif // RANDOMIZE_REG_INIT
-  reg [31:0] pc; // @[InstFetch.scala 23:19]
-  reg [31:0] inst; // @[InstFetch.scala 24:21]
-  reg  IFDone; // @[InstFetch.scala 25:23]
-  wire  fire = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 30:33]
-  wire [31:0] _ifPC_T_2 = pc + 32'h4; // @[InstFetch.scala 36:36]
-  wire [31:0] _ifPC_T_3 = io_stall ? pc : _ifPC_T_2; // @[InstFetch.scala 36:18]
-  wire [31:0] _ifPC_T_4 = io_pcSrc == 2'h0 ? _ifPC_T_3 : io_nextPC; // @[InstFetch.scala 35:16]
-  assign io_imem_inst_valid = 1'h1; // @[InstFetch.scala 27:22]
-  assign io_imem_inst_addr = pc; // @[InstFetch.scala 44:21]
-  assign io_out_valid = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 30:33]
-  assign io_out_pc = IFDone ? _ifPC_T_4 : pc; // @[InstFetch.scala 34:17]
-  assign io_out_inst = fire & ~io_stall ? io_imem_inst_read : inst; // @[InstFetch.scala 33:19]
-  assign io_IFDone = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 30:33]
+  reg [31:0] pc; // @[InstFetch.scala 22:19]
+  reg [31:0] inst; // @[InstFetch.scala 23:21]
+  reg  IFDone; // @[InstFetch.scala 24:23]
+  wire  _io_imem_inst_valid_T = ~io_stall; // @[InstFetch.scala 26:25]
+  wire  _fire_T = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 28:34]
+  wire  fire = io_stall | _fire_T; // @[InstFetch.scala 27:17]
+  wire [31:0] _ifPC_T_2 = pc + 32'h4; // @[InstFetch.scala 33:38]
+  wire [31:0] _ifPC_T_3 = io_stall ? pc : _ifPC_T_2; // @[InstFetch.scala 33:20]
+  wire [31:0] _ifPC_T_4 = io_pcSrc == 2'h0 ? _ifPC_T_3 : io_nextPC; // @[InstFetch.scala 32:18]
+  assign io_imem_inst_valid = ~io_stall; // @[InstFetch.scala 26:25]
+  assign io_imem_inst_addr = pc; // @[InstFetch.scala 42:21]
+  assign io_out_valid = io_stall | _fire_T; // @[InstFetch.scala 27:17]
+  assign io_out_pc = IFDone ? _ifPC_T_4 : pc; // @[InstFetch.scala 31:17]
+  assign io_out_inst = fire & _io_imem_inst_valid_T ? io_imem_inst_read : inst; // @[InstFetch.scala 30:19]
+  assign io_IFDone = io_stall | _fire_T; // @[InstFetch.scala 27:17]
   always @(posedge clock) begin
-    if (reset) begin // @[InstFetch.scala 23:19]
-      pc <= 32'h80000000; // @[InstFetch.scala 23:19]
-    end else if (IFDone) begin // @[InstFetch.scala 34:17]
-      if (io_pcSrc == 2'h0) begin // @[InstFetch.scala 35:16]
-        if (!(io_stall)) begin // @[InstFetch.scala 36:18]
+    if (reset) begin // @[InstFetch.scala 22:19]
+      pc <= 32'h80000000; // @[InstFetch.scala 22:19]
+    end else if (IFDone) begin // @[InstFetch.scala 31:17]
+      if (io_pcSrc == 2'h0) begin // @[InstFetch.scala 32:18]
+        if (!(io_stall)) begin // @[InstFetch.scala 33:20]
           pc <= _ifPC_T_2;
         end
       end else begin
         pc <= io_nextPC;
       end
     end
-    if (reset) begin // @[InstFetch.scala 24:21]
-      inst <= 32'h0; // @[InstFetch.scala 24:21]
-    end else if (fire & ~io_stall) begin // @[InstFetch.scala 33:19]
+    if (reset) begin // @[InstFetch.scala 23:21]
+      inst <= 32'h0; // @[InstFetch.scala 23:21]
+    end else if (fire & _io_imem_inst_valid_T) begin // @[InstFetch.scala 30:19]
       inst <= io_imem_inst_read;
     end
-    if (reset) begin // @[InstFetch.scala 25:23]
-      IFDone <= 1'h0; // @[InstFetch.scala 25:23]
+    if (reset) begin // @[InstFetch.scala 24:23]
+      IFDone <= 1'h0; // @[InstFetch.scala 24:23]
     end else begin
-      IFDone <= fire; // @[InstFetch.scala 39:10]
+      IFDone <= fire; // @[InstFetch.scala 36:10]
     end
   end
 // Register and memory initialization
@@ -1549,7 +1551,6 @@ module Execution(
   assign nextPC_io_zero = alu_io_zero; // @[Execution.scala 36:20]
 endmodule
 module DataMem(
-  input         clock,
   output        io_dmem_data_valid,
   input         io_dmem_data_ready,
   output        io_dmem_data_req,
@@ -1592,15 +1593,11 @@ module DataMem(
   output [63:0] io_out_imm,
   output [63:0] io_out_aluRes,
   output [63:0] io_out_memData,
-  input         io_IFDone,
   output        io_memRdEn,
   output [4:0]  io_memRdAddr,
   output [63:0] io_memRdData,
   output        io_memDone
 );
-`ifdef RANDOMIZE_REG_INIT
-  reg [31:0] _RAND_0;
-`endif // RANDOMIZE_REG_INIT
   wire  _LDInst_T_6 = io_in_memtoReg == 2'h1 | io_in_memWr; // @[DataMem.scala 36:32]
   wire  LDInst = ~(io_in_aluRes < 64'h80000000 | io_in_aluRes > 64'h88000000) & _LDInst_T_6; // @[DataMem.scala 35:72]
   wire  dmemFire = io_dmem_data_valid & io_dmem_data_ready; // @[DataMem.scala 40:37]
@@ -1625,7 +1622,6 @@ module DataMem(
   wire [7:0] _io_dmem_data_strb_T_27 = 3'h2 == io_in_memOp ? _io_dmem_data_strb_T_21 : _io_dmem_data_strb_T_25; // @[Mux.scala 81:58]
   wire [63:0] rdata = dmemFire ? io_dmem_data_read : 64'h0; // @[DataMem.scala 67:18]
   wire  memAxi = LDInst & ~dmemFire; // @[DataMem.scala 69:23]
-  reg  io_memDone_REG; // @[DataMem.scala 71:48]
   wire  rData_signBit = rdata[7]; // @[BitUtils.scala 18:20]
   wire [55:0] _rData_T_2 = rData_signBit ? 56'hffffffffffffff : 56'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _rData_T_3 = {_rData_T_2,rdata[7:0]}; // @[Cat.scala 31:58]
@@ -1677,55 +1673,7 @@ module DataMem(
   assign io_memRdEn = io_in_rdEn; // @[DataMem.scala 168:14]
   assign io_memRdAddr = io_in_rdAddr; // @[DataMem.scala 169:16]
   assign io_memRdData = 2'h2 == io_in_memtoReg ? resW : _memBPData_T_3; // @[Mux.scala 81:58]
-  assign io_memDone = io_IFDone ? ~memAxi : io_memDone_REG; // @[DataMem.scala 71:20]
-  always @(posedge clock) begin
-    io_memDone_REG <= ~memAxi; // @[DataMem.scala 71:49]
-  end
-// Register and memory initialization
-`ifdef RANDOMIZE_GARBAGE_ASSIGN
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_INVALID_ASSIGN
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_REG_INIT
-`define RANDOMIZE
-`endif
-`ifdef RANDOMIZE_MEM_INIT
-`define RANDOMIZE
-`endif
-`ifndef RANDOM
-`define RANDOM $random
-`endif
-`ifdef RANDOMIZE_MEM_INIT
-  integer initvar;
-`endif
-`ifndef SYNTHESIS
-`ifdef FIRRTL_BEFORE_INITIAL
-`FIRRTL_BEFORE_INITIAL
-`endif
-initial begin
-  `ifdef RANDOMIZE
-    `ifdef INIT_RANDOM
-      `INIT_RANDOM
-    `endif
-    `ifndef VERILATOR
-      `ifdef RANDOMIZE_DELAY
-        #`RANDOMIZE_DELAY begin end
-      `else
-        #0.002 begin end
-      `endif
-    `endif
-`ifdef RANDOMIZE_REG_INIT
-  _RAND_0 = {1{`RANDOM}};
-  io_memDone_REG = _RAND_0[0:0];
-`endif // RANDOMIZE_REG_INIT
-  `endif // RANDOMIZE
-end // initial
-`ifdef FIRRTL_AFTER_INITIAL
-`FIRRTL_AFTER_INITIAL
-`endif
-`endif // SYNTHESIS
+  assign io_memDone = ~memAxi; // @[DataMem.scala 72:17]
 endmodule
 module WriteBack(
   input         io_in_valid,
@@ -1764,6 +1712,7 @@ endmodule
 module Core(
   input         clock,
   input         reset,
+  output        io_imem_inst_valid,
   input         io_imem_inst_ready,
   output [31:0] io_imem_inst_addr,
   input  [31:0] io_imem_inst_read,
@@ -1992,7 +1941,6 @@ module Core(
   wire [63:0] ExRegMem_io_out_memData; // @[Core.scala 19:24]
   wire  ExRegMem_io_flush; // @[Core.scala 19:24]
   wire  ExRegMem_io_stall; // @[Core.scala 19:24]
-  wire  MEM_clock; // @[Core.scala 20:19]
   wire  MEM_io_dmem_data_valid; // @[Core.scala 20:19]
   wire  MEM_io_dmem_data_ready; // @[Core.scala 20:19]
   wire  MEM_io_dmem_data_req; // @[Core.scala 20:19]
@@ -2035,7 +1983,6 @@ module Core(
   wire [63:0] MEM_io_out_imm; // @[Core.scala 20:19]
   wire [63:0] MEM_io_out_aluRes; // @[Core.scala 20:19]
   wire [63:0] MEM_io_out_memData; // @[Core.scala 20:19]
-  wire  MEM_io_IFDone; // @[Core.scala 20:19]
   wire  MEM_io_memRdEn; // @[Core.scala 20:19]
   wire [4:0] MEM_io_memRdAddr; // @[Core.scala 20:19]
   wire [63:0] MEM_io_memRdData; // @[Core.scala 20:19]
@@ -2379,7 +2326,6 @@ module Core(
     .io_stall(ExRegMem_io_stall)
   );
   DataMem MEM ( // @[Core.scala 20:19]
-    .clock(MEM_clock),
     .io_dmem_data_valid(MEM_io_dmem_data_valid),
     .io_dmem_data_ready(MEM_io_dmem_data_ready),
     .io_dmem_data_req(MEM_io_dmem_data_req),
@@ -2422,7 +2368,6 @@ module Core(
     .io_out_imm(MEM_io_out_imm),
     .io_out_aluRes(MEM_io_out_aluRes),
     .io_out_memData(MEM_io_out_memData),
-    .io_IFDone(MEM_io_IFDone),
     .io_memRdEn(MEM_io_memRdEn),
     .io_memRdAddr(MEM_io_memRdAddr),
     .io_memRdData(MEM_io_memRdData),
@@ -2542,6 +2487,7 @@ module Core(
     .mideleg(dt_cs_mideleg),
     .medeleg(dt_cs_medeleg)
   );
+  assign io_imem_inst_valid = IF_io_imem_inst_valid; // @[Core.scala 46:22]
   assign io_imem_inst_addr = IF_io_imem_inst_addr; // @[Core.scala 48:21]
   assign io_dmem_data_valid = MEM_io_dmem_data_valid; // @[Core.scala 88:15]
   assign io_dmem_data_req = MEM_io_dmem_data_req; // @[Core.scala 88:15]
@@ -2654,7 +2600,6 @@ module Core(
   assign ExRegMem_io_in_memData = 64'h0; // @[Core.scala 83:18]
   assign ExRegMem_io_flush = 1'h0; // @[Core.scala 85:21]
   assign ExRegMem_io_stall = _stallIfIdEn_T | flushIfIdEn; // @[Core.scala 40:36]
-  assign MEM_clock = clock;
   assign MEM_io_dmem_data_ready = io_dmem_data_ready; // @[Core.scala 88:15]
   assign MEM_io_dmem_data_read = io_dmem_data_read; // @[Core.scala 88:15]
   assign MEM_io_in_valid = ExRegMem_io_out_valid; // @[Core.scala 87:13]
@@ -2674,7 +2619,6 @@ module Core(
   assign MEM_io_in_rs2Data = ExRegMem_io_out_rs2Data; // @[Core.scala 87:13]
   assign MEM_io_in_imm = ExRegMem_io_out_imm; // @[Core.scala 87:13]
   assign MEM_io_in_aluRes = ExRegMem_io_out_aluRes; // @[Core.scala 87:13]
-  assign MEM_io_IFDone = IF_io_IFDone; // @[Core.scala 89:17]
   assign MemRegWb_clock = clock;
   assign MemRegWb_reset = reset;
   assign MemRegWb_io_in_valid = MEM_io_out_valid; // @[Core.scala 91:18]
@@ -2831,6 +2775,7 @@ endmodule
 module ICache(
   input          clock,
   input          reset,
+  input          io_imem_inst_valid,
   output         io_imem_inst_ready,
   input  [31:0]  io_imem_inst_addr,
   output [31:0]  io_imem_inst_read,
@@ -10959,7 +10904,9 @@ module ICache(
     if (reset) begin // @[ICache.scala 38:22]
       state <= 2'h0; // @[ICache.scala 38:22]
     end else if (2'h0 == state) begin // @[ICache.scala 60:17]
-      state <= 2'h1;
+      if (io_imem_inst_valid) begin // @[ICache.scala 62:27]
+        state <= 2'h1; // @[ICache.scala 63:15]
+      end
     end else if (2'h1 == state) begin // @[ICache.scala 60:17]
       if (cacheHit) begin // @[ICache.scala 68:22]
         state <= 2'h0; // @[ICache.scala 69:15]
@@ -12832,6 +12779,7 @@ module SimTop(
 );
   wire  core_clock; // @[SimTop.scala 18:20]
   wire  core_reset; // @[SimTop.scala 18:20]
+  wire  core_io_imem_inst_valid; // @[SimTop.scala 18:20]
   wire  core_io_imem_inst_ready; // @[SimTop.scala 18:20]
   wire [31:0] core_io_imem_inst_addr; // @[SimTop.scala 18:20]
   wire [31:0] core_io_imem_inst_read; // @[SimTop.scala 18:20]
@@ -12844,6 +12792,7 @@ module SimTop(
   wire [63:0] core_io_dmem_data_write; // @[SimTop.scala 18:20]
   wire  icache_clock; // @[SimTop.scala 19:22]
   wire  icache_reset; // @[SimTop.scala 19:22]
+  wire  icache_io_imem_inst_valid; // @[SimTop.scala 19:22]
   wire  icache_io_imem_inst_ready; // @[SimTop.scala 19:22]
   wire [31:0] icache_io_imem_inst_addr; // @[SimTop.scala 19:22]
   wire [31:0] icache_io_imem_inst_read; // @[SimTop.scala 19:22]
@@ -12884,6 +12833,7 @@ module SimTop(
   Core core ( // @[SimTop.scala 18:20]
     .clock(core_clock),
     .reset(core_reset),
+    .io_imem_inst_valid(core_io_imem_inst_valid),
     .io_imem_inst_ready(core_io_imem_inst_ready),
     .io_imem_inst_addr(core_io_imem_inst_addr),
     .io_imem_inst_read(core_io_imem_inst_read),
@@ -12898,6 +12848,7 @@ module SimTop(
   ICache icache ( // @[SimTop.scala 19:22]
     .clock(icache_clock),
     .reset(icache_reset),
+    .io_imem_inst_valid(icache_io_imem_inst_valid),
     .io_imem_inst_ready(icache_io_imem_inst_ready),
     .io_imem_inst_addr(icache_io_imem_inst_addr),
     .io_imem_inst_read(icache_io_imem_inst_read),
@@ -12977,6 +12928,7 @@ module SimTop(
   assign core_io_dmem_data_read = top_io_dmem_data_read[63:0]; // @[SimTop.scala 24:15]
   assign icache_clock = clock;
   assign icache_reset = reset;
+  assign icache_io_imem_inst_valid = core_io_imem_inst_valid; // @[SimTop.scala 26:17]
   assign icache_io_imem_inst_addr = core_io_imem_inst_addr; // @[SimTop.scala 26:17]
   assign icache_io_out_inst_ready = top_io_imem_inst_ready; // @[SimTop.scala 27:17]
   assign icache_io_out_inst_read = top_io_imem_inst_read; // @[SimTop.scala 27:17]
