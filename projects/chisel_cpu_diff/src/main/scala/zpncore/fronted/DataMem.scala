@@ -55,7 +55,6 @@ class DataMem extends Module {
       memState := sIdle
     }
   }
-//*--------------------------------------------------------------------------------------------------------------------------------   
   val sReadEn = memState === sRead
   io.dmem.data_valid := sReadEn
   io.dmem.data_addr := memAddr
@@ -63,9 +62,14 @@ class DataMem extends Module {
   //  val rdata = Mux(dmemFire, io.dmem.data_read >> alignBits * 8.U, 0.U)          //? 从总线上读回来的数据
   val rdata = Mux(sReadDoneEn, io.dmem.data_read, 0.U)                               //* 从总线上读回来的数据已经对齐处理
 //  val memAxi = Mux(dmemEn && !dmemFire, true.B, false.B) // 默认为false，只有LS触发时才会true
-  io.memDo := sReadEn || sReadDoneEn //!memAxi   // 总线访存
+  io.memDo := sReadEn || sReadDoneEn
+//*--------------------------------------------------------------------------------------------------------------------------------   
 
-
+  val dmemEn = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
+                  ((memtoReg === "b01".U) || (memWr === 1.U))
+  io.dmem.data_valid := dmemEn
+  io.dmem.data_addr := memAddr
+  
   val alignBits = memAddr % 8.U
   io.dmem.data_write := memDataIn << alignBits * 8.U
   io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
