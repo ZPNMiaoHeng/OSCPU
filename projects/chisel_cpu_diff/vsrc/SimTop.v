@@ -21,24 +21,24 @@ module InstFetch(
   reg [31:0] pc; // @[InstFetch.scala 22:19]
   reg [31:0] inst; // @[InstFetch.scala 23:21]
   reg  IFDone; // @[InstFetch.scala 24:23]
-  wire  _io_imem_inst_valid_T = ~io_stall; // @[InstFetch.scala 27:25]
-  wire  _fire_T = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 29:34]
-  wire  fire = io_stall | _fire_T; // @[InstFetch.scala 28:17]
-  wire [31:0] _ifPC_T_2 = pc + 32'h4; // @[InstFetch.scala 38:38]
-  wire [31:0] _ifPC_T_3 = io_stall ? pc : _ifPC_T_2; // @[InstFetch.scala 38:20]
-  wire [31:0] _ifPC_T_4 = io_pcSrc == 2'h0 ? _ifPC_T_3 : io_nextPC; // @[InstFetch.scala 37:18]
-  assign io_imem_inst_valid = ~io_stall; // @[InstFetch.scala 27:25]
-  assign io_imem_inst_addr = pc; // @[InstFetch.scala 46:21]
-  assign io_out_valid = io_stall | _fire_T; // @[InstFetch.scala 28:17]
-  assign io_out_pc = IFDone ? _ifPC_T_4 : pc; // @[InstFetch.scala 36:17]
-  assign io_out_inst = fire & _io_imem_inst_valid_T ? io_imem_inst_read : inst; // @[InstFetch.scala 35:19]
-  assign io_IFDone = io_stall | _fire_T; // @[InstFetch.scala 28:17]
+  wire  _io_imem_inst_valid_T = ~io_stall; // @[InstFetch.scala 26:25]
+  wire  _fire_T = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 28:34]
+  wire  fire = io_stall | _fire_T; // @[InstFetch.scala 27:17]
+  wire [31:0] _ifPC_T_2 = pc + 32'h4; // @[InstFetch.scala 33:38]
+  wire [31:0] _ifPC_T_3 = io_stall ? pc : _ifPC_T_2; // @[InstFetch.scala 33:20]
+  wire [31:0] _ifPC_T_4 = io_pcSrc == 2'h0 ? _ifPC_T_3 : io_nextPC; // @[InstFetch.scala 32:18]
+  assign io_imem_inst_valid = ~io_stall; // @[InstFetch.scala 26:25]
+  assign io_imem_inst_addr = pc; // @[InstFetch.scala 41:21]
+  assign io_out_valid = io_stall | _fire_T; // @[InstFetch.scala 27:17]
+  assign io_out_pc = IFDone ? _ifPC_T_4 : pc; // @[InstFetch.scala 31:17]
+  assign io_out_inst = fire & _io_imem_inst_valid_T ? io_imem_inst_read : inst; // @[InstFetch.scala 30:19]
+  assign io_IFDone = io_stall | _fire_T; // @[InstFetch.scala 27:17]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 22:19]
       pc <= 32'h80000000; // @[InstFetch.scala 22:19]
-    end else if (IFDone) begin // @[InstFetch.scala 36:17]
-      if (io_pcSrc == 2'h0) begin // @[InstFetch.scala 37:18]
-        if (!(io_stall)) begin // @[InstFetch.scala 38:20]
+    end else if (IFDone) begin // @[InstFetch.scala 31:17]
+      if (io_pcSrc == 2'h0) begin // @[InstFetch.scala 32:18]
+        if (!(io_stall)) begin // @[InstFetch.scala 33:20]
           pc <= _ifPC_T_2;
         end
       end else begin
@@ -47,13 +47,13 @@ module InstFetch(
     end
     if (reset) begin // @[InstFetch.scala 23:21]
       inst <= 32'h0; // @[InstFetch.scala 23:21]
-    end else if (fire & _io_imem_inst_valid_T) begin // @[InstFetch.scala 35:19]
+    end else if (fire & _io_imem_inst_valid_T) begin // @[InstFetch.scala 30:19]
       inst <= io_imem_inst_read;
     end
     if (reset) begin // @[InstFetch.scala 24:23]
       IFDone <= 1'h0; // @[InstFetch.scala 24:23]
     end else begin
-      IFDone <= fire; // @[InstFetch.scala 41:10]
+      IFDone <= fire; // @[InstFetch.scala 36:10]
     end
   end
 // Register and memory initialization
