@@ -21,24 +21,25 @@ class InstFetch extends Module {
   })
   val pc = RegInit("h8000_0000".U(WLEN.W))            //* nextPC = 0x8000_0000,可以取到正确指令
   val inst = RegInit(0.U(WLEN.W))
-  val IFDone = RegInit(false.B)
 
   io.imem.inst_valid := !io.stall                        //* IF valid一直有效，请求AXI传输指令
+  io.imem.inst_req := REQ_READ
+  io.imem.inst_addr := pc.asUInt()
+  io.imem.inst_size := SIZE_W
+  
   val fire = Mux(io.stall, true.B,
               io.imem.inst_valid && io.imem.inst_ready) //* 握手成功，从总线上取出指令
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
-  val ifPC = Mux(IFDone && (!io.stall),
-              Mux(io.pcSrc === 0.U, pc + 4.U,
+  val ifPCfire = RegNext(fire)
+  val ifPCstall = RegNext(io.stall)
+  val ifPC = Mux(ifPCfire && !ifPCstall,   // 更新下一周期地址
+              Mux(io.pcSrc === 0.U, pc + 4.U, 
                   io.nextPC),
                     pc)
-  IFDone := fire                                      //* PC改变需要打一拍，才能获得当前inst
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
-  io.imem.inst_req := REQ_READ
-  io.imem.inst_addr := pc.asUInt()
-  io.imem.inst_size := SIZE_W
   io.IFDone := fire                                   //* fire有效，取到inst，取指阶段完成
 
 //------------------- IF ----------------------------

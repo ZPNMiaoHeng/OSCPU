@@ -17,26 +17,28 @@ module InstFetch(
   reg [31:0] _RAND_0;
   reg [31:0] _RAND_1;
   reg [31:0] _RAND_2;
+  reg [31:0] _RAND_3;
 `endif // RANDOMIZE_REG_INIT
   reg [31:0] pc; // @[InstFetch.scala 22:19]
   reg [31:0] inst; // @[InstFetch.scala 23:21]
-  reg  IFDone; // @[InstFetch.scala 24:23]
-  wire  _io_imem_inst_valid_T = ~io_stall; // @[InstFetch.scala 26:25]
-  wire  _fire_T = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 28:34]
-  wire  fire = io_stall | _fire_T; // @[InstFetch.scala 27:17]
-  wire [31:0] _ifPC_T_4 = pc + 32'h4; // @[InstFetch.scala 32:40]
-  wire [31:0] _ifPC_T_5 = io_pcSrc == 2'h0 ? _ifPC_T_4 : io_nextPC; // @[InstFetch.scala 32:18]
-  assign io_imem_inst_valid = ~io_stall; // @[InstFetch.scala 26:25]
-  assign io_imem_inst_addr = pc; // @[InstFetch.scala 40:21]
-  assign io_out_valid = io_stall | _fire_T; // @[InstFetch.scala 27:17]
-  assign io_out_pc = IFDone & _io_imem_inst_valid_T ? _ifPC_T_5 : pc; // @[InstFetch.scala 31:17]
-  assign io_out_inst = fire & _io_imem_inst_valid_T ? io_imem_inst_read : inst; // @[InstFetch.scala 30:19]
-  assign io_IFDone = io_stall | _fire_T; // @[InstFetch.scala 27:17]
+  wire  _io_imem_inst_valid_T = ~io_stall; // @[InstFetch.scala 25:25]
+  wire  _fire_T = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 31:34]
+  wire  fire = io_stall | _fire_T; // @[InstFetch.scala 30:17]
+  reg  ifPCfire; // @[InstFetch.scala 34:25]
+  reg  ifPCstall; // @[InstFetch.scala 35:26]
+  wire [31:0] _ifPC_T_4 = pc + 32'h4; // @[InstFetch.scala 37:40]
+  wire [31:0] _ifPC_T_5 = io_pcSrc == 2'h0 ? _ifPC_T_4 : io_nextPC; // @[InstFetch.scala 37:18]
+  assign io_imem_inst_valid = ~io_stall; // @[InstFetch.scala 25:25]
+  assign io_imem_inst_addr = pc; // @[InstFetch.scala 27:21]
+  assign io_out_valid = io_stall | _fire_T; // @[InstFetch.scala 30:17]
+  assign io_out_pc = ifPCfire & ~ifPCstall ? _ifPC_T_5 : pc; // @[InstFetch.scala 36:17]
+  assign io_out_inst = fire & _io_imem_inst_valid_T ? io_imem_inst_read : inst; // @[InstFetch.scala 33:19]
+  assign io_IFDone = io_stall | _fire_T; // @[InstFetch.scala 30:17]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 22:19]
       pc <= 32'h80000000; // @[InstFetch.scala 22:19]
-    end else if (IFDone & _io_imem_inst_valid_T) begin // @[InstFetch.scala 31:17]
-      if (io_pcSrc == 2'h0) begin // @[InstFetch.scala 32:18]
+    end else if (ifPCfire & ~ifPCstall) begin // @[InstFetch.scala 36:17]
+      if (io_pcSrc == 2'h0) begin // @[InstFetch.scala 37:18]
         pc <= _ifPC_T_4;
       end else begin
         pc <= io_nextPC;
@@ -44,14 +46,11 @@ module InstFetch(
     end
     if (reset) begin // @[InstFetch.scala 23:21]
       inst <= 32'h0; // @[InstFetch.scala 23:21]
-    end else if (fire & _io_imem_inst_valid_T) begin // @[InstFetch.scala 30:19]
+    end else if (fire & _io_imem_inst_valid_T) begin // @[InstFetch.scala 33:19]
       inst <= io_imem_inst_read;
     end
-    if (reset) begin // @[InstFetch.scala 24:23]
-      IFDone <= 1'h0; // @[InstFetch.scala 24:23]
-    end else begin
-      IFDone <= fire; // @[InstFetch.scala 35:10]
-    end
+    ifPCfire <= io_stall | _fire_T; // @[InstFetch.scala 30:17]
+    ifPCstall <= io_stall; // @[InstFetch.scala 35:26]
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -94,7 +93,9 @@ initial begin
   _RAND_1 = {1{`RANDOM}};
   inst = _RAND_1[31:0];
   _RAND_2 = {1{`RANDOM}};
-  IFDone = _RAND_2[0:0];
+  ifPCfire = _RAND_2[0:0];
+  _RAND_3 = {1{`RANDOM}};
+  ifPCstall = _RAND_3[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
