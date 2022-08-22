@@ -28,9 +28,8 @@ class InstFetch extends Module {
               io.imem.inst_valid && io.imem.inst_ready) //* 握手成功，从总线上取出指令
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
-  val ifPC = Mux(IFDone,
-              Mux(io.pcSrc === 0.U, 
-                Mux(io.stall, pc, pc + 4.U),
+  val ifPC = Mux(IFDone && (!io.stall),
+              Mux(io.pcSrc === 0.U, pc + 4.U,
                   io.nextPC),
                     pc)
   IFDone := fire                                      //* PC改变需要打一拍，才能获得当前inst

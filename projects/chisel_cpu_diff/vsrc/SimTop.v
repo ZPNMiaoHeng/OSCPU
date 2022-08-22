@@ -24,23 +24,20 @@ module InstFetch(
   wire  _io_imem_inst_valid_T = ~io_stall; // @[InstFetch.scala 26:25]
   wire  _fire_T = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 28:34]
   wire  fire = io_stall | _fire_T; // @[InstFetch.scala 27:17]
-  wire [31:0] _ifPC_T_2 = pc + 32'h4; // @[InstFetch.scala 33:38]
-  wire [31:0] _ifPC_T_3 = io_stall ? pc : _ifPC_T_2; // @[InstFetch.scala 33:20]
-  wire [31:0] _ifPC_T_4 = io_pcSrc == 2'h0 ? _ifPC_T_3 : io_nextPC; // @[InstFetch.scala 32:18]
+  wire [31:0] _ifPC_T_4 = pc + 32'h4; // @[InstFetch.scala 32:40]
+  wire [31:0] _ifPC_T_5 = io_pcSrc == 2'h0 ? _ifPC_T_4 : io_nextPC; // @[InstFetch.scala 32:18]
   assign io_imem_inst_valid = ~io_stall; // @[InstFetch.scala 26:25]
-  assign io_imem_inst_addr = pc; // @[InstFetch.scala 41:21]
+  assign io_imem_inst_addr = pc; // @[InstFetch.scala 40:21]
   assign io_out_valid = io_stall | _fire_T; // @[InstFetch.scala 27:17]
-  assign io_out_pc = IFDone ? _ifPC_T_4 : pc; // @[InstFetch.scala 31:17]
+  assign io_out_pc = IFDone & _io_imem_inst_valid_T ? _ifPC_T_5 : pc; // @[InstFetch.scala 31:17]
   assign io_out_inst = fire & _io_imem_inst_valid_T ? io_imem_inst_read : inst; // @[InstFetch.scala 30:19]
   assign io_IFDone = io_stall | _fire_T; // @[InstFetch.scala 27:17]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 22:19]
       pc <= 32'h80000000; // @[InstFetch.scala 22:19]
-    end else if (IFDone) begin // @[InstFetch.scala 31:17]
+    end else if (IFDone & _io_imem_inst_valid_T) begin // @[InstFetch.scala 31:17]
       if (io_pcSrc == 2'h0) begin // @[InstFetch.scala 32:18]
-        if (!(io_stall)) begin // @[InstFetch.scala 33:20]
-          pc <= _ifPC_T_2;
-        end
+        pc <= _ifPC_T_4;
       end else begin
         pc <= io_nextPC;
       end
@@ -53,7 +50,7 @@ module InstFetch(
     if (reset) begin // @[InstFetch.scala 24:23]
       IFDone <= 1'h0; // @[InstFetch.scala 24:23]
     end else begin
-      IFDone <= fire; // @[InstFetch.scala 36:10]
+      IFDone <= fire; // @[InstFetch.scala 35:10]
     end
   end
 // Register and memory initialization
