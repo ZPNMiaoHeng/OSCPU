@@ -40,7 +40,7 @@ class InstFetch extends Module {
                     pc)
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
-
+/*
   val ifStall = RegInit(false.B)
   val ifValid = RegInit(false.B)
   when (ifValid && stall) {
@@ -53,10 +53,10 @@ class InstFetch extends Module {
   }.otherwise {
     ifValid := false.B
   }
-
+*/
 //  io.IFDone := fire                                   //* fire有效，取到inst，取指阶段完成
 //------------------- IF ----------------------------
-  io.out.valid    := (ifValid || ifStall)
+  io.out.valid    := fire || stall //(ifValid || ifStall)
   io.out.pc       := ifPC                             //* pc需要打一拍等待ifinst取指
   io.out.inst     := ifInst
   io.out.typeL    := false.B

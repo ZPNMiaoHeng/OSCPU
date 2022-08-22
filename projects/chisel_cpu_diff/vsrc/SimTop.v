@@ -15,7 +15,6 @@ module InstFetch(
   reg [31:0] _RAND_0;
   reg [31:0] _RAND_1;
   reg [31:0] _RAND_2;
-  reg [31:0] _RAND_3;
 `endif // RANDOMIZE_REG_INIT
   reg [31:0] pc; // @[InstFetch.scala 25:19]
   reg [31:0] inst; // @[InstFetch.scala 26:21]
@@ -23,10 +22,9 @@ module InstFetch(
   reg  ifPC_REG; // @[InstFetch.scala 36:25]
   wire [31:0] _ifPC_T_2 = pc + 32'h4; // @[InstFetch.scala 38:35]
   wire [31:0] _ifPC_T_4 = io_pcSrc == 2'h0 ? _ifPC_T_2 : io_nextPC; // @[InstFetch.scala 37:18]
-  reg  ifValid; // @[InstFetch.scala 45:24]
   assign io_imem_inst_valid = 1'h1; // @[InstFetch.scala 28:25]
   assign io_imem_inst_addr = pc; // @[InstFetch.scala 30:21]
-  assign io_out_valid = ifValid; // @[InstFetch.scala 59:31]
+  assign io_out_valid = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 33:33]
   assign io_out_pc = ifPC_REG ? _ifPC_T_4 : pc; // @[InstFetch.scala 36:17]
   assign io_out_inst = fire ? io_imem_inst_read : inst; // @[InstFetch.scala 35:19]
   always @(posedge clock) begin
@@ -45,11 +43,6 @@ module InstFetch(
       inst <= io_imem_inst_read;
     end
     ifPC_REG <= io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 33:33]
-    if (reset) begin // @[InstFetch.scala 45:24]
-      ifValid <= 1'h0; // @[InstFetch.scala 45:24]
-    end else begin
-      ifValid <= fire;
-    end
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -93,8 +86,6 @@ initial begin
   inst = _RAND_1[31:0];
   _RAND_2 = {1{`RANDOM}};
   ifPC_REG = _RAND_2[0:0];
-  _RAND_3 = {1{`RANDOM}};
-  ifValid = _RAND_3[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial

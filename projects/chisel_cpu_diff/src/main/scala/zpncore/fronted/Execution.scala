@@ -80,9 +80,9 @@ class Execution extends Module {
   io.out.aluRes   := exeAluRes
   io.out.memData    := 0.U
 
-  io.exeRdEn := io.in.rdEn
+  io.exeRdEn := exeRdEn
   io.exeRdAddr := exeRdAddr
-  io.exeRdData :=exeAluRes
+  io.exeRdData := exeAluRes
   
   io.bubbleEx := io.in.typeL
 
