@@ -74,7 +74,7 @@ class PipelineReg extends Module {
 
   val reg = RegInit(0.U.asTypeOf(new BUS_R))
 //* bypass: flush > stall
-  when (/*fire &&*/ io.flush/* && !io.stall*/) {
+  when (/*fire &&*/ io.flush && !io.stall) {
     reg.flush()
   } .elsewhen (!io.stall) {
     reg := io.in

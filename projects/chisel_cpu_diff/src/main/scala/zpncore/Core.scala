@@ -35,12 +35,13 @@ class Core extends Module {
 
 //* ------------------------------------------------------------------
 // 流水线暂停：IF总线取指未完成、MEM总线访问未完成、发生访存指令数据冒险
-/*
+
   val stallIfIdEn =  !IF.io.IFDone || !MEM.io.memDone || EXLHitID
   val stallIdExEn =  !IF.io.IFDone || !MEM.io.memDone
   val stallExMemEn = !IF.io.IFDone || !MEM.io.memDone
   val stallMemWbEn = !IF.io.IFDone || !MEM.io.memDone
-*/
+
+/*
   val stallIfIdEn =  Mux(!IF.io.IFDone || EXLHitID, 
                         true.B, Mux(!MEM.io.memDone, true.B, false.B))
   val stallIdExEn =  Mux(!IF.io.IFDone, 
@@ -49,7 +50,7 @@ class Core extends Module {
                         true.B, Mux(!MEM.io.memDone, true.B, false.B))
   val stallMemWbEn = Mux(!IF.io.IFDone, 
                         true.B, Mux(!MEM.io.memDone, true.B, false.B))
-
+*/
 //------------------- IF --------------------------------
 //  IF.io.imem <> io.imem
 
