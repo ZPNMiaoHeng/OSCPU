@@ -20,7 +20,7 @@ class InstFetch extends Module {
     val pcSrc = Input(UInt(2.W))
     val nextPC = Input(UInt(WLEN.W))
     val stall = Input(Bool())
-//    val memAxi = Input(Bool())
+    val memDone = Input(Bool())
 
     val out = Output(new BUS_R)
 
@@ -47,7 +47,7 @@ class InstFetch extends Module {
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
-  io.IFDone := fire                                   //* fire有效，取到inst，取指阶段完成
+  io.IFDone := fire && io.memDone                                  //* fire有效，取到inst，取指阶段完成
 
 //------------------- IF ----------------------------
   io.out.valid    := fire

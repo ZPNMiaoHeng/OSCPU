@@ -16,7 +16,7 @@ class DataMem extends Module {
     val in = Input(new BUS_R)
     val out = Output(new BUS_R)
 
-    val stall = Input(Bool())
+    val IFReady = Input(Bool())
 
     val memRdEn = Output(Bool())
     val memRdAddr = Output(UInt(5.W))
@@ -30,7 +30,6 @@ class DataMem extends Module {
   val memOP =     io.in.memOp
   val memWr =     io.in.memWr             // 1-> Store inst
   val memDataIn = io.in.rs2Data
-//1  val memAxi = RegInit(false.B)
 
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
   val dmemEn = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
@@ -63,16 +62,16 @@ class DataMem extends Module {
     "b011".U -> "b1111_1111".U                                                           // Sd
   ))
 
-//  val rdata = Mux(dmemFire, io.dmem.data_read >> alignBits * 8.U, 0.U)          //? 从总线上读回来的数据
-  val rdata = Mux(dmemFire, io.dmem.data_read, 0.U)                               //* 从总线上读回来的数据已经对齐处理
-  
-//  val memAxiTmp = Mux(!io.stall, Mux(dmemEn && (!dmemFire), 
-//                    true.B, false.B), memAxi)  // mem触发总线上访存, 状态控制，等待取指完成IFDone
-//1  val memAxiTmp = Mux(dmemEn && !dmemFire, true.B, false.B)  
-//1  memAxi := memAxiTmp 
+//*------------------------------ Load 指令 ----------------------------------------------------------------
+  val rdata = RegInit(0.U(XLEN.W))
+  when(dmemFire) {
+    rdata := io.dmem.data_read
+  }
 
   val memAxi = Mux(dmemEn && !dmemFire, true.B, false.B)
-  io.memDone := !memAxi
+//防止IF未更新inst，再次进入总线访存，导致流水线一直处于暂停状态
+  io.memDone := !memAxi || io.IFReady
+
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&

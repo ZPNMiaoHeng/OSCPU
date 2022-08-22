@@ -6,7 +6,7 @@ import utils._
 class Core extends Module {
   val io = IO(new Bundle {
     val imem = new CoreInst
-    val dmem = new CoreData    //!
+    val dmem = new CoreData
 //    val imem = new RomIO
 //    val dmem = new RamIO
   })
@@ -25,7 +25,7 @@ class Core extends Module {
   val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx
 
 //* ----------------------------------------------------------------
-  val flushIfIdEn  = false.B  //   !MEM.io.memDone
+  val flushIfIdEn  = false.B
   val flushIdExEn  = Mux(IF.io.IFDone, 
                       Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
                        true.B, false.B),
@@ -41,16 +41,6 @@ class Core extends Module {
   val stallExMemEn = !IF.io.IFDone || !MEM.io.memDone
   val stallMemWbEn = !IF.io.IFDone || !MEM.io.memDone
 
-/*
-  val stallIfIdEn =  Mux(!IF.io.IFDone || EXLHitID, 
-                        true.B, Mux(!MEM.io.memDone, true.B, false.B))
-  val stallIdExEn =  Mux(!IF.io.IFDone, 
-                        true.B, Mux(!MEM.io.memDone, true.B, false.B))
-  val stallExMemEn = Mux(!IF.io.IFDone, 
-                        true.B, Mux(!MEM.io.memDone, true.B, false.B))
-  val stallMemWbEn = Mux(!IF.io.IFDone, 
-                        true.B, Mux(!MEM.io.memDone, true.B, false.B))
-*/
 //------------------- IF --------------------------------
 //  IF.io.imem <> io.imem
 
@@ -65,6 +55,7 @@ class Core extends Module {
   IF.io.pcSrc := EX.io.pcSrc
   IF.io.nextPC := EX.io.nextPC
   IF.io.stall := EXLHitID || !MEM.io.memDone
+  IF.io.memDone := MEM.io.memDone
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
@@ -97,7 +88,7 @@ class Core extends Module {
 //------------------- MEM -------------------------------
   MEM.io.in <> ExRegMem.io.out
   MEM.io.dmem <> io.dmem
-  MEM.io.stall := !IF.io.IFDone
+  MEM.io.IFReady := io.imem.inst_ready
 
   MemRegWb.io.in <> MEM.io.out
   MemRegWb.io.stall := stallMemWbEn
