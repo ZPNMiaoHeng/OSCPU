@@ -14,8 +14,8 @@ class Execution extends Module {
         
         val bubbleEx = Output(Bool())
 
-        val pcSrc = Output(UInt(2.W))
-        val nextPC = Output(UInt(WLEN.W))
+//        val pcSrc = Output(UInt(2.W))
+//        val nextPC = Output(UInt(WLEN.W))
     })
     val alu = Module(new ALU)
     val nextPC = Module(new NextPC)
@@ -86,6 +86,6 @@ class Execution extends Module {
   
   io.bubbleEx := io.in.typeL
 
-  io.pcSrc := exePCSrc
-  io.nextPC := exeNextPC
+//  io.pcSrc := exePCSrc
+//  io.nextPC := exeNextPC
 }

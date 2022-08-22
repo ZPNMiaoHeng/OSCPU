@@ -25,20 +25,28 @@ class Core extends Module {
   val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx
 
 //* ----------------------------------------------------------------
-  val flushIfIdEn  = false.B
+  val flushIfIdEn  = EXLHitID //false.B
+/*
   val flushIdExEn  = Mux(IF.io.IFDone, 
                       Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
                        true.B, false.B),
                         false.B)
-  val flushExMemEn = false.B
+*/
+  val flushIdExEn  = Mux(MEM.io.pcSrc =/= 0.U || EXLHitID, true.B, false.B)
+  val flushExMemEn = Mux(MEM.io.pcSrc =/= 0.U, true.B, false.B)
   val flushMemWbEn = false.B
 
 //* ------------------------------------------------------------------
 // IF未完成，流水线暂停
-  val stallIfIdEn =  !IF.io.IFDone || EXLHitID
-  val stallIdExEn =  !IF.io.IFDone
-  val stallExMemEn = !IF.io.IFDone
-  val stallMemWbEn = !IF.io.IFDone
+  val stallIfIdEn = EXLHitID
+  val stallIdExEn = false.B
+  val stallExMemEn = false.B
+  val stallMemWbEn = false.B
+
+//  val stallIfIdEn =  !IF.io.IFDone || EXLHitID
+//  val stallIdExEn =  !IF.io.IFDone
+//  val stallExMemEn = !IF.io.IFDone
+//  val stallMemWbEn = !IF.io.IFDone
 //------------------- IF --------------------------------
 //  IF.io.imem <> io.imem
 
@@ -50,9 +58,9 @@ class Core extends Module {
   IF.io.imem.inst_read := io.imem.inst_read
   IF.io.imem.inst_ready := io.imem.inst_ready
   
-  IF.io.pcSrc := EX.io.pcSrc
-  IF.io.nextPC := EX.io.nextPC
-  IF.io.stall := EXLHitID
+  IF.io.pcSrc := MEM.io.pcSrc
+  IF.io.nextPC := MEM.io.nextPC
+  IF.io.stall := false.B  //EXLHitID
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
@@ -93,7 +101,7 @@ class Core extends Module {
   WB.io.in <> MemRegWb.io.out
 
   /* ----- Difftest ------------------------------ */
-  val valid = WB.io.ready_cmt && IF.io.IFDone
+  val valid = WB.io.ready_cmt //&& IF.io.IFDone
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
