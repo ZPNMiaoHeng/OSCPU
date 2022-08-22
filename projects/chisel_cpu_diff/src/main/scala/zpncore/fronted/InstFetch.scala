@@ -20,31 +20,31 @@ class InstFetch extends Module {
     val pcSrc = Input(UInt(2.W))
     val nextPC = Input(UInt(WLEN.W))
     val stall = Input(Bool())
-//    val memAxi = Input(Bool())
+//    val memDone = Input(Bool())
 
     val out = Output(new BUS_R)
 
     val IFDone = Output(Bool())                          //* 有效时才取到指令。后面流水级才能运行，否则处于暂停状态
   })
+  val stall = io.stall 
   val pc = RegInit("h8000_0000".U(WLEN.W))               //* nextPC = 0x8000_0000,可以取到正确指令
   val inst = RegInit(0.U(WLEN.W))
   val IFDone = RegInit(false.B)
 //  val instMem = RegInit(0.U(WLEN.W))
 
-  io.imem.inst_valid := !io.stall                        //* IF valid一直有效，请求AXI传输指令
-  val fire = Mux(io.stall, true.B, 
+  io.imem.inst_valid := !stall                        //* IF valid一直有效，请求AXI传输指令
+  val fire = Mux(stall, true.B, 
               io.imem.inst_valid && io.imem.inst_ready)  //* 握手成功，从总线上取出指令,第一个周期肯定为低
 
-//  val instMemTmp = Mux(io.imem.inst_ready, io.imem.inst_read, instMem)
-//  instMem = instMemTmp //* 暂存状态
-
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
-  val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
+
+  val ifInst = Mux(fire && (!stall), io.imem.inst_read, inst)
   val ifPC = Mux(IFDone,
               Mux(io.pcSrc === 0.U, 
-                Mux(io.stall, pc, pc + 4.U),
+                Mux(stall, pc, pc + 4.U),
                   io.nextPC),
                     pc)
+
   IFDone := fire                                        //* PC改变需要打一拍，才能获得当前inst
 
   pc := ifPC                                            //* 更新pc/inst寄存器值,并保持当前寄存器状态 
