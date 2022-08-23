@@ -81,7 +81,7 @@ class AxiData extends DATAIO   {
 
 class CoreData extends DATAIO   {
   val data_read   = Input(UInt(AxiDataWidth.W))
-  val data_write  = Output(UInt(AxiDataWidth.W)) 
+  val data_write  = Output(UInt(RW_DATA_WIDTH.W))//(AxiDataWidth.W)) 
 }
 /** ID */
 trait AxiIdUser extends Bundle   {

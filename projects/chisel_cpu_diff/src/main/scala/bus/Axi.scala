@@ -76,24 +76,24 @@ class AxiLite2Axi  extends Module {
     // 读通道状态切换
     
   switch (r_state) {
-    is(r_idle) {
+    is(r_idle) {                   // 000
       when(inst_ren) {             // 读使能有效
         r_state := r_inst_addr 
       } .elsewhen (data_ren) {
         r_state := r_data_addr
       }
     }
-    is(r_inst_addr) {
+    is(r_inst_addr) {              // 001
       when(ar_hs) {                // 握手成功后，进入read状态
         r_state := r_inst_read 
       }
     }
-    is(r_inst_read) {
+    is(r_inst_read) {              // 010
       when(r_done) {               // 读指令完成标志，进入done状态
         r_state := r_inst_done 
       }
     }
-    is(r_inst_done) {              //! 取指完成后进入访存，不过访存优先级应该更高
+    is(r_inst_done) {              //011 //! 取指完成后进入访存，不过访存优先级应该更高
       when (data_ren) {
         r_state := r_data_addr
       }
@@ -101,17 +101,17 @@ class AxiLite2Axi  extends Module {
         r_state := r_idle
       }
     }
-    is (r_data_addr) {
+    is (r_data_addr) {              // 100
       when (ar_hs) {
         r_state := r_data_read
       }
     }
-    is (r_data_read) {
+    is (r_data_read) {              // 101
       when (r_done) {
         r_state := r_data_done
       }
     }
-    is (r_data_done) {
+    is (r_data_done) {              // 110
       r_state := r_idle
     }
   }
@@ -145,7 +145,11 @@ class AxiLite2Axi  extends Module {
 //! write
 //! write address channel signals
 //*--------------------------------- Write Transaction --------------------------------------------------
-  val axi_waddr = Mux(r_state === w_data_addr, (in2.data_addr) & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
+//  val axi_waddr = Mux(w_state === w_data_addr, (in2.data_addr) & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
+  val axi_waddr = Mux(data_ok, Cat(in2.data_addr(31, 4), "b1000".U), in2.data_addr & "hffff_fff0".U(32.W))
+  val lowDateEn = Mux((in2.data_addr % 16.U) < 8.U, true.B, false.B)
+  val strb_h = Mux(!lowDateEn, in2.data_strb, 0.U)
+  val strb_l = Mux(lowDateEn, in2.data_strb, 0.U)
 
   out.aw.valid        := w_state === w_data_addr
   out.aw.bits.addr    := axi_waddr
@@ -162,7 +166,7 @@ class AxiLite2Axi  extends Module {
   // write data channel signals
   out.w.valid         := w_state === w_data_write
   out.w.bits.data     := Mux(data_ok, in2.data_write(127,64), in2.data_write(63, 0))
-  out.w.bits.strb     := in2.data_strb   //!掩码
+  out.w.bits.strb     := Mux(data_ok, strb_h, strb_l)   //!掩码
   out.w.bits.last     := true.B
 
   out.b.ready         := true.B

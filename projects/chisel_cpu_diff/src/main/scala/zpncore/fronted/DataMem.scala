@@ -36,31 +36,44 @@ class DataMem extends Module {
                   ((memtoReg === "b01".U) || (memWr === 1.U))
 
   io.dmem.data_addr := memAddr
-  io.dmem.data_valid := dmemEn
+  io.dmem.data_valid := dmemEn && !io.IFReady                  // 将IF取指那一周除去
+
   val dmemFire = io.dmem.data_valid && io.dmem.data_ready
-  val alignBits = memAddr % 8.U
+  val alignBits = memAddr % 16.U
   
   io.dmem.data_write := memDataIn << alignBits * 8.U
   io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
   io.dmem.data_size := SIZE_W                //!!!
-  io.dmem.data_strb := LookupTreeDefault(memOP, 0.U, List(
+  io.dmem.data_strb := Mux(io.in.typeL, 0.U,
+   LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                       // Sb
-      1.U -> "b0000_0010".U,
-      2.U -> "b0000_0100".U,
-      3.U -> "b0000_1000".U,
-      4.U -> "b0001_0000".U,
-      5.U -> "b0010_0000".U,
-      6.U -> "b0100_0000".U,
-      7.U -> "b1000_0000".U
+      1.U  -> "b0000_0010".U,
+      2.U  -> "b0000_0100".U,
+      3.U  -> "b0000_1000".U,
+      4.U  -> "b0001_0000".U,
+      5.U  -> "b0010_0000".U,
+      6.U  -> "b0100_0000".U,
+      7.U  -> "b1000_0000".U,
+
+      9.U  -> "b0000_0010".U,
+      10.U -> "b0000_0100".U,
+      11.U -> "b0000_1000".U,
+      12.U -> "b0001_0000".U,
+      13.U -> "b0010_0000".U,
+      14.U -> "b0100_0000".U,
+      15.U -> "b1000_0000".U
     )),
     "b001".U -> LookupTreeDefault(alignBits,  "b0000_0011".U, List(                      // Sh
-      2.U -> "b0000_1100".U,
-      4.U -> "b0011_0000".U,
-      6.U -> "b1100_0000".U
+      2.U  -> "b0000_1100".U,
+      4.U  -> "b0011_0000".U,
+      6.U  -> "b1100_0000".U,
+      10.U -> "b0000_1100".U,
+      12.U -> "b0011_0000".U,
+      14.U -> "b1100_0000".U
     )),
-    "b010".U -> Mux(alignBits === 0.U, "b0000_1111".U, "b1111_0000".U),                  // Sw
+    "b010".U -> Mux(alignBits === 0.U || alignBits === 8.U , "b0000_1111".U, "b1111_0000".U),                  // Sw
     "b011".U -> "b1111_1111".U                                                           // Sd
-  ))
+  )))
 
 //*------------------------------ Load 指令 ----------------------------------------------------------------
   val rdata = RegInit(0.U(XLEN.W))
