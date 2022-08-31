@@ -44,36 +44,7 @@ class AxiLite2Axi  extends Module {
   val w_state = RegInit(w_idle) //!
 
 //*--------------------------------- State Machine --------------------------------------------------------
-    
-    //! 写通道状态切换    
-
-  switch (w_state) {
-    is(w_idle) {
-      when(data_wen) {             // 写使能有效
-        w_state := w_data_addr 
-      }
-    }
-    is(w_data_addr) {
-      when(aw_hs) {                // 握手成功后，进入write状态
-        w_state := w_data_write 
-      }
-    }
-    is(w_data_write) {
-      when(w_hs) {                  // w通道完成，进入等待b_resp信号状态
-        w_state := w_data_resp 
-      }
-    }
-    is(w_data_resp) {               // 
-      when(w_done) {
-        w_state := w_data_done
-      }
-    }
-    is(w_data_done) {
-      w_state := w_idle
-    }
-  }
-
-    // 读通道状态切换
+// 读通道状态切换
     
   switch (r_state) {
     is(r_idle) {                   // 000
@@ -113,6 +84,34 @@ class AxiLite2Axi  extends Module {
     }
     is (r_data_done) {              // 110
       r_state := r_idle
+    }
+  }
+
+    //! 写通道状态切换    
+
+  switch (w_state) {
+    is(w_idle) {
+      when(data_wen) {             // 写使能有效
+        w_state := w_data_addr 
+      }
+    }
+    is(w_data_addr) {
+      when(aw_hs) {                // 握手成功后，进入write状态
+        w_state := w_data_write 
+      }
+    }
+    is(w_data_write) {
+      when(w_hs) {                  // w通道完成，进入等待b_resp信号状态
+        w_state := w_data_resp 
+      }
+    }
+    is(w_data_resp) {               // 
+      when(w_done) {
+        w_state := w_data_done
+      }
+    }
+    is(w_data_done) {
+      w_state := w_idle
     }
   }
 

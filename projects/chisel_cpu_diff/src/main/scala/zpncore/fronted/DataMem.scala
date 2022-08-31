@@ -148,7 +148,6 @@ class DataMem extends Module {
   val memMemOp = io.in.memOp
   val memRdEn   = io.in.rdEn
   val memRdAddr = io.in.rdAddr
-  val memRdData = 0.U
   val memRs1Data = io.in.rs1Data
   val memRs2Data = io.in.rs2Data
   val memImm = io.in.imm
@@ -171,7 +170,7 @@ class DataMem extends Module {
   io.out.memOp    := memMemOp
   io.out.rdEn     := memRdEn
   io.out.rdAddr   := memRdAddr
-  io.out.rdData   := memRdData
+//  io.out.rdData   := 0.U
   io.out.rs1Data  := memRs1Data
   io.out.rs2Data  := memRs2Data
   io.out.imm      := memImm

@@ -81,7 +81,6 @@ class Decode extends Module {
   val idMemOp = con.io.memCtr.memOP
   val idRdEn   = con.io.rdEn
   val idRdAddr = con.io.rdAddr
-  val idRdData = 0.U
   val idRs1Data = rs1Data
   val idRs2Data = rs2Data
   val idImm = imm.io.imm
@@ -100,7 +99,6 @@ class Decode extends Module {
   io.out.memOp    := idMemOp
   io.out.rdEn     := idRdEn
   io.out.rdAddr   := idRdAddr
-  io.out.rdData   := idRdData
   io.out.rs1Data  := idRs1Data
   io.out.rs2Data  := idRs2Data
   io.out.imm      := idImm
@@ -108,6 +106,7 @@ class Decode extends Module {
   io.out.nextPC   := 0.U
   io.out.aluRes   := 0.U
   io.out.memData  := 0.U
+//  io.out.rdData   := 0.U
 
   io.bubbleId := rdRs1HitEx || rdRs2HitEx
 }

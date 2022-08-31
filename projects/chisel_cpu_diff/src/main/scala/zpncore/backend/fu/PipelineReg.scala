@@ -11,22 +11,21 @@ class BUS_R extends Bundle {
   val aluA = UInt(1.W)
   val aluB = UInt(2.W)
   val aluOp = UInt(4.W)
-
   val branch = UInt(3.W)
   val memtoReg = UInt(2.W)
   val memWr = UInt(1.W)
   val memOp = UInt(3.W)
-
   val rdEn = Bool()
   val rdAddr = UInt(5.W)
-  val rdData = UInt(XLEN.W)
   val rs1Data = UInt(XLEN.W)
   val rs2Data = UInt(XLEN.W)
   val imm = UInt(XLEN.W)
+
   val pcSrc = UInt(2.W)
   val nextPC = UInt(WLEN.W)
   val aluRes = UInt(XLEN.W)
   val memData = UInt(XLEN.W)
+//  val rdData = UInt(XLEN.W)
 
 //  val bp_taken  = Bool()
 //  val bp_targer = UInt(32.W)
@@ -48,10 +47,11 @@ class BUS_R extends Bundle {
 
     rdEn     := 0.U
     rdAddr   := 0.U
-    rdData   := 0.U
+//    rdData   := 0.U
     rs1Data  := 0.U
     rs2Data  := 0.U
     imm      := 0.U
+
     pcSrc    := 0.U
     nextPC   := 0.U
     aluRes   := 0.U

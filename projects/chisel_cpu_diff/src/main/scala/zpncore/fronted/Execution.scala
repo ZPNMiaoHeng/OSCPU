@@ -49,7 +49,6 @@ class Execution extends Module {
   val exeMemOp = io.in.memOp
   val exeRdEn   = io.in.rdEn
   val exeRdAddr = io.in.rdAddr
-  val exeRdData = 0.U
   val exeRs1Data = io.in.rs1Data
   val exeRs2Data = io.in.rs2Data
   val exeImm = io.in.imm
@@ -71,14 +70,14 @@ class Execution extends Module {
   io.out.memOp    := exeMemOp
   io.out.rdEn     := exeRdEn
   io.out.rdAddr   := exeRdAddr
-  io.out.rdData   := exeRdData
   io.out.rs1Data  := exeRs1Data
   io.out.rs2Data  := exeRs2Data
   io.out.imm      := exeImm
   io.out.pcSrc    := exePCSrc
   io.out.nextPC   := exeNextPC
   io.out.aluRes   := exeAluRes
-  io.out.memData    := 0.U
+  io.out.memData  := 0.U
+//  io.out.rdData   := 0.U
 
   io.exeRdEn := io.in.rdEn
   io.exeRdAddr := exeRdAddr

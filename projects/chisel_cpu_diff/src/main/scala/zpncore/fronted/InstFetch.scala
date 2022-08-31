@@ -63,7 +63,7 @@ class InstFetch extends Module {
   io.out.memOp    := 0.U
   io.out.rdEn     := false.B
   io.out.rdAddr   := 0.U
-  io.out.rdData   := 0.U
+//  io.out.rdData   := 0.U
   io.out.rs1Data  := 0.U
   io.out.rs2Data  := 0.U
   io.out.imm      := 0.U
