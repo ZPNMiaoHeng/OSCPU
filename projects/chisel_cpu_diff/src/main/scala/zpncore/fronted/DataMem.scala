@@ -35,8 +35,9 @@ class DataMem extends Module {
   val dmemEn = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
                   ((memtoReg === "b01".U) || (memWr === 1.U))
 
+  val dmemDone = RegNext(io.dmem.data_ready)  // 访存完成后阻塞valid一周期
   io.dmem.data_addr := memAddr
-  io.dmem.data_valid := dmemEn && !io.IFReady                  // 将IF取指那一周除去
+  io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone                // 将IF取指那一周除去
 
   val dmemFire = io.dmem.data_valid && io.dmem.data_ready
   val alignBits = memAddr % 16.U
