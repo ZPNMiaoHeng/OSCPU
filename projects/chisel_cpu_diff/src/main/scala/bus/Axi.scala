@@ -71,6 +71,7 @@ class AxiLite2Axi  extends Module {
       .otherwise {
         r_state := r_idle
       }
+//      r_state := r_idle
     }
     is (r_data_addr) {              // 100
       when (ar_hs) {

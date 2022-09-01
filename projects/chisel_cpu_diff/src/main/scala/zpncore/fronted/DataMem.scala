@@ -32,11 +32,23 @@ class DataMem extends Module {
   val memDataIn = io.in.rs2Data
 
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
+
   val dmemEn = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
                   ((memtoReg === "b01".U) || (memWr === 1.U))
 
-  val dmemDone = RegNext(io.dmem.data_ready)  // 访存完成后阻塞valid一周期
   io.dmem.data_addr := memAddr
+
+//  val dmemDone = RegNext(io.dmem.data_ready)  // 访存完成后阻塞valid一周期,防止再次进入此指令总线访存
+//  io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone                // 将IF取指那一周除去
+
+  val dmemDone = RegInit(false.B)  //! 访存完成后dmemDone拉高，只有进入下一条inst时才进入总线访存；
+  val inst = Reg(UInt(WLEN.W))
+  inst := memAddr
+  when (io.dmem.data_ready) {
+      dmemDone := true.B
+  } .elsewhen (inst =/= memAddr) {
+    dmemDone := false.B
+  }
   io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone                // 将IF取指那一周除去
 
   val dmemFire = io.dmem.data_valid && io.dmem.data_ready
