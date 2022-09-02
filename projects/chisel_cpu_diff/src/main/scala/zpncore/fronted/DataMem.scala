@@ -41,12 +41,14 @@ class DataMem extends Module {
 //  val dmemDone = RegNext(io.dmem.data_ready)  // 访存完成后阻塞valid一周期,防止再次进入此指令总线访存
 //  io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone                // 将IF取指那一周除去
 
-  val dmemDone = RegInit(false.B)  //! 访存完成后dmemDone拉高，只有进入下一条inst时才进入总线访存；
-  val inst = Reg(UInt(WLEN.W))
-  inst := memAddr
+  val dmemDone = RegInit(false.B)  //* 访存完成后dmemDone拉高，只有进入下一条inst时才进入总线访存；
+  val dmemReq = RegInit(false.B)   //* 通过inst
+  val addr = Reg(UInt(WLEN.W))
+  addr := memAddr
+  dmemReq := memWr
   when (io.dmem.data_ready) {
-      dmemDone := true.B
-  } .elsewhen (inst =/= memAddr) {
+    dmemDone := true.B
+  } .elsewhen (addr =/= memAddr || dmemReq =/= memWr) {
     dmemDone := false.B
   }
   io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone                // 将IF取指那一周除去
