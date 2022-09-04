@@ -98,7 +98,8 @@ class DataMem extends Module {
 
   val memAxi = Mux(dmemEn && !dmemFire, true.B, false.B)
 //防止IF未更新inst，再次进入总线访存，导致流水线一直处于暂停状态
-  io.memDone := !memAxi || io.IFReady
+  io.memDone := Mux(!io.in.typeL, !memAxi || io.IFReady, dmemDone)  //!! 当连续load指令时，选取dmemDone延迟一周期；
+//  io.memDone := dmemDone
 
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
