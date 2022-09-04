@@ -42,15 +42,15 @@ class DataMem extends Module {
 //  io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone                // 将IF取指那一周除去
 
   val dmemDone = RegInit(false.B)  //* 访存完成后dmemDone拉高，只有进入下一条inst时才进入总线访存；
-  val dmemReq = RegInit(false.B)   //* 通过inst
-  val addr = Reg(UInt(WLEN.W))
-  addr := memAddr
-  dmemReq := memWr
+  val inst = Reg(UInt(WLEN.W))
+
+  inst := io.in.inst
   when (io.dmem.data_ready) {
     dmemDone := true.B
-  } .elsewhen (addr =/= memAddr || dmemReq =/= memWr) {
+  } .elsewhen (inst =/= io.in.inst) {
     dmemDone := false.B
   }
+
   io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone                // 将IF取指那一周除去
 
   val dmemFire = io.dmem.data_valid && io.dmem.data_ready
@@ -186,7 +186,6 @@ class DataMem extends Module {
   io.out.memOp    := memMemOp
   io.out.rdEn     := memRdEn
   io.out.rdAddr   := memRdAddr
-//  io.out.rdData   := 0.U
   io.out.rs1Data  := memRs1Data
   io.out.rs2Data  := memRs2Data
   io.out.imm      := memImm

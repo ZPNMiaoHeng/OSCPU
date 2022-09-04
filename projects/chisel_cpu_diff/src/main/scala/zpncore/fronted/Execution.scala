@@ -77,7 +77,6 @@ class Execution extends Module {
   io.out.nextPC   := exeNextPC
   io.out.aluRes   := exeAluRes
   io.out.memData  := 0.U
-//  io.out.rdData   := 0.U
 
   io.exeRdEn := io.in.rdEn
   io.exeRdAddr := exeRdAddr
