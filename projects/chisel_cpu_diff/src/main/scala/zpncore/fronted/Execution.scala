@@ -9,7 +9,7 @@ class Execution extends Module {
         val out = Output(new BUS_R)
 
         val exeRdEn = Output(Bool())
-        val exeRdAddr = Output(UInt(WLEN.W))
+        val exeRdAddr = Output(UInt(5.W))
         val exeRdData = Output(UInt(XLEN.W))
         
         val bubbleEx = Output(Bool())
