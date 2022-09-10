@@ -46,8 +46,9 @@ class Decode extends Module {
   con.io.inst := io.in.inst
 
 //* bypass control signals
-  val rs1Addr = con.io.regCtrl.rs1Addr
-  val rs2Addr = con.io.regCtrl.rs2Addr
+
+  val rs1Addr = Mux(con.io.regCtrl.rs1En, con.io.regCtrl.rs1Addr, 0.U)
+  val rs2Addr = Mux(con.io.regCtrl.rs2En, con.io.regCtrl.rs2Addr, 0.U)
   val rdRs1HitEx = io.exeRdEn && (rs1Addr === io.exeRdAddr) && (rs1Addr =/= 0.U)
   val rdRs1HitMem = io.memRdEn && (rs1Addr === io.memRdAddr) && (rs1Addr =/= 0.U)
   val rdRs1HitWb = io.wbRdEn && (rs1Addr === io.wbRdAddr) && (rs1Addr =/= 0.U)
@@ -107,5 +108,6 @@ class Decode extends Module {
   io.out.aluRes   := 0.U
   io.out.memData  := 0.U
 
-  io.bubbleId := (rdRs1HitEx || rdRs2HitEx) && !idTypeL
+  io.bubbleId := (rdRs1HitEx || rdRs2HitEx)
+ // io.bubbleId := (rdRs1HitEx || rdRs2HitEx) && !idTypeL
 }
