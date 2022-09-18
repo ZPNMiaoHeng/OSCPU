@@ -15,11 +15,11 @@ import utils._
 
 class DCache extends Module {
   val io = IO(new Bundle {
-    val imem = Flipped(new CoreData)
+    val dmem = Flipped(new CoreData)
     val out  = new AxiData
   })
 
-  val in = io.imem
+  val in = io.dmem
   val out = io.out
   val cacheLineNum = 128
 //  val cacheWData = RegInit(0.U(128.W))    //* 写 cacheLine
@@ -40,7 +40,7 @@ class DCache extends Module {
   val way1Age = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(1.W))))
   val way1Dirty = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(1.W))))
 
-  val s_CACHE_IDLE :: s_CACHE_HIT :: s_CACHE_DIRTY :: s_AXI_WRITE :: s_CACHE_WRITE :: s_CACHE_DONE :: Nil = Enum(6)
+  val s_IDLE :: s_CACHE_HIT :: s_CACHE_DIRTY :: s_AXI_WRITE :: s_CACHE_WRITE :: s_CACHE_DONE :: Nil = Enum(6)
   val state = RegInit(s_IDLE)
   
 //*------------------------------------------------------------------
@@ -74,12 +74,13 @@ class DCache extends Module {
   cacheRData := req.io.Q
 
 //*------------------------------ DCache Machine --------------------------------
-  switch (state) {
+  switch(state) {
     is(s_IDLE) {
-      when (in.data_valid) {
+      when(in.data_valid) {
         state := s_CACHE_HIT
     }
   }
+  
     is(s_CACHE_HIT) {
       when ( cacheHitEn) {
         state := s_IDLE
@@ -105,7 +106,7 @@ class DCache extends Module {
       }
     }
     is(s_CACHE_DONE) {
-      state := s_CACHE_IDLE
+      state := s_IDLE
     }
 }
 
