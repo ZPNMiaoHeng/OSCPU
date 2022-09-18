@@ -105,7 +105,7 @@ class ICache extends Module {
 
   val ageWay0En = (way0Age(reqIndex) === 0.U) && sFillEn        //* 年龄替换算法
   val ageWay1En = (way1Age(reqIndex) === 0.U) && sFillEn        //* 年龄替换算法
-  val cacheLineWay = Mux(ageWay0En, 0.U, 1.U)                 //* 0.U->way0, 1.U->way1
+  val cacheLineWay = Mux(ageWay0En, 0.U, 1.U)                 //* 0.U->way0, 1.U->way1, way0优先级更高
   way0Age(reqIndex) := Mux(ageWay0En, 1.U, 0.U)
   way1Age(reqIndex) := Mux(ageWay0En, 0.U, 1.U)
 
