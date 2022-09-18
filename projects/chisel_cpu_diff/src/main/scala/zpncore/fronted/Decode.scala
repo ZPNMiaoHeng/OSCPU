@@ -109,5 +109,4 @@ class Decode extends Module {
   io.out.memData  := 0.U
 
   io.bubbleId := (rdRs1HitEx || rdRs2HitEx)
- // io.bubbleId := (rdRs1HitEx || rdRs2HitEx) && !idTypeL
 }

@@ -19,18 +19,18 @@ class ICache extends Module {
   val in = io.imem
   val out = io.out
   val cacheLineNum = 128
-  val cacheWData = RegInit(0.U(128.W))    //* 写 cacheLine
+  val cacheWData = RegInit(0.U(128.W))     //* 写 cacheLine
   val cacheRData = WireInit(0.U(128.W))    //* 读 cacheLine
   val cacheWEn = WireInit(false.B)
   val fillCacheDone = WireInit(false.B)
 //*way0 and way1
-  val way0Tag = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(21.W))))
   val way0V = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))
+  val way0Tag = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(21.W))))
   val way0Off = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(4.W))))
   val way0Age = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(1.W))))
 
-  val way1Tag = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(21.W))))
   val way1V = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))
+  val way1Tag = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(21.W))))
   val way1Off = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(4.W))))
   val way1Age = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(1.W))))
   
@@ -46,7 +46,7 @@ class ICache extends Module {
   val way1Hit = way1V(reqIndex) && (way1Tag(reqIndex) === reqTag)
   val cacheRIndex = Mux(way0Hit, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))
   val cacheWIndex = WireInit(0.U(8.W))
-  val cacheHit = way0Hit || way1Hit
+  val cacheHitEn = way0Hit || way1Hit
 
   val req = Module(new S011HD1P_X32Y2D128)
   req.io.CLK := clock
@@ -56,7 +56,7 @@ class ICache extends Module {
   req.io.D   := cacheWData
   cacheRData := req.io.Q
 
-//-------------------------------------- Cache FSM -----------------------------------------------
+//*-------------------------------------- Cache FSM -----------------------------------------------
   switch(state) {
     is(s_IDLE) {
       when(in.inst_valid) {
@@ -65,7 +65,7 @@ class ICache extends Module {
     }
 
     is(s_READ_CACHE) {
-      when(cacheHit) {
+      when(cacheHitEn) {
         state := s_IDLE
       } .otherwise {
         state := s_AXI_FILL
@@ -82,10 +82,10 @@ class ICache extends Module {
         state := s_READ_CACHE
     }
   }
-//------------------------------------------------------------------------------------------//
+//*------------------------------------------------------------------------------------------//
   val sReadEn = state === s_READ_CACHE                             // 在Cache中读取相对应的指令
-  val rData = Mux(sReadEn && cacheHit, cacheRData, 0.U)
-  in.inst_ready := sReadEn && cacheHit
+  val rData = Mux(sReadEn && cacheHitEn, cacheRData, 0.U)
+  in.inst_ready := sReadEn && cacheHitEn
   in.inst_read := LookupTreeDefault(reqOff(3, 2), 0.U , List(
     "b00".U -> rData(31 , 0 ),
     "b01".U -> rData(63 , 32),
@@ -105,7 +105,7 @@ class ICache extends Module {
 
   val ageWay0En = (way0Age(reqIndex) === 0.U) && sFillEn        //* 年龄替换算法
   val ageWay1En = (way1Age(reqIndex) === 0.U) && sFillEn        //* 年龄替换算法
-  val cacheLineWay =   Mux(ageWay0En, 0.U, 1.U)                 //* 0.U->way0, 1.U->way1
+  val cacheLineWay = Mux(ageWay0En, 0.U, 1.U)                 //* 0.U->way0, 1.U->way1
   way0Age(reqIndex) := Mux(ageWay0En, 1.U, 0.U)
   way1Age(reqIndex) := Mux(ageWay0En, 0.U, 1.U)
 
