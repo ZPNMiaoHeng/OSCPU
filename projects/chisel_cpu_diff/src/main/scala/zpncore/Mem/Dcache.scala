@@ -121,7 +121,7 @@ class DCache extends Module {
   out.data_addr := Mux(axiEn, validAddr, 0.U)
   out.data_size := Mux(axiEn, SIZE_W, 0.U) //??
   out.data_strb := Mux(sWriteEn, in.data_strb, 0.U)
-  out.data_write := Mux(sWriteEn, /*!写入数据*/, 0.U)  //TODO: implement
+  out.data_write := Mux(sWriteEn, cacheRData, 0.U)  //TODO: implement
 
   val sDoneEn = state === s_CACHE_DONE                      //* 写入到存储器后，更新对应寄存器
   way0Age(reqIndex) := Mux(ageWay0En && sDoneEn, 1.U, 0.U)  //* 年龄替换算法
