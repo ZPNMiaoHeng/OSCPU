@@ -22,10 +22,8 @@ class DCache extends Module {
   val in = io.dmem
   val out = io.out
   val cacheLineNum = 128
-//  val cacheWData = RegInit(0.U(128.W))    //* 写 cacheLine
+
   val cacheRData = WireInit(0.U(128.W))     //* 读 cacheLine
-  val cacheWEn = WireInit(false.B)
-  val cacheBWen = WireInit(0.U(128.W))      //* 掩码
 //  val fillCacheDone = WireInit(false.B)
 //*way0 and way1
   val way0V = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))
@@ -53,23 +51,47 @@ class DCache extends Module {
   val sHitEn = state === s_CACHE_HIT
   val way0Hit = way0V(reqIndex) && (way0Tag(reqIndex) === reqTag) && sHitEn //* 两路组相连 Hit情况
   val way1Hit = way1V(reqIndex) && (way1Tag(reqIndex) === reqTag) && sHitEn
-  val cacheHitEn = way0Hit || way1Hit
+  val cacheHitEn = (way0Hit || way1Hit ) && (state === s_CACHE_HIT)
   // Cache Miss and find cacheLine
   val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U) && sHitEn      //* 年龄替换算法
   val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U) && sHitEn      //* 年龄替换算法
   val cacheLineWay = Mux(ageWay0En, 0.U, 1.U)                               //* 0.U->way0, 1.U->way1, way0优先级更高
 
-  val cacheDirtyEn = Mux(cacheLineWay === 0.U, way0Dirty(reqIndex), way1Dirty(reqIndex))
+  val cacheDirtyEn = Mux(state === s_CACHE_DIRTY, Mux(cacheLineWay === 0.U, 
+        way0Dirty(reqIndex), way1Dirty(reqIndex)), 0.U)
 
-  val cacheRIndex = Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))
-  val cacheWIndex = WireInit(0.U(8.W))
+  val cacheIndex = Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  //* 最后确定好某个way
 
+  val cacheWEn = io.data_req 
+  val cacheBWen = LookupTreeDefault(in.data_strb, 0.U, List(
+    "b0000_0001".U -> "h00000000000000ff".U,
+    "b0000_0010".U -> "h000000000000ff00".U,
+    "b0000_0100".U -> "h0000000000ff0000".U,
+    "b0000_1000".U -> "h00000000ff000000".U,
+    "b0001_0000".U -> "h000000ff00000000".U,
+    "b0010_0000".U -> "h0000ff0000000000".U,
+    "b0100_0000".U -> "h00ff000000000000".U,
+    "b1000_0000".U -> "hff00000000000000".U,
+
+    "b0000_0011".U -> "h000000000000ffff".U,
+    "b0000_1100".U -> "h00000000ffff0000".U,
+    "b0011_0000".U -> "h0000ffff00000000".U,
+    "b1100_0000".U -> "hffff000000000000".U,
+    
+    "b0000_1111".U -> "h00000000ffffffff".U,
+    "b1111_0000".U -> "hffffffff00000000".U,
+    
+    "b1111_1111".U -> "hffffffffffffffff".U   
+  ))
+
+  //  val cacheWData = RegInit(0.U(128.W))    //* 写 cacheLine
+  
   val req = Module(new S011HD1P_X32Y2D128_BW)
   req.io.CLK := clock
   req.io.CEN := true.B
   req.io.WEN := cacheWEn
   req.io.BWEN := Mux(cacheWEn, cacheBWen, 0.U)
-  req.io.A := Mux(!cacheWEn, cacheRIndex , cacheWIndex)
+  req.io.A := cacheIndex
   req.io.D := cacheWData
   cacheRData := req.io.Q
 
@@ -111,7 +133,9 @@ class DCache extends Module {
 }
 
 //*----------------------------- control signals --------------------------------
-//  val sDirtyEn = state === s_CACHE_Dirty
+  val sIDLEEn = state === s_IDLE
+  in.data_ready
+  val sDirtyEn = state === s_CACHE_DIRTY
 
   val sWriteEn = state === s_AXI_WRITE   //* 将这个CacheLIne中数据写到存储器中
 
