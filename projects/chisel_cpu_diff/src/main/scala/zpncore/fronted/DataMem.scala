@@ -58,7 +58,7 @@ class DataMem extends Module {
   
   io.dmem.data_write := memDataIn << alignBits * 8.U
   io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
-  io.dmem.data_size := SIZE_W                //!!!
+  io.dmem.data_size := SIZE_W                //!!!  10
   io.dmem.data_strb := Mux(io.in.typeL, 0.U,
    LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                       // Sb
