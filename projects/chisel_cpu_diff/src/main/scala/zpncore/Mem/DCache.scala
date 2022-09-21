@@ -51,7 +51,7 @@ class DCache extends Module {
   val reqOff = validAddr(3, 0)
 
   val valid_WEn = in.data_req
-  val valid_rdata = Mux(reqOff(3), cacheRData(127 , 64), cacheRData(63,0))
+  val valid_rdata = Mux(reqOff(3), cacheRData(127, 64), cacheRData(63, 0) ) //* cacheLine Data
   val valid_strb = LookupTreeDefault(in.data_strb, 0.U, List(
     "b0000_0001".U -> "h00000000000000ff".U,
     "b0000_0010".U -> "h000000000000ff00".U,
@@ -98,7 +98,7 @@ class DCache extends Module {
     "b11".U -> in.data_write,
   ))
 
-  data_read := MuxLookup(in.data_size, 0.U, Array(                //? 位扩充？
+  val data_read = MuxLookup(in.data_size, 0.U, Array(                //? 位扩充？
     "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
                     "b000".U -> Cat(0.U, valid_rdata( 7, 0)),
                     "b001".U -> Cat(0.U, valid_rdata(15, 8)),
@@ -219,7 +219,7 @@ class DCache extends Module {
                 Mux(sDoneEn, out.data_read, 0.U))
 
   in.data_ready := sDoneEn || (sHitEn && cacheHitEn)            // Cache完成标志：miss 与 hit 两种情况
-  in.data_read := Mux(reqOff(3), rData(127, 64), rData(63, 0))
+  in.data_read := data_read //?Mux(reqOff(3), rData(127, 64), rData(63, 0))
 
   class S011HD1P_X32Y2D128_BW extends BlackBox with HasBlackBoxResource {
     val io = IO(new Bundle {
