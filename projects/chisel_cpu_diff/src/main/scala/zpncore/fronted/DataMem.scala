@@ -31,6 +31,8 @@ class DataMem extends Module {
   val memWr =     io.in.memWr             // 1-> Store inst
   val memDataIn = io.in.rs2Data
 
+  val data_size = WireInit((0.U)2.W)
+
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
 
   val dmemEn = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
@@ -58,7 +60,7 @@ class DataMem extends Module {
   
   io.dmem.data_write := memDataIn << alignBits * 8.U
   io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
-  io.dmem.data_size := SIZE_W                //!!!  10---应该传输指令类型 bhwd？？
+  io.dmem.data_size := data_size //SIZE_W                //!!!  10---应该传输指令类型 bhwd？？
   io.dmem.data_strb := Mux(io.in.typeL, 0.U,
    LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                       // Sb
@@ -134,14 +136,26 @@ class DataMem extends Module {
 */  
 //*-------------------------------------------------------------------------------------------------------
   val rData = LookupTreeDefault(memOP, 0.U, List(
-    "b000".U -> SignExt(rdata(7 , 0), XLEN),
-    "b001".U -> SignExt(rdata(15, 0), XLEN),
-    "b010".U -> SignExt(rdata(31, 0), XLEN), 
-    "b011".U -> rdata,
+    "b000".U -> SignExt(rdata(7 , 0), XLEN),        // b
+    "b001".U -> SignExt(rdata(15, 0), XLEN),        // h
+    "b010".U -> SignExt(rdata(31, 0), XLEN),        // w
+    "b011".U -> rdata,                              // d
     "b100".U -> ZeroExt(rdata(7 , 0), XLEN),
     "b101".U -> ZeroExt(rdata(15, 0), XLEN),
     "b110".U -> ZeroExt(rdata(31, 0), XLEN)
   ))
+
+  data_size := LookupTreeDefault(memOP, 0.U, List(  // L & D 指令类型
+    "b000".U -> "b00".U, //b
+    "b100".U -> "b00".U,
+    "b001".U -> "b01".U, //h
+    "b101".U -> "b01".U,
+    "b011".U -> "b11".U, //d
+    "b010".U -> "b10".U, //w
+    "b110".U -> "b10".U
+  ))
+
+
   val wData = Mux(memWr === 1.U, 0.U, rData)  //? load 指令才有效----可以改进,Mux加到下面
 
   val resW = SignExt(io.in.aluRes(31,0), 64)

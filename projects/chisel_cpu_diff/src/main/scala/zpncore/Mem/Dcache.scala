@@ -23,13 +23,13 @@ class DCache extends Module {
   val out = io.out
   val cacheLineNum = 128
 
-  val cacheRData = WireInit(0.U(128.W))     //* 读 cacheLine
+  val cacheRData = WireInit(0.U(128.W))     // 读 cacheLine
   val cacheHitEn = WireInit(false.B)
   val cacheLineWay = WireInit(false.B)
   val cacheDirtyEn = WireInit(false.B)
   val cacheIndex = WireInit(false.B)
-//*way0 and way1
-  val way0V = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))
+
+  val way0V = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))          //way0 and way1
   val way0Tag = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(21.W))))
   val way0Off = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(4.W))))
   val way0Age = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(1.W))))
@@ -140,12 +140,13 @@ class DCache extends Module {
   }
   
     is(s_CACHE_HIT) {
-      when ( cacheHitEn) {
+      when (cacheHitEn) {
         state := s_IDLE
       } .otherwise { 
         state := s_CACHE_DIRTY
     }
   }
+
     is(s_CACHE_DIRTY) {
       when( cacheDirtyEn) {
         state := s_AXI_WRITE
@@ -153,6 +154,7 @@ class DCache extends Module {
         state := s_CACHE_WRITE
       }
     }
+    
      is(s_AXI_WRITE) {
       when( out.data_ready) {      //*写入完成信号
         state := s_CACHE_WRITE
@@ -217,7 +219,7 @@ class DCache extends Module {
   }
 
   val rData = Mux(sHitEn, cacheRData,
-                Mux(sDoneEn, out.data_read, 0.U)) //!还有Hit情况
+                Mux(sDoneEn, out.data_read, 0.U))
 
   in.data_ready := sDoneEn || (sHitEn && cacheHitEn)            // Cache完成标志：miss 与 hit 两种情况
   in.data_read := Mux(reqOff(3), rData(127, 64), rData(63, 0))
