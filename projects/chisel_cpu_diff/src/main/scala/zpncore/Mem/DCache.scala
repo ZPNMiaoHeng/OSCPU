@@ -50,8 +50,8 @@ class DCache extends Module {
   val reqIndex = validAddr(10, 4)
   val reqOff = validAddr(3, 0)
 
-  val valid_WEn = io.data_req
-  val valid_rdata = Mux(req_offset(3), cacheRData(127 , 64), cacheRData(63,0))
+  val valid_WEn = in.data_req
+  val valid_rdata = Mux(reqOff(3), cacheRData(127 , 64), cacheRData(63,0))
   val valid_strb = LookupTreeDefault(in.data_strb, 0.U, List(
     "b0000_0001".U -> "h00000000000000ff".U,
     "b0000_0010".U -> "h000000000000ff00".U,
@@ -73,9 +73,9 @@ class DCache extends Module {
     "b1111_1111".U -> "hffffffffffffffff".U   
   ))
 
-  val valid_data  = Mux(req_offset(3), out.data_read(127,64), out.data_read(63, 0)) //*Axi
+  val valid_data  = Mux(reqOff(3), out.data_read(127,64), out.data_read(63, 0)) //*Axi
   val valid_wdata = MuxLookup(in.data_size, 0.U, Array(
-    "b00".U -> MuxLookup(req_offset(2, 0), 0.U, Array(
+    "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
                     "b000".U -> Cat(valid_data(63, 8), in.data_write( 7, 0)),
                     "b001".U -> Cat(valid_data(63,16), in.data_write(15, 8), valid_data( 7, 0)),
                     "b010".U -> Cat(valid_data(63,24), in.data_write(23,16), valid_data(15, 0)),
@@ -85,13 +85,13 @@ class DCache extends Module {
                     "b110".U -> Cat(valid_data(63,56), in.data_write(55,48), valid_data(47, 0)),
                     "b111".U -> Cat(in.data_write(63,56), valid_data(55, 0)),
                 )),
-    "b01".U -> MuxLookup(req_offset(2, 1), 0.U, Array(
+    "b01".U -> MuxLookup(reqOff(2, 1), 0.U, Array(
                     "b00".U -> Cat(valid_data(63,16), in.data_write(15, 0)),
                     "b01".U -> Cat(valid_data(63,32), in.data_write(31,16), valid_data(15, 0)),
                     "b10".U -> Cat(valid_data(63,48), in.data_write(47,32), valid_data(31, 0)),
                     "b11".U -> Cat(in.data_write(63,48), valid_data(47, 0)),
                 )),
-    "b10".U -> MuxLookup(req_offset(2), 0.U, Array(
+    "b10".U -> MuxLookup(reqOff(2), 0.U, Array(
                     "b0".U -> Cat(valid_data(63,32), in.data_write(31, 0)),
                     "b1".U -> Cat(in.data_write(63,32), valid_data(31, 0)),
                 )),
@@ -99,7 +99,7 @@ class DCache extends Module {
   ))
 
   data_read := MuxLookup(in.data_size, 0.U, Array(                //? 位扩充？
-    "b00".U -> MuxLookup(req_offset(2, 0), 0.U, Array(
+    "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
                     "b000".U -> Cat(0.U, valid_rdata( 7, 0)),
                     "b001".U -> Cat(0.U, valid_rdata(15, 8)),
                     "b010".U -> Cat(0.U, valid_rdata(23,16)),
@@ -109,13 +109,13 @@ class DCache extends Module {
                     "b110".U -> Cat(0.U, valid_rdata(55,48)),
                     "b111".U -> Cat(0.U, valid_rdata(63,56)),
                 )),
-    "b01".U -> MuxLookup(req_offset(2, 1), 0.U, Array(
+    "b01".U -> MuxLookup(reqOff(2, 1), 0.U, Array(
                     "b00".U -> Cat(0.U, valid_rdata(15, 0)),
                     "b01".U -> Cat(0.U, valid_rdata(31,16)),
                     "b10".U -> Cat(0.U, valid_rdata(47,32)),
                     "b11".U -> Cat(0.U, valid_rdata(63,48)),
                 )),
-    "b10".U -> MuxLookup(req_offset(2), 0.U, Array(
+    "b10".U -> MuxLookup(reqOff(2), 0.U, Array(
                     "b0".U -> Cat(0.U, valid_rdata(31, 0)),
                     "b1".U -> Cat(0.U, valid_rdata(63,32)),
                 )),
@@ -128,7 +128,7 @@ class DCache extends Module {
   req.io.WEN := valid_WEn
   req.io.BWEN := Mux(valid_WEn, valid_strb, 0.U)
   req.io.A := cacheIndex
-  req.io.D := cacheWData
+  req.io.D := valid_wdata
   cacheRData := req.io.Q
 
 //*------------------------------ DCache Machine --------------------------------
@@ -138,7 +138,6 @@ class DCache extends Module {
         state := s_CACHE_HIT
     }
   }
-  
     is(s_CACHE_HIT) {
       when (cacheHitEn) {
         state := s_IDLE
@@ -146,7 +145,6 @@ class DCache extends Module {
         state := s_CACHE_DIRTY
     }
   }
-
     is(s_CACHE_DIRTY) {
       when( cacheDirtyEn) {
         state := s_AXI_WRITE
@@ -154,7 +152,6 @@ class DCache extends Module {
         state := s_CACHE_WRITE
       }
     }
-    
      is(s_AXI_WRITE) {
       when( out.data_ready) {      //*写入完成信号
         state := s_CACHE_WRITE
@@ -168,7 +165,7 @@ class DCache extends Module {
     is(s_CACHE_DONE) {
       state := s_IDLE
     }
-}
+  }
 
 //*----------------------------- control signals --------------------------------
   val sIDLEEn = state === s_IDLE
@@ -224,15 +221,16 @@ class DCache extends Module {
   in.data_ready := sDoneEn || (sHitEn && cacheHitEn)            // Cache完成标志：miss 与 hit 两种情况
   in.data_read := Mux(reqOff(3), rData(127, 64), rData(63, 0))
 
-class S011HD1P_X32Y2D128_BW extends BlackBox with HasBlackBoxResource {
-  val io = IO(new Bundle {
-    val Q   = Output(UInt(128.W))
-    val CLK = Input(Clock())
-    val CEN = Input(Bool())
-    val WEN = Input(Bool())
-    val BWEN = Input(UInt(128.W))
-    val A   = Input(UInt(8.W))
-    val D   = Input(UInt(128.W))
-  })
-  addResource("/vsrc/S011HD1P_X32Y2D128_BW.v")
+  class S011HD1P_X32Y2D128_BW extends BlackBox with HasBlackBoxResource {
+    val io = IO(new Bundle {
+      val Q   = Output(UInt(128.W))
+      val CLK = Input(Clock())
+      val CEN = Input(Bool())
+      val WEN = Input(Bool())
+      val BWEN = Input(UInt(128.W))
+      val A   = Input(UInt(8.W))
+      val D   = Input(UInt(128.W))
+    })
+    addResource("/vsrc/S011HD1P_X32Y2D128_BW.v")
+ }
 }

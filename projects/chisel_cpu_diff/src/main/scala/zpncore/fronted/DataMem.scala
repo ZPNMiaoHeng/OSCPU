@@ -31,7 +31,7 @@ class DataMem extends Module {
   val memWr =     io.in.memWr             // 1-> Store inst
   val memDataIn = io.in.rs2Data
 
-  val data_size = WireInit((0.U)2.W)
+  val data_size = WireInit(0.U(2.W))
 
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
 

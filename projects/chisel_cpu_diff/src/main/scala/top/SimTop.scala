@@ -17,7 +17,7 @@ class SimTop extends Module {
 
   val core = Module(new Core)
   val icache = Module(new ICache)
-  val dcache = Module(new Dcache)
+  val dcache = Module(new DCache)
 
 //!  val mem = Module(new Ram2r1w)
   val top = Module(new AxiLite2Axi)
