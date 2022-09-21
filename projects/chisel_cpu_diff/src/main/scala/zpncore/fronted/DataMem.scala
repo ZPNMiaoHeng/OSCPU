@@ -58,7 +58,7 @@ class DataMem extends Module {
   
   io.dmem.data_write := memDataIn << alignBits * 8.U
   io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
-  io.dmem.data_size := SIZE_W                //!!!  10
+  io.dmem.data_size := SIZE_W                //!!!  10---应该传输指令类型 bhwd？？
   io.dmem.data_strb := Mux(io.in.typeL, 0.U,
    LookupTreeDefault(memOP, 0.U, List(
     "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                       // Sb
@@ -142,7 +142,7 @@ class DataMem extends Module {
     "b101".U -> ZeroExt(rdata(15, 0), XLEN),
     "b110".U -> ZeroExt(rdata(31, 0), XLEN)
   ))
-  val wData = Mux(memWr === 1.U, 0.U, rData)
+  val wData = Mux(memWr === 1.U, 0.U, rData)  //? load 指令才有效----可以改进,Mux加到下面
 
   val resW = SignExt(io.in.aluRes(31,0), 64)
   val memBPData = LookupTreeDefault(io.in.memtoReg, 0.U, List(

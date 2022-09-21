@@ -24,7 +24,10 @@ class DCache extends Module {
   val cacheLineNum = 128
 
   val cacheRData = WireInit(0.U(128.W))     //* 读 cacheLine
-//  val fillCacheDone = WireInit(false.B)
+  val cacheHitEn = WireInit(false.B)
+  val cacheLineWay = WireInit(false.B)
+  val cacheDirtyEn = WireInit(false.B)
+  val cacheIndex = WireInit(false.B)
 //*way0 and way1
   val way0V = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))
   val way0Tag = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(21.W))))
@@ -47,23 +50,9 @@ class DCache extends Module {
   val reqIndex = validAddr(10, 4)
   val reqOff = validAddr(3, 0)
 
-  // Cache Hit
-  val sHitEn = state === s_CACHE_HIT
-  val way0Hit = way0V(reqIndex) && (way0Tag(reqIndex) === reqTag) && sHitEn //* 两路组相连 Hit情况
-  val way1Hit = way1V(reqIndex) && (way1Tag(reqIndex) === reqTag) && sHitEn
-  val cacheHitEn = (way0Hit || way1Hit ) && (state === s_CACHE_HIT)
-  // Cache Miss and find cacheLine
-  val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U) && sHitEn      //* 年龄替换算法
-  val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U) && sHitEn      //* 年龄替换算法
-  val cacheLineWay = Mux(ageWay0En, 0.U, 1.U)                               //* 0.U->way0, 1.U->way1, way0优先级更高
-
-  val cacheDirtyEn = Mux(state === s_CACHE_DIRTY, Mux(cacheLineWay === 0.U, 
-        way0Dirty(reqIndex), way1Dirty(reqIndex)), 0.U)
-
-  val cacheIndex = Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  //* 最后确定好某个way
-
-  val cacheWEn = io.data_req 
-  val cacheBWen = LookupTreeDefault(in.data_strb, 0.U, List(
+  val valid_WEn = io.data_req
+  val valid_rdata = Mux(req_offset(3), cacheRData(127 , 64), cacheRData(63,0))
+  val valid_strb = LookupTreeDefault(in.data_strb, 0.U, List(
     "b0000_0001".U -> "h00000000000000ff".U,
     "b0000_0010".U -> "h000000000000ff00".U,
     "b0000_0100".U -> "h0000000000ff0000".U,
@@ -84,13 +73,60 @@ class DCache extends Module {
     "b1111_1111".U -> "hffffffffffffffff".U   
   ))
 
-  //  val cacheWData = RegInit(0.U(128.W))    //* 写 cacheLine
+  val valid_data  = Mux(req_offset(3), out.data_read(127,64), out.data_read(63, 0)) //*Axi
+  val valid_wdata = MuxLookup(in.data_size, 0.U, Array(
+    "b00".U -> MuxLookup(req_offset(2, 0), 0.U, Array(
+                    "b000".U -> Cat(valid_data(63, 8), in.data_write( 7, 0)),
+                    "b001".U -> Cat(valid_data(63,16), in.data_write(15, 8), valid_data( 7, 0)),
+                    "b010".U -> Cat(valid_data(63,24), in.data_write(23,16), valid_data(15, 0)),
+                    "b011".U -> Cat(valid_data(63,32), in.data_write(31,24), valid_data(23, 0)),
+                    "b100".U -> Cat(valid_data(63,40), in.data_write(39,32), valid_data(31, 0)),
+                    "b101".U -> Cat(valid_data(63,48), in.data_write(47,40), valid_data(39, 0)),
+                    "b110".U -> Cat(valid_data(63,56), in.data_write(55,48), valid_data(47, 0)),
+                    "b111".U -> Cat(in.data_write(63,56), valid_data(55, 0)),
+                )),
+    "b01".U -> MuxLookup(req_offset(2, 1), 0.U, Array(
+                    "b00".U -> Cat(valid_data(63,16), in.data_write(15, 0)),
+                    "b01".U -> Cat(valid_data(63,32), in.data_write(31,16), valid_data(15, 0)),
+                    "b10".U -> Cat(valid_data(63,48), in.data_write(47,32), valid_data(31, 0)),
+                    "b11".U -> Cat(in.data_write(63,48), valid_data(47, 0)),
+                )),
+    "b10".U -> MuxLookup(req_offset(2), 0.U, Array(
+                    "b0".U -> Cat(valid_data(63,32), in.data_write(31, 0)),
+                    "b1".U -> Cat(in.data_write(63,32), valid_data(31, 0)),
+                )),
+    "b11".U -> in.data_write,
+  ))
+
+  data_read := MuxLookup(in.data_size, 0.U, Array(                //? 位扩充？
+    "b00".U -> MuxLookup(req_offset(2, 0), 0.U, Array(
+                    "b000".U -> Cat(0.U, valid_rdata( 7, 0)),
+                    "b001".U -> Cat(0.U, valid_rdata(15, 8)),
+                    "b010".U -> Cat(0.U, valid_rdata(23,16)),
+                    "b011".U -> Cat(0.U, valid_rdata(31,24)),
+                    "b100".U -> Cat(0.U, valid_rdata(39,32)),
+                    "b101".U -> Cat(0.U, valid_rdata(47,40)),
+                    "b110".U -> Cat(0.U, valid_rdata(55,48)),
+                    "b111".U -> Cat(0.U, valid_rdata(63,56)),
+                )),
+    "b01".U -> MuxLookup(req_offset(2, 1), 0.U, Array(
+                    "b00".U -> Cat(0.U, valid_rdata(15, 0)),
+                    "b01".U -> Cat(0.U, valid_rdata(31,16)),
+                    "b10".U -> Cat(0.U, valid_rdata(47,32)),
+                    "b11".U -> Cat(0.U, valid_rdata(63,48)),
+                )),
+    "b10".U -> MuxLookup(req_offset(2), 0.U, Array(
+                    "b0".U -> Cat(0.U, valid_rdata(31, 0)),
+                    "b1".U -> Cat(0.U, valid_rdata(63,32)),
+                )),
+    "b11".U -> valid_rdata,
+  ))
   
   val req = Module(new S011HD1P_X32Y2D128_BW)
   req.io.CLK := clock
   req.io.CEN := true.B
-  req.io.WEN := cacheWEn
-  req.io.BWEN := Mux(cacheWEn, cacheBWen, 0.U)
+  req.io.WEN := valid_WEn
+  req.io.BWEN := Mux(valid_WEn, valid_strb, 0.U)
   req.io.A := cacheIndex
   req.io.D := cacheWData
   cacheRData := req.io.Q
@@ -123,7 +159,7 @@ class DCache extends Module {
       }
     }
     is(s_CACHE_WRITE) {
-      when( out.data_ready ) {    //* 读取完成信号
+      when( out.data_ready ) {     //* 读取完成信号
         state := s_CACHE_DONE
       }
     }
@@ -134,17 +170,34 @@ class DCache extends Module {
 
 //*----------------------------- control signals --------------------------------
   val sIDLEEn = state === s_IDLE
-  in.data_ready
+  
+  // Cache Hit
+  val sHitEn = state === s_CACHE_HIT
+  val way0Hit = way0V(reqIndex) && (way0Tag(reqIndex) === reqTag) && sHitEn // 两路组相连 Hit情况
+  val way1Hit = way1V(reqIndex) && (way1Tag(reqIndex) === reqTag) && sHitEn
+  cacheHitEn := (way0Hit || way1Hit ) && (state === s_CACHE_HIT)
+
+  // Cache Miss and find cacheLine
+  val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U) && sHitEn      // 年龄替换算法
+  val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U) && sHitEn      // 年龄替换算法
+  cacheLineWay := Mux(ageWay0En, 0.U, 1.U)                               // 0.U->way0, 1.U->way1, way0优先级更高
+  
   val sDirtyEn = state === s_CACHE_DIRTY
+ 
+  cacheDirtyEn := Mux(sDirtyEn, Mux(cacheLineWay === 0.U, 
+        way0Dirty(reqIndex), way1Dirty(reqIndex)), 0.U)
 
-  val sWriteEn = state === s_AXI_WRITE   //* 将这个CacheLIne中数据写到存储器中
+  cacheIndex := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 最后确定好某个way
 
-  val sReadEn = state === s_CACHE_WRITE     //* 将存储器中对应位置写入到cacheLine中
+  val sWriteEn = state === s_AXI_WRITE      //* 将这个CacheLIne中数据写到存储器中 -> 总线写请求
+
+  val sReadEn = state === s_CACHE_WRITE     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求
   val axiEn = sWriteEn || sReadEn
+
   out.data_valid := axiEn
   out.data_req := Mux(sWriteEn, REQ_WRITE, REQ_READ)
-  out.data_addr := Mux(axiEn, validAddr, 0.U)
-  out.data_size := Mux(axiEn, SIZE_W, 0.U) //??
+  out.data_addr := Mux(sWriteEn, 0.U, validAddr) //! 地址就需要变换，总线读写需要四字节对齐处理
+  out.data_size := Mux(axiEn, SIZE_D, 0.U) //??!
   out.data_strb := Mux(sWriteEn, in.data_strb, 0.U)
   out.data_write := Mux(sWriteEn, cacheRData, 0.U)  //TODO: implement
 
@@ -163,14 +216,11 @@ class DCache extends Module {
     }
   }
 
-  val rData = Mux(sDoneEn, out.data_read, 0.U)
-  in.data_ready := sDoneEn
-  in.data_read := LookupTreeDefault(reqOff(3, 2), 0.U , List(
-    "b00".U -> rData(31 , 0 ),
-    "b01".U -> rData(63 , 32),
-    "b10".U -> rData(95 , 64),
-    "b11".U -> rData(127, 96)
-  ))
+  val rData = Mux(sHitEn, cacheRData,
+                Mux(sDoneEn, out.data_read, 0.U)) //!还有Hit情况
+
+  in.data_ready := sDoneEn || (sHitEn && cacheHitEn)            // Cache完成标志：miss 与 hit 两种情况
+  in.data_read := Mux(reqOff(3), rData(127, 64), rData(63, 0))
 
 class S011HD1P_X32Y2D128_BW extends BlackBox with HasBlackBoxResource {
   val io = IO(new Bundle {
