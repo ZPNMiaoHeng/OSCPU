@@ -51,7 +51,6 @@ class DCache extends Module {
   val reqOff = validAddr(3, 0)
 
   val valid_WEn = WireInit(0.U(1.W))                                        //* in.data_req
-  val valid_rdata = Mux(reqOff(3), cacheRData(127, 64), cacheRData(63, 0) ) //* cacheLine Data
   val valid_strb = LookupTreeDefault(in.data_strb, 0.U, List(
     "b0000_0001".U -> "h00000000000000ff".U,
     "b0000_0010".U -> "h000000000000ff00".U,
@@ -96,30 +95,6 @@ class DCache extends Module {
                     "b1".U -> Cat(in.data_write(63,32), valid_data(31, 0)),
                 )),
     "b11".U -> in.data_write,
-  ))
-
-  val data_read = MuxLookup(in.data_size, 0.U, Array(                //? 位扩充？
-    "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
-                    "b000".U -> Cat(0.U, valid_rdata( 7, 0)),
-                    "b001".U -> Cat(0.U, valid_rdata(15, 8)),
-                    "b010".U -> Cat(0.U, valid_rdata(23,16)),
-                    "b011".U -> Cat(0.U, valid_rdata(31,24)),
-                    "b100".U -> Cat(0.U, valid_rdata(39,32)),
-                    "b101".U -> Cat(0.U, valid_rdata(47,40)),
-                    "b110".U -> Cat(0.U, valid_rdata(55,48)),
-                    "b111".U -> Cat(0.U, valid_rdata(63,56)),
-                )),
-    "b01".U -> MuxLookup(reqOff(2, 1), 0.U, Array(
-                    "b00".U -> Cat(0.U, valid_rdata(15, 0)),
-                    "b01".U -> Cat(0.U, valid_rdata(31,16)),
-                    "b10".U -> Cat(0.U, valid_rdata(47,32)),
-                    "b11".U -> Cat(0.U, valid_rdata(63,48)),
-                )),
-    "b10".U -> MuxLookup(reqOff(2), 0.U, Array(
-                    "b0".U -> Cat(0.U, valid_rdata(31, 0)),
-                    "b1".U -> Cat(0.U, valid_rdata(63,32)),
-                )),
-    "b11".U -> valid_rdata,
   ))
   
   val req = Module(new S011HD1P_X32Y2D128_BW)
@@ -221,11 +196,32 @@ class DCache extends Module {
 
   val rData = Mux(sHitEn, cacheRData,
                 Mux(sDoneEn, out.data_read, 0.U))
+  val rDataHL = Mux(reqOff(3), rData(127, 64), rData(63, 0))    // 选择对应的位置；
 
-  in.data_ready := sDoneEn || (sHitEn && cacheHitEn)            // Cache完成标志：miss 与 hit 两种情况
-  
-//  in.data_read := data_read //?Mux(reqOff(3), rData(127, 64), rData(63, 0))
-  in.data_read := Mux(reqOff(3), rData(127, 64), rData(63, 0))
+  in.data_ready := sDoneEn || (sHitEn && cacheHitEn)            // Cache完成标志：miss 与 hit 两种情况  
+  in.data_read :=  MuxLookup(in.data_size, 0.U, Array(                //? 位扩充？
+    "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
+                    "b000".U -> Cat(0.U, rDataHL( 7, 0)),
+                    "b001".U -> Cat(0.U, rDataHL(15, 8)),
+                    "b010".U -> Cat(0.U, rDataHL(23,16)),
+                    "b011".U -> Cat(0.U, rDataHL(31,24)),
+                    "b100".U -> Cat(0.U, rDataHL(39,32)),
+                    "b101".U -> Cat(0.U, rDataHL(47,40)),
+                    "b110".U -> Cat(0.U, rDataHL(55,48)),
+                    "b111".U -> Cat(0.U, rDataHL(63,56)),
+                )),
+    "b01".U -> MuxLookup(reqOff(2, 1), 0.U, Array(
+                    "b00".U -> Cat(0.U, rDataHL(15, 0)),
+                    "b01".U -> Cat(0.U, rDataHL(31,16)),
+                    "b10".U -> Cat(0.U, rDataHL(47,32)),
+                    "b11".U -> Cat(0.U, rDataHL(63,48)),
+                )),
+    "b10".U -> MuxLookup(reqOff(2), 0.U, Array(
+                    "b0".U -> Cat(0.U, rDataHL(31, 0)),
+                    "b1".U -> Cat(0.U, rDataHL(63,32)),
+                )),
+    "b11".U -> rDataHL,
+  ))
 
   class S011HD1P_X32Y2D128_BW extends BlackBox with HasBlackBoxResource {
     val io = IO(new Bundle {

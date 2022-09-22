@@ -40,9 +40,6 @@ class DataMem extends Module {
 
   io.dmem.data_addr := memAddr
 
-//  val dmemDone = RegNext(io.dmem.data_ready)  // 访存完成后阻塞valid一周期,防止再次进入此指令总线访存
-//  io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone                // 将IF取指那一周除去
-
   val dmemDone = RegInit(false.B)  //* 访存完成后dmemDone拉高，只有进入下一条inst时才进入总线访存；
   val inst = Reg(UInt(WLEN.W))
 
@@ -62,34 +59,34 @@ class DataMem extends Module {
   io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
   io.dmem.data_size := data_size //SIZE_W                //!!!  10---应该传输指令类型 bhwd？？
   io.dmem.data_strb := Mux(io.in.typeL, 0.U,
-   LookupTreeDefault(memOP, 0.U, List(
-    "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                       // Sb
-      1.U  -> "b0000_0010".U,
-      2.U  -> "b0000_0100".U,
-      3.U  -> "b0000_1000".U,
-      4.U  -> "b0001_0000".U,
-      5.U  -> "b0010_0000".U,
-      6.U  -> "b0100_0000".U,
-      7.U  -> "b1000_0000".U,
+    LookupTreeDefault(memOP, 0.U, List(
+      "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                       // Sb
+        1.U  -> "b0000_0010".U,
+        2.U  -> "b0000_0100".U,
+        3.U  -> "b0000_1000".U,
+        4.U  -> "b0001_0000".U,
+        5.U  -> "b0010_0000".U,
+        6.U  -> "b0100_0000".U,
+        7.U  -> "b1000_0000".U,
 
-      9.U  -> "b0000_0010".U,
-      10.U -> "b0000_0100".U,
-      11.U -> "b0000_1000".U,
-      12.U -> "b0001_0000".U,
-      13.U -> "b0010_0000".U,
-      14.U -> "b0100_0000".U,
-      15.U -> "b1000_0000".U
+        9.U  -> "b0000_0010".U,
+        10.U -> "b0000_0100".U,
+        11.U -> "b0000_1000".U,
+        12.U -> "b0001_0000".U,
+        13.U -> "b0010_0000".U,
+        14.U -> "b0100_0000".U,
+        15.U -> "b1000_0000".U
     )),
-    "b001".U -> LookupTreeDefault(alignBits,  "b0000_0011".U, List(                      // Sh
-      2.U  -> "b0000_1100".U,
-      4.U  -> "b0011_0000".U,
-      6.U  -> "b1100_0000".U,
-      10.U -> "b0000_1100".U,
-      12.U -> "b0011_0000".U,
-      14.U -> "b1100_0000".U
+      "b001".U -> LookupTreeDefault(alignBits,  "b0000_0011".U, List(                      // Sh
+        2.U  -> "b0000_1100".U,
+        4.U  -> "b0011_0000".U,
+        6.U  -> "b1100_0000".U,
+        10.U -> "b0000_1100".U,
+        12.U -> "b0011_0000".U,
+        14.U -> "b1100_0000".U
     )),
-    "b010".U -> Mux(alignBits === 0.U || alignBits === 8.U , "b0000_1111".U, "b1111_0000".U),                  // Sw
-    "b011".U -> "b1111_1111".U                                                           // Sd
+      "b010".U -> Mux(alignBits === 0.U || alignBits === 8.U , "b0000_1111".U, "b1111_0000".U),                  // Sw
+      "b011".U -> "b1111_1111".U                                                           // Sd
   )))
 
 //*------------------------------ Load 指令 ----------------------------------------------------------------
@@ -101,12 +98,11 @@ class DataMem extends Module {
   val memAxi = Mux(dmemEn && !dmemFire, true.B, false.B)
 //防止IF未更新inst，再次进入总线访存，导致流水线一直处于暂停状态
   io.memDone := Mux(!io.in.typeL, !memAxi || io.IFReady, dmemDone)  //!! 当连续load指令时，选取dmemDone延迟一周期；
-//  io.memDone := dmemDone
 
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
-       ((memtoReg === "b01".U) || (memWr === 1.U))
+        ((memtoReg === "b01".U) || (memWr === 1.U))
 
   io.dmem.addr := memAddr
   io.dmem.wen := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) && (memWr === 1.U)
