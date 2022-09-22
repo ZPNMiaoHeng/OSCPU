@@ -28,8 +28,8 @@ class Core extends Module {
   val flushIfIdEn  = false.B
   val flushIdExEn  = Mux(IF.io.IFDone, 
                       Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
-                       true.B, false.B),
-                        false.B)
+                        true.B, false.B),
+                          false.B)
   val flushExMemEn = false.B
   val flushMemWbEn = false.B
 
