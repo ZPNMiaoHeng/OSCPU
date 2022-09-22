@@ -127,7 +127,7 @@ class DCache extends Module {
   req.io.CEN := true.B
   //! 不足之处还未考虑store
   req.io.WEN := valid_WEn                                               //* 触发条件：未命中，存入DCache数据 ----> load 四字节对齐处理 128bits
-  req.io.BWEN := Mux(in.data_req, valid_strb, "hffffffffffffffff".U)    //* Load 掩码全为有效；
+  req.io.BWEN := Mux(in.data_req, valid_strb, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U)    //* Load 掩码全为有效；
   req.io.A := cacheIndex                                                //* 地址需要对应way进行修改；
   req.io.D := Mux(in.data_req, valid_wdata,  out.data_read)             //* 总线上读取得128bits
   cacheRData := req.io.Q
