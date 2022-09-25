@@ -140,7 +140,7 @@ class DCache extends Module {
   cacheIndex := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
 
   val sWriteEn = state === s_AXI_WRITE      //* 将这个CacheLine中数据写到存储器中 -> 总线写请求
-  val sReadEn = state === s_CACHE_WRITE     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求
+  val sReadEn = state === s_CACHE_WRITE     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求 看到这里了
   val axiEn = sWriteEn || sReadEn  //Mux(in.data_req, sWriteEn, sWriteEn || sReadEn)
 
   out.data_valid := axiEn
