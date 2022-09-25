@@ -50,8 +50,8 @@ class DCache extends Module {
   val reqIndex = validAddr(10, 4)
   val reqOff = validAddr(3, 0)
 
-  val valid_WEn = WireInit(0.U(1.W))                                        //* in.data_req
-  val valid_strb = LookupTreeDefault(in.data_strb, 0.U, List(                     //* 对应664bit下存储位置
+  val valid_WEn = WireInit(0.U(1.W))                                         //* in.data_req
+  val strbT = LookupTreeDefault(in.data_strb, 0.U, List(                     //* 对应64bit下存储位置
     "b0000_0001".U -> "h00000000000000ff".U,
     "b0000_0010".U -> "h000000000000ff00".U,
     "b0000_0100".U -> "h0000000000ff0000".U,
@@ -71,7 +71,7 @@ class DCache extends Module {
     
     "b1111_1111".U -> "hffffffffffffffff".U   
   ))
-//  val valid_strb = Mux(reqOff(3), Cat(strb, "hffffffffffffffff".U ), strb)  //!!
+  val valid_strb = Mux(reqOff(3), Cat(strbT, "h0000000000000000".U), Cat("h0000000000000000".U, strbT))
 
   val valid_wdata = WireInit(0.U(128.W))
 
@@ -135,15 +135,11 @@ class DCache extends Module {
   cacheLineWay := Mux(ageWay0En, 0.U, 1.U)                                  // 0.U->way0, 1.U->way1, way0优先级更高
 
   val sDirtyEn = state === s_CACHE_DIRTY
+  //* 此状态下是 某cacheLine是否为脏，从而跳到不同状态下*/
+  cacheDirtyEn := Mux(cacheLineWay === 0.U, sDirtyEn && way0Dirty(reqIndex), sDirtyEn && way1Dirty(reqIndex))
+  cacheIndex := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
 
-  cacheDirtyEn := Mux(sDirtyEn, Mux(cacheLineWay === 0.U, 
-        way0Dirty(reqIndex), way1Dirty(reqIndex)), 0.U)
-
-//  val cacheIndex = Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 最后确定好某个way
-//  cacheIndex := Mux(in.data_req, Cat(cacheIndex, reqOff(3)), cacheIndex)  // store 加上off(3),处理
-  cacheIndex := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 最后确定好某个way
-
-  val sWriteEn = state === s_AXI_WRITE      //* 将这个CacheLIne中数据写到存储器中 -> 总线写请求
+  val sWriteEn = state === s_AXI_WRITE      //* 将这个CacheLine中数据写到存储器中 -> 总线写请求
   val sReadEn = state === s_CACHE_WRITE     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求
   val axiEn = sWriteEn || sReadEn  //Mux(in.data_req, sWriteEn, sWriteEn || sReadEn)
 
@@ -153,7 +149,7 @@ class DCache extends Module {
   out.data_size := Mux(axiEn, SIZE_D, 0.U) //??!
   out.data_strb := Mux(sWriteEn, in.data_strb, 0.U)
   out.data_write := Mux(sWriteEn, cacheRData, 0.U)  //TODO: implement
-
+/*
   val valid_data = Mux(cacheHitEn, Mux(reqOff(3), cacheRData(127, 64), cacheRData(63, 0)), 
                       Mux(reqOff(3), out.data_read(127,64), out.data_read(63, 0)))                   //Axi
   val cacheWData = MuxLookup(in.data_size, 0.U, Array(
@@ -179,10 +175,11 @@ class DCache extends Module {
                 )),
     "b11".U -> in.data_write,
   )) 
+*/
+  val cacheWData = Mux(cacheHitEn, cacheRData, out.data_read)  // write cacheLine
+  valid_wdata := Mux(reqOff(3), Cat(in.data_write, cacheWData(63, 0)), Cat(cacheWData(127, 64), in.data_write))
 
-  valid_wdata := Mux(sHitEn, cacheWData, 0.U)
-
-  valid_WEn := Mux(in.data_req, (sHitEn && cacheHitEn), sReadEn)
+  valid_WEn := Mux(in.data_req, cacheHitEn || , sReadEn)
 
   val sDoneEn = state === s_CACHE_DONE                      //* 写入到存储器后，更新对应寄存器
   way0Age(reqIndex) := Mux(ageWay0En && sDoneEn, 1.U, 0.U)  //* 年龄替换算法

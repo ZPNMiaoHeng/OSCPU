@@ -14434,22 +14434,24 @@ module DCache(
   wire [20:0] reqTag = io_dmem_data_addr[31:11]; // @[DCache.scala 49:25]
   wire [6:0] reqIndex = io_dmem_data_addr[10:4]; // @[DCache.scala 50:27]
   wire [3:0] reqOff = io_dmem_data_addr[3:0]; // @[DCache.scala 51:25]
-  wire [7:0] _valid_strb_T_1 = 8'h1 == io_dmem_data_strb ? 8'hff : 8'h0; // @[Mux.scala 81:58]
-  wire [15:0] _valid_strb_T_3 = 8'h2 == io_dmem_data_strb ? 16'hff00 : {{8'd0}, _valid_strb_T_1}; // @[Mux.scala 81:58]
-  wire [23:0] _valid_strb_T_5 = 8'h4 == io_dmem_data_strb ? 24'hff0000 : {{8'd0}, _valid_strb_T_3}; // @[Mux.scala 81:58]
-  wire [31:0] _valid_strb_T_7 = 8'h8 == io_dmem_data_strb ? 32'hff000000 : {{8'd0}, _valid_strb_T_5}; // @[Mux.scala 81:58]
-  wire [39:0] _valid_strb_T_9 = 8'h10 == io_dmem_data_strb ? 40'hff00000000 : {{8'd0}, _valid_strb_T_7}; // @[Mux.scala 81:58]
-  wire [47:0] _valid_strb_T_11 = 8'h20 == io_dmem_data_strb ? 48'hff0000000000 : {{8'd0}, _valid_strb_T_9}; // @[Mux.scala 81:58]
-  wire [55:0] _valid_strb_T_13 = 8'h40 == io_dmem_data_strb ? 56'hff000000000000 : {{8'd0}, _valid_strb_T_11}; // @[Mux.scala 81:58]
-  wire [63:0] _valid_strb_T_15 = 8'h80 == io_dmem_data_strb ? 64'hff00000000000000 : {{8'd0}, _valid_strb_T_13}; // @[Mux.scala 81:58]
-  wire [63:0] _valid_strb_T_17 = 8'h3 == io_dmem_data_strb ? 64'hffff : _valid_strb_T_15; // @[Mux.scala 81:58]
-  wire [63:0] _valid_strb_T_19 = 8'hc == io_dmem_data_strb ? 64'hffff0000 : _valid_strb_T_17; // @[Mux.scala 81:58]
-  wire [63:0] _valid_strb_T_21 = 8'h30 == io_dmem_data_strb ? 64'hffff00000000 : _valid_strb_T_19; // @[Mux.scala 81:58]
-  wire [63:0] _valid_strb_T_23 = 8'hc0 == io_dmem_data_strb ? 64'hffff000000000000 : _valid_strb_T_21; // @[Mux.scala 81:58]
-  wire [63:0] _valid_strb_T_25 = 8'hf == io_dmem_data_strb ? 64'hffffffff : _valid_strb_T_23; // @[Mux.scala 81:58]
-  wire [63:0] _valid_strb_T_27 = 8'hf0 == io_dmem_data_strb ? 64'hffffffff00000000 : _valid_strb_T_25; // @[Mux.scala 81:58]
-  wire [63:0] valid_strb = 8'hff == io_dmem_data_strb ? 64'hffffffffffffffff : _valid_strb_T_27; // @[Mux.scala 81:58]
-  wire  sHitEn = state == 3'h1; // @[DCache.scala 127:22]
+  wire [7:0] _strbT_T_1 = 8'h1 == io_dmem_data_strb ? 8'hff : 8'h0; // @[Mux.scala 81:58]
+  wire [15:0] _strbT_T_3 = 8'h2 == io_dmem_data_strb ? 16'hff00 : {{8'd0}, _strbT_T_1}; // @[Mux.scala 81:58]
+  wire [23:0] _strbT_T_5 = 8'h4 == io_dmem_data_strb ? 24'hff0000 : {{8'd0}, _strbT_T_3}; // @[Mux.scala 81:58]
+  wire [31:0] _strbT_T_7 = 8'h8 == io_dmem_data_strb ? 32'hff000000 : {{8'd0}, _strbT_T_5}; // @[Mux.scala 81:58]
+  wire [39:0] _strbT_T_9 = 8'h10 == io_dmem_data_strb ? 40'hff00000000 : {{8'd0}, _strbT_T_7}; // @[Mux.scala 81:58]
+  wire [47:0] _strbT_T_11 = 8'h20 == io_dmem_data_strb ? 48'hff0000000000 : {{8'd0}, _strbT_T_9}; // @[Mux.scala 81:58]
+  wire [55:0] _strbT_T_13 = 8'h40 == io_dmem_data_strb ? 56'hff000000000000 : {{8'd0}, _strbT_T_11}; // @[Mux.scala 81:58]
+  wire [63:0] _strbT_T_15 = 8'h80 == io_dmem_data_strb ? 64'hff00000000000000 : {{8'd0}, _strbT_T_13}; // @[Mux.scala 81:58]
+  wire [63:0] _strbT_T_17 = 8'h3 == io_dmem_data_strb ? 64'hffff : _strbT_T_15; // @[Mux.scala 81:58]
+  wire [63:0] _strbT_T_19 = 8'hc == io_dmem_data_strb ? 64'hffff0000 : _strbT_T_17; // @[Mux.scala 81:58]
+  wire [63:0] _strbT_T_21 = 8'h30 == io_dmem_data_strb ? 64'hffff00000000 : _strbT_T_19; // @[Mux.scala 81:58]
+  wire [63:0] _strbT_T_23 = 8'hc0 == io_dmem_data_strb ? 64'hffff000000000000 : _strbT_T_21; // @[Mux.scala 81:58]
+  wire [63:0] _strbT_T_25 = 8'hf == io_dmem_data_strb ? 64'hffffffff : _strbT_T_23; // @[Mux.scala 81:58]
+  wire [63:0] _strbT_T_27 = 8'hf0 == io_dmem_data_strb ? 64'hffffffff00000000 : _strbT_T_25; // @[Mux.scala 81:58]
+  wire [63:0] strbT = 8'hff == io_dmem_data_strb ? 64'hffffffffffffffff : _strbT_T_27; // @[Mux.scala 81:58]
+  wire [64:0] _valid_strb_T_1 = {strbT,1'h0}; // @[Cat.scala 31:58]
+  wire [64:0] _valid_strb_T_2 = {1'h0,strbT}; // @[Cat.scala 31:58]
+  wire [64:0] valid_strb = reqOff[3] ? _valid_strb_T_1 : _valid_strb_T_2; // @[DCache.scala 74:23]
   wire  _GEN_140 = 7'h1 == reqIndex ? way0V_1 : way0V_0; // @[DCache.scala 128:{33,33}]
   wire  _GEN_141 = 7'h2 == reqIndex ? way0V_2 : _GEN_140; // @[DCache.scala 128:{33,33}]
   wire  _GEN_142 = 7'h3 == reqIndex ? way0V_3 : _GEN_141; // @[DCache.scala 128:{33,33}]
@@ -14704,6 +14706,7 @@ module DCache(
   wire [20:0] _GEN_136 = 7'h7d == reqIndex ? way0Tag_125 : _GEN_135; // @[DCache.scala 128:{55,55}]
   wire [20:0] _GEN_137 = 7'h7e == reqIndex ? way0Tag_126 : _GEN_136; // @[DCache.scala 128:{55,55}]
   wire [20:0] _GEN_138 = 7'h7f == reqIndex ? way0Tag_127 : _GEN_137; // @[DCache.scala 128:{55,55}]
+  wire  sHitEn = state == 3'h1; // @[DCache.scala 127:22]
   wire  way0Hit = _GEN_266 & _GEN_138 == reqTag & sHitEn; // @[DCache.scala 128:67]
   wire  _GEN_396 = 7'h1 == reqIndex ? way1V_1 : way1V_0; // @[DCache.scala 129:{33,33}]
   wire  _GEN_397 = 7'h2 == reqIndex ? way1V_2 : _GEN_396; // @[DCache.scala 129:{33,33}]
@@ -14962,38 +14965,11 @@ module DCache(
   wire  way1Hit = _GEN_522 & _GEN_394 == reqTag & sHitEn; // @[DCache.scala 129:67]
   wire  cacheHitEn = (way0Hit | way1Hit) & sHitEn; // @[DCache.scala 130:39]
   wire [127:0] cacheRData = req_Q;
-  wire [63:0] _valid_data_T_3 = reqOff[3] ? cacheRData[127:64] : cacheRData[63:0]; // @[DCache.scala 157:39]
-  wire [63:0] _valid_data_T_7 = reqOff[3] ? io_out_data_read[127:64] : io_out_data_read[63:0]; // @[DCache.scala 158:26]
-  wire [63:0] valid_data = cacheHitEn ? _valid_data_T_3 : _valid_data_T_7; // @[DCache.scala 157:23]
-  wire [63:0] _cacheWData_T_72 = {io_dmem_data_write[63:32],valid_data[31:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_69 = {valid_data[63:32],io_dmem_data_write[31:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_74 = reqOff[2] ? _cacheWData_T_72 : _cacheWData_T_69; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_59 = {io_dmem_data_write[63:48],valid_data[47:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_56 = {valid_data[63:48],io_dmem_data_write[47:32],valid_data[31:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_52 = {valid_data[63:32],io_dmem_data_write[31:16],valid_data[15:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_48 = {valid_data[63:16],io_dmem_data_write[15:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_61 = 2'h1 == reqOff[2:1] ? _cacheWData_T_52 : _cacheWData_T_48; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_63 = 2'h2 == reqOff[2:1] ? _cacheWData_T_56 : _cacheWData_T_61; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_65 = 2'h3 == reqOff[2:1] ? _cacheWData_T_59 : _cacheWData_T_63; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_30 = {io_dmem_data_write[63:56],valid_data[55:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_27 = {valid_data[63:56],io_dmem_data_write[55:48],valid_data[47:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_23 = {valid_data[63:48],io_dmem_data_write[47:40],valid_data[39:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_19 = {valid_data[63:40],io_dmem_data_write[39:32],valid_data[31:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_15 = {valid_data[63:32],io_dmem_data_write[31:24],valid_data[23:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_11 = {valid_data[63:24],io_dmem_data_write[23:16],valid_data[15:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_7 = {valid_data[63:16],io_dmem_data_write[15:8],valid_data[7:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_3 = {valid_data[63:8],io_dmem_data_write[7:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_32 = 3'h1 == reqOff[2:0] ? _cacheWData_T_7 : _cacheWData_T_3; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_34 = 3'h2 == reqOff[2:0] ? _cacheWData_T_11 : _cacheWData_T_32; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_36 = 3'h3 == reqOff[2:0] ? _cacheWData_T_15 : _cacheWData_T_34; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_38 = 3'h4 == reqOff[2:0] ? _cacheWData_T_19 : _cacheWData_T_36; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_40 = 3'h5 == reqOff[2:0] ? _cacheWData_T_23 : _cacheWData_T_38; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_42 = 3'h6 == reqOff[2:0] ? _cacheWData_T_27 : _cacheWData_T_40; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_44 = 3'h7 == reqOff[2:0] ? _cacheWData_T_30 : _cacheWData_T_42; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_76 = 2'h1 == io_dmem_data_size ? _cacheWData_T_65 : _cacheWData_T_44; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_78 = 2'h2 == io_dmem_data_size ? _cacheWData_T_74 : _cacheWData_T_76; // @[Mux.scala 81:58]
-  wire [127:0] cacheWData = 2'h3 == io_dmem_data_size ? io_dmem_data_write : {{64'd0}, _cacheWData_T_78}; // @[Mux.scala 81:58]
-  wire [127:0] valid_wdata = sHitEn ? cacheWData : 128'h0; // @[DCache.scala 183:21]
+  wire [127:0] cacheWData = cacheHitEn ? cacheRData : io_out_data_read; // @[DCache.scala 181:23]
+  wire [191:0] _valid_wdata_T_2 = {io_dmem_data_write,cacheWData[63:0]}; // @[Cat.scala 31:58]
+  wire [191:0] _valid_wdata_T_4 = {cacheWData[127:64],io_dmem_data_write}; // @[Cat.scala 31:58]
+  wire [191:0] _valid_wdata_T_5 = reqOff[3] ? _valid_wdata_T_2 : _valid_wdata_T_4; // @[DCache.scala 182:21]
+  wire [127:0] valid_wdata = _valid_wdata_T_5[127:0];
   wire  sDirtyEn = state == 3'h2; // @[DCache.scala 137:24]
   wire  _GEN_524 = 7'h1 == reqIndex ? way0Age_1 : way0Age_0; // @[DCache.scala 133:{53,53}]
   wire  _GEN_525 = 7'h2 == reqIndex ? way0Age_2 : _GEN_524; // @[DCache.scala 133:{53,53}]
@@ -15389,398 +15365,398 @@ module DCache(
   wire [2:0] _GEN_7 = 3'h3 == state ? _GEN_3 : _GEN_6; // @[DCache.scala 89:17]
   wire [7:0] _cacheIndex_T_1 = {1'h0,reqIndex}; // @[Cat.scala 31:58]
   wire [7:0] _cacheIndex_T_2 = {1'h1,reqIndex}; // @[Cat.scala 31:58]
-  wire [7:0] _cacheIndex_T_3 = _cacheDirtyEn_T ? _cacheIndex_T_1 : _cacheIndex_T_2; // @[DCache.scala 144:20]
-  wire  sWriteEn = state == 3'h3; // @[DCache.scala 146:24]
-  wire  sReadEn = state == 3'h4; // @[DCache.scala 147:23]
-  wire  _valid_WEn_T = sHitEn & cacheHitEn; // @[DCache.scala 185:41]
-  wire  sDoneEn = state == 3'h5; // @[DCache.scala 187:23]
-  wire  _GEN_3595 = 7'h0 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1291 = 7'h0 == reqIndex | way0V_0; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3596 = 7'h1 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1292 = 7'h1 == reqIndex | way0V_1; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3597 = 7'h2 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1293 = 7'h2 == reqIndex | way0V_2; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3598 = 7'h3 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1294 = 7'h3 == reqIndex | way0V_3; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3599 = 7'h4 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1295 = 7'h4 == reqIndex | way0V_4; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3600 = 7'h5 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1296 = 7'h5 == reqIndex | way0V_5; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3601 = 7'h6 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1297 = 7'h6 == reqIndex | way0V_6; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3602 = 7'h7 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1298 = 7'h7 == reqIndex | way0V_7; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3603 = 7'h8 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1299 = 7'h8 == reqIndex | way0V_8; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3604 = 7'h9 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1300 = 7'h9 == reqIndex | way0V_9; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3605 = 7'ha == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1301 = 7'ha == reqIndex | way0V_10; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3606 = 7'hb == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1302 = 7'hb == reqIndex | way0V_11; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3607 = 7'hc == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1303 = 7'hc == reqIndex | way0V_12; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3608 = 7'hd == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1304 = 7'hd == reqIndex | way0V_13; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3609 = 7'he == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1305 = 7'he == reqIndex | way0V_14; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3610 = 7'hf == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1306 = 7'hf == reqIndex | way0V_15; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3611 = 7'h10 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1307 = 7'h10 == reqIndex | way0V_16; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3612 = 7'h11 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1308 = 7'h11 == reqIndex | way0V_17; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3613 = 7'h12 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1309 = 7'h12 == reqIndex | way0V_18; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3614 = 7'h13 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1310 = 7'h13 == reqIndex | way0V_19; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3615 = 7'h14 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1311 = 7'h14 == reqIndex | way0V_20; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3616 = 7'h15 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1312 = 7'h15 == reqIndex | way0V_21; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3617 = 7'h16 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1313 = 7'h16 == reqIndex | way0V_22; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3618 = 7'h17 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1314 = 7'h17 == reqIndex | way0V_23; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3619 = 7'h18 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1315 = 7'h18 == reqIndex | way0V_24; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3620 = 7'h19 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1316 = 7'h19 == reqIndex | way0V_25; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3621 = 7'h1a == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1317 = 7'h1a == reqIndex | way0V_26; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3622 = 7'h1b == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1318 = 7'h1b == reqIndex | way0V_27; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3623 = 7'h1c == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1319 = 7'h1c == reqIndex | way0V_28; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3624 = 7'h1d == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1320 = 7'h1d == reqIndex | way0V_29; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3625 = 7'h1e == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1321 = 7'h1e == reqIndex | way0V_30; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3626 = 7'h1f == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1322 = 7'h1f == reqIndex | way0V_31; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3627 = 7'h20 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1323 = 7'h20 == reqIndex | way0V_32; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3628 = 7'h21 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1324 = 7'h21 == reqIndex | way0V_33; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3629 = 7'h22 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1325 = 7'h22 == reqIndex | way0V_34; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3630 = 7'h23 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1326 = 7'h23 == reqIndex | way0V_35; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3631 = 7'h24 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1327 = 7'h24 == reqIndex | way0V_36; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3632 = 7'h25 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1328 = 7'h25 == reqIndex | way0V_37; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3633 = 7'h26 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1329 = 7'h26 == reqIndex | way0V_38; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3634 = 7'h27 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1330 = 7'h27 == reqIndex | way0V_39; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3635 = 7'h28 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1331 = 7'h28 == reqIndex | way0V_40; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3636 = 7'h29 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1332 = 7'h29 == reqIndex | way0V_41; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3637 = 7'h2a == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1333 = 7'h2a == reqIndex | way0V_42; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3638 = 7'h2b == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1334 = 7'h2b == reqIndex | way0V_43; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3639 = 7'h2c == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1335 = 7'h2c == reqIndex | way0V_44; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3640 = 7'h2d == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1336 = 7'h2d == reqIndex | way0V_45; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3641 = 7'h2e == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1337 = 7'h2e == reqIndex | way0V_46; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3642 = 7'h2f == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1338 = 7'h2f == reqIndex | way0V_47; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3643 = 7'h30 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1339 = 7'h30 == reqIndex | way0V_48; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3644 = 7'h31 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1340 = 7'h31 == reqIndex | way0V_49; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3645 = 7'h32 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1341 = 7'h32 == reqIndex | way0V_50; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3646 = 7'h33 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1342 = 7'h33 == reqIndex | way0V_51; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3647 = 7'h34 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1343 = 7'h34 == reqIndex | way0V_52; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3648 = 7'h35 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1344 = 7'h35 == reqIndex | way0V_53; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3649 = 7'h36 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1345 = 7'h36 == reqIndex | way0V_54; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3650 = 7'h37 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1346 = 7'h37 == reqIndex | way0V_55; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3651 = 7'h38 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1347 = 7'h38 == reqIndex | way0V_56; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3652 = 7'h39 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1348 = 7'h39 == reqIndex | way0V_57; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3653 = 7'h3a == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1349 = 7'h3a == reqIndex | way0V_58; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3654 = 7'h3b == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1350 = 7'h3b == reqIndex | way0V_59; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3655 = 7'h3c == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1351 = 7'h3c == reqIndex | way0V_60; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3656 = 7'h3d == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1352 = 7'h3d == reqIndex | way0V_61; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3657 = 7'h3e == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1353 = 7'h3e == reqIndex | way0V_62; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3658 = 7'h3f == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1354 = 7'h3f == reqIndex | way0V_63; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3659 = 7'h40 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1355 = 7'h40 == reqIndex | way0V_64; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3660 = 7'h41 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1356 = 7'h41 == reqIndex | way0V_65; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3661 = 7'h42 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1357 = 7'h42 == reqIndex | way0V_66; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3662 = 7'h43 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1358 = 7'h43 == reqIndex | way0V_67; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3663 = 7'h44 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1359 = 7'h44 == reqIndex | way0V_68; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3664 = 7'h45 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1360 = 7'h45 == reqIndex | way0V_69; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3665 = 7'h46 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1361 = 7'h46 == reqIndex | way0V_70; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3666 = 7'h47 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1362 = 7'h47 == reqIndex | way0V_71; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3667 = 7'h48 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1363 = 7'h48 == reqIndex | way0V_72; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3668 = 7'h49 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1364 = 7'h49 == reqIndex | way0V_73; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3669 = 7'h4a == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1365 = 7'h4a == reqIndex | way0V_74; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3670 = 7'h4b == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1366 = 7'h4b == reqIndex | way0V_75; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3671 = 7'h4c == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1367 = 7'h4c == reqIndex | way0V_76; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3672 = 7'h4d == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1368 = 7'h4d == reqIndex | way0V_77; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3673 = 7'h4e == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1369 = 7'h4e == reqIndex | way0V_78; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3674 = 7'h4f == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1370 = 7'h4f == reqIndex | way0V_79; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3675 = 7'h50 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1371 = 7'h50 == reqIndex | way0V_80; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3676 = 7'h51 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1372 = 7'h51 == reqIndex | way0V_81; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3677 = 7'h52 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1373 = 7'h52 == reqIndex | way0V_82; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3678 = 7'h53 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1374 = 7'h53 == reqIndex | way0V_83; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3679 = 7'h54 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1375 = 7'h54 == reqIndex | way0V_84; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3680 = 7'h55 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1376 = 7'h55 == reqIndex | way0V_85; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3681 = 7'h56 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1377 = 7'h56 == reqIndex | way0V_86; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3682 = 7'h57 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1378 = 7'h57 == reqIndex | way0V_87; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3683 = 7'h58 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1379 = 7'h58 == reqIndex | way0V_88; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3684 = 7'h59 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1380 = 7'h59 == reqIndex | way0V_89; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3685 = 7'h5a == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1381 = 7'h5a == reqIndex | way0V_90; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3686 = 7'h5b == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1382 = 7'h5b == reqIndex | way0V_91; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3687 = 7'h5c == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1383 = 7'h5c == reqIndex | way0V_92; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3688 = 7'h5d == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1384 = 7'h5d == reqIndex | way0V_93; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3689 = 7'h5e == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1385 = 7'h5e == reqIndex | way0V_94; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3690 = 7'h5f == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1386 = 7'h5f == reqIndex | way0V_95; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3691 = 7'h60 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1387 = 7'h60 == reqIndex | way0V_96; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3692 = 7'h61 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1388 = 7'h61 == reqIndex | way0V_97; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3693 = 7'h62 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1389 = 7'h62 == reqIndex | way0V_98; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3694 = 7'h63 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1390 = 7'h63 == reqIndex | way0V_99; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3695 = 7'h64 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1391 = 7'h64 == reqIndex | way0V_100; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3696 = 7'h65 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1392 = 7'h65 == reqIndex | way0V_101; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3697 = 7'h66 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1393 = 7'h66 == reqIndex | way0V_102; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3698 = 7'h67 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1394 = 7'h67 == reqIndex | way0V_103; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3699 = 7'h68 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1395 = 7'h68 == reqIndex | way0V_104; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3700 = 7'h69 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1396 = 7'h69 == reqIndex | way0V_105; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3701 = 7'h6a == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1397 = 7'h6a == reqIndex | way0V_106; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3702 = 7'h6b == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1398 = 7'h6b == reqIndex | way0V_107; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3703 = 7'h6c == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1399 = 7'h6c == reqIndex | way0V_108; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3704 = 7'h6d == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1400 = 7'h6d == reqIndex | way0V_109; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3705 = 7'h6e == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1401 = 7'h6e == reqIndex | way0V_110; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3706 = 7'h6f == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1402 = 7'h6f == reqIndex | way0V_111; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3707 = 7'h70 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1403 = 7'h70 == reqIndex | way0V_112; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3708 = 7'h71 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1404 = 7'h71 == reqIndex | way0V_113; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3709 = 7'h72 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1405 = 7'h72 == reqIndex | way0V_114; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3710 = 7'h73 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1406 = 7'h73 == reqIndex | way0V_115; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3711 = 7'h74 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1407 = 7'h74 == reqIndex | way0V_116; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3712 = 7'h75 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1408 = 7'h75 == reqIndex | way0V_117; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3713 = 7'h76 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1409 = 7'h76 == reqIndex | way0V_118; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3714 = 7'h77 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1410 = 7'h77 == reqIndex | way0V_119; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3715 = 7'h78 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1411 = 7'h78 == reqIndex | way0V_120; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3716 = 7'h79 == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1412 = 7'h79 == reqIndex | way0V_121; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3717 = 7'h7a == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1413 = 7'h7a == reqIndex | way0V_122; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3718 = 7'h7b == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1414 = 7'h7b == reqIndex | way0V_123; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3719 = 7'h7c == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1415 = 7'h7c == reqIndex | way0V_124; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3720 = 7'h7d == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1416 = 7'h7d == reqIndex | way0V_125; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3721 = 7'h7e == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1417 = 7'h7e == reqIndex | way0V_126; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_3722 = 7'h7f == reqIndex; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1418 = 7'h7f == reqIndex | way0V_127; // @[DCache.scala 192:{23,23} 32:22]
-  wire  _GEN_1675 = _GEN_3595 | way1V_0; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1676 = _GEN_3596 | way1V_1; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1677 = _GEN_3597 | way1V_2; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1678 = _GEN_3598 | way1V_3; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1679 = _GEN_3599 | way1V_4; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1680 = _GEN_3600 | way1V_5; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1681 = _GEN_3601 | way1V_6; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1682 = _GEN_3602 | way1V_7; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1683 = _GEN_3603 | way1V_8; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1684 = _GEN_3604 | way1V_9; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1685 = _GEN_3605 | way1V_10; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1686 = _GEN_3606 | way1V_11; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1687 = _GEN_3607 | way1V_12; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1688 = _GEN_3608 | way1V_13; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1689 = _GEN_3609 | way1V_14; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1690 = _GEN_3610 | way1V_15; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1691 = _GEN_3611 | way1V_16; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1692 = _GEN_3612 | way1V_17; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1693 = _GEN_3613 | way1V_18; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1694 = _GEN_3614 | way1V_19; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1695 = _GEN_3615 | way1V_20; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1696 = _GEN_3616 | way1V_21; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1697 = _GEN_3617 | way1V_22; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1698 = _GEN_3618 | way1V_23; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1699 = _GEN_3619 | way1V_24; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1700 = _GEN_3620 | way1V_25; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1701 = _GEN_3621 | way1V_26; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1702 = _GEN_3622 | way1V_27; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1703 = _GEN_3623 | way1V_28; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1704 = _GEN_3624 | way1V_29; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1705 = _GEN_3625 | way1V_30; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1706 = _GEN_3626 | way1V_31; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1707 = _GEN_3627 | way1V_32; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1708 = _GEN_3628 | way1V_33; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1709 = _GEN_3629 | way1V_34; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1710 = _GEN_3630 | way1V_35; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1711 = _GEN_3631 | way1V_36; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1712 = _GEN_3632 | way1V_37; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1713 = _GEN_3633 | way1V_38; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1714 = _GEN_3634 | way1V_39; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1715 = _GEN_3635 | way1V_40; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1716 = _GEN_3636 | way1V_41; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1717 = _GEN_3637 | way1V_42; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1718 = _GEN_3638 | way1V_43; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1719 = _GEN_3639 | way1V_44; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1720 = _GEN_3640 | way1V_45; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1721 = _GEN_3641 | way1V_46; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1722 = _GEN_3642 | way1V_47; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1723 = _GEN_3643 | way1V_48; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1724 = _GEN_3644 | way1V_49; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1725 = _GEN_3645 | way1V_50; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1726 = _GEN_3646 | way1V_51; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1727 = _GEN_3647 | way1V_52; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1728 = _GEN_3648 | way1V_53; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1729 = _GEN_3649 | way1V_54; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1730 = _GEN_3650 | way1V_55; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1731 = _GEN_3651 | way1V_56; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1732 = _GEN_3652 | way1V_57; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1733 = _GEN_3653 | way1V_58; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1734 = _GEN_3654 | way1V_59; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1735 = _GEN_3655 | way1V_60; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1736 = _GEN_3656 | way1V_61; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1737 = _GEN_3657 | way1V_62; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1738 = _GEN_3658 | way1V_63; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1739 = _GEN_3659 | way1V_64; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1740 = _GEN_3660 | way1V_65; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1741 = _GEN_3661 | way1V_66; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1742 = _GEN_3662 | way1V_67; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1743 = _GEN_3663 | way1V_68; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1744 = _GEN_3664 | way1V_69; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1745 = _GEN_3665 | way1V_70; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1746 = _GEN_3666 | way1V_71; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1747 = _GEN_3667 | way1V_72; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1748 = _GEN_3668 | way1V_73; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1749 = _GEN_3669 | way1V_74; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1750 = _GEN_3670 | way1V_75; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1751 = _GEN_3671 | way1V_76; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1752 = _GEN_3672 | way1V_77; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1753 = _GEN_3673 | way1V_78; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1754 = _GEN_3674 | way1V_79; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1755 = _GEN_3675 | way1V_80; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1756 = _GEN_3676 | way1V_81; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1757 = _GEN_3677 | way1V_82; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1758 = _GEN_3678 | way1V_83; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1759 = _GEN_3679 | way1V_84; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1760 = _GEN_3680 | way1V_85; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1761 = _GEN_3681 | way1V_86; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1762 = _GEN_3682 | way1V_87; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1763 = _GEN_3683 | way1V_88; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1764 = _GEN_3684 | way1V_89; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1765 = _GEN_3685 | way1V_90; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1766 = _GEN_3686 | way1V_91; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1767 = _GEN_3687 | way1V_92; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1768 = _GEN_3688 | way1V_93; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1769 = _GEN_3689 | way1V_94; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1770 = _GEN_3690 | way1V_95; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1771 = _GEN_3691 | way1V_96; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1772 = _GEN_3692 | way1V_97; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1773 = _GEN_3693 | way1V_98; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1774 = _GEN_3694 | way1V_99; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1775 = _GEN_3695 | way1V_100; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1776 = _GEN_3696 | way1V_101; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1777 = _GEN_3697 | way1V_102; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1778 = _GEN_3698 | way1V_103; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1779 = _GEN_3699 | way1V_104; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1780 = _GEN_3700 | way1V_105; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1781 = _GEN_3701 | way1V_106; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1782 = _GEN_3702 | way1V_107; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1783 = _GEN_3703 | way1V_108; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1784 = _GEN_3704 | way1V_109; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1785 = _GEN_3705 | way1V_110; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1786 = _GEN_3706 | way1V_111; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1787 = _GEN_3707 | way1V_112; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1788 = _GEN_3708 | way1V_113; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1789 = _GEN_3709 | way1V_114; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1790 = _GEN_3710 | way1V_115; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1791 = _GEN_3711 | way1V_116; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1792 = _GEN_3712 | way1V_117; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1793 = _GEN_3713 | way1V_118; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1794 = _GEN_3714 | way1V_119; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1795 = _GEN_3715 | way1V_120; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1796 = _GEN_3716 | way1V_121; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1797 = _GEN_3717 | way1V_122; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1798 = _GEN_3718 | way1V_123; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1799 = _GEN_3719 | way1V_124; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1800 = _GEN_3720 | way1V_125; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1801 = _GEN_3721 | way1V_126; // @[DCache.scala 196:{23,23} 38:22]
-  wire  _GEN_1802 = _GEN_3722 | way1V_127; // @[DCache.scala 196:{23,23} 38:22]
-  wire [127:0] _rData_T = sDoneEn ? io_out_data_read : 128'h0; // @[DCache.scala 203:20]
-  wire [127:0] rData = sHitEn ? cacheRData : _rData_T; // @[DCache.scala 202:18]
-  wire [63:0] rDataHL = reqOff[3] ? rData[127:64] : rData[63:0]; // @[DCache.scala 204:20]
+  wire [7:0] _cacheIndex_T_3 = _cacheDirtyEn_T ? _cacheIndex_T_1 : _cacheIndex_T_2; // @[DCache.scala 142:20]
+  wire  sWriteEn = state == 3'h3; // @[DCache.scala 144:24]
+  wire  sReadEn = state == 3'h4; // @[DCache.scala 145:23]
+  wire  _valid_WEn_T = sHitEn & cacheHitEn; // @[DCache.scala 184:41]
+  wire  sDoneEn = state == 3'h5; // @[DCache.scala 186:23]
+  wire  _GEN_3595 = 7'h0 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1291 = 7'h0 == reqIndex | way0V_0; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3596 = 7'h1 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1292 = 7'h1 == reqIndex | way0V_1; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3597 = 7'h2 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1293 = 7'h2 == reqIndex | way0V_2; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3598 = 7'h3 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1294 = 7'h3 == reqIndex | way0V_3; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3599 = 7'h4 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1295 = 7'h4 == reqIndex | way0V_4; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3600 = 7'h5 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1296 = 7'h5 == reqIndex | way0V_5; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3601 = 7'h6 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1297 = 7'h6 == reqIndex | way0V_6; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3602 = 7'h7 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1298 = 7'h7 == reqIndex | way0V_7; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3603 = 7'h8 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1299 = 7'h8 == reqIndex | way0V_8; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3604 = 7'h9 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1300 = 7'h9 == reqIndex | way0V_9; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3605 = 7'ha == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1301 = 7'ha == reqIndex | way0V_10; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3606 = 7'hb == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1302 = 7'hb == reqIndex | way0V_11; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3607 = 7'hc == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1303 = 7'hc == reqIndex | way0V_12; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3608 = 7'hd == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1304 = 7'hd == reqIndex | way0V_13; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3609 = 7'he == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1305 = 7'he == reqIndex | way0V_14; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3610 = 7'hf == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1306 = 7'hf == reqIndex | way0V_15; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3611 = 7'h10 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1307 = 7'h10 == reqIndex | way0V_16; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3612 = 7'h11 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1308 = 7'h11 == reqIndex | way0V_17; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3613 = 7'h12 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1309 = 7'h12 == reqIndex | way0V_18; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3614 = 7'h13 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1310 = 7'h13 == reqIndex | way0V_19; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3615 = 7'h14 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1311 = 7'h14 == reqIndex | way0V_20; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3616 = 7'h15 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1312 = 7'h15 == reqIndex | way0V_21; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3617 = 7'h16 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1313 = 7'h16 == reqIndex | way0V_22; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3618 = 7'h17 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1314 = 7'h17 == reqIndex | way0V_23; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3619 = 7'h18 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1315 = 7'h18 == reqIndex | way0V_24; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3620 = 7'h19 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1316 = 7'h19 == reqIndex | way0V_25; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3621 = 7'h1a == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1317 = 7'h1a == reqIndex | way0V_26; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3622 = 7'h1b == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1318 = 7'h1b == reqIndex | way0V_27; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3623 = 7'h1c == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1319 = 7'h1c == reqIndex | way0V_28; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3624 = 7'h1d == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1320 = 7'h1d == reqIndex | way0V_29; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3625 = 7'h1e == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1321 = 7'h1e == reqIndex | way0V_30; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3626 = 7'h1f == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1322 = 7'h1f == reqIndex | way0V_31; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3627 = 7'h20 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1323 = 7'h20 == reqIndex | way0V_32; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3628 = 7'h21 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1324 = 7'h21 == reqIndex | way0V_33; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3629 = 7'h22 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1325 = 7'h22 == reqIndex | way0V_34; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3630 = 7'h23 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1326 = 7'h23 == reqIndex | way0V_35; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3631 = 7'h24 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1327 = 7'h24 == reqIndex | way0V_36; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3632 = 7'h25 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1328 = 7'h25 == reqIndex | way0V_37; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3633 = 7'h26 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1329 = 7'h26 == reqIndex | way0V_38; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3634 = 7'h27 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1330 = 7'h27 == reqIndex | way0V_39; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3635 = 7'h28 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1331 = 7'h28 == reqIndex | way0V_40; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3636 = 7'h29 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1332 = 7'h29 == reqIndex | way0V_41; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3637 = 7'h2a == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1333 = 7'h2a == reqIndex | way0V_42; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3638 = 7'h2b == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1334 = 7'h2b == reqIndex | way0V_43; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3639 = 7'h2c == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1335 = 7'h2c == reqIndex | way0V_44; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3640 = 7'h2d == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1336 = 7'h2d == reqIndex | way0V_45; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3641 = 7'h2e == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1337 = 7'h2e == reqIndex | way0V_46; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3642 = 7'h2f == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1338 = 7'h2f == reqIndex | way0V_47; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3643 = 7'h30 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1339 = 7'h30 == reqIndex | way0V_48; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3644 = 7'h31 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1340 = 7'h31 == reqIndex | way0V_49; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3645 = 7'h32 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1341 = 7'h32 == reqIndex | way0V_50; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3646 = 7'h33 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1342 = 7'h33 == reqIndex | way0V_51; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3647 = 7'h34 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1343 = 7'h34 == reqIndex | way0V_52; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3648 = 7'h35 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1344 = 7'h35 == reqIndex | way0V_53; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3649 = 7'h36 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1345 = 7'h36 == reqIndex | way0V_54; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3650 = 7'h37 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1346 = 7'h37 == reqIndex | way0V_55; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3651 = 7'h38 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1347 = 7'h38 == reqIndex | way0V_56; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3652 = 7'h39 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1348 = 7'h39 == reqIndex | way0V_57; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3653 = 7'h3a == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1349 = 7'h3a == reqIndex | way0V_58; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3654 = 7'h3b == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1350 = 7'h3b == reqIndex | way0V_59; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3655 = 7'h3c == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1351 = 7'h3c == reqIndex | way0V_60; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3656 = 7'h3d == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1352 = 7'h3d == reqIndex | way0V_61; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3657 = 7'h3e == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1353 = 7'h3e == reqIndex | way0V_62; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3658 = 7'h3f == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1354 = 7'h3f == reqIndex | way0V_63; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3659 = 7'h40 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1355 = 7'h40 == reqIndex | way0V_64; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3660 = 7'h41 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1356 = 7'h41 == reqIndex | way0V_65; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3661 = 7'h42 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1357 = 7'h42 == reqIndex | way0V_66; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3662 = 7'h43 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1358 = 7'h43 == reqIndex | way0V_67; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3663 = 7'h44 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1359 = 7'h44 == reqIndex | way0V_68; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3664 = 7'h45 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1360 = 7'h45 == reqIndex | way0V_69; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3665 = 7'h46 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1361 = 7'h46 == reqIndex | way0V_70; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3666 = 7'h47 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1362 = 7'h47 == reqIndex | way0V_71; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3667 = 7'h48 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1363 = 7'h48 == reqIndex | way0V_72; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3668 = 7'h49 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1364 = 7'h49 == reqIndex | way0V_73; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3669 = 7'h4a == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1365 = 7'h4a == reqIndex | way0V_74; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3670 = 7'h4b == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1366 = 7'h4b == reqIndex | way0V_75; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3671 = 7'h4c == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1367 = 7'h4c == reqIndex | way0V_76; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3672 = 7'h4d == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1368 = 7'h4d == reqIndex | way0V_77; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3673 = 7'h4e == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1369 = 7'h4e == reqIndex | way0V_78; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3674 = 7'h4f == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1370 = 7'h4f == reqIndex | way0V_79; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3675 = 7'h50 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1371 = 7'h50 == reqIndex | way0V_80; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3676 = 7'h51 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1372 = 7'h51 == reqIndex | way0V_81; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3677 = 7'h52 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1373 = 7'h52 == reqIndex | way0V_82; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3678 = 7'h53 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1374 = 7'h53 == reqIndex | way0V_83; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3679 = 7'h54 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1375 = 7'h54 == reqIndex | way0V_84; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3680 = 7'h55 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1376 = 7'h55 == reqIndex | way0V_85; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3681 = 7'h56 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1377 = 7'h56 == reqIndex | way0V_86; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3682 = 7'h57 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1378 = 7'h57 == reqIndex | way0V_87; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3683 = 7'h58 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1379 = 7'h58 == reqIndex | way0V_88; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3684 = 7'h59 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1380 = 7'h59 == reqIndex | way0V_89; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3685 = 7'h5a == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1381 = 7'h5a == reqIndex | way0V_90; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3686 = 7'h5b == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1382 = 7'h5b == reqIndex | way0V_91; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3687 = 7'h5c == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1383 = 7'h5c == reqIndex | way0V_92; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3688 = 7'h5d == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1384 = 7'h5d == reqIndex | way0V_93; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3689 = 7'h5e == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1385 = 7'h5e == reqIndex | way0V_94; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3690 = 7'h5f == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1386 = 7'h5f == reqIndex | way0V_95; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3691 = 7'h60 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1387 = 7'h60 == reqIndex | way0V_96; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3692 = 7'h61 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1388 = 7'h61 == reqIndex | way0V_97; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3693 = 7'h62 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1389 = 7'h62 == reqIndex | way0V_98; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3694 = 7'h63 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1390 = 7'h63 == reqIndex | way0V_99; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3695 = 7'h64 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1391 = 7'h64 == reqIndex | way0V_100; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3696 = 7'h65 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1392 = 7'h65 == reqIndex | way0V_101; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3697 = 7'h66 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1393 = 7'h66 == reqIndex | way0V_102; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3698 = 7'h67 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1394 = 7'h67 == reqIndex | way0V_103; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3699 = 7'h68 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1395 = 7'h68 == reqIndex | way0V_104; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3700 = 7'h69 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1396 = 7'h69 == reqIndex | way0V_105; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3701 = 7'h6a == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1397 = 7'h6a == reqIndex | way0V_106; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3702 = 7'h6b == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1398 = 7'h6b == reqIndex | way0V_107; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3703 = 7'h6c == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1399 = 7'h6c == reqIndex | way0V_108; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3704 = 7'h6d == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1400 = 7'h6d == reqIndex | way0V_109; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3705 = 7'h6e == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1401 = 7'h6e == reqIndex | way0V_110; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3706 = 7'h6f == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1402 = 7'h6f == reqIndex | way0V_111; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3707 = 7'h70 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1403 = 7'h70 == reqIndex | way0V_112; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3708 = 7'h71 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1404 = 7'h71 == reqIndex | way0V_113; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3709 = 7'h72 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1405 = 7'h72 == reqIndex | way0V_114; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3710 = 7'h73 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1406 = 7'h73 == reqIndex | way0V_115; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3711 = 7'h74 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1407 = 7'h74 == reqIndex | way0V_116; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3712 = 7'h75 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1408 = 7'h75 == reqIndex | way0V_117; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3713 = 7'h76 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1409 = 7'h76 == reqIndex | way0V_118; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3714 = 7'h77 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1410 = 7'h77 == reqIndex | way0V_119; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3715 = 7'h78 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1411 = 7'h78 == reqIndex | way0V_120; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3716 = 7'h79 == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1412 = 7'h79 == reqIndex | way0V_121; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3717 = 7'h7a == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1413 = 7'h7a == reqIndex | way0V_122; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3718 = 7'h7b == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1414 = 7'h7b == reqIndex | way0V_123; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3719 = 7'h7c == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1415 = 7'h7c == reqIndex | way0V_124; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3720 = 7'h7d == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1416 = 7'h7d == reqIndex | way0V_125; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3721 = 7'h7e == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1417 = 7'h7e == reqIndex | way0V_126; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_3722 = 7'h7f == reqIndex; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1418 = 7'h7f == reqIndex | way0V_127; // @[DCache.scala 191:{23,23} 32:22]
+  wire  _GEN_1675 = _GEN_3595 | way1V_0; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1676 = _GEN_3596 | way1V_1; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1677 = _GEN_3597 | way1V_2; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1678 = _GEN_3598 | way1V_3; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1679 = _GEN_3599 | way1V_4; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1680 = _GEN_3600 | way1V_5; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1681 = _GEN_3601 | way1V_6; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1682 = _GEN_3602 | way1V_7; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1683 = _GEN_3603 | way1V_8; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1684 = _GEN_3604 | way1V_9; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1685 = _GEN_3605 | way1V_10; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1686 = _GEN_3606 | way1V_11; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1687 = _GEN_3607 | way1V_12; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1688 = _GEN_3608 | way1V_13; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1689 = _GEN_3609 | way1V_14; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1690 = _GEN_3610 | way1V_15; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1691 = _GEN_3611 | way1V_16; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1692 = _GEN_3612 | way1V_17; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1693 = _GEN_3613 | way1V_18; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1694 = _GEN_3614 | way1V_19; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1695 = _GEN_3615 | way1V_20; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1696 = _GEN_3616 | way1V_21; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1697 = _GEN_3617 | way1V_22; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1698 = _GEN_3618 | way1V_23; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1699 = _GEN_3619 | way1V_24; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1700 = _GEN_3620 | way1V_25; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1701 = _GEN_3621 | way1V_26; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1702 = _GEN_3622 | way1V_27; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1703 = _GEN_3623 | way1V_28; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1704 = _GEN_3624 | way1V_29; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1705 = _GEN_3625 | way1V_30; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1706 = _GEN_3626 | way1V_31; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1707 = _GEN_3627 | way1V_32; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1708 = _GEN_3628 | way1V_33; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1709 = _GEN_3629 | way1V_34; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1710 = _GEN_3630 | way1V_35; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1711 = _GEN_3631 | way1V_36; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1712 = _GEN_3632 | way1V_37; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1713 = _GEN_3633 | way1V_38; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1714 = _GEN_3634 | way1V_39; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1715 = _GEN_3635 | way1V_40; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1716 = _GEN_3636 | way1V_41; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1717 = _GEN_3637 | way1V_42; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1718 = _GEN_3638 | way1V_43; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1719 = _GEN_3639 | way1V_44; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1720 = _GEN_3640 | way1V_45; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1721 = _GEN_3641 | way1V_46; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1722 = _GEN_3642 | way1V_47; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1723 = _GEN_3643 | way1V_48; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1724 = _GEN_3644 | way1V_49; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1725 = _GEN_3645 | way1V_50; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1726 = _GEN_3646 | way1V_51; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1727 = _GEN_3647 | way1V_52; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1728 = _GEN_3648 | way1V_53; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1729 = _GEN_3649 | way1V_54; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1730 = _GEN_3650 | way1V_55; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1731 = _GEN_3651 | way1V_56; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1732 = _GEN_3652 | way1V_57; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1733 = _GEN_3653 | way1V_58; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1734 = _GEN_3654 | way1V_59; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1735 = _GEN_3655 | way1V_60; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1736 = _GEN_3656 | way1V_61; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1737 = _GEN_3657 | way1V_62; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1738 = _GEN_3658 | way1V_63; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1739 = _GEN_3659 | way1V_64; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1740 = _GEN_3660 | way1V_65; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1741 = _GEN_3661 | way1V_66; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1742 = _GEN_3662 | way1V_67; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1743 = _GEN_3663 | way1V_68; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1744 = _GEN_3664 | way1V_69; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1745 = _GEN_3665 | way1V_70; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1746 = _GEN_3666 | way1V_71; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1747 = _GEN_3667 | way1V_72; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1748 = _GEN_3668 | way1V_73; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1749 = _GEN_3669 | way1V_74; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1750 = _GEN_3670 | way1V_75; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1751 = _GEN_3671 | way1V_76; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1752 = _GEN_3672 | way1V_77; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1753 = _GEN_3673 | way1V_78; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1754 = _GEN_3674 | way1V_79; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1755 = _GEN_3675 | way1V_80; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1756 = _GEN_3676 | way1V_81; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1757 = _GEN_3677 | way1V_82; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1758 = _GEN_3678 | way1V_83; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1759 = _GEN_3679 | way1V_84; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1760 = _GEN_3680 | way1V_85; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1761 = _GEN_3681 | way1V_86; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1762 = _GEN_3682 | way1V_87; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1763 = _GEN_3683 | way1V_88; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1764 = _GEN_3684 | way1V_89; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1765 = _GEN_3685 | way1V_90; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1766 = _GEN_3686 | way1V_91; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1767 = _GEN_3687 | way1V_92; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1768 = _GEN_3688 | way1V_93; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1769 = _GEN_3689 | way1V_94; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1770 = _GEN_3690 | way1V_95; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1771 = _GEN_3691 | way1V_96; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1772 = _GEN_3692 | way1V_97; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1773 = _GEN_3693 | way1V_98; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1774 = _GEN_3694 | way1V_99; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1775 = _GEN_3695 | way1V_100; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1776 = _GEN_3696 | way1V_101; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1777 = _GEN_3697 | way1V_102; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1778 = _GEN_3698 | way1V_103; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1779 = _GEN_3699 | way1V_104; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1780 = _GEN_3700 | way1V_105; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1781 = _GEN_3701 | way1V_106; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1782 = _GEN_3702 | way1V_107; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1783 = _GEN_3703 | way1V_108; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1784 = _GEN_3704 | way1V_109; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1785 = _GEN_3705 | way1V_110; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1786 = _GEN_3706 | way1V_111; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1787 = _GEN_3707 | way1V_112; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1788 = _GEN_3708 | way1V_113; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1789 = _GEN_3709 | way1V_114; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1790 = _GEN_3710 | way1V_115; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1791 = _GEN_3711 | way1V_116; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1792 = _GEN_3712 | way1V_117; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1793 = _GEN_3713 | way1V_118; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1794 = _GEN_3714 | way1V_119; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1795 = _GEN_3715 | way1V_120; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1796 = _GEN_3716 | way1V_121; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1797 = _GEN_3717 | way1V_122; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1798 = _GEN_3718 | way1V_123; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1799 = _GEN_3719 | way1V_124; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1800 = _GEN_3720 | way1V_125; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1801 = _GEN_3721 | way1V_126; // @[DCache.scala 195:{23,23} 38:22]
+  wire  _GEN_1802 = _GEN_3722 | way1V_127; // @[DCache.scala 195:{23,23} 38:22]
+  wire [127:0] _rData_T = sDoneEn ? io_out_data_read : 128'h0; // @[DCache.scala 202:20]
+  wire [127:0] rData = sHitEn ? cacheRData : _rData_T; // @[DCache.scala 201:18]
+  wire [63:0] rDataHL = reqOff[3] ? rData[127:64] : rData[63:0]; // @[DCache.scala 203:20]
   wire [8:0] _io_dmem_data_read_T_2 = {1'h0,rDataHL[7:0]}; // @[Cat.scala 31:58]
   wire [8:0] _io_dmem_data_read_T_4 = {1'h0,rDataHL[15:8]}; // @[Cat.scala 31:58]
   wire [8:0] _io_dmem_data_read_T_6 = {1'h0,rDataHL[23:16]}; // @[Cat.scala 31:58]
@@ -15820,7057 +15796,7057 @@ module DCache(
     .A(req_A),
     .D(req_D)
   );
-  assign io_dmem_data_ready = sDoneEn | _valid_WEn_T; // @[DCache.scala 206:28]
+  assign io_dmem_data_ready = sDoneEn | _valid_WEn_T; // @[DCache.scala 205:28]
   assign io_dmem_data_read = 2'h3 == io_dmem_data_size ? rDataHL : {{31'd0}, _io_dmem_data_read_T_56}; // @[Mux.scala 81:58]
-  assign io_out_data_valid = sWriteEn | sReadEn; // @[DCache.scala 148:24]
-  assign io_out_data_req = state == 3'h3; // @[DCache.scala 146:24]
-  assign io_out_data_addr = io_dmem_data_addr; // @[DCache.scala 152:17]
-  assign io_out_data_strb = sWriteEn ? io_dmem_data_strb : 8'h0; // @[DCache.scala 154:23]
-  assign io_out_data_write = sWriteEn ? cacheRData : 128'h0; // @[DCache.scala 155:24]
+  assign io_out_data_valid = sWriteEn | sReadEn; // @[DCache.scala 146:24]
+  assign io_out_data_req = state == 3'h3; // @[DCache.scala 144:24]
+  assign io_out_data_addr = io_dmem_data_addr; // @[DCache.scala 150:17]
+  assign io_out_data_strb = sWriteEn ? io_dmem_data_strb : 8'h0; // @[DCache.scala 152:23]
+  assign io_out_data_write = sWriteEn ? cacheRData : 128'h0; // @[DCache.scala 153:24]
   assign req_CLK = clock; // @[DCache.scala 79:14]
   assign req_CEN = 1'h1; // @[DCache.scala 80:14]
-  assign req_WEN = io_dmem_data_req ? sHitEn & cacheHitEn : sReadEn; // @[DCache.scala 185:19]
-  assign req_BWEN = io_dmem_data_req ? {{64'd0}, valid_strb} : 128'hffffffffffffffffffffffffffffffff; // @[DCache.scala 83:21]
+  assign req_WEN = io_dmem_data_req ? sHitEn & cacheHitEn : sReadEn; // @[DCache.scala 184:19]
+  assign req_BWEN = io_dmem_data_req ? {{63'd0}, valid_strb} : 128'hffffffffffffffffffffffffffffffff; // @[DCache.scala 83:21]
   assign req_A = {{7'd0}, cacheIndex}; // @[DCache.scala 84:12]
   assign req_D = io_dmem_data_req ? valid_wdata : io_out_data_read; // @[DCache.scala 85:18]
   always @(posedge clock) begin
     if (reset) begin // @[DCache.scala 32:22]
       way0V_0 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_0 <= _GEN_1291;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_1 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_1 <= _GEN_1292;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_2 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_2 <= _GEN_1293;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_3 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_3 <= _GEN_1294;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_4 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_4 <= _GEN_1295;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_5 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_5 <= _GEN_1296;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_6 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_6 <= _GEN_1297;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_7 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_7 <= _GEN_1298;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_8 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_8 <= _GEN_1299;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_9 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_9 <= _GEN_1300;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_10 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_10 <= _GEN_1301;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_11 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_11 <= _GEN_1302;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_12 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_12 <= _GEN_1303;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_13 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_13 <= _GEN_1304;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_14 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_14 <= _GEN_1305;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_15 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_15 <= _GEN_1306;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_16 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_16 <= _GEN_1307;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_17 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_17 <= _GEN_1308;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_18 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_18 <= _GEN_1309;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_19 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_19 <= _GEN_1310;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_20 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_20 <= _GEN_1311;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_21 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_21 <= _GEN_1312;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_22 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_22 <= _GEN_1313;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_23 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_23 <= _GEN_1314;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_24 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_24 <= _GEN_1315;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_25 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_25 <= _GEN_1316;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_26 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_26 <= _GEN_1317;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_27 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_27 <= _GEN_1318;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_28 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_28 <= _GEN_1319;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_29 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_29 <= _GEN_1320;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_30 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_30 <= _GEN_1321;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_31 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_31 <= _GEN_1322;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_32 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_32 <= _GEN_1323;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_33 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_33 <= _GEN_1324;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_34 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_34 <= _GEN_1325;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_35 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_35 <= _GEN_1326;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_36 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_36 <= _GEN_1327;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_37 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_37 <= _GEN_1328;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_38 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_38 <= _GEN_1329;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_39 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_39 <= _GEN_1330;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_40 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_40 <= _GEN_1331;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_41 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_41 <= _GEN_1332;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_42 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_42 <= _GEN_1333;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_43 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_43 <= _GEN_1334;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_44 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_44 <= _GEN_1335;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_45 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_45 <= _GEN_1336;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_46 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_46 <= _GEN_1337;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_47 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_47 <= _GEN_1338;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_48 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_48 <= _GEN_1339;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_49 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_49 <= _GEN_1340;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_50 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_50 <= _GEN_1341;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_51 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_51 <= _GEN_1342;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_52 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_52 <= _GEN_1343;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_53 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_53 <= _GEN_1344;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_54 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_54 <= _GEN_1345;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_55 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_55 <= _GEN_1346;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_56 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_56 <= _GEN_1347;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_57 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_57 <= _GEN_1348;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_58 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_58 <= _GEN_1349;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_59 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_59 <= _GEN_1350;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_60 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_60 <= _GEN_1351;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_61 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_61 <= _GEN_1352;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_62 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_62 <= _GEN_1353;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_63 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_63 <= _GEN_1354;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_64 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_64 <= _GEN_1355;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_65 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_65 <= _GEN_1356;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_66 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_66 <= _GEN_1357;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_67 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_67 <= _GEN_1358;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_68 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_68 <= _GEN_1359;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_69 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_69 <= _GEN_1360;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_70 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_70 <= _GEN_1361;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_71 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_71 <= _GEN_1362;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_72 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_72 <= _GEN_1363;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_73 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_73 <= _GEN_1364;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_74 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_74 <= _GEN_1365;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_75 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_75 <= _GEN_1366;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_76 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_76 <= _GEN_1367;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_77 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_77 <= _GEN_1368;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_78 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_78 <= _GEN_1369;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_79 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_79 <= _GEN_1370;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_80 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_80 <= _GEN_1371;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_81 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_81 <= _GEN_1372;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_82 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_82 <= _GEN_1373;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_83 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_83 <= _GEN_1374;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_84 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_84 <= _GEN_1375;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_85 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_85 <= _GEN_1376;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_86 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_86 <= _GEN_1377;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_87 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_87 <= _GEN_1378;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_88 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_88 <= _GEN_1379;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_89 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_89 <= _GEN_1380;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_90 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_90 <= _GEN_1381;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_91 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_91 <= _GEN_1382;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_92 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_92 <= _GEN_1383;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_93 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_93 <= _GEN_1384;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_94 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_94 <= _GEN_1385;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_95 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_95 <= _GEN_1386;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_96 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_96 <= _GEN_1387;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_97 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_97 <= _GEN_1388;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_98 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_98 <= _GEN_1389;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_99 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_99 <= _GEN_1390;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_100 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_100 <= _GEN_1391;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_101 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_101 <= _GEN_1392;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_102 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_102 <= _GEN_1393;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_103 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_103 <= _GEN_1394;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_104 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_104 <= _GEN_1395;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_105 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_105 <= _GEN_1396;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_106 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_106 <= _GEN_1397;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_107 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_107 <= _GEN_1398;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_108 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_108 <= _GEN_1399;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_109 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_109 <= _GEN_1400;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_110 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_110 <= _GEN_1401;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_111 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_111 <= _GEN_1402;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_112 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_112 <= _GEN_1403;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_113 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_113 <= _GEN_1404;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_114 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_114 <= _GEN_1405;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_115 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_115 <= _GEN_1406;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_116 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_116 <= _GEN_1407;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_117 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_117 <= _GEN_1408;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_118 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_118 <= _GEN_1409;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_119 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_119 <= _GEN_1410;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_120 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_120 <= _GEN_1411;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_121 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_121 <= _GEN_1412;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_122 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_122 <= _GEN_1413;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_123 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_123 <= _GEN_1414;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_124 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_124 <= _GEN_1415;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_125 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_125 <= _GEN_1416;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_126 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_126 <= _GEN_1417;
       end
     end
     if (reset) begin // @[DCache.scala 32:22]
       way0V_127 <= 1'h0; // @[DCache.scala 32:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
         way0V_127 <= _GEN_1418;
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_0 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h0 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_0 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h0 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_0 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_1 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_1 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_1 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_2 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_2 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_2 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_3 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_3 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_3 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_4 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_4 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_4 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_5 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_5 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_5 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_6 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_6 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_6 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_7 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_7 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_7 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_8 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h8 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_8 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h8 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_8 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_9 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h9 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_9 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h9 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_9 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_10 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'ha == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_10 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'ha == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_10 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_11 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'hb == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_11 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'hb == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_11 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_12 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'hc == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_12 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'hc == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_12 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_13 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'hd == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_13 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'hd == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_13 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_14 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'he == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_14 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'he == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_14 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_15 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'hf == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_15 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'hf == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_15 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_16 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h10 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_16 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h10 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_16 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_17 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h11 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_17 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h11 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_17 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_18 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h12 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_18 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h12 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_18 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_19 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h13 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_19 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h13 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_19 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_20 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h14 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_20 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h14 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_20 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_21 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h15 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_21 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h15 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_21 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_22 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h16 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_22 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h16 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_22 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_23 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h17 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_23 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h17 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_23 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_24 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h18 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_24 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h18 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_24 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_25 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h19 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_25 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h19 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_25 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_26 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1a == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_26 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1a == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_26 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_27 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1b == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_27 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1b == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_27 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_28 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1c == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_28 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1c == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_28 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_29 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1d == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_29 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1d == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_29 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_30 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1e == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_30 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1e == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_30 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_31 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1f == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_31 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1f == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_31 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_32 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h20 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_32 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h20 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_32 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_33 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h21 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_33 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h21 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_33 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_34 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h22 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_34 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h22 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_34 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_35 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h23 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_35 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h23 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_35 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_36 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h24 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_36 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h24 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_36 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_37 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h25 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_37 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h25 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_37 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_38 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h26 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_38 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h26 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_38 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_39 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h27 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_39 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h27 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_39 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_40 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h28 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_40 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h28 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_40 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_41 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h29 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_41 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h29 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_41 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_42 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2a == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_42 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2a == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_42 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_43 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2b == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_43 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2b == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_43 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_44 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2c == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_44 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2c == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_44 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_45 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2d == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_45 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2d == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_45 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_46 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2e == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_46 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2e == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_46 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_47 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2f == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_47 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2f == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_47 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_48 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h30 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_48 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h30 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_48 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_49 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h31 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_49 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h31 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_49 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_50 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h32 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_50 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h32 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_50 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_51 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h33 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_51 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h33 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_51 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_52 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h34 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_52 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h34 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_52 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_53 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h35 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_53 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h35 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_53 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_54 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h36 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_54 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h36 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_54 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_55 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h37 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_55 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h37 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_55 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_56 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h38 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_56 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h38 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_56 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_57 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h39 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_57 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h39 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_57 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_58 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3a == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_58 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3a == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_58 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_59 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3b == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_59 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3b == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_59 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_60 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3c == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_60 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3c == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_60 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_61 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3d == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_61 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3d == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_61 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_62 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3e == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_62 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3e == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_62 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_63 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3f == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_63 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3f == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_63 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_64 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h40 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_64 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h40 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_64 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_65 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h41 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_65 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h41 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_65 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_66 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h42 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_66 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h42 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_66 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_67 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h43 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_67 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h43 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_67 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_68 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h44 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_68 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h44 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_68 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_69 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h45 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_69 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h45 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_69 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_70 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h46 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_70 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h46 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_70 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_71 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h47 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_71 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h47 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_71 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_72 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h48 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_72 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h48 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_72 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_73 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h49 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_73 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h49 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_73 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_74 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4a == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_74 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4a == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_74 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_75 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4b == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_75 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4b == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_75 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_76 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4c == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_76 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4c == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_76 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_77 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4d == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_77 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4d == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_77 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_78 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4e == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_78 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4e == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_78 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_79 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4f == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_79 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4f == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_79 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_80 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h50 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_80 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h50 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_80 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_81 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h51 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_81 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h51 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_81 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_82 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h52 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_82 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h52 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_82 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_83 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h53 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_83 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h53 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_83 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_84 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h54 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_84 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h54 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_84 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_85 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h55 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_85 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h55 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_85 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_86 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h56 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_86 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h56 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_86 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_87 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h57 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_87 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h57 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_87 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_88 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h58 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_88 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h58 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_88 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_89 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h59 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_89 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h59 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_89 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_90 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5a == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_90 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5a == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_90 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_91 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5b == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_91 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5b == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_91 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_92 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5c == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_92 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5c == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_92 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_93 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5d == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_93 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5d == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_93 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_94 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5e == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_94 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5e == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_94 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_95 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5f == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_95 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5f == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_95 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_96 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h60 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_96 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h60 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_96 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_97 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h61 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_97 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h61 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_97 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_98 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h62 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_98 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h62 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_98 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_99 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h63 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_99 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h63 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_99 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_100 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h64 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_100 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h64 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_100 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_101 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h65 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_101 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h65 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_101 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_102 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h66 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_102 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h66 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_102 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_103 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h67 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_103 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h67 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_103 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_104 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h68 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_104 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h68 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_104 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_105 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h69 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_105 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h69 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_105 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_106 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6a == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_106 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6a == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_106 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_107 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6b == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_107 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6b == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_107 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_108 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6c == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_108 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6c == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_108 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_109 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6d == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_109 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6d == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_109 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_110 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6e == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_110 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6e == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_110 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_111 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6f == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_111 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6f == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_111 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_112 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h70 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_112 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h70 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_112 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_113 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h71 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_113 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h71 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_113 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_114 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h72 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_114 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h72 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_114 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_115 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h73 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_115 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h73 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_115 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_116 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h74 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_116 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h74 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_116 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_117 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h75 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_117 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h75 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_117 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_118 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h76 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_118 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h76 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_118 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_119 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h77 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_119 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h77 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_119 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_120 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h78 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_120 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h78 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_120 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_121 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h79 == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_121 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h79 == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_121 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_122 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7a == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_122 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7a == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_122 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_123 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7b == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_123 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7b == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_123 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_124 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7c == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_124 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7c == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_124 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_125 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7d == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_125 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7d == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_125 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_126 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7e == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_126 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7e == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_126 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 33:24]
       way0Tag_127 <= 21'h0; // @[DCache.scala 33:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7f == reqIndex) begin // @[DCache.scala 193:25]
-          way0Tag_127 <= reqTag; // @[DCache.scala 193:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7f == reqIndex) begin // @[DCache.scala 192:25]
+          way0Tag_127 <= reqTag; // @[DCache.scala 192:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_0 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h0 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_0 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h0 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_0 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_1 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h1 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_1 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h1 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_1 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_2 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h2 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_2 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h2 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_2 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_3 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h3 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_3 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h3 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_3 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_4 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h4 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_4 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h4 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_4 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_5 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h5 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_5 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h5 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_5 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_6 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h6 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_6 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h6 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_6 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_7 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h7 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_7 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h7 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_7 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_8 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h8 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_8 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h8 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_8 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_9 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h9 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_9 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h9 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_9 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_10 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'ha == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_10 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'ha == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_10 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_11 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'hb == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_11 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'hb == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_11 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_12 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'hc == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_12 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'hc == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_12 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_13 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'hd == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_13 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'hd == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_13 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_14 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'he == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_14 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'he == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_14 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_15 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'hf == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_15 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'hf == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_15 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_16 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h10 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_16 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h10 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_16 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_17 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h11 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_17 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h11 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_17 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_18 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h12 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_18 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h12 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_18 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_19 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h13 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_19 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h13 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_19 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_20 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h14 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_20 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h14 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_20 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_21 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h15 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_21 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h15 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_21 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_22 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h16 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_22 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h16 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_22 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_23 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h17 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_23 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h17 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_23 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_24 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h18 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_24 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h18 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_24 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_25 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h19 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_25 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h19 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_25 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_26 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h1a == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_26 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h1a == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_26 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_27 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h1b == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_27 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h1b == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_27 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_28 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h1c == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_28 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h1c == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_28 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_29 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h1d == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_29 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h1d == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_29 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_30 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h1e == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_30 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h1e == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_30 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_31 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h1f == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_31 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h1f == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_31 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_32 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h20 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_32 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h20 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_32 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_33 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h21 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_33 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h21 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_33 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_34 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h22 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_34 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h22 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_34 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_35 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h23 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_35 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h23 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_35 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_36 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h24 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_36 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h24 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_36 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_37 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h25 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_37 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h25 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_37 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_38 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h26 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_38 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h26 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_38 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_39 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h27 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_39 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h27 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_39 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_40 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h28 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_40 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h28 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_40 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_41 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h29 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_41 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h29 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_41 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_42 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h2a == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_42 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h2a == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_42 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_43 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h2b == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_43 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h2b == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_43 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_44 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h2c == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_44 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h2c == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_44 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_45 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h2d == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_45 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h2d == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_45 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_46 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h2e == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_46 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h2e == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_46 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_47 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h2f == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_47 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h2f == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_47 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_48 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h30 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_48 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h30 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_48 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_49 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h31 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_49 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h31 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_49 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_50 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h32 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_50 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h32 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_50 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_51 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h33 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_51 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h33 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_51 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_52 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h34 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_52 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h34 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_52 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_53 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h35 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_53 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h35 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_53 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_54 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h36 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_54 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h36 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_54 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_55 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h37 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_55 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h37 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_55 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_56 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h38 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_56 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h38 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_56 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_57 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h39 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_57 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h39 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_57 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_58 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h3a == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_58 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h3a == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_58 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_59 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h3b == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_59 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h3b == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_59 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_60 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h3c == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_60 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h3c == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_60 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_61 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h3d == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_61 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h3d == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_61 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_62 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h3e == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_62 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h3e == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_62 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_63 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h3f == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_63 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h3f == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_63 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_64 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h40 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_64 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h40 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_64 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_65 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h41 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_65 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h41 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_65 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_66 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h42 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_66 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h42 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_66 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_67 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h43 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_67 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h43 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_67 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_68 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h44 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_68 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h44 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_68 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_69 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h45 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_69 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h45 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_69 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_70 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h46 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_70 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h46 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_70 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_71 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h47 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_71 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h47 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_71 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_72 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h48 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_72 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h48 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_72 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_73 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h49 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_73 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h49 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_73 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_74 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h4a == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_74 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h4a == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_74 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_75 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h4b == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_75 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h4b == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_75 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_76 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h4c == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_76 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h4c == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_76 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_77 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h4d == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_77 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h4d == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_77 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_78 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h4e == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_78 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h4e == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_78 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_79 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h4f == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_79 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h4f == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_79 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_80 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h50 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_80 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h50 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_80 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_81 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h51 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_81 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h51 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_81 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_82 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h52 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_82 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h52 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_82 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_83 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h53 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_83 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h53 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_83 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_84 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h54 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_84 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h54 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_84 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_85 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h55 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_85 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h55 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_85 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_86 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h56 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_86 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h56 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_86 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_87 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h57 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_87 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h57 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_87 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_88 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h58 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_88 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h58 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_88 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_89 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h59 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_89 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h59 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_89 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_90 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h5a == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_90 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h5a == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_90 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_91 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h5b == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_91 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h5b == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_91 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_92 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h5c == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_92 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h5c == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_92 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_93 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h5d == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_93 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h5d == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_93 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_94 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h5e == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_94 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h5e == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_94 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_95 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h5f == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_95 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h5f == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_95 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_96 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h60 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_96 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h60 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_96 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_97 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h61 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_97 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h61 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_97 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_98 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h62 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_98 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h62 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_98 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_99 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h63 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_99 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h63 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_99 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_100 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h64 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_100 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h64 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_100 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_101 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h65 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_101 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h65 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_101 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_102 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h66 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_102 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h66 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_102 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_103 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h67 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_103 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h67 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_103 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_104 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h68 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_104 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h68 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_104 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_105 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h69 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_105 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h69 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_105 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_106 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h6a == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_106 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h6a == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_106 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_107 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h6b == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_107 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h6b == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_107 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_108 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h6c == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_108 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h6c == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_108 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_109 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h6d == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_109 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h6d == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_109 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_110 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h6e == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_110 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h6e == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_110 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_111 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h6f == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_111 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h6f == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_111 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_112 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h70 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_112 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h70 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_112 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_113 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h71 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_113 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h71 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_113 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_114 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h72 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_114 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h72 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_114 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_115 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h73 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_115 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h73 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_115 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_116 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h74 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_116 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h74 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_116 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_117 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h75 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_117 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h75 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_117 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_118 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h76 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_118 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h76 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_118 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_119 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h77 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_119 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h77 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_119 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_120 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h78 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_120 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h78 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_120 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_121 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h79 == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_121 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h79 == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_121 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_122 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h7a == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_122 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h7a == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_122 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_123 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h7b == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_123 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h7b == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_123 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_124 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h7c == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_124 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h7c == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_124 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_125 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h7d == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_125 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h7d == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_125 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_126 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h7e == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_126 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h7e == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_126 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 35:24]
       way0Age_127 <= 1'h0; // @[DCache.scala 35:24]
-    end else if (7'h7f == reqIndex) begin // @[DCache.scala 188:21]
-      way0Age_127 <= ageWay0En & sDoneEn; // @[DCache.scala 188:21]
+    end else if (7'h7f == reqIndex) begin // @[DCache.scala 187:21]
+      way0Age_127 <= ageWay0En & sDoneEn; // @[DCache.scala 187:21]
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_0 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h0 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_0 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h0 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_0 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_1 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_1 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_1 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_2 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_2 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_2 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_3 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_3 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_3 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_4 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_4 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_4 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_5 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_5 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_5 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_6 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_6 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_6 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_7 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_7 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_7 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_8 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h8 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_8 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h8 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_8 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_9 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h9 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_9 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h9 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_9 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_10 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'ha == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_10 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'ha == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_10 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_11 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'hb == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_11 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'hb == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_11 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_12 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'hc == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_12 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'hc == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_12 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_13 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'hd == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_13 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'hd == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_13 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_14 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'he == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_14 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'he == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_14 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_15 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'hf == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_15 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'hf == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_15 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_16 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h10 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_16 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h10 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_16 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_17 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h11 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_17 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h11 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_17 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_18 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h12 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_18 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h12 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_18 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_19 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h13 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_19 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h13 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_19 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_20 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h14 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_20 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h14 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_20 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_21 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h15 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_21 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h15 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_21 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_22 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h16 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_22 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h16 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_22 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_23 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h17 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_23 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h17 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_23 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_24 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h18 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_24 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h18 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_24 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_25 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h19 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_25 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h19 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_25 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_26 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1a == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_26 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1a == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_26 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_27 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1b == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_27 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1b == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_27 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_28 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1c == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_28 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1c == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_28 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_29 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1d == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_29 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1d == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_29 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_30 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1e == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_30 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1e == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_30 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_31 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h1f == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_31 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h1f == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_31 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_32 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h20 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_32 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h20 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_32 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_33 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h21 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_33 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h21 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_33 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_34 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h22 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_34 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h22 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_34 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_35 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h23 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_35 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h23 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_35 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_36 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h24 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_36 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h24 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_36 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_37 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h25 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_37 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h25 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_37 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_38 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h26 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_38 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h26 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_38 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_39 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h27 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_39 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h27 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_39 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_40 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h28 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_40 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h28 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_40 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_41 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h29 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_41 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h29 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_41 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_42 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2a == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_42 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2a == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_42 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_43 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2b == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_43 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2b == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_43 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_44 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2c == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_44 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2c == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_44 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_45 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2d == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_45 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2d == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_45 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_46 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2e == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_46 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2e == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_46 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_47 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h2f == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_47 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h2f == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_47 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_48 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h30 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_48 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h30 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_48 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_49 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h31 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_49 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h31 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_49 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_50 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h32 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_50 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h32 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_50 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_51 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h33 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_51 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h33 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_51 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_52 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h34 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_52 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h34 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_52 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_53 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h35 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_53 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h35 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_53 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_54 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h36 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_54 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h36 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_54 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_55 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h37 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_55 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h37 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_55 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_56 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h38 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_56 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h38 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_56 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_57 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h39 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_57 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h39 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_57 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_58 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3a == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_58 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3a == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_58 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_59 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3b == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_59 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3b == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_59 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_60 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3c == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_60 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3c == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_60 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_61 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3d == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_61 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3d == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_61 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_62 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3e == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_62 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3e == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_62 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_63 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h3f == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_63 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h3f == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_63 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_64 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h40 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_64 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h40 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_64 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_65 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h41 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_65 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h41 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_65 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_66 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h42 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_66 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h42 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_66 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_67 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h43 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_67 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h43 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_67 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_68 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h44 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_68 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h44 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_68 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_69 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h45 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_69 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h45 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_69 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_70 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h46 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_70 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h46 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_70 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_71 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h47 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_71 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h47 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_71 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_72 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h48 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_72 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h48 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_72 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_73 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h49 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_73 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h49 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_73 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_74 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4a == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_74 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4a == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_74 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_75 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4b == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_75 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4b == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_75 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_76 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4c == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_76 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4c == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_76 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_77 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4d == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_77 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4d == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_77 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_78 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4e == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_78 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4e == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_78 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_79 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h4f == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_79 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h4f == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_79 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_80 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h50 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_80 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h50 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_80 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_81 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h51 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_81 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h51 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_81 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_82 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h52 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_82 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h52 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_82 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_83 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h53 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_83 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h53 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_83 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_84 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h54 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_84 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h54 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_84 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_85 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h55 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_85 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h55 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_85 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_86 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h56 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_86 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h56 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_86 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_87 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h57 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_87 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h57 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_87 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_88 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h58 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_88 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h58 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_88 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_89 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h59 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_89 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h59 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_89 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_90 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5a == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_90 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5a == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_90 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_91 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5b == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_91 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5b == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_91 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_92 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5c == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_92 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5c == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_92 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_93 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5d == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_93 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5d == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_93 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_94 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5e == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_94 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5e == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_94 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_95 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h5f == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_95 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h5f == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_95 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_96 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h60 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_96 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h60 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_96 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_97 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h61 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_97 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h61 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_97 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_98 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h62 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_98 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h62 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_98 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_99 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h63 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_99 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h63 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_99 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_100 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h64 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_100 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h64 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_100 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_101 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h65 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_101 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h65 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_101 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_102 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h66 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_102 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h66 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_102 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_103 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h67 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_103 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h67 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_103 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_104 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h68 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_104 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h68 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_104 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_105 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h69 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_105 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h69 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_105 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_106 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6a == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_106 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6a == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_106 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_107 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6b == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_107 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6b == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_107 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_108 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6c == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_108 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6c == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_108 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_109 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6d == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_109 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6d == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_109 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_110 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6e == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_110 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6e == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_110 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_111 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h6f == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_111 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h6f == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_111 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_112 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h70 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_112 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h70 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_112 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_113 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h71 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_113 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h71 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_113 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_114 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h72 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_114 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h72 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_114 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_115 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h73 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_115 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h73 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_115 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_116 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h74 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_116 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h74 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_116 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_117 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h75 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_117 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h75 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_117 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_118 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h76 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_118 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h76 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_118 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_119 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h77 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_119 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h77 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_119 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_120 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h78 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_120 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h78 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_120 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_121 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h79 == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_121 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h79 == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_121 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_122 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7a == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_122 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7a == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_122 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_123 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7b == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_123 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7b == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_123 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_124 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7c == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_124 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7c == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_124 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_125 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7d == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_125 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7d == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_125 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_126 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7e == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_126 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7e == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_126 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 36:26]
       way0Dirty_127 <= 1'h0; // @[DCache.scala 36:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (cacheLineWay) begin // @[DCache.scala 191:24]
-        if (7'h7f == reqIndex) begin // @[DCache.scala 194:27]
-          way0Dirty_127 <= io_dmem_data_req; // @[DCache.scala 194:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (cacheLineWay) begin // @[DCache.scala 190:24]
+        if (7'h7f == reqIndex) begin // @[DCache.scala 193:27]
+          way0Dirty_127 <= io_dmem_data_req; // @[DCache.scala 193:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_0 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_0 <= _GEN_1675;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_1 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_1 <= _GEN_1676;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_2 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_2 <= _GEN_1677;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_3 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_3 <= _GEN_1678;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_4 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_4 <= _GEN_1679;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_5 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_5 <= _GEN_1680;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_6 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_6 <= _GEN_1681;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_7 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_7 <= _GEN_1682;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_8 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_8 <= _GEN_1683;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_9 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_9 <= _GEN_1684;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_10 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_10 <= _GEN_1685;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_11 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_11 <= _GEN_1686;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_12 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_12 <= _GEN_1687;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_13 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_13 <= _GEN_1688;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_14 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_14 <= _GEN_1689;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_15 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_15 <= _GEN_1690;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_16 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_16 <= _GEN_1691;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_17 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_17 <= _GEN_1692;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_18 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_18 <= _GEN_1693;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_19 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_19 <= _GEN_1694;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_20 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_20 <= _GEN_1695;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_21 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_21 <= _GEN_1696;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_22 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_22 <= _GEN_1697;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_23 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_23 <= _GEN_1698;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_24 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_24 <= _GEN_1699;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_25 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_25 <= _GEN_1700;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_26 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_26 <= _GEN_1701;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_27 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_27 <= _GEN_1702;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_28 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_28 <= _GEN_1703;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_29 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_29 <= _GEN_1704;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_30 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_30 <= _GEN_1705;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_31 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_31 <= _GEN_1706;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_32 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_32 <= _GEN_1707;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_33 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_33 <= _GEN_1708;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_34 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_34 <= _GEN_1709;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_35 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_35 <= _GEN_1710;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_36 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_36 <= _GEN_1711;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_37 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_37 <= _GEN_1712;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_38 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_38 <= _GEN_1713;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_39 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_39 <= _GEN_1714;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_40 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_40 <= _GEN_1715;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_41 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_41 <= _GEN_1716;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_42 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_42 <= _GEN_1717;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_43 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_43 <= _GEN_1718;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_44 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_44 <= _GEN_1719;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_45 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_45 <= _GEN_1720;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_46 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_46 <= _GEN_1721;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_47 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_47 <= _GEN_1722;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_48 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_48 <= _GEN_1723;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_49 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_49 <= _GEN_1724;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_50 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_50 <= _GEN_1725;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_51 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_51 <= _GEN_1726;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_52 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_52 <= _GEN_1727;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_53 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_53 <= _GEN_1728;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_54 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_54 <= _GEN_1729;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_55 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_55 <= _GEN_1730;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_56 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_56 <= _GEN_1731;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_57 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_57 <= _GEN_1732;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_58 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_58 <= _GEN_1733;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_59 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_59 <= _GEN_1734;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_60 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_60 <= _GEN_1735;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_61 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_61 <= _GEN_1736;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_62 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_62 <= _GEN_1737;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_63 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_63 <= _GEN_1738;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_64 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_64 <= _GEN_1739;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_65 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_65 <= _GEN_1740;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_66 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_66 <= _GEN_1741;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_67 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_67 <= _GEN_1742;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_68 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_68 <= _GEN_1743;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_69 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_69 <= _GEN_1744;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_70 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_70 <= _GEN_1745;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_71 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_71 <= _GEN_1746;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_72 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_72 <= _GEN_1747;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_73 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_73 <= _GEN_1748;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_74 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_74 <= _GEN_1749;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_75 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_75 <= _GEN_1750;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_76 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_76 <= _GEN_1751;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_77 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_77 <= _GEN_1752;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_78 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_78 <= _GEN_1753;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_79 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_79 <= _GEN_1754;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_80 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_80 <= _GEN_1755;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_81 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_81 <= _GEN_1756;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_82 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_82 <= _GEN_1757;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_83 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_83 <= _GEN_1758;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_84 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_84 <= _GEN_1759;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_85 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_85 <= _GEN_1760;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_86 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_86 <= _GEN_1761;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_87 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_87 <= _GEN_1762;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_88 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_88 <= _GEN_1763;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_89 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_89 <= _GEN_1764;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_90 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_90 <= _GEN_1765;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_91 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_91 <= _GEN_1766;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_92 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_92 <= _GEN_1767;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_93 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_93 <= _GEN_1768;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_94 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_94 <= _GEN_1769;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_95 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_95 <= _GEN_1770;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_96 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_96 <= _GEN_1771;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_97 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_97 <= _GEN_1772;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_98 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_98 <= _GEN_1773;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_99 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_99 <= _GEN_1774;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_100 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_100 <= _GEN_1775;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_101 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_101 <= _GEN_1776;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_102 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_102 <= _GEN_1777;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_103 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_103 <= _GEN_1778;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_104 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_104 <= _GEN_1779;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_105 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_105 <= _GEN_1780;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_106 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_106 <= _GEN_1781;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_107 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_107 <= _GEN_1782;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_108 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_108 <= _GEN_1783;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_109 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_109 <= _GEN_1784;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_110 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_110 <= _GEN_1785;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_111 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_111 <= _GEN_1786;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_112 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_112 <= _GEN_1787;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_113 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_113 <= _GEN_1788;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_114 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_114 <= _GEN_1789;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_115 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_115 <= _GEN_1790;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_116 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_116 <= _GEN_1791;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_117 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_117 <= _GEN_1792;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_118 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_118 <= _GEN_1793;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_119 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_119 <= _GEN_1794;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_120 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_120 <= _GEN_1795;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_121 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_121 <= _GEN_1796;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_122 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_122 <= _GEN_1797;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_123 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_123 <= _GEN_1798;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_124 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_124 <= _GEN_1799;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_125 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_125 <= _GEN_1800;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_126 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_126 <= _GEN_1801;
       end
     end
     if (reset) begin // @[DCache.scala 38:22]
       way1V_127 <= 1'h0; // @[DCache.scala 38:22]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
         way1V_127 <= _GEN_1802;
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_0 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h0 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_0 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h0 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_0 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_1 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_1 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_1 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_2 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_2 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_2 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_3 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_3 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_3 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_4 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_4 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_4 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_5 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_5 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_5 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_6 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_6 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_6 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_7 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_7 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_7 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_8 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h8 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_8 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h8 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_8 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_9 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h9 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_9 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h9 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_9 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_10 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'ha == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_10 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'ha == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_10 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_11 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'hb == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_11 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'hb == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_11 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_12 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'hc == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_12 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'hc == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_12 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_13 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'hd == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_13 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'hd == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_13 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_14 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'he == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_14 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'he == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_14 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_15 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'hf == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_15 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'hf == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_15 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_16 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h10 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_16 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h10 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_16 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_17 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h11 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_17 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h11 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_17 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_18 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h12 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_18 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h12 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_18 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_19 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h13 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_19 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h13 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_19 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_20 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h14 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_20 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h14 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_20 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_21 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h15 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_21 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h15 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_21 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_22 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h16 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_22 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h16 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_22 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_23 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h17 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_23 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h17 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_23 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_24 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h18 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_24 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h18 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_24 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_25 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h19 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_25 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h19 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_25 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_26 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1a == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_26 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1a == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_26 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_27 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1b == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_27 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1b == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_27 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_28 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1c == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_28 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1c == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_28 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_29 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1d == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_29 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1d == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_29 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_30 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1e == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_30 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1e == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_30 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_31 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1f == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_31 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1f == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_31 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_32 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h20 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_32 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h20 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_32 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_33 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h21 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_33 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h21 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_33 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_34 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h22 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_34 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h22 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_34 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_35 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h23 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_35 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h23 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_35 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_36 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h24 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_36 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h24 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_36 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_37 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h25 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_37 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h25 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_37 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_38 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h26 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_38 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h26 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_38 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_39 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h27 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_39 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h27 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_39 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_40 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h28 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_40 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h28 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_40 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_41 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h29 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_41 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h29 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_41 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_42 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2a == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_42 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2a == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_42 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_43 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2b == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_43 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2b == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_43 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_44 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2c == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_44 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2c == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_44 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_45 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2d == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_45 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2d == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_45 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_46 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2e == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_46 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2e == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_46 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_47 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2f == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_47 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2f == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_47 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_48 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h30 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_48 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h30 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_48 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_49 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h31 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_49 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h31 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_49 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_50 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h32 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_50 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h32 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_50 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_51 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h33 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_51 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h33 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_51 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_52 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h34 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_52 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h34 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_52 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_53 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h35 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_53 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h35 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_53 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_54 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h36 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_54 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h36 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_54 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_55 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h37 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_55 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h37 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_55 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_56 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h38 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_56 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h38 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_56 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_57 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h39 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_57 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h39 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_57 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_58 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3a == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_58 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3a == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_58 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_59 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3b == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_59 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3b == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_59 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_60 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3c == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_60 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3c == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_60 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_61 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3d == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_61 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3d == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_61 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_62 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3e == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_62 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3e == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_62 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_63 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3f == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_63 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3f == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_63 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_64 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h40 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_64 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h40 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_64 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_65 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h41 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_65 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h41 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_65 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_66 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h42 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_66 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h42 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_66 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_67 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h43 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_67 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h43 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_67 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_68 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h44 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_68 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h44 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_68 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_69 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h45 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_69 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h45 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_69 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_70 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h46 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_70 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h46 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_70 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_71 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h47 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_71 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h47 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_71 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_72 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h48 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_72 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h48 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_72 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_73 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h49 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_73 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h49 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_73 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_74 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4a == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_74 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4a == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_74 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_75 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4b == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_75 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4b == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_75 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_76 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4c == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_76 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4c == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_76 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_77 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4d == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_77 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4d == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_77 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_78 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4e == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_78 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4e == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_78 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_79 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4f == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_79 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4f == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_79 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_80 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h50 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_80 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h50 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_80 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_81 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h51 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_81 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h51 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_81 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_82 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h52 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_82 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h52 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_82 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_83 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h53 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_83 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h53 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_83 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_84 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h54 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_84 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h54 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_84 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_85 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h55 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_85 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h55 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_85 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_86 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h56 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_86 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h56 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_86 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_87 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h57 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_87 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h57 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_87 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_88 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h58 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_88 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h58 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_88 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_89 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h59 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_89 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h59 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_89 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_90 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5a == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_90 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5a == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_90 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_91 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5b == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_91 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5b == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_91 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_92 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5c == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_92 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5c == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_92 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_93 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5d == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_93 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5d == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_93 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_94 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5e == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_94 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5e == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_94 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_95 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5f == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_95 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5f == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_95 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_96 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h60 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_96 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h60 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_96 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_97 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h61 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_97 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h61 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_97 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_98 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h62 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_98 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h62 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_98 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_99 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h63 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_99 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h63 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_99 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_100 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h64 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_100 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h64 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_100 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_101 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h65 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_101 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h65 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_101 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_102 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h66 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_102 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h66 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_102 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_103 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h67 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_103 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h67 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_103 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_104 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h68 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_104 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h68 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_104 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_105 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h69 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_105 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h69 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_105 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_106 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6a == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_106 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6a == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_106 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_107 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6b == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_107 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6b == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_107 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_108 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6c == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_108 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6c == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_108 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_109 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6d == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_109 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6d == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_109 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_110 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6e == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_110 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6e == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_110 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_111 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6f == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_111 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6f == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_111 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_112 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h70 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_112 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h70 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_112 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_113 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h71 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_113 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h71 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_113 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_114 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h72 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_114 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h72 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_114 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_115 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h73 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_115 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h73 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_115 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_116 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h74 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_116 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h74 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_116 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_117 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h75 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_117 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h75 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_117 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_118 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h76 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_118 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h76 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_118 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_119 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h77 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_119 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h77 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_119 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_120 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h78 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_120 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h78 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_120 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_121 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h79 == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_121 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h79 == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_121 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_122 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7a == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_122 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7a == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_122 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_123 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7b == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_123 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7b == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_123 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_124 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7c == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_124 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7c == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_124 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_125 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7d == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_125 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7d == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_125 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_126 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7e == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_126 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7e == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_126 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 39:24]
       way1Tag_127 <= 21'h0; // @[DCache.scala 39:24]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7f == reqIndex) begin // @[DCache.scala 197:25]
-          way1Tag_127 <= reqTag; // @[DCache.scala 197:25]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7f == reqIndex) begin // @[DCache.scala 196:25]
+          way1Tag_127 <= reqTag; // @[DCache.scala 196:25]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_0 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h0 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_0 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h0 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_0 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_1 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_1 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_1 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_2 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_2 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_2 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_3 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_3 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_3 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_4 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_4 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_4 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_5 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_5 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_5 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_6 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_6 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_6 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_7 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_7 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_7 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_8 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h8 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_8 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h8 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_8 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_9 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h9 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_9 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h9 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_9 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_10 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'ha == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_10 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'ha == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_10 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_11 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'hb == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_11 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'hb == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_11 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_12 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'hc == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_12 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'hc == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_12 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_13 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'hd == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_13 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'hd == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_13 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_14 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'he == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_14 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'he == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_14 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_15 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'hf == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_15 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'hf == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_15 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_16 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h10 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_16 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h10 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_16 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_17 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h11 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_17 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h11 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_17 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_18 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h12 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_18 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h12 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_18 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_19 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h13 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_19 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h13 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_19 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_20 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h14 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_20 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h14 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_20 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_21 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h15 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_21 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h15 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_21 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_22 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h16 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_22 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h16 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_22 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_23 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h17 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_23 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h17 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_23 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_24 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h18 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_24 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h18 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_24 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_25 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h19 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_25 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h19 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_25 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_26 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1a == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_26 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1a == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_26 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_27 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1b == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_27 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1b == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_27 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_28 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1c == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_28 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1c == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_28 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_29 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1d == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_29 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1d == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_29 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_30 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1e == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_30 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1e == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_30 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_31 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h1f == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_31 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h1f == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_31 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_32 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h20 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_32 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h20 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_32 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_33 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h21 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_33 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h21 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_33 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_34 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h22 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_34 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h22 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_34 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_35 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h23 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_35 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h23 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_35 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_36 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h24 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_36 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h24 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_36 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_37 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h25 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_37 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h25 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_37 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_38 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h26 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_38 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h26 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_38 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_39 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h27 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_39 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h27 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_39 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_40 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h28 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_40 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h28 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_40 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_41 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h29 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_41 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h29 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_41 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_42 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2a == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_42 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2a == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_42 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_43 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2b == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_43 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2b == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_43 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_44 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2c == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_44 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2c == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_44 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_45 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2d == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_45 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2d == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_45 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_46 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2e == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_46 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2e == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_46 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_47 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h2f == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_47 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h2f == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_47 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_48 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h30 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_48 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h30 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_48 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_49 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h31 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_49 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h31 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_49 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_50 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h32 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_50 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h32 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_50 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_51 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h33 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_51 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h33 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_51 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_52 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h34 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_52 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h34 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_52 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_53 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h35 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_53 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h35 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_53 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_54 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h36 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_54 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h36 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_54 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_55 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h37 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_55 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h37 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_55 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_56 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h38 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_56 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h38 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_56 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_57 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h39 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_57 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h39 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_57 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_58 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3a == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_58 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3a == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_58 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_59 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3b == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_59 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3b == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_59 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_60 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3c == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_60 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3c == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_60 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_61 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3d == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_61 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3d == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_61 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_62 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3e == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_62 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3e == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_62 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_63 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h3f == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_63 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h3f == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_63 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_64 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h40 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_64 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h40 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_64 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_65 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h41 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_65 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h41 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_65 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_66 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h42 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_66 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h42 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_66 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_67 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h43 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_67 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h43 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_67 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_68 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h44 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_68 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h44 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_68 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_69 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h45 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_69 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h45 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_69 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_70 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h46 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_70 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h46 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_70 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_71 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h47 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_71 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h47 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_71 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_72 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h48 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_72 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h48 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_72 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_73 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h49 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_73 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h49 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_73 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_74 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4a == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_74 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4a == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_74 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_75 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4b == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_75 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4b == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_75 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_76 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4c == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_76 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4c == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_76 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_77 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4d == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_77 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4d == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_77 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_78 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4e == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_78 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4e == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_78 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_79 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h4f == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_79 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h4f == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_79 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_80 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h50 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_80 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h50 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_80 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_81 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h51 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_81 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h51 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_81 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_82 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h52 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_82 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h52 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_82 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_83 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h53 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_83 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h53 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_83 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_84 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h54 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_84 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h54 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_84 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_85 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h55 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_85 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h55 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_85 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_86 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h56 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_86 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h56 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_86 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_87 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h57 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_87 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h57 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_87 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_88 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h58 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_88 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h58 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_88 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_89 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h59 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_89 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h59 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_89 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_90 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5a == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_90 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5a == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_90 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_91 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5b == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_91 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5b == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_91 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_92 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5c == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_92 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5c == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_92 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_93 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5d == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_93 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5d == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_93 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_94 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5e == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_94 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5e == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_94 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_95 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h5f == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_95 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h5f == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_95 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_96 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h60 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_96 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h60 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_96 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_97 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h61 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_97 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h61 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_97 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_98 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h62 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_98 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h62 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_98 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_99 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h63 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_99 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h63 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_99 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_100 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h64 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_100 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h64 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_100 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_101 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h65 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_101 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h65 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_101 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_102 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h66 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_102 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h66 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_102 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_103 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h67 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_103 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h67 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_103 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_104 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h68 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_104 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h68 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_104 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_105 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h69 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_105 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h69 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_105 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_106 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6a == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_106 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6a == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_106 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_107 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6b == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_107 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6b == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_107 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_108 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6c == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_108 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6c == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_108 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_109 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6d == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_109 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6d == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_109 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_110 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6e == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_110 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6e == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_110 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_111 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h6f == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_111 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h6f == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_111 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_112 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h70 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_112 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h70 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_112 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_113 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h71 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_113 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h71 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_113 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_114 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h72 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_114 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h72 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_114 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_115 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h73 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_115 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h73 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_115 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_116 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h74 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_116 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h74 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_116 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_117 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h75 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_117 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h75 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_117 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_118 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h76 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_118 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h76 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_118 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_119 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h77 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_119 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h77 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_119 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_120 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h78 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_120 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h78 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_120 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_121 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h79 == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_121 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h79 == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_121 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_122 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7a == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_122 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7a == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_122 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_123 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7b == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_123 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7b == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_123 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_124 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7c == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_124 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7c == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_124 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_125 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7d == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_125 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7d == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_125 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_126 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7e == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_126 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7e == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_126 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
     if (reset) begin // @[DCache.scala 42:26]
       way1Dirty_127 <= 1'h0; // @[DCache.scala 42:26]
-    end else if (sDoneEn) begin // @[DCache.scala 190:17]
-      if (!(cacheLineWay)) begin // @[DCache.scala 191:24]
-        if (7'h7f == reqIndex) begin // @[DCache.scala 198:27]
-          way1Dirty_127 <= io_dmem_data_req; // @[DCache.scala 198:27]
+    end else if (sDoneEn) begin // @[DCache.scala 189:17]
+      if (!(cacheLineWay)) begin // @[DCache.scala 190:24]
+        if (7'h7f == reqIndex) begin // @[DCache.scala 197:27]
+          way1Dirty_127 <= io_dmem_data_req; // @[DCache.scala 197:27]
         end
       end
     end
