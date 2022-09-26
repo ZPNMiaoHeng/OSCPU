@@ -27,6 +27,7 @@ class DCache extends Module {
   val cacheHitEn = WireInit(false.B)
   val cacheLineWay = WireInit(false.B)
   val cacheDirtyEn = WireInit(false.B)
+  val cacheWriteEn = WireInit(false.B)
   val cacheIndex = WireInit(false.B)
 
   val way0V = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))          //way0 and way1
@@ -73,17 +74,8 @@ class DCache extends Module {
   ))
   val valid_strb = Mux(reqOff(3), Cat(strbT, "h0000000000000000".U), Cat("h0000000000000000".U, strbT))
 
-  val valid_wdata = WireInit(0.U(128.W))
-
-  val req = Module(new S011HD1P_X32Y2D128_BW)
-  req.io.CLK := clock
-  req.io.CEN := true.B
-  //! 不足之处还未考虑store
-  req.io.WEN := valid_WEn                                               //* 触发条件：未命中，存入DCache数据 ----> load 四字节对齐处理 128bits
-  req.io.BWEN := Mux(in.data_req, valid_strb, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U)    //* Load 掩码全为有效；
-  req.io.A := cacheIndex                                                //* 地址需要对应way进行修改；
-  req.io.D := Mux(in.data_req, valid_wdata,  out.data_read)             //* 总线上读取得128bits
-  cacheRData := req.io.Q
+  val valid_WData = WireInit(0.U(128.W))
+  val valid_BWEn = WireInit(0.U(128.W))
 
 //*------------------------------ DCache Machine --------------------------------
   switch(state) {
@@ -112,7 +104,7 @@ class DCache extends Module {
       }
     }
     is(s_CACHE_WRITE) {
-      when( out.data_ready ) {     //* 读取完成信号
+      when( cacheWriteEn ) {     //* Cache 写入完成信号：等总线访存结束后，延迟一个周期让其写入DCache
         state := s_CACHE_DONE
       }
     }
@@ -133,22 +125,15 @@ class DCache extends Module {
   val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U) && sHitEn      // 年龄替换算法
   val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U) && sHitEn      // 年龄替换算法
   cacheLineWay := Mux(ageWay0En, 0.U, 1.U)                                  // 0.U->way0, 1.U->way1, way0优先级更高
-
-  val sDirtyEn = state === s_CACHE_DIRTY
-  //* 此状态下是 某cacheLine是否为脏，从而跳到不同状态下*/
-  cacheDirtyEn := Mux(cacheLineWay === 0.U, sDirtyEn && way0Dirty(reqIndex), sDirtyEn && way1Dirty(reqIndex))
   cacheIndex := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
 
-  val sWriteEn = state === s_AXI_WRITE      //* 将这个CacheLine中数据写到存储器中 -> 总线写请求
-  val sReadEn = state === s_CACHE_WRITE     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求 看到这里了
-  val axiEn = sWriteEn || sReadEn  //Mux(in.data_req, sWriteEn, sWriteEn || sReadEn)
+  val sDirtyEn = state === s_CACHE_DIRTY                                    // 确定目标地址的cacheLine是否为脏，从而跳到不同状态下
+  cacheDirtyEn := Mux(cacheLineWay === 0.U, sDirtyEn && (way0Dirty(reqIndex) === 1.U), 
+                    sDirtyEn && (way1Dirty(reqIndex) === 1.U))
 
-  out.data_valid := axiEn
-  out.data_req := Mux(sWriteEn, REQ_WRITE, REQ_READ)
-  out.data_addr := validAddr  //Mux(sWriteEn, 0.U, validAddr) //! 地址就需要变换，总线读写需要四字节对齐处理
-  out.data_size := Mux(axiEn, SIZE_D, 0.U) //??!
-  out.data_strb := Mux(sWriteEn, in.data_strb, 0.U)
-  out.data_write := Mux(sWriteEn, cacheRData, 0.U)  //TODO: implement
+  val sWriteEn = state === s_AXI_WRITE      //* 将这个CacheLine中数据写到存储器中 -> 总线写请求
+  val sCacheWEn = (state === s_CACHE_WRITE)     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求 看到这里了
+
 /*
   val valid_data = Mux(cacheHitEn, Mux(reqOff(3), cacheRData(127, 64), cacheRData(63, 0)), 
                       Mux(reqOff(3), out.data_read(127,64), out.data_read(63, 0)))                   //Axi
@@ -176,10 +161,13 @@ class DCache extends Module {
     "b11".U -> in.data_write,
   )) 
 */
-  val cacheWData = Mux(cacheHitEn, cacheRData, out.data_read)  // write cacheLine
-  valid_wdata := Mux(reqOff(3), Cat(in.data_write, cacheWData(63, 0)), Cat(cacheWData(127, 64), in.data_write))
-
-  valid_WEn := Mux(in.data_req, cacheHitEn || , sReadEn)
+  cacheWriteEn := Mux(sCacheWEn, RegNext(out.data_ready), 0.U)
+  // cache write data
+  val cacheWData = Mux(cacheHitEn, cacheRData, out.data_read)  //! write cacheLine 
+  val wData = Mux(reqOff(3), Cat(in.data_write, cacheWData(63, 0)), Cat(cacheWData(127, 64), in.data_write)) //!
+  valid_WEn := Mux(in.data_req, cacheHitEn /*||*/, sCacheWEn)  // TODO: store cache write   //*load 未命中，d=0
+  valid_WData := Mux(in.data_req, wData, out.data_read) 
+  valid_BWEn := Mux(in.data_req, valid_strb, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U) 
 
   val sDoneEn = state === s_CACHE_DONE                      //* 写入到存储器后，更新对应寄存器
   way0Age(reqIndex) := Mux(ageWay0En && sDoneEn, 1.U, 0.U)  //* 年龄替换算法
@@ -200,7 +188,7 @@ class DCache extends Module {
                 Mux(sDoneEn, out.data_read, 0.U))
   val rDataHL = Mux(reqOff(3), rData(127, 64), rData(63, 0))    // 选择对应的位置；
 
-  in.data_ready := sDoneEn || (sHitEn && cacheHitEn)            // Cache完成标志：miss 与 hit 两种情况  
+  in.data_ready := (sHitEn && cacheHitEn) || sDoneEn           // Cache完成标志：miss 与 hit 两种情况  
   in.data_read :=  MuxLookup(in.data_size, 0.U, Array(                //? 位扩充？
     "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
                     "b000".U -> Cat(0.U, rDataHL( 7, 0)),
@@ -224,6 +212,25 @@ class DCache extends Module {
                 )),
     "b11".U -> rDataHL,
   ))
+
+  val axiEn = sWriteEn || sCacheWEn                     //Mux(in.data_req, sWriteEn, sWriteEn || sCacheWEn)
+  out.data_valid := axiEn 
+  out.data_req := Mux(sWriteEn, REQ_WRITE, REQ_READ)
+  out.data_addr := validAddr  //Mux(sWriteEn, 0.U, validAddr) //! 地址就需要变换，总线读写需要四字节对齐处理
+  out.data_size := Mux(axiEn, SIZE_D, 0.U) //??!
+  out.data_strb := Mux(sWriteEn, in.data_strb, 0.U)
+  out.data_write := Mux(sWriteEn, cacheRData, 0.U)  //TODO: implement
+
+//-------------------------------- DCache Data & instantiate Module --------------------------------
+  val req = Module(new S011HD1P_X32Y2D128_BW)
+  req.io.CLK := clock
+  req.io.CEN := true.B
+  //! 不足之处还未考虑store
+  req.io.WEN := valid_WEn                                               //* 触发条件：未命中，存入DCache数据 ----> load 四字节对齐处理 128bits
+  req.io.BWEN := valid_BWEn                                             //* Load 掩码全为有效；
+  req.io.A := cacheIndex                                                //* 地址需要对应way进行修改；
+  req.io.D := valid_WData                                               //* 总线上读取得128bits
+  cacheRData := req.io.Q
 
   class S011HD1P_X32Y2D128_BW extends BlackBox with HasBlackBoxResource {
     val io = IO(new Bundle {
