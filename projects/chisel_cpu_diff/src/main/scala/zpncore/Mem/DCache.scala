@@ -132,6 +132,7 @@ class DCache extends Module {
                     sDirtyEn && (way1Dirty(reqIndex) === 1.U))
 
   val sWriteEn = state === s_AXI_WRITE      //* 将这个CacheLine中数据写到存储器中 -> 总线写请求
+
   val sCacheWEn = (state === s_CACHE_WRITE)     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求 看到这里了
 
 /*
@@ -216,10 +217,10 @@ class DCache extends Module {
   val axiEn = sWriteEn || sCacheWEn                     //Mux(in.data_req, sWriteEn, sWriteEn || sCacheWEn)
   out.data_valid := axiEn 
   out.data_req := Mux(sWriteEn, REQ_WRITE, REQ_READ)
-  out.data_addr := validAddr  //Mux(sWriteEn, 0.U, validAddr) //! 地址就需要变换，总线读写需要四字节对齐处理
-  out.data_size := Mux(axiEn, SIZE_D, 0.U) //??!
-  out.data_strb := Mux(sWriteEn, in.data_strb, 0.U)
-  out.data_write := Mux(sWriteEn, cacheRData, 0.U)  //TODO: implement
+  out.data_addr := validAddr  //Mux(sWriteEn, 0.U, validAddr)                            //! 地址就需要变换，总线读写需要四字节对齐处理
+  out.data_size := Mux(axiEn, SIZE_D, 0.U)                                               //! dirty=1，将cacheLine写入存储器中，size先试试？？？
+  out.data_strb := Mux(sWriteEn, "b1111_1111".U, 0.U)    //! 对应掩码呢？？？
+  out.data_write := Mux(sWriteEn, cacheRData, 0.U)                                       //TODO: implement
 
 //-------------------------------- DCache Data & instantiate Module --------------------------------
   val req = Module(new S011HD1P_X32Y2D128_BW)
