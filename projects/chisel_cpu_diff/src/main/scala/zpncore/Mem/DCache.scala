@@ -24,6 +24,7 @@ class DCache extends Module {
   val cacheLineNum = 128
 
   val cacheRData = WireInit(0.U(128.W))     // 读 cacheLine
+  val cacheValid = WireInit(false.B)
   val cacheHitEn = WireInit(false.B)
   val cacheLineWay = WireInit(false.B)
   val cacheDirtyEn = WireInit(false.B)
@@ -52,7 +53,7 @@ class DCache extends Module {
   val reqOff = validAddr(3, 0)
 
   val valid_WEn = WireInit(0.U(1.W))                                         //* in.data_req
-  val strbT = LookupTreeDefault(in.data_strb, 0.U, List(                     //* 对应64bit下存储位置
+  val strbT = LookupTreeDefault(in.data_strb, 0.U, List(                     //* 对应64bits下存储位置
     "b0000_0001".U -> "h00000000000000ff".U,
     "b0000_0010".U -> "h000000000000ff00".U,
     "b0000_0100".U -> "h0000000000ff0000".U,
@@ -80,7 +81,7 @@ class DCache extends Module {
 //*------------------------------ DCache Machine --------------------------------
   switch(state) {
     is(s_IDLE) {
-      when( in.data_valid ) {
+      when( cacheValid ) {
         state := s_CACHE_HIT
     }
   }
@@ -104,7 +105,7 @@ class DCache extends Module {
       }
     }
     is(s_CACHE_WRITE) {
-      when( cacheWriteEn ) {     //* Cache 写入完成信号：等总线访存结束后，延迟一个周期让其写入DCache
+      when( cacheWriteEn ) {     //* Cache 写入完成信号：Load需要等总线访存结束后，延迟一个周期让其写入DCache；store待定
         state := s_CACHE_DONE
       }
     }
@@ -114,6 +115,7 @@ class DCache extends Module {
   }
 //*----------------------------- control signals --------------------------------
   val sIDLEEn = state === s_IDLE
+  cacheValid := in.data_valid
 
   // Cache Hit
   val sHitEn = state === s_CACHE_HIT
@@ -122,8 +124,8 @@ class DCache extends Module {
   cacheHitEn := (way0Hit || way1Hit ) && (state === s_CACHE_HIT)
 
   // Cache Miss and find cacheLine
-  val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U) && sHitEn      // 年龄替换算法
-  val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U) && sHitEn      // 年龄替换算法
+  val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U) // && sHitEn 不应该加时序控制      // 年龄替换算法
+  val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U) // && sHitEn      // 年龄替换算法
   cacheLineWay := Mux(ageWay0En, 0.U, 1.U)                                  // 0.U->way0, 1.U->way1, way0优先级更高
   cacheIndex := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
 
@@ -131,7 +133,7 @@ class DCache extends Module {
   cacheDirtyEn := Mux(cacheLineWay === 0.U, sDirtyEn && (way0Dirty(reqIndex) === 1.U), 
                     sDirtyEn && (way1Dirty(reqIndex) === 1.U))
 
-  val sWriteEn = state === s_AXI_WRITE      //* 将这个CacheLine中数据写到存储器中 -> 总线写请求
+  val sWriteEn = state === s_AXI_WRITE          //* 将这个CacheLine中数据写到存储器中 -> 总线写请求
 
   val sCacheWEn = (state === s_CACHE_WRITE)     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求 看到这里了
 
@@ -162,11 +164,13 @@ class DCache extends Module {
     "b11".U -> in.data_write,
   )) 
 */
-  cacheWriteEn := Mux(sCacheWEn, RegNext(out.data_ready), 0.U)
+  cacheWriteEn := Mux(sCacheWEn, RegNext(out.data_ready), 0.U) //!
   // cache write data
-  val cacheWData = Mux(cacheHitEn, cacheRData, out.data_read)  //! write cacheLine 
-  val wData = Mux(reqOff(3), Cat(in.data_write, cacheWData(63, 0)), Cat(cacheWData(127, 64), in.data_write)) //!
-  valid_WEn := Mux(in.data_req, cacheHitEn /*||*/, sCacheWEn)  // TODO: store cache write   //*load 未命中，d=0
+//  val cacheWData = in.data_write(63, 0) //Mux(cacheHitEn, cacheRData, out.data_read)  //! 这是Load指令过程，未命中需要从总线读取数据（存储器中）
+//  val wData = Mux(reqOff(3), Cat(in.data_write, cacheWData(63, 0)), Cat(cacheWData(127, 64), in.data_write)) //! 选择写入cacheline位置
+  val wData = in.data_write
+
+  valid_WEn := sCacheWEn //Mux(in.data_req, cacheHitEn /*||*/, sCacheWEn)
   valid_WData := Mux(in.data_req, wData, out.data_read) 
   valid_BWEn := Mux(in.data_req, valid_strb, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U) 
 
