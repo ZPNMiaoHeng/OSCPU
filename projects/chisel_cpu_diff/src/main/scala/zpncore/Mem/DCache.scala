@@ -110,7 +110,6 @@ class DCache extends Module {
       }
     }
     is(s_CACHE_DONE) {           // 延迟一周期写入寄存器
-//      state := RegNext(s_IDLE)
       state := s_IDLE
     }
   }
@@ -125,8 +124,8 @@ class DCache extends Module {
   cacheHitEn := (way0Hit || way1Hit ) && (state === s_CACHE_HIT)
 
   // Cache Miss and find cacheLine
-  val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U) // && sHitEn 不应该加时序控制,只跟年龄寄存器有关系      // 年龄替换算法
-  val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U) // && sHitEn      // 年龄替换算法
+  val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U)                // 年龄替换算法
+  val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U)                // 年龄替换算法
   cacheLineWay := Mux(ageWay0En, 0.U, 1.U)                                  // 0.U->way0, 1.U->way1, way0优先级更高
   cacheIndex := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
 
@@ -165,7 +164,9 @@ class DCache extends Module {
     "b11".U -> in.data_write,
   )) 
 */
-  cacheWriteEn := Mux(sCacheWEn, RegNext(out.data_ready), 0.U) //!
+//  cacheWriteEn := Mux(sCacheWEn, out.data_ready, 0.U)
+  cacheWriteEn := Mux(sCacheWEn, Mux(in.data_req ===  REQ_READ, out.data_ready, 1.U), 0.U) //!
+
   // cache write data
 //  val cacheWData = in.data_write(63, 0) //Mux(cacheHitEn, cacheRData, out.data_read)  //! 这是Load指令过程，未命中需要从总线读取数据（存储器中）
 //  val wData = Mux(reqOff(3), Cat(in.data_write, cacheWData(63, 0)), Cat(cacheWData(127, 64), in.data_write)) //! 选择写入cacheline位置
