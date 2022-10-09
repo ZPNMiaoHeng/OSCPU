@@ -73,7 +73,7 @@ class DCache extends Module {
     
     "b1111_1111".U -> "hffffffffffffffff".U   
   ))
-  val valid_strb = Mux(reqOff(3), Cat(strbT, "h0000000000000000".U), Cat("h0000000000000000".U, strbT))
+  val valid_strb = Mux(reqOff(3), Cat(strbT, 0.U(64.W)), Cat(0.U(64.W), strbT))
 
   val valid_WData = WireInit(0.U(128.W))
   val valid_BWEn = WireInit(0.U(128.W))
@@ -100,7 +100,7 @@ class DCache extends Module {
       }
     }
     is(s_AXI_WRITE) {
-      when( out.data_ready ) {      //*写入完成信号
+      when( out.data_ready ) {   //*写入完成信号
         state := s_CACHE_WRITE
       }
     }
@@ -128,6 +128,9 @@ class DCache extends Module {
   val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U)                // 年龄替换算法
   cacheLineWay := Mux(ageWay0En, 0.U, 1.U)                                  // 0.U->way0, 1.U->way1, way0优先级更高
   cacheIndex := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
+  /* Load 就可以直接读取指令，但store 需要写回到Cache中 */
+
+
 
   val sDirtyEn = state === s_CACHE_DIRTY                                    // 确定目标地址的cacheLine是否为脏，从而跳到不同状态下
   cacheDirtyEn := Mux(cacheLineWay === 0.U, sDirtyEn && (way0Dirty(reqIndex) === 1.U), 
@@ -164,34 +167,22 @@ class DCache extends Module {
     "b11".U -> in.data_write,
   )) 
 */
-//  cacheWriteEn := Mux(sCacheWEn, out.data_ready, 0.U)
+
   cacheWriteEn := Mux(sCacheWEn, Mux(in.data_req ===  REQ_READ, out.data_ready, 1.U), 0.U) //!
 
   // cache write data
-//  val cacheWData = in.data_write(63, 0) //Mux(cacheHitEn, cacheRData, out.data_read)  //! 这是Load指令过程，未命中需要从总线读取数据（存储器中）
-//  val wData = Mux(reqOff(3), Cat(in.data_write, cacheWData(63, 0)), Cat(cacheWData(127, 64), in.data_write)) //! 选择写入cacheline位置
-  val wData = in.data_write
+  val wData = Mux(reqOff(3), Cat(in.data_write(63, 0), 0.U(64.W)), in.data_write) //! 选择写入cacheline位置
 
-  valid_WEn := sCacheWEn //Mux(in.data_req, cacheHitEn /*||*/, sCacheWEn)
-  valid_WData := Mux(in.data_req, wData, out.data_read) 
+  valid_WEn := sCacheWEn || (in.data_req && sHitEn && cacheHitEn)               //? 添加store hit 写入Cache
+  valid_WData := Mux(in.data_req, wData, out.data_read)
   valid_BWEn := Mux(in.data_req, valid_strb, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U) 
 
   val sDoneEn = state === s_CACHE_DONE                      //* 写入到存储器后，更新对应寄存器
   way0Age(reqIndex) := Mux(ageWay0En && sDoneEn, 1.U, 0.U)  //* 年龄替换算法
   way1Age(reqIndex) := Mux(ageWay0En && sDoneEn, 0.U, 1.U)
-  /*
-  when(sDoneEn) {
-    when(cacheLineWay) {                     //way0
-      way0V(reqIndex) := true.B
-      way0Tag(reqIndex) := reqTag
-      way0Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //? Load
-    } .otherwise {                           //way1
-      way1V(reqIndex) := true.B
-      way1Tag(reqIndex) := reqTag
-      way1Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //? Load
-    }
-  }*/ 
-//  when(sDoneEn) {
+  way0Dirty(reqIndex) := Mux(ageWay0En && cacheHitEn && in.data_req, 1.U, 0.U)
+  way1Dirty(reqIndex) := Mux(ageWay1En && cacheHitEn && in.data_req, 1.U, 0.U)
+
     when(ageWay0En && sDoneEn) {                     //way0
       way0V(reqIndex) := true.B
       way0Tag(reqIndex) := reqTag
@@ -201,8 +192,6 @@ class DCache extends Module {
       way1Tag(reqIndex) := reqTag
       way1Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //? Load
     }
-//  }
-
 
   val rData = Mux(sHitEn, cacheRData,
                 Mux(sDoneEn, out.data_read, 0.U))
@@ -233,10 +222,10 @@ class DCache extends Module {
     "b11".U -> rDataHL,
   ))
 
-  val axiEn = sWriteEn || sCacheWEn                     //Mux(in.data_req, sWriteEn, sWriteEn || sCacheWEn)
+  val axiEn = sWriteEn || sCacheWEn
   out.data_valid := axiEn 
   out.data_req := Mux(sWriteEn, REQ_WRITE, REQ_READ)
-  out.data_addr := validAddr  //Mux(sWriteEn, 0.U, validAddr)                            //! 地址就需要变换，总线读写需要四字节对齐处理
+  out.data_addr := validAddr                            //! 地址就需要变换，总线读写需要四字节对齐处理
   out.data_size := Mux(axiEn, SIZE_D, 0.U)                                               //! dirty=1，将cacheLine写入存储器中，size先试试？？？
   out.data_strb := Mux(sWriteEn, "b1111_1111".U, 0.U)    //! 对应掩码呢？？？
   out.data_write := Mux(sWriteEn, cacheRData, 0.U)                                       //TODO: implement
