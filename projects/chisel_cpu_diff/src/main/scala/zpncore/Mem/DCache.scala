@@ -29,7 +29,7 @@ class DCache extends Module {
   val cacheLineWay = WireInit(false.B)
   val cacheDirtyEn = WireInit(false.B)
   val cacheWriteEn = WireInit(false.B)
-  val cacheIndex = WireInit(false.B)
+  val cacheIndex = WireInit(0.U(8.W))
 
   val way0V = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))          //way0 and way1
   val way0Tag = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(21.W))))
@@ -48,9 +48,9 @@ class DCache extends Module {
   
 //*------------------------------------------------------------------
   val validAddr = in.data_addr
-  val reqTag = validAddr(31, 11)
-  val reqIndex = validAddr(10, 4)
-  val reqOff = validAddr(3, 0)
+  val reqTag = validAddr(31, 11)                                             //  对应正确地址，发生写缺失时，需要被替换
+  val reqIndex = validAddr(10, 4)                                            //  选择对应CacheLine
+  val reqOff = validAddr(3, 0)                                               //  选择cacheLine Date 位置
 
   val valid_WEn = WireInit(0.U(1.W))                                         //* in.data_req
   val strbT = LookupTreeDefault(in.data_strb, 0.U, List(                     //* 对应64bits下存储位置
@@ -85,17 +85,17 @@ class DCache extends Module {
         state := s_CACHE_HIT
     }
   }
-    is(s_CACHE_HIT) {            //! store hit: 需要将数据写入DCache CacheLine Data中，dirty变为有效 
-      when ( cacheHitEn ) {
+    is(s_CACHE_HIT) {            //TODO 当store指令 hit: 需要将数据写入DCache CacheLine Data中，并标记为Dirty 
+      when ( cacheHitEn ) {      // 对应CacheLine tag（地址）相同，而且V寄存器有效
         state := s_IDLE
       } .otherwise { 
         state := s_CACHE_DIRTY
     }
   }
-    is(s_CACHE_DIRTY) {
-      when( cacheDirtyEn ) {
-        state := s_AXI_WRITE
-      } .otherwise {
+    is(s_CACHE_DIRTY) {          // 当cache未命中时，年龄算法选出的 way对应的 CacheLine Dity 是否有效
+      when( cacheDirtyEn ) {     // 对应CacheLine 为 dirty，需要总线写回到存储器中,并将 dirty 变为0 
+        state := s_AXI_WRITE  
+      } .otherwise {             // NO dirty, 则直接写入到Cacheline
         state := s_CACHE_WRITE
       }
     }
@@ -104,12 +104,13 @@ class DCache extends Module {
         state := s_CACHE_WRITE
       }
     }
-    is(s_CACHE_WRITE) {
+    is(s_CACHE_WRITE) {          //TODO 若是Load，需要从总线上读取数据，dirty === 0；若是 store，一个周期存储数据到Cache并且dirty === 1;
       when( cacheWriteEn ) {     //* Cache 写入完成信号：Load需要等总线访存结束后，延迟一个周期让其写入DCache；store待定
         state := s_CACHE_DONE
       }
     }
-    is(s_CACHE_DONE) {
+    is(s_CACHE_DONE) {           // 延迟一周期写入寄存器
+//      state := RegNext(s_IDLE)
       state := s_IDLE
     }
   }
@@ -124,7 +125,7 @@ class DCache extends Module {
   cacheHitEn := (way0Hit || way1Hit ) && (state === s_CACHE_HIT)
 
   // Cache Miss and find cacheLine
-  val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U) // && sHitEn 不应该加时序控制      // 年龄替换算法
+  val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U) // && sHitEn 不应该加时序控制,只跟年龄寄存器有关系      // 年龄替换算法
   val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U) // && sHitEn      // 年龄替换算法
   cacheLineWay := Mux(ageWay0En, 0.U, 1.U)                                  // 0.U->way0, 1.U->way1, way0优先级更高
   cacheIndex := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
@@ -177,6 +178,7 @@ class DCache extends Module {
   val sDoneEn = state === s_CACHE_DONE                      //* 写入到存储器后，更新对应寄存器
   way0Age(reqIndex) := Mux(ageWay0En && sDoneEn, 1.U, 0.U)  //* 年龄替换算法
   way1Age(reqIndex) := Mux(ageWay0En && sDoneEn, 0.U, 1.U)
+  /*
   when(sDoneEn) {
     when(cacheLineWay) {                     //way0
       way0V(reqIndex) := true.B
@@ -187,7 +189,19 @@ class DCache extends Module {
       way1Tag(reqIndex) := reqTag
       way1Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //? Load
     }
-  }
+  }*/ 
+//  when(sDoneEn) {
+    when(ageWay0En && sDoneEn) {                     //way0
+      way0V(reqIndex) := true.B
+      way0Tag(reqIndex) := reqTag
+      way0Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //? Load
+    } .elsewhen(ageWay1En && sDoneEn) {                           //way1
+      way1V(reqIndex) := true.B
+      way1Tag(reqIndex) := reqTag
+      way1Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //? Load
+    }
+//  }
+
 
   val rData = Mux(sHitEn, cacheRData,
                 Mux(sDoneEn, out.data_read, 0.U))
