@@ -127,11 +127,8 @@ class DCache extends Module {
   val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U)                // 年龄替换算法
   val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U)                // 年龄替换算法
   cacheLineWay := Mux(cacheHitEn, Mux(way0Hit, 0.U, 1.U), Mux(ageWay0En, 0.U, 1.U))   //? 0.U->way0, 1.U->way1, way0优先级更高  ++ 添加sd 命中情况下选择
-//  cacheLineWay := Mux(ageWay0En, 0.U, 1.U)                                  // 0.U->way0, 1.U->way1, way0优先级更高
   cacheIndex := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
   /* Load 就可以直接读取指令，但store 需要写回到Cache中 */
-
-
 
   val sDirtyEn = state === s_CACHE_DIRTY                                    // 确定目标地址的cacheLine是否为脏，从而跳到不同状态下
   cacheDirtyEn := Mux(cacheLineWay === 0.U, sDirtyEn && (way0Dirty(reqIndex) === 1.U), 
@@ -172,7 +169,6 @@ class DCache extends Module {
   cacheWriteEn := Mux(sCacheWEn, Mux(in.data_req ===  REQ_READ, out.data_ready, 1.U), 0.U)
 
   // cache write data
-//  val wData = Mux(reqOff(3), Cat(in.data_write(63, 0), 0.U(64.W)), in.data_write) //! 选择写入cacheline位置
   val wData = in.data_write
 
   valid_WEn := sCacheWEn || (in.data_req && sHitEn && cacheHitEn)               //? 添加store hit 写入Cache
@@ -180,26 +176,35 @@ class DCache extends Module {
   valid_BWEn := Mux(in.data_req, valid_strb, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U) 
 
   val sDoneEn = state === s_CACHE_DONE                      //* 写入到存储器后，更新对应寄存器
-  way0Age(reqIndex) := Mux(ageWay0En && sDoneEn, 1.U, 0.U)  //* 年龄替换算法
-  way1Age(reqIndex) := Mux(ageWay0En && sDoneEn, 0.U, 1.U)
+
+
+//! Dirty 寄存器单独处理
   way0Dirty(reqIndex) := Mux(ageWay0En && cacheHitEn && in.data_req, 1.U, 0.U)
   way1Dirty(reqIndex) := Mux(ageWay1En && cacheHitEn && in.data_req, 1.U, 0.U)
 
-    when(ageWay0En && sDoneEn) {                     //way0
-      way0V(reqIndex) := true.B
-      way0Tag(reqIndex) := reqTag
-      way0Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //? Load
-    } .elsewhen(ageWay1En && sDoneEn) {                           //way1
-      way1V(reqIndex) := true.B
-      way1Tag(reqIndex) := reqTag
-      way1Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //? Load
-    }
+  when(ageWay0En && sDoneEn) {                     //way0
+    way0V(reqIndex) := true.B
+    way0Tag(reqIndex) := reqTag
+//    way0Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //! Load
+    way0Age(reqIndex) := 1.U
+    way1Age(reqIndex) := 0.U
+  } .elsewhen(ageWay1En && sDoneEn) {                           //way1
+    way1V(reqIndex) := true.B
+    way1Tag(reqIndex) := reqTag
+  //  way1Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //? Load
+    way0Age(reqIndex) := 0.U
+    way1Age(reqIndex) := 1.U
+  }
 
-  val rData = Mux(sHitEn, cacheRData,
+  val hitEn = RegInit(false.B)
+  hitEn := sHitEn && cacheHitEn
+
+  val rData = Mux(hitEn, cacheRData,
                 Mux(sDoneEn, out.data_read, 0.U))
   val rDataHL = Mux(reqOff(3), rData(127, 64), rData(63, 0))    // 选择对应的位置；
 
-  in.data_ready := (sHitEn && cacheHitEn) || sDoneEn           // Cache完成标志：miss 与 hit 两种情况  
+  in.data_ready := hitEn || sDoneEn           // Cache完成标志：miss 与 hit 两种情况  
+
   in.data_read :=  MuxLookup(in.data_size, 0.U, Array(                //? 位扩充？
     "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
                     "b000".U -> Cat(0.U, rDataHL( 7, 0)),
