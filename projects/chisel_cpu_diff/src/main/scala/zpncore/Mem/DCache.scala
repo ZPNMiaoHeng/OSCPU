@@ -87,8 +87,11 @@ class DCache extends Module {
     }
     is(s_CACHE_HIT) {            //TODO 当store指令 hit: 需要将数据写入DCache CacheLine Data中，并标记为Dirty 
       when ( cacheHitEn ) {      // 对应CacheLine tag（地址）相同，而且V寄存器有效
-//      when(hitEn) {
-        state := s_IDLE
+        when(in.data_req === REQ_READ) {
+          state := s_IDLE
+        } .otherwise {
+          state := s_CACHE_WRITE  //*++ store 命中后进入写cacheline状态
+        }
       } .otherwise { 
         state := s_CACHE_DIRTY
       }
@@ -125,8 +128,13 @@ class DCache extends Module {
   cacheHitEn := (way0Hit || way1Hit )
 
   // Cache Miss and find cacheLine
-  val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U)                // 年龄替换算法
-  val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U)                // 年龄替换算法
+  val ageWay0En = !cacheHitEn && (Mux(in.data_req === REQ_READ, way0Age(reqIndex) === 0.U, 
+                    ((way0Tag(reqIndex) === reqTag) && (way0Age(reqIndex) === 1.U)) || ((way0Tag(reqIndex) === 0.U) && (way0Age(reqIndex) === 0.U ))
+                    ))                //* 年龄替换算法 ++ 添加store age 处理
+  val ageWay1En = !cacheHitEn && (Mux(in.data_req === REQ_READ, way1Age(reqIndex) === 0.U, 
+                    ((way1Tag(reqIndex) === reqTag) && (way1Age(reqIndex) === 1.U)) || ((way1Tag(reqIndex) === 0.U) && (way1Age(reqIndex) === 0.U ))
+                    ))                // 年龄替换算法
+//  val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U)                // 年龄替换算法
   
   cacheLineWay := Mux(cacheHitEn, Mux(way0Hit, 0.U, 1.U), Mux(ageWay0En, 0.U, 1.U))            // 0.U->way0, 1.U->way1, way0优先级更高  ++ 添加sd 命中情况下选择cacheLine
   cacheIndex   := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
@@ -136,8 +144,6 @@ class DCache extends Module {
   cacheDirtyEn := Mux(cacheLineWay === 0.U, (way0Dirty(reqIndex) === 1.U), (way1Dirty(reqIndex) === 1.U))
 
   val sWriteEn = state === s_AXI_WRITE          //* 将这个CacheLine中数据写到存储器中 -> 总线写请求
-
-  val sCacheWEn = (state === s_CACHE_WRITE)     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求 看到这里了
 
 /*
   val valid_data = Mux(cacheHitEn, Mux(reqOff(3), cacheRData(127, 64), cacheRData(63, 0)), 
@@ -166,18 +172,33 @@ class DCache extends Module {
     "b11".U -> in.data_write,
   )) 
 */
-
-  cacheWriteEn := Mux(sCacheWEn, Mux(in.data_req ===  REQ_READ, out.data_ready, 1.U), 0.U)
+  val sCacheWEn = (state === s_CACHE_WRITE)     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求 看到这里了
+                                                //* 1. load缺失，从总线读取数据,需要等待总线完成信号；dirty === 0
+                                                //* 2. store: 写入数据； dirty===1
 
   // cache write data
-  val wData = in.data_write
-
-  valid_WEn := sCacheWEn || (in.data_req && sHitEn && cacheHitEn)               //? 添加store hit 写入Cache
-  valid_WData := Mux(in.data_req, wData, out.data_read)
-  valid_BWEn  := Mux(in.data_req, valid_strb, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U)
-
+  valid_WEn    := sCacheWEn
+  valid_WData  := Mux(in.data_req, in.data_write, out.data_read)
+  valid_BWEn   := Mux(in.data_req, valid_strb   , "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U)
+  cacheWriteEn := Mux(in.data_req, true.B       , out.data_ready)
+  
   val sDoneEn = state === s_CACHE_DONE                      //* 写入到存储器后，更新对应寄存器
 
+//! Dirty 寄存器单独处理
+  when(ageWay0En) {
+    when(sCacheWEn && in.data_req) {            // store 
+      way0Dirty(reqIndex) := 1.U
+    } .elsewhen(sWriteEn && out.data_ready) {
+      way0Dirty(reqIndex) := 0.U
+    }
+  } .elsewhen(ageWay1En) {
+    when(sCacheWEn && in.data_req) {
+      way1Dirty(reqIndex) := 1.U
+    } .elsewhen(sWriteEn && out.data_ready) {
+      way1Dirty(reqIndex) := 0.U
+    }
+  }
+/*
 //! Dirty 寄存器单独处理
   when(ageWay0En) {
     when(cacheHitEn && in.data_req) {
@@ -192,20 +213,16 @@ class DCache extends Module {
       way0Dirty(reqIndex) := 0.U
     }
   }
-
-//  way0Dirty(reqIndex) := Mux(ageWay0En && cacheHitEn && in.data_req, 1.U, 0.U)
-//  way1Dirty(reqIndex) := Mux(ageWay1En && cacheHitEn && in.data_req, 1.U, 0.U)
+*/
 
   when(ageWay0En && sDoneEn) {                     //way0
     way0V(reqIndex) := true.B
     way0Tag(reqIndex) := reqTag
-//    way0Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //! Load
-    way0Age(reqIndex) := 1.U
+    way0Age(reqIndex) := 1.U  
     way1Age(reqIndex) := 0.U
   } .elsewhen(ageWay1En && sDoneEn) {                           //way1
     way1V(reqIndex) := true.B
     way1Tag(reqIndex) := reqTag
-  //  way1Dirty(reqIndex) := Mux(in.data_req, 1.U, 0.U)             //? Load
     way0Age(reqIndex) := 0.U
     way1Age(reqIndex) := 1.U
   }
