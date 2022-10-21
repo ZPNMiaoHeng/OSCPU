@@ -181,8 +181,6 @@ class DCache extends Module {
   valid_WData  := Mux(in.data_req, in.data_write, out.data_read)
   valid_BWEn   := Mux(in.data_req, valid_strb   , "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U)
   cacheWriteEn := Mux(in.data_req, true.B       , out.data_ready)
-  
-  val sDoneEn = state === s_CACHE_DONE                      //* 写入到存储器后，更新对应寄存器
 
 //! Dirty 寄存器单独处理
   when(ageWay0En) {
@@ -215,21 +213,22 @@ class DCache extends Module {
   }
 */
 
-  when(ageWay0En && sDoneEn) {                     //way0
+  when(ageWay0En && sCacheWEn) {                     //way0
     way0V(reqIndex) := true.B
     way0Tag(reqIndex) := reqTag
     way0Age(reqIndex) := 1.U  
     way1Age(reqIndex) := 0.U
-  } .elsewhen(ageWay1En && sDoneEn) {                           //way1
+  } .elsewhen(ageWay1En && sCacheWEn) {                           //way1
     way1V(reqIndex) := true.B
     way1Tag(reqIndex) := reqTag
     way0Age(reqIndex) := 0.U
     way1Age(reqIndex) := 1.U
   }
 
+  val sDoneEn = state === s_CACHE_DONE                      //* 写入到存储器后，更新对应寄存器
+
   val hitEn = RegInit(false.B)
   hitEn := sHitEn && cacheHitEn
-
   val rData = Mux(hitEn, cacheRData,
                 Mux(sDoneEn, out.data_read, 0.U))
   val rDataHL = Mux(reqOff(3), rData(127, 64), rData(63, 0))    // 选择对应的位置；
