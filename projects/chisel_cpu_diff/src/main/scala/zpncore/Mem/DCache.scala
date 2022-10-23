@@ -28,7 +28,7 @@ class DCache extends Module {
   val cacheHitEn   = WireInit(false.B)
   val cacheLineWay = WireInit(false.B)
   val cacheDirtyEn = WireInit(false.B)
-  val cacheWriteEn = WireInit(false.B)
+//  val cacheWriteEn = WireInit(false.B)
   val cacheIndex   = WireInit(0.U(8.W))
 
   val way0V     = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))          //way0 and way1
@@ -43,7 +43,7 @@ class DCache extends Module {
   val way1Age   = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(1.W))))
   val way1Dirty = RegInit(VecInit(Seq.fill(cacheLineNum)(0.U(1.W))))
 
-  val s_IDLE :: s_CACHE_HIT :: s_CACHE_DIRTY :: s_AXI_WRITE :: s_CACHE_WRITE :: s_CACHE_DONE :: Nil = Enum(6)
+  val s_IDLE :: s_CACHE_HIT :: s_CACHE_DIRTY :: s_AXI_WRITE :: s_AXI_READ :: s_CACHE_WRITE :: s_CACHE_DONE :: Nil = Enum(7)
   val state = RegInit(s_IDLE)
   
 //*-------------------------- signal define  ----------------------------------------
@@ -85,35 +85,40 @@ class DCache extends Module {
         state := s_CACHE_HIT
       }
     }
-    is(s_CACHE_HIT) {            //TODO 当store指令 hit: 需要将数据写入DCache CacheLine Data中，并标记为Dirty 
-      when ( cacheHitEn ) {      // 对应CacheLine tag（地址）相同，而且V寄存器有效
+    is(s_CACHE_HIT) {             //* 判断是否命中Cache 0b001
+      when ( cacheHitEn ) {
         when(in.data_req === REQ_READ) {
           state := s_IDLE
         } .otherwise {
-          state := s_CACHE_WRITE  //*++ store 命中后进入写cacheline状态
+          state := s_CACHE_WRITE  // store 命中后进入写cacheline状态
         }
       } .otherwise { 
         state := s_CACHE_DIRTY
       }
     }
-    is(s_CACHE_DIRTY) {          // 当cache未命中时，年龄算法选出的 way对应的 CacheLine Dity 是否有效
-      when( cacheDirtyEn ) {     // 对应CacheLine 为 dirty，需要总线写回到存储器中,并将 dirty 变为0 
+    is(s_CACHE_DIRTY) {          //* 当cache未命中时，年龄算法选出的 way对应的 CacheLine Dity 是否有效 0b010
+      when( cacheDirtyEn ) {
         state := s_AXI_WRITE  
-      } .otherwise {             // NO dirty, 则直接写入到Cacheline
+      } .otherwise {
+        state := s_AXI_READ
+      }
+    }
+    is(s_AXI_WRITE) {            //* 选中的Cacheline为dirty，AXI写回 0x011
+      when( out.data_ready ) {   // 总线写 完成信号
+        state := s_AXI_READ
+      }
+    }
+    is(s_AXI_READ) {            //* 从存储器中读取数据放入对应cacheline中 0x100
+      when( out.data_ready) {   // 总线读 完成信号
         state := s_CACHE_WRITE
       }
     }
-    is(s_AXI_WRITE) {
-      when( out.data_ready ) {   //写入完成信号
-        state := s_CACHE_WRITE
-      }
-    }
-    is(s_CACHE_WRITE) {          //TODO 若是Load，需要从总线上读取数据，dirty === 0；若是 store，一个周期存储数据到Cache并且dirty === 1;
-      when( cacheWriteEn ) {     // Cache 写入完成信号：Load需要等总线访存结束后，延迟一个周期让其写入DCache；store待定
+    is(s_CACHE_WRITE) {         //* 对cacheline 写操作 0x101
+//      when( cacheWriteEn ) {    // Cache 写入完成信号：Load需要等总线访存结束后，延迟一个周期让其写入DCache；store待定
         state := s_CACHE_DONE
-      }
+//      }
     }
-    is(s_CACHE_DONE) {           // 延迟一周期写入寄存器
+    is(s_CACHE_DONE) {           //? 是否还需要一周期呢？直接放入写cache时对寄存器操作： 延迟一周期写入寄存器 0x110
       state := s_IDLE
     }
   }
@@ -144,10 +149,17 @@ class DCache extends Module {
   cacheDirtyEn := Mux(cacheLineWay === 0.U, (way0Dirty(reqIndex) === 1.U), (way1Dirty(reqIndex) === 1.U))
 
   val sWriteEn = state === s_AXI_WRITE          //* 将这个CacheLine中数据写到存储器中 -> 总线写请求
+  
+  val sReadEn  = state === s_AXI_READ           //* +从存储器中读取数据
+  val axiRData = WireInit(0.U(128.W)) 
+  axiRData := Mux(sReadEn && out.data_ready, out.data_read, 0.U)
 
-/*
-  val valid_data = Mux(cacheHitEn, Mux(reqOff(3), cacheRData(127, 64), cacheRData(63, 0)), 
-                      Mux(reqOff(3), out.data_read(127,64), out.data_read(63, 0)))                   //Axi
+  val sCacheWEn = (state === s_CACHE_WRITE)     //* 将总线读取数据拼接写入Cacheline中。
+                                                //* 1. load缺失，从总线读取数据,需要等待总线完成信号；dirty === 0
+                                                //* 2. store: 写入数据； dirty===1
+                                                //! 需要等待从总线读取数据
+
+  val valid_data = Mux(reqOff(3), cacheRData(127, 64), cacheRData(63, 0))
   val cacheWData = MuxLookup(in.data_size, 0.U, Array(
     "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
                     "b000".U -> Cat(valid_data(63, 8), in.data_write( 7, 0)),
@@ -171,22 +183,19 @@ class DCache extends Module {
                 )),
     "b11".U -> in.data_write,
   )) 
-*/
-  val sCacheWEn = (state === s_CACHE_WRITE)     //* 将存储器中对应位置写入到cacheLine中 -> 总线读请求 看到这里了
-                                                //* 1. load缺失，从总线读取数据,需要等待总线完成信号；dirty === 0
-                                                //* 2. store: 写入数据； dirty===1
 
   // cache write data
-  valid_WEn    := sCacheWEn
-  valid_WData  := Mux(in.data_req, in.data_write, out.data_read)
-  valid_BWEn   := Mux(in.data_req, valid_strb   , "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U)
-  cacheWriteEn := Mux(in.data_req, true.B       , out.data_ready)
+  valid_WEn   := sCacheWEn //|| (sReadEn && out.data_ready)
+  valid_WData := Mux(sReadEn, axiRData, Mux(in.data_req, cacheWData, out.data_read))
+  valid_BWEn  := Mux(sReadEn, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U,  
+                    Mux(in.data_req, valid_strb , "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U))
+//  cacheWriteEn := Mux(in.data_req, true.B       , out.data_ready)
 
 //! Dirty 寄存器单独处理
   when(ageWay0En) {
     when(sCacheWEn && in.data_req) {            // store 
       way0Dirty(reqIndex) := 1.U
-    } .elsewhen(sWriteEn && out.data_ready) {
+    } .elsewhen(sWriteEn && out.data_ready) {   // cache写入存储器完成后，dirty清0
       way0Dirty(reqIndex) := 0.U
     }
   } .elsewhen(ageWay1En) {
@@ -196,22 +205,6 @@ class DCache extends Module {
       way1Dirty(reqIndex) := 0.U
     }
   }
-/*
-//! Dirty 寄存器单独处理
-  when(ageWay0En) {
-    when(cacheHitEn && in.data_req) {
-      way0Dirty(reqIndex) := 1.U
-    } .elsewhen(sWriteEn &&  out.data_ready) {
-      way0Dirty(reqIndex) := 0.U
-    }
-  } .otherwise {
-    when(cacheHitEn && in.data_req) {
-      way1Dirty(reqIndex) := 1.U
-    } .elsewhen(sWriteEn &&  out.data_ready) {
-      way0Dirty(reqIndex) := 0.U
-    }
-  }
-*/
 
   when(ageWay0En && sCacheWEn) {                     //way0
     way0V(reqIndex) := true.B
@@ -259,13 +252,13 @@ class DCache extends Module {
     "b11".U -> rDataHL,
   ))
 
-  val axiEn = sWriteEn || sCacheWEn
+  val axiEn = sWriteEn || sReadEn 
   out.data_valid := axiEn 
-  out.data_req := Mux(sWriteEn, REQ_WRITE, REQ_READ)
-  out.data_addr := validAddr                            //! 地址就需要变换，总线读写需要四字节对齐处理
-  out.data_size := Mux(axiEn, SIZE_D, 0.U)                                               //! dirty=1，将cacheLine写入存储器中，size先试试？？？
-  out.data_strb := Mux(sWriteEn, "b1111_1111".U, 0.U)    //! 对应掩码呢？？？
-  out.data_write := Mux(sWriteEn, cacheRData, 0.U)                                       //TODO: implement
+  out.data_req   := Mux(sWriteEn, REQ_WRITE, REQ_READ)
+  out.data_addr  := Cat(validAddr(31, 4), 0.U(4.W))             //+ 地址就需要变换，总线读写需要四字节对齐处理
+  out.data_size  := Mux(axiEn   , SIZE_D        , 0.U)          //! dirty=1，将cacheLine写入存储器中，size先试试？？？
+  out.data_strb  := Mux(sWriteEn, "b1111_1111".U, 0.U)          //+ 对应掩码写入128bits
+  out.data_write := Mux(sWriteEn, cacheRData    , 0.U)          //+ 写入cacheline数据
 
 //-------------------------------- DCache Data & instantiate Module --------------------------------
   val req = Module(new S011HD1P_X32Y2D128_BW)
