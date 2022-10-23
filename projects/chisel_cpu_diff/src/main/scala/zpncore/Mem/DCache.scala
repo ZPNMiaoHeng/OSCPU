@@ -160,29 +160,32 @@ class DCache extends Module {
                                                 //! 需要等待从总线读取数据
 
   val valid_data = Mux(reqOff(3), cacheRData(127, 64), cacheRData(63, 0))
-  val cacheWData = MuxLookup(in.data_size, 0.U, Array(
+  val inDataWT   = Mux(reqOff(3), in.data_write(127, 64), in.data_write(63, 0))
+  val cacheWDataT = MuxLookup(in.data_size, 0.U, Array(
     "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
-                    "b000".U -> Cat(valid_data(63, 8), in.data_write( 7, 0)),
-                    "b001".U -> Cat(valid_data(63,16), in.data_write(15, 8), valid_data( 7, 0)),
-                    "b010".U -> Cat(valid_data(63,24), in.data_write(23,16), valid_data(15, 0)),
-                    "b011".U -> Cat(valid_data(63,32), in.data_write(31,24), valid_data(23, 0)),
-                    "b100".U -> Cat(valid_data(63,40), in.data_write(39,32), valid_data(31, 0)),
-                    "b101".U -> Cat(valid_data(63,48), in.data_write(47,40), valid_data(39, 0)),
-                    "b110".U -> Cat(valid_data(63,56), in.data_write(55,48), valid_data(47, 0)),
-                    "b111".U -> Cat(in.data_write(63,56), valid_data(55, 0)),
+                    "b000".U -> Cat(valid_data(63, 8), inDataWT( 7, 0)),
+                    "b001".U -> Cat(valid_data(63,16), inDataWT(15, 8), valid_data( 7, 0)),
+                    "b010".U -> Cat(valid_data(63,24), inDataWT(23,16), valid_data(15, 0)),
+                    "b011".U -> Cat(valid_data(63,32), inDataWT(31,24), valid_data(23, 0)),
+                    "b100".U -> Cat(valid_data(63,40), inDataWT(39,32), valid_data(31, 0)),
+                    "b101".U -> Cat(valid_data(63,48), inDataWT(47,40), valid_data(39, 0)),
+                    "b110".U -> Cat(valid_data(63,56), inDataWT(55,48), valid_data(47, 0)),
+                    "b111".U -> Cat(inDataWT(63,56), valid_data(55, 0)),
                 )),
     "b01".U -> MuxLookup(reqOff(2, 1), 0.U, Array(
-                    "b00".U -> Cat(valid_data(63,16), in.data_write(15, 0)),
-                    "b01".U -> Cat(valid_data(63,32), in.data_write(31,16), valid_data(15, 0)),
-                    "b10".U -> Cat(valid_data(63,48), in.data_write(47,32), valid_data(31, 0)),
-                    "b11".U -> Cat(in.data_write(63,48), valid_data(47, 0)),
+                    "b00".U -> Cat(valid_data(63,16), inDataWT(15, 0)),
+                    "b01".U -> Cat(valid_data(63,32), inDataWT(31,16), valid_data(15, 0)),
+                    "b10".U -> Cat(valid_data(63,48), inDataWT(47,32), valid_data(31, 0)),
+                    "b11".U -> Cat(inDataWT(63,48), valid_data(47, 0)),
                 )),
     "b10".U -> MuxLookup(reqOff(2), 0.U, Array(
-                    "b0".U -> Cat(valid_data(63,32), in.data_write(31, 0)),
-                    "b1".U -> Cat(in.data_write(63,32), valid_data(31, 0)),
+                    "b0".U -> Cat(valid_data(63,32), inDataWT(31, 0)),
+                    //"b0".U -> Cat(valid_data(63,32), in.data_write(31, 0)),
+                    "b1".U -> Cat(inDataWT(63,32), valid_data(31, 0)),
                 )),
-    "b11".U -> in.data_write,
-  )) 
+    "b11".U -> inDataWT,//in.data_write,
+  ))
+  val cacheWData = Mux(reqOff(3), Cat(cacheWDataT, 0.U(64.W)), Cat(0.U(64.W), cacheWDataT))
 
   // cache write data
   valid_WEn   := sCacheWEn //|| (sReadEn && out.data_ready)

@@ -13656,13 +13656,13 @@ module DCache(
   reg [31:0] _RAND_1024;
   reg [31:0] _RAND_1025;
 `endif // RANDOMIZE_REG_INIT
-  wire [127:0] req_Q; // @[DCache.scala 264:19]
-  wire  req_CLK; // @[DCache.scala 264:19]
-  wire  req_CEN; // @[DCache.scala 264:19]
-  wire  req_WEN; // @[DCache.scala 264:19]
-  wire [127:0] req_BWEN; // @[DCache.scala 264:19]
-  wire [7:0] req_A; // @[DCache.scala 264:19]
-  wire [127:0] req_D; // @[DCache.scala 264:19]
+  wire [127:0] req_Q; // @[DCache.scala 267:19]
+  wire  req_CLK; // @[DCache.scala 267:19]
+  wire  req_CEN; // @[DCache.scala 267:19]
+  wire  req_WEN; // @[DCache.scala 267:19]
+  wire [127:0] req_BWEN; // @[DCache.scala 267:19]
+  wire [7:0] req_A; // @[DCache.scala 267:19]
+  wire [127:0] req_D; // @[DCache.scala 267:19]
   reg  way0V_0; // @[DCache.scala 34:26]
   reg  way0V_1; // @[DCache.scala 34:26]
   reg  way0V_2; // @[DCache.scala 34:26]
@@ -15762,1323 +15762,1327 @@ module DCache(
   wire  sCacheWEn = state == 3'h5; // @[DCache.scala 157:26]
   wire [127:0] cacheRData = req_Q;
   wire [63:0] valid_data = reqOff[3] ? cacheRData[127:64] : cacheRData[63:0]; // @[DCache.scala 162:23]
-  wire [63:0] _cacheWData_T_3 = {valid_data[63:8],io_dmem_data_write[7:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_7 = {valid_data[63:16],io_dmem_data_write[15:8],valid_data[7:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_11 = {valid_data[63:24],io_dmem_data_write[23:16],valid_data[15:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_15 = {valid_data[63:32],io_dmem_data_write[31:24],valid_data[23:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_19 = {valid_data[63:40],io_dmem_data_write[39:32],valid_data[31:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_23 = {valid_data[63:48],io_dmem_data_write[47:40],valid_data[39:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_27 = {valid_data[63:56],io_dmem_data_write[55:48],valid_data[47:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_30 = {io_dmem_data_write[63:56],valid_data[55:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_32 = 3'h1 == reqOff[2:0] ? _cacheWData_T_7 : _cacheWData_T_3; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_34 = 3'h2 == reqOff[2:0] ? _cacheWData_T_11 : _cacheWData_T_32; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_36 = 3'h3 == reqOff[2:0] ? _cacheWData_T_15 : _cacheWData_T_34; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_38 = 3'h4 == reqOff[2:0] ? _cacheWData_T_19 : _cacheWData_T_36; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_40 = 3'h5 == reqOff[2:0] ? _cacheWData_T_23 : _cacheWData_T_38; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_42 = 3'h6 == reqOff[2:0] ? _cacheWData_T_27 : _cacheWData_T_40; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_44 = 3'h7 == reqOff[2:0] ? _cacheWData_T_30 : _cacheWData_T_42; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_48 = {valid_data[63:16],io_dmem_data_write[15:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_52 = {valid_data[63:32],io_dmem_data_write[31:16],valid_data[15:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_56 = {valid_data[63:48],io_dmem_data_write[47:32],valid_data[31:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_59 = {io_dmem_data_write[63:48],valid_data[47:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_61 = 2'h1 == reqOff[2:1] ? _cacheWData_T_52 : _cacheWData_T_48; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_63 = 2'h2 == reqOff[2:1] ? _cacheWData_T_56 : _cacheWData_T_61; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_65 = 2'h3 == reqOff[2:1] ? _cacheWData_T_59 : _cacheWData_T_63; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_69 = {valid_data[63:32],io_dmem_data_write[31:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_72 = {io_dmem_data_write[63:32],valid_data[31:0]}; // @[Cat.scala 31:58]
-  wire [63:0] _cacheWData_T_74 = reqOff[2] ? _cacheWData_T_72 : _cacheWData_T_69; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_76 = 2'h1 == io_dmem_data_size ? _cacheWData_T_65 : _cacheWData_T_44; // @[Mux.scala 81:58]
-  wire [63:0] _cacheWData_T_78 = 2'h2 == io_dmem_data_size ? _cacheWData_T_74 : _cacheWData_T_76; // @[Mux.scala 81:58]
-  wire [127:0] cacheWData = 2'h3 == io_dmem_data_size ? io_dmem_data_write : {{64'd0}, _cacheWData_T_78}; // @[Mux.scala 81:58]
-  wire [127:0] _valid_WData_T = io_dmem_data_req ? cacheWData : io_out_data_read; // @[DCache.scala 189:44]
-  wire [127:0] _valid_BWEn_T = io_dmem_data_req ? valid_strb : 128'hffffffffffffffffffffffffffffffff; // @[DCache.scala 191:24]
-  wire  _T_8 = sCacheWEn & io_dmem_data_req; // @[DCache.scala 196:20]
-  wire  _GEN_4749 = 7'h0 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1037 = 7'h0 == reqIndex | way0Dirty_0; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4750 = 7'h1 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1038 = 7'h1 == reqIndex | way0Dirty_1; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4751 = 7'h2 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1039 = 7'h2 == reqIndex | way0Dirty_2; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4752 = 7'h3 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1040 = 7'h3 == reqIndex | way0Dirty_3; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4753 = 7'h4 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1041 = 7'h4 == reqIndex | way0Dirty_4; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4754 = 7'h5 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1042 = 7'h5 == reqIndex | way0Dirty_5; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4755 = 7'h6 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1043 = 7'h6 == reqIndex | way0Dirty_6; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4756 = 7'h7 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1044 = 7'h7 == reqIndex | way0Dirty_7; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4757 = 7'h8 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1045 = 7'h8 == reqIndex | way0Dirty_8; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4758 = 7'h9 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1046 = 7'h9 == reqIndex | way0Dirty_9; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4759 = 7'ha == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1047 = 7'ha == reqIndex | way0Dirty_10; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4760 = 7'hb == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1048 = 7'hb == reqIndex | way0Dirty_11; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4761 = 7'hc == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1049 = 7'hc == reqIndex | way0Dirty_12; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4762 = 7'hd == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1050 = 7'hd == reqIndex | way0Dirty_13; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4763 = 7'he == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1051 = 7'he == reqIndex | way0Dirty_14; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4764 = 7'hf == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1052 = 7'hf == reqIndex | way0Dirty_15; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4765 = 7'h10 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1053 = 7'h10 == reqIndex | way0Dirty_16; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4766 = 7'h11 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1054 = 7'h11 == reqIndex | way0Dirty_17; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4767 = 7'h12 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1055 = 7'h12 == reqIndex | way0Dirty_18; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4768 = 7'h13 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1056 = 7'h13 == reqIndex | way0Dirty_19; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4769 = 7'h14 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1057 = 7'h14 == reqIndex | way0Dirty_20; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4770 = 7'h15 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1058 = 7'h15 == reqIndex | way0Dirty_21; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4771 = 7'h16 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1059 = 7'h16 == reqIndex | way0Dirty_22; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4772 = 7'h17 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1060 = 7'h17 == reqIndex | way0Dirty_23; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4773 = 7'h18 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1061 = 7'h18 == reqIndex | way0Dirty_24; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4774 = 7'h19 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1062 = 7'h19 == reqIndex | way0Dirty_25; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4775 = 7'h1a == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1063 = 7'h1a == reqIndex | way0Dirty_26; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4776 = 7'h1b == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1064 = 7'h1b == reqIndex | way0Dirty_27; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4777 = 7'h1c == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1065 = 7'h1c == reqIndex | way0Dirty_28; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4778 = 7'h1d == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1066 = 7'h1d == reqIndex | way0Dirty_29; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4779 = 7'h1e == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1067 = 7'h1e == reqIndex | way0Dirty_30; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4780 = 7'h1f == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1068 = 7'h1f == reqIndex | way0Dirty_31; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4781 = 7'h20 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1069 = 7'h20 == reqIndex | way0Dirty_32; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4782 = 7'h21 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1070 = 7'h21 == reqIndex | way0Dirty_33; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4783 = 7'h22 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1071 = 7'h22 == reqIndex | way0Dirty_34; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4784 = 7'h23 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1072 = 7'h23 == reqIndex | way0Dirty_35; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4785 = 7'h24 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1073 = 7'h24 == reqIndex | way0Dirty_36; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4786 = 7'h25 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1074 = 7'h25 == reqIndex | way0Dirty_37; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4787 = 7'h26 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1075 = 7'h26 == reqIndex | way0Dirty_38; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4788 = 7'h27 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1076 = 7'h27 == reqIndex | way0Dirty_39; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4789 = 7'h28 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1077 = 7'h28 == reqIndex | way0Dirty_40; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4790 = 7'h29 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1078 = 7'h29 == reqIndex | way0Dirty_41; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4791 = 7'h2a == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1079 = 7'h2a == reqIndex | way0Dirty_42; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4792 = 7'h2b == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1080 = 7'h2b == reqIndex | way0Dirty_43; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4793 = 7'h2c == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1081 = 7'h2c == reqIndex | way0Dirty_44; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4794 = 7'h2d == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1082 = 7'h2d == reqIndex | way0Dirty_45; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4795 = 7'h2e == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1083 = 7'h2e == reqIndex | way0Dirty_46; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4796 = 7'h2f == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1084 = 7'h2f == reqIndex | way0Dirty_47; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4797 = 7'h30 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1085 = 7'h30 == reqIndex | way0Dirty_48; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4798 = 7'h31 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1086 = 7'h31 == reqIndex | way0Dirty_49; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4799 = 7'h32 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1087 = 7'h32 == reqIndex | way0Dirty_50; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4800 = 7'h33 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1088 = 7'h33 == reqIndex | way0Dirty_51; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4801 = 7'h34 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1089 = 7'h34 == reqIndex | way0Dirty_52; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4802 = 7'h35 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1090 = 7'h35 == reqIndex | way0Dirty_53; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4803 = 7'h36 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1091 = 7'h36 == reqIndex | way0Dirty_54; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4804 = 7'h37 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1092 = 7'h37 == reqIndex | way0Dirty_55; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4805 = 7'h38 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1093 = 7'h38 == reqIndex | way0Dirty_56; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4806 = 7'h39 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1094 = 7'h39 == reqIndex | way0Dirty_57; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4807 = 7'h3a == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1095 = 7'h3a == reqIndex | way0Dirty_58; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4808 = 7'h3b == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1096 = 7'h3b == reqIndex | way0Dirty_59; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4809 = 7'h3c == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1097 = 7'h3c == reqIndex | way0Dirty_60; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4810 = 7'h3d == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1098 = 7'h3d == reqIndex | way0Dirty_61; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4811 = 7'h3e == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1099 = 7'h3e == reqIndex | way0Dirty_62; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4812 = 7'h3f == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1100 = 7'h3f == reqIndex | way0Dirty_63; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4813 = 7'h40 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1101 = 7'h40 == reqIndex | way0Dirty_64; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4814 = 7'h41 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1102 = 7'h41 == reqIndex | way0Dirty_65; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4815 = 7'h42 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1103 = 7'h42 == reqIndex | way0Dirty_66; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4816 = 7'h43 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1104 = 7'h43 == reqIndex | way0Dirty_67; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4817 = 7'h44 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1105 = 7'h44 == reqIndex | way0Dirty_68; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4818 = 7'h45 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1106 = 7'h45 == reqIndex | way0Dirty_69; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4819 = 7'h46 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1107 = 7'h46 == reqIndex | way0Dirty_70; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4820 = 7'h47 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1108 = 7'h47 == reqIndex | way0Dirty_71; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4821 = 7'h48 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1109 = 7'h48 == reqIndex | way0Dirty_72; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4822 = 7'h49 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1110 = 7'h49 == reqIndex | way0Dirty_73; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4823 = 7'h4a == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1111 = 7'h4a == reqIndex | way0Dirty_74; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4824 = 7'h4b == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1112 = 7'h4b == reqIndex | way0Dirty_75; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4825 = 7'h4c == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1113 = 7'h4c == reqIndex | way0Dirty_76; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4826 = 7'h4d == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1114 = 7'h4d == reqIndex | way0Dirty_77; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4827 = 7'h4e == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1115 = 7'h4e == reqIndex | way0Dirty_78; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4828 = 7'h4f == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1116 = 7'h4f == reqIndex | way0Dirty_79; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4829 = 7'h50 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1117 = 7'h50 == reqIndex | way0Dirty_80; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4830 = 7'h51 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1118 = 7'h51 == reqIndex | way0Dirty_81; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4831 = 7'h52 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1119 = 7'h52 == reqIndex | way0Dirty_82; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4832 = 7'h53 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1120 = 7'h53 == reqIndex | way0Dirty_83; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4833 = 7'h54 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1121 = 7'h54 == reqIndex | way0Dirty_84; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4834 = 7'h55 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1122 = 7'h55 == reqIndex | way0Dirty_85; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4835 = 7'h56 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1123 = 7'h56 == reqIndex | way0Dirty_86; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4836 = 7'h57 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1124 = 7'h57 == reqIndex | way0Dirty_87; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4837 = 7'h58 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1125 = 7'h58 == reqIndex | way0Dirty_88; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4838 = 7'h59 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1126 = 7'h59 == reqIndex | way0Dirty_89; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4839 = 7'h5a == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1127 = 7'h5a == reqIndex | way0Dirty_90; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4840 = 7'h5b == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1128 = 7'h5b == reqIndex | way0Dirty_91; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4841 = 7'h5c == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1129 = 7'h5c == reqIndex | way0Dirty_92; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4842 = 7'h5d == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1130 = 7'h5d == reqIndex | way0Dirty_93; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4843 = 7'h5e == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1131 = 7'h5e == reqIndex | way0Dirty_94; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4844 = 7'h5f == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1132 = 7'h5f == reqIndex | way0Dirty_95; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4845 = 7'h60 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1133 = 7'h60 == reqIndex | way0Dirty_96; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4846 = 7'h61 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1134 = 7'h61 == reqIndex | way0Dirty_97; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4847 = 7'h62 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1135 = 7'h62 == reqIndex | way0Dirty_98; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4848 = 7'h63 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1136 = 7'h63 == reqIndex | way0Dirty_99; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4849 = 7'h64 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1137 = 7'h64 == reqIndex | way0Dirty_100; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4850 = 7'h65 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1138 = 7'h65 == reqIndex | way0Dirty_101; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4851 = 7'h66 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1139 = 7'h66 == reqIndex | way0Dirty_102; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4852 = 7'h67 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1140 = 7'h67 == reqIndex | way0Dirty_103; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4853 = 7'h68 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1141 = 7'h68 == reqIndex | way0Dirty_104; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4854 = 7'h69 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1142 = 7'h69 == reqIndex | way0Dirty_105; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4855 = 7'h6a == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1143 = 7'h6a == reqIndex | way0Dirty_106; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4856 = 7'h6b == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1144 = 7'h6b == reqIndex | way0Dirty_107; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4857 = 7'h6c == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1145 = 7'h6c == reqIndex | way0Dirty_108; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4858 = 7'h6d == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1146 = 7'h6d == reqIndex | way0Dirty_109; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4859 = 7'h6e == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1147 = 7'h6e == reqIndex | way0Dirty_110; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4860 = 7'h6f == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1148 = 7'h6f == reqIndex | way0Dirty_111; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4861 = 7'h70 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1149 = 7'h70 == reqIndex | way0Dirty_112; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4862 = 7'h71 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1150 = 7'h71 == reqIndex | way0Dirty_113; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4863 = 7'h72 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1151 = 7'h72 == reqIndex | way0Dirty_114; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4864 = 7'h73 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1152 = 7'h73 == reqIndex | way0Dirty_115; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4865 = 7'h74 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1153 = 7'h74 == reqIndex | way0Dirty_116; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4866 = 7'h75 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1154 = 7'h75 == reqIndex | way0Dirty_117; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4867 = 7'h76 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1155 = 7'h76 == reqIndex | way0Dirty_118; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4868 = 7'h77 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1156 = 7'h77 == reqIndex | way0Dirty_119; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4869 = 7'h78 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1157 = 7'h78 == reqIndex | way0Dirty_120; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4870 = 7'h79 == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1158 = 7'h79 == reqIndex | way0Dirty_121; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4871 = 7'h7a == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1159 = 7'h7a == reqIndex | way0Dirty_122; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4872 = 7'h7b == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1160 = 7'h7b == reqIndex | way0Dirty_123; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4873 = 7'h7c == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1161 = 7'h7c == reqIndex | way0Dirty_124; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4874 = 7'h7d == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1162 = 7'h7d == reqIndex | way0Dirty_125; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4875 = 7'h7e == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1163 = 7'h7e == reqIndex | way0Dirty_126; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_4876 = 7'h7f == reqIndex; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _GEN_1164 = 7'h7f == reqIndex | way0Dirty_127; // @[DCache.scala 197:{27,27} 38:26]
-  wire  _T_9 = sWriteEn & io_out_data_ready; // @[DCache.scala 198:26]
-  wire  _GEN_1165 = 7'h0 == reqIndex ? 1'h0 : way0Dirty_0; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1166 = 7'h1 == reqIndex ? 1'h0 : way0Dirty_1; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1167 = 7'h2 == reqIndex ? 1'h0 : way0Dirty_2; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1168 = 7'h3 == reqIndex ? 1'h0 : way0Dirty_3; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1169 = 7'h4 == reqIndex ? 1'h0 : way0Dirty_4; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1170 = 7'h5 == reqIndex ? 1'h0 : way0Dirty_5; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1171 = 7'h6 == reqIndex ? 1'h0 : way0Dirty_6; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1172 = 7'h7 == reqIndex ? 1'h0 : way0Dirty_7; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1173 = 7'h8 == reqIndex ? 1'h0 : way0Dirty_8; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1174 = 7'h9 == reqIndex ? 1'h0 : way0Dirty_9; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1175 = 7'ha == reqIndex ? 1'h0 : way0Dirty_10; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1176 = 7'hb == reqIndex ? 1'h0 : way0Dirty_11; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1177 = 7'hc == reqIndex ? 1'h0 : way0Dirty_12; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1178 = 7'hd == reqIndex ? 1'h0 : way0Dirty_13; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1179 = 7'he == reqIndex ? 1'h0 : way0Dirty_14; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1180 = 7'hf == reqIndex ? 1'h0 : way0Dirty_15; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1181 = 7'h10 == reqIndex ? 1'h0 : way0Dirty_16; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1182 = 7'h11 == reqIndex ? 1'h0 : way0Dirty_17; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1183 = 7'h12 == reqIndex ? 1'h0 : way0Dirty_18; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1184 = 7'h13 == reqIndex ? 1'h0 : way0Dirty_19; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1185 = 7'h14 == reqIndex ? 1'h0 : way0Dirty_20; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1186 = 7'h15 == reqIndex ? 1'h0 : way0Dirty_21; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1187 = 7'h16 == reqIndex ? 1'h0 : way0Dirty_22; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1188 = 7'h17 == reqIndex ? 1'h0 : way0Dirty_23; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1189 = 7'h18 == reqIndex ? 1'h0 : way0Dirty_24; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1190 = 7'h19 == reqIndex ? 1'h0 : way0Dirty_25; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1191 = 7'h1a == reqIndex ? 1'h0 : way0Dirty_26; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1192 = 7'h1b == reqIndex ? 1'h0 : way0Dirty_27; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1193 = 7'h1c == reqIndex ? 1'h0 : way0Dirty_28; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1194 = 7'h1d == reqIndex ? 1'h0 : way0Dirty_29; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1195 = 7'h1e == reqIndex ? 1'h0 : way0Dirty_30; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1196 = 7'h1f == reqIndex ? 1'h0 : way0Dirty_31; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1197 = 7'h20 == reqIndex ? 1'h0 : way0Dirty_32; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1198 = 7'h21 == reqIndex ? 1'h0 : way0Dirty_33; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1199 = 7'h22 == reqIndex ? 1'h0 : way0Dirty_34; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1200 = 7'h23 == reqIndex ? 1'h0 : way0Dirty_35; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1201 = 7'h24 == reqIndex ? 1'h0 : way0Dirty_36; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1202 = 7'h25 == reqIndex ? 1'h0 : way0Dirty_37; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1203 = 7'h26 == reqIndex ? 1'h0 : way0Dirty_38; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1204 = 7'h27 == reqIndex ? 1'h0 : way0Dirty_39; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1205 = 7'h28 == reqIndex ? 1'h0 : way0Dirty_40; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1206 = 7'h29 == reqIndex ? 1'h0 : way0Dirty_41; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1207 = 7'h2a == reqIndex ? 1'h0 : way0Dirty_42; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1208 = 7'h2b == reqIndex ? 1'h0 : way0Dirty_43; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1209 = 7'h2c == reqIndex ? 1'h0 : way0Dirty_44; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1210 = 7'h2d == reqIndex ? 1'h0 : way0Dirty_45; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1211 = 7'h2e == reqIndex ? 1'h0 : way0Dirty_46; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1212 = 7'h2f == reqIndex ? 1'h0 : way0Dirty_47; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1213 = 7'h30 == reqIndex ? 1'h0 : way0Dirty_48; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1214 = 7'h31 == reqIndex ? 1'h0 : way0Dirty_49; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1215 = 7'h32 == reqIndex ? 1'h0 : way0Dirty_50; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1216 = 7'h33 == reqIndex ? 1'h0 : way0Dirty_51; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1217 = 7'h34 == reqIndex ? 1'h0 : way0Dirty_52; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1218 = 7'h35 == reqIndex ? 1'h0 : way0Dirty_53; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1219 = 7'h36 == reqIndex ? 1'h0 : way0Dirty_54; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1220 = 7'h37 == reqIndex ? 1'h0 : way0Dirty_55; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1221 = 7'h38 == reqIndex ? 1'h0 : way0Dirty_56; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1222 = 7'h39 == reqIndex ? 1'h0 : way0Dirty_57; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1223 = 7'h3a == reqIndex ? 1'h0 : way0Dirty_58; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1224 = 7'h3b == reqIndex ? 1'h0 : way0Dirty_59; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1225 = 7'h3c == reqIndex ? 1'h0 : way0Dirty_60; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1226 = 7'h3d == reqIndex ? 1'h0 : way0Dirty_61; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1227 = 7'h3e == reqIndex ? 1'h0 : way0Dirty_62; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1228 = 7'h3f == reqIndex ? 1'h0 : way0Dirty_63; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1229 = 7'h40 == reqIndex ? 1'h0 : way0Dirty_64; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1230 = 7'h41 == reqIndex ? 1'h0 : way0Dirty_65; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1231 = 7'h42 == reqIndex ? 1'h0 : way0Dirty_66; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1232 = 7'h43 == reqIndex ? 1'h0 : way0Dirty_67; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1233 = 7'h44 == reqIndex ? 1'h0 : way0Dirty_68; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1234 = 7'h45 == reqIndex ? 1'h0 : way0Dirty_69; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1235 = 7'h46 == reqIndex ? 1'h0 : way0Dirty_70; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1236 = 7'h47 == reqIndex ? 1'h0 : way0Dirty_71; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1237 = 7'h48 == reqIndex ? 1'h0 : way0Dirty_72; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1238 = 7'h49 == reqIndex ? 1'h0 : way0Dirty_73; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1239 = 7'h4a == reqIndex ? 1'h0 : way0Dirty_74; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1240 = 7'h4b == reqIndex ? 1'h0 : way0Dirty_75; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1241 = 7'h4c == reqIndex ? 1'h0 : way0Dirty_76; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1242 = 7'h4d == reqIndex ? 1'h0 : way0Dirty_77; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1243 = 7'h4e == reqIndex ? 1'h0 : way0Dirty_78; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1244 = 7'h4f == reqIndex ? 1'h0 : way0Dirty_79; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1245 = 7'h50 == reqIndex ? 1'h0 : way0Dirty_80; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1246 = 7'h51 == reqIndex ? 1'h0 : way0Dirty_81; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1247 = 7'h52 == reqIndex ? 1'h0 : way0Dirty_82; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1248 = 7'h53 == reqIndex ? 1'h0 : way0Dirty_83; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1249 = 7'h54 == reqIndex ? 1'h0 : way0Dirty_84; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1250 = 7'h55 == reqIndex ? 1'h0 : way0Dirty_85; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1251 = 7'h56 == reqIndex ? 1'h0 : way0Dirty_86; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1252 = 7'h57 == reqIndex ? 1'h0 : way0Dirty_87; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1253 = 7'h58 == reqIndex ? 1'h0 : way0Dirty_88; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1254 = 7'h59 == reqIndex ? 1'h0 : way0Dirty_89; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1255 = 7'h5a == reqIndex ? 1'h0 : way0Dirty_90; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1256 = 7'h5b == reqIndex ? 1'h0 : way0Dirty_91; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1257 = 7'h5c == reqIndex ? 1'h0 : way0Dirty_92; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1258 = 7'h5d == reqIndex ? 1'h0 : way0Dirty_93; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1259 = 7'h5e == reqIndex ? 1'h0 : way0Dirty_94; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1260 = 7'h5f == reqIndex ? 1'h0 : way0Dirty_95; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1261 = 7'h60 == reqIndex ? 1'h0 : way0Dirty_96; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1262 = 7'h61 == reqIndex ? 1'h0 : way0Dirty_97; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1263 = 7'h62 == reqIndex ? 1'h0 : way0Dirty_98; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1264 = 7'h63 == reqIndex ? 1'h0 : way0Dirty_99; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1265 = 7'h64 == reqIndex ? 1'h0 : way0Dirty_100; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1266 = 7'h65 == reqIndex ? 1'h0 : way0Dirty_101; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1267 = 7'h66 == reqIndex ? 1'h0 : way0Dirty_102; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1268 = 7'h67 == reqIndex ? 1'h0 : way0Dirty_103; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1269 = 7'h68 == reqIndex ? 1'h0 : way0Dirty_104; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1270 = 7'h69 == reqIndex ? 1'h0 : way0Dirty_105; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1271 = 7'h6a == reqIndex ? 1'h0 : way0Dirty_106; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1272 = 7'h6b == reqIndex ? 1'h0 : way0Dirty_107; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1273 = 7'h6c == reqIndex ? 1'h0 : way0Dirty_108; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1274 = 7'h6d == reqIndex ? 1'h0 : way0Dirty_109; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1275 = 7'h6e == reqIndex ? 1'h0 : way0Dirty_110; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1276 = 7'h6f == reqIndex ? 1'h0 : way0Dirty_111; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1277 = 7'h70 == reqIndex ? 1'h0 : way0Dirty_112; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1278 = 7'h71 == reqIndex ? 1'h0 : way0Dirty_113; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1279 = 7'h72 == reqIndex ? 1'h0 : way0Dirty_114; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1280 = 7'h73 == reqIndex ? 1'h0 : way0Dirty_115; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1281 = 7'h74 == reqIndex ? 1'h0 : way0Dirty_116; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1282 = 7'h75 == reqIndex ? 1'h0 : way0Dirty_117; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1283 = 7'h76 == reqIndex ? 1'h0 : way0Dirty_118; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1284 = 7'h77 == reqIndex ? 1'h0 : way0Dirty_119; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1285 = 7'h78 == reqIndex ? 1'h0 : way0Dirty_120; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1286 = 7'h79 == reqIndex ? 1'h0 : way0Dirty_121; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1287 = 7'h7a == reqIndex ? 1'h0 : way0Dirty_122; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1288 = 7'h7b == reqIndex ? 1'h0 : way0Dirty_123; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1289 = 7'h7c == reqIndex ? 1'h0 : way0Dirty_124; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1290 = 7'h7d == reqIndex ? 1'h0 : way0Dirty_125; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1291 = 7'h7e == reqIndex ? 1'h0 : way0Dirty_126; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1292 = 7'h7f == reqIndex ? 1'h0 : way0Dirty_127; // @[DCache.scala 199:{27,27} 38:26]
-  wire  _GEN_1549 = _GEN_4749 | way1Dirty_0; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1550 = _GEN_4750 | way1Dirty_1; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1551 = _GEN_4751 | way1Dirty_2; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1552 = _GEN_4752 | way1Dirty_3; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1553 = _GEN_4753 | way1Dirty_4; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1554 = _GEN_4754 | way1Dirty_5; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1555 = _GEN_4755 | way1Dirty_6; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1556 = _GEN_4756 | way1Dirty_7; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1557 = _GEN_4757 | way1Dirty_8; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1558 = _GEN_4758 | way1Dirty_9; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1559 = _GEN_4759 | way1Dirty_10; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1560 = _GEN_4760 | way1Dirty_11; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1561 = _GEN_4761 | way1Dirty_12; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1562 = _GEN_4762 | way1Dirty_13; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1563 = _GEN_4763 | way1Dirty_14; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1564 = _GEN_4764 | way1Dirty_15; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1565 = _GEN_4765 | way1Dirty_16; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1566 = _GEN_4766 | way1Dirty_17; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1567 = _GEN_4767 | way1Dirty_18; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1568 = _GEN_4768 | way1Dirty_19; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1569 = _GEN_4769 | way1Dirty_20; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1570 = _GEN_4770 | way1Dirty_21; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1571 = _GEN_4771 | way1Dirty_22; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1572 = _GEN_4772 | way1Dirty_23; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1573 = _GEN_4773 | way1Dirty_24; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1574 = _GEN_4774 | way1Dirty_25; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1575 = _GEN_4775 | way1Dirty_26; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1576 = _GEN_4776 | way1Dirty_27; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1577 = _GEN_4777 | way1Dirty_28; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1578 = _GEN_4778 | way1Dirty_29; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1579 = _GEN_4779 | way1Dirty_30; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1580 = _GEN_4780 | way1Dirty_31; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1581 = _GEN_4781 | way1Dirty_32; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1582 = _GEN_4782 | way1Dirty_33; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1583 = _GEN_4783 | way1Dirty_34; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1584 = _GEN_4784 | way1Dirty_35; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1585 = _GEN_4785 | way1Dirty_36; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1586 = _GEN_4786 | way1Dirty_37; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1587 = _GEN_4787 | way1Dirty_38; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1588 = _GEN_4788 | way1Dirty_39; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1589 = _GEN_4789 | way1Dirty_40; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1590 = _GEN_4790 | way1Dirty_41; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1591 = _GEN_4791 | way1Dirty_42; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1592 = _GEN_4792 | way1Dirty_43; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1593 = _GEN_4793 | way1Dirty_44; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1594 = _GEN_4794 | way1Dirty_45; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1595 = _GEN_4795 | way1Dirty_46; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1596 = _GEN_4796 | way1Dirty_47; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1597 = _GEN_4797 | way1Dirty_48; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1598 = _GEN_4798 | way1Dirty_49; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1599 = _GEN_4799 | way1Dirty_50; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1600 = _GEN_4800 | way1Dirty_51; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1601 = _GEN_4801 | way1Dirty_52; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1602 = _GEN_4802 | way1Dirty_53; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1603 = _GEN_4803 | way1Dirty_54; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1604 = _GEN_4804 | way1Dirty_55; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1605 = _GEN_4805 | way1Dirty_56; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1606 = _GEN_4806 | way1Dirty_57; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1607 = _GEN_4807 | way1Dirty_58; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1608 = _GEN_4808 | way1Dirty_59; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1609 = _GEN_4809 | way1Dirty_60; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1610 = _GEN_4810 | way1Dirty_61; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1611 = _GEN_4811 | way1Dirty_62; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1612 = _GEN_4812 | way1Dirty_63; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1613 = _GEN_4813 | way1Dirty_64; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1614 = _GEN_4814 | way1Dirty_65; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1615 = _GEN_4815 | way1Dirty_66; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1616 = _GEN_4816 | way1Dirty_67; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1617 = _GEN_4817 | way1Dirty_68; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1618 = _GEN_4818 | way1Dirty_69; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1619 = _GEN_4819 | way1Dirty_70; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1620 = _GEN_4820 | way1Dirty_71; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1621 = _GEN_4821 | way1Dirty_72; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1622 = _GEN_4822 | way1Dirty_73; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1623 = _GEN_4823 | way1Dirty_74; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1624 = _GEN_4824 | way1Dirty_75; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1625 = _GEN_4825 | way1Dirty_76; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1626 = _GEN_4826 | way1Dirty_77; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1627 = _GEN_4827 | way1Dirty_78; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1628 = _GEN_4828 | way1Dirty_79; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1629 = _GEN_4829 | way1Dirty_80; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1630 = _GEN_4830 | way1Dirty_81; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1631 = _GEN_4831 | way1Dirty_82; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1632 = _GEN_4832 | way1Dirty_83; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1633 = _GEN_4833 | way1Dirty_84; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1634 = _GEN_4834 | way1Dirty_85; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1635 = _GEN_4835 | way1Dirty_86; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1636 = _GEN_4836 | way1Dirty_87; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1637 = _GEN_4837 | way1Dirty_88; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1638 = _GEN_4838 | way1Dirty_89; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1639 = _GEN_4839 | way1Dirty_90; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1640 = _GEN_4840 | way1Dirty_91; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1641 = _GEN_4841 | way1Dirty_92; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1642 = _GEN_4842 | way1Dirty_93; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1643 = _GEN_4843 | way1Dirty_94; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1644 = _GEN_4844 | way1Dirty_95; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1645 = _GEN_4845 | way1Dirty_96; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1646 = _GEN_4846 | way1Dirty_97; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1647 = _GEN_4847 | way1Dirty_98; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1648 = _GEN_4848 | way1Dirty_99; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1649 = _GEN_4849 | way1Dirty_100; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1650 = _GEN_4850 | way1Dirty_101; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1651 = _GEN_4851 | way1Dirty_102; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1652 = _GEN_4852 | way1Dirty_103; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1653 = _GEN_4853 | way1Dirty_104; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1654 = _GEN_4854 | way1Dirty_105; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1655 = _GEN_4855 | way1Dirty_106; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1656 = _GEN_4856 | way1Dirty_107; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1657 = _GEN_4857 | way1Dirty_108; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1658 = _GEN_4858 | way1Dirty_109; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1659 = _GEN_4859 | way1Dirty_110; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1660 = _GEN_4860 | way1Dirty_111; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1661 = _GEN_4861 | way1Dirty_112; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1662 = _GEN_4862 | way1Dirty_113; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1663 = _GEN_4863 | way1Dirty_114; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1664 = _GEN_4864 | way1Dirty_115; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1665 = _GEN_4865 | way1Dirty_116; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1666 = _GEN_4866 | way1Dirty_117; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1667 = _GEN_4867 | way1Dirty_118; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1668 = _GEN_4868 | way1Dirty_119; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1669 = _GEN_4869 | way1Dirty_120; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1670 = _GEN_4870 | way1Dirty_121; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1671 = _GEN_4871 | way1Dirty_122; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1672 = _GEN_4872 | way1Dirty_123; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1673 = _GEN_4873 | way1Dirty_124; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1674 = _GEN_4874 | way1Dirty_125; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1675 = _GEN_4875 | way1Dirty_126; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1676 = _GEN_4876 | way1Dirty_127; // @[DCache.scala 203:{27,27} 44:26]
-  wire  _GEN_1677 = 7'h0 == reqIndex ? 1'h0 : way1Dirty_0; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1678 = 7'h1 == reqIndex ? 1'h0 : way1Dirty_1; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1679 = 7'h2 == reqIndex ? 1'h0 : way1Dirty_2; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1680 = 7'h3 == reqIndex ? 1'h0 : way1Dirty_3; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1681 = 7'h4 == reqIndex ? 1'h0 : way1Dirty_4; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1682 = 7'h5 == reqIndex ? 1'h0 : way1Dirty_5; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1683 = 7'h6 == reqIndex ? 1'h0 : way1Dirty_6; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1684 = 7'h7 == reqIndex ? 1'h0 : way1Dirty_7; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1685 = 7'h8 == reqIndex ? 1'h0 : way1Dirty_8; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1686 = 7'h9 == reqIndex ? 1'h0 : way1Dirty_9; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1687 = 7'ha == reqIndex ? 1'h0 : way1Dirty_10; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1688 = 7'hb == reqIndex ? 1'h0 : way1Dirty_11; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1689 = 7'hc == reqIndex ? 1'h0 : way1Dirty_12; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1690 = 7'hd == reqIndex ? 1'h0 : way1Dirty_13; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1691 = 7'he == reqIndex ? 1'h0 : way1Dirty_14; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1692 = 7'hf == reqIndex ? 1'h0 : way1Dirty_15; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1693 = 7'h10 == reqIndex ? 1'h0 : way1Dirty_16; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1694 = 7'h11 == reqIndex ? 1'h0 : way1Dirty_17; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1695 = 7'h12 == reqIndex ? 1'h0 : way1Dirty_18; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1696 = 7'h13 == reqIndex ? 1'h0 : way1Dirty_19; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1697 = 7'h14 == reqIndex ? 1'h0 : way1Dirty_20; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1698 = 7'h15 == reqIndex ? 1'h0 : way1Dirty_21; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1699 = 7'h16 == reqIndex ? 1'h0 : way1Dirty_22; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1700 = 7'h17 == reqIndex ? 1'h0 : way1Dirty_23; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1701 = 7'h18 == reqIndex ? 1'h0 : way1Dirty_24; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1702 = 7'h19 == reqIndex ? 1'h0 : way1Dirty_25; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1703 = 7'h1a == reqIndex ? 1'h0 : way1Dirty_26; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1704 = 7'h1b == reqIndex ? 1'h0 : way1Dirty_27; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1705 = 7'h1c == reqIndex ? 1'h0 : way1Dirty_28; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1706 = 7'h1d == reqIndex ? 1'h0 : way1Dirty_29; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1707 = 7'h1e == reqIndex ? 1'h0 : way1Dirty_30; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1708 = 7'h1f == reqIndex ? 1'h0 : way1Dirty_31; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1709 = 7'h20 == reqIndex ? 1'h0 : way1Dirty_32; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1710 = 7'h21 == reqIndex ? 1'h0 : way1Dirty_33; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1711 = 7'h22 == reqIndex ? 1'h0 : way1Dirty_34; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1712 = 7'h23 == reqIndex ? 1'h0 : way1Dirty_35; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1713 = 7'h24 == reqIndex ? 1'h0 : way1Dirty_36; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1714 = 7'h25 == reqIndex ? 1'h0 : way1Dirty_37; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1715 = 7'h26 == reqIndex ? 1'h0 : way1Dirty_38; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1716 = 7'h27 == reqIndex ? 1'h0 : way1Dirty_39; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1717 = 7'h28 == reqIndex ? 1'h0 : way1Dirty_40; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1718 = 7'h29 == reqIndex ? 1'h0 : way1Dirty_41; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1719 = 7'h2a == reqIndex ? 1'h0 : way1Dirty_42; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1720 = 7'h2b == reqIndex ? 1'h0 : way1Dirty_43; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1721 = 7'h2c == reqIndex ? 1'h0 : way1Dirty_44; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1722 = 7'h2d == reqIndex ? 1'h0 : way1Dirty_45; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1723 = 7'h2e == reqIndex ? 1'h0 : way1Dirty_46; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1724 = 7'h2f == reqIndex ? 1'h0 : way1Dirty_47; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1725 = 7'h30 == reqIndex ? 1'h0 : way1Dirty_48; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1726 = 7'h31 == reqIndex ? 1'h0 : way1Dirty_49; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1727 = 7'h32 == reqIndex ? 1'h0 : way1Dirty_50; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1728 = 7'h33 == reqIndex ? 1'h0 : way1Dirty_51; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1729 = 7'h34 == reqIndex ? 1'h0 : way1Dirty_52; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1730 = 7'h35 == reqIndex ? 1'h0 : way1Dirty_53; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1731 = 7'h36 == reqIndex ? 1'h0 : way1Dirty_54; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1732 = 7'h37 == reqIndex ? 1'h0 : way1Dirty_55; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1733 = 7'h38 == reqIndex ? 1'h0 : way1Dirty_56; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1734 = 7'h39 == reqIndex ? 1'h0 : way1Dirty_57; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1735 = 7'h3a == reqIndex ? 1'h0 : way1Dirty_58; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1736 = 7'h3b == reqIndex ? 1'h0 : way1Dirty_59; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1737 = 7'h3c == reqIndex ? 1'h0 : way1Dirty_60; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1738 = 7'h3d == reqIndex ? 1'h0 : way1Dirty_61; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1739 = 7'h3e == reqIndex ? 1'h0 : way1Dirty_62; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1740 = 7'h3f == reqIndex ? 1'h0 : way1Dirty_63; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1741 = 7'h40 == reqIndex ? 1'h0 : way1Dirty_64; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1742 = 7'h41 == reqIndex ? 1'h0 : way1Dirty_65; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1743 = 7'h42 == reqIndex ? 1'h0 : way1Dirty_66; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1744 = 7'h43 == reqIndex ? 1'h0 : way1Dirty_67; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1745 = 7'h44 == reqIndex ? 1'h0 : way1Dirty_68; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1746 = 7'h45 == reqIndex ? 1'h0 : way1Dirty_69; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1747 = 7'h46 == reqIndex ? 1'h0 : way1Dirty_70; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1748 = 7'h47 == reqIndex ? 1'h0 : way1Dirty_71; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1749 = 7'h48 == reqIndex ? 1'h0 : way1Dirty_72; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1750 = 7'h49 == reqIndex ? 1'h0 : way1Dirty_73; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1751 = 7'h4a == reqIndex ? 1'h0 : way1Dirty_74; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1752 = 7'h4b == reqIndex ? 1'h0 : way1Dirty_75; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1753 = 7'h4c == reqIndex ? 1'h0 : way1Dirty_76; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1754 = 7'h4d == reqIndex ? 1'h0 : way1Dirty_77; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1755 = 7'h4e == reqIndex ? 1'h0 : way1Dirty_78; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1756 = 7'h4f == reqIndex ? 1'h0 : way1Dirty_79; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1757 = 7'h50 == reqIndex ? 1'h0 : way1Dirty_80; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1758 = 7'h51 == reqIndex ? 1'h0 : way1Dirty_81; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1759 = 7'h52 == reqIndex ? 1'h0 : way1Dirty_82; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1760 = 7'h53 == reqIndex ? 1'h0 : way1Dirty_83; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1761 = 7'h54 == reqIndex ? 1'h0 : way1Dirty_84; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1762 = 7'h55 == reqIndex ? 1'h0 : way1Dirty_85; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1763 = 7'h56 == reqIndex ? 1'h0 : way1Dirty_86; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1764 = 7'h57 == reqIndex ? 1'h0 : way1Dirty_87; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1765 = 7'h58 == reqIndex ? 1'h0 : way1Dirty_88; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1766 = 7'h59 == reqIndex ? 1'h0 : way1Dirty_89; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1767 = 7'h5a == reqIndex ? 1'h0 : way1Dirty_90; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1768 = 7'h5b == reqIndex ? 1'h0 : way1Dirty_91; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1769 = 7'h5c == reqIndex ? 1'h0 : way1Dirty_92; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1770 = 7'h5d == reqIndex ? 1'h0 : way1Dirty_93; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1771 = 7'h5e == reqIndex ? 1'h0 : way1Dirty_94; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1772 = 7'h5f == reqIndex ? 1'h0 : way1Dirty_95; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1773 = 7'h60 == reqIndex ? 1'h0 : way1Dirty_96; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1774 = 7'h61 == reqIndex ? 1'h0 : way1Dirty_97; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1775 = 7'h62 == reqIndex ? 1'h0 : way1Dirty_98; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1776 = 7'h63 == reqIndex ? 1'h0 : way1Dirty_99; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1777 = 7'h64 == reqIndex ? 1'h0 : way1Dirty_100; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1778 = 7'h65 == reqIndex ? 1'h0 : way1Dirty_101; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1779 = 7'h66 == reqIndex ? 1'h0 : way1Dirty_102; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1780 = 7'h67 == reqIndex ? 1'h0 : way1Dirty_103; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1781 = 7'h68 == reqIndex ? 1'h0 : way1Dirty_104; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1782 = 7'h69 == reqIndex ? 1'h0 : way1Dirty_105; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1783 = 7'h6a == reqIndex ? 1'h0 : way1Dirty_106; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1784 = 7'h6b == reqIndex ? 1'h0 : way1Dirty_107; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1785 = 7'h6c == reqIndex ? 1'h0 : way1Dirty_108; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1786 = 7'h6d == reqIndex ? 1'h0 : way1Dirty_109; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1787 = 7'h6e == reqIndex ? 1'h0 : way1Dirty_110; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1788 = 7'h6f == reqIndex ? 1'h0 : way1Dirty_111; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1789 = 7'h70 == reqIndex ? 1'h0 : way1Dirty_112; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1790 = 7'h71 == reqIndex ? 1'h0 : way1Dirty_113; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1791 = 7'h72 == reqIndex ? 1'h0 : way1Dirty_114; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1792 = 7'h73 == reqIndex ? 1'h0 : way1Dirty_115; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1793 = 7'h74 == reqIndex ? 1'h0 : way1Dirty_116; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1794 = 7'h75 == reqIndex ? 1'h0 : way1Dirty_117; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1795 = 7'h76 == reqIndex ? 1'h0 : way1Dirty_118; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1796 = 7'h77 == reqIndex ? 1'h0 : way1Dirty_119; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1797 = 7'h78 == reqIndex ? 1'h0 : way1Dirty_120; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1798 = 7'h79 == reqIndex ? 1'h0 : way1Dirty_121; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1799 = 7'h7a == reqIndex ? 1'h0 : way1Dirty_122; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1800 = 7'h7b == reqIndex ? 1'h0 : way1Dirty_123; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1801 = 7'h7c == reqIndex ? 1'h0 : way1Dirty_124; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1802 = 7'h7d == reqIndex ? 1'h0 : way1Dirty_125; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1803 = 7'h7e == reqIndex ? 1'h0 : way1Dirty_126; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1804 = 7'h7f == reqIndex ? 1'h0 : way1Dirty_127; // @[DCache.scala 205:{27,27} 44:26]
-  wire  _GEN_1805 = _T_9 ? _GEN_1677 : way1Dirty_0; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1806 = _T_9 ? _GEN_1678 : way1Dirty_1; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1807 = _T_9 ? _GEN_1679 : way1Dirty_2; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1808 = _T_9 ? _GEN_1680 : way1Dirty_3; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1809 = _T_9 ? _GEN_1681 : way1Dirty_4; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1810 = _T_9 ? _GEN_1682 : way1Dirty_5; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1811 = _T_9 ? _GEN_1683 : way1Dirty_6; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1812 = _T_9 ? _GEN_1684 : way1Dirty_7; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1813 = _T_9 ? _GEN_1685 : way1Dirty_8; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1814 = _T_9 ? _GEN_1686 : way1Dirty_9; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1815 = _T_9 ? _GEN_1687 : way1Dirty_10; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1816 = _T_9 ? _GEN_1688 : way1Dirty_11; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1817 = _T_9 ? _GEN_1689 : way1Dirty_12; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1818 = _T_9 ? _GEN_1690 : way1Dirty_13; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1819 = _T_9 ? _GEN_1691 : way1Dirty_14; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1820 = _T_9 ? _GEN_1692 : way1Dirty_15; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1821 = _T_9 ? _GEN_1693 : way1Dirty_16; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1822 = _T_9 ? _GEN_1694 : way1Dirty_17; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1823 = _T_9 ? _GEN_1695 : way1Dirty_18; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1824 = _T_9 ? _GEN_1696 : way1Dirty_19; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1825 = _T_9 ? _GEN_1697 : way1Dirty_20; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1826 = _T_9 ? _GEN_1698 : way1Dirty_21; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1827 = _T_9 ? _GEN_1699 : way1Dirty_22; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1828 = _T_9 ? _GEN_1700 : way1Dirty_23; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1829 = _T_9 ? _GEN_1701 : way1Dirty_24; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1830 = _T_9 ? _GEN_1702 : way1Dirty_25; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1831 = _T_9 ? _GEN_1703 : way1Dirty_26; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1832 = _T_9 ? _GEN_1704 : way1Dirty_27; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1833 = _T_9 ? _GEN_1705 : way1Dirty_28; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1834 = _T_9 ? _GEN_1706 : way1Dirty_29; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1835 = _T_9 ? _GEN_1707 : way1Dirty_30; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1836 = _T_9 ? _GEN_1708 : way1Dirty_31; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1837 = _T_9 ? _GEN_1709 : way1Dirty_32; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1838 = _T_9 ? _GEN_1710 : way1Dirty_33; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1839 = _T_9 ? _GEN_1711 : way1Dirty_34; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1840 = _T_9 ? _GEN_1712 : way1Dirty_35; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1841 = _T_9 ? _GEN_1713 : way1Dirty_36; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1842 = _T_9 ? _GEN_1714 : way1Dirty_37; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1843 = _T_9 ? _GEN_1715 : way1Dirty_38; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1844 = _T_9 ? _GEN_1716 : way1Dirty_39; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1845 = _T_9 ? _GEN_1717 : way1Dirty_40; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1846 = _T_9 ? _GEN_1718 : way1Dirty_41; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1847 = _T_9 ? _GEN_1719 : way1Dirty_42; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1848 = _T_9 ? _GEN_1720 : way1Dirty_43; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1849 = _T_9 ? _GEN_1721 : way1Dirty_44; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1850 = _T_9 ? _GEN_1722 : way1Dirty_45; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1851 = _T_9 ? _GEN_1723 : way1Dirty_46; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1852 = _T_9 ? _GEN_1724 : way1Dirty_47; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1853 = _T_9 ? _GEN_1725 : way1Dirty_48; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1854 = _T_9 ? _GEN_1726 : way1Dirty_49; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1855 = _T_9 ? _GEN_1727 : way1Dirty_50; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1856 = _T_9 ? _GEN_1728 : way1Dirty_51; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1857 = _T_9 ? _GEN_1729 : way1Dirty_52; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1858 = _T_9 ? _GEN_1730 : way1Dirty_53; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1859 = _T_9 ? _GEN_1731 : way1Dirty_54; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1860 = _T_9 ? _GEN_1732 : way1Dirty_55; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1861 = _T_9 ? _GEN_1733 : way1Dirty_56; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1862 = _T_9 ? _GEN_1734 : way1Dirty_57; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1863 = _T_9 ? _GEN_1735 : way1Dirty_58; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1864 = _T_9 ? _GEN_1736 : way1Dirty_59; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1865 = _T_9 ? _GEN_1737 : way1Dirty_60; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1866 = _T_9 ? _GEN_1738 : way1Dirty_61; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1867 = _T_9 ? _GEN_1739 : way1Dirty_62; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1868 = _T_9 ? _GEN_1740 : way1Dirty_63; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1869 = _T_9 ? _GEN_1741 : way1Dirty_64; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1870 = _T_9 ? _GEN_1742 : way1Dirty_65; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1871 = _T_9 ? _GEN_1743 : way1Dirty_66; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1872 = _T_9 ? _GEN_1744 : way1Dirty_67; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1873 = _T_9 ? _GEN_1745 : way1Dirty_68; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1874 = _T_9 ? _GEN_1746 : way1Dirty_69; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1875 = _T_9 ? _GEN_1747 : way1Dirty_70; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1876 = _T_9 ? _GEN_1748 : way1Dirty_71; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1877 = _T_9 ? _GEN_1749 : way1Dirty_72; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1878 = _T_9 ? _GEN_1750 : way1Dirty_73; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1879 = _T_9 ? _GEN_1751 : way1Dirty_74; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1880 = _T_9 ? _GEN_1752 : way1Dirty_75; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1881 = _T_9 ? _GEN_1753 : way1Dirty_76; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1882 = _T_9 ? _GEN_1754 : way1Dirty_77; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1883 = _T_9 ? _GEN_1755 : way1Dirty_78; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1884 = _T_9 ? _GEN_1756 : way1Dirty_79; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1885 = _T_9 ? _GEN_1757 : way1Dirty_80; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1886 = _T_9 ? _GEN_1758 : way1Dirty_81; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1887 = _T_9 ? _GEN_1759 : way1Dirty_82; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1888 = _T_9 ? _GEN_1760 : way1Dirty_83; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1889 = _T_9 ? _GEN_1761 : way1Dirty_84; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1890 = _T_9 ? _GEN_1762 : way1Dirty_85; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1891 = _T_9 ? _GEN_1763 : way1Dirty_86; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1892 = _T_9 ? _GEN_1764 : way1Dirty_87; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1893 = _T_9 ? _GEN_1765 : way1Dirty_88; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1894 = _T_9 ? _GEN_1766 : way1Dirty_89; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1895 = _T_9 ? _GEN_1767 : way1Dirty_90; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1896 = _T_9 ? _GEN_1768 : way1Dirty_91; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1897 = _T_9 ? _GEN_1769 : way1Dirty_92; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1898 = _T_9 ? _GEN_1770 : way1Dirty_93; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1899 = _T_9 ? _GEN_1771 : way1Dirty_94; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1900 = _T_9 ? _GEN_1772 : way1Dirty_95; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1901 = _T_9 ? _GEN_1773 : way1Dirty_96; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1902 = _T_9 ? _GEN_1774 : way1Dirty_97; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1903 = _T_9 ? _GEN_1775 : way1Dirty_98; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1904 = _T_9 ? _GEN_1776 : way1Dirty_99; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1905 = _T_9 ? _GEN_1777 : way1Dirty_100; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1906 = _T_9 ? _GEN_1778 : way1Dirty_101; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1907 = _T_9 ? _GEN_1779 : way1Dirty_102; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1908 = _T_9 ? _GEN_1780 : way1Dirty_103; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1909 = _T_9 ? _GEN_1781 : way1Dirty_104; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1910 = _T_9 ? _GEN_1782 : way1Dirty_105; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1911 = _T_9 ? _GEN_1783 : way1Dirty_106; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1912 = _T_9 ? _GEN_1784 : way1Dirty_107; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1913 = _T_9 ? _GEN_1785 : way1Dirty_108; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1914 = _T_9 ? _GEN_1786 : way1Dirty_109; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1915 = _T_9 ? _GEN_1787 : way1Dirty_110; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1916 = _T_9 ? _GEN_1788 : way1Dirty_111; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1917 = _T_9 ? _GEN_1789 : way1Dirty_112; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1918 = _T_9 ? _GEN_1790 : way1Dirty_113; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1919 = _T_9 ? _GEN_1791 : way1Dirty_114; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1920 = _T_9 ? _GEN_1792 : way1Dirty_115; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1921 = _T_9 ? _GEN_1793 : way1Dirty_116; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1922 = _T_9 ? _GEN_1794 : way1Dirty_117; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1923 = _T_9 ? _GEN_1795 : way1Dirty_118; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1924 = _T_9 ? _GEN_1796 : way1Dirty_119; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1925 = _T_9 ? _GEN_1797 : way1Dirty_120; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1926 = _T_9 ? _GEN_1798 : way1Dirty_121; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1927 = _T_9 ? _GEN_1799 : way1Dirty_122; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1928 = _T_9 ? _GEN_1800 : way1Dirty_123; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1929 = _T_9 ? _GEN_1801 : way1Dirty_124; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1930 = _T_9 ? _GEN_1802 : way1Dirty_125; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1931 = _T_9 ? _GEN_1803 : way1Dirty_126; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_1932 = _T_9 ? _GEN_1804 : way1Dirty_127; // @[DCache.scala 204:45 44:26]
-  wire  _GEN_2445 = _GEN_4749 | way0V_0; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2446 = _GEN_4750 | way0V_1; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2447 = _GEN_4751 | way0V_2; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2448 = _GEN_4752 | way0V_3; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2449 = _GEN_4753 | way0V_4; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2450 = _GEN_4754 | way0V_5; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2451 = _GEN_4755 | way0V_6; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2452 = _GEN_4756 | way0V_7; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2453 = _GEN_4757 | way0V_8; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2454 = _GEN_4758 | way0V_9; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2455 = _GEN_4759 | way0V_10; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2456 = _GEN_4760 | way0V_11; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2457 = _GEN_4761 | way0V_12; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2458 = _GEN_4762 | way0V_13; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2459 = _GEN_4763 | way0V_14; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2460 = _GEN_4764 | way0V_15; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2461 = _GEN_4765 | way0V_16; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2462 = _GEN_4766 | way0V_17; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2463 = _GEN_4767 | way0V_18; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2464 = _GEN_4768 | way0V_19; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2465 = _GEN_4769 | way0V_20; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2466 = _GEN_4770 | way0V_21; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2467 = _GEN_4771 | way0V_22; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2468 = _GEN_4772 | way0V_23; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2469 = _GEN_4773 | way0V_24; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2470 = _GEN_4774 | way0V_25; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2471 = _GEN_4775 | way0V_26; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2472 = _GEN_4776 | way0V_27; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2473 = _GEN_4777 | way0V_28; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2474 = _GEN_4778 | way0V_29; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2475 = _GEN_4779 | way0V_30; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2476 = _GEN_4780 | way0V_31; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2477 = _GEN_4781 | way0V_32; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2478 = _GEN_4782 | way0V_33; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2479 = _GEN_4783 | way0V_34; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2480 = _GEN_4784 | way0V_35; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2481 = _GEN_4785 | way0V_36; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2482 = _GEN_4786 | way0V_37; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2483 = _GEN_4787 | way0V_38; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2484 = _GEN_4788 | way0V_39; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2485 = _GEN_4789 | way0V_40; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2486 = _GEN_4790 | way0V_41; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2487 = _GEN_4791 | way0V_42; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2488 = _GEN_4792 | way0V_43; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2489 = _GEN_4793 | way0V_44; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2490 = _GEN_4794 | way0V_45; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2491 = _GEN_4795 | way0V_46; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2492 = _GEN_4796 | way0V_47; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2493 = _GEN_4797 | way0V_48; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2494 = _GEN_4798 | way0V_49; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2495 = _GEN_4799 | way0V_50; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2496 = _GEN_4800 | way0V_51; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2497 = _GEN_4801 | way0V_52; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2498 = _GEN_4802 | way0V_53; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2499 = _GEN_4803 | way0V_54; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2500 = _GEN_4804 | way0V_55; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2501 = _GEN_4805 | way0V_56; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2502 = _GEN_4806 | way0V_57; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2503 = _GEN_4807 | way0V_58; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2504 = _GEN_4808 | way0V_59; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2505 = _GEN_4809 | way0V_60; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2506 = _GEN_4810 | way0V_61; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2507 = _GEN_4811 | way0V_62; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2508 = _GEN_4812 | way0V_63; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2509 = _GEN_4813 | way0V_64; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2510 = _GEN_4814 | way0V_65; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2511 = _GEN_4815 | way0V_66; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2512 = _GEN_4816 | way0V_67; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2513 = _GEN_4817 | way0V_68; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2514 = _GEN_4818 | way0V_69; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2515 = _GEN_4819 | way0V_70; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2516 = _GEN_4820 | way0V_71; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2517 = _GEN_4821 | way0V_72; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2518 = _GEN_4822 | way0V_73; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2519 = _GEN_4823 | way0V_74; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2520 = _GEN_4824 | way0V_75; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2521 = _GEN_4825 | way0V_76; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2522 = _GEN_4826 | way0V_77; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2523 = _GEN_4827 | way0V_78; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2524 = _GEN_4828 | way0V_79; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2525 = _GEN_4829 | way0V_80; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2526 = _GEN_4830 | way0V_81; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2527 = _GEN_4831 | way0V_82; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2528 = _GEN_4832 | way0V_83; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2529 = _GEN_4833 | way0V_84; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2530 = _GEN_4834 | way0V_85; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2531 = _GEN_4835 | way0V_86; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2532 = _GEN_4836 | way0V_87; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2533 = _GEN_4837 | way0V_88; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2534 = _GEN_4838 | way0V_89; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2535 = _GEN_4839 | way0V_90; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2536 = _GEN_4840 | way0V_91; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2537 = _GEN_4841 | way0V_92; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2538 = _GEN_4842 | way0V_93; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2539 = _GEN_4843 | way0V_94; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2540 = _GEN_4844 | way0V_95; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2541 = _GEN_4845 | way0V_96; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2542 = _GEN_4846 | way0V_97; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2543 = _GEN_4847 | way0V_98; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2544 = _GEN_4848 | way0V_99; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2545 = _GEN_4849 | way0V_100; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2546 = _GEN_4850 | way0V_101; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2547 = _GEN_4851 | way0V_102; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2548 = _GEN_4852 | way0V_103; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2549 = _GEN_4853 | way0V_104; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2550 = _GEN_4854 | way0V_105; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2551 = _GEN_4855 | way0V_106; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2552 = _GEN_4856 | way0V_107; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2553 = _GEN_4857 | way0V_108; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2554 = _GEN_4858 | way0V_109; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2555 = _GEN_4859 | way0V_110; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2556 = _GEN_4860 | way0V_111; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2557 = _GEN_4861 | way0V_112; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2558 = _GEN_4862 | way0V_113; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2559 = _GEN_4863 | way0V_114; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2560 = _GEN_4864 | way0V_115; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2561 = _GEN_4865 | way0V_116; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2562 = _GEN_4866 | way0V_117; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2563 = _GEN_4867 | way0V_118; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2564 = _GEN_4868 | way0V_119; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2565 = _GEN_4869 | way0V_120; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2566 = _GEN_4870 | way0V_121; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2567 = _GEN_4871 | way0V_122; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2568 = _GEN_4872 | way0V_123; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2569 = _GEN_4873 | way0V_124; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2570 = _GEN_4874 | way0V_125; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2571 = _GEN_4875 | way0V_126; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2572 = _GEN_4876 | way0V_127; // @[DCache.scala 210:{21,21} 34:26]
-  wire  _GEN_2701 = _GEN_4749 | way0Age_0; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2702 = _GEN_4750 | way0Age_1; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2703 = _GEN_4751 | way0Age_2; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2704 = _GEN_4752 | way0Age_3; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2705 = _GEN_4753 | way0Age_4; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2706 = _GEN_4754 | way0Age_5; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2707 = _GEN_4755 | way0Age_6; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2708 = _GEN_4756 | way0Age_7; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2709 = _GEN_4757 | way0Age_8; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2710 = _GEN_4758 | way0Age_9; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2711 = _GEN_4759 | way0Age_10; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2712 = _GEN_4760 | way0Age_11; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2713 = _GEN_4761 | way0Age_12; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2714 = _GEN_4762 | way0Age_13; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2715 = _GEN_4763 | way0Age_14; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2716 = _GEN_4764 | way0Age_15; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2717 = _GEN_4765 | way0Age_16; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2718 = _GEN_4766 | way0Age_17; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2719 = _GEN_4767 | way0Age_18; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2720 = _GEN_4768 | way0Age_19; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2721 = _GEN_4769 | way0Age_20; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2722 = _GEN_4770 | way0Age_21; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2723 = _GEN_4771 | way0Age_22; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2724 = _GEN_4772 | way0Age_23; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2725 = _GEN_4773 | way0Age_24; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2726 = _GEN_4774 | way0Age_25; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2727 = _GEN_4775 | way0Age_26; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2728 = _GEN_4776 | way0Age_27; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2729 = _GEN_4777 | way0Age_28; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2730 = _GEN_4778 | way0Age_29; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2731 = _GEN_4779 | way0Age_30; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2732 = _GEN_4780 | way0Age_31; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2733 = _GEN_4781 | way0Age_32; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2734 = _GEN_4782 | way0Age_33; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2735 = _GEN_4783 | way0Age_34; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2736 = _GEN_4784 | way0Age_35; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2737 = _GEN_4785 | way0Age_36; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2738 = _GEN_4786 | way0Age_37; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2739 = _GEN_4787 | way0Age_38; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2740 = _GEN_4788 | way0Age_39; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2741 = _GEN_4789 | way0Age_40; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2742 = _GEN_4790 | way0Age_41; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2743 = _GEN_4791 | way0Age_42; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2744 = _GEN_4792 | way0Age_43; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2745 = _GEN_4793 | way0Age_44; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2746 = _GEN_4794 | way0Age_45; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2747 = _GEN_4795 | way0Age_46; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2748 = _GEN_4796 | way0Age_47; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2749 = _GEN_4797 | way0Age_48; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2750 = _GEN_4798 | way0Age_49; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2751 = _GEN_4799 | way0Age_50; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2752 = _GEN_4800 | way0Age_51; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2753 = _GEN_4801 | way0Age_52; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2754 = _GEN_4802 | way0Age_53; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2755 = _GEN_4803 | way0Age_54; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2756 = _GEN_4804 | way0Age_55; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2757 = _GEN_4805 | way0Age_56; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2758 = _GEN_4806 | way0Age_57; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2759 = _GEN_4807 | way0Age_58; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2760 = _GEN_4808 | way0Age_59; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2761 = _GEN_4809 | way0Age_60; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2762 = _GEN_4810 | way0Age_61; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2763 = _GEN_4811 | way0Age_62; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2764 = _GEN_4812 | way0Age_63; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2765 = _GEN_4813 | way0Age_64; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2766 = _GEN_4814 | way0Age_65; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2767 = _GEN_4815 | way0Age_66; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2768 = _GEN_4816 | way0Age_67; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2769 = _GEN_4817 | way0Age_68; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2770 = _GEN_4818 | way0Age_69; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2771 = _GEN_4819 | way0Age_70; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2772 = _GEN_4820 | way0Age_71; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2773 = _GEN_4821 | way0Age_72; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2774 = _GEN_4822 | way0Age_73; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2775 = _GEN_4823 | way0Age_74; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2776 = _GEN_4824 | way0Age_75; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2777 = _GEN_4825 | way0Age_76; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2778 = _GEN_4826 | way0Age_77; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2779 = _GEN_4827 | way0Age_78; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2780 = _GEN_4828 | way0Age_79; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2781 = _GEN_4829 | way0Age_80; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2782 = _GEN_4830 | way0Age_81; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2783 = _GEN_4831 | way0Age_82; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2784 = _GEN_4832 | way0Age_83; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2785 = _GEN_4833 | way0Age_84; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2786 = _GEN_4834 | way0Age_85; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2787 = _GEN_4835 | way0Age_86; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2788 = _GEN_4836 | way0Age_87; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2789 = _GEN_4837 | way0Age_88; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2790 = _GEN_4838 | way0Age_89; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2791 = _GEN_4839 | way0Age_90; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2792 = _GEN_4840 | way0Age_91; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2793 = _GEN_4841 | way0Age_92; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2794 = _GEN_4842 | way0Age_93; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2795 = _GEN_4843 | way0Age_94; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2796 = _GEN_4844 | way0Age_95; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2797 = _GEN_4845 | way0Age_96; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2798 = _GEN_4846 | way0Age_97; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2799 = _GEN_4847 | way0Age_98; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2800 = _GEN_4848 | way0Age_99; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2801 = _GEN_4849 | way0Age_100; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2802 = _GEN_4850 | way0Age_101; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2803 = _GEN_4851 | way0Age_102; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2804 = _GEN_4852 | way0Age_103; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2805 = _GEN_4853 | way0Age_104; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2806 = _GEN_4854 | way0Age_105; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2807 = _GEN_4855 | way0Age_106; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2808 = _GEN_4856 | way0Age_107; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2809 = _GEN_4857 | way0Age_108; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2810 = _GEN_4858 | way0Age_109; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2811 = _GEN_4859 | way0Age_110; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2812 = _GEN_4860 | way0Age_111; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2813 = _GEN_4861 | way0Age_112; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2814 = _GEN_4862 | way0Age_113; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2815 = _GEN_4863 | way0Age_114; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2816 = _GEN_4864 | way0Age_115; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2817 = _GEN_4865 | way0Age_116; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2818 = _GEN_4866 | way0Age_117; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2819 = _GEN_4867 | way0Age_118; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2820 = _GEN_4868 | way0Age_119; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2821 = _GEN_4869 | way0Age_120; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2822 = _GEN_4870 | way0Age_121; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2823 = _GEN_4871 | way0Age_122; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2824 = _GEN_4872 | way0Age_123; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2825 = _GEN_4873 | way0Age_124; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2826 = _GEN_4874 | way0Age_125; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2827 = _GEN_4875 | way0Age_126; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2828 = _GEN_4876 | way0Age_127; // @[DCache.scala 212:{23,23} 37:26]
-  wire  _GEN_2957 = _GEN_4749 | way1V_0; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2958 = _GEN_4750 | way1V_1; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2959 = _GEN_4751 | way1V_2; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2960 = _GEN_4752 | way1V_3; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2961 = _GEN_4753 | way1V_4; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2962 = _GEN_4754 | way1V_5; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2963 = _GEN_4755 | way1V_6; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2964 = _GEN_4756 | way1V_7; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2965 = _GEN_4757 | way1V_8; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2966 = _GEN_4758 | way1V_9; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2967 = _GEN_4759 | way1V_10; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2968 = _GEN_4760 | way1V_11; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2969 = _GEN_4761 | way1V_12; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2970 = _GEN_4762 | way1V_13; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2971 = _GEN_4763 | way1V_14; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2972 = _GEN_4764 | way1V_15; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2973 = _GEN_4765 | way1V_16; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2974 = _GEN_4766 | way1V_17; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2975 = _GEN_4767 | way1V_18; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2976 = _GEN_4768 | way1V_19; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2977 = _GEN_4769 | way1V_20; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2978 = _GEN_4770 | way1V_21; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2979 = _GEN_4771 | way1V_22; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2980 = _GEN_4772 | way1V_23; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2981 = _GEN_4773 | way1V_24; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2982 = _GEN_4774 | way1V_25; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2983 = _GEN_4775 | way1V_26; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2984 = _GEN_4776 | way1V_27; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2985 = _GEN_4777 | way1V_28; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2986 = _GEN_4778 | way1V_29; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2987 = _GEN_4779 | way1V_30; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2988 = _GEN_4780 | way1V_31; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2989 = _GEN_4781 | way1V_32; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2990 = _GEN_4782 | way1V_33; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2991 = _GEN_4783 | way1V_34; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2992 = _GEN_4784 | way1V_35; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2993 = _GEN_4785 | way1V_36; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2994 = _GEN_4786 | way1V_37; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2995 = _GEN_4787 | way1V_38; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2996 = _GEN_4788 | way1V_39; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2997 = _GEN_4789 | way1V_40; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2998 = _GEN_4790 | way1V_41; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_2999 = _GEN_4791 | way1V_42; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3000 = _GEN_4792 | way1V_43; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3001 = _GEN_4793 | way1V_44; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3002 = _GEN_4794 | way1V_45; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3003 = _GEN_4795 | way1V_46; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3004 = _GEN_4796 | way1V_47; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3005 = _GEN_4797 | way1V_48; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3006 = _GEN_4798 | way1V_49; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3007 = _GEN_4799 | way1V_50; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3008 = _GEN_4800 | way1V_51; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3009 = _GEN_4801 | way1V_52; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3010 = _GEN_4802 | way1V_53; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3011 = _GEN_4803 | way1V_54; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3012 = _GEN_4804 | way1V_55; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3013 = _GEN_4805 | way1V_56; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3014 = _GEN_4806 | way1V_57; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3015 = _GEN_4807 | way1V_58; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3016 = _GEN_4808 | way1V_59; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3017 = _GEN_4809 | way1V_60; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3018 = _GEN_4810 | way1V_61; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3019 = _GEN_4811 | way1V_62; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3020 = _GEN_4812 | way1V_63; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3021 = _GEN_4813 | way1V_64; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3022 = _GEN_4814 | way1V_65; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3023 = _GEN_4815 | way1V_66; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3024 = _GEN_4816 | way1V_67; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3025 = _GEN_4817 | way1V_68; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3026 = _GEN_4818 | way1V_69; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3027 = _GEN_4819 | way1V_70; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3028 = _GEN_4820 | way1V_71; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3029 = _GEN_4821 | way1V_72; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3030 = _GEN_4822 | way1V_73; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3031 = _GEN_4823 | way1V_74; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3032 = _GEN_4824 | way1V_75; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3033 = _GEN_4825 | way1V_76; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3034 = _GEN_4826 | way1V_77; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3035 = _GEN_4827 | way1V_78; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3036 = _GEN_4828 | way1V_79; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3037 = _GEN_4829 | way1V_80; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3038 = _GEN_4830 | way1V_81; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3039 = _GEN_4831 | way1V_82; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3040 = _GEN_4832 | way1V_83; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3041 = _GEN_4833 | way1V_84; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3042 = _GEN_4834 | way1V_85; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3043 = _GEN_4835 | way1V_86; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3044 = _GEN_4836 | way1V_87; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3045 = _GEN_4837 | way1V_88; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3046 = _GEN_4838 | way1V_89; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3047 = _GEN_4839 | way1V_90; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3048 = _GEN_4840 | way1V_91; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3049 = _GEN_4841 | way1V_92; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3050 = _GEN_4842 | way1V_93; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3051 = _GEN_4843 | way1V_94; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3052 = _GEN_4844 | way1V_95; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3053 = _GEN_4845 | way1V_96; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3054 = _GEN_4846 | way1V_97; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3055 = _GEN_4847 | way1V_98; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3056 = _GEN_4848 | way1V_99; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3057 = _GEN_4849 | way1V_100; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3058 = _GEN_4850 | way1V_101; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3059 = _GEN_4851 | way1V_102; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3060 = _GEN_4852 | way1V_103; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3061 = _GEN_4853 | way1V_104; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3062 = _GEN_4854 | way1V_105; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3063 = _GEN_4855 | way1V_106; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3064 = _GEN_4856 | way1V_107; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3065 = _GEN_4857 | way1V_108; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3066 = _GEN_4858 | way1V_109; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3067 = _GEN_4859 | way1V_110; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3068 = _GEN_4860 | way1V_111; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3069 = _GEN_4861 | way1V_112; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3070 = _GEN_4862 | way1V_113; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3071 = _GEN_4863 | way1V_114; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3072 = _GEN_4864 | way1V_115; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3073 = _GEN_4865 | way1V_116; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3074 = _GEN_4866 | way1V_117; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3075 = _GEN_4867 | way1V_118; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3076 = _GEN_4868 | way1V_119; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3077 = _GEN_4869 | way1V_120; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3078 = _GEN_4870 | way1V_121; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3079 = _GEN_4871 | way1V_122; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3080 = _GEN_4872 | way1V_123; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3081 = _GEN_4873 | way1V_124; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3082 = _GEN_4874 | way1V_125; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3083 = _GEN_4875 | way1V_126; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3084 = _GEN_4876 | way1V_127; // @[DCache.scala 215:{21,21} 40:26]
-  wire  _GEN_3341 = _GEN_4749 | way1Age_0; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3342 = _GEN_4750 | way1Age_1; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3343 = _GEN_4751 | way1Age_2; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3344 = _GEN_4752 | way1Age_3; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3345 = _GEN_4753 | way1Age_4; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3346 = _GEN_4754 | way1Age_5; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3347 = _GEN_4755 | way1Age_6; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3348 = _GEN_4756 | way1Age_7; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3349 = _GEN_4757 | way1Age_8; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3350 = _GEN_4758 | way1Age_9; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3351 = _GEN_4759 | way1Age_10; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3352 = _GEN_4760 | way1Age_11; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3353 = _GEN_4761 | way1Age_12; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3354 = _GEN_4762 | way1Age_13; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3355 = _GEN_4763 | way1Age_14; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3356 = _GEN_4764 | way1Age_15; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3357 = _GEN_4765 | way1Age_16; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3358 = _GEN_4766 | way1Age_17; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3359 = _GEN_4767 | way1Age_18; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3360 = _GEN_4768 | way1Age_19; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3361 = _GEN_4769 | way1Age_20; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3362 = _GEN_4770 | way1Age_21; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3363 = _GEN_4771 | way1Age_22; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3364 = _GEN_4772 | way1Age_23; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3365 = _GEN_4773 | way1Age_24; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3366 = _GEN_4774 | way1Age_25; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3367 = _GEN_4775 | way1Age_26; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3368 = _GEN_4776 | way1Age_27; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3369 = _GEN_4777 | way1Age_28; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3370 = _GEN_4778 | way1Age_29; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3371 = _GEN_4779 | way1Age_30; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3372 = _GEN_4780 | way1Age_31; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3373 = _GEN_4781 | way1Age_32; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3374 = _GEN_4782 | way1Age_33; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3375 = _GEN_4783 | way1Age_34; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3376 = _GEN_4784 | way1Age_35; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3377 = _GEN_4785 | way1Age_36; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3378 = _GEN_4786 | way1Age_37; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3379 = _GEN_4787 | way1Age_38; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3380 = _GEN_4788 | way1Age_39; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3381 = _GEN_4789 | way1Age_40; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3382 = _GEN_4790 | way1Age_41; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3383 = _GEN_4791 | way1Age_42; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3384 = _GEN_4792 | way1Age_43; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3385 = _GEN_4793 | way1Age_44; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3386 = _GEN_4794 | way1Age_45; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3387 = _GEN_4795 | way1Age_46; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3388 = _GEN_4796 | way1Age_47; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3389 = _GEN_4797 | way1Age_48; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3390 = _GEN_4798 | way1Age_49; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3391 = _GEN_4799 | way1Age_50; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3392 = _GEN_4800 | way1Age_51; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3393 = _GEN_4801 | way1Age_52; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3394 = _GEN_4802 | way1Age_53; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3395 = _GEN_4803 | way1Age_54; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3396 = _GEN_4804 | way1Age_55; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3397 = _GEN_4805 | way1Age_56; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3398 = _GEN_4806 | way1Age_57; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3399 = _GEN_4807 | way1Age_58; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3400 = _GEN_4808 | way1Age_59; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3401 = _GEN_4809 | way1Age_60; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3402 = _GEN_4810 | way1Age_61; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3403 = _GEN_4811 | way1Age_62; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3404 = _GEN_4812 | way1Age_63; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3405 = _GEN_4813 | way1Age_64; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3406 = _GEN_4814 | way1Age_65; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3407 = _GEN_4815 | way1Age_66; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3408 = _GEN_4816 | way1Age_67; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3409 = _GEN_4817 | way1Age_68; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3410 = _GEN_4818 | way1Age_69; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3411 = _GEN_4819 | way1Age_70; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3412 = _GEN_4820 | way1Age_71; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3413 = _GEN_4821 | way1Age_72; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3414 = _GEN_4822 | way1Age_73; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3415 = _GEN_4823 | way1Age_74; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3416 = _GEN_4824 | way1Age_75; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3417 = _GEN_4825 | way1Age_76; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3418 = _GEN_4826 | way1Age_77; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3419 = _GEN_4827 | way1Age_78; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3420 = _GEN_4828 | way1Age_79; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3421 = _GEN_4829 | way1Age_80; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3422 = _GEN_4830 | way1Age_81; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3423 = _GEN_4831 | way1Age_82; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3424 = _GEN_4832 | way1Age_83; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3425 = _GEN_4833 | way1Age_84; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3426 = _GEN_4834 | way1Age_85; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3427 = _GEN_4835 | way1Age_86; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3428 = _GEN_4836 | way1Age_87; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3429 = _GEN_4837 | way1Age_88; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3430 = _GEN_4838 | way1Age_89; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3431 = _GEN_4839 | way1Age_90; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3432 = _GEN_4840 | way1Age_91; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3433 = _GEN_4841 | way1Age_92; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3434 = _GEN_4842 | way1Age_93; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3435 = _GEN_4843 | way1Age_94; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3436 = _GEN_4844 | way1Age_95; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3437 = _GEN_4845 | way1Age_96; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3438 = _GEN_4846 | way1Age_97; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3439 = _GEN_4847 | way1Age_98; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3440 = _GEN_4848 | way1Age_99; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3441 = _GEN_4849 | way1Age_100; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3442 = _GEN_4850 | way1Age_101; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3443 = _GEN_4851 | way1Age_102; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3444 = _GEN_4852 | way1Age_103; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3445 = _GEN_4853 | way1Age_104; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3446 = _GEN_4854 | way1Age_105; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3447 = _GEN_4855 | way1Age_106; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3448 = _GEN_4856 | way1Age_107; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3449 = _GEN_4857 | way1Age_108; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3450 = _GEN_4858 | way1Age_109; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3451 = _GEN_4859 | way1Age_110; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3452 = _GEN_4860 | way1Age_111; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3453 = _GEN_4861 | way1Age_112; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3454 = _GEN_4862 | way1Age_113; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3455 = _GEN_4863 | way1Age_114; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3456 = _GEN_4864 | way1Age_115; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3457 = _GEN_4865 | way1Age_116; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3458 = _GEN_4866 | way1Age_117; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3459 = _GEN_4867 | way1Age_118; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3460 = _GEN_4868 | way1Age_119; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3461 = _GEN_4869 | way1Age_120; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3462 = _GEN_4870 | way1Age_121; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3463 = _GEN_4871 | way1Age_122; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3464 = _GEN_4872 | way1Age_123; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3465 = _GEN_4873 | way1Age_124; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3466 = _GEN_4874 | way1Age_125; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3467 = _GEN_4875 | way1Age_126; // @[DCache.scala 218:{23,23} 43:26]
-  wire  _GEN_3468 = _GEN_4876 | way1Age_127; // @[DCache.scala 218:{23,23} 43:26]
-  wire  sDoneEn = state == 3'h6; // @[DCache.scala 221:23]
-  reg  hitEn; // @[DCache.scala 223:22]
-  wire [127:0] _rData_T = sDoneEn ? io_out_data_read : 128'h0; // @[DCache.scala 226:20]
-  wire [127:0] rData = hitEn ? cacheRData : _rData_T; // @[DCache.scala 225:18]
-  wire [63:0] rDataHL = reqOff[3] ? rData[127:64] : rData[63:0]; // @[DCache.scala 227:20]
+  wire [63:0] inDataWT = reqOff[3] ? io_dmem_data_write[127:64] : io_dmem_data_write[63:0]; // @[DCache.scala 163:23]
+  wire [63:0] _cacheWDataT_T_3 = {valid_data[63:8],inDataWT[7:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_7 = {valid_data[63:16],inDataWT[15:8],valid_data[7:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_11 = {valid_data[63:24],inDataWT[23:16],valid_data[15:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_15 = {valid_data[63:32],inDataWT[31:24],valid_data[23:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_19 = {valid_data[63:40],inDataWT[39:32],valid_data[31:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_23 = {valid_data[63:48],inDataWT[47:40],valid_data[39:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_27 = {valid_data[63:56],inDataWT[55:48],valid_data[47:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_30 = {inDataWT[63:56],valid_data[55:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_32 = 3'h1 == reqOff[2:0] ? _cacheWDataT_T_7 : _cacheWDataT_T_3; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_34 = 3'h2 == reqOff[2:0] ? _cacheWDataT_T_11 : _cacheWDataT_T_32; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_36 = 3'h3 == reqOff[2:0] ? _cacheWDataT_T_15 : _cacheWDataT_T_34; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_38 = 3'h4 == reqOff[2:0] ? _cacheWDataT_T_19 : _cacheWDataT_T_36; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_40 = 3'h5 == reqOff[2:0] ? _cacheWDataT_T_23 : _cacheWDataT_T_38; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_42 = 3'h6 == reqOff[2:0] ? _cacheWDataT_T_27 : _cacheWDataT_T_40; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_44 = 3'h7 == reqOff[2:0] ? _cacheWDataT_T_30 : _cacheWDataT_T_42; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_48 = {valid_data[63:16],inDataWT[15:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_52 = {valid_data[63:32],inDataWT[31:16],valid_data[15:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_56 = {valid_data[63:48],inDataWT[47:32],valid_data[31:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_59 = {inDataWT[63:48],valid_data[47:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_61 = 2'h1 == reqOff[2:1] ? _cacheWDataT_T_52 : _cacheWDataT_T_48; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_63 = 2'h2 == reqOff[2:1] ? _cacheWDataT_T_56 : _cacheWDataT_T_61; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_65 = 2'h3 == reqOff[2:1] ? _cacheWDataT_T_59 : _cacheWDataT_T_63; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_69 = {valid_data[63:32],inDataWT[31:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_72 = {inDataWT[63:32],valid_data[31:0]}; // @[Cat.scala 31:58]
+  wire [63:0] _cacheWDataT_T_74 = reqOff[2] ? _cacheWDataT_T_72 : _cacheWDataT_T_69; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_76 = 2'h1 == io_dmem_data_size ? _cacheWDataT_T_65 : _cacheWDataT_T_44; // @[Mux.scala 81:58]
+  wire [63:0] _cacheWDataT_T_78 = 2'h2 == io_dmem_data_size ? _cacheWDataT_T_74 : _cacheWDataT_T_76; // @[Mux.scala 81:58]
+  wire [63:0] cacheWDataT = 2'h3 == io_dmem_data_size ? inDataWT : _cacheWDataT_T_78; // @[Mux.scala 81:58]
+  wire [127:0] _cacheWData_T_1 = {cacheWDataT,64'h0}; // @[Cat.scala 31:58]
+  wire [127:0] _cacheWData_T_2 = {64'h0,cacheWDataT}; // @[Cat.scala 31:58]
+  wire [127:0] cacheWData = reqOff[3] ? _cacheWData_T_1 : _cacheWData_T_2; // @[DCache.scala 188:23]
+  wire [127:0] _valid_WData_T = io_dmem_data_req ? cacheWData : io_out_data_read; // @[DCache.scala 192:44]
+  wire [127:0] _valid_BWEn_T = io_dmem_data_req ? valid_strb : 128'hffffffffffffffffffffffffffffffff; // @[DCache.scala 194:24]
+  wire  _T_8 = sCacheWEn & io_dmem_data_req; // @[DCache.scala 199:20]
+  wire  _GEN_4749 = 7'h0 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1037 = 7'h0 == reqIndex | way0Dirty_0; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4750 = 7'h1 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1038 = 7'h1 == reqIndex | way0Dirty_1; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4751 = 7'h2 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1039 = 7'h2 == reqIndex | way0Dirty_2; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4752 = 7'h3 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1040 = 7'h3 == reqIndex | way0Dirty_3; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4753 = 7'h4 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1041 = 7'h4 == reqIndex | way0Dirty_4; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4754 = 7'h5 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1042 = 7'h5 == reqIndex | way0Dirty_5; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4755 = 7'h6 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1043 = 7'h6 == reqIndex | way0Dirty_6; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4756 = 7'h7 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1044 = 7'h7 == reqIndex | way0Dirty_7; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4757 = 7'h8 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1045 = 7'h8 == reqIndex | way0Dirty_8; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4758 = 7'h9 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1046 = 7'h9 == reqIndex | way0Dirty_9; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4759 = 7'ha == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1047 = 7'ha == reqIndex | way0Dirty_10; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4760 = 7'hb == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1048 = 7'hb == reqIndex | way0Dirty_11; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4761 = 7'hc == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1049 = 7'hc == reqIndex | way0Dirty_12; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4762 = 7'hd == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1050 = 7'hd == reqIndex | way0Dirty_13; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4763 = 7'he == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1051 = 7'he == reqIndex | way0Dirty_14; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4764 = 7'hf == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1052 = 7'hf == reqIndex | way0Dirty_15; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4765 = 7'h10 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1053 = 7'h10 == reqIndex | way0Dirty_16; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4766 = 7'h11 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1054 = 7'h11 == reqIndex | way0Dirty_17; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4767 = 7'h12 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1055 = 7'h12 == reqIndex | way0Dirty_18; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4768 = 7'h13 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1056 = 7'h13 == reqIndex | way0Dirty_19; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4769 = 7'h14 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1057 = 7'h14 == reqIndex | way0Dirty_20; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4770 = 7'h15 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1058 = 7'h15 == reqIndex | way0Dirty_21; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4771 = 7'h16 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1059 = 7'h16 == reqIndex | way0Dirty_22; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4772 = 7'h17 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1060 = 7'h17 == reqIndex | way0Dirty_23; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4773 = 7'h18 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1061 = 7'h18 == reqIndex | way0Dirty_24; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4774 = 7'h19 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1062 = 7'h19 == reqIndex | way0Dirty_25; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4775 = 7'h1a == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1063 = 7'h1a == reqIndex | way0Dirty_26; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4776 = 7'h1b == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1064 = 7'h1b == reqIndex | way0Dirty_27; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4777 = 7'h1c == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1065 = 7'h1c == reqIndex | way0Dirty_28; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4778 = 7'h1d == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1066 = 7'h1d == reqIndex | way0Dirty_29; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4779 = 7'h1e == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1067 = 7'h1e == reqIndex | way0Dirty_30; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4780 = 7'h1f == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1068 = 7'h1f == reqIndex | way0Dirty_31; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4781 = 7'h20 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1069 = 7'h20 == reqIndex | way0Dirty_32; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4782 = 7'h21 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1070 = 7'h21 == reqIndex | way0Dirty_33; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4783 = 7'h22 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1071 = 7'h22 == reqIndex | way0Dirty_34; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4784 = 7'h23 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1072 = 7'h23 == reqIndex | way0Dirty_35; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4785 = 7'h24 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1073 = 7'h24 == reqIndex | way0Dirty_36; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4786 = 7'h25 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1074 = 7'h25 == reqIndex | way0Dirty_37; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4787 = 7'h26 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1075 = 7'h26 == reqIndex | way0Dirty_38; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4788 = 7'h27 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1076 = 7'h27 == reqIndex | way0Dirty_39; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4789 = 7'h28 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1077 = 7'h28 == reqIndex | way0Dirty_40; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4790 = 7'h29 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1078 = 7'h29 == reqIndex | way0Dirty_41; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4791 = 7'h2a == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1079 = 7'h2a == reqIndex | way0Dirty_42; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4792 = 7'h2b == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1080 = 7'h2b == reqIndex | way0Dirty_43; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4793 = 7'h2c == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1081 = 7'h2c == reqIndex | way0Dirty_44; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4794 = 7'h2d == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1082 = 7'h2d == reqIndex | way0Dirty_45; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4795 = 7'h2e == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1083 = 7'h2e == reqIndex | way0Dirty_46; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4796 = 7'h2f == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1084 = 7'h2f == reqIndex | way0Dirty_47; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4797 = 7'h30 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1085 = 7'h30 == reqIndex | way0Dirty_48; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4798 = 7'h31 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1086 = 7'h31 == reqIndex | way0Dirty_49; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4799 = 7'h32 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1087 = 7'h32 == reqIndex | way0Dirty_50; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4800 = 7'h33 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1088 = 7'h33 == reqIndex | way0Dirty_51; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4801 = 7'h34 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1089 = 7'h34 == reqIndex | way0Dirty_52; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4802 = 7'h35 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1090 = 7'h35 == reqIndex | way0Dirty_53; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4803 = 7'h36 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1091 = 7'h36 == reqIndex | way0Dirty_54; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4804 = 7'h37 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1092 = 7'h37 == reqIndex | way0Dirty_55; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4805 = 7'h38 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1093 = 7'h38 == reqIndex | way0Dirty_56; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4806 = 7'h39 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1094 = 7'h39 == reqIndex | way0Dirty_57; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4807 = 7'h3a == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1095 = 7'h3a == reqIndex | way0Dirty_58; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4808 = 7'h3b == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1096 = 7'h3b == reqIndex | way0Dirty_59; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4809 = 7'h3c == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1097 = 7'h3c == reqIndex | way0Dirty_60; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4810 = 7'h3d == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1098 = 7'h3d == reqIndex | way0Dirty_61; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4811 = 7'h3e == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1099 = 7'h3e == reqIndex | way0Dirty_62; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4812 = 7'h3f == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1100 = 7'h3f == reqIndex | way0Dirty_63; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4813 = 7'h40 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1101 = 7'h40 == reqIndex | way0Dirty_64; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4814 = 7'h41 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1102 = 7'h41 == reqIndex | way0Dirty_65; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4815 = 7'h42 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1103 = 7'h42 == reqIndex | way0Dirty_66; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4816 = 7'h43 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1104 = 7'h43 == reqIndex | way0Dirty_67; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4817 = 7'h44 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1105 = 7'h44 == reqIndex | way0Dirty_68; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4818 = 7'h45 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1106 = 7'h45 == reqIndex | way0Dirty_69; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4819 = 7'h46 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1107 = 7'h46 == reqIndex | way0Dirty_70; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4820 = 7'h47 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1108 = 7'h47 == reqIndex | way0Dirty_71; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4821 = 7'h48 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1109 = 7'h48 == reqIndex | way0Dirty_72; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4822 = 7'h49 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1110 = 7'h49 == reqIndex | way0Dirty_73; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4823 = 7'h4a == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1111 = 7'h4a == reqIndex | way0Dirty_74; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4824 = 7'h4b == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1112 = 7'h4b == reqIndex | way0Dirty_75; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4825 = 7'h4c == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1113 = 7'h4c == reqIndex | way0Dirty_76; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4826 = 7'h4d == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1114 = 7'h4d == reqIndex | way0Dirty_77; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4827 = 7'h4e == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1115 = 7'h4e == reqIndex | way0Dirty_78; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4828 = 7'h4f == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1116 = 7'h4f == reqIndex | way0Dirty_79; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4829 = 7'h50 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1117 = 7'h50 == reqIndex | way0Dirty_80; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4830 = 7'h51 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1118 = 7'h51 == reqIndex | way0Dirty_81; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4831 = 7'h52 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1119 = 7'h52 == reqIndex | way0Dirty_82; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4832 = 7'h53 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1120 = 7'h53 == reqIndex | way0Dirty_83; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4833 = 7'h54 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1121 = 7'h54 == reqIndex | way0Dirty_84; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4834 = 7'h55 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1122 = 7'h55 == reqIndex | way0Dirty_85; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4835 = 7'h56 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1123 = 7'h56 == reqIndex | way0Dirty_86; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4836 = 7'h57 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1124 = 7'h57 == reqIndex | way0Dirty_87; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4837 = 7'h58 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1125 = 7'h58 == reqIndex | way0Dirty_88; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4838 = 7'h59 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1126 = 7'h59 == reqIndex | way0Dirty_89; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4839 = 7'h5a == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1127 = 7'h5a == reqIndex | way0Dirty_90; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4840 = 7'h5b == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1128 = 7'h5b == reqIndex | way0Dirty_91; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4841 = 7'h5c == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1129 = 7'h5c == reqIndex | way0Dirty_92; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4842 = 7'h5d == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1130 = 7'h5d == reqIndex | way0Dirty_93; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4843 = 7'h5e == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1131 = 7'h5e == reqIndex | way0Dirty_94; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4844 = 7'h5f == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1132 = 7'h5f == reqIndex | way0Dirty_95; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4845 = 7'h60 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1133 = 7'h60 == reqIndex | way0Dirty_96; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4846 = 7'h61 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1134 = 7'h61 == reqIndex | way0Dirty_97; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4847 = 7'h62 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1135 = 7'h62 == reqIndex | way0Dirty_98; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4848 = 7'h63 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1136 = 7'h63 == reqIndex | way0Dirty_99; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4849 = 7'h64 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1137 = 7'h64 == reqIndex | way0Dirty_100; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4850 = 7'h65 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1138 = 7'h65 == reqIndex | way0Dirty_101; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4851 = 7'h66 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1139 = 7'h66 == reqIndex | way0Dirty_102; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4852 = 7'h67 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1140 = 7'h67 == reqIndex | way0Dirty_103; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4853 = 7'h68 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1141 = 7'h68 == reqIndex | way0Dirty_104; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4854 = 7'h69 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1142 = 7'h69 == reqIndex | way0Dirty_105; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4855 = 7'h6a == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1143 = 7'h6a == reqIndex | way0Dirty_106; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4856 = 7'h6b == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1144 = 7'h6b == reqIndex | way0Dirty_107; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4857 = 7'h6c == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1145 = 7'h6c == reqIndex | way0Dirty_108; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4858 = 7'h6d == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1146 = 7'h6d == reqIndex | way0Dirty_109; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4859 = 7'h6e == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1147 = 7'h6e == reqIndex | way0Dirty_110; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4860 = 7'h6f == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1148 = 7'h6f == reqIndex | way0Dirty_111; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4861 = 7'h70 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1149 = 7'h70 == reqIndex | way0Dirty_112; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4862 = 7'h71 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1150 = 7'h71 == reqIndex | way0Dirty_113; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4863 = 7'h72 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1151 = 7'h72 == reqIndex | way0Dirty_114; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4864 = 7'h73 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1152 = 7'h73 == reqIndex | way0Dirty_115; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4865 = 7'h74 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1153 = 7'h74 == reqIndex | way0Dirty_116; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4866 = 7'h75 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1154 = 7'h75 == reqIndex | way0Dirty_117; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4867 = 7'h76 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1155 = 7'h76 == reqIndex | way0Dirty_118; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4868 = 7'h77 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1156 = 7'h77 == reqIndex | way0Dirty_119; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4869 = 7'h78 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1157 = 7'h78 == reqIndex | way0Dirty_120; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4870 = 7'h79 == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1158 = 7'h79 == reqIndex | way0Dirty_121; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4871 = 7'h7a == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1159 = 7'h7a == reqIndex | way0Dirty_122; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4872 = 7'h7b == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1160 = 7'h7b == reqIndex | way0Dirty_123; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4873 = 7'h7c == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1161 = 7'h7c == reqIndex | way0Dirty_124; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4874 = 7'h7d == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1162 = 7'h7d == reqIndex | way0Dirty_125; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4875 = 7'h7e == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1163 = 7'h7e == reqIndex | way0Dirty_126; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_4876 = 7'h7f == reqIndex; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _GEN_1164 = 7'h7f == reqIndex | way0Dirty_127; // @[DCache.scala 200:{27,27} 38:26]
+  wire  _T_9 = sWriteEn & io_out_data_ready; // @[DCache.scala 201:26]
+  wire  _GEN_1165 = 7'h0 == reqIndex ? 1'h0 : way0Dirty_0; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1166 = 7'h1 == reqIndex ? 1'h0 : way0Dirty_1; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1167 = 7'h2 == reqIndex ? 1'h0 : way0Dirty_2; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1168 = 7'h3 == reqIndex ? 1'h0 : way0Dirty_3; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1169 = 7'h4 == reqIndex ? 1'h0 : way0Dirty_4; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1170 = 7'h5 == reqIndex ? 1'h0 : way0Dirty_5; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1171 = 7'h6 == reqIndex ? 1'h0 : way0Dirty_6; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1172 = 7'h7 == reqIndex ? 1'h0 : way0Dirty_7; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1173 = 7'h8 == reqIndex ? 1'h0 : way0Dirty_8; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1174 = 7'h9 == reqIndex ? 1'h0 : way0Dirty_9; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1175 = 7'ha == reqIndex ? 1'h0 : way0Dirty_10; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1176 = 7'hb == reqIndex ? 1'h0 : way0Dirty_11; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1177 = 7'hc == reqIndex ? 1'h0 : way0Dirty_12; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1178 = 7'hd == reqIndex ? 1'h0 : way0Dirty_13; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1179 = 7'he == reqIndex ? 1'h0 : way0Dirty_14; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1180 = 7'hf == reqIndex ? 1'h0 : way0Dirty_15; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1181 = 7'h10 == reqIndex ? 1'h0 : way0Dirty_16; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1182 = 7'h11 == reqIndex ? 1'h0 : way0Dirty_17; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1183 = 7'h12 == reqIndex ? 1'h0 : way0Dirty_18; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1184 = 7'h13 == reqIndex ? 1'h0 : way0Dirty_19; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1185 = 7'h14 == reqIndex ? 1'h0 : way0Dirty_20; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1186 = 7'h15 == reqIndex ? 1'h0 : way0Dirty_21; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1187 = 7'h16 == reqIndex ? 1'h0 : way0Dirty_22; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1188 = 7'h17 == reqIndex ? 1'h0 : way0Dirty_23; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1189 = 7'h18 == reqIndex ? 1'h0 : way0Dirty_24; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1190 = 7'h19 == reqIndex ? 1'h0 : way0Dirty_25; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1191 = 7'h1a == reqIndex ? 1'h0 : way0Dirty_26; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1192 = 7'h1b == reqIndex ? 1'h0 : way0Dirty_27; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1193 = 7'h1c == reqIndex ? 1'h0 : way0Dirty_28; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1194 = 7'h1d == reqIndex ? 1'h0 : way0Dirty_29; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1195 = 7'h1e == reqIndex ? 1'h0 : way0Dirty_30; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1196 = 7'h1f == reqIndex ? 1'h0 : way0Dirty_31; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1197 = 7'h20 == reqIndex ? 1'h0 : way0Dirty_32; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1198 = 7'h21 == reqIndex ? 1'h0 : way0Dirty_33; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1199 = 7'h22 == reqIndex ? 1'h0 : way0Dirty_34; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1200 = 7'h23 == reqIndex ? 1'h0 : way0Dirty_35; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1201 = 7'h24 == reqIndex ? 1'h0 : way0Dirty_36; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1202 = 7'h25 == reqIndex ? 1'h0 : way0Dirty_37; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1203 = 7'h26 == reqIndex ? 1'h0 : way0Dirty_38; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1204 = 7'h27 == reqIndex ? 1'h0 : way0Dirty_39; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1205 = 7'h28 == reqIndex ? 1'h0 : way0Dirty_40; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1206 = 7'h29 == reqIndex ? 1'h0 : way0Dirty_41; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1207 = 7'h2a == reqIndex ? 1'h0 : way0Dirty_42; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1208 = 7'h2b == reqIndex ? 1'h0 : way0Dirty_43; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1209 = 7'h2c == reqIndex ? 1'h0 : way0Dirty_44; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1210 = 7'h2d == reqIndex ? 1'h0 : way0Dirty_45; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1211 = 7'h2e == reqIndex ? 1'h0 : way0Dirty_46; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1212 = 7'h2f == reqIndex ? 1'h0 : way0Dirty_47; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1213 = 7'h30 == reqIndex ? 1'h0 : way0Dirty_48; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1214 = 7'h31 == reqIndex ? 1'h0 : way0Dirty_49; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1215 = 7'h32 == reqIndex ? 1'h0 : way0Dirty_50; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1216 = 7'h33 == reqIndex ? 1'h0 : way0Dirty_51; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1217 = 7'h34 == reqIndex ? 1'h0 : way0Dirty_52; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1218 = 7'h35 == reqIndex ? 1'h0 : way0Dirty_53; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1219 = 7'h36 == reqIndex ? 1'h0 : way0Dirty_54; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1220 = 7'h37 == reqIndex ? 1'h0 : way0Dirty_55; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1221 = 7'h38 == reqIndex ? 1'h0 : way0Dirty_56; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1222 = 7'h39 == reqIndex ? 1'h0 : way0Dirty_57; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1223 = 7'h3a == reqIndex ? 1'h0 : way0Dirty_58; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1224 = 7'h3b == reqIndex ? 1'h0 : way0Dirty_59; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1225 = 7'h3c == reqIndex ? 1'h0 : way0Dirty_60; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1226 = 7'h3d == reqIndex ? 1'h0 : way0Dirty_61; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1227 = 7'h3e == reqIndex ? 1'h0 : way0Dirty_62; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1228 = 7'h3f == reqIndex ? 1'h0 : way0Dirty_63; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1229 = 7'h40 == reqIndex ? 1'h0 : way0Dirty_64; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1230 = 7'h41 == reqIndex ? 1'h0 : way0Dirty_65; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1231 = 7'h42 == reqIndex ? 1'h0 : way0Dirty_66; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1232 = 7'h43 == reqIndex ? 1'h0 : way0Dirty_67; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1233 = 7'h44 == reqIndex ? 1'h0 : way0Dirty_68; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1234 = 7'h45 == reqIndex ? 1'h0 : way0Dirty_69; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1235 = 7'h46 == reqIndex ? 1'h0 : way0Dirty_70; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1236 = 7'h47 == reqIndex ? 1'h0 : way0Dirty_71; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1237 = 7'h48 == reqIndex ? 1'h0 : way0Dirty_72; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1238 = 7'h49 == reqIndex ? 1'h0 : way0Dirty_73; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1239 = 7'h4a == reqIndex ? 1'h0 : way0Dirty_74; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1240 = 7'h4b == reqIndex ? 1'h0 : way0Dirty_75; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1241 = 7'h4c == reqIndex ? 1'h0 : way0Dirty_76; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1242 = 7'h4d == reqIndex ? 1'h0 : way0Dirty_77; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1243 = 7'h4e == reqIndex ? 1'h0 : way0Dirty_78; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1244 = 7'h4f == reqIndex ? 1'h0 : way0Dirty_79; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1245 = 7'h50 == reqIndex ? 1'h0 : way0Dirty_80; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1246 = 7'h51 == reqIndex ? 1'h0 : way0Dirty_81; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1247 = 7'h52 == reqIndex ? 1'h0 : way0Dirty_82; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1248 = 7'h53 == reqIndex ? 1'h0 : way0Dirty_83; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1249 = 7'h54 == reqIndex ? 1'h0 : way0Dirty_84; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1250 = 7'h55 == reqIndex ? 1'h0 : way0Dirty_85; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1251 = 7'h56 == reqIndex ? 1'h0 : way0Dirty_86; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1252 = 7'h57 == reqIndex ? 1'h0 : way0Dirty_87; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1253 = 7'h58 == reqIndex ? 1'h0 : way0Dirty_88; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1254 = 7'h59 == reqIndex ? 1'h0 : way0Dirty_89; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1255 = 7'h5a == reqIndex ? 1'h0 : way0Dirty_90; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1256 = 7'h5b == reqIndex ? 1'h0 : way0Dirty_91; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1257 = 7'h5c == reqIndex ? 1'h0 : way0Dirty_92; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1258 = 7'h5d == reqIndex ? 1'h0 : way0Dirty_93; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1259 = 7'h5e == reqIndex ? 1'h0 : way0Dirty_94; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1260 = 7'h5f == reqIndex ? 1'h0 : way0Dirty_95; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1261 = 7'h60 == reqIndex ? 1'h0 : way0Dirty_96; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1262 = 7'h61 == reqIndex ? 1'h0 : way0Dirty_97; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1263 = 7'h62 == reqIndex ? 1'h0 : way0Dirty_98; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1264 = 7'h63 == reqIndex ? 1'h0 : way0Dirty_99; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1265 = 7'h64 == reqIndex ? 1'h0 : way0Dirty_100; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1266 = 7'h65 == reqIndex ? 1'h0 : way0Dirty_101; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1267 = 7'h66 == reqIndex ? 1'h0 : way0Dirty_102; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1268 = 7'h67 == reqIndex ? 1'h0 : way0Dirty_103; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1269 = 7'h68 == reqIndex ? 1'h0 : way0Dirty_104; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1270 = 7'h69 == reqIndex ? 1'h0 : way0Dirty_105; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1271 = 7'h6a == reqIndex ? 1'h0 : way0Dirty_106; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1272 = 7'h6b == reqIndex ? 1'h0 : way0Dirty_107; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1273 = 7'h6c == reqIndex ? 1'h0 : way0Dirty_108; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1274 = 7'h6d == reqIndex ? 1'h0 : way0Dirty_109; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1275 = 7'h6e == reqIndex ? 1'h0 : way0Dirty_110; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1276 = 7'h6f == reqIndex ? 1'h0 : way0Dirty_111; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1277 = 7'h70 == reqIndex ? 1'h0 : way0Dirty_112; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1278 = 7'h71 == reqIndex ? 1'h0 : way0Dirty_113; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1279 = 7'h72 == reqIndex ? 1'h0 : way0Dirty_114; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1280 = 7'h73 == reqIndex ? 1'h0 : way0Dirty_115; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1281 = 7'h74 == reqIndex ? 1'h0 : way0Dirty_116; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1282 = 7'h75 == reqIndex ? 1'h0 : way0Dirty_117; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1283 = 7'h76 == reqIndex ? 1'h0 : way0Dirty_118; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1284 = 7'h77 == reqIndex ? 1'h0 : way0Dirty_119; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1285 = 7'h78 == reqIndex ? 1'h0 : way0Dirty_120; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1286 = 7'h79 == reqIndex ? 1'h0 : way0Dirty_121; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1287 = 7'h7a == reqIndex ? 1'h0 : way0Dirty_122; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1288 = 7'h7b == reqIndex ? 1'h0 : way0Dirty_123; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1289 = 7'h7c == reqIndex ? 1'h0 : way0Dirty_124; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1290 = 7'h7d == reqIndex ? 1'h0 : way0Dirty_125; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1291 = 7'h7e == reqIndex ? 1'h0 : way0Dirty_126; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1292 = 7'h7f == reqIndex ? 1'h0 : way0Dirty_127; // @[DCache.scala 202:{27,27} 38:26]
+  wire  _GEN_1549 = _GEN_4749 | way1Dirty_0; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1550 = _GEN_4750 | way1Dirty_1; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1551 = _GEN_4751 | way1Dirty_2; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1552 = _GEN_4752 | way1Dirty_3; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1553 = _GEN_4753 | way1Dirty_4; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1554 = _GEN_4754 | way1Dirty_5; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1555 = _GEN_4755 | way1Dirty_6; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1556 = _GEN_4756 | way1Dirty_7; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1557 = _GEN_4757 | way1Dirty_8; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1558 = _GEN_4758 | way1Dirty_9; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1559 = _GEN_4759 | way1Dirty_10; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1560 = _GEN_4760 | way1Dirty_11; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1561 = _GEN_4761 | way1Dirty_12; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1562 = _GEN_4762 | way1Dirty_13; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1563 = _GEN_4763 | way1Dirty_14; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1564 = _GEN_4764 | way1Dirty_15; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1565 = _GEN_4765 | way1Dirty_16; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1566 = _GEN_4766 | way1Dirty_17; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1567 = _GEN_4767 | way1Dirty_18; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1568 = _GEN_4768 | way1Dirty_19; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1569 = _GEN_4769 | way1Dirty_20; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1570 = _GEN_4770 | way1Dirty_21; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1571 = _GEN_4771 | way1Dirty_22; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1572 = _GEN_4772 | way1Dirty_23; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1573 = _GEN_4773 | way1Dirty_24; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1574 = _GEN_4774 | way1Dirty_25; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1575 = _GEN_4775 | way1Dirty_26; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1576 = _GEN_4776 | way1Dirty_27; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1577 = _GEN_4777 | way1Dirty_28; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1578 = _GEN_4778 | way1Dirty_29; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1579 = _GEN_4779 | way1Dirty_30; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1580 = _GEN_4780 | way1Dirty_31; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1581 = _GEN_4781 | way1Dirty_32; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1582 = _GEN_4782 | way1Dirty_33; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1583 = _GEN_4783 | way1Dirty_34; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1584 = _GEN_4784 | way1Dirty_35; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1585 = _GEN_4785 | way1Dirty_36; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1586 = _GEN_4786 | way1Dirty_37; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1587 = _GEN_4787 | way1Dirty_38; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1588 = _GEN_4788 | way1Dirty_39; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1589 = _GEN_4789 | way1Dirty_40; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1590 = _GEN_4790 | way1Dirty_41; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1591 = _GEN_4791 | way1Dirty_42; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1592 = _GEN_4792 | way1Dirty_43; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1593 = _GEN_4793 | way1Dirty_44; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1594 = _GEN_4794 | way1Dirty_45; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1595 = _GEN_4795 | way1Dirty_46; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1596 = _GEN_4796 | way1Dirty_47; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1597 = _GEN_4797 | way1Dirty_48; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1598 = _GEN_4798 | way1Dirty_49; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1599 = _GEN_4799 | way1Dirty_50; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1600 = _GEN_4800 | way1Dirty_51; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1601 = _GEN_4801 | way1Dirty_52; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1602 = _GEN_4802 | way1Dirty_53; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1603 = _GEN_4803 | way1Dirty_54; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1604 = _GEN_4804 | way1Dirty_55; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1605 = _GEN_4805 | way1Dirty_56; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1606 = _GEN_4806 | way1Dirty_57; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1607 = _GEN_4807 | way1Dirty_58; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1608 = _GEN_4808 | way1Dirty_59; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1609 = _GEN_4809 | way1Dirty_60; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1610 = _GEN_4810 | way1Dirty_61; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1611 = _GEN_4811 | way1Dirty_62; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1612 = _GEN_4812 | way1Dirty_63; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1613 = _GEN_4813 | way1Dirty_64; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1614 = _GEN_4814 | way1Dirty_65; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1615 = _GEN_4815 | way1Dirty_66; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1616 = _GEN_4816 | way1Dirty_67; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1617 = _GEN_4817 | way1Dirty_68; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1618 = _GEN_4818 | way1Dirty_69; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1619 = _GEN_4819 | way1Dirty_70; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1620 = _GEN_4820 | way1Dirty_71; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1621 = _GEN_4821 | way1Dirty_72; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1622 = _GEN_4822 | way1Dirty_73; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1623 = _GEN_4823 | way1Dirty_74; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1624 = _GEN_4824 | way1Dirty_75; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1625 = _GEN_4825 | way1Dirty_76; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1626 = _GEN_4826 | way1Dirty_77; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1627 = _GEN_4827 | way1Dirty_78; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1628 = _GEN_4828 | way1Dirty_79; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1629 = _GEN_4829 | way1Dirty_80; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1630 = _GEN_4830 | way1Dirty_81; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1631 = _GEN_4831 | way1Dirty_82; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1632 = _GEN_4832 | way1Dirty_83; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1633 = _GEN_4833 | way1Dirty_84; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1634 = _GEN_4834 | way1Dirty_85; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1635 = _GEN_4835 | way1Dirty_86; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1636 = _GEN_4836 | way1Dirty_87; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1637 = _GEN_4837 | way1Dirty_88; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1638 = _GEN_4838 | way1Dirty_89; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1639 = _GEN_4839 | way1Dirty_90; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1640 = _GEN_4840 | way1Dirty_91; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1641 = _GEN_4841 | way1Dirty_92; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1642 = _GEN_4842 | way1Dirty_93; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1643 = _GEN_4843 | way1Dirty_94; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1644 = _GEN_4844 | way1Dirty_95; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1645 = _GEN_4845 | way1Dirty_96; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1646 = _GEN_4846 | way1Dirty_97; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1647 = _GEN_4847 | way1Dirty_98; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1648 = _GEN_4848 | way1Dirty_99; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1649 = _GEN_4849 | way1Dirty_100; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1650 = _GEN_4850 | way1Dirty_101; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1651 = _GEN_4851 | way1Dirty_102; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1652 = _GEN_4852 | way1Dirty_103; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1653 = _GEN_4853 | way1Dirty_104; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1654 = _GEN_4854 | way1Dirty_105; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1655 = _GEN_4855 | way1Dirty_106; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1656 = _GEN_4856 | way1Dirty_107; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1657 = _GEN_4857 | way1Dirty_108; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1658 = _GEN_4858 | way1Dirty_109; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1659 = _GEN_4859 | way1Dirty_110; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1660 = _GEN_4860 | way1Dirty_111; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1661 = _GEN_4861 | way1Dirty_112; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1662 = _GEN_4862 | way1Dirty_113; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1663 = _GEN_4863 | way1Dirty_114; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1664 = _GEN_4864 | way1Dirty_115; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1665 = _GEN_4865 | way1Dirty_116; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1666 = _GEN_4866 | way1Dirty_117; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1667 = _GEN_4867 | way1Dirty_118; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1668 = _GEN_4868 | way1Dirty_119; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1669 = _GEN_4869 | way1Dirty_120; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1670 = _GEN_4870 | way1Dirty_121; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1671 = _GEN_4871 | way1Dirty_122; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1672 = _GEN_4872 | way1Dirty_123; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1673 = _GEN_4873 | way1Dirty_124; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1674 = _GEN_4874 | way1Dirty_125; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1675 = _GEN_4875 | way1Dirty_126; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1676 = _GEN_4876 | way1Dirty_127; // @[DCache.scala 206:{27,27} 44:26]
+  wire  _GEN_1677 = 7'h0 == reqIndex ? 1'h0 : way1Dirty_0; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1678 = 7'h1 == reqIndex ? 1'h0 : way1Dirty_1; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1679 = 7'h2 == reqIndex ? 1'h0 : way1Dirty_2; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1680 = 7'h3 == reqIndex ? 1'h0 : way1Dirty_3; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1681 = 7'h4 == reqIndex ? 1'h0 : way1Dirty_4; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1682 = 7'h5 == reqIndex ? 1'h0 : way1Dirty_5; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1683 = 7'h6 == reqIndex ? 1'h0 : way1Dirty_6; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1684 = 7'h7 == reqIndex ? 1'h0 : way1Dirty_7; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1685 = 7'h8 == reqIndex ? 1'h0 : way1Dirty_8; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1686 = 7'h9 == reqIndex ? 1'h0 : way1Dirty_9; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1687 = 7'ha == reqIndex ? 1'h0 : way1Dirty_10; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1688 = 7'hb == reqIndex ? 1'h0 : way1Dirty_11; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1689 = 7'hc == reqIndex ? 1'h0 : way1Dirty_12; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1690 = 7'hd == reqIndex ? 1'h0 : way1Dirty_13; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1691 = 7'he == reqIndex ? 1'h0 : way1Dirty_14; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1692 = 7'hf == reqIndex ? 1'h0 : way1Dirty_15; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1693 = 7'h10 == reqIndex ? 1'h0 : way1Dirty_16; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1694 = 7'h11 == reqIndex ? 1'h0 : way1Dirty_17; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1695 = 7'h12 == reqIndex ? 1'h0 : way1Dirty_18; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1696 = 7'h13 == reqIndex ? 1'h0 : way1Dirty_19; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1697 = 7'h14 == reqIndex ? 1'h0 : way1Dirty_20; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1698 = 7'h15 == reqIndex ? 1'h0 : way1Dirty_21; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1699 = 7'h16 == reqIndex ? 1'h0 : way1Dirty_22; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1700 = 7'h17 == reqIndex ? 1'h0 : way1Dirty_23; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1701 = 7'h18 == reqIndex ? 1'h0 : way1Dirty_24; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1702 = 7'h19 == reqIndex ? 1'h0 : way1Dirty_25; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1703 = 7'h1a == reqIndex ? 1'h0 : way1Dirty_26; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1704 = 7'h1b == reqIndex ? 1'h0 : way1Dirty_27; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1705 = 7'h1c == reqIndex ? 1'h0 : way1Dirty_28; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1706 = 7'h1d == reqIndex ? 1'h0 : way1Dirty_29; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1707 = 7'h1e == reqIndex ? 1'h0 : way1Dirty_30; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1708 = 7'h1f == reqIndex ? 1'h0 : way1Dirty_31; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1709 = 7'h20 == reqIndex ? 1'h0 : way1Dirty_32; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1710 = 7'h21 == reqIndex ? 1'h0 : way1Dirty_33; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1711 = 7'h22 == reqIndex ? 1'h0 : way1Dirty_34; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1712 = 7'h23 == reqIndex ? 1'h0 : way1Dirty_35; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1713 = 7'h24 == reqIndex ? 1'h0 : way1Dirty_36; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1714 = 7'h25 == reqIndex ? 1'h0 : way1Dirty_37; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1715 = 7'h26 == reqIndex ? 1'h0 : way1Dirty_38; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1716 = 7'h27 == reqIndex ? 1'h0 : way1Dirty_39; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1717 = 7'h28 == reqIndex ? 1'h0 : way1Dirty_40; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1718 = 7'h29 == reqIndex ? 1'h0 : way1Dirty_41; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1719 = 7'h2a == reqIndex ? 1'h0 : way1Dirty_42; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1720 = 7'h2b == reqIndex ? 1'h0 : way1Dirty_43; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1721 = 7'h2c == reqIndex ? 1'h0 : way1Dirty_44; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1722 = 7'h2d == reqIndex ? 1'h0 : way1Dirty_45; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1723 = 7'h2e == reqIndex ? 1'h0 : way1Dirty_46; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1724 = 7'h2f == reqIndex ? 1'h0 : way1Dirty_47; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1725 = 7'h30 == reqIndex ? 1'h0 : way1Dirty_48; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1726 = 7'h31 == reqIndex ? 1'h0 : way1Dirty_49; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1727 = 7'h32 == reqIndex ? 1'h0 : way1Dirty_50; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1728 = 7'h33 == reqIndex ? 1'h0 : way1Dirty_51; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1729 = 7'h34 == reqIndex ? 1'h0 : way1Dirty_52; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1730 = 7'h35 == reqIndex ? 1'h0 : way1Dirty_53; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1731 = 7'h36 == reqIndex ? 1'h0 : way1Dirty_54; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1732 = 7'h37 == reqIndex ? 1'h0 : way1Dirty_55; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1733 = 7'h38 == reqIndex ? 1'h0 : way1Dirty_56; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1734 = 7'h39 == reqIndex ? 1'h0 : way1Dirty_57; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1735 = 7'h3a == reqIndex ? 1'h0 : way1Dirty_58; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1736 = 7'h3b == reqIndex ? 1'h0 : way1Dirty_59; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1737 = 7'h3c == reqIndex ? 1'h0 : way1Dirty_60; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1738 = 7'h3d == reqIndex ? 1'h0 : way1Dirty_61; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1739 = 7'h3e == reqIndex ? 1'h0 : way1Dirty_62; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1740 = 7'h3f == reqIndex ? 1'h0 : way1Dirty_63; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1741 = 7'h40 == reqIndex ? 1'h0 : way1Dirty_64; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1742 = 7'h41 == reqIndex ? 1'h0 : way1Dirty_65; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1743 = 7'h42 == reqIndex ? 1'h0 : way1Dirty_66; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1744 = 7'h43 == reqIndex ? 1'h0 : way1Dirty_67; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1745 = 7'h44 == reqIndex ? 1'h0 : way1Dirty_68; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1746 = 7'h45 == reqIndex ? 1'h0 : way1Dirty_69; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1747 = 7'h46 == reqIndex ? 1'h0 : way1Dirty_70; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1748 = 7'h47 == reqIndex ? 1'h0 : way1Dirty_71; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1749 = 7'h48 == reqIndex ? 1'h0 : way1Dirty_72; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1750 = 7'h49 == reqIndex ? 1'h0 : way1Dirty_73; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1751 = 7'h4a == reqIndex ? 1'h0 : way1Dirty_74; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1752 = 7'h4b == reqIndex ? 1'h0 : way1Dirty_75; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1753 = 7'h4c == reqIndex ? 1'h0 : way1Dirty_76; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1754 = 7'h4d == reqIndex ? 1'h0 : way1Dirty_77; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1755 = 7'h4e == reqIndex ? 1'h0 : way1Dirty_78; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1756 = 7'h4f == reqIndex ? 1'h0 : way1Dirty_79; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1757 = 7'h50 == reqIndex ? 1'h0 : way1Dirty_80; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1758 = 7'h51 == reqIndex ? 1'h0 : way1Dirty_81; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1759 = 7'h52 == reqIndex ? 1'h0 : way1Dirty_82; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1760 = 7'h53 == reqIndex ? 1'h0 : way1Dirty_83; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1761 = 7'h54 == reqIndex ? 1'h0 : way1Dirty_84; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1762 = 7'h55 == reqIndex ? 1'h0 : way1Dirty_85; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1763 = 7'h56 == reqIndex ? 1'h0 : way1Dirty_86; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1764 = 7'h57 == reqIndex ? 1'h0 : way1Dirty_87; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1765 = 7'h58 == reqIndex ? 1'h0 : way1Dirty_88; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1766 = 7'h59 == reqIndex ? 1'h0 : way1Dirty_89; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1767 = 7'h5a == reqIndex ? 1'h0 : way1Dirty_90; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1768 = 7'h5b == reqIndex ? 1'h0 : way1Dirty_91; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1769 = 7'h5c == reqIndex ? 1'h0 : way1Dirty_92; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1770 = 7'h5d == reqIndex ? 1'h0 : way1Dirty_93; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1771 = 7'h5e == reqIndex ? 1'h0 : way1Dirty_94; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1772 = 7'h5f == reqIndex ? 1'h0 : way1Dirty_95; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1773 = 7'h60 == reqIndex ? 1'h0 : way1Dirty_96; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1774 = 7'h61 == reqIndex ? 1'h0 : way1Dirty_97; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1775 = 7'h62 == reqIndex ? 1'h0 : way1Dirty_98; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1776 = 7'h63 == reqIndex ? 1'h0 : way1Dirty_99; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1777 = 7'h64 == reqIndex ? 1'h0 : way1Dirty_100; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1778 = 7'h65 == reqIndex ? 1'h0 : way1Dirty_101; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1779 = 7'h66 == reqIndex ? 1'h0 : way1Dirty_102; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1780 = 7'h67 == reqIndex ? 1'h0 : way1Dirty_103; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1781 = 7'h68 == reqIndex ? 1'h0 : way1Dirty_104; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1782 = 7'h69 == reqIndex ? 1'h0 : way1Dirty_105; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1783 = 7'h6a == reqIndex ? 1'h0 : way1Dirty_106; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1784 = 7'h6b == reqIndex ? 1'h0 : way1Dirty_107; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1785 = 7'h6c == reqIndex ? 1'h0 : way1Dirty_108; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1786 = 7'h6d == reqIndex ? 1'h0 : way1Dirty_109; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1787 = 7'h6e == reqIndex ? 1'h0 : way1Dirty_110; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1788 = 7'h6f == reqIndex ? 1'h0 : way1Dirty_111; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1789 = 7'h70 == reqIndex ? 1'h0 : way1Dirty_112; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1790 = 7'h71 == reqIndex ? 1'h0 : way1Dirty_113; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1791 = 7'h72 == reqIndex ? 1'h0 : way1Dirty_114; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1792 = 7'h73 == reqIndex ? 1'h0 : way1Dirty_115; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1793 = 7'h74 == reqIndex ? 1'h0 : way1Dirty_116; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1794 = 7'h75 == reqIndex ? 1'h0 : way1Dirty_117; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1795 = 7'h76 == reqIndex ? 1'h0 : way1Dirty_118; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1796 = 7'h77 == reqIndex ? 1'h0 : way1Dirty_119; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1797 = 7'h78 == reqIndex ? 1'h0 : way1Dirty_120; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1798 = 7'h79 == reqIndex ? 1'h0 : way1Dirty_121; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1799 = 7'h7a == reqIndex ? 1'h0 : way1Dirty_122; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1800 = 7'h7b == reqIndex ? 1'h0 : way1Dirty_123; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1801 = 7'h7c == reqIndex ? 1'h0 : way1Dirty_124; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1802 = 7'h7d == reqIndex ? 1'h0 : way1Dirty_125; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1803 = 7'h7e == reqIndex ? 1'h0 : way1Dirty_126; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1804 = 7'h7f == reqIndex ? 1'h0 : way1Dirty_127; // @[DCache.scala 208:{27,27} 44:26]
+  wire  _GEN_1805 = _T_9 ? _GEN_1677 : way1Dirty_0; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1806 = _T_9 ? _GEN_1678 : way1Dirty_1; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1807 = _T_9 ? _GEN_1679 : way1Dirty_2; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1808 = _T_9 ? _GEN_1680 : way1Dirty_3; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1809 = _T_9 ? _GEN_1681 : way1Dirty_4; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1810 = _T_9 ? _GEN_1682 : way1Dirty_5; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1811 = _T_9 ? _GEN_1683 : way1Dirty_6; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1812 = _T_9 ? _GEN_1684 : way1Dirty_7; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1813 = _T_9 ? _GEN_1685 : way1Dirty_8; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1814 = _T_9 ? _GEN_1686 : way1Dirty_9; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1815 = _T_9 ? _GEN_1687 : way1Dirty_10; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1816 = _T_9 ? _GEN_1688 : way1Dirty_11; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1817 = _T_9 ? _GEN_1689 : way1Dirty_12; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1818 = _T_9 ? _GEN_1690 : way1Dirty_13; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1819 = _T_9 ? _GEN_1691 : way1Dirty_14; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1820 = _T_9 ? _GEN_1692 : way1Dirty_15; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1821 = _T_9 ? _GEN_1693 : way1Dirty_16; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1822 = _T_9 ? _GEN_1694 : way1Dirty_17; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1823 = _T_9 ? _GEN_1695 : way1Dirty_18; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1824 = _T_9 ? _GEN_1696 : way1Dirty_19; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1825 = _T_9 ? _GEN_1697 : way1Dirty_20; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1826 = _T_9 ? _GEN_1698 : way1Dirty_21; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1827 = _T_9 ? _GEN_1699 : way1Dirty_22; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1828 = _T_9 ? _GEN_1700 : way1Dirty_23; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1829 = _T_9 ? _GEN_1701 : way1Dirty_24; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1830 = _T_9 ? _GEN_1702 : way1Dirty_25; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1831 = _T_9 ? _GEN_1703 : way1Dirty_26; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1832 = _T_9 ? _GEN_1704 : way1Dirty_27; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1833 = _T_9 ? _GEN_1705 : way1Dirty_28; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1834 = _T_9 ? _GEN_1706 : way1Dirty_29; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1835 = _T_9 ? _GEN_1707 : way1Dirty_30; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1836 = _T_9 ? _GEN_1708 : way1Dirty_31; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1837 = _T_9 ? _GEN_1709 : way1Dirty_32; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1838 = _T_9 ? _GEN_1710 : way1Dirty_33; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1839 = _T_9 ? _GEN_1711 : way1Dirty_34; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1840 = _T_9 ? _GEN_1712 : way1Dirty_35; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1841 = _T_9 ? _GEN_1713 : way1Dirty_36; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1842 = _T_9 ? _GEN_1714 : way1Dirty_37; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1843 = _T_9 ? _GEN_1715 : way1Dirty_38; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1844 = _T_9 ? _GEN_1716 : way1Dirty_39; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1845 = _T_9 ? _GEN_1717 : way1Dirty_40; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1846 = _T_9 ? _GEN_1718 : way1Dirty_41; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1847 = _T_9 ? _GEN_1719 : way1Dirty_42; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1848 = _T_9 ? _GEN_1720 : way1Dirty_43; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1849 = _T_9 ? _GEN_1721 : way1Dirty_44; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1850 = _T_9 ? _GEN_1722 : way1Dirty_45; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1851 = _T_9 ? _GEN_1723 : way1Dirty_46; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1852 = _T_9 ? _GEN_1724 : way1Dirty_47; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1853 = _T_9 ? _GEN_1725 : way1Dirty_48; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1854 = _T_9 ? _GEN_1726 : way1Dirty_49; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1855 = _T_9 ? _GEN_1727 : way1Dirty_50; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1856 = _T_9 ? _GEN_1728 : way1Dirty_51; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1857 = _T_9 ? _GEN_1729 : way1Dirty_52; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1858 = _T_9 ? _GEN_1730 : way1Dirty_53; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1859 = _T_9 ? _GEN_1731 : way1Dirty_54; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1860 = _T_9 ? _GEN_1732 : way1Dirty_55; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1861 = _T_9 ? _GEN_1733 : way1Dirty_56; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1862 = _T_9 ? _GEN_1734 : way1Dirty_57; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1863 = _T_9 ? _GEN_1735 : way1Dirty_58; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1864 = _T_9 ? _GEN_1736 : way1Dirty_59; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1865 = _T_9 ? _GEN_1737 : way1Dirty_60; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1866 = _T_9 ? _GEN_1738 : way1Dirty_61; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1867 = _T_9 ? _GEN_1739 : way1Dirty_62; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1868 = _T_9 ? _GEN_1740 : way1Dirty_63; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1869 = _T_9 ? _GEN_1741 : way1Dirty_64; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1870 = _T_9 ? _GEN_1742 : way1Dirty_65; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1871 = _T_9 ? _GEN_1743 : way1Dirty_66; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1872 = _T_9 ? _GEN_1744 : way1Dirty_67; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1873 = _T_9 ? _GEN_1745 : way1Dirty_68; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1874 = _T_9 ? _GEN_1746 : way1Dirty_69; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1875 = _T_9 ? _GEN_1747 : way1Dirty_70; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1876 = _T_9 ? _GEN_1748 : way1Dirty_71; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1877 = _T_9 ? _GEN_1749 : way1Dirty_72; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1878 = _T_9 ? _GEN_1750 : way1Dirty_73; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1879 = _T_9 ? _GEN_1751 : way1Dirty_74; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1880 = _T_9 ? _GEN_1752 : way1Dirty_75; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1881 = _T_9 ? _GEN_1753 : way1Dirty_76; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1882 = _T_9 ? _GEN_1754 : way1Dirty_77; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1883 = _T_9 ? _GEN_1755 : way1Dirty_78; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1884 = _T_9 ? _GEN_1756 : way1Dirty_79; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1885 = _T_9 ? _GEN_1757 : way1Dirty_80; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1886 = _T_9 ? _GEN_1758 : way1Dirty_81; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1887 = _T_9 ? _GEN_1759 : way1Dirty_82; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1888 = _T_9 ? _GEN_1760 : way1Dirty_83; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1889 = _T_9 ? _GEN_1761 : way1Dirty_84; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1890 = _T_9 ? _GEN_1762 : way1Dirty_85; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1891 = _T_9 ? _GEN_1763 : way1Dirty_86; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1892 = _T_9 ? _GEN_1764 : way1Dirty_87; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1893 = _T_9 ? _GEN_1765 : way1Dirty_88; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1894 = _T_9 ? _GEN_1766 : way1Dirty_89; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1895 = _T_9 ? _GEN_1767 : way1Dirty_90; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1896 = _T_9 ? _GEN_1768 : way1Dirty_91; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1897 = _T_9 ? _GEN_1769 : way1Dirty_92; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1898 = _T_9 ? _GEN_1770 : way1Dirty_93; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1899 = _T_9 ? _GEN_1771 : way1Dirty_94; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1900 = _T_9 ? _GEN_1772 : way1Dirty_95; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1901 = _T_9 ? _GEN_1773 : way1Dirty_96; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1902 = _T_9 ? _GEN_1774 : way1Dirty_97; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1903 = _T_9 ? _GEN_1775 : way1Dirty_98; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1904 = _T_9 ? _GEN_1776 : way1Dirty_99; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1905 = _T_9 ? _GEN_1777 : way1Dirty_100; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1906 = _T_9 ? _GEN_1778 : way1Dirty_101; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1907 = _T_9 ? _GEN_1779 : way1Dirty_102; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1908 = _T_9 ? _GEN_1780 : way1Dirty_103; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1909 = _T_9 ? _GEN_1781 : way1Dirty_104; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1910 = _T_9 ? _GEN_1782 : way1Dirty_105; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1911 = _T_9 ? _GEN_1783 : way1Dirty_106; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1912 = _T_9 ? _GEN_1784 : way1Dirty_107; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1913 = _T_9 ? _GEN_1785 : way1Dirty_108; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1914 = _T_9 ? _GEN_1786 : way1Dirty_109; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1915 = _T_9 ? _GEN_1787 : way1Dirty_110; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1916 = _T_9 ? _GEN_1788 : way1Dirty_111; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1917 = _T_9 ? _GEN_1789 : way1Dirty_112; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1918 = _T_9 ? _GEN_1790 : way1Dirty_113; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1919 = _T_9 ? _GEN_1791 : way1Dirty_114; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1920 = _T_9 ? _GEN_1792 : way1Dirty_115; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1921 = _T_9 ? _GEN_1793 : way1Dirty_116; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1922 = _T_9 ? _GEN_1794 : way1Dirty_117; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1923 = _T_9 ? _GEN_1795 : way1Dirty_118; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1924 = _T_9 ? _GEN_1796 : way1Dirty_119; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1925 = _T_9 ? _GEN_1797 : way1Dirty_120; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1926 = _T_9 ? _GEN_1798 : way1Dirty_121; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1927 = _T_9 ? _GEN_1799 : way1Dirty_122; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1928 = _T_9 ? _GEN_1800 : way1Dirty_123; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1929 = _T_9 ? _GEN_1801 : way1Dirty_124; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1930 = _T_9 ? _GEN_1802 : way1Dirty_125; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1931 = _T_9 ? _GEN_1803 : way1Dirty_126; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_1932 = _T_9 ? _GEN_1804 : way1Dirty_127; // @[DCache.scala 207:45 44:26]
+  wire  _GEN_2445 = _GEN_4749 | way0V_0; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2446 = _GEN_4750 | way0V_1; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2447 = _GEN_4751 | way0V_2; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2448 = _GEN_4752 | way0V_3; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2449 = _GEN_4753 | way0V_4; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2450 = _GEN_4754 | way0V_5; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2451 = _GEN_4755 | way0V_6; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2452 = _GEN_4756 | way0V_7; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2453 = _GEN_4757 | way0V_8; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2454 = _GEN_4758 | way0V_9; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2455 = _GEN_4759 | way0V_10; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2456 = _GEN_4760 | way0V_11; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2457 = _GEN_4761 | way0V_12; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2458 = _GEN_4762 | way0V_13; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2459 = _GEN_4763 | way0V_14; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2460 = _GEN_4764 | way0V_15; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2461 = _GEN_4765 | way0V_16; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2462 = _GEN_4766 | way0V_17; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2463 = _GEN_4767 | way0V_18; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2464 = _GEN_4768 | way0V_19; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2465 = _GEN_4769 | way0V_20; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2466 = _GEN_4770 | way0V_21; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2467 = _GEN_4771 | way0V_22; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2468 = _GEN_4772 | way0V_23; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2469 = _GEN_4773 | way0V_24; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2470 = _GEN_4774 | way0V_25; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2471 = _GEN_4775 | way0V_26; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2472 = _GEN_4776 | way0V_27; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2473 = _GEN_4777 | way0V_28; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2474 = _GEN_4778 | way0V_29; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2475 = _GEN_4779 | way0V_30; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2476 = _GEN_4780 | way0V_31; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2477 = _GEN_4781 | way0V_32; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2478 = _GEN_4782 | way0V_33; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2479 = _GEN_4783 | way0V_34; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2480 = _GEN_4784 | way0V_35; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2481 = _GEN_4785 | way0V_36; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2482 = _GEN_4786 | way0V_37; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2483 = _GEN_4787 | way0V_38; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2484 = _GEN_4788 | way0V_39; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2485 = _GEN_4789 | way0V_40; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2486 = _GEN_4790 | way0V_41; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2487 = _GEN_4791 | way0V_42; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2488 = _GEN_4792 | way0V_43; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2489 = _GEN_4793 | way0V_44; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2490 = _GEN_4794 | way0V_45; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2491 = _GEN_4795 | way0V_46; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2492 = _GEN_4796 | way0V_47; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2493 = _GEN_4797 | way0V_48; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2494 = _GEN_4798 | way0V_49; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2495 = _GEN_4799 | way0V_50; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2496 = _GEN_4800 | way0V_51; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2497 = _GEN_4801 | way0V_52; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2498 = _GEN_4802 | way0V_53; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2499 = _GEN_4803 | way0V_54; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2500 = _GEN_4804 | way0V_55; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2501 = _GEN_4805 | way0V_56; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2502 = _GEN_4806 | way0V_57; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2503 = _GEN_4807 | way0V_58; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2504 = _GEN_4808 | way0V_59; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2505 = _GEN_4809 | way0V_60; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2506 = _GEN_4810 | way0V_61; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2507 = _GEN_4811 | way0V_62; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2508 = _GEN_4812 | way0V_63; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2509 = _GEN_4813 | way0V_64; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2510 = _GEN_4814 | way0V_65; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2511 = _GEN_4815 | way0V_66; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2512 = _GEN_4816 | way0V_67; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2513 = _GEN_4817 | way0V_68; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2514 = _GEN_4818 | way0V_69; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2515 = _GEN_4819 | way0V_70; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2516 = _GEN_4820 | way0V_71; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2517 = _GEN_4821 | way0V_72; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2518 = _GEN_4822 | way0V_73; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2519 = _GEN_4823 | way0V_74; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2520 = _GEN_4824 | way0V_75; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2521 = _GEN_4825 | way0V_76; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2522 = _GEN_4826 | way0V_77; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2523 = _GEN_4827 | way0V_78; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2524 = _GEN_4828 | way0V_79; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2525 = _GEN_4829 | way0V_80; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2526 = _GEN_4830 | way0V_81; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2527 = _GEN_4831 | way0V_82; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2528 = _GEN_4832 | way0V_83; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2529 = _GEN_4833 | way0V_84; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2530 = _GEN_4834 | way0V_85; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2531 = _GEN_4835 | way0V_86; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2532 = _GEN_4836 | way0V_87; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2533 = _GEN_4837 | way0V_88; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2534 = _GEN_4838 | way0V_89; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2535 = _GEN_4839 | way0V_90; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2536 = _GEN_4840 | way0V_91; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2537 = _GEN_4841 | way0V_92; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2538 = _GEN_4842 | way0V_93; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2539 = _GEN_4843 | way0V_94; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2540 = _GEN_4844 | way0V_95; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2541 = _GEN_4845 | way0V_96; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2542 = _GEN_4846 | way0V_97; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2543 = _GEN_4847 | way0V_98; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2544 = _GEN_4848 | way0V_99; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2545 = _GEN_4849 | way0V_100; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2546 = _GEN_4850 | way0V_101; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2547 = _GEN_4851 | way0V_102; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2548 = _GEN_4852 | way0V_103; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2549 = _GEN_4853 | way0V_104; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2550 = _GEN_4854 | way0V_105; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2551 = _GEN_4855 | way0V_106; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2552 = _GEN_4856 | way0V_107; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2553 = _GEN_4857 | way0V_108; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2554 = _GEN_4858 | way0V_109; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2555 = _GEN_4859 | way0V_110; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2556 = _GEN_4860 | way0V_111; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2557 = _GEN_4861 | way0V_112; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2558 = _GEN_4862 | way0V_113; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2559 = _GEN_4863 | way0V_114; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2560 = _GEN_4864 | way0V_115; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2561 = _GEN_4865 | way0V_116; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2562 = _GEN_4866 | way0V_117; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2563 = _GEN_4867 | way0V_118; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2564 = _GEN_4868 | way0V_119; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2565 = _GEN_4869 | way0V_120; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2566 = _GEN_4870 | way0V_121; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2567 = _GEN_4871 | way0V_122; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2568 = _GEN_4872 | way0V_123; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2569 = _GEN_4873 | way0V_124; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2570 = _GEN_4874 | way0V_125; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2571 = _GEN_4875 | way0V_126; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2572 = _GEN_4876 | way0V_127; // @[DCache.scala 213:{21,21} 34:26]
+  wire  _GEN_2701 = _GEN_4749 | way0Age_0; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2702 = _GEN_4750 | way0Age_1; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2703 = _GEN_4751 | way0Age_2; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2704 = _GEN_4752 | way0Age_3; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2705 = _GEN_4753 | way0Age_4; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2706 = _GEN_4754 | way0Age_5; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2707 = _GEN_4755 | way0Age_6; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2708 = _GEN_4756 | way0Age_7; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2709 = _GEN_4757 | way0Age_8; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2710 = _GEN_4758 | way0Age_9; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2711 = _GEN_4759 | way0Age_10; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2712 = _GEN_4760 | way0Age_11; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2713 = _GEN_4761 | way0Age_12; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2714 = _GEN_4762 | way0Age_13; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2715 = _GEN_4763 | way0Age_14; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2716 = _GEN_4764 | way0Age_15; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2717 = _GEN_4765 | way0Age_16; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2718 = _GEN_4766 | way0Age_17; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2719 = _GEN_4767 | way0Age_18; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2720 = _GEN_4768 | way0Age_19; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2721 = _GEN_4769 | way0Age_20; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2722 = _GEN_4770 | way0Age_21; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2723 = _GEN_4771 | way0Age_22; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2724 = _GEN_4772 | way0Age_23; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2725 = _GEN_4773 | way0Age_24; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2726 = _GEN_4774 | way0Age_25; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2727 = _GEN_4775 | way0Age_26; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2728 = _GEN_4776 | way0Age_27; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2729 = _GEN_4777 | way0Age_28; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2730 = _GEN_4778 | way0Age_29; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2731 = _GEN_4779 | way0Age_30; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2732 = _GEN_4780 | way0Age_31; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2733 = _GEN_4781 | way0Age_32; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2734 = _GEN_4782 | way0Age_33; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2735 = _GEN_4783 | way0Age_34; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2736 = _GEN_4784 | way0Age_35; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2737 = _GEN_4785 | way0Age_36; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2738 = _GEN_4786 | way0Age_37; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2739 = _GEN_4787 | way0Age_38; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2740 = _GEN_4788 | way0Age_39; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2741 = _GEN_4789 | way0Age_40; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2742 = _GEN_4790 | way0Age_41; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2743 = _GEN_4791 | way0Age_42; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2744 = _GEN_4792 | way0Age_43; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2745 = _GEN_4793 | way0Age_44; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2746 = _GEN_4794 | way0Age_45; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2747 = _GEN_4795 | way0Age_46; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2748 = _GEN_4796 | way0Age_47; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2749 = _GEN_4797 | way0Age_48; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2750 = _GEN_4798 | way0Age_49; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2751 = _GEN_4799 | way0Age_50; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2752 = _GEN_4800 | way0Age_51; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2753 = _GEN_4801 | way0Age_52; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2754 = _GEN_4802 | way0Age_53; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2755 = _GEN_4803 | way0Age_54; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2756 = _GEN_4804 | way0Age_55; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2757 = _GEN_4805 | way0Age_56; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2758 = _GEN_4806 | way0Age_57; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2759 = _GEN_4807 | way0Age_58; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2760 = _GEN_4808 | way0Age_59; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2761 = _GEN_4809 | way0Age_60; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2762 = _GEN_4810 | way0Age_61; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2763 = _GEN_4811 | way0Age_62; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2764 = _GEN_4812 | way0Age_63; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2765 = _GEN_4813 | way0Age_64; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2766 = _GEN_4814 | way0Age_65; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2767 = _GEN_4815 | way0Age_66; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2768 = _GEN_4816 | way0Age_67; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2769 = _GEN_4817 | way0Age_68; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2770 = _GEN_4818 | way0Age_69; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2771 = _GEN_4819 | way0Age_70; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2772 = _GEN_4820 | way0Age_71; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2773 = _GEN_4821 | way0Age_72; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2774 = _GEN_4822 | way0Age_73; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2775 = _GEN_4823 | way0Age_74; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2776 = _GEN_4824 | way0Age_75; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2777 = _GEN_4825 | way0Age_76; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2778 = _GEN_4826 | way0Age_77; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2779 = _GEN_4827 | way0Age_78; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2780 = _GEN_4828 | way0Age_79; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2781 = _GEN_4829 | way0Age_80; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2782 = _GEN_4830 | way0Age_81; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2783 = _GEN_4831 | way0Age_82; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2784 = _GEN_4832 | way0Age_83; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2785 = _GEN_4833 | way0Age_84; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2786 = _GEN_4834 | way0Age_85; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2787 = _GEN_4835 | way0Age_86; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2788 = _GEN_4836 | way0Age_87; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2789 = _GEN_4837 | way0Age_88; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2790 = _GEN_4838 | way0Age_89; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2791 = _GEN_4839 | way0Age_90; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2792 = _GEN_4840 | way0Age_91; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2793 = _GEN_4841 | way0Age_92; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2794 = _GEN_4842 | way0Age_93; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2795 = _GEN_4843 | way0Age_94; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2796 = _GEN_4844 | way0Age_95; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2797 = _GEN_4845 | way0Age_96; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2798 = _GEN_4846 | way0Age_97; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2799 = _GEN_4847 | way0Age_98; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2800 = _GEN_4848 | way0Age_99; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2801 = _GEN_4849 | way0Age_100; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2802 = _GEN_4850 | way0Age_101; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2803 = _GEN_4851 | way0Age_102; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2804 = _GEN_4852 | way0Age_103; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2805 = _GEN_4853 | way0Age_104; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2806 = _GEN_4854 | way0Age_105; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2807 = _GEN_4855 | way0Age_106; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2808 = _GEN_4856 | way0Age_107; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2809 = _GEN_4857 | way0Age_108; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2810 = _GEN_4858 | way0Age_109; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2811 = _GEN_4859 | way0Age_110; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2812 = _GEN_4860 | way0Age_111; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2813 = _GEN_4861 | way0Age_112; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2814 = _GEN_4862 | way0Age_113; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2815 = _GEN_4863 | way0Age_114; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2816 = _GEN_4864 | way0Age_115; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2817 = _GEN_4865 | way0Age_116; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2818 = _GEN_4866 | way0Age_117; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2819 = _GEN_4867 | way0Age_118; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2820 = _GEN_4868 | way0Age_119; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2821 = _GEN_4869 | way0Age_120; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2822 = _GEN_4870 | way0Age_121; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2823 = _GEN_4871 | way0Age_122; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2824 = _GEN_4872 | way0Age_123; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2825 = _GEN_4873 | way0Age_124; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2826 = _GEN_4874 | way0Age_125; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2827 = _GEN_4875 | way0Age_126; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2828 = _GEN_4876 | way0Age_127; // @[DCache.scala 215:{23,23} 37:26]
+  wire  _GEN_2957 = _GEN_4749 | way1V_0; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2958 = _GEN_4750 | way1V_1; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2959 = _GEN_4751 | way1V_2; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2960 = _GEN_4752 | way1V_3; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2961 = _GEN_4753 | way1V_4; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2962 = _GEN_4754 | way1V_5; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2963 = _GEN_4755 | way1V_6; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2964 = _GEN_4756 | way1V_7; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2965 = _GEN_4757 | way1V_8; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2966 = _GEN_4758 | way1V_9; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2967 = _GEN_4759 | way1V_10; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2968 = _GEN_4760 | way1V_11; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2969 = _GEN_4761 | way1V_12; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2970 = _GEN_4762 | way1V_13; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2971 = _GEN_4763 | way1V_14; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2972 = _GEN_4764 | way1V_15; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2973 = _GEN_4765 | way1V_16; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2974 = _GEN_4766 | way1V_17; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2975 = _GEN_4767 | way1V_18; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2976 = _GEN_4768 | way1V_19; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2977 = _GEN_4769 | way1V_20; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2978 = _GEN_4770 | way1V_21; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2979 = _GEN_4771 | way1V_22; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2980 = _GEN_4772 | way1V_23; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2981 = _GEN_4773 | way1V_24; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2982 = _GEN_4774 | way1V_25; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2983 = _GEN_4775 | way1V_26; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2984 = _GEN_4776 | way1V_27; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2985 = _GEN_4777 | way1V_28; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2986 = _GEN_4778 | way1V_29; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2987 = _GEN_4779 | way1V_30; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2988 = _GEN_4780 | way1V_31; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2989 = _GEN_4781 | way1V_32; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2990 = _GEN_4782 | way1V_33; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2991 = _GEN_4783 | way1V_34; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2992 = _GEN_4784 | way1V_35; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2993 = _GEN_4785 | way1V_36; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2994 = _GEN_4786 | way1V_37; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2995 = _GEN_4787 | way1V_38; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2996 = _GEN_4788 | way1V_39; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2997 = _GEN_4789 | way1V_40; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2998 = _GEN_4790 | way1V_41; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_2999 = _GEN_4791 | way1V_42; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3000 = _GEN_4792 | way1V_43; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3001 = _GEN_4793 | way1V_44; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3002 = _GEN_4794 | way1V_45; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3003 = _GEN_4795 | way1V_46; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3004 = _GEN_4796 | way1V_47; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3005 = _GEN_4797 | way1V_48; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3006 = _GEN_4798 | way1V_49; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3007 = _GEN_4799 | way1V_50; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3008 = _GEN_4800 | way1V_51; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3009 = _GEN_4801 | way1V_52; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3010 = _GEN_4802 | way1V_53; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3011 = _GEN_4803 | way1V_54; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3012 = _GEN_4804 | way1V_55; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3013 = _GEN_4805 | way1V_56; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3014 = _GEN_4806 | way1V_57; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3015 = _GEN_4807 | way1V_58; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3016 = _GEN_4808 | way1V_59; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3017 = _GEN_4809 | way1V_60; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3018 = _GEN_4810 | way1V_61; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3019 = _GEN_4811 | way1V_62; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3020 = _GEN_4812 | way1V_63; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3021 = _GEN_4813 | way1V_64; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3022 = _GEN_4814 | way1V_65; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3023 = _GEN_4815 | way1V_66; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3024 = _GEN_4816 | way1V_67; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3025 = _GEN_4817 | way1V_68; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3026 = _GEN_4818 | way1V_69; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3027 = _GEN_4819 | way1V_70; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3028 = _GEN_4820 | way1V_71; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3029 = _GEN_4821 | way1V_72; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3030 = _GEN_4822 | way1V_73; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3031 = _GEN_4823 | way1V_74; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3032 = _GEN_4824 | way1V_75; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3033 = _GEN_4825 | way1V_76; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3034 = _GEN_4826 | way1V_77; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3035 = _GEN_4827 | way1V_78; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3036 = _GEN_4828 | way1V_79; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3037 = _GEN_4829 | way1V_80; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3038 = _GEN_4830 | way1V_81; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3039 = _GEN_4831 | way1V_82; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3040 = _GEN_4832 | way1V_83; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3041 = _GEN_4833 | way1V_84; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3042 = _GEN_4834 | way1V_85; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3043 = _GEN_4835 | way1V_86; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3044 = _GEN_4836 | way1V_87; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3045 = _GEN_4837 | way1V_88; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3046 = _GEN_4838 | way1V_89; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3047 = _GEN_4839 | way1V_90; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3048 = _GEN_4840 | way1V_91; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3049 = _GEN_4841 | way1V_92; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3050 = _GEN_4842 | way1V_93; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3051 = _GEN_4843 | way1V_94; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3052 = _GEN_4844 | way1V_95; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3053 = _GEN_4845 | way1V_96; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3054 = _GEN_4846 | way1V_97; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3055 = _GEN_4847 | way1V_98; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3056 = _GEN_4848 | way1V_99; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3057 = _GEN_4849 | way1V_100; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3058 = _GEN_4850 | way1V_101; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3059 = _GEN_4851 | way1V_102; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3060 = _GEN_4852 | way1V_103; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3061 = _GEN_4853 | way1V_104; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3062 = _GEN_4854 | way1V_105; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3063 = _GEN_4855 | way1V_106; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3064 = _GEN_4856 | way1V_107; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3065 = _GEN_4857 | way1V_108; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3066 = _GEN_4858 | way1V_109; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3067 = _GEN_4859 | way1V_110; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3068 = _GEN_4860 | way1V_111; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3069 = _GEN_4861 | way1V_112; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3070 = _GEN_4862 | way1V_113; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3071 = _GEN_4863 | way1V_114; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3072 = _GEN_4864 | way1V_115; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3073 = _GEN_4865 | way1V_116; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3074 = _GEN_4866 | way1V_117; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3075 = _GEN_4867 | way1V_118; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3076 = _GEN_4868 | way1V_119; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3077 = _GEN_4869 | way1V_120; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3078 = _GEN_4870 | way1V_121; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3079 = _GEN_4871 | way1V_122; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3080 = _GEN_4872 | way1V_123; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3081 = _GEN_4873 | way1V_124; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3082 = _GEN_4874 | way1V_125; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3083 = _GEN_4875 | way1V_126; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3084 = _GEN_4876 | way1V_127; // @[DCache.scala 218:{21,21} 40:26]
+  wire  _GEN_3341 = _GEN_4749 | way1Age_0; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3342 = _GEN_4750 | way1Age_1; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3343 = _GEN_4751 | way1Age_2; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3344 = _GEN_4752 | way1Age_3; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3345 = _GEN_4753 | way1Age_4; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3346 = _GEN_4754 | way1Age_5; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3347 = _GEN_4755 | way1Age_6; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3348 = _GEN_4756 | way1Age_7; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3349 = _GEN_4757 | way1Age_8; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3350 = _GEN_4758 | way1Age_9; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3351 = _GEN_4759 | way1Age_10; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3352 = _GEN_4760 | way1Age_11; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3353 = _GEN_4761 | way1Age_12; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3354 = _GEN_4762 | way1Age_13; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3355 = _GEN_4763 | way1Age_14; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3356 = _GEN_4764 | way1Age_15; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3357 = _GEN_4765 | way1Age_16; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3358 = _GEN_4766 | way1Age_17; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3359 = _GEN_4767 | way1Age_18; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3360 = _GEN_4768 | way1Age_19; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3361 = _GEN_4769 | way1Age_20; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3362 = _GEN_4770 | way1Age_21; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3363 = _GEN_4771 | way1Age_22; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3364 = _GEN_4772 | way1Age_23; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3365 = _GEN_4773 | way1Age_24; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3366 = _GEN_4774 | way1Age_25; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3367 = _GEN_4775 | way1Age_26; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3368 = _GEN_4776 | way1Age_27; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3369 = _GEN_4777 | way1Age_28; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3370 = _GEN_4778 | way1Age_29; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3371 = _GEN_4779 | way1Age_30; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3372 = _GEN_4780 | way1Age_31; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3373 = _GEN_4781 | way1Age_32; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3374 = _GEN_4782 | way1Age_33; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3375 = _GEN_4783 | way1Age_34; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3376 = _GEN_4784 | way1Age_35; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3377 = _GEN_4785 | way1Age_36; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3378 = _GEN_4786 | way1Age_37; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3379 = _GEN_4787 | way1Age_38; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3380 = _GEN_4788 | way1Age_39; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3381 = _GEN_4789 | way1Age_40; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3382 = _GEN_4790 | way1Age_41; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3383 = _GEN_4791 | way1Age_42; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3384 = _GEN_4792 | way1Age_43; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3385 = _GEN_4793 | way1Age_44; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3386 = _GEN_4794 | way1Age_45; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3387 = _GEN_4795 | way1Age_46; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3388 = _GEN_4796 | way1Age_47; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3389 = _GEN_4797 | way1Age_48; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3390 = _GEN_4798 | way1Age_49; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3391 = _GEN_4799 | way1Age_50; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3392 = _GEN_4800 | way1Age_51; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3393 = _GEN_4801 | way1Age_52; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3394 = _GEN_4802 | way1Age_53; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3395 = _GEN_4803 | way1Age_54; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3396 = _GEN_4804 | way1Age_55; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3397 = _GEN_4805 | way1Age_56; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3398 = _GEN_4806 | way1Age_57; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3399 = _GEN_4807 | way1Age_58; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3400 = _GEN_4808 | way1Age_59; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3401 = _GEN_4809 | way1Age_60; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3402 = _GEN_4810 | way1Age_61; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3403 = _GEN_4811 | way1Age_62; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3404 = _GEN_4812 | way1Age_63; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3405 = _GEN_4813 | way1Age_64; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3406 = _GEN_4814 | way1Age_65; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3407 = _GEN_4815 | way1Age_66; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3408 = _GEN_4816 | way1Age_67; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3409 = _GEN_4817 | way1Age_68; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3410 = _GEN_4818 | way1Age_69; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3411 = _GEN_4819 | way1Age_70; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3412 = _GEN_4820 | way1Age_71; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3413 = _GEN_4821 | way1Age_72; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3414 = _GEN_4822 | way1Age_73; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3415 = _GEN_4823 | way1Age_74; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3416 = _GEN_4824 | way1Age_75; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3417 = _GEN_4825 | way1Age_76; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3418 = _GEN_4826 | way1Age_77; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3419 = _GEN_4827 | way1Age_78; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3420 = _GEN_4828 | way1Age_79; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3421 = _GEN_4829 | way1Age_80; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3422 = _GEN_4830 | way1Age_81; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3423 = _GEN_4831 | way1Age_82; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3424 = _GEN_4832 | way1Age_83; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3425 = _GEN_4833 | way1Age_84; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3426 = _GEN_4834 | way1Age_85; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3427 = _GEN_4835 | way1Age_86; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3428 = _GEN_4836 | way1Age_87; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3429 = _GEN_4837 | way1Age_88; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3430 = _GEN_4838 | way1Age_89; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3431 = _GEN_4839 | way1Age_90; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3432 = _GEN_4840 | way1Age_91; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3433 = _GEN_4841 | way1Age_92; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3434 = _GEN_4842 | way1Age_93; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3435 = _GEN_4843 | way1Age_94; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3436 = _GEN_4844 | way1Age_95; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3437 = _GEN_4845 | way1Age_96; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3438 = _GEN_4846 | way1Age_97; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3439 = _GEN_4847 | way1Age_98; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3440 = _GEN_4848 | way1Age_99; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3441 = _GEN_4849 | way1Age_100; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3442 = _GEN_4850 | way1Age_101; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3443 = _GEN_4851 | way1Age_102; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3444 = _GEN_4852 | way1Age_103; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3445 = _GEN_4853 | way1Age_104; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3446 = _GEN_4854 | way1Age_105; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3447 = _GEN_4855 | way1Age_106; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3448 = _GEN_4856 | way1Age_107; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3449 = _GEN_4857 | way1Age_108; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3450 = _GEN_4858 | way1Age_109; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3451 = _GEN_4859 | way1Age_110; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3452 = _GEN_4860 | way1Age_111; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3453 = _GEN_4861 | way1Age_112; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3454 = _GEN_4862 | way1Age_113; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3455 = _GEN_4863 | way1Age_114; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3456 = _GEN_4864 | way1Age_115; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3457 = _GEN_4865 | way1Age_116; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3458 = _GEN_4866 | way1Age_117; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3459 = _GEN_4867 | way1Age_118; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3460 = _GEN_4868 | way1Age_119; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3461 = _GEN_4869 | way1Age_120; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3462 = _GEN_4870 | way1Age_121; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3463 = _GEN_4871 | way1Age_122; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3464 = _GEN_4872 | way1Age_123; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3465 = _GEN_4873 | way1Age_124; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3466 = _GEN_4874 | way1Age_125; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3467 = _GEN_4875 | way1Age_126; // @[DCache.scala 221:{23,23} 43:26]
+  wire  _GEN_3468 = _GEN_4876 | way1Age_127; // @[DCache.scala 221:{23,23} 43:26]
+  wire  sDoneEn = state == 3'h6; // @[DCache.scala 224:23]
+  reg  hitEn; // @[DCache.scala 226:22]
+  wire [127:0] _rData_T = sDoneEn ? io_out_data_read : 128'h0; // @[DCache.scala 229:20]
+  wire [127:0] rData = hitEn ? cacheRData : _rData_T; // @[DCache.scala 228:18]
+  wire [63:0] rDataHL = reqOff[3] ? rData[127:64] : rData[63:0]; // @[DCache.scala 230:20]
   wire [8:0] _io_dmem_data_read_T_2 = {1'h0,rDataHL[7:0]}; // @[Cat.scala 31:58]
   wire [8:0] _io_dmem_data_read_T_4 = {1'h0,rDataHL[15:8]}; // @[Cat.scala 31:58]
   wire [8:0] _io_dmem_data_read_T_6 = {1'h0,rDataHL[23:16]}; // @[Cat.scala 31:58]
@@ -17108,7 +17112,7 @@ module DCache(
     _io_dmem_data_read_T_30}; // @[Mux.scala 81:58]
   wire [32:0] _io_dmem_data_read_T_56 = 2'h2 == io_dmem_data_size ? _io_dmem_data_read_T_52 : {{16'd0},
     _io_dmem_data_read_T_54}; // @[Mux.scala 81:58]
-  S011HD1P_X32Y2D128_BW req ( // @[DCache.scala 264:19]
+  S011HD1P_X32Y2D128_BW req ( // @[DCache.scala 267:19]
     .Q(req_Q),
     .CLK(req_CLK),
     .CEN(req_CEN),
@@ -17117,7065 +17121,7065 @@ module DCache(
     .A(req_A),
     .D(req_D)
   );
-  assign io_dmem_data_ready = hitEn | sDoneEn; // @[DCache.scala 229:26]
+  assign io_dmem_data_ready = hitEn | sDoneEn; // @[DCache.scala 232:26]
   assign io_dmem_data_read = 2'h3 == io_dmem_data_size ? rDataHL : {{31'd0}, _io_dmem_data_read_T_56}; // @[Mux.scala 81:58]
-  assign io_out_data_valid = sWriteEn | sReadEn; // @[DCache.scala 255:24]
+  assign io_out_data_valid = sWriteEn | sReadEn; // @[DCache.scala 258:24]
   assign io_out_data_req = state == 3'h3; // @[DCache.scala 151:24]
   assign io_out_data_addr = {io_dmem_data_addr[31:4],4'h0}; // @[Cat.scala 31:58]
-  assign io_out_data_strb = sWriteEn ? 8'hff : 8'h0; // @[DCache.scala 260:24]
-  assign io_out_data_write = sWriteEn ? cacheRData : 128'h0; // @[DCache.scala 261:24]
-  assign req_CLK = clock; // @[DCache.scala 265:14]
-  assign req_CEN = 1'h1; // @[DCache.scala 266:14]
+  assign io_out_data_strb = sWriteEn ? 8'hff : 8'h0; // @[DCache.scala 263:24]
+  assign io_out_data_write = sWriteEn ? cacheRData : 128'h0; // @[DCache.scala 264:24]
+  assign req_CLK = clock; // @[DCache.scala 268:14]
+  assign req_CEN = 1'h1; // @[DCache.scala 269:14]
   assign req_WEN = state == 3'h5; // @[DCache.scala 157:26]
-  assign req_BWEN = sReadEn ? 128'hffffffffffffffffffffffffffffffff : _valid_BWEn_T; // @[DCache.scala 190:21]
+  assign req_BWEN = sReadEn ? 128'hffffffffffffffffffffffffffffffff : _valid_BWEn_T; // @[DCache.scala 193:21]
   assign req_A = _cacheDirtyEn_T ? _cacheIndex_T_1 : _cacheIndex_T_2; // @[DCache.scala 145:22]
-  assign req_D = sReadEn ? axiRData : _valid_WData_T; // @[DCache.scala 189:21]
+  assign req_D = sReadEn ? axiRData : _valid_WData_T; // @[DCache.scala 192:21]
   always @(posedge clock) begin
     if (reset) begin // @[DCache.scala 34:26]
       way0V_0 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_0 <= _GEN_2445;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_1 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_1 <= _GEN_2446;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_2 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_2 <= _GEN_2447;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_3 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_3 <= _GEN_2448;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_4 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_4 <= _GEN_2449;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_5 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_5 <= _GEN_2450;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_6 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_6 <= _GEN_2451;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_7 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_7 <= _GEN_2452;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_8 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_8 <= _GEN_2453;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_9 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_9 <= _GEN_2454;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_10 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_10 <= _GEN_2455;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_11 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_11 <= _GEN_2456;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_12 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_12 <= _GEN_2457;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_13 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_13 <= _GEN_2458;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_14 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_14 <= _GEN_2459;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_15 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_15 <= _GEN_2460;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_16 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_16 <= _GEN_2461;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_17 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_17 <= _GEN_2462;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_18 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_18 <= _GEN_2463;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_19 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_19 <= _GEN_2464;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_20 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_20 <= _GEN_2465;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_21 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_21 <= _GEN_2466;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_22 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_22 <= _GEN_2467;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_23 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_23 <= _GEN_2468;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_24 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_24 <= _GEN_2469;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_25 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_25 <= _GEN_2470;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_26 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_26 <= _GEN_2471;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_27 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_27 <= _GEN_2472;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_28 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_28 <= _GEN_2473;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_29 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_29 <= _GEN_2474;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_30 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_30 <= _GEN_2475;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_31 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_31 <= _GEN_2476;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_32 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_32 <= _GEN_2477;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_33 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_33 <= _GEN_2478;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_34 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_34 <= _GEN_2479;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_35 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_35 <= _GEN_2480;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_36 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_36 <= _GEN_2481;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_37 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_37 <= _GEN_2482;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_38 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_38 <= _GEN_2483;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_39 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_39 <= _GEN_2484;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_40 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_40 <= _GEN_2485;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_41 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_41 <= _GEN_2486;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_42 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_42 <= _GEN_2487;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_43 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_43 <= _GEN_2488;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_44 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_44 <= _GEN_2489;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_45 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_45 <= _GEN_2490;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_46 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_46 <= _GEN_2491;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_47 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_47 <= _GEN_2492;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_48 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_48 <= _GEN_2493;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_49 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_49 <= _GEN_2494;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_50 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_50 <= _GEN_2495;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_51 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_51 <= _GEN_2496;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_52 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_52 <= _GEN_2497;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_53 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_53 <= _GEN_2498;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_54 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_54 <= _GEN_2499;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_55 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_55 <= _GEN_2500;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_56 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_56 <= _GEN_2501;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_57 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_57 <= _GEN_2502;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_58 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_58 <= _GEN_2503;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_59 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_59 <= _GEN_2504;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_60 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_60 <= _GEN_2505;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_61 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_61 <= _GEN_2506;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_62 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_62 <= _GEN_2507;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_63 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_63 <= _GEN_2508;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_64 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_64 <= _GEN_2509;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_65 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_65 <= _GEN_2510;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_66 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_66 <= _GEN_2511;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_67 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_67 <= _GEN_2512;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_68 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_68 <= _GEN_2513;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_69 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_69 <= _GEN_2514;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_70 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_70 <= _GEN_2515;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_71 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_71 <= _GEN_2516;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_72 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_72 <= _GEN_2517;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_73 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_73 <= _GEN_2518;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_74 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_74 <= _GEN_2519;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_75 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_75 <= _GEN_2520;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_76 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_76 <= _GEN_2521;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_77 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_77 <= _GEN_2522;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_78 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_78 <= _GEN_2523;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_79 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_79 <= _GEN_2524;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_80 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_80 <= _GEN_2525;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_81 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_81 <= _GEN_2526;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_82 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_82 <= _GEN_2527;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_83 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_83 <= _GEN_2528;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_84 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_84 <= _GEN_2529;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_85 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_85 <= _GEN_2530;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_86 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_86 <= _GEN_2531;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_87 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_87 <= _GEN_2532;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_88 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_88 <= _GEN_2533;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_89 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_89 <= _GEN_2534;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_90 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_90 <= _GEN_2535;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_91 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_91 <= _GEN_2536;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_92 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_92 <= _GEN_2537;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_93 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_93 <= _GEN_2538;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_94 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_94 <= _GEN_2539;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_95 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_95 <= _GEN_2540;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_96 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_96 <= _GEN_2541;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_97 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_97 <= _GEN_2542;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_98 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_98 <= _GEN_2543;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_99 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_99 <= _GEN_2544;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_100 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_100 <= _GEN_2545;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_101 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_101 <= _GEN_2546;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_102 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_102 <= _GEN_2547;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_103 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_103 <= _GEN_2548;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_104 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_104 <= _GEN_2549;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_105 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_105 <= _GEN_2550;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_106 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_106 <= _GEN_2551;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_107 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_107 <= _GEN_2552;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_108 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_108 <= _GEN_2553;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_109 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_109 <= _GEN_2554;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_110 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_110 <= _GEN_2555;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_111 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_111 <= _GEN_2556;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_112 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_112 <= _GEN_2557;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_113 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_113 <= _GEN_2558;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_114 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_114 <= _GEN_2559;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_115 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_115 <= _GEN_2560;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_116 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_116 <= _GEN_2561;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_117 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_117 <= _GEN_2562;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_118 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_118 <= _GEN_2563;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_119 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_119 <= _GEN_2564;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_120 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_120 <= _GEN_2565;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_121 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_121 <= _GEN_2566;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_122 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_122 <= _GEN_2567;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_123 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_123 <= _GEN_2568;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_124 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_124 <= _GEN_2569;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_125 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_125 <= _GEN_2570;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_126 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_126 <= _GEN_2571;
     end
     if (reset) begin // @[DCache.scala 34:26]
       way0V_127 <= 1'h0; // @[DCache.scala 34:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0V_127 <= _GEN_2572;
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_0 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h0 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_0 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h0 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_0 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_1 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_1 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_1 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_2 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_2 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_2 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_3 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_3 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_3 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_4 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_4 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_4 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_5 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_5 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_5 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_6 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_6 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_6 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_7 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_7 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_7 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_8 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h8 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_8 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h8 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_8 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_9 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h9 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_9 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h9 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_9 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_10 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'ha == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_10 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'ha == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_10 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_11 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'hb == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_11 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'hb == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_11 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_12 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'hc == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_12 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'hc == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_12 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_13 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'hd == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_13 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'hd == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_13 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_14 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'he == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_14 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'he == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_14 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_15 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'hf == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_15 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'hf == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_15 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_16 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h10 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_16 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h10 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_16 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_17 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h11 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_17 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h11 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_17 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_18 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h12 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_18 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h12 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_18 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_19 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h13 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_19 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h13 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_19 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_20 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h14 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_20 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h14 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_20 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_21 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h15 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_21 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h15 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_21 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_22 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h16 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_22 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h16 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_22 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_23 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h17 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_23 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h17 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_23 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_24 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h18 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_24 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h18 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_24 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_25 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h19 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_25 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h19 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_25 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_26 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1a == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_26 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1a == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_26 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_27 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1b == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_27 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1b == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_27 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_28 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1c == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_28 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1c == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_28 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_29 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1d == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_29 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1d == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_29 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_30 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1e == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_30 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1e == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_30 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_31 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1f == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_31 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1f == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_31 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_32 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h20 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_32 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h20 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_32 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_33 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h21 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_33 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h21 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_33 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_34 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h22 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_34 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h22 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_34 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_35 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h23 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_35 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h23 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_35 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_36 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h24 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_36 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h24 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_36 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_37 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h25 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_37 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h25 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_37 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_38 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h26 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_38 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h26 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_38 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_39 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h27 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_39 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h27 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_39 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_40 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h28 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_40 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h28 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_40 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_41 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h29 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_41 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h29 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_41 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_42 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2a == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_42 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2a == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_42 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_43 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2b == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_43 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2b == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_43 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_44 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2c == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_44 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2c == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_44 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_45 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2d == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_45 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2d == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_45 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_46 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2e == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_46 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2e == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_46 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_47 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2f == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_47 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2f == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_47 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_48 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h30 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_48 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h30 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_48 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_49 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h31 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_49 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h31 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_49 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_50 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h32 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_50 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h32 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_50 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_51 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h33 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_51 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h33 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_51 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_52 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h34 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_52 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h34 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_52 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_53 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h35 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_53 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h35 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_53 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_54 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h36 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_54 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h36 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_54 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_55 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h37 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_55 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h37 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_55 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_56 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h38 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_56 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h38 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_56 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_57 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h39 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_57 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h39 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_57 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_58 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3a == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_58 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3a == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_58 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_59 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3b == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_59 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3b == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_59 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_60 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3c == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_60 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3c == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_60 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_61 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3d == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_61 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3d == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_61 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_62 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3e == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_62 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3e == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_62 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_63 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3f == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_63 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3f == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_63 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_64 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h40 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_64 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h40 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_64 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_65 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h41 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_65 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h41 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_65 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_66 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h42 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_66 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h42 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_66 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_67 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h43 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_67 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h43 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_67 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_68 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h44 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_68 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h44 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_68 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_69 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h45 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_69 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h45 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_69 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_70 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h46 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_70 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h46 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_70 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_71 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h47 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_71 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h47 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_71 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_72 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h48 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_72 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h48 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_72 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_73 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h49 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_73 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h49 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_73 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_74 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4a == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_74 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4a == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_74 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_75 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4b == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_75 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4b == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_75 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_76 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4c == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_76 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4c == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_76 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_77 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4d == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_77 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4d == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_77 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_78 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4e == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_78 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4e == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_78 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_79 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4f == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_79 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4f == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_79 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_80 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h50 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_80 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h50 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_80 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_81 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h51 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_81 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h51 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_81 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_82 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h52 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_82 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h52 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_82 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_83 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h53 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_83 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h53 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_83 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_84 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h54 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_84 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h54 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_84 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_85 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h55 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_85 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h55 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_85 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_86 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h56 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_86 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h56 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_86 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_87 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h57 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_87 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h57 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_87 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_88 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h58 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_88 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h58 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_88 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_89 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h59 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_89 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h59 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_89 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_90 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5a == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_90 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5a == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_90 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_91 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5b == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_91 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5b == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_91 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_92 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5c == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_92 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5c == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_92 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_93 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5d == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_93 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5d == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_93 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_94 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5e == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_94 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5e == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_94 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_95 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5f == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_95 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5f == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_95 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_96 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h60 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_96 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h60 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_96 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_97 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h61 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_97 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h61 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_97 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_98 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h62 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_98 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h62 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_98 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_99 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h63 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_99 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h63 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_99 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_100 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h64 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_100 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h64 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_100 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_101 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h65 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_101 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h65 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_101 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_102 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h66 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_102 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h66 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_102 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_103 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h67 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_103 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h67 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_103 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_104 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h68 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_104 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h68 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_104 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_105 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h69 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_105 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h69 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_105 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_106 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6a == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_106 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6a == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_106 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_107 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6b == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_107 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6b == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_107 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_108 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6c == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_108 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6c == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_108 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_109 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6d == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_109 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6d == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_109 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_110 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6e == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_110 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6e == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_110 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_111 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6f == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_111 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6f == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_111 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_112 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h70 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_112 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h70 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_112 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_113 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h71 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_113 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h71 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_113 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_114 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h72 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_114 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h72 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_114 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_115 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h73 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_115 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h73 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_115 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_116 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h74 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_116 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h74 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_116 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_117 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h75 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_117 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h75 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_117 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_118 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h76 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_118 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h76 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_118 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_119 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h77 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_119 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h77 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_119 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_120 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h78 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_120 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h78 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_120 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_121 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h79 == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_121 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h79 == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_121 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_122 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7a == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_122 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7a == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_122 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_123 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7b == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_123 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7b == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_123 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_124 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7c == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_124 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7c == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_124 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_125 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7d == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_125 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7d == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_125 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_126 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7e == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_126 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7e == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_126 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 35:26]
       way0Tag_127 <= 21'h0; // @[DCache.scala 35:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7f == reqIndex) begin // @[DCache.scala 211:23]
-        way0Tag_127 <= reqTag; // @[DCache.scala 211:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7f == reqIndex) begin // @[DCache.scala 214:23]
+        way0Tag_127 <= reqTag; // @[DCache.scala 214:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_0 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_0 <= _GEN_2701;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h0 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_0 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h0 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_0 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_1 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_1 <= _GEN_2702;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h1 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_1 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h1 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_1 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_2 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_2 <= _GEN_2703;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h2 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_2 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h2 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_2 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_3 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_3 <= _GEN_2704;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h3 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_3 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h3 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_3 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_4 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_4 <= _GEN_2705;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h4 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_4 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h4 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_4 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_5 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_5 <= _GEN_2706;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h5 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_5 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h5 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_5 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_6 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_6 <= _GEN_2707;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h6 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_6 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h6 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_6 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_7 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_7 <= _GEN_2708;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h7 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_7 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h7 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_7 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_8 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_8 <= _GEN_2709;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h8 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_8 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h8 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_8 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_9 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_9 <= _GEN_2710;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h9 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_9 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h9 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_9 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_10 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_10 <= _GEN_2711;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'ha == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_10 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'ha == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_10 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_11 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_11 <= _GEN_2712;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'hb == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_11 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'hb == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_11 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_12 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_12 <= _GEN_2713;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'hc == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_12 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'hc == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_12 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_13 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_13 <= _GEN_2714;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'hd == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_13 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'hd == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_13 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_14 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_14 <= _GEN_2715;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'he == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_14 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'he == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_14 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_15 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_15 <= _GEN_2716;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'hf == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_15 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'hf == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_15 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_16 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_16 <= _GEN_2717;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h10 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_16 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h10 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_16 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_17 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_17 <= _GEN_2718;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h11 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_17 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h11 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_17 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_18 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_18 <= _GEN_2719;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h12 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_18 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h12 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_18 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_19 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_19 <= _GEN_2720;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h13 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_19 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h13 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_19 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_20 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_20 <= _GEN_2721;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h14 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_20 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h14 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_20 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_21 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_21 <= _GEN_2722;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h15 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_21 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h15 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_21 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_22 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_22 <= _GEN_2723;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h16 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_22 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h16 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_22 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_23 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_23 <= _GEN_2724;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h17 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_23 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h17 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_23 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_24 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_24 <= _GEN_2725;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h18 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_24 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h18 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_24 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_25 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_25 <= _GEN_2726;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h19 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_25 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h19 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_25 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_26 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_26 <= _GEN_2727;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h1a == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_26 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h1a == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_26 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_27 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_27 <= _GEN_2728;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h1b == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_27 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h1b == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_27 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_28 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_28 <= _GEN_2729;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h1c == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_28 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h1c == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_28 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_29 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_29 <= _GEN_2730;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h1d == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_29 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h1d == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_29 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_30 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_30 <= _GEN_2731;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h1e == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_30 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h1e == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_30 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_31 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_31 <= _GEN_2732;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h1f == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_31 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h1f == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_31 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_32 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_32 <= _GEN_2733;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h20 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_32 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h20 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_32 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_33 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_33 <= _GEN_2734;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h21 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_33 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h21 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_33 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_34 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_34 <= _GEN_2735;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h22 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_34 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h22 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_34 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_35 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_35 <= _GEN_2736;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h23 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_35 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h23 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_35 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_36 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_36 <= _GEN_2737;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h24 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_36 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h24 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_36 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_37 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_37 <= _GEN_2738;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h25 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_37 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h25 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_37 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_38 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_38 <= _GEN_2739;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h26 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_38 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h26 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_38 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_39 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_39 <= _GEN_2740;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h27 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_39 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h27 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_39 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_40 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_40 <= _GEN_2741;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h28 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_40 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h28 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_40 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_41 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_41 <= _GEN_2742;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h29 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_41 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h29 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_41 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_42 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_42 <= _GEN_2743;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h2a == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_42 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h2a == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_42 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_43 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_43 <= _GEN_2744;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h2b == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_43 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h2b == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_43 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_44 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_44 <= _GEN_2745;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h2c == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_44 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h2c == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_44 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_45 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_45 <= _GEN_2746;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h2d == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_45 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h2d == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_45 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_46 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_46 <= _GEN_2747;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h2e == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_46 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h2e == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_46 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_47 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_47 <= _GEN_2748;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h2f == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_47 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h2f == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_47 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_48 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_48 <= _GEN_2749;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h30 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_48 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h30 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_48 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_49 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_49 <= _GEN_2750;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h31 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_49 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h31 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_49 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_50 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_50 <= _GEN_2751;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h32 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_50 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h32 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_50 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_51 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_51 <= _GEN_2752;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h33 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_51 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h33 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_51 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_52 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_52 <= _GEN_2753;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h34 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_52 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h34 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_52 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_53 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_53 <= _GEN_2754;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h35 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_53 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h35 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_53 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_54 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_54 <= _GEN_2755;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h36 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_54 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h36 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_54 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_55 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_55 <= _GEN_2756;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h37 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_55 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h37 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_55 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_56 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_56 <= _GEN_2757;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h38 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_56 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h38 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_56 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_57 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_57 <= _GEN_2758;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h39 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_57 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h39 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_57 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_58 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_58 <= _GEN_2759;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h3a == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_58 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h3a == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_58 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_59 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_59 <= _GEN_2760;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h3b == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_59 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h3b == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_59 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_60 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_60 <= _GEN_2761;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h3c == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_60 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h3c == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_60 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_61 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_61 <= _GEN_2762;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h3d == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_61 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h3d == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_61 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_62 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_62 <= _GEN_2763;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h3e == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_62 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h3e == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_62 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_63 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_63 <= _GEN_2764;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h3f == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_63 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h3f == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_63 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_64 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_64 <= _GEN_2765;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h40 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_64 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h40 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_64 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_65 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_65 <= _GEN_2766;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h41 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_65 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h41 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_65 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_66 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_66 <= _GEN_2767;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h42 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_66 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h42 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_66 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_67 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_67 <= _GEN_2768;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h43 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_67 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h43 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_67 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_68 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_68 <= _GEN_2769;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h44 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_68 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h44 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_68 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_69 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_69 <= _GEN_2770;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h45 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_69 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h45 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_69 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_70 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_70 <= _GEN_2771;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h46 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_70 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h46 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_70 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_71 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_71 <= _GEN_2772;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h47 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_71 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h47 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_71 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_72 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_72 <= _GEN_2773;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h48 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_72 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h48 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_72 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_73 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_73 <= _GEN_2774;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h49 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_73 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h49 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_73 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_74 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_74 <= _GEN_2775;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h4a == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_74 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h4a == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_74 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_75 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_75 <= _GEN_2776;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h4b == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_75 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h4b == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_75 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_76 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_76 <= _GEN_2777;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h4c == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_76 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h4c == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_76 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_77 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_77 <= _GEN_2778;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h4d == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_77 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h4d == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_77 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_78 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_78 <= _GEN_2779;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h4e == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_78 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h4e == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_78 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_79 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_79 <= _GEN_2780;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h4f == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_79 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h4f == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_79 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_80 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_80 <= _GEN_2781;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h50 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_80 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h50 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_80 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_81 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_81 <= _GEN_2782;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h51 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_81 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h51 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_81 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_82 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_82 <= _GEN_2783;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h52 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_82 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h52 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_82 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_83 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_83 <= _GEN_2784;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h53 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_83 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h53 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_83 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_84 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_84 <= _GEN_2785;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h54 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_84 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h54 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_84 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_85 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_85 <= _GEN_2786;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h55 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_85 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h55 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_85 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_86 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_86 <= _GEN_2787;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h56 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_86 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h56 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_86 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_87 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_87 <= _GEN_2788;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h57 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_87 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h57 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_87 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_88 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_88 <= _GEN_2789;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h58 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_88 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h58 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_88 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_89 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_89 <= _GEN_2790;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h59 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_89 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h59 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_89 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_90 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_90 <= _GEN_2791;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h5a == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_90 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h5a == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_90 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_91 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_91 <= _GEN_2792;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h5b == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_91 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h5b == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_91 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_92 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_92 <= _GEN_2793;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h5c == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_92 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h5c == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_92 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_93 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_93 <= _GEN_2794;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h5d == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_93 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h5d == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_93 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_94 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_94 <= _GEN_2795;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h5e == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_94 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h5e == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_94 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_95 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_95 <= _GEN_2796;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h5f == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_95 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h5f == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_95 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_96 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_96 <= _GEN_2797;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h60 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_96 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h60 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_96 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_97 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_97 <= _GEN_2798;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h61 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_97 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h61 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_97 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_98 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_98 <= _GEN_2799;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h62 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_98 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h62 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_98 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_99 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_99 <= _GEN_2800;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h63 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_99 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h63 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_99 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_100 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_100 <= _GEN_2801;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h64 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_100 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h64 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_100 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_101 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_101 <= _GEN_2802;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h65 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_101 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h65 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_101 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_102 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_102 <= _GEN_2803;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h66 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_102 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h66 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_102 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_103 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_103 <= _GEN_2804;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h67 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_103 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h67 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_103 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_104 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_104 <= _GEN_2805;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h68 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_104 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h68 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_104 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_105 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_105 <= _GEN_2806;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h69 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_105 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h69 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_105 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_106 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_106 <= _GEN_2807;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h6a == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_106 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h6a == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_106 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_107 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_107 <= _GEN_2808;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h6b == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_107 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h6b == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_107 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_108 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_108 <= _GEN_2809;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h6c == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_108 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h6c == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_108 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_109 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_109 <= _GEN_2810;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h6d == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_109 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h6d == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_109 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_110 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_110 <= _GEN_2811;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h6e == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_110 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h6e == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_110 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_111 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_111 <= _GEN_2812;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h6f == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_111 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h6f == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_111 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_112 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_112 <= _GEN_2813;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h70 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_112 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h70 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_112 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_113 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_113 <= _GEN_2814;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h71 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_113 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h71 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_113 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_114 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_114 <= _GEN_2815;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h72 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_114 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h72 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_114 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_115 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_115 <= _GEN_2816;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h73 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_115 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h73 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_115 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_116 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_116 <= _GEN_2817;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h74 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_116 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h74 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_116 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_117 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_117 <= _GEN_2818;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h75 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_117 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h75 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_117 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_118 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_118 <= _GEN_2819;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h76 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_118 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h76 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_118 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_119 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_119 <= _GEN_2820;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h77 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_119 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h77 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_119 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_120 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_120 <= _GEN_2821;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h78 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_120 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h78 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_120 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_121 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_121 <= _GEN_2822;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h79 == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_121 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h79 == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_121 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_122 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_122 <= _GEN_2823;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h7a == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_122 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h7a == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_122 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_123 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_123 <= _GEN_2824;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h7b == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_123 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h7b == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_123 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_124 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_124 <= _GEN_2825;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h7c == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_124 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h7c == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_124 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_125 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_125 <= _GEN_2826;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h7d == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_125 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h7d == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_125 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_126 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_126 <= _GEN_2827;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h7e == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_126 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h7e == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_126 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 37:26]
       way0Age_127 <= 1'h0; // @[DCache.scala 37:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
       way0Age_127 <= _GEN_2828;
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-      if (7'h7f == reqIndex) begin // @[DCache.scala 217:23]
-        way0Age_127 <= 1'h0; // @[DCache.scala 217:23]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+      if (7'h7f == reqIndex) begin // @[DCache.scala 220:23]
+        way0Age_127 <= 1'h0; // @[DCache.scala 220:23]
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_0 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_0 <= _GEN_1037;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_0 <= _GEN_1165;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_1 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_1 <= _GEN_1038;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_1 <= _GEN_1166;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_2 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_2 <= _GEN_1039;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_2 <= _GEN_1167;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_3 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_3 <= _GEN_1040;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_3 <= _GEN_1168;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_4 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_4 <= _GEN_1041;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_4 <= _GEN_1169;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_5 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_5 <= _GEN_1042;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_5 <= _GEN_1170;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_6 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_6 <= _GEN_1043;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_6 <= _GEN_1171;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_7 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_7 <= _GEN_1044;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_7 <= _GEN_1172;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_8 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_8 <= _GEN_1045;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_8 <= _GEN_1173;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_9 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_9 <= _GEN_1046;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_9 <= _GEN_1174;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_10 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_10 <= _GEN_1047;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_10 <= _GEN_1175;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_11 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_11 <= _GEN_1048;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_11 <= _GEN_1176;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_12 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_12 <= _GEN_1049;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_12 <= _GEN_1177;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_13 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_13 <= _GEN_1050;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_13 <= _GEN_1178;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_14 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_14 <= _GEN_1051;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_14 <= _GEN_1179;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_15 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_15 <= _GEN_1052;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_15 <= _GEN_1180;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_16 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_16 <= _GEN_1053;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_16 <= _GEN_1181;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_17 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_17 <= _GEN_1054;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_17 <= _GEN_1182;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_18 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_18 <= _GEN_1055;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_18 <= _GEN_1183;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_19 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_19 <= _GEN_1056;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_19 <= _GEN_1184;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_20 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_20 <= _GEN_1057;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_20 <= _GEN_1185;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_21 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_21 <= _GEN_1058;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_21 <= _GEN_1186;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_22 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_22 <= _GEN_1059;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_22 <= _GEN_1187;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_23 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_23 <= _GEN_1060;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_23 <= _GEN_1188;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_24 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_24 <= _GEN_1061;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_24 <= _GEN_1189;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_25 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_25 <= _GEN_1062;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_25 <= _GEN_1190;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_26 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_26 <= _GEN_1063;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_26 <= _GEN_1191;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_27 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_27 <= _GEN_1064;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_27 <= _GEN_1192;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_28 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_28 <= _GEN_1065;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_28 <= _GEN_1193;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_29 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_29 <= _GEN_1066;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_29 <= _GEN_1194;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_30 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_30 <= _GEN_1067;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_30 <= _GEN_1195;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_31 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_31 <= _GEN_1068;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_31 <= _GEN_1196;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_32 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_32 <= _GEN_1069;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_32 <= _GEN_1197;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_33 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_33 <= _GEN_1070;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_33 <= _GEN_1198;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_34 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_34 <= _GEN_1071;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_34 <= _GEN_1199;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_35 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_35 <= _GEN_1072;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_35 <= _GEN_1200;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_36 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_36 <= _GEN_1073;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_36 <= _GEN_1201;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_37 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_37 <= _GEN_1074;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_37 <= _GEN_1202;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_38 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_38 <= _GEN_1075;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_38 <= _GEN_1203;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_39 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_39 <= _GEN_1076;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_39 <= _GEN_1204;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_40 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_40 <= _GEN_1077;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_40 <= _GEN_1205;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_41 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_41 <= _GEN_1078;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_41 <= _GEN_1206;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_42 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_42 <= _GEN_1079;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_42 <= _GEN_1207;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_43 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_43 <= _GEN_1080;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_43 <= _GEN_1208;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_44 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_44 <= _GEN_1081;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_44 <= _GEN_1209;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_45 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_45 <= _GEN_1082;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_45 <= _GEN_1210;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_46 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_46 <= _GEN_1083;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_46 <= _GEN_1211;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_47 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_47 <= _GEN_1084;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_47 <= _GEN_1212;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_48 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_48 <= _GEN_1085;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_48 <= _GEN_1213;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_49 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_49 <= _GEN_1086;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_49 <= _GEN_1214;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_50 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_50 <= _GEN_1087;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_50 <= _GEN_1215;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_51 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_51 <= _GEN_1088;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_51 <= _GEN_1216;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_52 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_52 <= _GEN_1089;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_52 <= _GEN_1217;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_53 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_53 <= _GEN_1090;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_53 <= _GEN_1218;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_54 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_54 <= _GEN_1091;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_54 <= _GEN_1219;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_55 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_55 <= _GEN_1092;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_55 <= _GEN_1220;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_56 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_56 <= _GEN_1093;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_56 <= _GEN_1221;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_57 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_57 <= _GEN_1094;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_57 <= _GEN_1222;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_58 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_58 <= _GEN_1095;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_58 <= _GEN_1223;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_59 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_59 <= _GEN_1096;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_59 <= _GEN_1224;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_60 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_60 <= _GEN_1097;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_60 <= _GEN_1225;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_61 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_61 <= _GEN_1098;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_61 <= _GEN_1226;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_62 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_62 <= _GEN_1099;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_62 <= _GEN_1227;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_63 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_63 <= _GEN_1100;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_63 <= _GEN_1228;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_64 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_64 <= _GEN_1101;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_64 <= _GEN_1229;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_65 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_65 <= _GEN_1102;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_65 <= _GEN_1230;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_66 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_66 <= _GEN_1103;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_66 <= _GEN_1231;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_67 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_67 <= _GEN_1104;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_67 <= _GEN_1232;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_68 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_68 <= _GEN_1105;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_68 <= _GEN_1233;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_69 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_69 <= _GEN_1106;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_69 <= _GEN_1234;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_70 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_70 <= _GEN_1107;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_70 <= _GEN_1235;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_71 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_71 <= _GEN_1108;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_71 <= _GEN_1236;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_72 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_72 <= _GEN_1109;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_72 <= _GEN_1237;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_73 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_73 <= _GEN_1110;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_73 <= _GEN_1238;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_74 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_74 <= _GEN_1111;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_74 <= _GEN_1239;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_75 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_75 <= _GEN_1112;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_75 <= _GEN_1240;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_76 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_76 <= _GEN_1113;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_76 <= _GEN_1241;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_77 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_77 <= _GEN_1114;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_77 <= _GEN_1242;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_78 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_78 <= _GEN_1115;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_78 <= _GEN_1243;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_79 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_79 <= _GEN_1116;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_79 <= _GEN_1244;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_80 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_80 <= _GEN_1117;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_80 <= _GEN_1245;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_81 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_81 <= _GEN_1118;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_81 <= _GEN_1246;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_82 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_82 <= _GEN_1119;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_82 <= _GEN_1247;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_83 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_83 <= _GEN_1120;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_83 <= _GEN_1248;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_84 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_84 <= _GEN_1121;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_84 <= _GEN_1249;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_85 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_85 <= _GEN_1122;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_85 <= _GEN_1250;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_86 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_86 <= _GEN_1123;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_86 <= _GEN_1251;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_87 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_87 <= _GEN_1124;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_87 <= _GEN_1252;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_88 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_88 <= _GEN_1125;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_88 <= _GEN_1253;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_89 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_89 <= _GEN_1126;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_89 <= _GEN_1254;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_90 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_90 <= _GEN_1127;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_90 <= _GEN_1255;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_91 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_91 <= _GEN_1128;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_91 <= _GEN_1256;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_92 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_92 <= _GEN_1129;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_92 <= _GEN_1257;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_93 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_93 <= _GEN_1130;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_93 <= _GEN_1258;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_94 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_94 <= _GEN_1131;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_94 <= _GEN_1259;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_95 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_95 <= _GEN_1132;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_95 <= _GEN_1260;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_96 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_96 <= _GEN_1133;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_96 <= _GEN_1261;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_97 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_97 <= _GEN_1134;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_97 <= _GEN_1262;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_98 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_98 <= _GEN_1135;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_98 <= _GEN_1263;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_99 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_99 <= _GEN_1136;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_99 <= _GEN_1264;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_100 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_100 <= _GEN_1137;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_100 <= _GEN_1265;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_101 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_101 <= _GEN_1138;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_101 <= _GEN_1266;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_102 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_102 <= _GEN_1139;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_102 <= _GEN_1267;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_103 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_103 <= _GEN_1140;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_103 <= _GEN_1268;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_104 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_104 <= _GEN_1141;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_104 <= _GEN_1269;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_105 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_105 <= _GEN_1142;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_105 <= _GEN_1270;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_106 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_106 <= _GEN_1143;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_106 <= _GEN_1271;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_107 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_107 <= _GEN_1144;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_107 <= _GEN_1272;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_108 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_108 <= _GEN_1145;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_108 <= _GEN_1273;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_109 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_109 <= _GEN_1146;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_109 <= _GEN_1274;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_110 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_110 <= _GEN_1147;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_110 <= _GEN_1275;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_111 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_111 <= _GEN_1148;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_111 <= _GEN_1276;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_112 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_112 <= _GEN_1149;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_112 <= _GEN_1277;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_113 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_113 <= _GEN_1150;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_113 <= _GEN_1278;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_114 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_114 <= _GEN_1151;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_114 <= _GEN_1279;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_115 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_115 <= _GEN_1152;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_115 <= _GEN_1280;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_116 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_116 <= _GEN_1153;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_116 <= _GEN_1281;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_117 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_117 <= _GEN_1154;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_117 <= _GEN_1282;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_118 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_118 <= _GEN_1155;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_118 <= _GEN_1283;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_119 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_119 <= _GEN_1156;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_119 <= _GEN_1284;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_120 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_120 <= _GEN_1157;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_120 <= _GEN_1285;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_121 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_121 <= _GEN_1158;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_121 <= _GEN_1286;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_122 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_122 <= _GEN_1159;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_122 <= _GEN_1287;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_123 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_123 <= _GEN_1160;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_123 <= _GEN_1288;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_124 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_124 <= _GEN_1161;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_124 <= _GEN_1289;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_125 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_125 <= _GEN_1162;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_125 <= _GEN_1290;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_126 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_126 <= _GEN_1163;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_126 <= _GEN_1291;
       end
     end
     if (reset) begin // @[DCache.scala 38:26]
       way0Dirty_127 <= 1'h0; // @[DCache.scala 38:26]
-    end else if (ageWay0En) begin // @[DCache.scala 195:19]
-      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 196:36]
+    end else if (ageWay0En) begin // @[DCache.scala 198:19]
+      if (sCacheWEn & io_dmem_data_req) begin // @[DCache.scala 199:36]
         way0Dirty_127 <= _GEN_1164;
-      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 198:45]
+      end else if (sWriteEn & io_out_data_ready) begin // @[DCache.scala 201:45]
         way0Dirty_127 <= _GEN_1292;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_0 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_0 <= _GEN_2957;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_1 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_1 <= _GEN_2958;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_2 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_2 <= _GEN_2959;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_3 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_3 <= _GEN_2960;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_4 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_4 <= _GEN_2961;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_5 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_5 <= _GEN_2962;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_6 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_6 <= _GEN_2963;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_7 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_7 <= _GEN_2964;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_8 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_8 <= _GEN_2965;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_9 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_9 <= _GEN_2966;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_10 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_10 <= _GEN_2967;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_11 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_11 <= _GEN_2968;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_12 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_12 <= _GEN_2969;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_13 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_13 <= _GEN_2970;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_14 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_14 <= _GEN_2971;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_15 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_15 <= _GEN_2972;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_16 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_16 <= _GEN_2973;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_17 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_17 <= _GEN_2974;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_18 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_18 <= _GEN_2975;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_19 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_19 <= _GEN_2976;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_20 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_20 <= _GEN_2977;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_21 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_21 <= _GEN_2978;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_22 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_22 <= _GEN_2979;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_23 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_23 <= _GEN_2980;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_24 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_24 <= _GEN_2981;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_25 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_25 <= _GEN_2982;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_26 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_26 <= _GEN_2983;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_27 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_27 <= _GEN_2984;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_28 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_28 <= _GEN_2985;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_29 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_29 <= _GEN_2986;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_30 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_30 <= _GEN_2987;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_31 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_31 <= _GEN_2988;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_32 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_32 <= _GEN_2989;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_33 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_33 <= _GEN_2990;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_34 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_34 <= _GEN_2991;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_35 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_35 <= _GEN_2992;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_36 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_36 <= _GEN_2993;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_37 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_37 <= _GEN_2994;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_38 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_38 <= _GEN_2995;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_39 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_39 <= _GEN_2996;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_40 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_40 <= _GEN_2997;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_41 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_41 <= _GEN_2998;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_42 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_42 <= _GEN_2999;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_43 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_43 <= _GEN_3000;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_44 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_44 <= _GEN_3001;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_45 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_45 <= _GEN_3002;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_46 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_46 <= _GEN_3003;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_47 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_47 <= _GEN_3004;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_48 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_48 <= _GEN_3005;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_49 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_49 <= _GEN_3006;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_50 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_50 <= _GEN_3007;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_51 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_51 <= _GEN_3008;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_52 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_52 <= _GEN_3009;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_53 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_53 <= _GEN_3010;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_54 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_54 <= _GEN_3011;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_55 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_55 <= _GEN_3012;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_56 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_56 <= _GEN_3013;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_57 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_57 <= _GEN_3014;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_58 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_58 <= _GEN_3015;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_59 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_59 <= _GEN_3016;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_60 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_60 <= _GEN_3017;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_61 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_61 <= _GEN_3018;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_62 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_62 <= _GEN_3019;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_63 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_63 <= _GEN_3020;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_64 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_64 <= _GEN_3021;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_65 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_65 <= _GEN_3022;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_66 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_66 <= _GEN_3023;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_67 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_67 <= _GEN_3024;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_68 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_68 <= _GEN_3025;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_69 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_69 <= _GEN_3026;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_70 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_70 <= _GEN_3027;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_71 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_71 <= _GEN_3028;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_72 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_72 <= _GEN_3029;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_73 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_73 <= _GEN_3030;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_74 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_74 <= _GEN_3031;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_75 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_75 <= _GEN_3032;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_76 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_76 <= _GEN_3033;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_77 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_77 <= _GEN_3034;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_78 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_78 <= _GEN_3035;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_79 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_79 <= _GEN_3036;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_80 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_80 <= _GEN_3037;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_81 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_81 <= _GEN_3038;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_82 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_82 <= _GEN_3039;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_83 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_83 <= _GEN_3040;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_84 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_84 <= _GEN_3041;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_85 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_85 <= _GEN_3042;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_86 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_86 <= _GEN_3043;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_87 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_87 <= _GEN_3044;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_88 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_88 <= _GEN_3045;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_89 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_89 <= _GEN_3046;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_90 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_90 <= _GEN_3047;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_91 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_91 <= _GEN_3048;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_92 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_92 <= _GEN_3049;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_93 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_93 <= _GEN_3050;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_94 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_94 <= _GEN_3051;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_95 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_95 <= _GEN_3052;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_96 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_96 <= _GEN_3053;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_97 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_97 <= _GEN_3054;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_98 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_98 <= _GEN_3055;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_99 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_99 <= _GEN_3056;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_100 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_100 <= _GEN_3057;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_101 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_101 <= _GEN_3058;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_102 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_102 <= _GEN_3059;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_103 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_103 <= _GEN_3060;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_104 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_104 <= _GEN_3061;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_105 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_105 <= _GEN_3062;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_106 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_106 <= _GEN_3063;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_107 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_107 <= _GEN_3064;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_108 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_108 <= _GEN_3065;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_109 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_109 <= _GEN_3066;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_110 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_110 <= _GEN_3067;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_111 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_111 <= _GEN_3068;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_112 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_112 <= _GEN_3069;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_113 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_113 <= _GEN_3070;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_114 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_114 <= _GEN_3071;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_115 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_115 <= _GEN_3072;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_116 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_116 <= _GEN_3073;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_117 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_117 <= _GEN_3074;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_118 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_118 <= _GEN_3075;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_119 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_119 <= _GEN_3076;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_120 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_120 <= _GEN_3077;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_121 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_121 <= _GEN_3078;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_122 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_122 <= _GEN_3079;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_123 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_123 <= _GEN_3080;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_124 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_124 <= _GEN_3081;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_125 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_125 <= _GEN_3082;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_126 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_126 <= _GEN_3083;
       end
     end
     if (reset) begin // @[DCache.scala 40:26]
       way1V_127 <= 1'h0; // @[DCache.scala 40:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
         way1V_127 <= _GEN_3084;
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_0 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h0 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_0 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h0 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_0 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_1 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h1 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_1 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h1 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_1 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_2 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h2 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_2 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h2 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_2 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_3 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h3 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_3 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h3 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_3 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_4 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h4 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_4 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h4 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_4 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_5 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h5 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_5 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h5 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_5 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_6 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h6 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_6 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h6 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_6 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_7 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h7 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_7 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h7 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_7 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_8 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h8 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_8 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h8 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_8 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_9 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h9 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_9 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h9 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_9 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_10 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'ha == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_10 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'ha == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_10 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_11 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'hb == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_11 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'hb == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_11 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_12 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'hc == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_12 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'hc == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_12 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_13 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'hd == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_13 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'hd == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_13 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_14 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'he == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_14 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'he == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_14 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_15 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'hf == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_15 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'hf == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_15 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_16 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h10 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_16 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h10 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_16 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_17 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h11 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_17 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h11 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_17 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_18 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h12 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_18 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h12 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_18 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_19 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h13 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_19 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h13 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_19 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_20 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h14 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_20 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h14 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_20 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_21 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h15 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_21 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h15 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_21 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_22 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h16 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_22 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h16 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_22 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_23 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h17 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_23 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h17 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_23 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_24 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h18 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_24 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h18 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_24 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_25 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h19 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_25 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h19 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_25 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_26 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h1a == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_26 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h1a == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_26 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_27 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h1b == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_27 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h1b == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_27 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_28 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h1c == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_28 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h1c == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_28 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_29 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h1d == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_29 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h1d == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_29 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_30 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h1e == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_30 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h1e == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_30 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_31 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h1f == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_31 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h1f == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_31 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_32 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h20 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_32 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h20 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_32 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_33 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h21 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_33 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h21 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_33 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_34 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h22 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_34 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h22 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_34 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_35 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h23 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_35 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h23 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_35 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_36 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h24 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_36 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h24 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_36 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_37 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h25 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_37 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h25 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_37 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_38 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h26 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_38 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h26 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_38 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_39 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h27 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_39 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h27 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_39 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_40 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h28 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_40 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h28 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_40 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_41 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h29 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_41 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h29 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_41 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_42 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h2a == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_42 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h2a == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_42 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_43 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h2b == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_43 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h2b == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_43 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_44 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h2c == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_44 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h2c == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_44 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_45 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h2d == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_45 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h2d == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_45 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_46 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h2e == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_46 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h2e == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_46 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_47 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h2f == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_47 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h2f == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_47 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_48 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h30 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_48 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h30 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_48 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_49 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h31 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_49 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h31 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_49 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_50 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h32 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_50 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h32 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_50 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_51 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h33 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_51 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h33 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_51 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_52 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h34 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_52 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h34 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_52 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_53 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h35 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_53 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h35 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_53 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_54 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h36 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_54 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h36 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_54 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_55 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h37 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_55 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h37 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_55 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_56 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h38 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_56 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h38 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_56 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_57 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h39 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_57 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h39 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_57 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_58 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h3a == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_58 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h3a == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_58 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_59 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h3b == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_59 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h3b == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_59 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_60 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h3c == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_60 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h3c == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_60 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_61 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h3d == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_61 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h3d == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_61 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_62 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h3e == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_62 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h3e == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_62 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_63 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h3f == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_63 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h3f == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_63 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_64 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h40 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_64 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h40 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_64 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_65 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h41 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_65 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h41 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_65 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_66 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h42 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_66 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h42 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_66 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_67 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h43 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_67 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h43 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_67 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_68 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h44 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_68 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h44 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_68 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_69 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h45 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_69 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h45 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_69 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_70 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h46 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_70 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h46 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_70 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_71 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h47 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_71 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h47 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_71 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_72 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h48 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_72 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h48 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_72 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_73 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h49 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_73 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h49 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_73 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_74 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h4a == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_74 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h4a == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_74 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_75 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h4b == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_75 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h4b == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_75 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_76 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h4c == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_76 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h4c == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_76 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_77 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h4d == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_77 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h4d == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_77 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_78 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h4e == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_78 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h4e == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_78 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_79 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h4f == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_79 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h4f == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_79 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_80 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h50 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_80 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h50 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_80 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_81 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h51 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_81 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h51 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_81 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_82 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h52 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_82 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h52 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_82 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_83 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h53 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_83 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h53 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_83 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_84 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h54 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_84 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h54 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_84 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_85 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h55 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_85 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h55 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_85 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_86 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h56 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_86 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h56 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_86 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_87 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h57 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_87 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h57 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_87 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_88 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h58 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_88 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h58 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_88 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_89 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h59 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_89 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h59 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_89 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_90 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h5a == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_90 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h5a == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_90 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_91 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h5b == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_91 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h5b == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_91 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_92 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h5c == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_92 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h5c == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_92 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_93 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h5d == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_93 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h5d == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_93 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_94 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h5e == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_94 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h5e == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_94 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_95 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h5f == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_95 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h5f == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_95 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_96 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h60 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_96 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h60 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_96 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_97 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h61 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_97 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h61 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_97 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_98 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h62 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_98 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h62 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_98 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_99 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h63 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_99 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h63 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_99 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_100 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h64 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_100 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h64 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_100 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_101 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h65 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_101 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h65 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_101 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_102 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h66 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_102 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h66 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_102 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_103 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h67 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_103 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h67 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_103 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_104 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h68 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_104 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h68 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_104 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_105 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h69 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_105 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h69 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_105 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_106 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h6a == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_106 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h6a == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_106 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_107 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h6b == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_107 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h6b == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_107 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_108 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h6c == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_108 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h6c == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_108 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_109 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h6d == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_109 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h6d == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_109 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_110 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h6e == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_110 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h6e == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_110 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_111 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h6f == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_111 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h6f == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_111 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_112 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h70 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_112 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h70 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_112 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_113 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h71 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_113 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h71 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_113 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_114 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h72 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_114 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h72 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_114 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_115 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h73 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_115 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h73 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_115 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_116 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h74 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_116 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h74 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_116 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_117 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h75 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_117 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h75 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_117 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_118 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h76 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_118 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h76 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_118 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_119 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h77 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_119 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h77 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_119 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_120 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h78 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_120 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h78 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_120 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_121 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h79 == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_121 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h79 == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_121 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_122 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h7a == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_122 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h7a == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_122 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_123 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h7b == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_123 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h7b == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_123 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_124 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h7c == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_124 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h7c == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_124 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_125 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h7d == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_125 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h7d == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_125 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_126 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h7e == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_126 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h7e == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_126 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 41:26]
       way1Tag_127 <= 21'h0; // @[DCache.scala 41:26]
-    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 209:32]
-      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
-        if (7'h7f == reqIndex) begin // @[DCache.scala 216:23]
-          way1Tag_127 <= reqTag; // @[DCache.scala 216:23]
+    end else if (!(ageWay0En & sCacheWEn)) begin // @[DCache.scala 212:32]
+      if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
+        if (7'h7f == reqIndex) begin // @[DCache.scala 219:23]
+          way1Tag_127 <= reqTag; // @[DCache.scala 219:23]
         end
       end
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_0 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h0 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_0 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h0 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_0 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_0 <= _GEN_3341;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_1 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_1 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_1 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_1 <= _GEN_3342;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_2 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_2 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_2 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_2 <= _GEN_3343;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_3 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_3 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_3 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_3 <= _GEN_3344;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_4 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_4 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_4 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_4 <= _GEN_3345;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_5 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_5 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_5 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_5 <= _GEN_3346;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_6 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_6 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_6 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_6 <= _GEN_3347;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_7 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_7 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_7 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_7 <= _GEN_3348;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_8 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h8 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_8 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h8 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_8 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_8 <= _GEN_3349;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_9 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h9 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_9 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h9 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_9 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_9 <= _GEN_3350;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_10 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'ha == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_10 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'ha == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_10 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_10 <= _GEN_3351;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_11 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'hb == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_11 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'hb == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_11 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_11 <= _GEN_3352;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_12 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'hc == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_12 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'hc == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_12 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_12 <= _GEN_3353;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_13 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'hd == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_13 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'hd == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_13 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_13 <= _GEN_3354;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_14 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'he == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_14 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'he == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_14 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_14 <= _GEN_3355;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_15 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'hf == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_15 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'hf == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_15 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_15 <= _GEN_3356;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_16 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h10 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_16 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h10 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_16 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_16 <= _GEN_3357;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_17 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h11 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_17 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h11 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_17 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_17 <= _GEN_3358;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_18 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h12 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_18 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h12 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_18 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_18 <= _GEN_3359;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_19 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h13 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_19 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h13 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_19 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_19 <= _GEN_3360;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_20 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h14 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_20 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h14 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_20 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_20 <= _GEN_3361;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_21 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h15 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_21 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h15 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_21 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_21 <= _GEN_3362;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_22 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h16 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_22 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h16 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_22 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_22 <= _GEN_3363;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_23 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h17 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_23 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h17 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_23 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_23 <= _GEN_3364;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_24 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h18 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_24 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h18 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_24 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_24 <= _GEN_3365;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_25 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h19 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_25 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h19 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_25 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_25 <= _GEN_3366;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_26 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1a == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_26 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1a == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_26 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_26 <= _GEN_3367;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_27 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1b == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_27 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1b == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_27 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_27 <= _GEN_3368;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_28 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1c == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_28 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1c == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_28 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_28 <= _GEN_3369;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_29 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1d == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_29 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1d == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_29 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_29 <= _GEN_3370;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_30 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1e == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_30 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1e == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_30 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_30 <= _GEN_3371;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_31 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h1f == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_31 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h1f == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_31 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_31 <= _GEN_3372;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_32 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h20 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_32 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h20 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_32 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_32 <= _GEN_3373;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_33 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h21 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_33 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h21 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_33 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_33 <= _GEN_3374;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_34 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h22 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_34 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h22 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_34 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_34 <= _GEN_3375;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_35 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h23 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_35 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h23 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_35 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_35 <= _GEN_3376;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_36 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h24 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_36 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h24 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_36 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_36 <= _GEN_3377;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_37 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h25 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_37 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h25 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_37 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_37 <= _GEN_3378;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_38 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h26 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_38 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h26 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_38 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_38 <= _GEN_3379;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_39 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h27 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_39 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h27 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_39 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_39 <= _GEN_3380;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_40 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h28 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_40 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h28 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_40 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_40 <= _GEN_3381;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_41 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h29 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_41 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h29 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_41 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_41 <= _GEN_3382;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_42 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2a == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_42 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2a == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_42 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_42 <= _GEN_3383;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_43 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2b == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_43 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2b == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_43 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_43 <= _GEN_3384;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_44 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2c == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_44 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2c == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_44 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_44 <= _GEN_3385;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_45 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2d == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_45 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2d == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_45 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_45 <= _GEN_3386;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_46 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2e == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_46 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2e == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_46 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_46 <= _GEN_3387;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_47 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h2f == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_47 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h2f == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_47 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_47 <= _GEN_3388;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_48 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h30 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_48 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h30 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_48 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_48 <= _GEN_3389;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_49 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h31 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_49 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h31 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_49 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_49 <= _GEN_3390;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_50 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h32 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_50 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h32 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_50 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_50 <= _GEN_3391;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_51 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h33 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_51 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h33 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_51 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_51 <= _GEN_3392;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_52 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h34 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_52 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h34 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_52 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_52 <= _GEN_3393;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_53 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h35 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_53 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h35 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_53 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_53 <= _GEN_3394;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_54 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h36 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_54 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h36 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_54 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_54 <= _GEN_3395;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_55 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h37 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_55 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h37 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_55 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_55 <= _GEN_3396;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_56 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h38 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_56 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h38 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_56 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_56 <= _GEN_3397;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_57 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h39 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_57 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h39 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_57 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_57 <= _GEN_3398;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_58 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3a == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_58 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3a == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_58 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_58 <= _GEN_3399;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_59 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3b == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_59 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3b == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_59 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_59 <= _GEN_3400;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_60 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3c == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_60 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3c == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_60 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_60 <= _GEN_3401;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_61 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3d == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_61 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3d == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_61 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_61 <= _GEN_3402;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_62 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3e == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_62 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3e == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_62 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_62 <= _GEN_3403;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_63 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h3f == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_63 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h3f == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_63 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_63 <= _GEN_3404;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_64 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h40 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_64 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h40 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_64 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_64 <= _GEN_3405;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_65 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h41 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_65 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h41 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_65 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_65 <= _GEN_3406;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_66 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h42 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_66 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h42 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_66 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_66 <= _GEN_3407;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_67 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h43 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_67 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h43 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_67 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_67 <= _GEN_3408;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_68 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h44 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_68 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h44 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_68 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_68 <= _GEN_3409;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_69 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h45 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_69 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h45 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_69 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_69 <= _GEN_3410;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_70 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h46 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_70 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h46 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_70 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_70 <= _GEN_3411;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_71 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h47 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_71 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h47 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_71 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_71 <= _GEN_3412;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_72 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h48 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_72 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h48 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_72 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_72 <= _GEN_3413;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_73 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h49 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_73 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h49 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_73 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_73 <= _GEN_3414;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_74 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4a == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_74 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4a == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_74 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_74 <= _GEN_3415;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_75 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4b == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_75 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4b == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_75 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_75 <= _GEN_3416;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_76 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4c == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_76 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4c == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_76 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_76 <= _GEN_3417;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_77 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4d == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_77 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4d == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_77 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_77 <= _GEN_3418;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_78 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4e == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_78 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4e == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_78 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_78 <= _GEN_3419;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_79 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h4f == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_79 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h4f == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_79 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_79 <= _GEN_3420;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_80 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h50 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_80 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h50 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_80 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_80 <= _GEN_3421;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_81 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h51 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_81 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h51 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_81 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_81 <= _GEN_3422;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_82 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h52 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_82 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h52 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_82 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_82 <= _GEN_3423;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_83 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h53 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_83 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h53 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_83 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_83 <= _GEN_3424;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_84 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h54 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_84 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h54 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_84 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_84 <= _GEN_3425;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_85 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h55 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_85 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h55 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_85 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_85 <= _GEN_3426;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_86 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h56 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_86 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h56 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_86 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_86 <= _GEN_3427;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_87 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h57 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_87 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h57 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_87 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_87 <= _GEN_3428;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_88 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h58 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_88 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h58 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_88 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_88 <= _GEN_3429;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_89 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h59 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_89 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h59 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_89 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_89 <= _GEN_3430;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_90 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5a == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_90 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5a == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_90 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_90 <= _GEN_3431;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_91 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5b == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_91 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5b == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_91 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_91 <= _GEN_3432;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_92 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5c == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_92 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5c == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_92 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_92 <= _GEN_3433;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_93 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5d == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_93 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5d == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_93 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_93 <= _GEN_3434;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_94 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5e == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_94 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5e == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_94 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_94 <= _GEN_3435;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_95 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h5f == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_95 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h5f == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_95 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_95 <= _GEN_3436;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_96 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h60 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_96 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h60 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_96 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_96 <= _GEN_3437;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_97 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h61 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_97 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h61 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_97 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_97 <= _GEN_3438;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_98 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h62 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_98 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h62 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_98 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_98 <= _GEN_3439;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_99 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h63 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_99 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h63 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_99 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_99 <= _GEN_3440;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_100 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h64 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_100 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h64 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_100 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_100 <= _GEN_3441;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_101 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h65 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_101 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h65 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_101 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_101 <= _GEN_3442;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_102 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h66 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_102 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h66 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_102 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_102 <= _GEN_3443;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_103 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h67 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_103 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h67 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_103 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_103 <= _GEN_3444;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_104 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h68 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_104 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h68 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_104 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_104 <= _GEN_3445;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_105 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h69 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_105 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h69 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_105 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_105 <= _GEN_3446;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_106 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6a == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_106 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6a == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_106 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_106 <= _GEN_3447;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_107 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6b == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_107 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6b == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_107 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_107 <= _GEN_3448;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_108 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6c == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_108 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6c == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_108 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_108 <= _GEN_3449;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_109 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6d == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_109 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6d == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_109 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_109 <= _GEN_3450;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_110 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6e == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_110 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6e == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_110 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_110 <= _GEN_3451;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_111 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h6f == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_111 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h6f == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_111 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_111 <= _GEN_3452;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_112 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h70 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_112 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h70 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_112 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_112 <= _GEN_3453;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_113 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h71 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_113 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h71 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_113 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_113 <= _GEN_3454;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_114 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h72 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_114 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h72 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_114 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_114 <= _GEN_3455;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_115 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h73 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_115 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h73 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_115 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_115 <= _GEN_3456;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_116 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h74 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_116 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h74 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_116 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_116 <= _GEN_3457;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_117 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h75 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_117 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h75 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_117 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_117 <= _GEN_3458;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_118 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h76 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_118 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h76 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_118 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_118 <= _GEN_3459;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_119 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h77 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_119 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h77 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_119 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_119 <= _GEN_3460;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_120 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h78 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_120 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h78 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_120 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_120 <= _GEN_3461;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_121 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h79 == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_121 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h79 == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_121 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_121 <= _GEN_3462;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_122 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7a == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_122 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7a == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_122 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_122 <= _GEN_3463;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_123 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7b == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_123 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7b == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_123 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_123 <= _GEN_3464;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_124 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7c == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_124 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7c == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_124 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_124 <= _GEN_3465;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_125 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7d == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_125 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7d == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_125 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_125 <= _GEN_3466;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_126 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7e == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_126 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7e == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_126 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_126 <= _GEN_3467;
     end
     if (reset) begin // @[DCache.scala 43:26]
       way1Age_127 <= 1'h0; // @[DCache.scala 43:26]
-    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 209:32]
-      if (7'h7f == reqIndex) begin // @[DCache.scala 213:23]
-        way1Age_127 <= 1'h0; // @[DCache.scala 213:23]
+    end else if (ageWay0En & sCacheWEn) begin // @[DCache.scala 212:32]
+      if (7'h7f == reqIndex) begin // @[DCache.scala 216:23]
+        way1Age_127 <= 1'h0; // @[DCache.scala 216:23]
       end
-    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 214:39]
+    end else if (ageWay1En & sCacheWEn) begin // @[DCache.scala 217:39]
       way1Age_127 <= _GEN_3468;
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_0 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_0 <= _GEN_1549;
         end else begin
           way1Dirty_0 <= _GEN_1805;
@@ -24184,9 +24188,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_1 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_1 <= _GEN_1550;
         end else begin
           way1Dirty_1 <= _GEN_1806;
@@ -24195,9 +24199,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_2 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_2 <= _GEN_1551;
         end else begin
           way1Dirty_2 <= _GEN_1807;
@@ -24206,9 +24210,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_3 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_3 <= _GEN_1552;
         end else begin
           way1Dirty_3 <= _GEN_1808;
@@ -24217,9 +24221,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_4 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_4 <= _GEN_1553;
         end else begin
           way1Dirty_4 <= _GEN_1809;
@@ -24228,9 +24232,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_5 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_5 <= _GEN_1554;
         end else begin
           way1Dirty_5 <= _GEN_1810;
@@ -24239,9 +24243,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_6 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_6 <= _GEN_1555;
         end else begin
           way1Dirty_6 <= _GEN_1811;
@@ -24250,9 +24254,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_7 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_7 <= _GEN_1556;
         end else begin
           way1Dirty_7 <= _GEN_1812;
@@ -24261,9 +24265,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_8 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_8 <= _GEN_1557;
         end else begin
           way1Dirty_8 <= _GEN_1813;
@@ -24272,9 +24276,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_9 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_9 <= _GEN_1558;
         end else begin
           way1Dirty_9 <= _GEN_1814;
@@ -24283,9 +24287,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_10 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_10 <= _GEN_1559;
         end else begin
           way1Dirty_10 <= _GEN_1815;
@@ -24294,9 +24298,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_11 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_11 <= _GEN_1560;
         end else begin
           way1Dirty_11 <= _GEN_1816;
@@ -24305,9 +24309,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_12 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_12 <= _GEN_1561;
         end else begin
           way1Dirty_12 <= _GEN_1817;
@@ -24316,9 +24320,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_13 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_13 <= _GEN_1562;
         end else begin
           way1Dirty_13 <= _GEN_1818;
@@ -24327,9 +24331,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_14 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_14 <= _GEN_1563;
         end else begin
           way1Dirty_14 <= _GEN_1819;
@@ -24338,9 +24342,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_15 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_15 <= _GEN_1564;
         end else begin
           way1Dirty_15 <= _GEN_1820;
@@ -24349,9 +24353,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_16 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_16 <= _GEN_1565;
         end else begin
           way1Dirty_16 <= _GEN_1821;
@@ -24360,9 +24364,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_17 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_17 <= _GEN_1566;
         end else begin
           way1Dirty_17 <= _GEN_1822;
@@ -24371,9 +24375,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_18 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_18 <= _GEN_1567;
         end else begin
           way1Dirty_18 <= _GEN_1823;
@@ -24382,9 +24386,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_19 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_19 <= _GEN_1568;
         end else begin
           way1Dirty_19 <= _GEN_1824;
@@ -24393,9 +24397,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_20 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_20 <= _GEN_1569;
         end else begin
           way1Dirty_20 <= _GEN_1825;
@@ -24404,9 +24408,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_21 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_21 <= _GEN_1570;
         end else begin
           way1Dirty_21 <= _GEN_1826;
@@ -24415,9 +24419,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_22 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_22 <= _GEN_1571;
         end else begin
           way1Dirty_22 <= _GEN_1827;
@@ -24426,9 +24430,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_23 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_23 <= _GEN_1572;
         end else begin
           way1Dirty_23 <= _GEN_1828;
@@ -24437,9 +24441,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_24 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_24 <= _GEN_1573;
         end else begin
           way1Dirty_24 <= _GEN_1829;
@@ -24448,9 +24452,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_25 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_25 <= _GEN_1574;
         end else begin
           way1Dirty_25 <= _GEN_1830;
@@ -24459,9 +24463,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_26 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_26 <= _GEN_1575;
         end else begin
           way1Dirty_26 <= _GEN_1831;
@@ -24470,9 +24474,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_27 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_27 <= _GEN_1576;
         end else begin
           way1Dirty_27 <= _GEN_1832;
@@ -24481,9 +24485,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_28 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_28 <= _GEN_1577;
         end else begin
           way1Dirty_28 <= _GEN_1833;
@@ -24492,9 +24496,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_29 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_29 <= _GEN_1578;
         end else begin
           way1Dirty_29 <= _GEN_1834;
@@ -24503,9 +24507,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_30 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_30 <= _GEN_1579;
         end else begin
           way1Dirty_30 <= _GEN_1835;
@@ -24514,9 +24518,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_31 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_31 <= _GEN_1580;
         end else begin
           way1Dirty_31 <= _GEN_1836;
@@ -24525,9 +24529,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_32 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_32 <= _GEN_1581;
         end else begin
           way1Dirty_32 <= _GEN_1837;
@@ -24536,9 +24540,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_33 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_33 <= _GEN_1582;
         end else begin
           way1Dirty_33 <= _GEN_1838;
@@ -24547,9 +24551,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_34 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_34 <= _GEN_1583;
         end else begin
           way1Dirty_34 <= _GEN_1839;
@@ -24558,9 +24562,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_35 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_35 <= _GEN_1584;
         end else begin
           way1Dirty_35 <= _GEN_1840;
@@ -24569,9 +24573,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_36 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_36 <= _GEN_1585;
         end else begin
           way1Dirty_36 <= _GEN_1841;
@@ -24580,9 +24584,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_37 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_37 <= _GEN_1586;
         end else begin
           way1Dirty_37 <= _GEN_1842;
@@ -24591,9 +24595,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_38 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_38 <= _GEN_1587;
         end else begin
           way1Dirty_38 <= _GEN_1843;
@@ -24602,9 +24606,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_39 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_39 <= _GEN_1588;
         end else begin
           way1Dirty_39 <= _GEN_1844;
@@ -24613,9 +24617,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_40 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_40 <= _GEN_1589;
         end else begin
           way1Dirty_40 <= _GEN_1845;
@@ -24624,9 +24628,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_41 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_41 <= _GEN_1590;
         end else begin
           way1Dirty_41 <= _GEN_1846;
@@ -24635,9 +24639,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_42 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_42 <= _GEN_1591;
         end else begin
           way1Dirty_42 <= _GEN_1847;
@@ -24646,9 +24650,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_43 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_43 <= _GEN_1592;
         end else begin
           way1Dirty_43 <= _GEN_1848;
@@ -24657,9 +24661,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_44 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_44 <= _GEN_1593;
         end else begin
           way1Dirty_44 <= _GEN_1849;
@@ -24668,9 +24672,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_45 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_45 <= _GEN_1594;
         end else begin
           way1Dirty_45 <= _GEN_1850;
@@ -24679,9 +24683,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_46 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_46 <= _GEN_1595;
         end else begin
           way1Dirty_46 <= _GEN_1851;
@@ -24690,9 +24694,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_47 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_47 <= _GEN_1596;
         end else begin
           way1Dirty_47 <= _GEN_1852;
@@ -24701,9 +24705,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_48 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_48 <= _GEN_1597;
         end else begin
           way1Dirty_48 <= _GEN_1853;
@@ -24712,9 +24716,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_49 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_49 <= _GEN_1598;
         end else begin
           way1Dirty_49 <= _GEN_1854;
@@ -24723,9 +24727,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_50 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_50 <= _GEN_1599;
         end else begin
           way1Dirty_50 <= _GEN_1855;
@@ -24734,9 +24738,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_51 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_51 <= _GEN_1600;
         end else begin
           way1Dirty_51 <= _GEN_1856;
@@ -24745,9 +24749,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_52 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_52 <= _GEN_1601;
         end else begin
           way1Dirty_52 <= _GEN_1857;
@@ -24756,9 +24760,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_53 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_53 <= _GEN_1602;
         end else begin
           way1Dirty_53 <= _GEN_1858;
@@ -24767,9 +24771,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_54 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_54 <= _GEN_1603;
         end else begin
           way1Dirty_54 <= _GEN_1859;
@@ -24778,9 +24782,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_55 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_55 <= _GEN_1604;
         end else begin
           way1Dirty_55 <= _GEN_1860;
@@ -24789,9 +24793,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_56 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_56 <= _GEN_1605;
         end else begin
           way1Dirty_56 <= _GEN_1861;
@@ -24800,9 +24804,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_57 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_57 <= _GEN_1606;
         end else begin
           way1Dirty_57 <= _GEN_1862;
@@ -24811,9 +24815,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_58 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_58 <= _GEN_1607;
         end else begin
           way1Dirty_58 <= _GEN_1863;
@@ -24822,9 +24826,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_59 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_59 <= _GEN_1608;
         end else begin
           way1Dirty_59 <= _GEN_1864;
@@ -24833,9 +24837,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_60 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_60 <= _GEN_1609;
         end else begin
           way1Dirty_60 <= _GEN_1865;
@@ -24844,9 +24848,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_61 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_61 <= _GEN_1610;
         end else begin
           way1Dirty_61 <= _GEN_1866;
@@ -24855,9 +24859,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_62 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_62 <= _GEN_1611;
         end else begin
           way1Dirty_62 <= _GEN_1867;
@@ -24866,9 +24870,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_63 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_63 <= _GEN_1612;
         end else begin
           way1Dirty_63 <= _GEN_1868;
@@ -24877,9 +24881,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_64 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_64 <= _GEN_1613;
         end else begin
           way1Dirty_64 <= _GEN_1869;
@@ -24888,9 +24892,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_65 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_65 <= _GEN_1614;
         end else begin
           way1Dirty_65 <= _GEN_1870;
@@ -24899,9 +24903,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_66 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_66 <= _GEN_1615;
         end else begin
           way1Dirty_66 <= _GEN_1871;
@@ -24910,9 +24914,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_67 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_67 <= _GEN_1616;
         end else begin
           way1Dirty_67 <= _GEN_1872;
@@ -24921,9 +24925,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_68 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_68 <= _GEN_1617;
         end else begin
           way1Dirty_68 <= _GEN_1873;
@@ -24932,9 +24936,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_69 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_69 <= _GEN_1618;
         end else begin
           way1Dirty_69 <= _GEN_1874;
@@ -24943,9 +24947,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_70 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_70 <= _GEN_1619;
         end else begin
           way1Dirty_70 <= _GEN_1875;
@@ -24954,9 +24958,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_71 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_71 <= _GEN_1620;
         end else begin
           way1Dirty_71 <= _GEN_1876;
@@ -24965,9 +24969,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_72 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_72 <= _GEN_1621;
         end else begin
           way1Dirty_72 <= _GEN_1877;
@@ -24976,9 +24980,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_73 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_73 <= _GEN_1622;
         end else begin
           way1Dirty_73 <= _GEN_1878;
@@ -24987,9 +24991,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_74 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_74 <= _GEN_1623;
         end else begin
           way1Dirty_74 <= _GEN_1879;
@@ -24998,9 +25002,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_75 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_75 <= _GEN_1624;
         end else begin
           way1Dirty_75 <= _GEN_1880;
@@ -25009,9 +25013,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_76 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_76 <= _GEN_1625;
         end else begin
           way1Dirty_76 <= _GEN_1881;
@@ -25020,9 +25024,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_77 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_77 <= _GEN_1626;
         end else begin
           way1Dirty_77 <= _GEN_1882;
@@ -25031,9 +25035,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_78 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_78 <= _GEN_1627;
         end else begin
           way1Dirty_78 <= _GEN_1883;
@@ -25042,9 +25046,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_79 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_79 <= _GEN_1628;
         end else begin
           way1Dirty_79 <= _GEN_1884;
@@ -25053,9 +25057,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_80 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_80 <= _GEN_1629;
         end else begin
           way1Dirty_80 <= _GEN_1885;
@@ -25064,9 +25068,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_81 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_81 <= _GEN_1630;
         end else begin
           way1Dirty_81 <= _GEN_1886;
@@ -25075,9 +25079,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_82 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_82 <= _GEN_1631;
         end else begin
           way1Dirty_82 <= _GEN_1887;
@@ -25086,9 +25090,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_83 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_83 <= _GEN_1632;
         end else begin
           way1Dirty_83 <= _GEN_1888;
@@ -25097,9 +25101,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_84 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_84 <= _GEN_1633;
         end else begin
           way1Dirty_84 <= _GEN_1889;
@@ -25108,9 +25112,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_85 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_85 <= _GEN_1634;
         end else begin
           way1Dirty_85 <= _GEN_1890;
@@ -25119,9 +25123,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_86 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_86 <= _GEN_1635;
         end else begin
           way1Dirty_86 <= _GEN_1891;
@@ -25130,9 +25134,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_87 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_87 <= _GEN_1636;
         end else begin
           way1Dirty_87 <= _GEN_1892;
@@ -25141,9 +25145,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_88 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_88 <= _GEN_1637;
         end else begin
           way1Dirty_88 <= _GEN_1893;
@@ -25152,9 +25156,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_89 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_89 <= _GEN_1638;
         end else begin
           way1Dirty_89 <= _GEN_1894;
@@ -25163,9 +25167,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_90 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_90 <= _GEN_1639;
         end else begin
           way1Dirty_90 <= _GEN_1895;
@@ -25174,9 +25178,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_91 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_91 <= _GEN_1640;
         end else begin
           way1Dirty_91 <= _GEN_1896;
@@ -25185,9 +25189,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_92 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_92 <= _GEN_1641;
         end else begin
           way1Dirty_92 <= _GEN_1897;
@@ -25196,9 +25200,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_93 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_93 <= _GEN_1642;
         end else begin
           way1Dirty_93 <= _GEN_1898;
@@ -25207,9 +25211,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_94 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_94 <= _GEN_1643;
         end else begin
           way1Dirty_94 <= _GEN_1899;
@@ -25218,9 +25222,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_95 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_95 <= _GEN_1644;
         end else begin
           way1Dirty_95 <= _GEN_1900;
@@ -25229,9 +25233,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_96 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_96 <= _GEN_1645;
         end else begin
           way1Dirty_96 <= _GEN_1901;
@@ -25240,9 +25244,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_97 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_97 <= _GEN_1646;
         end else begin
           way1Dirty_97 <= _GEN_1902;
@@ -25251,9 +25255,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_98 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_98 <= _GEN_1647;
         end else begin
           way1Dirty_98 <= _GEN_1903;
@@ -25262,9 +25266,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_99 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_99 <= _GEN_1648;
         end else begin
           way1Dirty_99 <= _GEN_1904;
@@ -25273,9 +25277,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_100 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_100 <= _GEN_1649;
         end else begin
           way1Dirty_100 <= _GEN_1905;
@@ -25284,9 +25288,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_101 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_101 <= _GEN_1650;
         end else begin
           way1Dirty_101 <= _GEN_1906;
@@ -25295,9 +25299,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_102 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_102 <= _GEN_1651;
         end else begin
           way1Dirty_102 <= _GEN_1907;
@@ -25306,9 +25310,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_103 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_103 <= _GEN_1652;
         end else begin
           way1Dirty_103 <= _GEN_1908;
@@ -25317,9 +25321,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_104 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_104 <= _GEN_1653;
         end else begin
           way1Dirty_104 <= _GEN_1909;
@@ -25328,9 +25332,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_105 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_105 <= _GEN_1654;
         end else begin
           way1Dirty_105 <= _GEN_1910;
@@ -25339,9 +25343,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_106 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_106 <= _GEN_1655;
         end else begin
           way1Dirty_106 <= _GEN_1911;
@@ -25350,9 +25354,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_107 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_107 <= _GEN_1656;
         end else begin
           way1Dirty_107 <= _GEN_1912;
@@ -25361,9 +25365,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_108 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_108 <= _GEN_1657;
         end else begin
           way1Dirty_108 <= _GEN_1913;
@@ -25372,9 +25376,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_109 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_109 <= _GEN_1658;
         end else begin
           way1Dirty_109 <= _GEN_1914;
@@ -25383,9 +25387,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_110 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_110 <= _GEN_1659;
         end else begin
           way1Dirty_110 <= _GEN_1915;
@@ -25394,9 +25398,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_111 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_111 <= _GEN_1660;
         end else begin
           way1Dirty_111 <= _GEN_1916;
@@ -25405,9 +25409,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_112 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_112 <= _GEN_1661;
         end else begin
           way1Dirty_112 <= _GEN_1917;
@@ -25416,9 +25420,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_113 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_113 <= _GEN_1662;
         end else begin
           way1Dirty_113 <= _GEN_1918;
@@ -25427,9 +25431,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_114 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_114 <= _GEN_1663;
         end else begin
           way1Dirty_114 <= _GEN_1919;
@@ -25438,9 +25442,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_115 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_115 <= _GEN_1664;
         end else begin
           way1Dirty_115 <= _GEN_1920;
@@ -25449,9 +25453,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_116 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_116 <= _GEN_1665;
         end else begin
           way1Dirty_116 <= _GEN_1921;
@@ -25460,9 +25464,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_117 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_117 <= _GEN_1666;
         end else begin
           way1Dirty_117 <= _GEN_1922;
@@ -25471,9 +25475,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_118 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_118 <= _GEN_1667;
         end else begin
           way1Dirty_118 <= _GEN_1923;
@@ -25482,9 +25486,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_119 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_119 <= _GEN_1668;
         end else begin
           way1Dirty_119 <= _GEN_1924;
@@ -25493,9 +25497,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_120 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_120 <= _GEN_1669;
         end else begin
           way1Dirty_120 <= _GEN_1925;
@@ -25504,9 +25508,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_121 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_121 <= _GEN_1670;
         end else begin
           way1Dirty_121 <= _GEN_1926;
@@ -25515,9 +25519,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_122 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_122 <= _GEN_1671;
         end else begin
           way1Dirty_122 <= _GEN_1927;
@@ -25526,9 +25530,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_123 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_123 <= _GEN_1672;
         end else begin
           way1Dirty_123 <= _GEN_1928;
@@ -25537,9 +25541,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_124 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_124 <= _GEN_1673;
         end else begin
           way1Dirty_124 <= _GEN_1929;
@@ -25548,9 +25552,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_125 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_125 <= _GEN_1674;
         end else begin
           way1Dirty_125 <= _GEN_1930;
@@ -25559,9 +25563,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_126 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_126 <= _GEN_1675;
         end else begin
           way1Dirty_126 <= _GEN_1931;
@@ -25570,9 +25574,9 @@ module DCache(
     end
     if (reset) begin // @[DCache.scala 44:26]
       way1Dirty_127 <= 1'h0; // @[DCache.scala 44:26]
-    end else if (!(ageWay0En)) begin // @[DCache.scala 195:19]
-      if (ageWay1En) begin // @[DCache.scala 201:26]
-        if (_T_8) begin // @[DCache.scala 202:36]
+    end else if (!(ageWay0En)) begin // @[DCache.scala 198:19]
+      if (ageWay1En) begin // @[DCache.scala 204:26]
+        if (_T_8) begin // @[DCache.scala 205:36]
           way1Dirty_127 <= _GEN_1676;
         end else begin
           way1Dirty_127 <= _GEN_1932;
@@ -25596,10 +25600,10 @@ module DCache(
     end else begin
       state <= _GEN_9;
     end
-    if (reset) begin // @[DCache.scala 223:22]
-      hitEn <= 1'h0; // @[DCache.scala 223:22]
+    if (reset) begin // @[DCache.scala 226:22]
+      hitEn <= 1'h0; // @[DCache.scala 226:22]
     end else begin
-      hitEn <= sHitEn & cacheHitEn; // @[DCache.scala 224:9]
+      hitEn <= sHitEn & cacheHitEn; // @[DCache.scala 227:9]
     end
   end
 // Register and memory initialization
