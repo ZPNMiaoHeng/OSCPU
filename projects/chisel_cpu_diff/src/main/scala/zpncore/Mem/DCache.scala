@@ -28,7 +28,6 @@ class DCache extends Module {
   val cacheHitEn   = WireInit(false.B)
   val cacheLineWay = WireInit(false.B)
   val cacheDirtyEn = WireInit(false.B)
-//  val cacheWriteEn = WireInit(false.B)
   val cacheIndex   = WireInit(0.U(8.W))
 
   val way0V     = RegInit(VecInit(Seq.fill(cacheLineNum)(false.B)))          //way0 and way1
@@ -62,15 +61,12 @@ class DCache extends Module {
     "b0010_0000".U -> "h0000ff0000000000".U,
     "b0100_0000".U -> "h00ff000000000000".U,
     "b1000_0000".U -> "hff00000000000000".U,
-
     "b0000_0011".U -> "h000000000000ffff".U,  //sh
     "b0000_1100".U -> "h00000000ffff0000".U,
     "b0011_0000".U -> "h0000ffff00000000".U,
     "b1100_0000".U -> "hffff000000000000".U,
-    
     "b0000_1111".U -> "h00000000ffffffff".U,  //sw
     "b1111_0000".U -> "hffffffff00000000".U,
-    
     "b1111_1111".U -> "hffffffffffffffff".U   //sd
   ))
   val valid_strb = Mux(reqOff(3), Cat(strbT, 0.U(64.W)), Cat(0.U(64.W), strbT))
@@ -114,9 +110,7 @@ class DCache extends Module {
       }
     }
     is(s_CACHE_WRITE) {         //* 对cacheline 写操作 0x101
-//      when( cacheWriteEn ) {    // Cache 写入完成信号：Load需要等总线访存结束后，延迟一个周期让其写入DCache；store待定
         state := s_CACHE_DONE
-//      }
     }
     is(s_CACHE_DONE) {           //? 是否还需要一周期呢？直接放入写cache时对寄存器操作： 延迟一周期写入寄存器 0x110
       state := s_IDLE
@@ -151,14 +145,15 @@ class DCache extends Module {
   val sWriteEn = state === s_AXI_WRITE          //* 将这个CacheLine中数据写到存储器中 -> 总线写请求
   
   val sReadEn  = state === s_AXI_READ           //* +从存储器中读取数据
-  val axiRData = WireInit(0.U(128.W)) 
-  axiRData := Mux(sReadEn && out.data_ready, out.data_read, 0.U)
+  val axiRData = RegInit(0.U(128.W)) 
+  when(sReadEn && out.data_ready) {
+    axiRData := out.data_read
+  }
 
   val sCacheWEn = (state === s_CACHE_WRITE)     //* 将总线读取数据拼接写入Cacheline中。
                                                 //* 1. load缺失，从总线读取数据,需要等待总线完成信号；dirty === 0
                                                 //* 2. store: 写入数据； dirty===1
                                                 //! 需要等待从总线读取数据
-
   val valid_data = Mux(reqOff(3), cacheRData(127, 64), cacheRData(63, 0))
   val inDataWT   = Mux(reqOff(3), in.data_write(127, 64), in.data_write(63, 0))
   val cacheWDataT = MuxLookup(in.data_size, 0.U, Array(
@@ -180,7 +175,6 @@ class DCache extends Module {
                 )),
     "b10".U -> MuxLookup(reqOff(2), 0.U, Array(
                     "b0".U -> Cat(valid_data(63,32), inDataWT(31, 0)),
-                    //"b0".U -> Cat(valid_data(63,32), in.data_write(31, 0)),
                     "b1".U -> Cat(inDataWT(63,32), valid_data(31, 0)),
                 )),
     "b11".U -> inDataWT,//in.data_write,
@@ -188,11 +182,11 @@ class DCache extends Module {
   val cacheWData = Mux(reqOff(3), Cat(cacheWDataT, 0.U(64.W)), Cat(0.U(64.W), cacheWDataT))
 
   // cache write data
-  valid_WEn   := sCacheWEn //|| (sReadEn && out.data_ready)
-  valid_WData := Mux(sReadEn, axiRData, Mux(in.data_req, cacheWData, out.data_read))
-  valid_BWEn  := Mux(sReadEn, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U,  
-                    Mux(in.data_req, valid_strb , "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U))
-//  cacheWriteEn := Mux(in.data_req, true.B       , out.data_ready)
+  valid_WEn   := sCacheWEn || (sReadEn && out.data_ready)
+  valid_WData := Mux(sReadEn && out.data_ready, out.data_read,
+                  Mux(in.data_req, cacheWData , out.data_read))
+  valid_BWEn  := Mux(sReadEn && out.data_ready, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U,
+                  Mux(in.data_req, valid_strb , "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U))
 
 //! Dirty 寄存器单独处理
   when(ageWay0En) {
@@ -229,7 +223,8 @@ class DCache extends Module {
                 Mux(sDoneEn, out.data_read, 0.U))
   val rDataHL = Mux(reqOff(3), rData(127, 64), rData(63, 0))    // 选择对应的位置；
 
-  in.data_ready := hitEn || sDoneEn           // Cache完成标志：miss 与 hit 两种情况  
+//  in.data_ready := hitEn || sDoneEn           // Cache完成标志：miss 与 hit 两种情况  
+  in.data_ready := Mux(in.data_req, sDoneEn,  hitEn || sDoneEn)           // Cache完成标志：miss 与 hit 两种情况  
 
   in.data_read :=  MuxLookup(in.data_size, 0.U, Array(                //? 位扩充？
     "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
@@ -254,7 +249,7 @@ class DCache extends Module {
                 )),
     "b11".U -> rDataHL,
   ))
-
+//-------------------------------- AXI IO  --------------------------------
   val axiEn = sWriteEn || sReadEn 
   out.data_valid := axiEn 
   out.data_req   := Mux(sWriteEn, REQ_WRITE, REQ_READ)
