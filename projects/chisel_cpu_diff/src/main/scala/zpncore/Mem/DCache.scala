@@ -127,13 +127,17 @@ class DCache extends Module {
   cacheHitEn := (way0Hit || way1Hit )
 
   // Cache Miss and find cacheLine
-  val ageWay0En = !cacheHitEn && (Mux(in.data_req === REQ_READ, way0Age(reqIndex) === 0.U, 
+  val ageWay0En = !cacheHitEn && way0Age(reqIndex) === 0.U
+  val ageWay1En = !cacheHitEn && way1Age(reqIndex) === 0.U
+/*
+  val ageWay0En = !cacheHitEn && (Mux(in.data_req === REQ_READ, way0Age(reqIndex) === 0.U,   // 未命中，load 存入的cacheline
                     ((way0Tag(reqIndex) === reqTag) && (way0Age(reqIndex) === 1.U)) || ((way0Tag(reqIndex) === 0.U) && (way0Age(reqIndex) === 0.U ))
-                    ))                //* 年龄替换算法 ++ 添加store age 处理
+                    ))                // 年龄替换算法 ++ 添加store age 处理
   val ageWay1En = !cacheHitEn && (Mux(in.data_req === REQ_READ, way1Age(reqIndex) === 0.U, 
                     ((way1Tag(reqIndex) === reqTag) && (way1Age(reqIndex) === 1.U)) || ((way1Tag(reqIndex) === 0.U) && (way1Age(reqIndex) === 0.U ))
                     ))                // 年龄替换算法
-  
+  */
+
   cacheLineWay := Mux(cacheHitEn, Mux(way0Hit, 0.U, 1.U), Mux(ageWay0En, 0.U, 1.U))            // 0.U->way0, 1.U->way1, way0优先级更高  ++ 添加sd 命中情况下选择cacheLine
   cacheIndex   := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
   /* Load 就可以直接读取指令，但store 需要写回到Cache中 */
