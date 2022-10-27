@@ -77,14 +77,14 @@ class DCache extends Module {
 //*------------------------------ DCache Machine --------------------------------
   switch(state) {
     is(s_IDLE) {
-      when( cacheValid ) {
+      when( cacheValid) {
         state := s_CACHE_HIT
       }
     }
     is(s_CACHE_HIT) {             //* 判断是否命中Cache 0b001
       when ( cacheHitEn ) {
         when(in.data_req === REQ_READ) {
-          state := s_IDLE
+          state := s_CACHE_DONE
         } .otherwise {
           state := s_CACHE_WRITE  // store 命中后进入写cacheline状态
         }
@@ -112,7 +112,7 @@ class DCache extends Module {
     is(s_CACHE_WRITE) {         //* 对cacheline 写操作 0x101
         state := s_CACHE_DONE
     }
-    is(s_CACHE_DONE) {           //? 是否还需要一周期呢？直接放入写cache时对寄存器操作： 延迟一周期写入寄存器 0x110
+    is(s_CACHE_DONE) {          //? 是否还需要一周期呢？直接放入写cache时对寄存器操作： 延迟一周期写入寄存器 0x110
       state := s_IDLE
     }
   }
@@ -133,7 +133,6 @@ class DCache extends Module {
   val ageWay1En = !cacheHitEn && (Mux(in.data_req === REQ_READ, way1Age(reqIndex) === 0.U, 
                     ((way1Tag(reqIndex) === reqTag) && (way1Age(reqIndex) === 1.U)) || ((way1Tag(reqIndex) === 0.U) && (way1Age(reqIndex) === 0.U ))
                     ))                // 年龄替换算法
-//  val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U)                // 年龄替换算法
   
   cacheLineWay := Mux(cacheHitEn, Mux(way0Hit, 0.U, 1.U), Mux(ageWay0En, 0.U, 1.U))            // 0.U->way0, 1.U->way1, way0优先级更高  ++ 添加sd 命中情况下选择cacheLine
   cacheIndex   := Mux(cacheLineWay === 0.U, Cat(0.U(1.W), reqIndex), Cat(1.U(1.W), reqIndex))  // 确定最终cacheLine 地址
@@ -208,7 +207,7 @@ class DCache extends Module {
     way0Tag(reqIndex) := reqTag
     way0Age(reqIndex) := 1.U  
     way1Age(reqIndex) := 0.U
-  } .elsewhen(ageWay1En && sCacheWEn) {                           //way1
+  } .elsewhen(ageWay1En && sCacheWEn) {              //way1
     way1V(reqIndex) := true.B
     way1Tag(reqIndex) := reqTag
     way0Age(reqIndex) := 0.U
@@ -223,7 +222,6 @@ class DCache extends Module {
                 Mux(sDoneEn, out.data_read, 0.U))
   val rDataHL = Mux(reqOff(3), rData(127, 64), rData(63, 0))    // 选择对应的位置；
 
-//  in.data_ready := hitEn || sDoneEn           // Cache完成标志：miss 与 hit 两种情况  
   in.data_ready := Mux(in.data_req, sDoneEn,  hitEn || sDoneEn)           // Cache完成标志：miss 与 hit 两种情况  
 
   in.data_read :=  MuxLookup(in.data_size, 0.U, Array(                //? 位扩充？
