@@ -15,33 +15,33 @@ class AxiLite2Axi  extends Module {
   val io = IO(new Bundle {
     val out = new AxiIO
     val imem = Flipped(new AxiInst)
-    val dmem = Flipped(new AxiData)  //!
+    val dmem = Flipped(new AxiData)
   })
   val out = io.out
   val in1 = io.imem
-  val in2 = io.dmem  //!
+  val in2 = io.dmem
 
   val inst_ren = WireInit(false.B)
-  val data_ren = WireInit(false.B) //!
-  val data_wen = WireInit(false.B) //!
+  val data_ren = WireInit(false.B)
+  val data_wen = WireInit(false.B)
 
-  inst_ren := in1.inst_valid && in1.inst_req === REQ_READ                    //* ICache 发出读请求：valid+ req
-  data_ren := in2.data_valid && in2.data_req === REQ_READ  //!               //* DCache 发出读请求
-  data_wen := in2.data_valid && in2.data_req === REQ_WRITE //!               //* DCache 发出写请求
+  inst_ren := in1.inst_valid && in1.inst_req === REQ_READ                // ICache 发出读请求：valid+ req
+  data_ren := in2.data_valid && in2.data_req === REQ_READ                // DCache 发出读请求
+  data_wen := in2.data_valid && in2.data_req === REQ_WRITE               // DCache 发出写请求
 
   val ar_hs = out.ar.ready && out.ar.valid                                    // fire_ar
   val r_hs = out.r.valid && out.r.ready                                       // fire_r
-  val aw_hs = out.aw.ready && out.aw.valid                                    //! fire_aw
-  val w_hs = out.w.ready && out.w.valid                                       //! fire_w
-  val b_hs = out.b.valid && out.b.ready                                       //! fire_r
+  val aw_hs = out.aw.ready && out.aw.valid                                    // fire_aw
+  val w_hs = out.w.ready && out.w.valid                                       // fire_w
+  val b_hs = out.b.valid && out.b.ready                                       // fire_r
   
   val r_done = r_hs && out.r.bits.last                                        // 主机得到data和last完成信号
-  val w_done = b_hs && out.w.bits.last                                        //! 写请求完成标志
+  val w_done = b_hs && out.w.bits.last                                        // 写请求完成标志
 
-  val r_idle :: r_inst_addr :: r_inst_read :: r_inst_done :: r_data_addr :: r_data_read :: r_data_done :: Nil = Enum(7) //!
-  val w_idle :: w_data_addr :: w_data_write :: w_data_resp :: w_data_done :: Nil = Enum(5) //!
+  val r_idle :: r_inst_addr :: r_inst_read :: r_inst_done :: r_data_addr :: r_data_read :: r_data_done :: Nil = Enum(7)
+  val w_idle :: w_data_addr :: w_data_write :: w_data_resp :: w_data_done :: Nil = Enum(5)
   val r_state = RegInit(r_idle)
-  val w_state = RegInit(w_idle) //!
+  val w_state = RegInit(w_idle)
 
 //*--------------------------------- State Machine --------------------------------------------------------
 // 读通道状态切换
@@ -64,14 +64,13 @@ class AxiLite2Axi  extends Module {
         r_state := r_inst_done 
       }
     }
-    is(r_inst_done) {              //011 //! 取指完成后进入访存，不过访存优先级应该更高
+    is(r_inst_done) {              //011  取指完成后进入访存，不过访存优先级应该更高
       when (data_ren) {
         r_state := r_data_addr
       }
       .otherwise {
         r_state := r_idle
       }
-//      r_state := r_idle
     }
     is (r_data_addr) {              // 100
       when (ar_hs) {
@@ -88,8 +87,7 @@ class AxiLite2Axi  extends Module {
     }
   }
 
-    //! 写通道状态切换    
-
+// 写通道状态切换    
   switch (w_state) {
     is(w_idle) {
       when(data_wen) {             // 写使能有效
@@ -142,14 +140,8 @@ class AxiLite2Axi  extends Module {
 
   out.r.ready := true.B
 
-//! write
-//! write address channel signals
 //*--------------------------------- Write Transaction --------------------------------------------------
-//  val axi_waddr = Mux(w_state === w_data_addr, (in2.data_addr) & "hffff_fff0".U(32.W), 0.U)  // Byte alignment
-  val axi_waddr = Mux(data_ok, Cat(in2.data_addr(31, 4), "b1000".U), in2.data_addr & "hffff_fff0".U(32.W))
-  val lowDateEn = Mux((in2.data_addr % 16.U) < 8.U, true.B, false.B)
-  val strb_h = Mux(!lowDateEn, in2.data_strb, 0.U)
-  val strb_l = Mux(lowDateEn, in2.data_strb, 0.U)
+  val axi_waddr = Mux(data_ok, Cat(in2.data_addr(31, 4), "b1000".U), in2.data_addr & "hffff_fff0".U(32.W)) // ?我写的啥???
 
   out.aw.valid        := w_state === w_data_addr
   out.aw.bits.addr    := axi_waddr
@@ -166,14 +158,14 @@ class AxiLite2Axi  extends Module {
   // write data channel signals
   out.w.valid         := w_state === w_data_write
   out.w.bits.data     := Mux(data_ok, in2.data_write(127,64), in2.data_write(63, 0))
-  out.w.bits.strb     := Mux(data_ok, strb_h, strb_l)   //!掩码
+  out.w.bits.strb     := in2.data_strb
   out.w.bits.last     := true.B
 
   out.b.ready         := true.B
 
   /* AXI <-> IF */
   in1.inst_ready := (r_state === r_inst_done)  // 指令读取完成
-  in2.data_ready := (r_state === r_data_done) || (w_state === w_data_done && data_ok)            //! Load and Store
+  in2.data_ready := (r_state === r_data_done) || (w_state === w_data_done && data_ok)            //Load and Store
   
   val inst_read_h = RegInit(0.U(64.W))
   val inst_read_l = RegInit(0.U(64.W))
@@ -190,12 +182,7 @@ class AxiLite2Axi  extends Module {
       data_read_l := out.r.bits.data
     }
   }
-  
-  val alignment = in2.data_addr % 16.U                              // 16字节对齐（总线一次读取128bits）:接core时2使用
-//  in1.inst_read := Cat(inst_read_h, inst_read_l) >> alignment * 8.U
-  val dmemData =  Cat(data_read_h, data_read_l)
-  in2.data_read := dmemData >> alignment * 8.U
-
   in1.inst_read := Cat(inst_read_h, inst_read_l)
+  in2.data_read := Cat(data_read_h, data_read_l)
 }
 
