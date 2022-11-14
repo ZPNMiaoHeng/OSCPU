@@ -1613,7 +1613,7 @@ module DataMem(
   wire  dmemEn = ~(io_in_aluRes < 64'h80000000 | io_in_aluRes > 64'h88000000) & _dmemEn_T_6; // @[DataMem.scala 38:72]
   reg  dmemDone; // @[DataMem.scala 43:25]
   reg [31:0] inst; // @[DataMem.scala 44:17]
-  wire  _GEN_0 = inst != io_in_inst | ~io_dmem_data_ready ? 1'h0 : dmemDone; // @[DataMem.scala 49:60 50:14 43:25]
+  wire  _GEN_0 = inst != io_in_inst ? 1'h0 : dmemDone; // @[DataMem.scala 49:37 50:14 43:25]
   wire  _GEN_1 = io_dmem_data_ready | _GEN_0; // @[DataMem.scala 47:29 48:14]
   wire  dmemFire = io_dmem_data_valid & io_dmem_data_ready; // @[DataMem.scala 55:37]
   wire [63:0] _GEN_3 = io_in_aluRes % 64'h10; // @[DataMem.scala 56:27]
