@@ -34,13 +34,13 @@ dhrystone:
 	$(TOOLS) -d -b -s -a "-i non-output/dhrystone/dhrystone.bin " -m "$(FLASS)"
 
 huge:
-	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-huge.bin " -m "$(FLASS)"
+	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-huge.bin $(VCD)" -m "$(FLASS)"
 ref:
-	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-ref.bin " -m "$(FLASS)"
+	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-ref.bin $(VCD)" -m "$(FLASS)"
 test:
 	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-test.bin $(VCD) " -m "$(FLASS)"
 train:
-	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-train.bin " -m "$(FLASS)"
+	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-train.bin $(VCD)" -m "$(FLASS)"
 
 interrupt:
 	$(TOOLS) -d -b -s -a "-i custom-output/interrupt-test/amtest-interrupt-test.bin " -m "$(FLASS)"
