@@ -22,7 +22,7 @@ class Core extends Module {
   val WB = Module(new WriteBack)
 //*-----------------------------------------------------------------
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
-  val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx
+  val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx //!可以从这入手
 
 //* ----------------------------------------------------------------
   val flushIfIdEn  = false.B
@@ -54,7 +54,7 @@ class Core extends Module {
   
   IF.io.pcSrc := EX.io.pcSrc
   IF.io.nextPC := EX.io.nextPC
-  IF.io.stall := EXLHitID || !MEM.io.memDone
+  IF.io.stall := EXLHitID || !MEM.io.memDone //! EX 优先级大于MEM
   IF.io.memDone := MEM.io.memDone
 
   IfRegId.io.in <> IF.io.out

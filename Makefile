@@ -17,6 +17,7 @@ TARGET = chisel_cpu_diff
 TOOLS = ./build.sh -e $(TARGET)
 FLASS = EMU_TRACE=1
 FLASS += WITH_DRAMSIM3=1
+VCD = 
 TOP=
 
 test_cpu:
@@ -37,7 +38,7 @@ huge:
 ref:
 	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-ref.bin " -m "$(FLASS)"
 test:
-	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-test.bin " -m "$(FLASS)"
+	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-test.bin $(VCD) " -m "$(FLASS)"
 train:
 	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-train.bin " -m "$(FLASS)"
 
