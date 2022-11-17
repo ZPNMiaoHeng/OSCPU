@@ -22,7 +22,7 @@ class Core extends Module {
   val WB = Module(new WriteBack)
 //*-----------------------------------------------------------------
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
-  val EXLHitID = ID.io.bubbleId && EX.io.bubbleEx //!可以从这入手
+  val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
 
 //* ----------------------------------------------------------------
   val flushIfIdEn  = false.B
