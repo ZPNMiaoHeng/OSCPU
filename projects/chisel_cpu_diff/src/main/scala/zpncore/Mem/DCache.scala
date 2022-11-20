@@ -126,6 +126,8 @@ class DCache extends Module {
   cacheHitEn := (way0Hit || way1Hit )
 
   // Cache Miss and find cacheLine
+//  val ageWay0En = (way0Age(reqIndex) === 0.U)   //! 未考虑cache命中后，cacheline的选择，导致后续数据无法存入总线
+//  val ageWay1En = (way1Age(reqIndex) === 0.U)
   val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U)
   val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U)
 
@@ -179,13 +181,13 @@ class DCache extends Module {
                   Mux(in.data_req, valid_strb , "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U))
 
 //*------------------- update reg ----------------------------------------------------------------
-  when(ageWay0En) {
+  when(ageWay0En || way0Hit) {
     when(sCacheWEn && in.data_req) {            // store 
       way0Dirty(reqIndex) := 1.U
     } .elsewhen(sWriteEn && out.data_ready) {   // cache写入存储器完成后，dirty清0
       way0Dirty(reqIndex) := 0.U
     }
-  } .elsewhen(ageWay1En) {
+  } .elsewhen(ageWay1En || way1Hit) {
     when(sCacheWEn && in.data_req) {
       way1Dirty(reqIndex) := 1.U
     } .elsewhen(sWriteEn && out.data_ready) {
