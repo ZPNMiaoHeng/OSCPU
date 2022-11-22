@@ -52,6 +52,7 @@ class ContrGen extends Module {
   val csrrs   = inst === CSRRS
   val ecall   = inst === ECALL
   val csrrc   = inst === CSRRC
+  val csrrwi  = inst === CSRRWI
   val csrrsi  = inst === CSRRSI
   val csrrci  = inst === CSRRCI
 
