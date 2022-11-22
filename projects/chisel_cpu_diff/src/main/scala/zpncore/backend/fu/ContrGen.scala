@@ -13,6 +13,7 @@ class ContrGen extends Module {
     val rdEn = Output(Bool())
     val rdAddr = Output(UInt(5.W))
     val typeL = Output(Bool())
+    val csrOp = Output(UInt(4.W))
     
     val aluCtr = new AluCtr
     val memCtr = new MemCtr
@@ -48,13 +49,15 @@ class ContrGen extends Module {
   val instLhu     = inst === LHU                // 0.B // Mux("b101_00000".U === instOF, true.B, false.B)
   val instLwu     = inst === LWU                 // ???
 
+//*CSR
   val csrrw   = inst === CSRRW
   val csrrs   = inst === CSRRS
-  val ecall   = inst === ECALL
   val csrrc   = inst === CSRRC
   val csrrwi  = inst === CSRRWI
   val csrrsi  = inst === CSRRSI
   val csrrci  = inst === CSRRCI
+  val ecall   = inst === ECALL
+  val mret    = inst === MRET
 
   val typeI       = instAddi   || instAndi   || instXori   || instOri   || instSlli  || instSrli  ||
                     instSrai   || instSlti   || instSltiu  || instAddiw || instSlliw || instSrliw ||
@@ -84,7 +87,6 @@ class ContrGen extends Module {
   val instSllw    = inst === SLLW    // ??
   val instSrlw    = inst === SRLW    // ??
   val instSraw    = inst === SRAW    // ??
-  val instMret    = inst === MRET    //  ??
   val instRemw    = inst === REMW
   val instDiv     = inst === DIV
   val instDivw    = inst === DIVW
@@ -93,7 +95,8 @@ class ContrGen extends Module {
   val typeR       = instAdd  || instSub  || instSll  || instSlt  || instSltu ||
                     instXor  || instSrl  || instSra  || instOr   || instAnd  ||
                     instAddw || instSubw || instSllw || instSrlw || instSraw ||
-                    instMret || instRemw || instDiv  || instDivw || instMul  || instMulw
+                    instRemw || instDiv  || instDivw || instMul  || instMulw ||
+                    mret
 
 // B type 6
   val instBeq      = inst === BEQ
@@ -105,14 +108,14 @@ class ContrGen extends Module {
   val typeB        = instBeq || instBne || instBlt || instBge ||instBltu || instBgeu
 
 // S type 4
-  val instSb       = inst === SB                   // Mux("b000_01000".U === instOF, true.B, false.B)
+  val instSb       = inst === SB
   val instSh       = inst === SH
-  val instSw       = inst === SW                 // Mux("b010_01000".U === instOF, true.B, false.B)
-  val instSd       = inst === SD                 // Mux("b011_01000".U === instOF, true.B, false.B)
+  val instSw       = inst === SW
+  val instSd       = inst === SD
   val typeS        = instSb || instSh || instSw || instSd
 
 // ebreak inst
-  val Ebreak       = inst === EBREAK                   // Mux("b000_11100".U === instOF, true.B, false.B)
+  val Ebreak       = inst === EBREAK
 
 // type+w
   val typeW        = instAddw || instSubw || instSllw || instSlliw ||
@@ -202,4 +205,16 @@ class ContrGen extends Module {
           (instLwu ) -> "b110".U))
 
   io.typeL := typeL
+  io.csrOp := MuxCase("b0000".U, List(
+    (csrrw ) -> "b0001".U,
+    (csrrs ) -> "b0010".U,
+    (csrrc ) -> "b0011".U,
+//    (      ) -> "b0100".U,
+    (csrrwi) -> "b0101".U,
+    (csrrsi) -> "b0110".U,
+    (csrrci) -> "b0111".U,
+    (ecall ) -> "b1000".U,
+    (mret  ) -> "b1001".U
+  ))
+//  io.csrOp := LookupTreeDefault
 }
