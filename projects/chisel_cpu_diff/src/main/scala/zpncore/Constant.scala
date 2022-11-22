@@ -1,10 +1,5 @@
-//package zpnCore
-
 import chisel3._
 import chisel3.util._
-/*
- * ??? :代表什么？
- */
 
 trait Constant {
   val RW_DATA_WIDTH = 128
@@ -78,6 +73,18 @@ trait AxiParameters {
 }
 
 object Constant extends Constant with AxiParameters {  }
+object Csrs {
+  val mhartid  = "hf14".U
+  val mstatus  = "h300".U
+  val mie      = "h304".U
+  val mtvec    = "h305".U
+  val mscratch = "h340".U
+  val mepc     = "h341".U
+  val mcause   = "h342".U
+  val mip      = "h344".U
+  val mcycle   = "hb00".U
+  val minstret = "hb02".U
+}
 
 abstract class ZpnCoreModule extends Module with Constant //with AxiParameters
 abstract class ZpnCoreBundle extends Bundle with Constant //with AxiParameters

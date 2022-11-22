@@ -205,7 +205,7 @@ class ContrGen extends Module {
           (instLwu ) -> "b110".U))
 
   io.typeL := typeL
-  io.csrOp := MuxCase("b0000".U, List(
+  io.csrOp := MuxCase("b1111".U, List(
     (csrrw ) -> "b0001".U,
     (csrrs ) -> "b0010".U,
     (csrrc ) -> "b0011".U,
