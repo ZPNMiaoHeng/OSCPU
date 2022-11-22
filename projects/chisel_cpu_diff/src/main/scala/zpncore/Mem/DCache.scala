@@ -126,8 +126,6 @@ class DCache extends Module {
   cacheHitEn := (way0Hit || way1Hit )
 
   // Cache Miss and find cacheLine
-//  val ageWay0En = (way0Age(reqIndex) === 0.U)   //! 未考虑cache命中后，cacheline的选择，导致后续数据无法存入总线
-//  val ageWay1En = (way1Age(reqIndex) === 0.U)
   val ageWay0En = !cacheHitEn && (way0Age(reqIndex) === 0.U)
   val ageWay1En = !cacheHitEn && (way1Age(reqIndex) === 0.U)
 
@@ -239,31 +237,7 @@ class DCache extends Module {
     )),
     "b11".U -> rDataHL,
   ))
-  /*
-  in.data_read :=  MuxLookup(in.data_size, 0.U, Array(                    //? 位扩充？
-    "b00".U -> MuxLookup(reqOff(2, 0), 0.U, Array(
-                    "b000".U -> Cat(0.U, rDataHL( 7, 0)),
-                    "b001".U -> Cat(0.U, rDataHL(15, 8)),
-                    "b010".U -> Cat(0.U, rDataHL(23,16)),
-                    "b011".U -> Cat(0.U, rDataHL(31,24)),
-                    "b100".U -> Cat(0.U, rDataHL(39,32)),
-                    "b101".U -> Cat(0.U, rDataHL(47,40)),
-                    "b110".U -> Cat(0.U, rDataHL(55,48)),
-                    "b111".U -> Cat(0.U, rDataHL(63,56)),
-                )),
-    "b01".U -> MuxLookup(reqOff(2, 1), 0.U, Array(
-                    "b00".U -> Cat(0.U, rDataHL(15, 0)),
-                    "b01".U -> Cat(0.U, rDataHL(31,16)),
-                    "b10".U -> Cat(0.U, rDataHL(47,32)),
-                    "b11".U -> Cat(0.U, rDataHL(63,48)),
-                )),
-    "b10".U -> MuxLookup(reqOff(2), 0.U, Array(
-                    "b0".U -> Cat(0.U, rDataHL(31, 0)),
-                    "b1".U -> Cat(0.U, rDataHL(63,32)),
-                )),
-    "b11".U -> rDataHL,
-  ))
-*/
+
 //-------------------------------- AXI IO  --------------------------------
   val axiEn = sWriteEn || sReadEn 
   out.data_valid := axiEn 
