@@ -213,6 +213,7 @@ class ContrGen extends Module {
     (csrrwi) -> "b0101".U,
     (csrrsi) -> "b0110".U,
     (csrrci) -> "b0111".U,
+    
     (ecall ) -> "b1000".U,
     (mret  ) -> "b1001".U
   ))
