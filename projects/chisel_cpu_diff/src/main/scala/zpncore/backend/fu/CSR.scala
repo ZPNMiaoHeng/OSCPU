@@ -9,10 +9,12 @@ class Csr extends Module {
     val pc    = Input(UInt(32.W))
     val inst  = Input(UInt(32.W))
     val rs1   = Input(UInt(64.W))
-    val raddr     = Input(UInt(12.W))
+    val raddr = Input(UInt(12.W))
     val csrOp = Input(UInt( 4.W))     // csr ID类型信号
     
-    val rData = Output(UInt(64.W))
+    val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
+    val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址
+    val mepc  = Output(UInt(64.W))    // 退出异常mret 保存地址
     
   })
   val mstatus = RegInit(UInt(64.W), "h00001800".U)                 // Machine Mode
