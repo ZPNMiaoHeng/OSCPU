@@ -42,7 +42,7 @@ class Execution extends Module {
 
     csr.io.pc := io.in.pc
     csr.io.inst := io.in.inst
-    csr.io.csrOp := io.in.srcOp
+    csr.io.csrOp := io.in.csrOp
     csr.io.rs1Data := io.in.rs1Data
     csr.io.rAddr := io.csrRAddr
 
