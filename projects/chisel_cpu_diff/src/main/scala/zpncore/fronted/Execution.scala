@@ -16,9 +16,14 @@ class Execution extends Module {
 
         val pcSrc = Output(UInt(2.W))
         val nextPC = Output(UInt(WLEN.W))
+
+        val csrRAddr = Input(UInt(12.W))
+        val csrRData = Output(UInt(64.W))
     })
     val alu = Module(new ALU)
     val nextPC = Module(new NextPC)
+    val csr = Module(new CSR)
+
     alu.aluIO.ctrl.aluA := io.in.aluA
     alu.aluIO.ctrl.aluB := io.in.aluB
     alu.aluIO.ctrl.aluOp := io.in.aluOp
@@ -34,6 +39,12 @@ class Execution extends Module {
     nextPC.io.branch := io.in.branch
     nextPC.io.less := alu.io.less
     nextPC.io.zero := alu.io.zero
+
+    csr.io.pc := io.in.pc
+    csr.io.inst := io.in.inst
+    csr.io.csrOp := io.in.srcOp
+    csr.io.rs1Data := io.in.rs1Data
+    csr.io.rAddr := io.csrRAddr
 
 //----------------------------------------------------------------
   val exeValid = io.in.valid
@@ -88,4 +99,6 @@ class Execution extends Module {
 
   io.pcSrc := exePCSrc
   io.nextPC := exeNextPC
+
+  io.csrRData := csr.io.rData
 }

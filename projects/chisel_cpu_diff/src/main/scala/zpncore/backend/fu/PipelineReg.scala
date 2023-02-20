@@ -25,7 +25,7 @@ class BUS_R extends Bundle {
   val nextPC = UInt(WLEN.W)
   val aluRes = UInt(XLEN.W)
   val memData = UInt(XLEN.W)
-  val csrOp = UInt(4.W)
+  val csrOp = UInt(4.W)               //* +
 //  val rdData = UInt(XLEN.W)
 
 //  val bp_taken  = Bool()

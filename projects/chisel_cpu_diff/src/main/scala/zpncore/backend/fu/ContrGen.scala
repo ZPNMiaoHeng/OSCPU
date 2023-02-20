@@ -56,6 +56,7 @@ class ContrGen extends Module {
   val csrrwi  = inst === CSRRWI
   val csrrsi  = inst === CSRRSI
   val csrrci  = inst === CSRRCI
+
   val ecall   = inst === ECALL
   val mret    = inst === MRET
 
@@ -205,17 +206,17 @@ class ContrGen extends Module {
           (instLwu ) -> "b110".U))
 
   io.typeL := typeL
-  io.csrOp := MuxCase("b1111".U, List(
+  io.csrOp := MuxCase("b1111".U, List(          // 0 ## csr_func3
     (csrrw ) -> "b0001".U,
     (csrrs ) -> "b0010".U,
     (csrrc ) -> "b0011".U,
 //    (      ) -> "b0100".U,
     (csrrwi) -> "b0101".U,
     (csrrsi) -> "b0110".U,
-    (csrrci) -> "b0111".U,
+    (csrrci) -> "b0111".U
     
-    (ecall ) -> "b1000".U,
-    (mret  ) -> "b1001".U
+//    (ecall ) -> "b1000".U,
+//    (mret  ) -> "b1001".U
   ))
 //  io.csrOp := LookupTreeDefault
 }

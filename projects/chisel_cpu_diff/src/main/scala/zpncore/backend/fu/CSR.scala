@@ -4,42 +4,40 @@ import chisel3.util.experimental._
 import difftest._
 import Constant._
 
-class Csr extends Module {
+class CSR extends Module {
   val io = IO(new Bundle {
-    val pc    = Input(UInt(32.W))
-    val inst  = Input(UInt(32.W))
-    val rs1   = Input(UInt(64.W))
-    val raddr = Input(UInt(12.W))
-    val csrOp = Input(UInt( 4.W))     // csr ID类型信号
+    val pc      = Input(UInt(32.W))
+    val inst    = Input(UInt(32.W))
+    
+    val rs1Data = Input(UInt(64.W))
+    val csrOp   = Input(UInt( 4.W))
+    val rAddr   = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
     
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
-    val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址
-    val mepc  = Output(UInt(64.W))    // 退出异常mret 保存地址
+//    val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址
+//    val mepc  = Output(UInt(64.W))    // 退出异常mret 保存地址
     
   })
-  val mstatus = RegInit(UInt(64.W), "h00001800".U)                 // Machine Mode
-  val mtvec   = RegInit(UInt(64.W), 0.U)                           // Machine Trap-Vector Base-Address Register
-  val mepc    = RegInit(UInt(64.W), 0.U)
-  val mcause  = RegInit(UInt(64.W), 0.U)
+  val mstatus = RegInit(UInt(64.W), "h00001800".U) // Machine Mode
+  val mtvec   = RegInit(UInt(64.W), 0.U)           // Machine Trap-Vector Base-Address Register
+  val mepc    = RegInit(UInt(64.W), 0.U)           // Machine Exception Program Counter
+  val mcause  = RegInit(UInt(64.W), 0.U)           // Machine Cause
 
-  val csrOp    = io.csrOp
-  val csrRegOp = io.inst(31, 20)
-  val rs1 = Mux(csrOp(2)=== 1.U, Cat(0.U(59.W), io.inst(19, 15), io.rs1)
-  val csrRW = (csrOp(4) === 0.U)                             // csrrc/csrrs/csrrw+i
-  val csrEM = (csrOp === "b1000".U) || (csrOp === "b1001".U) // ecall/mret
-  val csrReg = LookupTreeDefault(csrRegOp, 0.U, List(   //  csr reg rs1 and write back
-//    Csrs.mhartid  -> mhartid  ,
-    Csrs.mcause   -> mcause   ,
-//    Csrs.mie      -> mie      ,
-    Csrs.mtvec    -> mtvec    ,
-//    Csrs.mscratch -> mscratch ,
-    Csrs.mepc     -> mepc     ,
-//    Csrs.mip      -> mip      ,
-//    Csrs.mcycle   -> mcycle   ,
-//    Csrs.minstret -> minstret ,
-  ))
-  
-  val rdata = LookupTreeDefault(raddr, 0.U, List(   // 写入的csr 寄存器
+//* csr write and read
+//**************************************************************
+// csrOp:3      2            1  0
+// +------+---------------+------+
+// |csrRW |判断csr i type |csrOp |
+// +------+---------------+------+
+//**************************************************************
+  val csrOp   = io.csrOp
+  val wAddr   = io.inst(31, 20)
+  val rs1Data = Mux(csrOp(2)=== 1.U, 
+                      Cat(0.U(59.W), io.inst(19, 15)), // csr i type instruction
+                        io.rs1Data)
+  val csrRW = (csrOp(4) === 0.U)                                                  // csrrc/csrrs/csrrw+i
+//  val csrEM = (csrOp === "b1000".U) || (csrOp === "b1001".U) // ecall/mret
+  val op1 = LookupTreeDefault(wAddr, 0.U, List(                             //  csr reg rs1 and write back
     Csrs.mstatus  -> mstatus,
     Csrs.mcause   -> mcause,
     Csrs.mie      -> mie,
@@ -51,37 +49,44 @@ class Csr extends Module {
     Csrs.minstret -> minstret,
   ))
 
-  val csrRes = Mux(csrRW, LookupTreeDefault(csrOp(1, 0), 0.U, List(
-    "b01".U -> csrReg & rs1, // csrrw
-    "b10".U -> csrReg | rs1, // csrrs
-    "b11".U -> csrReg      , // csrrc
-  )) ,0.U)
+  val wdata = Mux(csrRW, LookupTreeDefault(csrOp(1, 0), 0.U, List(
+    "b01".U -> op1          , // csrrw
+    "b10".U -> op1 | rs1Data, // csrrs
+    "b11".U -> op1 & rs1Data, // csrrc
+    )),
+  0.U)
+
   when(csrRW) {
-    when(csrRegOp === Csrs.mcycle) {
+    when(wAddr === Csrs.mcycle) {
       mcycle := wdata 
-    }
-    when(csrRegOp === Csrs.mtvec) {
+    } when(wAddr === Csrs.mtvec) {
       mtvec := wdata 
-    }
-    when(csrRegOp === Csrs.mepc) {
+    } when(wAddr === Csrs.mepc) {
       mepc := wdata 
-    }
-    when(csrRegOp === Csrs.mcause) {
+    } when(wAddr === Csrs.mcause) {
       mcause := wdata 
-    }
-    when(csrRegOp === Csrs.mstatus) {
-      mstatus := Cat((wdata(16) & wdata(15)) | (wdata(14) && wdata(13)), wdata(62, 0))  // ???
-    }
-    when(csrRegOp === Csrs.mie) {
+    } when(wAddr === Csrs.mstatus) {
+      mstatus := Cat((wdata(16) & wdata(15)) | (wdata(14) && wdata(13)), wdata(62, 0))
+    } when(wAddr === Csrs.mie) {
       mie := wdata 
-    }
-    when(csrRegOp === Csrs.mscratch) {
+    } when(wAddr === Csrs.mscratch) {
       mscratch := wdata 
     }
   }  
 
+  io.rData := LookupTreeDefault(io.rAddr, 0.U, List(   // 写入的csr 寄存器
+    Csrs.mstatus  -> mstatus,
+    Csrs.mcause   -> mcause,
+    Csrs.mie      -> mie,
+    Csrs.mtvec    -> mtvec,
+    Csrs.mscratch -> mscratch,
+    Csrs.mepc     -> mepc,
+    Csrs.mip      -> mip,
+    Csrs.mcycle   -> mcycle,
+    Csrs.minstret -> minstret,
+  ))
 
-
+/*
   // ECALL
   when (srcOp === "b1000".U) {
     mepc    := io.pc
@@ -93,6 +98,6 @@ class Csr extends Module {
   when (sysop === "b1001".U) {
     mstatus := Cat(mstatus(63,13), Fill(2, 0.U), mstatus(10,8), 1.U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
   }
-
+*/
 
 }

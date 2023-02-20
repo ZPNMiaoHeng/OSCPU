@@ -19,7 +19,9 @@ class WriteBack extends Module {
         val wbRdData = Output(UInt(64.W))
      
         val ready_cmt = Output(Bool())
-        val csrOp = Output(UInt(4.W))
+        val csrWData = Input(UInt(64.W))
+        val csrOp    = Output(UInt(4.W))
+        val csrRAddr = Output(UInt(12.W))
     })
 
   val resW = SignExt(io.in.aluRes(31,0), 64)
@@ -35,13 +37,14 @@ class WriteBack extends Module {
 
   io.rdEn := io.in.rdEn
   io.rdAddr := io.in.rdAddr
-  io.rdData := rdData
+  io.rdData := Mux(io.in.csrOp === 0.U, rdData, io.csrWData) //!
   io.ready_cmt := io.in.inst =/= 0.U && io.in.valid
 
   io.wbRdEn := io.in.rdEn
   io.wbRdAddr := io.in.rdAddr
   io.wbRdData := rdData
 
-    io.csrOp := io.in.csrOp
+  io.csrOp := io.in.csrOp
+  io.csrRAddr := io.in.inst(31, 20)
 }
   
