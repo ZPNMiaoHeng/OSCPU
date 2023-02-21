@@ -73,11 +73,11 @@ class ContrGen extends Module {
   val typeJ       = instJal || instJalr
 
 //R-TYPE 16
-  val instAdd     = inst === ADD              
+  val instAdd     = inst === ADD
   val instSub     = inst === SUB
   val instSll     = inst === SLL
-  val instSlt     = inst === SLT                 
-  val instSltu    = inst === SLTU                
+  val instSlt     = inst === SLT
+  val instSltu    = inst === SLTU
   val instXor     = inst === XOR
   val instSrl     = inst === SRL
   val instSra     = inst === SRA
