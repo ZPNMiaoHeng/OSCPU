@@ -41,6 +41,7 @@ class Execution extends Module {
     nextPC.io.zero := alu.io.zero
     nextPC.io.csrOp := csr.io.csrOp
     nextPC.io.mepc := csr.io.mepc
+    nextPC.io.mtvec := csr.io.mtvec
 
     csr.io.pc := io.in.pc
     csr.io.inst := io.in.inst

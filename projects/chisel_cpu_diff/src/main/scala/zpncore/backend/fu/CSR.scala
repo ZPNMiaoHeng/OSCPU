@@ -115,19 +115,27 @@ class CSR extends Module {
   io.mtvec := mtvec
   io.mepc := mepc
 
-
-/*
-  // ECALL
-  when (srcOp === "b1000".U) {
-    mepc    := io.pc
-    mcause  := 11.U
-    mstatus := Cat(mstatus(63,13), Fill(2, 1.U), mstatus(10,8), mstatus(3), mstatus(6, 4), 0.U, mstatus(2, 0))
-  }
-
-  // MRET : 退出机器模式，MIE位置MPIE
-  when (sysop === "b1001".U) {
-    mstatus := Cat(mstatus(63,13), Fill(2, 0.U), mstatus(10,8), 1.U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
-  }
-*/
+  // difftest for CSR state
+  val dt_cs = Module(new DifftestCSRState)
+  dt_cs.io.clock          := clock
+  dt_cs.io.coreid         := 0.U
+  dt_cs.io.priviledgeMode := 3.U        // machine mode
+  dt_cs.io.mstatus        := mstatus
+  dt_cs.io.sstatus        := mstatus & "h80000003000de122".U
+  dt_cs.io.mepc           := mepc
+  dt_cs.io.sepc           := 0.U
+  dt_cs.io.mtval          := 0.U
+  dt_cs.io.stval          := 0.U
+  dt_cs.io.mtvec          := mtvec
+  dt_cs.io.stvec          := 0.U
+  dt_cs.io.mcause         := mcause
+  dt_cs.io.scause         := 0.U
+  dt_cs.io.satp           := 0.U
+  dt_cs.io.mip            := 0.U
+  dt_cs.io.mie            := mie
+  dt_cs.io.mscratch       := mscratch
+  dt_cs.io.sscratch       := 0.U
+  dt_cs.io.mideleg        := 0.U
+  dt_cs.io.medeleg        := 0.U
 
 }
