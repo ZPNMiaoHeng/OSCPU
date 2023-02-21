@@ -43,7 +43,7 @@ train:
 	$(TOOLS) -d -b -s -a "-i non-output/microbench/microbench-train.bin $(VCD)" -m "$(FLASS)"
 
 interrupt:
-	$(TOOLS) -d -b -s -a "-i custom-output/interrupt-test/amtest-interrupt-test.bin " -m "$(FLASS)"
+	$(TOOLS) -d -b -s -a "-i custom-output/interrupt-test/amtest-interrupt-test.bin $(VCD)" -m "$(FLASS)"
 
 hello:
 	$(TOOLS) -d -b -s -a "-i custom-output/hello/amtest-hello.bin " -m "$(FLASS)"

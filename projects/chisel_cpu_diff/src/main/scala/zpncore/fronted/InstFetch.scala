@@ -70,5 +70,12 @@ class InstFetch extends Module {
   io.out.nextPC   := 0.U
   io.out.aluRes   := 0.U
   io.out.memData  := 0.U
-  io.out.csrOp    := 0.U
+
+  io.out.csrOp := 0.U
+  io.out.mstatus := 0.U
+  io.out.mepc := 0.U
+  io.out.mtvec := 0.U
+  io.out.mcause := 0.U
+  io.out.mie := 0.U
+  io.out.mscratch := 0.U
 }

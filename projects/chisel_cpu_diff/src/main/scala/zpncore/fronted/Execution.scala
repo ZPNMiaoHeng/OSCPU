@@ -70,6 +70,12 @@ class Execution extends Module {
   val exeNextPC = nextPC.io.nextPC
   val exeAluRes = alu.io.aluRes
   val exeCsrOp = io.in.csrOp
+  val exeMstatus = csr.io.mstatus
+  val exeMepc = csr.io.mepc
+  val exeMtvec = csr.io.mtvec
+  val exeMcause = csr.io.mcause
+  val exeMie = csr.io.mie
+  val exeMscratch = csr.io.mscratch
 
 //----------------------------------------------------------------
   io.out.valid    := exeValid
@@ -92,7 +98,14 @@ class Execution extends Module {
   io.out.nextPC   := exeNextPC
   io.out.aluRes   := exeAluRes
   io.out.memData  := 0.U
+
   io.out.csrOp    := exeCsrOp
+  io.out.mstatus  := exeMstatus
+  io.out.mepc     := exeMepc
+  io.out.mtvec    := exeMtvec
+  io.out.mcause   := exeMcause
+  io.out.mie      := exeMie
+  io.out.mscratch := exeMscratch
 
   io.exeRdEn := io.in.rdEn
   io.exeRdAddr := exeRdAddr
