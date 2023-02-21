@@ -116,7 +116,10 @@ class ContrGen extends Module {
   val typeS        = instSb || instSh || instSw || instSd
 
 // ebreak inst
-  val Ebreak       = inst === EBREAK
+  val Ebreak = inst === EBREAK
+
+// 自定义指令集
+  val my_inst = inst === MY_INST    //自定义指令
 
 // type+w
   val typeW        = instAddw || instSubw || instSllw || instSlliw ||
