@@ -37,17 +37,17 @@ class ContrGen extends Module {
   val instSlti    = inst === SLTI 
   val instSltiu   = inst === SLTIU
   val instAddiw   = inst === ADDIW           
-  val instSlliw   = inst === SLLIW                   // 0.B //Mux("b001_00110".U === instOF && 0.U === io.inst(30), true.B, false.B)
-  val instSrliw   = inst === SRLIW                   // 0.B // Mux("b101_00110".U === instOF && 0.U === io.inst(30), true.B, false.B)
-  val instSraiw   = inst === SRAIW                   // 0.B //Mux("b101_00110".U === instOF && 1.U === io.inst(30), true.B, false.B)
+  val instSlliw   = inst === SLLIW
+  val instSrliw   = inst === SRLIW
+  val instSraiw   = inst === SRAIW
   val instJalr    = inst === JALR
-  val instLb      = inst === LB                 // 0.B // Mux("b000_00000".U === instOF, true.B, false.B)
-  val instLh      = inst === LH                 // 0.B // Mux("b001_00000".U === instOF, true.B, false.B)
+  val instLb      = inst === LB
+  val instLh      = inst === LH
   val instLw      = inst === LW
   val instLd      = inst === LD
   val instLbu     = inst === LBU
-  val instLhu     = inst === LHU                // 0.B // Mux("b101_00000".U === instOF, true.B, false.B)
-  val instLwu     = inst === LWU                 // ???
+  val instLhu     = inst === LHU
+  val instLwu     = inst === LWU
 
 //*CSR
   val csrrw   = inst === CSRRW
@@ -69,25 +69,25 @@ class ContrGen extends Module {
              instLhu || instLwu
 
 // J type 1
-  val instJal     = inst === JAL                   // Mux("b11011".U  === io.inst(6,2), true.B, false.B)
+  val instJal     = inst === JAL
   val typeJ       = instJal || instJalr
 
 //R-TYPE 16
-  val instAdd     = inst === ADD                   // 0.B // Mux("b000_01100".U === instOF && 0.U === io.inst(30), true.B, false.B)              
+  val instAdd     = inst === ADD              
   val instSub     = inst === SUB
-  val instSll     = inst === SLL                   // 0.B // Mux("b001_01100".U === instOF && 0.U === io.inst(30), true.B, false.B)
-  val instSlt     = inst === SLT                   // 0.B // Mux("b010_01100".U === instOF && 0.U === io.inst(30), true.B, false.B)                  
-  val instSltu    = inst === SLTU                  // 0.B // Mux("b011_01100".U === instOF && 0.U === io.inst(30), true.B, false.B)                 
-  val instXor     = inst === XOR                   // 0.B // Mux("b100_01100".U === instOF && 0.U === io.inst(30), true.B, false.B)
-  val instSrl     = inst === SRL                   // 0.B // Mux("b101_01100".U === instOF && 0.U === io.inst(30), true.B, false.B)
-  val instSra     = inst === SRA                   // 0.B // Mux("b101_01100".U === instOF && 1.U === io.inst(30), true.B, false.B)
-  val instOr      = inst === OR                    // 0.B // Mux("b110_01100".U === instOF, true.B, false.B)
-  val instAnd     = inst === AND     // 0.B // Mux("b111_01100".U === instOF, true.B, false.B)
+  val instSll     = inst === SLL
+  val instSlt     = inst === SLT                 
+  val instSltu    = inst === SLTU                
+  val instXor     = inst === XOR
+  val instSrl     = inst === SRL
+  val instSra     = inst === SRA
+  val instOr      = inst === OR
+  val instAnd     = inst === AND
   val instAddw    = inst === ADDW
-  val instSubw    = inst === SUBW    // 0.B // Mux("b000_01100".U === instOF && 1.U === io.inst(30), true.B, false.B)
-  val instSllw    = inst === SLLW    // ??
-  val instSrlw    = inst === SRLW    // ??
-  val instSraw    = inst === SRAW    // ??
+  val instSubw    = inst === SUBW
+  val instSllw    = inst === SLLW
+  val instSrlw    = inst === SRLW
+  val instSraw    = inst === SRAW
   val instRemw    = inst === REMW
   val instDiv     = inst === DIV
   val instDivw    = inst === DIVW
@@ -102,10 +102,10 @@ class ContrGen extends Module {
 // B type 6
   val instBeq      = inst === BEQ
   val instBne      = inst === BNE
-  val instBlt      = inst === BLT                // 0.B // Mux("b100_11000".U === instOF, true.B, false.B)
-  val instBge      = inst === BGE                // 0.B // Mux("b101_11000".U === instOF, true.B, false.B)
-  val instBltu     = inst === BLTU               // 0.B // Mux("b110_11000".U === instOF, true.B, false.B)
-  val instBgeu     = inst === BGEU               // 0.B // Mux("b111_11000".U === instOF, true.B, false.B)
+  val instBlt      = inst === BLT
+  val instBge      = inst === BGE
+  val instBltu     = inst === BLTU
+  val instBgeu     = inst === BGEU
   val typeB        = instBeq || instBne || instBlt || instBge ||instBltu || instBgeu
 
 // S type 4
@@ -190,10 +190,10 @@ class ContrGen extends Module {
           (instBeq || instBne || instBlt || instBge || instBltu || instBgeu) -> "b011".U,                  // B Type
           (instJal) -> "b100".U))                                                                          // J Type
 
-  io.memCtr.memtoReg := MuxCase("b00".U, List(                                                                                              // alu.R -> Reg
-    (instLb || instLh || instLw || instLwu || instLd || instLbu || instLhu)                -> "b01".U,                               // Mem   -> Reg
+  io.memCtr.memtoReg := MuxCase("b00".U, List(                                                             // alu.R -> Reg
+    (instLb || instLh || instLw || instLwu || instLd || instLbu || instLhu)     -> "b01".U,                // Mem   -> Reg
     (typeW)                                                                     -> "b10".U
-//    (instBeq || instBne || instBlt || instBge || instBltu || instBgeu)          -> "b11".U                                // 无用信号
+//    (instBeq || instBne || instBlt || instBge || instBltu || instBgeu)          -> "b11".U               // 无用信号
   ))
   io.memCtr.memWr    := Mux(instSb || instSh || instSw || instSd, 1.U, 0.U)
   io.memCtr.memOP    := MuxCase("b111".U, List(
