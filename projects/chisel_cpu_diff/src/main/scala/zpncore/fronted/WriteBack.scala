@@ -37,12 +37,13 @@ class WriteBack extends Module {
 
   io.rdEn := io.in.rdEn
   io.rdAddr := io.in.rdAddr
-  io.rdData := Mux(io.in.csrOp === 0.U, rdData, io.csrWData) //!
+  io.rdData := Mux(io.in.csrOp === 0.U, rdData, io.csrWData)
   io.ready_cmt := io.in.inst =/= 0.U && io.in.valid
 
   io.wbRdEn := io.in.rdEn
   io.wbRdAddr := io.in.rdAddr
-  io.wbRdData := rdData
+//  io.wbRdData := rdData
+  io.wbRdData := Mux(io.in.csrOp === 0.U, rdData, io.csrWData)
 
   io.csrOp := io.in.csrOp
   io.csrRAddr := io.in.inst(31, 20)

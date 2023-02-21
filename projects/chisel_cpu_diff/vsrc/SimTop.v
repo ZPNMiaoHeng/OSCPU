@@ -2055,6 +2055,7 @@ module WriteBack(
   wire [63:0] _rdData_T_1 = 2'h0 == io_in_memtoReg ? io_in_aluRes : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _rdData_T_3 = 2'h1 == io_in_memtoReg ? io_in_memData : _rdData_T_1; // @[Mux.scala 81:58]
   wire [63:0] rdData = 2'h2 == io_in_memtoReg ? resW : _rdData_T_3; // @[Mux.scala 81:58]
+  wire  _io_rdData_T = io_in_csrOp == 4'h0; // @[WriteBack.scala 40:32]
   assign io_pc = io_in_pc; // @[WriteBack.scala 35:9]
   assign io_inst = io_in_inst; // @[WriteBack.scala 36:11]
   assign io_rdEn = io_in_rdEn; // @[WriteBack.scala 38:11]
@@ -2062,9 +2063,9 @@ module WriteBack(
   assign io_rdData = io_in_csrOp == 4'h0 ? rdData : io_csrWData; // @[WriteBack.scala 40:19]
   assign io_wbRdEn = io_in_rdEn; // @[WriteBack.scala 43:13]
   assign io_wbRdAddr = io_in_rdAddr; // @[WriteBack.scala 44:15]
-  assign io_wbRdData = 2'h2 == io_in_memtoReg ? resW : _rdData_T_3; // @[Mux.scala 81:58]
+  assign io_wbRdData = _io_rdData_T ? rdData : io_csrWData; // @[WriteBack.scala 46:21]
   assign io_ready_cmt = io_in_inst != 32'h0 & io_in_valid; // @[WriteBack.scala 41:38]
-  assign io_csrRAddr = io_in_inst[31:20]; // @[WriteBack.scala 48:28]
+  assign io_csrRAddr = io_in_inst[31:20]; // @[WriteBack.scala 49:28]
 endmodule
 module Core(
   input          clock,
