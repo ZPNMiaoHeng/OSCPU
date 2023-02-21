@@ -213,10 +213,9 @@ class ContrGen extends Module {
 //    (      ) -> "b0100".U,
     (csrrwi) -> "b0101".U,
     (csrrsi) -> "b0110".U,
-    (csrrci) -> "b0111".U
+    (csrrci) -> "b0111".U,
     
-//    (ecall ) -> "b1000".U,
-//    (mret  ) -> "b1001".U
+    (ecall ) -> "b1000".U,
+    (mret  ) -> "b1001".U
   ))
-//  io.csrOp := LookupTreeDefault
 }

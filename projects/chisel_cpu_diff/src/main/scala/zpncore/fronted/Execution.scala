@@ -39,6 +39,8 @@ class Execution extends Module {
     nextPC.io.branch := io.in.branch
     nextPC.io.less := alu.io.less
     nextPC.io.zero := alu.io.zero
+    nextPC.io.csrOp := csr.io.csrOp
+    nextPC.io.mepc := csr.io.mepc
 
     csr.io.pc := io.in.pc
     csr.io.inst := io.in.inst

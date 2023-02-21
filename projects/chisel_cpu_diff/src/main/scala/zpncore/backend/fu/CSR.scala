@@ -15,8 +15,10 @@ class CSR extends Module {
     val rAddr   = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
     
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
-//    val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址
-//    val mepc  = Output(UInt(64.W))    // 退出异常mret 保存地址
+    val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址 
+    val mepc  = Output(UInt(64.W))    // 退出异常mret 保存地址
+//    val mstatus   = Output(UInt(64.W))
+//    val mie       = Output(UInt(64.W))
     
   })
   val mstatus = RegInit(UInt(64.W), "h00001800".U) // Machine Mode
@@ -33,10 +35,10 @@ class CSR extends Module {
 
 //* csr write and read
 //**************************************************************
-// csrOp:3      2            1  0
-// +------+---------------+------+
-// |csrRW |判断csr i type |csrOp |
-// +------+---------------+------+
+// csrOp:   3      2            1  0
+//      +------+---------------+------+
+//      |csrRW |判断csr i type |csrOp |
+//      +------+---------------+------+
 //**************************************************************
   val csrOp   = io.csrOp
   val wAddr   = io.inst(31, 20)
@@ -44,7 +46,6 @@ class CSR extends Module {
                       Cat(0.U(59.W), io.inst(19, 15)), // csr i type instruction
                         io.rs1Data)
   val csrRW = (csrOp(3) === 0.U)                                                  // csrrc/csrrs/csrrw+i
-//  val csrEM = (csrOp === "b1000".U) || (csrOp === "b1001".U) // ecall/mret
   val op1 = LookupTreeDefault(wAddr, 0.U, List(                             //  csr reg rs1 and write back
     Csrs.mstatus  -> mstatus,
     Csrs.mcause   -> mcause,
@@ -59,12 +60,22 @@ class CSR extends Module {
 
   val wdata = Mux(csrRW, 
     LookupTreeDefault(csrOp(1, 0), 0.U, List(
-      "b01".U -> op1.asUInt()            , // csrrw
+      "b01".U -> op1.asUInt(),             // csrrw
       "b10".U -> (op1 | rs1Data).asUInt(), // csrrs
-      "b11".U -> (op1 & rs1Data).asUInt() // csrrc
+      "b11".U -> (op1 & rs1Data).asUInt()  // csrrc
       )
     ),
   0.U)
+
+  when(io.csrOp === "b1000".U) {         //ecall
+     mcause  := "b11".U
+ //    mtvec  := //! 存储地址
+     mepc    := io.pc
+     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
+  } .elsewhen(io.csrOp === "b1001".U) {  //ebreak
+     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
+  }
+
 
   when(csrRW) {
     when(wAddr === Csrs.mcycle) {
@@ -101,6 +112,9 @@ class CSR extends Module {
     Csrs.mcycle   -> mcycle,
     Csrs.minstret -> minstret,
   ))
+  io.mtvec := mtvec
+  io.mepc := mepc
+
 
 /*
   // ECALL
