@@ -45,7 +45,7 @@ class CSR extends Module {
   val rs1Data = Mux(csrOp(2)=== 1.U, 
                       Cat(0.U(59.W), io.inst(19, 15)), // csr i type instruction
                         io.rs1Data)
-  val csrRW = (csrOp(3) === 0.U)                                                  // csrrc/csrrs/csrrw+i
+  val csrRW = ((csrOp(3) === 0.U) && (csrOp =/= "b0000".U))                                                  // csrrc/csrrs/csrrw+i
   val op1 = LookupTreeDefault(wAddr, 0.U, List(                             //  csr reg rs1 and write back
     Csrs.mstatus  -> mstatus,
     Csrs.mcause   -> mcause,
