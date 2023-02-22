@@ -1,5 +1,6 @@
 import chisel3._
 import chisel3.util.experimental._
+import Instructions._
 import difftest._
 import utils._
 
@@ -102,6 +103,15 @@ class Core extends Module {
 //  val mem_valid = RegNext(MEM.io.memAxi)
   val valid = WB.io.ready_cmt && IF.io.IFDone && MEM.io.memDone
 
+  val rf_a0 = WireInit(0.U(64.W))
+  BoringUtils.addSink(rf_a0, "rf_a0")
+
+  when (WB.io.inst === MY_INST && valid) {
+    printf("%c", rf_a0)
+  }
+
+  val skip = WB.io.inst === MY_INST
+
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
   dt_ic.io.coreid   := 0.U
@@ -109,7 +119,7 @@ class Core extends Module {
   dt_ic.io.valid    := RegNext(valid)
   dt_ic.io.pc       := RegNext(WB.io.pc)
   dt_ic.io.instr    := RegNext(WB.io.inst)
-  dt_ic.io.skip     := false.B
+  dt_ic.io.skip     := RegNext(skip)
   dt_ic.io.isRVC    := false.B
   dt_ic.io.scFailed := false.B
   dt_ic.io.wen      := RegNext(WB.io.rdEn)
@@ -128,9 +138,6 @@ class Core extends Module {
 
   cycle_cnt := cycle_cnt + 1.U
   instr_cnt := instr_cnt + valid
-
-  val rf_a0 = WireInit(0.U(64.W))
-  BoringUtils.addSink(rf_a0, "rf_a0")
 
   val dt_te = Module(new DifftestTrapEvent)
   dt_te.io.clock    := clock

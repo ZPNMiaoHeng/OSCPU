@@ -119,7 +119,7 @@ class ContrGen extends Module {
   val Ebreak = inst === EBREAK
 
 // 自定义指令集
-  val my_inst = inst === MY_INST    //自定义指令
+  val my_inst = inst === MY_INST    //打印a0寄存器的值
 
 // type+w
   val typeW        = instAddw || instSubw || instSllw || instSlliw ||
@@ -153,7 +153,7 @@ class ContrGen extends Module {
 
   io.aluCtr.aluOp := MuxCase("b0000".U, List(                                                                  // 加法器， 加法
     aluSub                                          -> "b1000".U,               // 加法器， 减法
-    aluSll                                          -> "b0001".U ,              // 移位器， 左移
+    aluSll                                          -> "b0001".U,               // 移位器， 左移
     (instSlti || instSlt || instBlt || instBge)     -> "b0010".U,               // 做减法， 带符号小于置位结果输出， less按带符号结果设置
     (instBeq || instBne)                            -> "b1001".U,               // 相等比较 去做减法
     (instSltiu || instSltu || instBltu || instBgeu) -> "b1010".U,               // 做减法， 无符号小于置位结果输出， less按无符号结果设置
@@ -177,7 +177,7 @@ class ContrGen extends Module {
 
   io.regCtrl.rs1En := ~(instLui || instAuipc || instJal)  /** ecall */
   io.regCtrl.rs2En :=  (typeR || typeB || typeS)
-  io.regCtrl.rs1Addr := Mux(Ebreak, "b01010".U, inst(19, 15))
+  io.regCtrl.rs1Addr := Mux(Ebreak || my_inst, "b01010".U, inst(19, 15)) //! add my_inst reg1
   io.regCtrl.rs2Addr := inst(24, 20)
 
   val wRegEn = ~(typeS || typeB || Ebreak )  /** Ecall Mret */

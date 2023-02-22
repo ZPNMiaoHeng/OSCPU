@@ -62,9 +62,9 @@ class CSR extends Module {
 
   val wdata = Mux(csrRW, 
     LookupTreeDefault(csrOp(1, 0), 0.U, List(
-      "b01".U -> rs1Data.asUInt(),             // csrrw
+      "b01".U -> rs1Data.asUInt(),         // csrrw
       "b10".U -> (op1 | rs1Data).asUInt(), // csrrs
-      "b11".U -> (op1 & rs1Data).asUInt()  // csrrc
+      "b11".U -> (op1 & ~rs1Data).asUInt()  // csrrc
       )
     ),
   0.U)
