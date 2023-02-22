@@ -182,14 +182,14 @@ class DataMem extends Module {
   val memAluRes = io.in.aluRes
   val memData = wData
   val memCsrOp = io.in.csrOp
-  /*
+
   val memMstatus = io.in.mstatus
   val memMepc = io.in.mepc
   val memMtvec = io.in.mtvec
   val memMcause = io.in.mcause
   val memMie = io.in.mie
   val memMscratch = io.in.mscratch
-*/
+
 //----------------------------------------------------------------
   io.out.valid    := memValid
   io.out.pc       := memPC
@@ -213,14 +213,14 @@ class DataMem extends Module {
   io.out.memData  := memData
   
   io.out.csrOp    := memCsrOp
-/*
+
   io.out.mstatus  := memMstatus
   io.out.mepc     := memMepc
   io.out.mtvec    := memMtvec
   io.out.mcause   := memMcause
   io.out.mie      := memMie
   io.out.mscratch := memMscratch
-*/
+
   io.memRdEn := io.in.rdEn
   io.memRdAddr := memRdAddr
   io.memRdData := memBPData

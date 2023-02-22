@@ -16,21 +16,25 @@ class CSR extends Module {
     
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
 //* --------- csr ------------------------
-//    val in_mstatus  = Input(UInt(64.W))
-//    val in_mepc     = Input(UInt(64.W))
-//    val in_mtvec    = Input(UInt(64.W))
-//    val in_mcause   = Input(UInt(64.W))
-//    val in_mie      = Input(UInt(64.W))
-//    val in_mscratch = Input(UInt(64.W))
+// WB阶段提交寄存器值，保存在csr中
+    val in_mstatus  = Input(UInt(64.W))
+    val in_mepc     = Input(UInt(64.W))
+    val in_mtvec    = Input(UInt(64.W))
+    val in_mcause   = Input(UInt(64.W))
+    val in_mie      = Input(UInt(64.W))
+    val in_mscratch = Input(UInt(64.W))
 
-//    val mstatus = Output(UInt(64.W))
-    val mepc = Output(UInt(64.W))    // 退出异常mret 保存地址
-    val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址 
-//    val mcause = Output(UInt(64.W))
-//    val mie = Output(UInt(64.W))
-//    val mscratch = Output(UInt(64.W))
+// 将当前指令的csr状态传输到级间寄存器上
+    val out_mstatus = Output(UInt(64.W))
+    val out_mepc = Output(UInt(64.W))    // 退出异常mret 保存地址
+    val out_mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址 
+    val out_mcause = Output(UInt(64.W))
+    val out_mie = Output(UInt(64.W))
+    val out_mscratch = Output(UInt(64.W))
     
   })
+
+//* --------------------- csr regs -------------------------------
   val mstatus = RegInit(UInt(64.W), "h00001800".U) // Machine Mode
   val mtvec   = RegInit(UInt(64.W), 0.U)           // Machine Trap-Vector Base-Address Register
   val mepc    = RegInit(UInt(64.W), 0.U)           // Machine Exception Program Counter
@@ -42,7 +46,12 @@ class CSR extends Module {
   val mscratch  = RegInit(UInt(64.W), 0.U)
   val mcycle    = RegInit(UInt(64.W), 0.U)
   val minstret  = RegInit(UInt(64.W), 0.U)
+//**************************************************************
+  mstatus := io.in_mstatus
+  mtvec := io.in_mtvec
+  mepc := io.in_mepc
 
+//**************************************************************
 //* csr write and read
 //**************************************************************
 // csrOp:   3      2            1  0
@@ -55,7 +64,7 @@ class CSR extends Module {
   val rs1Data = Mux(csrOp(2)=== 1.U, 
                       Cat(0.U(59.W), io.inst(19, 15)), // csr i type instruction
                         io.rs1Data)
-  val csrRW = ((csrOp(3) === 0.U) && (csrOp =/= "b0000".U))                                                  // csrrc/csrrs/csrrw+i
+  val csrRW = ((csrOp(3) === 0.U) && (csrOp =/= "b0000".U))                 // csrrc/csrrs/csrrw+i
   val op1 = LookupTreeDefault(wAddr, 0.U, List(                             //  csr reg rs1 and write back
     Csrs.mstatus  -> mstatus,
     Csrs.mcause   -> mcause,
@@ -70,8 +79,8 @@ class CSR extends Module {
 
   val wdata = Mux(csrRW, 
     LookupTreeDefault(csrOp(1, 0), 0.U, List(
-      "b01".U -> rs1Data.asUInt(),         // csrrw
-      "b10".U -> (op1 | rs1Data).asUInt(), // csrrs
+      "b01".U -> rs1Data.asUInt(),          // csrrw
+      "b10".U -> (op1 | rs1Data).asUInt(),  // csrrs
       "b11".U -> (op1 & ~rs1Data).asUInt()  // csrrc
       )
     ),
@@ -85,8 +94,8 @@ class CSR extends Module {
   } .elsewhen(io.csrOp === "b1001".U) {  //ebreak
      mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
   }
-
-
+  
+//* ------------------------------------- 写回寄存器 -------------------------------------------
   when(csrRW) {
     when(wAddr === Csrs.mcycle) {
       mcycle := wdata 
@@ -111,6 +120,7 @@ class CSR extends Module {
     }
   }
 
+//* ------------------------------------- difftest -------------------------------------------
   io.rData := LookupTreeDefault(io.rAddr, 0.U, List(   // 写入的csr 寄存器
     Csrs.mstatus  -> mstatus,
     Csrs.mcause   -> mcause,
@@ -122,12 +132,13 @@ class CSR extends Module {
     Csrs.mcycle   -> mcycle,
     Csrs.minstret -> minstret,
   ))
-//  io.mstatus := mstatus
+
+  io.mstatus := mstatus
   io.mepc := mepc
   io.mtvec := mtvec
-//  io.mcause := mcause
-//  io.mie := mie
-//  io.mscratch := mscratch
+  io.mcause := mcause
+  io.mie := mie
+  io.mscratch := mscratch
 
   // difftest for CSR state
 /*
