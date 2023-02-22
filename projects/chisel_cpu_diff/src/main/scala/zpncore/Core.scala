@@ -147,7 +147,7 @@ class Core extends Module {
   dt_te.io.pc       := WB.io.pc
   dt_te.io.cycleCnt := cycle_cnt
   dt_te.io.instrCnt := instr_cnt
-
+/*
   val dt_cs = Module(new DifftestCSRState)
   dt_cs.io.clock          := clock
   dt_cs.io.coreid         := 0.U
@@ -169,5 +169,5 @@ class Core extends Module {
   dt_cs.io.sscratch       := 0.U
   dt_cs.io.mideleg        := 0.U
   dt_cs.io.medeleg        := 0.U
-
+*/
 }

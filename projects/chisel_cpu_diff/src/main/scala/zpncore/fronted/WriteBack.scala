@@ -22,13 +22,14 @@ class WriteBack extends Module {
         val csrWData = Input(UInt(64.W))
         val csrOp    = Output(UInt(4.W))
         val csrRAddr = Output(UInt(12.W))
-
+/*
         val mstatus = Output(UInt(64.W))
         val mepc = Output(UInt(64.W))
         val mtvec = Output(UInt(64.W))
         val mcause = Output(UInt(64.W))
         val mie = Output(UInt(64.W))
         val mscratch = Output(UInt(64.W))
+*/
     })
 
   val resW = SignExt(io.in.aluRes(31,0), 64)
@@ -54,12 +55,13 @@ class WriteBack extends Module {
 
   io.csrOp := io.in.csrOp
   io.csrRAddr := io.in.inst(31, 20)
-
+/*
   io.mstatus  := io.in.mstatus
   io.mepc     := io.in.mepc
   io.mtvec    := io.in.mtvec
   io.mcause   := io.in.mcause
   io.mie      := io.in.mie
   io.mscratch := io.in.mscratch
+  */
 }
   

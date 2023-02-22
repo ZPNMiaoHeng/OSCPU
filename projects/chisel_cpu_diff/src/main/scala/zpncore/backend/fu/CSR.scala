@@ -15,12 +15,20 @@ class CSR extends Module {
     val rAddr   = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
     
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
-    val mstatus = Output(UInt(64.W))
+//* --------- csr ------------------------
+//    val in_mstatus  = Input(UInt(64.W))
+//    val in_mepc     = Input(UInt(64.W))
+//    val in_mtvec    = Input(UInt(64.W))
+//    val in_mcause   = Input(UInt(64.W))
+//    val in_mie      = Input(UInt(64.W))
+//    val in_mscratch = Input(UInt(64.W))
+
+//    val mstatus = Output(UInt(64.W))
     val mepc = Output(UInt(64.W))    // 退出异常mret 保存地址
     val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址 
-    val mcause = Output(UInt(64.W))
-    val mie = Output(UInt(64.W))
-    val mscratch = Output(UInt(64.W))
+//    val mcause = Output(UInt(64.W))
+//    val mie = Output(UInt(64.W))
+//    val mscratch = Output(UInt(64.W))
     
   })
   val mstatus = RegInit(UInt(64.W), "h00001800".U) // Machine Mode
@@ -84,7 +92,7 @@ class CSR extends Module {
       mcycle := wdata 
     }
     when(wAddr === Csrs.mtvec) {
-      mtvec := wdata 
+      mtvec := RegNext(wdata)
     } 
     when(wAddr === Csrs.mepc) {
       mepc := wdata 
@@ -114,14 +122,15 @@ class CSR extends Module {
     Csrs.mcycle   -> mcycle,
     Csrs.minstret -> minstret,
   ))
-  io.mstatus := mstatus
+//  io.mstatus := mstatus
   io.mepc := mepc
   io.mtvec := mtvec
-  io.mcause := mcause
-  io.mie := mie
-  io.mscratch := mscratch
-/*
+//  io.mcause := mcause
+//  io.mie := mie
+//  io.mscratch := mscratch
+
   // difftest for CSR state
+/*
   val dt_cs = Module(new DifftestCSRState)
   dt_cs.io.clock          := clock
   dt_cs.io.coreid         := 0.U
@@ -132,7 +141,7 @@ class CSR extends Module {
   dt_cs.io.sepc           := 0.U
   dt_cs.io.mtval          := 0.U
   dt_cs.io.stval          := 0.U
-  dt_cs.io.mtvec          := mtvec
+  dt_cs.io.mtvec          := mtvec//RegNext(RegNext(mtvec))
   dt_cs.io.stvec          := 0.U
   dt_cs.io.mcause         := mcause
   dt_cs.io.scause         := 0.U
