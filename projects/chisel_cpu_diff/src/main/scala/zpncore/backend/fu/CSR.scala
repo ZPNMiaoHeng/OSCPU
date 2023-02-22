@@ -17,21 +17,21 @@ class CSR extends Module {
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
 //* --------- csr ------------------------
 // WB阶段提交寄存器值，保存在csr中
+/*
     val in_mstatus  = Input(UInt(64.W))
     val in_mepc     = Input(UInt(64.W))
     val in_mtvec    = Input(UInt(64.W))
     val in_mcause   = Input(UInt(64.W))
     val in_mie      = Input(UInt(64.W))
     val in_mscratch = Input(UInt(64.W))
-
+*/
 // 将当前指令的csr状态传输到级间寄存器上
-    val out_mstatus = Output(UInt(64.W))
-    val out_mepc = Output(UInt(64.W))    // 退出异常mret 保存地址
-    val out_mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址 
-    val out_mcause = Output(UInt(64.W))
-    val out_mie = Output(UInt(64.W))
-    val out_mscratch = Output(UInt(64.W))
-    
+//    val mstatus = Output(UInt(64.W))
+    val mepc = Output(UInt(64.W))    // 退出异常mret 保存地址
+    val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址 
+//    val mcause = Output(UInt(64.W))
+//    val mie = Output(UInt(64.W))
+//    val mscratch = Output(UInt(64.W))
   })
 
 //* --------------------- csr regs -------------------------------
@@ -46,12 +46,7 @@ class CSR extends Module {
   val mscratch  = RegInit(UInt(64.W), 0.U)
   val mcycle    = RegInit(UInt(64.W), 0.U)
   val minstret  = RegInit(UInt(64.W), 0.U)
-//**************************************************************
-  mstatus := io.in_mstatus
-  mtvec := io.in_mtvec
-  mepc := io.in_mepc
 
-//**************************************************************
 //* csr write and read
 //**************************************************************
 // csrOp:   3      2            1  0
@@ -94,7 +89,7 @@ class CSR extends Module {
   } .elsewhen(io.csrOp === "b1001".U) {  //ebreak
      mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
   }
-  
+
 //* ------------------------------------- 写回寄存器 -------------------------------------------
   when(csrRW) {
     when(wAddr === Csrs.mcycle) {
@@ -120,8 +115,9 @@ class CSR extends Module {
     }
   }
 
-//* ------------------------------------- difftest -------------------------------------------
-  io.rData := LookupTreeDefault(io.rAddr, 0.U, List(   // 写入的csr 寄存器
+//* --------------------------------------------------------------------------------
+//  val rs1Data = RegInit(UInt(64.W), 0.U) //! 保存csr之前值
+  val rDataT = LookupTreeDefault(io.rAddr, 0.U, List(   // 写入的csr 寄存器
     Csrs.mstatus  -> mstatus,
     Csrs.mcause   -> mcause,
     Csrs.mie      -> mie,
@@ -133,15 +129,16 @@ class CSR extends Module {
     Csrs.minstret -> minstret,
   ))
 
-  io.mstatus := mstatus
+  io.rData := RegNext(rDataT)
+//  io.mstatus := mstatus
   io.mepc := mepc
   io.mtvec := mtvec
-  io.mcause := mcause
-  io.mie := mie
-  io.mscratch := mscratch
+//  io.mcause := mcause
+//  io.mie := mie
+//  io.mscratch := mscratch
 
   // difftest for CSR state
-/*
+
   val dt_cs = Module(new DifftestCSRState)
   dt_cs.io.clock          := clock
   dt_cs.io.coreid         := 0.U
@@ -163,5 +160,5 @@ class CSR extends Module {
   dt_cs.io.sscratch       := 0.U
   dt_cs.io.mideleg        := 0.U
   dt_cs.io.medeleg        := 0.U
-*/
+
 }

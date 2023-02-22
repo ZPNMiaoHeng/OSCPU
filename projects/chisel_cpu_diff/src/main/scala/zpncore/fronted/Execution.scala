@@ -17,12 +17,12 @@ class Execution extends Module {
         val pcSrc = Output(UInt(2.W))
         val nextPC = Output(UInt(WLEN.W))
 
-        val csrRAddr = Input(UInt(12.W))
-        val csrRData = Output(UInt(64.W))
+        val csrOp = Input(UInt(4.W))
+        val mepc = Input(UInt(64.W))
+        val mtvec = Input(UInt(64.W))
     })
     val alu = Module(new ALU)
     val nextPC = Module(new NextPC)
-    val csr = Module(new CSR)
 
     alu.aluIO.ctrl.aluA := io.in.aluA
     alu.aluIO.ctrl.aluB := io.in.aluB
@@ -39,16 +39,10 @@ class Execution extends Module {
     nextPC.io.branch := io.in.branch
     nextPC.io.less := alu.io.less
     nextPC.io.zero := alu.io.zero
-    nextPC.io.csrOp := csr.io.csrOp
-    nextPC.io.mepc := csr.io.mepc
-    nextPC.io.mtvec := csr.io.mtvec
 
-    csr.io.pc := io.in.pc
-    csr.io.inst := io.in.inst
-    csr.io.csrOp := io.in.csrOp
-    csr.io.rs1Data := io.in.rs1Data
-    csr.io.rAddr := io.csrRAddr
-
+    nextPC.io.csrOp := io.csrOp
+    nextPC.io.mepc := io.mepc
+    nextPC.io.mtvec := io.mtvec
 //----------------------------------------------------------------
   val exeValid = io.in.valid
   val exePC = io.in.pc
@@ -70,13 +64,6 @@ class Execution extends Module {
   val exeNextPC = nextPC.io.nextPC
   val exeAluRes = alu.io.aluRes
   val exeCsrOp = io.in.csrOp
-
-  val exeMstatus = csr.io.mstatus
-  val exeMepc = csr.io.mepc
-  val exeMtvec = csr.io.mtvec
-  val exeMcause = csr.io.mcause
-  val exeMie = csr.io.mie
-  val exeMscratch = csr.io.mscratch
 
 //----------------------------------------------------------------
   io.out.valid    := exeValid
@@ -102,13 +89,6 @@ class Execution extends Module {
 
   io.out.csrOp    := exeCsrOp
 
-  io.out.mstatus  := exeMstatus
-  io.out.mepc     := exeMepc
-  io.out.mtvec    := exeMtvec
-  io.out.mcause   := exeMcause
-  io.out.mie      := exeMie
-  io.out.mscratch := exeMscratch
-
   io.exeRdEn := io.in.rdEn
   io.exeRdAddr := exeRdAddr
   io.exeRdData :=exeAluRes
@@ -118,5 +98,4 @@ class Execution extends Module {
   io.pcSrc := exePCSrc
   io.nextPC := exeNextPC
 
-  io.csrRData := csr.io.rData
 }

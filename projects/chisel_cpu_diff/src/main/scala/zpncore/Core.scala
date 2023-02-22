@@ -82,7 +82,10 @@ class Core extends Module {
   IdRegEx.io.flush := flushIdExEn
 //------------------- EX --------------------------------
   EX.io.in <> IdRegEx.io.out
-  EX.io.csrRAddr := WB.io.csrRAddr
+//  EX.io.csrRAddr := WB.io.csrRAddr //!
+  EX.io.csrOp := WB.io.csrOp
+  EX.io.mepc := WB.io.mepc
+  EX.io.mtvec := WB.io.mtvec
 
   ExRegMem.io.in <> EX.io.out
   ExRegMem.io.stall := stallExMemEn
@@ -97,7 +100,7 @@ class Core extends Module {
   MemRegWb.io.flush := flushMemWbEn
 //------------------- WB ---------------------------------
   WB.io.in <> MemRegWb.io.out
-  WB.io.csrWData := EX.io.csrRData
+//  WB.io.csrWData := EX.io.csrRData
 
   /* ----- Difftest ------------------------------ */
 //  val mem_valid = RegNext(MEM.io.memAxi)

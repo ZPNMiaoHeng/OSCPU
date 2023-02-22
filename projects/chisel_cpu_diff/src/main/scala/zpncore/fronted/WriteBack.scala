@@ -5,32 +5,36 @@ import utils._
 
 class WriteBack extends Module {
     val io = IO(new Bundle {
-        val in        = Input(new BUS_R)
+        val in = Input(new BUS_R)
 
-        val pc        = Output(UInt(32.W))
-        val inst      = Output(UInt(32.W))
+        val pc   = Output(UInt(32.W))
+        val inst = Output(UInt(32.W))
      
-        val rdEn       = Output(Bool())
-        val rdAddr     = Output(UInt(5.W))
-        val rdData     = Output(UInt(64.W))
+        val rdEn   = Output(Bool())
+        val rdAddr = Output(UInt(5.W))
+        val rdData = Output(UInt(64.W))
      
-        val wbRdEn = Output(Bool())
-        val wbRdAddr  = Output(UInt(5.W))
+        val wbRdEn   = Output(Bool())
+        val wbRdAddr = Output(UInt(5.W))
         val wbRdData = Output(UInt(64.W))
      
         val ready_cmt = Output(Bool())
-        val csrWData = Input(UInt(64.W))
         val csrOp    = Output(UInt(4.W))
-        val csrRAddr = Output(UInt(12.W))
 
-        val mstatus = Output(UInt(64.W))
+//        val mstatus = Output(UInt(64.W))
         val mepc = Output(UInt(64.W))
         val mtvec = Output(UInt(64.W))
-        val mcause = Output(UInt(64.W))
-        val mie = Output(UInt(64.W))
-        val mscratch = Output(UInt(64.W))
-
+//        val mcause = Output(UInt(64.W))
+//        val mie = Output(UInt(64.W))
+//        val mscratch = Output(UInt(64.W))
     })
+
+  val csr = Module(new CSR)
+  csr.io.pc := io.in.pc
+  csr.io.inst := io.in.inst
+  csr.io.csrOp := io.in.csrOp
+  csr.io.rs1Data := io.in.rs1Data
+  csr.io.rAddr := io.in.inst(31, 20)    //io.csrRAddr
 
   val resW = SignExt(io.in.aluRes(31,0), 64)
 
@@ -45,23 +49,21 @@ class WriteBack extends Module {
 
   io.rdEn := io.in.rdEn
   io.rdAddr := io.in.rdAddr
-  io.rdData := Mux(io.in.csrOp === 0.U, rdData, io.csrWData)
+  io.rdData := Mux(io.in.csrOp === 0.U, rdData, csr.io.rData)
   io.ready_cmt := io.in.inst =/= 0.U && io.in.valid
 
   io.wbRdEn := io.in.rdEn
   io.wbRdAddr := io.in.rdAddr
-//  io.wbRdData := rdData
-  io.wbRdData := Mux(io.in.csrOp === 0.U, rdData, io.csrWData)
+  io.wbRdData := Mux(io.in.csrOp === 0.U, rdData, csr.io.rData)
 
   io.csrOp := io.in.csrOp
-  io.csrRAddr := io.in.inst(31, 20)
 
-  io.mstatus  := io.in.mstatus
-  io.mepc     := io.in.mepc
-  io.mtvec    := io.in.mtvec
-  io.mcause   := io.in.mcause
-  io.mie      := io.in.mie
-  io.mscratch := io.in.mscratch
+//  io.mstatus  := csr.io.mstatus
+  io.mepc     := csr.io.mepc
+  io.mtvec    := csr.io.mtvec
+//  io.mcause   := csr.io.mcause
+//  io.mie      := csr.io.mie
+//  io.mscratch := csr.io.mscratch
 
 }
   
