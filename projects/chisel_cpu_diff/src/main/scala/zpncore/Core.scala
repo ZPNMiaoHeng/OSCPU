@@ -100,6 +100,7 @@ class Core extends Module {
   MemRegWb.io.flush := flushMemWbEn
 //------------------- WB ---------------------------------
   WB.io.in <> MemRegWb.io.out
+  WB.io.IFDone := IF.io.IFDone
 //  WB.io.csrWData := EX.io.csrRData
 
   /* ----- Difftest ------------------------------ */

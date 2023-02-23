@@ -10,6 +10,7 @@ class CSR extends Module {
     val pc      = Input(UInt(32.W))
     val inst    = Input(UInt(32.W))
     
+    val IFDone  = Input(Bool())
     val rs1Data = Input(UInt(64.W))
     val csrOp   = Input(UInt( 4.W))
     val rAddr   = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
@@ -18,7 +19,7 @@ class CSR extends Module {
 
 //* --------- csr ------------------------
 //    val mstatus = Output(UInt(64.W))
-    val mepc = Output(UInt(64.W))    // 退出异常mret 保存地址
+    val mepc = Output(UInt(64.W))     // 退出异常mret 保存地址
     val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址 
 //    val mcause = Output(UInt(64.W))
 //    val mie = Output(UInt(64.W))
@@ -48,7 +49,7 @@ class CSR extends Module {
   val csrOp   = io.csrOp
   val wAddr   = io.inst(31, 20)
   val rs1Data = Mux(csrOp(2)=== 1.U, 
-                      Cat(0.U(59.W), io.inst(19, 15)), // csr i type instruction
+                      Cat(0.U(59.W), io.inst(19, 15)),                      // csr i type instruction
                         io.rs1Data)
   val csrRW = ((csrOp(3) === 0.U) && (csrOp =/= "b0000".U))                 // csrrc/csrrs/csrrw+i
   val op1 = LookupTreeDefault(wAddr, 0.U, List(                             //  csr reg rs1 and write back
@@ -72,13 +73,18 @@ class CSR extends Module {
     ),
   0.U)
 
-  when(io.csrOp === "b1000".U) {         //ecall
-     mcause  := "b11".U
+//  val mstatusT = WireInit(0.U(64.W))
+//  BoringUtils.addSink(mstatus, "mstatus")
+  when((io.csrOp === "b1000".U) && io.IFDone) {         //ecall
+    mcause  := 11.U
  //    mtvec  := //! 存储地址
-     mepc    := io.pc
-     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
-  } .elsewhen(io.csrOp === "b1001".U) {  //ebreak
-     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
+    mepc    := io.pc
+//    printf("---------------- ecall ---------------- %c \n", mstatus)
+    printf("---------------- ecall ----------------\n")
+    mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
+  } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  //ebreak
+    printf("---------------- mret ---------------- \n")
+    mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
   }
 
 //* ------------------------------------- 写回寄存器 -------------------------------------------
@@ -107,7 +113,6 @@ class CSR extends Module {
   }
 
 //* --------------------------------------------------------------------------------
-//  val rs1Data = RegInit(UInt(64.W), 0.U) //! 保存csr之前值
   val rDataT = LookupTreeDefault(io.rAddr, 0.U, List(   // 写入的csr 寄存器
     Csrs.mstatus  -> mstatus,
     Csrs.mcause   -> mcause,
@@ -140,7 +145,7 @@ class CSR extends Module {
   dt_cs.io.sepc           := 0.U
   dt_cs.io.mtval          := 0.U
   dt_cs.io.stval          := 0.U
-  dt_cs.io.mtvec          := mtvec      //RegNext(RegNext(mtvec))
+  dt_cs.io.mtvec          := mtvec
   dt_cs.io.stvec          := 0.U
   dt_cs.io.mcause         := mcause
   dt_cs.io.scause         := 0.U

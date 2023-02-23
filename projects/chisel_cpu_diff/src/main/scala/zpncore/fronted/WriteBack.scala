@@ -6,6 +6,7 @@ import utils._
 class WriteBack extends Module {
     val io = IO(new Bundle {
         val in = Input(new BUS_R)
+        val IFDone = Input(Bool())
 
         val pc   = Output(UInt(32.W))
         val inst = Output(UInt(32.W))
@@ -32,6 +33,7 @@ class WriteBack extends Module {
   val csr = Module(new CSR)
   csr.io.pc := io.in.pc
   csr.io.inst := io.in.inst
+  csr.io.IFDone := io.IFDone
   csr.io.csrOp := io.in.csrOp
   csr.io.rs1Data := io.in.rs1Data
   csr.io.rAddr := io.in.inst(31, 20)    //io.csrRAddr
