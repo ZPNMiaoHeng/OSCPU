@@ -48,6 +48,18 @@ interrupt:
 hello:
 	$(TOOLS) -d -b -s -a "-i custom-output/hello/amtest-hello.bin " -m "$(FLASS)"
 
+mario:
+	$(TOOLS) -d -b -s -a "-i custom-output/mario/fceux-mario.bin " -m "$(FLASS)"
+
+rtthread:
+	$(TOOLS) -d -b -s -a "-i custom-output/rt-thread/rtthread.bin " -m "$(FLASS)"
+
+time:
+	$(TOOLS) -d -b -s -a "-i custom-output/time-test/amtest-time-test.bin " -m "$(FLASS)"
+
+yield:
+	$(TOOLS) -d -b -s -a "-i custom-output/yield-test/amtest-yield-test.bin " -m "$(FLASS)"
+
 # run indecation tests
 run_riscv:
 	$(TOOLS) -d -b -s -a "-i non-output/riscv-tests/$(TOP)-riscv-tests.bin --dump-wave -b 0" -m "$(FLASS)"

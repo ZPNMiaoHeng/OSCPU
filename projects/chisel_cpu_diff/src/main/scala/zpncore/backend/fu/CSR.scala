@@ -15,17 +15,8 @@ class CSR extends Module {
     val rAddr   = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
     
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
+
 //* --------- csr ------------------------
-// WB阶段提交寄存器值，保存在csr中
-/*
-    val in_mstatus  = Input(UInt(64.W))
-    val in_mepc     = Input(UInt(64.W))
-    val in_mtvec    = Input(UInt(64.W))
-    val in_mcause   = Input(UInt(64.W))
-    val in_mie      = Input(UInt(64.W))
-    val in_mscratch = Input(UInt(64.W))
-*/
-// 将当前指令的csr状态传输到级间寄存器上
 //    val mstatus = Output(UInt(64.W))
     val mepc = Output(UInt(64.W))    // 退出异常mret 保存地址
     val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址 
@@ -149,7 +140,7 @@ class CSR extends Module {
   dt_cs.io.sepc           := 0.U
   dt_cs.io.mtval          := 0.U
   dt_cs.io.stval          := 0.U
-  dt_cs.io.mtvec          := mtvec//RegNext(RegNext(mtvec))
+  dt_cs.io.mtvec          := mtvec      //RegNext(RegNext(mtvec))
   dt_cs.io.stvec          := 0.U
   dt_cs.io.mcause         := mcause
   dt_cs.io.scause         := 0.U
