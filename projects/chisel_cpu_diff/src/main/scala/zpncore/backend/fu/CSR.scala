@@ -16,6 +16,7 @@ class CSR extends Module {
     val rAddr   = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
     
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
+    val csrOp_WB = Output(UInt(4.W))
 
 //* --------- csr ------------------------
 //    val mstatus = Output(UInt(64.W))
@@ -129,6 +130,7 @@ class CSR extends Module {
 //  io.mstatus := mstatus
   io.mepc := mepc
   io.mtvec := mtvec
+  io.csrOp_WB := io.csrOp
 //  io.mcause := mcause
 //  io.mie := mie
 //  io.mscratch := mscratch

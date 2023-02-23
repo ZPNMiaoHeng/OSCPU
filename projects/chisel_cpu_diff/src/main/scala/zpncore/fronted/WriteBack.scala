@@ -20,11 +20,12 @@ class WriteBack extends Module {
         val wbRdData = Output(UInt(64.W))
      
         val ready_cmt = Output(Bool())
-        val csrOp    = Output(UInt(4.W))
+        val csrOp_WB = Output(UInt(4.W))
 
 //        val mstatus = Output(UInt(64.W))
         val mepc = Output(UInt(64.W))
         val mtvec = Output(UInt(64.W))
+        val csrOp = Output(UInt(4.W))
 //        val mcause = Output(UInt(64.W))
 //        val mie = Output(UInt(64.W))
 //        val mscratch = Output(UInt(64.W))
@@ -61,8 +62,9 @@ class WriteBack extends Module {
   io.csrOp := io.in.csrOp
 
 //  io.mstatus  := csr.io.mstatus
-  io.mepc     := csr.io.mepc
-  io.mtvec    := csr.io.mtvec
+  io.mepc    := csr.io.mepc
+  io.mtvec   := csr.io.mtvec
+  io.csrOp_WB := csr.io.csrOp_WB
 //  io.mcause   := csr.io.mcause
 //  io.mie      := csr.io.mie
 //  io.mscratch := csr.io.mscratch

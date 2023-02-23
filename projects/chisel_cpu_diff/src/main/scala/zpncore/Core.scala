@@ -26,13 +26,15 @@ class Core extends Module {
   val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
 
 //* ----------------------------------------------------------------
-  val flushIfIdEn  = false.B
-  val flushIdExEn  = Mux(IF.io.IFDone, 
-                      Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
-                        true.B, false.B),
-                          false.B)
-  val flushExMemEn = false.B
-  val flushMemWbEn = false.B
+  val ecallEn = (WB.io.csrOp_WB === "b1000".U)
+  val flushIfIdEn  = false.B //ecallEn  //false.B
+  val flushIdExEn  = Mux(ecallEn, true.B,
+                      Mux(IF.io.IFDone, 
+                        Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
+                          true.B, false.B),
+                            false.B))
+  val flushExMemEn = ecallEn  //false.B
+  val flushMemWbEn = ecallEn  //false.B
 
 //* ------------------------------------------------------------------
 // 流水线暂停：IF总线取指未完成、MEM总线访问未完成、发生访存指令数据冒险
@@ -57,6 +59,7 @@ class Core extends Module {
   IF.io.nextPC := EX.io.nextPC
   IF.io.stall := EXLHitID || !MEM.io.memDone //! EX 优先级大于MEM
   IF.io.memDone := MEM.io.memDone
+  IF.io.csrOp_WB := WB.io.csrOp_WB
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
@@ -83,7 +86,7 @@ class Core extends Module {
 //------------------- EX --------------------------------
   EX.io.in <> IdRegEx.io.out
 //  EX.io.csrRAddr := WB.io.csrRAddr //!
-  EX.io.csrOp := WB.io.csrOp
+  EX.io.csrOp := WB.io.csrOp_WB
   EX.io.mepc := WB.io.mepc
   EX.io.mtvec := WB.io.mtvec
 

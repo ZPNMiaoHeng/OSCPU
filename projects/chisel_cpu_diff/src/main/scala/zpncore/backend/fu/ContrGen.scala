@@ -170,6 +170,7 @@ class ContrGen extends Module {
   io.branch := MuxCase("b000".U, List( 
           (instJal)  -> "b001".U,
           (instJalr) -> "b010".U,
+          (ecall)    -> "b011".U,
           (instBeq)  -> "b100".U,
           (instBne)  -> "b101".U,
           (instBlt || instBltu) -> "b110".U,

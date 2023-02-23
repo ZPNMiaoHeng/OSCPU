@@ -30,7 +30,7 @@ class NextPC extends Module {
         (io.branch ## less === "b1100".U) || (io.branch ## less === "b1110".U)) -> "b00".U,                       // PC + 4
     (io.branch === "b001".U || (io.branch ## io.zero === "b1001".U) ||(io.branch ## io.zero === "b1010".U) ||
         (io.branch ## less === "b1101".U) || (io.branch ## less === "b1111".U)) -> "b10".U,                       // PC  + imm
-    (io.branch === "b010".U)                                                    -> "b11".U                        // rs1 + imm
+    ((io.branch === "b010".U) || (io.branch === "b011".U))                      -> "b11".U                        // rs1 + imm
   ))
 
   io.nextPC := Mux(io.csrOp(3) === 1.U, 

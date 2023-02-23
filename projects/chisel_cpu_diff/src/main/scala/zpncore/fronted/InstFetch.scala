@@ -21,6 +21,7 @@ class InstFetch extends Module {
     val nextPC = Input(UInt(WLEN.W))
     val stall = Input(Bool())
     val memDone = Input(Bool())
+    val csrOp_WB = Input(UInt(4.W))
 
     val out = Output(new BUS_R)
 
@@ -40,10 +41,18 @@ class InstFetch extends Module {
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
   val ifPCfire = RegNext(fire)
   val ifPCstall = RegNext(io.stall)
+/*
   val ifPC = Mux(ifPCfire && !ifPCstall,   // 更新下一周期地址
               Mux(io.pcSrc === 0.U, pc + 4.U, 
                   io.nextPC),
                     pc)
+*/
+  val ifPC = Mux(ifPCfire && !ifPCstall,   // 更新下一周期地址
+              Mux(io.csrOp_WB(3) === 1.U, io.nextPC,
+                Mux(io.pcSrc === 0.U, pc + 4.U, 
+                  io.nextPC)),
+                    pc)
+
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
