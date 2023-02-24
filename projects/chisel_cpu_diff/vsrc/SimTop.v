@@ -36,7 +36,7 @@ module InstFetch(
   assign io_out_valid = io_stall | _fire_T; // @[InstFetch.scala 38:17]
   assign io_out_pc = ifPCfire & ~ifPCstall ? _ifPC_T_8 : pc; // @[InstFetch.scala 50:17]
   assign io_out_inst = fire & _io_imem_inst_valid_T ? io_imem_inst_read : inst; // @[InstFetch.scala 41:19]
-  assign io_IFDone = fire & io_memDone; // @[InstFetch.scala 60:21]
+  assign io_IFDone = fire & io_memDone; // @[InstFetch.scala 59:21]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 30:19]
       pc <= 32'h80000000; // @[InstFetch.scala 30:19]
@@ -1911,10 +1911,7 @@ module CSR(
   wire [63:0] _wdata_T_7 = 2'h2 == io_csrOp[1:0] ? _wdata_T_1 : _wdata_T_5; // @[Mux.scala 81:58]
   wire [63:0] _wdata_T_9 = 2'h3 == io_csrOp[1:0] ? _wdata_T_3 : _wdata_T_7; // @[Mux.scala 81:58]
   wire [63:0] wdata = csrRW ? _wdata_T_9 : 64'h0; // @[CSR.scala 68:18]
-  wire  _T_1 = io_csrOp == 4'h8 & io_IFDone; // @[CSR.scala 79:33]
-  wire  _T_3 = ~reset; // @[CSR.scala 84:11]
   wire [63:0] _mstatus_T_5 = {mstatus[63:13],2'h3,mstatus[10:8],mstatus[3],mstatus[6:4],1'h0,mstatus[2:0]}; // @[Cat.scala 31:58]
-  wire  _T_5 = io_csrOp == 4'h9 & io_IFDone; // @[CSR.scala 86:40]
   wire [62:0] _mstatus_T_11 = {mstatus[63:13],1'h0,mstatus[10:8],1'h1,mstatus[6:4],mstatus[7],mstatus[2:0]}; // @[Cat.scala 31:58]
   wire [63:0] _GEN_0 = io_csrOp == 4'h9 & io_IFDone ? {{1'd0}, _mstatus_T_11} : mstatus; // @[CSR.scala 86:54 88:13 31:24]
   wire [63:0] _GEN_1 = io_csrOp == 4'h8 & io_IFDone ? 64'hb : mcause; // @[CSR.scala 79:47 80:13 34:24]
@@ -2081,28 +2078,6 @@ module CSR(
     end else begin
       io_rData_REG <= _rDataT_T_9;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (_T_1 & ~reset) begin
-          $fwrite(32'h80000002,"---------------- ecall ----------------\n"); // @[CSR.scala 84:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~_T_1 & _T_5 & _T_3) begin
-          $fwrite(32'h80000002,"---------------- mret ---------------- \n"); // @[CSR.scala 87:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -2644,7 +2619,7 @@ module Core(
   wire [63:0] dt_te_cycleCnt; // @[Core.scala 149:21]
   wire [63:0] dt_te_instrCnt; // @[Core.scala 149:21]
   wire  EXLHitID = ~ExRegMem_io_instChange & (ID_io_bubbleId & EX_io_bubbleEx); // @[Core.scala 26:21]
-  wire  ecallEn = WB_io_csrOp_WB == 4'h8; // @[Core.scala 29:33]
+  wire  ecallEn = WB_io_csrOp_WB[3]; // @[Core.scala 29:32]
   wire  _flushIdExEn_T_1 = EX_io_pcSrc != 2'h0 | EXLHitID; // @[Core.scala 33:49]
   wire  _flushIdExEn_T_3 = IF_io_IFDone & _flushIdExEn_T_1; // @[Core.scala 32:26]
   wire  valid = WB_io_ready_cmt & IF_io_IFDone & MEM_io_memDone; // @[Core.scala 111:47]
@@ -3177,7 +3152,7 @@ module Core(
   assign ExRegMem_io_in_aluRes = EX_io_out_aluRes; // @[Core.scala 93:18]
   assign ExRegMem_io_in_memData = 64'h0; // @[Core.scala 93:18]
   assign ExRegMem_io_in_csrOp = EX_io_out_csrOp; // @[Core.scala 93:18]
-  assign ExRegMem_io_flush = WB_io_csrOp_WB == 4'h8; // @[Core.scala 29:33]
+  assign ExRegMem_io_flush = WB_io_csrOp_WB[3]; // @[Core.scala 29:32]
   assign ExRegMem_io_stall = ~IF_io_IFDone; // @[Core.scala 44:22]
   assign MEM_clock = clock;
   assign MEM_reset = reset;
@@ -3223,7 +3198,7 @@ module Core(
   assign MemRegWb_io_in_aluRes = MEM_io_out_aluRes; // @[Core.scala 101:18]
   assign MemRegWb_io_in_memData = MEM_io_out_memData; // @[Core.scala 101:18]
   assign MemRegWb_io_in_csrOp = MEM_io_out_csrOp; // @[Core.scala 101:18]
-  assign MemRegWb_io_flush = WB_io_csrOp_WB == 4'h8; // @[Core.scala 29:33]
+  assign MemRegWb_io_flush = WB_io_csrOp_WB[3]; // @[Core.scala 29:32]
   assign MemRegWb_io_stall = ~IF_io_IFDone; // @[Core.scala 45:22]
   assign WB_clock = clock;
   assign WB_reset = reset;

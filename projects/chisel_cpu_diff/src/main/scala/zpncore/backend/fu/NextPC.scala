@@ -34,7 +34,7 @@ class NextPC extends Module {
   ))
 
   io.nextPC := Mux(io.csrOp(3) === 1.U, 
-    Mux(io.csrOp(0) === 0.U, io.mtvec(31, 2) << 2.U , io.mepc),  // ecall, mret
+    Mux(io.csrOp(0) === 0.U, io.mtvec(31, 2) << 2.U , io.mepc),  // ecall, mret //! mret mepc?+4
     LookupTreeDefault(pcSrc, "h8000_0000".U, List(
       "b00".U -> (io.pc +  4.U   ),
       "b10".U -> (io.pc + io.imm ),

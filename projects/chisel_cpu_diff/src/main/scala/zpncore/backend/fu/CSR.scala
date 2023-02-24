@@ -81,10 +81,10 @@ class CSR extends Module {
  //    mtvec  := //! 存储地址
     mepc    := io.pc
 //    printf("---------------- ecall ---------------- %c \n", mstatus)
-    printf("---------------- ecall ----------------\n")
+//    printf("---------------- ecall ----------------\n")
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
   } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  //ebreak
-    printf("---------------- mret ---------------- \n")
+//    printf("---------------- mret ---------------- \n")
     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
   }
 

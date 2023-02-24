@@ -26,7 +26,7 @@ class Core extends Module {
   val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
 
 //* ----------------------------------------------------------------
-  val ecallEn = (WB.io.csrOp_WB === "b1000".U)
+  val ecallEn = (WB.io.csrOp_WB(3) === 1.U)  //"b1000".U)
   val flushIfIdEn  = false.B //ecallEn  //false.B
   val flushIdExEn  = Mux(ecallEn, true.B,
                       Mux(IF.io.IFDone, 
