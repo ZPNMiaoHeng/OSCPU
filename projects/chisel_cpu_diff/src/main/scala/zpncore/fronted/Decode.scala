@@ -30,6 +30,8 @@ class Decode extends Module {
 
     val bubbleId = Output(Bool())
     val out = Output(new BUS_R)
+
+//    val clintEn = Input(Bool())
   })
 
   val regs = Module(new RegFile)

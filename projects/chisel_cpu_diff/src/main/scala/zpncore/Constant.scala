@@ -13,6 +13,10 @@ trait Constant {
 
   val REQ_READ  = 0.U
   val REQ_WRITE = 1.U
+
+//* Clint Bas Addr 0x200_0000
+  val MTIMECMP = "h0000_0000_0200_4000".U  // offset: 0x4000
+  val MTIME = "h0000_0000_0200_bff8".U     // offset: 0xbff8
 }
 
 trait AxiParameters {

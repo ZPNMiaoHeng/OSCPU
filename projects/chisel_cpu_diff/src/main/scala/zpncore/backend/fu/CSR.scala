@@ -14,16 +14,17 @@ class CSR extends Module {
     val rs1Data = Input(UInt(64.W))
     val csrOp   = Input(UInt( 4.W))
     val rAddr   = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
+//    val clintEn = Input(Bool())
     
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
     val csrOp_WB = Output(UInt(4.W))
 
 //* --------- csr ------------------------
-//    val mstatus = Output(UInt(64.W))
     val mepc = Output(UInt(64.W))     // 退出异常mret 保存地址
     val mtvec = Output(UInt(64.W))    // Machine Trap-Vector Base-Address Register：ecall跳转地址 
 //    val mcause = Output(UInt(64.W))
-//    val mie = Output(UInt(64.W))
+    val mie = Output(UInt(64.W))
+    val mstatus = Output(UInt(64.W))
 //    val mscratch = Output(UInt(64.W))
   })
 
@@ -74,20 +75,19 @@ class CSR extends Module {
     ),
   0.U)
 
-//  val mstatusT = WireInit(0.U(64.W))
-//  BoringUtils.addSink(mstatus, "mstatus")
   when((io.csrOp === "b1000".U) && io.IFDone) {         //ecall
     mcause  := 11.U
  //    mtvec  := //! 存储地址
     mepc    := io.pc
-//    printf("---------------- ecall ---------------- %c \n", mstatus)
-//    printf("---------------- ecall ----------------\n")
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
   } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  //ebreak
-//    printf("---------------- mret ---------------- \n")
     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
+  }/* .elsewhen(io.clintEn && io.IFDone) {    //!
+    mepc := io.pc
+    mcause := "h8000000000000007".U
+    mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
   }
-
+*/
 //* ------------------------------------- 写回寄存器 -------------------------------------------
   when(csrRW) {
     when(wAddr === Csrs.mcycle) {
@@ -127,12 +127,13 @@ class CSR extends Module {
   ))
 
   io.rData := RegNext(rDataT)
-//  io.mstatus := mstatus
+
   io.mepc := mepc
   io.mtvec := mtvec
   io.csrOp_WB := io.csrOp
 //  io.mcause := mcause
-//  io.mie := mie
+  io.mie := mie
+  io.mstatus := mstatus
 //  io.mscratch := mscratch
 
   // difftest for CSR state

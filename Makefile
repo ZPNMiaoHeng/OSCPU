@@ -55,7 +55,7 @@ rtthread:
 	$(TOOLS) -d -b -s -a "-i custom-output/rt-thread/rtthread.bin " -m "$(FLASS)"
 
 time:
-	$(TOOLS) -d -b -s -a "-i custom-output/time-test/amtest-time-test.bin " -m "$(FLASS)"
+	$(TOOLS) -d -b -s -a "-i custom-output/time-test/amtest-time-test.bin $(VCD)" -m "$(FLASS)"
 
 yield:
 	$(TOOLS) -d -b -s -a "-i custom-output/yield-test/amtest-yield-test.bin " -m "$(FLASS)"

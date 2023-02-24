@@ -23,6 +23,12 @@ class DataMem extends Module {
     val memRdData = Output(UInt(XLEN.W))
 
     val memDone = Output(Bool())
+
+    val cmp_ren    = Output(Bool())
+    val cmp_wen    = Output(Bool())
+    val cmp_addr   = Output(UInt(64.W))
+    val cmp_wdata  = Output(UInt(64.W))
+    val cmp_rdata  = Input(UInt(64.W))
   })
 
   val memAddr =   io.in.aluRes
@@ -33,10 +39,20 @@ class DataMem extends Module {
 
   val data_size = WireInit(0.U(2.W))
 
+//*------------------------------------   Clint   --------------------------------------------------------
+  val cmpREn = ((memtoReg === "b01".U) && (memAddr === MTIME) && (memAddr === MTIMECMP))
+  val cmpWEn = ((memWr === 1.U) && (memAddr === MTIME) && (memAddr === MTIMECMP))
+  val cmpAddr = memAddr
+  val cmpWData = io.dmem.data_write
+  io.cmp_ren := cmpREn
+  io.cmp_wen := cmpWEn
+  io.cmp_addr := cmpAddr
+  io.cmp_wdata := cmpWData
+  val cmp_rdata  = io.cmp_rdata
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
 
   val dmemEn = !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&
-                  ((memtoReg === "b01".U) || (memWr === 1.U))
+                  ((memtoReg === "b01".U) || (memWr === 1.U)) && !cmpREn && !cmpWEn
 
   io.dmem.data_addr := memAddr
 
@@ -56,7 +72,7 @@ class DataMem extends Module {
   val alignBits = memAddr % 16.U
   
   io.dmem.data_write := memDataIn << alignBits * 8.U
-  io.dmem.data_req := Mux(memWr === 1.U, REQ_WRITE, REQ_READ)
+  io.dmem.data_req := Mux(memWr === 1.U && !cmpWEn, REQ_WRITE, REQ_READ)
   io.dmem.data_size := data_size //SIZE_W                //!!!  10---应该传输指令类型 bhwd？？
   io.dmem.data_strb := Mux(io.in.typeL, 0.U,
     LookupTreeDefault(memOP, 0.U, List(
