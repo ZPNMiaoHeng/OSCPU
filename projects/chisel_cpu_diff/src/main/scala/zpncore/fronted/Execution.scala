@@ -20,6 +20,7 @@ class Execution extends Module {
         val csrOp = Input(UInt(4.W))
         val mepc = Input(UInt(64.W))
         val mtvec = Input(UInt(64.W))
+        val clintEn = Input(Bool())
     })
     val alu = Module(new ALU)
     val nextPC = Module(new NextPC)
@@ -43,6 +44,7 @@ class Execution extends Module {
     nextPC.io.csrOp := io.csrOp
     nextPC.io.mepc := io.mepc
     nextPC.io.mtvec := io.mtvec
+    nextPC.io.clintEn := io.clintEn
 //----------------------------------------------------------------
   val exeValid = io.in.valid
   val exePC = io.in.pc

@@ -26,15 +26,15 @@ class Core extends Module {
   val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
 
 //* ----------------------------------------------------------------
-  val ecallEn = (WB.io.csrOp_WB(3) === 1.U)  //"b1000".U)
-  val flushIfIdEn  = false.B //ecallEn  //false.B
+  val ecallEn = (WB.io.csrOp_WB(3) === 1.U || WB.io.clintEn)  //ecall/mret/time
+  val flushIfIdEn  = false.B
   val flushIdExEn  = Mux(ecallEn, true.B,
                       Mux(IF.io.IFDone, 
                         Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
                           true.B, false.B),
                             false.B))
-  val flushExMemEn = ecallEn  //false.B
-  val flushMemWbEn = ecallEn  //false.B
+  val flushExMemEn = ecallEn
+  val flushMemWbEn = ecallEn
 
 //* ------------------------------------------------------------------
 // 流水线暂停：IF总线取指未完成、MEM总线访问未完成、发生访存指令数据冒险
@@ -89,6 +89,7 @@ class Core extends Module {
   EX.io.csrOp := WB.io.csrOp_WB
   EX.io.mepc := WB.io.mepc
   EX.io.mtvec := WB.io.mtvec
+  EX.io.clintEn := WB.io.clintEn
 
   ExRegMem.io.in <> EX.io.out
   ExRegMem.io.stall := stallExMemEn
@@ -97,6 +98,7 @@ class Core extends Module {
   MEM.io.in <> ExRegMem.io.out
   MEM.io.dmem <> io.dmem
   MEM.io.IFReady := io.imem.inst_ready
+  MEM.io.cmp_rdata := WB.io.cmp_rdata
 
   MemRegWb.io.in <> MEM.io.out
   MemRegWb.io.stall := stallMemWbEn
@@ -104,6 +106,10 @@ class Core extends Module {
 //------------------- WB ---------------------------------
   WB.io.in <> MemRegWb.io.out
   WB.io.IFDone := IF.io.IFDone
+  WB.io.cmp_ren := MEM.io.cmp_ren
+  WB.io.cmp_wen := MEM.io.cmp_wen
+  WB.io.cmp_addr := MEM.io.cmp_addr
+  WB.io.cmp_wdata := MEM.io.cmp_wdata
 //  WB.io.csrWData := EX.io.csrRData
 
   /* ----- Difftest ------------------------------ */
@@ -117,7 +123,9 @@ class Core extends Module {
     printf("%c", rf_a0)
   }
 
-  val skip = WB.io.inst === MY_INST
+  val req_clint = (WB.io.cmp_ren || WB.io.cmp_wen)
+  val skip = WB.io.inst === MY_INST// || 
+//              (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp =/=0.U)
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock

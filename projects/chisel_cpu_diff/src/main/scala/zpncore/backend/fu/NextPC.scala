@@ -18,6 +18,7 @@ class NextPC extends Module {
     val csrOp = Input(UInt(4.W))
     val mepc  = Input(UInt(64.W))
     val mtvec = Input(UInt(64.W))
+    val clintEn = Input(Bool())
 
     val nextPC = Output(UInt(WLEN.W))
     val pcSrc = Output(UInt(2.W))
@@ -34,7 +35,7 @@ class NextPC extends Module {
   ))
 
   io.nextPC := Mux(io.csrOp(3) === 1.U, 
-    Mux(io.csrOp(0) === 0.U, io.mtvec(31, 2) << 2.U , io.mepc),  // ecall, mret //! mret mepc?+4
+    Mux((io.csrOp(0) === 0.U || io.clintEn), io.mtvec(31, 2) << 2.U , io.mepc),  // ecall, mret , time
     LookupTreeDefault(pcSrc, "h8000_0000".U, List(
       "b00".U -> (io.pc +  4.U   ),
       "b10".U -> (io.pc + io.imm ),

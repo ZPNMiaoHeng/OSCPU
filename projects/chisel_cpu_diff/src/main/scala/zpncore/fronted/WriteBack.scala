@@ -22,13 +22,17 @@ class WriteBack extends Module {
         val ready_cmt = Output(Bool())
         val csrOp_WB = Output(UInt(4.W))
 
-//        val mstatus = Output(UInt(64.W))
         val mepc = Output(UInt(64.W))
         val mtvec = Output(UInt(64.W))
         val csrOp = Output(UInt(4.W))
-//        val mcause = Output(UInt(64.W))
-//        val mie = Output(UInt(64.W))
-//        val mscratch = Output(UInt(64.W))
+
+        val cmp_ren   = Input(Bool())
+        val cmp_wen   = Input(Bool())
+        val cmp_addr  = Input(UInt(64.W))
+        val cmp_wdata = Input(UInt(64.W))
+        val cmp_rdata = Output(UInt(64.W))
+
+        val clintEn = Output(Bool())
     })
 
   val csr = Module(new CSR)
@@ -38,6 +42,15 @@ class WriteBack extends Module {
   csr.io.csrOp := io.in.csrOp
   csr.io.rs1Data := io.in.rs1Data
   csr.io.rAddr := io.in.inst(31, 20)    //io.csrRAddr
+  io.clintEn := csr.io.clintEn
+
+  csr.io.cmp_ren := io.cmp_ren
+  csr.io.cmp_wen := io.cmp_wen
+  csr.io.cmp_addr := io.cmp_addr
+  csr.io.cmp_wdata := io.cmp_wdata
+
+  io.cmp_rdata := csr.io.cmp_rdata
+  io.clintEn := csr.io.clintEn
 
   val resW = SignExt(io.in.aluRes(31,0), 64)
 
@@ -61,13 +74,9 @@ class WriteBack extends Module {
 
   io.csrOp := io.in.csrOp
 
-//  io.mstatus  := csr.io.mstatus
   io.mepc    := csr.io.mepc
   io.mtvec   := csr.io.mtvec
   io.csrOp_WB := csr.io.csrOp_WB
-//  io.mcause   := csr.io.mcause
-//  io.mie      := csr.io.mie
-//  io.mscratch := csr.io.mscratch
 
 }
   

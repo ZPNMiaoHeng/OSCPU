@@ -71,7 +71,7 @@ class DataMem extends Module {
   val dmemFire = io.dmem.data_valid && io.dmem.data_ready
   val alignBits = memAddr % 16.U
   
-  io.dmem.data_write := memDataIn << alignBits * 8.U
+  io.dmem.data_write := Mux(cmpREn, io.cmp_rdata, memDataIn << alignBits * 8.U)
   io.dmem.data_req := Mux(memWr === 1.U && !cmpWEn, REQ_WRITE, REQ_READ)
   io.dmem.data_size := data_size //SIZE_W                //!!!  10---应该传输指令类型 bhwd？？
   io.dmem.data_strb := Mux(io.in.typeL, 0.U,
@@ -225,4 +225,6 @@ class DataMem extends Module {
   io.memRdEn := io.in.rdEn
   io.memRdAddr := memRdAddr
   io.memRdData := memBPData
+
+  io.cmp_wdata := memBPData
 }
