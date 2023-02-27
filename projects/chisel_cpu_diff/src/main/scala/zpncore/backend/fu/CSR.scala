@@ -19,6 +19,7 @@ class CSR extends Module {
     val cmp_wen = Input(Bool())
     val cmp_addr = Input(UInt(64.W))
     val cmp_wdata = Input(UInt(64.W))
+    val clintEnW = Input(Bool())      // 流水线中的clint 信号
     val cmp_rdata = Output(UInt(64.W))
     val clintEn = Output(Bool())
     
@@ -52,8 +53,6 @@ class CSR extends Module {
   when (io.cmp_wen) {
     mtimecmp := io.cmp_wdata
   }
-  val clintEn = ((io.mstatus(3) === 1.U) && (io.mie(7)===1.U) 
-                  && (mtime >= mtimecmp)) && io.IFDone
 
 //* csr write and read
 //**************************************************************
@@ -90,16 +89,20 @@ class CSR extends Module {
   0.U)
 
   when((io.csrOp === "b1000".U) && io.IFDone) {         //ecall
+//    printf("------------- ecall ------------------\n")
     mcause  := 11.U
  //    mtvec  := //! 存储地址
     mepc    := io.pc
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
   } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  //ebreak
+//    printf("------------- ebreak ------------------\n")
     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
-  } .elsewhen(clintEn && io.IFDone) {    //!
+  } .elsewhen(io.clintEnW && io.IFDone) {    //!
+    printf("-- clint --mepc = %x\n",mepc)
     mepc := io.pc
     mcause := "h8000000000000007".U
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
+    printf("-- clint1 --mepc = %x\n",mepc)
   }
 
   mcycle := mcycle + 1.U
@@ -148,7 +151,8 @@ class CSR extends Module {
   io.csrOp_WB := io.csrOp
   io.mie := mie
   io.mstatus := mstatus
-  io.clintEn := clintEn
+  io.clintEn := ((io.mstatus(3) === 1.U) && (io.mie(7)===1.U)
+                  && (mtime >= mtimecmp)) && io.IFDone
   io.cmp_rdata := Mux(io.cmp_ren, 
                     Mux(io.cmp_addr === MTIME, 
                       mtime, mtimecmp), 0.U)

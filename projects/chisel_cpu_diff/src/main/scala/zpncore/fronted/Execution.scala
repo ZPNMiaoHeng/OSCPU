@@ -66,6 +66,7 @@ class Execution extends Module {
   val exeNextPC = nextPC.io.nextPC
   val exeAluRes = alu.io.aluRes
   val exeCsrOp = io.in.csrOp
+  val exeClintEnW = io.clintEn
 
 //----------------------------------------------------------------
   io.out.valid    := exeValid
@@ -90,6 +91,7 @@ class Execution extends Module {
   io.out.memData  := 0.U
 
   io.out.csrOp    := exeCsrOp
+  io.out.clintEnW := exeClintEnW
 
   io.exeRdEn := io.in.rdEn
   io.exeRdAddr := exeRdAddr

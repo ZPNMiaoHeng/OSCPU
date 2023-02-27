@@ -26,7 +26,7 @@ class Core extends Module {
   val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
 
 //* ----------------------------------------------------------------
-  val ecallEn = (WB.io.csrOp_WB(3) === 1.U || WB.io.clintEn)  //ecall/mret/time
+  val ecallEn = WB.io.csrOp_WB(3) === 1.U //|| WB.io.clintEn)  //ecall/mret/time
   val flushIfIdEn  = false.B
   val flushIdExEn  = Mux(ecallEn, true.B,
                       Mux(IF.io.IFDone, 
@@ -110,7 +110,6 @@ class Core extends Module {
   WB.io.cmp_wen := MEM.io.cmp_wen
   WB.io.cmp_addr := MEM.io.cmp_addr
   WB.io.cmp_wdata := MEM.io.cmp_wdata
-//  WB.io.csrWData := EX.io.csrRData
 
   /* ----- Difftest ------------------------------ */
 //  val mem_valid = RegNext(MEM.io.memAxi)
@@ -124,8 +123,8 @@ class Core extends Module {
   }
 
   val req_clint = (WB.io.cmp_ren || WB.io.cmp_wen)
-  val skip = WB.io.inst === MY_INST// || 
-//              (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp =/=0.U)
+  val skip = WB.io.inst === MY_INST ||
+              (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp =/=0.U)
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock

@@ -87,6 +87,8 @@ class Decode extends Module {
   val idRs2Data = rs2Data
   val idImm = imm.io.imm
 
+//  val idClintEnW = io.in.clintEnW
+
 //----------------------------------------------------------------
   io.out.valid    := idValid
   io.out.pc       := idPC
@@ -110,6 +112,7 @@ class Decode extends Module {
   io.out.memData  := 0.U
 
   io.out.csrOp    := con.io.csrOp
+  io.out.clintEnW := false.B
 
   io.bubbleId := (rdRs1HitEx || rdRs2HitEx)
 }

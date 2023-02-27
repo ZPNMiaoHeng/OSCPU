@@ -42,6 +42,7 @@ class WriteBack extends Module {
   csr.io.csrOp := io.in.csrOp
   csr.io.rs1Data := io.in.rs1Data
   csr.io.rAddr := io.in.inst(31, 20)    //io.csrRAddr
+  csr.io.clintEnW := io.in.clintEnW
   io.clintEn := csr.io.clintEn
 
   csr.io.cmp_ren := io.cmp_ren

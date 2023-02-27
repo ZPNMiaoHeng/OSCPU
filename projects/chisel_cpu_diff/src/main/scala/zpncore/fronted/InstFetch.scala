@@ -81,5 +81,6 @@ class InstFetch extends Module {
   io.out.memData  := 0.U
 
   io.out.csrOp := 0.U
+  io.out.clintEnW := false.B
 
 }
