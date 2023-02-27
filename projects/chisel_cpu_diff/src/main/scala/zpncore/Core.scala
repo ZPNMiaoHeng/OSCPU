@@ -123,8 +123,8 @@ class Core extends Module {
   }
 
   val req_clint = (WB.io.cmp_ren || WB.io.cmp_wen)
-  val skip = WB.io.inst === MY_INST ||
-              (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp =/=0.U)
+  val skip = WB.io.inst === MY_INST //||
+//              (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp =/=0.U)
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
@@ -133,9 +133,9 @@ class Core extends Module {
   dt_ic.io.valid    := RegNext(valid)
   dt_ic.io.pc       := RegNext(WB.io.pc)
   dt_ic.io.instr    := RegNext(WB.io.inst)
-  dt_ic.io.skip     := RegNext(skip)
-  dt_ic.io.isRVC    := false.B
-  dt_ic.io.scFailed := false.B
+  dt_ic.io.skip     := RegNext(skip)           // 是否需要跳过本条指令；
+  dt_ic.io.isRVC    := false.B                 // 是否是C扩展16位指令;
+  dt_ic.io.scFailed := false.B                 // A扩展sc指令是否失败;
   dt_ic.io.wen      := RegNext(WB.io.rdEn)
   dt_ic.io.wdata    := RegNext(WB.io.rdData)
   dt_ic.io.wdest    := RegNext(WB.io.rdAddr)
@@ -143,9 +143,9 @@ class Core extends Module {
   val dt_ae = Module(new DifftestArchEvent)
   dt_ae.io.clock        := clock
   dt_ae.io.coreid       := 0.U
-  dt_ae.io.intrNO       := 0.U
+  dt_ae.io.intrNO       := 0.U                  // 外部中断使用
   dt_ae.io.cause        := 0.U
-  dt_ae.io.exceptionPC  := 0.U
+  dt_ae.io.exceptionPC  := 0.U                  // 外部中断PC
 
   val cycle_cnt = RegInit(0.U(64.W))
   val instr_cnt = RegInit(0.U(64.W))
@@ -156,11 +156,11 @@ class Core extends Module {
   val dt_te = Module(new DifftestTrapEvent)
   dt_te.io.clock    := clock
   dt_te.io.coreid   := 0.U
-  dt_te.io.valid    := (WB.io.inst === "h0000006b".U)
-  dt_te.io.code     := rf_a0(2, 0)
+  dt_te.io.valid    := (WB.io.inst === "h0000006b".U)  // 0x6b是NEMU中定义的HALT指令
+  dt_te.io.code     := rf_a0(2, 0)                     // 读取a0的值判断程序是否正确执行并退出
   dt_te.io.pc       := WB.io.pc
-  dt_te.io.cycleCnt := cycle_cnt
-  dt_te.io.instrCnt := instr_cnt
+  dt_te.io.cycleCnt := cycle_cnt                       // cycle计数器
+  dt_te.io.instrCnt := instr_cnt                       // 指令计数器
 /*
   val dt_cs = Module(new DifftestCSRState)
   dt_cs.io.clock          := clock

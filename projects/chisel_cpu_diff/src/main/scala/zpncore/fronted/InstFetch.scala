@@ -36,7 +36,7 @@ class InstFetch extends Module {
   io.imem.inst_size := SIZE_W
   
   val fire = Mux(io.stall, true.B,
-              io.imem.inst_valid && io.imem.inst_ready) //* 握手成功，从总线上取出指令
+              io.imem.inst_valid && io.imem.inst_ready)  //* 握手成功，从总线上取出指令
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
   val ifPCfire = RegNext(fire)

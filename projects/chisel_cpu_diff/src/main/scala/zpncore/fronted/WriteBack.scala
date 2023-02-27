@@ -43,15 +43,20 @@ class WriteBack extends Module {
   csr.io.rs1Data := io.in.rs1Data
   csr.io.rAddr := io.in.inst(31, 20)    //io.csrRAddr
   csr.io.clintEnW := io.in.clintEnW
-  io.clintEn := csr.io.clintEn
 
-  csr.io.cmp_ren := io.cmp_ren
-  csr.io.cmp_wen := io.cmp_wen
-  csr.io.cmp_addr := io.cmp_addr
-  csr.io.cmp_wdata := io.cmp_wdata
+  val clint = Module(new CLINT)
+  clint.io.mstatus := csr.io.mstatus
+  clint.io.mie := csr.io.mie
+  clint.io.IFDone := io.IFDone
+  clint.io.clintEnW := io.in.clintEnW
 
-  io.cmp_rdata := csr.io.cmp_rdata
-  io.clintEn := csr.io.clintEn
+  clint.io.cmp_ren := io.cmp_ren
+  clint.io.cmp_wen := io.cmp_wen
+  clint.io.cmp_addr := io.cmp_addr
+  clint.io.cmp_wdata := io.cmp_wdata
+
+  io.cmp_rdata := clint.io.cmp_rdata
+  io.clintEn := clint.io.clintEn
 
   val resW = SignExt(io.in.aluRes(31,0), 64)
 

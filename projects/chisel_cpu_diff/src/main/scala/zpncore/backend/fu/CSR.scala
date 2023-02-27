@@ -14,15 +14,8 @@ class CSR extends Module {
     val rs1Data = Input(UInt(64.W))
     val csrOp = Input(UInt( 4.W))
     val rAddr = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
-
-    val cmp_ren = Input(Bool())     // mtimecmp control
-    val cmp_wen = Input(Bool())
-    val cmp_addr = Input(UInt(64.W))
-    val cmp_wdata = Input(UInt(64.W))
     val clintEnW = Input(Bool())      // 流水线中的clint 信号
-    val cmp_rdata = Output(UInt(64.W))
-    val clintEn = Output(Bool())
-    
+
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
     val csrOp_WB = Output(UInt(4.W))
 
@@ -45,14 +38,6 @@ class CSR extends Module {
   val mscratch  = RegInit(UInt(64.W), 0.U)
   val mcycle    = RegInit(UInt(64.W), 0.U)
   val minstret  = RegInit(UInt(64.W), 0.U)
-
-  val mtime = RegInit(UInt(64.W), 0.U)             //Clint
-  val mtimecmp = RegInit(UInt(64.W), 0.U)          //Clint
-
-  mtime := mtime + 1.U
-  when (io.cmp_wen) {
-    mtimecmp := io.cmp_wdata
-  }
 
 //* csr write and read
 //**************************************************************
@@ -91,13 +76,13 @@ class CSR extends Module {
   when((io.csrOp === "b1000".U) && io.IFDone) {         //ecall
 //    printf("------------- ecall ------------------\n")
     mcause  := 11.U
- //    mtvec  := //! 存储地址
+ //    mtvec  := // 存储地址
     mepc    := io.pc
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
   } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  //ebreak
 //    printf("------------- ebreak ------------------\n")
     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
-  } .elsewhen(io.clintEnW && io.IFDone) {    //!
+  } .elsewhen(io.clintEnW && io.IFDone) {
     printf("-- clint --pc = %x\n",io.pc)
     mepc := io.pc
     mcause := "h8000000000000007".U
@@ -151,11 +136,6 @@ class CSR extends Module {
   io.csrOp_WB := io.csrOp
   io.mie := mie
   io.mstatus := mstatus
-  io.clintEn := ((io.mstatus(3) === 1.U) && (io.mie(7)===1.U)
-                  && (mtime >= mtimecmp)) && io.IFDone && io.clintEnW
-  io.cmp_rdata := Mux(io.cmp_ren, 
-                    Mux(io.cmp_addr === MTIME, 
-                      mtime, mtimecmp), 0.U)
 
   // difftest for CSR state
   val dt_cs = Module(new DifftestCSRState)
