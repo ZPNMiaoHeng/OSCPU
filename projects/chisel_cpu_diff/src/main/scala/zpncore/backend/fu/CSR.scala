@@ -14,7 +14,8 @@ class CSR extends Module {
     val rs1Data = Input(UInt(64.W))
     val csrOp = Input(UInt( 4.W))
     val rAddr = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
-    val clintEnW = Input(Bool())      // 流水线中的clint 信号
+    val exc = Input(Bool())         // 例外信号
+    val intr = Input(Bool())        // 中断信号
 
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
     val csrOp_WB = Output(UInt(4.W))
@@ -73,16 +74,16 @@ class CSR extends Module {
     ),
   0.U)
 
-  when((io.csrOp === "b1000".U) && io.IFDone) {         //ecall
+  when((io.csrOp === "b1000".U) && io.IFDone && io.exc) {         //ecall
 //    printf("------------- ecall ------------------\n")
     mcause  := 11.U
  //    mtvec  := // 存储地址
     mepc    := io.pc
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
-  } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  //ebreak
+  } .elsewhen((io.csrOp === "b1001".U) && io.IFDone && io.exc) {  //ebreak
 //    printf("------------- ebreak ------------------\n")
     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
-  } .elsewhen(io.clintEnW && io.IFDone) {
+  } .elsewhen(io.intr && io.IFDone && io.exc) {
     printf("-- clint --pc = %x\n",io.pc)
     mepc := io.pc
     mcause := "h8000000000000007".U

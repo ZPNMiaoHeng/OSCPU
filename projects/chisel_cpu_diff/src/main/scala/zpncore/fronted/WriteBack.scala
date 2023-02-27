@@ -32,8 +32,16 @@ class WriteBack extends Module {
         val cmp_wdata = Input(UInt(64.W))
         val cmp_rdata = Output(UInt(64.W))
 
-        val clintEn = Output(Bool())
+        val exc = Output(Bool())
+
+        val memtoReg = Output(UInt(2.W))
+        val memWr = Output(UInt(1.W))
+        val mem_addr = Output(UInt(32.W))
+        val intr = Output(Bool())
+        val intr_no = Output(UInt(32.W))
     })
+
+  val exc = (io.in.csrOp(3) === 1.U || io.in.intr)
 
   val csr = Module(new CSR)
   csr.io.pc := io.in.pc
@@ -42,21 +50,19 @@ class WriteBack extends Module {
   csr.io.csrOp := io.in.csrOp
   csr.io.rs1Data := io.in.rs1Data
   csr.io.rAddr := io.in.inst(31, 20)    //io.csrRAddr
-  csr.io.clintEnW := io.in.clintEnW
+  csr.io.exc := exc
+  csr.io.intr := io.in.intr
 
   val clint = Module(new CLINT)
   clint.io.mstatus := csr.io.mstatus
   clint.io.mie := csr.io.mie
   clint.io.IFDone := io.IFDone
-  clint.io.clintEnW := io.in.clintEnW
+  clint.io.exc := exc
 
   clint.io.cmp_ren := io.cmp_ren
   clint.io.cmp_wen := io.cmp_wen
   clint.io.cmp_addr := io.cmp_addr
   clint.io.cmp_wdata := io.cmp_wdata
-
-  io.cmp_rdata := clint.io.cmp_rdata
-  io.clintEn := clint.io.clintEn
 
   val resW = SignExt(io.in.aluRes(31,0), 64)
 
@@ -83,6 +89,13 @@ class WriteBack extends Module {
   io.mepc    := csr.io.mepc
   io.mtvec   := csr.io.mtvec
   io.csrOp_WB := csr.io.csrOp_WB
+  io.cmp_rdata := clint.io.cmp_rdata
 
+  io.memtoReg := io.in.memtoReg
+  io.memWr := io.in.memWr
+  io.mem_addr := io.in.memAddr
+  io.exc := exc
+  io.intr := io.in.intr
+  io.intr_no := 7.U
 }
   

@@ -187,6 +187,7 @@ class DataMem extends Module {
   val memMemtoReg = io.in.memtoReg
   val memMemWr = io.in.memWr
   val memMemOp = io.in.memOp
+  val MemAddr = memAddr
   val memRdEn   = io.in.rdEn
   val memRdAddr = io.in.rdAddr
   val memRs1Data = io.in.rs1Data
@@ -197,7 +198,7 @@ class DataMem extends Module {
   val memAluRes = io.in.aluRes
   val memData = wData
   val memCsrOp = io.in.csrOp
-  val memClintEnW = io.in.clintEnW
+  val memIntr = io.in.intr
 
 //----------------------------------------------------------------
   io.out.valid    := memValid
@@ -211,6 +212,7 @@ class DataMem extends Module {
   io.out.memtoReg := memMemtoReg
   io.out.memWr    := memMemWr
   io.out.memOp    := memMemOp
+  io.out.memAddr  := MemAddr
   io.out.rdEn     := memRdEn
   io.out.rdAddr   := memRdAddr
   io.out.rs1Data  := memRs1Data
@@ -222,7 +224,7 @@ class DataMem extends Module {
   io.out.memData  := memData
   
   io.out.csrOp    := memCsrOp
-  io.out.clintEnW := memClintEnW
+  io.out.intr := memIntr
 
   io.memRdEn := io.in.rdEn
   io.memRdAddr := memRdAddr

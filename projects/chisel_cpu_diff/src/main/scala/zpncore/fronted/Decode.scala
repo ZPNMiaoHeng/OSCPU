@@ -30,8 +30,6 @@ class Decode extends Module {
 
     val bubbleId = Output(Bool())
     val out = Output(new BUS_R)
-
-//    val clintEn = Input(Bool())
   })
 
   val regs = Module(new RegFile)
@@ -87,8 +85,6 @@ class Decode extends Module {
   val idRs2Data = rs2Data
   val idImm = imm.io.imm
 
-//  val idClintEnW = io.in.clintEnW
-
 //----------------------------------------------------------------
   io.out.valid    := idValid
   io.out.pc       := idPC
@@ -101,6 +97,7 @@ class Decode extends Module {
   io.out.memtoReg := idMemtoReg
   io.out.memWr    := idMemWr
   io.out.memOp    := idMemOp
+  io.out.memAddr  := 0.U
   io.out.rdEn     := idRdEn
   io.out.rdAddr   := idRdAddr
   io.out.rs1Data  := idRs1Data
@@ -112,7 +109,7 @@ class Decode extends Module {
   io.out.memData  := 0.U
 
   io.out.csrOp    := con.io.csrOp
-  io.out.clintEnW := false.B
+  io.out.intr := false.B
 
   io.bubbleId := (rdRs1HitEx || rdRs2HitEx)
 }

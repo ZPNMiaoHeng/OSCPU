@@ -15,6 +15,7 @@ class BUS_R extends Bundle {
   val memtoReg = UInt(2.W)
   val memWr = UInt(1.W)
   val memOp = UInt(3.W)
+  val memAddr = UInt(32.W)
   val rdEn = Bool()
   val rdAddr = UInt(5.W)
   val rs1Data = UInt(XLEN.W)
@@ -27,7 +28,7 @@ class BUS_R extends Bundle {
   val memData = UInt(XLEN.W)
   
   val csrOp = UInt(4.W)               //* +
-  val clintEnW = Bool()
+  val intr = Bool()
 
 //  val bp_taken  = Bool()
 //  val bp_targer = UInt(32.W)
@@ -60,7 +61,7 @@ class BUS_R extends Bundle {
     memData  := 0.U
 
     csrOp := 0.U
-    clintEnW := false.B
+    intr := false.B
 
 //    bp_taken  := false.B
 //    bp_targer := 0.U

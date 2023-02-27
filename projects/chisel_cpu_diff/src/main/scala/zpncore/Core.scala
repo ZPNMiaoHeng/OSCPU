@@ -1,6 +1,7 @@
 import chisel3._
 import chisel3.util.experimental._
 import Instructions._
+import Constant._
 import difftest._
 import utils._
 
@@ -60,6 +61,7 @@ class Core extends Module {
   IF.io.stall := EXLHitID || !MEM.io.memDone //! EX 优先级大于MEM
   IF.io.memDone := MEM.io.memDone
   IF.io.csrOp_WB := WB.io.csrOp_WB
+  IF.io.intr := WB.io.intr
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
@@ -89,7 +91,7 @@ class Core extends Module {
   EX.io.csrOp := WB.io.csrOp_WB
   EX.io.mepc := WB.io.mepc
   EX.io.mtvec := WB.io.mtvec
-  EX.io.clintEn := WB.io.clintEn
+  EX.io.intr := WB.io.intr
 
   ExRegMem.io.in <> EX.io.out
   ExRegMem.io.stall := stallExMemEn
@@ -122,9 +124,18 @@ class Core extends Module {
     printf("%c", rf_a0)
   }
 
-  val req_clint = (WB.io.cmp_ren || WB.io.cmp_wen)
-  val skip = WB.io.inst === MY_INST //||
-//              (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp =/=0.U)
+  val req_clint = (WB.io.mem_addr === MTIMECMP || WB.io.mem_addr === MTIME) &&
+                  (WB.io.memtoReg === 1.U || WB.io.memWr === 1.U)
+
+//  val skip        = writeback.io.inst === MY_INST || (writeback.io.inst(31, 20) === Csrs.mcycle && writeback.io.sysop =/= 0.U) || req_clint
+
+//  val req_clint = (WB.io.cmp_ren || WB.io.cmp_wen)
+  val skip = WB.io.inst === MY_INST ||
+              (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp =/=0.U) || req_clint
+
+  val intr = WB.io.intr
+  val intr_no = Mux(intr, WB.io.intr_no, 0.U)
+  val exceptionPC = Mux(intr, WB.io.pc, 0.U)
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
@@ -143,9 +154,9 @@ class Core extends Module {
   val dt_ae = Module(new DifftestArchEvent)
   dt_ae.io.clock        := clock
   dt_ae.io.coreid       := 0.U
-  dt_ae.io.intrNO       := 0.U                  // 外部中断使用
+  dt_ae.io.intrNO       := RegNext(intr_no)       // 外部中断使用
   dt_ae.io.cause        := 0.U
-  dt_ae.io.exceptionPC  := 0.U                  // 外部中断PC
+  dt_ae.io.exceptionPC  := RegNext(exceptionPC)   // 外部中断PC
 
   val cycle_cnt = RegInit(0.U(64.W))
   val instr_cnt = RegInit(0.U(64.W))

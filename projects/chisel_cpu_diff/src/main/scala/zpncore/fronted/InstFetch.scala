@@ -22,6 +22,7 @@ class InstFetch extends Module {
     val stall = Input(Bool())
     val memDone = Input(Bool())
     val csrOp_WB = Input(UInt(4.W))
+    val intr = Input(Bool())
 
     val out = Output(new BUS_R)
 
@@ -48,7 +49,7 @@ class InstFetch extends Module {
                     pc)
 */
   val ifPC = Mux(ifPCfire && !ifPCstall,   // 更新下一周期地址
-              Mux(io.csrOp_WB(3) === 1.U, io.nextPC,
+              Mux(io.csrOp_WB(3) === 1.U || io.intr, io.nextPC,
                 Mux(io.pcSrc === 0.U, pc + 4.U, 
                   io.nextPC)),
                     pc)
@@ -70,6 +71,7 @@ class InstFetch extends Module {
   io.out.memtoReg := 0.U
   io.out.memWr    := 0.U
   io.out.memOp    := 0.U
+  io.out.memAddr  := 0.U
   io.out.rdEn     := false.B
   io.out.rdAddr   := 0.U
   io.out.rs1Data  := 0.U
@@ -81,6 +83,6 @@ class InstFetch extends Module {
   io.out.memData  := 0.U
 
   io.out.csrOp := 0.U
-  io.out.clintEnW := false.B
+  io.out.intr := false.B
 
 }
