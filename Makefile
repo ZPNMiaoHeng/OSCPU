@@ -60,6 +60,15 @@ time:
 yield:
 	$(TOOLS) -d -b -s -a "-i custom-output/yield-test/amtest-yield-test.bin " -m "$(FLASS)"
 
+o_coremark:
+	$(TOOLS) -d -b -s -a "-i custom-output/benchmark/coremark/coremark.bin " -m "$(FLASS)"
+
+o_dhrystone:
+	$(TOOLS) -d -b -s -a "-i custom-output/benchmark/dhrystone/dhrystone.bin " -m "$(FLASS)"
+
+o_microbench:
+	$(TOOLS) -d -b -s -a "-i custom-output/benchmark/microbench/microbench.bin " -m "$(FLASS)"
+
 # run indecation tests
 run_riscv:
 	$(TOOLS) -d -b -s -a "-i non-output/riscv-tests/$(TOP)-riscv-tests.bin --dump-wave -b 0" -m "$(FLASS)"

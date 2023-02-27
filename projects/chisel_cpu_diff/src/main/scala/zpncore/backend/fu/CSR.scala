@@ -98,11 +98,11 @@ class CSR extends Module {
 //    printf("------------- ebreak ------------------\n")
     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
   } .elsewhen(io.clintEnW && io.IFDone) {    //!
-    printf("-- clint --mepc = %x\n",mepc)
+    printf("-- clint --pc = %x\n",io.pc)
     mepc := io.pc
     mcause := "h8000000000000007".U
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
-    printf("-- clint1 --mepc = %x\n",mepc)
+    printf("-- clint1 --pc = %x\n",io.pc)
   }
 
   mcycle := mcycle + 1.U
@@ -152,7 +152,7 @@ class CSR extends Module {
   io.mie := mie
   io.mstatus := mstatus
   io.clintEn := ((io.mstatus(3) === 1.U) && (io.mie(7)===1.U)
-                  && (mtime >= mtimecmp)) && io.IFDone
+                  && (mtime >= mtimecmp)) && io.IFDone && io.clintEnW
   io.cmp_rdata := Mux(io.cmp_ren, 
                     Mux(io.cmp_addr === MTIME, 
                       mtime, mtimecmp), 0.U)
