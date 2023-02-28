@@ -81,10 +81,10 @@ class CSR extends Module {
   } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  // mret
 //    printf("------------- mret ------------------\n")
     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
-  } .elsewhen(io.intr && io.IFDone) {
+  } .elsewhen(io.intr ) {//&& io.IFDone) {
     printf("-- clint --pc = %x\n",io.pc)
     mepc := io.pc
-    mcause := "h8000000000000007".U                              // Machine timer interrupt
+    mcause := "h8000_0000_0000_0007".U                              // Machine timer interrupt
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
 //    printf("-- clint1 --pc = %x\n",io.pc)
   }
@@ -108,7 +108,7 @@ class CSR extends Module {
       mstatus := Cat((wdata(16) & wdata(15)) | (wdata(14) && wdata(13)), wdata(62, 0))
     } 
     when(wAddr === Csrs.mie) {
-      mie := wdata
+      mie := RegNext(wdata)
     } 
     when(wAddr === Csrs.mscratch) {
       mscratch := wdata

@@ -90,7 +90,7 @@ class Core extends Module {
   EX.io.csrOp := WB.io.csrOp_WB
   EX.io.mepc := WB.io.mepc
   EX.io.mtvec := WB.io.mtvec
-  EX.io.intr := WB.io.intr
+  EX.io.time_int := WB.io.time_int
 
   ExRegMem.io.in <> EX.io.out
   ExRegMem.io.stall := stallExMemEn

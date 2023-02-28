@@ -20,7 +20,6 @@ class WriteBack extends Module {
 
         val mepc = Output(UInt(64.W))
         val mtvec = Output(UInt(64.W))
-//        val csrOp = Output(UInt(4.W))
 
         val cmp_ren   = Input(Bool())
         val cmp_wen   = Input(Bool())
@@ -33,6 +32,8 @@ class WriteBack extends Module {
         val memtoReg = Output(UInt(2.W))
         val memWr = Output(UInt(1.W))
         val mem_addr = Output(UInt(32.W))
+        val time_int = Output(Bool())
+
         val intr = Output(Bool())
         val intr_no = Output(UInt(32.W))
     })
@@ -44,14 +45,14 @@ class WriteBack extends Module {
     csr.io.inst := io.in.inst
     csr.io.IFDone := io.IFDone
     csr.io.rs1Data := io.in.rs1Data
-    csr.io.csrOp := io.in.csrOp
-    csr.io.rAddr := io.in.inst(31, 20)    //io.csrRAddr
+    csr.io.csrOp := Mux(io.in.intr, 0.U, io.in.csrOp)
+    csr.io.rAddr := io.in.inst(31, 20)
     csr.io.intr := clint.io.time_int
+//    csr.io.intr := io.in.intr
 
-    val exc = (io.in.csrOp(3) === 1.U || clint.io.time_int)        //exception：ecall、mret、time interrupt
     clint.io.mstatus := csr.io.mstatus
     clint.io.mie := csr.io.mie
-    clint.io.IFDone := io.IFDone
+//    clint.io.IFDone := io.IFDone
     clint.io.csrOp_WB := io.in.csrOp
 //    clint.io.exc := exc
 
@@ -70,9 +71,12 @@ class WriteBack extends Module {
 
   io.pc := io.in.pc
   io.inst := io.in.inst
-  io.ready_cmt := io.in.inst =/= 0.U && io.in.valid
+//  io.ready_cmt := io.in.inst =/= 0.U && io.in.valid && !io.in.intr
+  io.ready_cmt := io.in.inst =/= 0.U && io.in.valid && !clint.io.time_int
 
-  io.wbRdEn := io.in.rdEn
+//  io.wbRdEn := Mux(clint.io.time_int, 0.U, io.in.rdEn)               //?中断时 数据写回寄存器嘛？
+//  io.wbRdEn := Mux(io.in.intr, 0.U, io.in.rdEn)                    //?中断时 数据写回寄存器嘛？
+  io.wbRdEn := io.in.rdEn                   //?中断时 数据写回寄存器嘛？
   io.wbRdAddr := io.in.rdAddr
   io.wbRdData := Mux(io.in.csrOp === 0.U, rdData, csr.io.rData)
 
@@ -81,11 +85,15 @@ class WriteBack extends Module {
   io.csrOp_WB := io.in.csrOp
   io.cmp_rdata := clint.io.cmp_rdata
 
+//  io.memtoReg := Mux(clint.io.time_int, 0.U, io.in.memtoReg)
   io.memtoReg := io.in.memtoReg
+//  io.memtoReg := Mux(io.in.intr, 0.U, io.in.memtoReg)
   io.memWr := io.in.memWr
   io.mem_addr := io.in.memAddr
-  io.exc := exc
-  io.intr := clint.io.time_int
+  io.exc := (io.in.csrOp(3) === 1.U || clint.io.time_int)    // 异常/中断 pc跳转
+
+  io.time_int := clint.io.time_int 
+  io.intr := clint.io.time_int // io.in.intr                   //+
   io.intr_no := 7.U
 }
   
