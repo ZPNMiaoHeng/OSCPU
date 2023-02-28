@@ -14,11 +14,9 @@ class CSR extends Module {
     val rs1Data = Input(UInt(64.W))
     val csrOp = Input(UInt( 4.W))
     val rAddr = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
-    val exc = Input(Bool())         // 例外信号
     val intr = Input(Bool())        // 中断信号
 
     val rData = Output(UInt(64.W))    // csr指令写回寄存器的值
-    val csrOp_WB = Output(UInt(4.W))
 
 //* --------- csr ------------------------
     val mepc = Output(UInt(64.W))     // 退出异常mret 保存地址
@@ -74,46 +72,46 @@ class CSR extends Module {
     ),
   0.U)
 
-  when((io.csrOp === "b1000".U) && io.IFDone && io.exc) {         //ecall
+  when((io.csrOp === "b1000".U) && io.IFDone) {         //ecall
 //    printf("------------- ecall ------------------\n")
     mcause  := 11.U
- //    mtvec  := // 存储地址
+//    mtvec  := // 存储地址
     mepc    := io.pc
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
-  } .elsewhen((io.csrOp === "b1001".U) && io.IFDone && io.exc) {  //ebreak
-//    printf("------------- ebreak ------------------\n")
+  } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  // mret
+//    printf("------------- mret ------------------\n")
     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
-  } .elsewhen(io.intr && io.IFDone && io.exc) {
+  } .elsewhen(io.intr && io.IFDone) {
     printf("-- clint --pc = %x\n",io.pc)
     mepc := io.pc
-    mcause := "h8000000000000007".U
+    mcause := "h8000000000000007".U                              // Machine timer interrupt
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
-    printf("-- clint1 --pc = %x\n",io.pc)
+//    printf("-- clint1 --pc = %x\n",io.pc)
   }
 
-  mcycle := mcycle + 1.U
+  mcycle := mcycle + 1.U     //TODO:这个该咋弄呢？ 应该不写回寄存器的话，应该永远是0+1才对呢
 //* ------------------------------------- 写回寄存器 -------------------------------------------
   when(csrRW) {
     when(wAddr === Csrs.mcycle) {
       mcycle := wdata 
     }
     when(wAddr === Csrs.mtvec) {
-      mtvec := RegNext(wdata)
+      mtvec := RegNext(wdata)    // 每两个周期执行一条指令，所以打一拍
     } 
     when(wAddr === Csrs.mepc) {
-      mepc := wdata 
+      mepc := wdata
     } 
     when(wAddr === Csrs.mcause) {
-      mcause := wdata 
+      mcause := wdata
     } 
     when(wAddr === Csrs.mstatus) {
       mstatus := Cat((wdata(16) & wdata(15)) | (wdata(14) && wdata(13)), wdata(62, 0))
     } 
     when(wAddr === Csrs.mie) {
-      mie := wdata 
+      mie := wdata
     } 
     when(wAddr === Csrs.mscratch) {
-      mscratch := wdata 
+      mscratch := wdata
     }
   }
 
@@ -134,7 +132,6 @@ class CSR extends Module {
 
   io.mepc := mepc
   io.mtvec := mtvec
-  io.csrOp_WB := io.csrOp
   io.mie := mie
   io.mstatus := mstatus
 

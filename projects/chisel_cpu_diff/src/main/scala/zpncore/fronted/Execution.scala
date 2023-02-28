@@ -17,6 +17,7 @@ class Execution extends Module {
         val pcSrc = Output(UInt(2.W))
         val nextPC = Output(UInt(WLEN.W))
 
+        val exc = Input(Bool())                    //?
         val csrOp = Input(UInt(4.W))
         val mepc = Input(UInt(64.W))
         val mtvec = Input(UInt(64.W))
@@ -41,6 +42,7 @@ class Execution extends Module {
     nextPC.io.less := alu.io.less
     nextPC.io.zero := alu.io.zero
 
+    nextPC.io.exc := io.exc      //?
     nextPC.io.csrOp := io.csrOp
     nextPC.io.mepc := io.mepc
     nextPC.io.mtvec := io.mtvec
@@ -66,7 +68,7 @@ class Execution extends Module {
   val exeNextPC = nextPC.io.nextPC
   val exeAluRes = alu.io.aluRes
   val exeCsrOp = io.in.csrOp
-  val exeIntr = io.intr
+//  val exeIntr = io.intr
 
 //----------------------------------------------------------------
   io.out.valid    := exeValid
@@ -92,7 +94,7 @@ class Execution extends Module {
   io.out.memData  := 0.U
 
   io.out.csrOp    := exeCsrOp
-  io.out.intr := exeIntr
+//  io.out.intr := exeIntr
 
   io.exeRdEn := io.in.rdEn
   io.exeRdAddr := exeRdAddr

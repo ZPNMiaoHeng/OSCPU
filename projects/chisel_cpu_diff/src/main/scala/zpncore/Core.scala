@@ -27,7 +27,7 @@ class Core extends Module {
   val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
 
 //* ----------------------------------------------------------------
-  val ecallEn = WB.io.csrOp_WB(3) === 1.U //|| WB.io.clintEn)  //ecall/mret/time
+  val ecallEn = WB.io.csrOp_WB(3) === 1.U || WB.io.intr  //ecall/mret/time
   val flushIfIdEn  = false.B
   val flushIdExEn  = Mux(ecallEn, true.B,
                       Mux(IF.io.IFDone, 
@@ -60,17 +60,16 @@ class Core extends Module {
   IF.io.nextPC := EX.io.nextPC
   IF.io.stall := EXLHitID || !MEM.io.memDone //! EX 优先级大于MEM
   IF.io.memDone := MEM.io.memDone
-  IF.io.csrOp_WB := WB.io.csrOp_WB
-  IF.io.intr := WB.io.intr
+  IF.io.exc := WB.io.exc                   //?
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
   IfRegId.io.flush := flushIfIdEn
 //------------------- ID --------------------------------
   ID.io.in <> IfRegId.io.out
-  ID.io.rdEn := WB.io.rdEn
-  ID.io.rdAddr := WB.io.rdAddr
-  ID.io.rdData := WB.io.rdData
+  ID.io.rdEn := WB.io.wbRdEn
+  ID.io.rdAddr := WB.io.wbRdAddr
+  ID.io.rdData := WB.io.wbRdData
 //* Bypass
   ID.io.exeRdEn := EX.io.exeRdEn
   ID.io.exeRdAddr := EX.io.exeRdAddr
@@ -87,7 +86,7 @@ class Core extends Module {
   IdRegEx.io.flush := flushIdExEn
 //------------------- EX --------------------------------
   EX.io.in <> IdRegEx.io.out
-//  EX.io.csrRAddr := WB.io.csrRAddr //!
+  EX.io.exc := WB.io.exc                   //?
   EX.io.csrOp := WB.io.csrOp_WB
   EX.io.mepc := WB.io.mepc
   EX.io.mtvec := WB.io.mtvec
@@ -100,7 +99,7 @@ class Core extends Module {
   MEM.io.in <> ExRegMem.io.out
   MEM.io.dmem <> io.dmem
   MEM.io.IFReady := io.imem.inst_ready
-  MEM.io.cmp_rdata := WB.io.cmp_rdata
+  MEM.io.cmp_rdata := WB.io.cmp_rdata     // 写回mtime/mtimecmp
 
   MemRegWb.io.in <> MEM.io.out
   MemRegWb.io.stall := stallMemWbEn
@@ -114,7 +113,6 @@ class Core extends Module {
   WB.io.cmp_wdata := MEM.io.cmp_wdata
 
   /* ----- Difftest ------------------------------ */
-//  val mem_valid = RegNext(MEM.io.memAxi)
   val valid = WB.io.ready_cmt && IF.io.IFDone && MEM.io.memDone
 
   val rf_a0 = WireInit(0.U(64.W))
@@ -126,12 +124,7 @@ class Core extends Module {
 
   val req_clint = (WB.io.mem_addr === MTIMECMP || WB.io.mem_addr === MTIME) &&
                   (WB.io.memtoReg === 1.U || WB.io.memWr === 1.U)
-
-//  val skip        = writeback.io.inst === MY_INST || (writeback.io.inst(31, 20) === Csrs.mcycle && writeback.io.sysop =/= 0.U) || req_clint
-
-//  val req_clint = (WB.io.cmp_ren || WB.io.cmp_wen)
-  val skip = WB.io.inst === MY_INST ||
-              (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp =/=0.U) || req_clint
+  val skip = WB.io.inst === MY_INST || (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp_WB =/=0.U) || req_clint
 
   val intr = WB.io.intr
   val intr_no = Mux(intr, WB.io.intr_no, 0.U)
@@ -147,9 +140,9 @@ class Core extends Module {
   dt_ic.io.skip     := RegNext(skip)           // 是否需要跳过本条指令；
   dt_ic.io.isRVC    := false.B                 // 是否是C扩展16位指令;
   dt_ic.io.scFailed := false.B                 // A扩展sc指令是否失败;
-  dt_ic.io.wen      := RegNext(WB.io.rdEn)
-  dt_ic.io.wdata    := RegNext(WB.io.rdData)
-  dt_ic.io.wdest    := RegNext(WB.io.rdAddr)
+  dt_ic.io.wen      := RegNext(WB.io.wbRdEn)
+  dt_ic.io.wdata    := RegNext(WB.io.wbRdData)
+  dt_ic.io.wdest    := RegNext(WB.io.wbRdAddr)
 
   val dt_ae = Module(new DifftestArchEvent)
   dt_ae.io.clock        := clock
@@ -172,27 +165,4 @@ class Core extends Module {
   dt_te.io.pc       := WB.io.pc
   dt_te.io.cycleCnt := cycle_cnt                       // cycle计数器
   dt_te.io.instrCnt := instr_cnt                       // 指令计数器
-/*
-  val dt_cs = Module(new DifftestCSRState)
-  dt_cs.io.clock          := clock
-  dt_cs.io.coreid         := 0.U
-  dt_cs.io.priviledgeMode := 3.U  // Machine mode
-  dt_cs.io.mstatus        := WB.io.mstatus
-  dt_cs.io.sstatus        := WB.io.mstatus & "h80000003000de122".U
-  dt_cs.io.mepc           := WB.io.mepc
-  dt_cs.io.sepc           := 0.U
-  dt_cs.io.mtval          := 0.U
-  dt_cs.io.stval          := 0.U
-  dt_cs.io.mtvec          := RegNext(WB.io.mtvec)
-  dt_cs.io.stvec          := 0.U
-  dt_cs.io.mcause         := WB.io.mcause
-  dt_cs.io.scause         := 0.U
-  dt_cs.io.satp           := 0.U
-  dt_cs.io.mip            := 0.U
-  dt_cs.io.mie            := WB.io.mie
-  dt_cs.io.mscratch       := WB.io.mscratch
-  dt_cs.io.sscratch       := 0.U
-  dt_cs.io.mideleg        := 0.U
-  dt_cs.io.medeleg        := 0.U
-*/
 }
