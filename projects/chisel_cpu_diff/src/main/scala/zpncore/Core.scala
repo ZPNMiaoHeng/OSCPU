@@ -28,7 +28,7 @@ class Core extends Module {
 
 //* ----------------------------------------------------------------
   val ecallEn = WB.io.csrOp_WB(3) === 1.U || WB.io.intr  //ecall/mret/time
-  val flushIfIdEn  = false.B
+  val flushIfIdEn  = WB.io.intr //false.B
   val flushIdExEn  = Mux(ecallEn, true.B,
                       Mux(IF.io.IFDone, 
                         Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
@@ -61,6 +61,7 @@ class Core extends Module {
   IF.io.stall := EXLHitID || !MEM.io.memDone //! EX 优先级大于MEM
   IF.io.memDone := MEM.io.memDone
   IF.io.exc := WB.io.exc                   //?
+  IF.io.intr := WB.io.intr
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
@@ -147,8 +148,10 @@ class Core extends Module {
   val dt_ae = Module(new DifftestArchEvent)
   dt_ae.io.clock        := clock
   dt_ae.io.coreid       := 0.U
+//  dt_ae.io.intrNO       := intr_no     //RegNext(intr_no)       // 外部中断使用
   dt_ae.io.intrNO       := RegNext(intr_no)       // 外部中断使用
   dt_ae.io.cause        := 0.U
+//  dt_ae.io.exceptionPC  := exceptionPC //RegNext(exceptionPC)   // 外部中断PC
   dt_ae.io.exceptionPC  := RegNext(exceptionPC)   // 外部中断PC
 
   val cycle_cnt = RegInit(0.U(64.W))

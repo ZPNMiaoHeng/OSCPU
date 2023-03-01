@@ -9,7 +9,7 @@ class CSR extends Module {
   val io = IO(new Bundle {
     val pc = Input(UInt(32.W))
     val inst = Input(UInt(32.W))
-    
+
     val IFDone = Input(Bool())
     val rs1Data = Input(UInt(64.W))
     val csrOp = Input(UInt( 4.W))
@@ -81,7 +81,8 @@ class CSR extends Module {
   } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  // mret
 //    printf("------------- mret ------------------\n")
     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
-  } .elsewhen(io.intr ) {//&& io.IFDone) {
+//  } .elsewhen(io.intr ) {//&& io.IFDone) {
+  } .elsewhen(io.intr && io.IFDone) {
     printf("-- clint --pc = %x\n",io.pc)
     mepc := io.pc
     mcause := "h8000_0000_0000_0007".U                              // Machine timer interrupt

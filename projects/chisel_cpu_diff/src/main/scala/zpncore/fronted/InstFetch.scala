@@ -22,6 +22,7 @@ class InstFetch extends Module {
     val stall = Input(Bool())
     val memDone = Input(Bool())
     val exc = Input(Bool())
+    val intr = Input(Bool())
 
     val out = Output(new BUS_R)
 
@@ -30,12 +31,14 @@ class InstFetch extends Module {
   val pc = RegInit("h8000_0000".U(WLEN.W))               //* nextPC = 0x8000_0000,可以取到正确指令
   val inst = RegInit(0.U(WLEN.W))
 
-  io.imem.inst_valid := !io.stall                        //* IF valid一直有效，请求AXI传输指令
+  io.imem.inst_valid := !io.stall                       //* IF valid一直有效，请求AXI传输指令
+//  io.imem.inst_valid := !io.stall && !io.intr                       //* IF valid一直有效，请求AXI传输指令
   io.imem.inst_req := REQ_READ
-  io.imem.inst_addr := pc.asUInt()
+  io.imem.inst_addr := pc.asUInt()                 //? intr：pc应该更新完nextpc的值
   io.imem.inst_size := SIZE_W
   
   val fire = Mux(io.stall, true.B,
+//              !io.stall && io.imem.inst_ready)  //* 握手成功，从总线上取出指令
               io.imem.inst_valid && io.imem.inst_ready)  //* 握手成功，从总线上取出指令
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
