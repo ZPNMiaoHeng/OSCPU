@@ -87,7 +87,7 @@ class Core extends Module {
   IdRegEx.io.flush := flushIdExEn
 //------------------- EX --------------------------------
   EX.io.in <> IdRegEx.io.out
-  EX.io.exc := WB.io.exc                   //?
+  EX.io.exc := WB.io.exc                   //??
   EX.io.csrOp := WB.io.csrOp_WB
   EX.io.mepc := WB.io.mepc
   EX.io.mtvec := WB.io.mtvec
