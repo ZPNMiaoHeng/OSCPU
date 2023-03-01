@@ -9,7 +9,6 @@ class CLINT extends Module {
     val mstatus = Input(UInt(64.W))
     val mie = Input(UInt(64.W))
 //    val IFDone = Input(Bool())
-//    val exc = Input(Bool())            // 流水线中的clint 信号
     val csrOp_WB = Input(UInt(4.W))      // 流水线中的clint 信号
 
     val cmp_ren    = Input(Bool())
@@ -24,13 +23,12 @@ class CLINT extends Module {
   val mtime = RegInit(UInt(64.W), 0.U)
   val mtimecmp = RegInit(UInt(64.W), 0.U)
 
+//when()
   mtime := mtime + 1.U             //TODO:一条指令两周期，应该两个周期加1
   when (io.cmp_wen) {
     mtimecmp := io.cmp_wdata
   }
   io.time_int := ((io.mstatus(3) === 1.U) && (io.mie(7)===1.U) && (mtime >= mtimecmp))// && io.IFDone  //??时钟中断嵌套
-  // && (io.csrOp_WB === 0.U)
-  // io.exc
   io.cmp_rdata := Mux(io.cmp_ren, 
                     Mux(io.cmp_addr === MTIME, 
                       mtime, mtimecmp), 0.U)

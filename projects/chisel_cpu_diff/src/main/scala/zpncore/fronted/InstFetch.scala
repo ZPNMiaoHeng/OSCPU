@@ -32,9 +32,8 @@ class InstFetch extends Module {
   val inst = RegInit(0.U(WLEN.W))
 
   io.imem.inst_valid := !io.stall                       //* IF valid一直有效，请求AXI传输指令
-//  io.imem.inst_valid := !io.stall && !io.intr                       //* IF valid一直有效，请求AXI传输指令
   io.imem.inst_req := REQ_READ
-  io.imem.inst_addr := pc.asUInt()                 //? intr：pc应该更新完nextpc的值
+  io.imem.inst_addr := pc.asUInt()              //? intr：pc应该更新完nextpc的值
   io.imem.inst_size := SIZE_W
   
   val fire = Mux(io.stall, true.B,
@@ -54,7 +53,7 @@ class InstFetch extends Module {
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
-  io.IFDone := fire && io.memDone                                  //* fire有效，取到inst，取指阶段完成
+  io.IFDone := Mux(io.intr, true.B, fire && io.memDone)                                  //* fire有效，取到inst，取指阶段完成
 
 //------------------- IF ----------------------------
   io.out.valid    := fire
