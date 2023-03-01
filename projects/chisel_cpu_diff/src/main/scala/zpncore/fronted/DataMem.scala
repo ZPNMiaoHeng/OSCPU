@@ -173,6 +173,9 @@ class DataMem extends Module {
   io.cmp_wen := ((memWr === 1.U) && ((memAddr === MTIME) || (memAddr === MTIMECMP)))           // Store inst -> mtime/mtimecmp
   io.cmp_addr := memAddr
   io.cmp_wdata := io.dmem.data_read
+//  when( io.cmp_ren || io.cmp_wen){
+//        printf("-- clint --pc = %x, cmp_addr = %x, cmp_wdata =%x\n", io.in.pc, io.cmp_addr, io.cmp_wdata)
+//  }
 //----------------------------------------------------------------
   val memValid = io.in.valid
   val memPC = io.in.pc
