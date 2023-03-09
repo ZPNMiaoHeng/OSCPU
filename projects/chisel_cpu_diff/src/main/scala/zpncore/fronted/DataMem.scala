@@ -39,33 +39,35 @@ class DataMem extends Module {
 
   val data_size = WireInit(0.U(2.W))
 
-  val cmpREn = ((memtoReg === "b01".U) && ((memAddr === MTIME) || (memAddr === MTIMECMP)))    // Load inst -> mtime/mtimecmp
+  val cmpWEn = (memWr === 1.U) && ((memAddr === MTIMECMP) || (memAddr === MTIME))           // Store inst -> mtime/mtimecmp //todo:!!
+  val cmpREn = (memtoReg === 1.U) && ((memAddr === MTIMECMP) || (memAddr === MTIME))       // Load inst -> mtime/mtimecmp  //todo:应该加上从DCache读取成功信号，才能写回寄存器
+
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
-
-  val dmemEn = (memAddr === MTIME) || (memAddr === MTIMECMP) ||                               // clint addr
-                (!(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U)) &&                  // normal aadr
-                  ((memtoReg === "b01".U) || (memWr === 1.U))
-
-  io.dmem.data_addr := memAddr
-
+// ------------ 跳转到下一条指令时，dmemDone就false -------------------
   val dmemDone = RegInit(false.B)  //* 访存完成后dmemDone拉高，只有进入下一条inst时才进入总线访存；
   val inst = Reg(UInt(WLEN.W))
 
   inst := io.in.inst
-  when (io.dmem.data_ready) {
+  when (io.dmem.data_ready || cmpWEn || cmpREn) {    //? 当触发时钟中断寄存器，默认两个周期
     dmemDone := true.B
   } .elsewhen (inst =/= io.in.inst) {
     dmemDone := false.B
   }
 
-  io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone                // 将IF取指那一周除去
+//* ------------------------------------------------------ ----- Debug ----- 当访问mtimecmp，两个周期后暂停
+//  val debug = RegNext(RegNext(memAddr === MTIMECMP)) 
+//* ------------------------------------------------------ ----- Debug -----
+  val dmemEn = (!(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U)) &&                  // W/R memory space
+                  ((memtoReg === "b01".U) || (memWr === 1.U))                                // Load/store
+  io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone // && !debug               // 将IF取指那一周除去-->优先级:IF>MEM
+  io.dmem.data_addr := memAddr
 
   val dmemFire = io.dmem.data_valid && io.dmem.data_ready
   val alignBits = memAddr % 16.U
   
-  io.dmem.data_write := Mux(cmpREn, io.cmp_rdata, memDataIn << alignBits * 8.U) //? 是否需要对齐呢？？
-  io.dmem.data_req := Mux(memWr === 1.U /* && !cmpWEn */, REQ_WRITE, REQ_READ)
-  io.dmem.data_size := data_size //SIZE_W                //!!!  10---应该传输指令类型 bhwd？？
+  io.dmem.data_write := memDataIn << alignBits * 8.U
+  io.dmem.data_req := Mux(memWr === 1.U && !cmpWEn, REQ_WRITE, REQ_READ)
+  io.dmem.data_size := data_size
   io.dmem.data_strb := Mux(io.in.typeL, 0.U,
     LookupTreeDefault(memOP, 0.U, List(
       "b000".U -> LookupTreeDefault(alignBits, "b0000_0001".U, List(                       // Sb
@@ -101,11 +103,14 @@ class DataMem extends Module {
   val rdata = RegInit(0.U(XLEN.W))
   when(dmemFire) {
     rdata := io.dmem.data_read
+  } .elsewhen( cmpREn) {
+    rdata := io.cmp_rdata
   }
 
   val memAxi = Mux(dmemEn && !dmemFire, true.B, false.B)
 //防止IF未更新inst，再次进入总线访存，导致流水线一直处于暂停状态
-  io.memDone := Mux(!io.in.typeL, !memAxi || io.IFReady, dmemDone)  //!! 当连续load指令时，选取dmemDone延迟一周期；
+  io.memDone := Mux(cmpREn || cmpWEn, true.B, 
+                  Mux(!io.in.typeL, !memAxi || io.IFReady, dmemDone))  //!! 当连续load指令时，选取dmemDone延迟一周期；
 
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
@@ -168,14 +173,14 @@ class DataMem extends Module {
       ("b10".U) -> resW
   ))
 
+
   //*------------------------------------   Clint   --------------------------------------------------------
-  io.cmp_ren := cmpREn                        // Load inst -> mtime/mtimecmp
-  io.cmp_wen := ((memWr === 1.U) && ((memAddr === MTIME) || (memAddr === MTIMECMP)))           // Store inst -> mtime/mtimecmp
+  io.cmp_wen := cmpWEn                        // Load inst -> mtime/mtimecmp
+  io.cmp_ren := cmpREn
   io.cmp_addr := memAddr
-  io.cmp_wdata := io.dmem.data_read
-//  when( io.cmp_ren || io.cmp_wen){
-//        printf("-- clint --pc = %x, cmp_addr = %x, cmp_wdata =%x\n", io.in.pc, io.cmp_addr, io.cmp_wdata)
-//  }
+//  io.cmp_wdata := Mux(dmemFire, rdata, 0.U)   //!!! error
+  io.cmp_wdata := Mux(cmpWEn, io.dmem.data_write, 0.U)
+//  io.cmp_wdata := io.in.rs2Data   //memDataIn         //io.dmem.data_write
 //----------------------------------------------------------------
   val memValid = io.in.valid
   val memPC = io.in.pc

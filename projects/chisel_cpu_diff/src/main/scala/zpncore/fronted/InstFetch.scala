@@ -48,7 +48,8 @@ class InstFetch extends Module {
               Mux(io.exc, io.nextPC,
                 Mux(io.pcSrc === 0.U, pc + 4.U, 
                   io.nextPC)),
-                    pc)
+                    (Mux(io.intr, io.nextPC, pc)))
+//                    pc)
 
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
