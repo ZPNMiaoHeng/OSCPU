@@ -83,7 +83,7 @@ class CSR extends Module {
     mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
 //  } .elsewhen(io.intr ) {//&& io.IFDone) {
   } .elsewhen(io.intr && io.IFDone) {
-    printf("-- clint --pc = %x\n",io.pc)
+    printf("\n-- clint --pc = %x\n",io.pc)
     mepc := io.pc
     mcause := "h8000_0000_0000_0007".U                              // Machine timer interrupt
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))

@@ -22,13 +22,21 @@ class Core extends Module {
   val MEM = Module(new DataMem)
   val MemRegWb = Module(new PipelineReg)
   val WB = Module(new WriteBack)
+
 //*-----------------------------------------------------------------
+  val intr = WB.io.intr
+  val intr_no = Mux(intr, WB.io.intr_no, 0.U)
+  val exceptionPC = Mux(intr, Mux(WB.io.pc =/= 0.U, WB.io.pc,
+                                Mux(MEM.io.out.pc =/= 0.U, MEM.io.out.pc,
+                                  Mux(EX.io.out.pc =/= 0.U, EX.io.out.pc,
+                                    Mux(ID.io.out.pc =/= 0.U, ID.io.out.pc,
+                                      IF.io.out.pc)))), 0.U)
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
   val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
 
 //* ----------------------------------------------------------------
-  val ecallEn = WB.io.csrOp_WB(3) === 1.U || WB.io.intr  //ecall/mret/time
-  val flushIfIdEn  = WB.io.intr //false.B
+  val ecallEn = WB.io.csrOp_WB(3) === 1.U || intr  //ecall/mret/time
+  val flushIfIdEn  = intr //false.B
   val flushIdExEn  = Mux(ecallEn, true.B,
                       Mux(IF.io.IFDone, 
                         Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
@@ -61,7 +69,7 @@ class Core extends Module {
   IF.io.stall := EXLHitID || !MEM.io.memDone //! EX 优先级大于MEM
   IF.io.memDone := MEM.io.memDone
   IF.io.exc := WB.io.exc                   //?
-  IF.io.intr := WB.io.intr
+  IF.io.intr := intr
 
   IfRegId.io.in <> IF.io.out
   IfRegId.io.stall := stallIfIdEn
@@ -108,6 +116,7 @@ class Core extends Module {
 //------------------- WB ---------------------------------
   WB.io.in <> MemRegWb.io.out
   WB.io.IFDone := IF.io.IFDone
+  WB.io.pc_intr := exceptionPC
   WB.io.cmp_ren := MEM.io.cmp_ren
   WB.io.cmp_wen := MEM.io.cmp_wen
   WB.io.cmp_addr := MEM.io.cmp_addr
@@ -126,10 +135,6 @@ class Core extends Module {
   val req_clint = (WB.io.mem_addr === MTIMECMP || WB.io.mem_addr === MTIME) &&
                   (WB.io.memtoReg === 1.U || WB.io.memWr === 1.U)
   val skip = WB.io.inst === MY_INST || (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp_WB =/=0.U) || req_clint
-
-  val intr = WB.io.intr
-  val intr_no = Mux(intr, WB.io.intr_no, 0.U)
-  val exceptionPC = Mux(intr, WB.io.pc, 0.U)
 
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
