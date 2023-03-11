@@ -36,19 +36,23 @@ class InstFetch extends Module {
   io.imem.inst_addr := pc.asUInt()              //? intr：pc应该更新完nextpc的值
   io.imem.inst_size := SIZE_W
   
-  val fire = Mux(io.stall, true.B,
-//              !io.stall && io.imem.inst_ready)  //* 握手成功，从总线上取出指令
-              io.imem.inst_valid && io.imem.inst_ready)  //* 握手成功，从总线上取出指令
+  val fire = Mux(io.stall, true.B, 
+                Mux(io.intr , false.B, io.imem.inst_valid && io.imem.inst_ready))  //* 握手成功，从总线上取出指令
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
   val ifPCfire = RegNext(fire)
   val ifPCstall = RegNext(io.stall)
-
+/*
   val ifPC = Mux(ifPCfire && !ifPCstall,   // 更新下一周期地址
-              Mux(io.exc, io.nextPC,
-                Mux(io.pcSrc === 0.U, pc + 4.U, 
-                  io.nextPC)),
-                    (Mux(io.intr, io.nextPC, pc)))
+              Mux(io.exc, io.nextPC, 
+                Mux(io.pcSrc === 0.U, pc + 4.U, io.nextPC)),
+              Mux(io.intr, io.nextPC, pc)
+              )
+*/
+  val ifPC = Mux(ifPCfire && !ifPCstall,   // 更新下一周期地址 
+                Mux(io.pcSrc === 0.U && !io.exc, pc + 4.U, io.nextPC),  // 无中断异常情况下，pc+4
+                Mux(io.intr, io.nextPC, pc)
+              )
 
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
