@@ -178,9 +178,7 @@ class DataMem extends Module {
   io.cmp_wen := cmpWEn                        // Load inst -> mtime/mtimecmp
   io.cmp_ren := cmpREn
   io.cmp_addr := memAddr
-//  io.cmp_wdata := Mux(dmemFire, rdata, 0.U)   //!!! error
   io.cmp_wdata := Mux(cmpWEn, io.dmem.data_write, 0.U)
-//  io.cmp_wdata := io.in.rs2Data   //memDataIn         //io.dmem.data_write
 //----------------------------------------------------------------
   val memValid = io.in.valid
   val memPC = io.in.pc
@@ -235,6 +233,4 @@ class DataMem extends Module {
   io.memRdEn := io.in.rdEn
   io.memRdAddr := memRdAddr
   io.memRdData := memBPData
-
-  io.cmp_wdata := memBPData
 }

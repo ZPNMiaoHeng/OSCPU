@@ -24,7 +24,7 @@ class CLINT extends Module {
   val mtimecmp = RegInit(UInt(64.W), 0.U)
 
 //when()
-  mtime := mtime + 100.U             //TODO:一条指令两周期，应该两个周期加1
+  mtime := mtime + 1.U             //TODO:一条指令两周期，应该两个周期加1
   when (io.cmp_wen) {
     mtimecmp := io.cmp_wdata
   }
