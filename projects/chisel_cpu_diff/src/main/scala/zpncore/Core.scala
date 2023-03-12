@@ -32,7 +32,7 @@ class Core extends Module {
                                     Mux(ID.io.out.pc =/= 0.U, ID.io.out.pc,
                                       IF.io.out.pc)))), 0.U)
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
-  val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
+  val EXLHitID = Mux(!intr, Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B), false.B) //切换指令(and intrrupt)时，此信号一周期无效
 
 //* ----------------------------------------------------------------
   val ecallEn = WB.io.csrOp_WB(3) === 1.U || intr  //ecall/mret/time

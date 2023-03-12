@@ -1977,11 +1977,8 @@ module CSR(
   wire [63:0] _wdata_T_7 = 2'h2 == io_csrOp[1:0] ? _wdata_T_1 : _wdata_T_5; // @[Mux.scala 81:58]
   wire [63:0] _wdata_T_9 = 2'h3 == io_csrOp[1:0] ? _wdata_T_3 : _wdata_T_7; // @[Mux.scala 81:58]
   wire [63:0] wdata = csrRW ? _wdata_T_9 : 64'h0; // @[CSR.scala 66:18]
-  wire  _T_1 = io_csrOp == 4'h8 & io_IFDone; // @[CSR.scala 75:33]
   wire [63:0] _mstatus_T_5 = {mstatus[63:13],2'h3,mstatus[10:8],mstatus[3],mstatus[6:4],1'h0,mstatus[2:0]}; // @[Cat.scala 31:58]
-  wire  _T_3 = io_csrOp == 4'h9 & io_IFDone; // @[CSR.scala 81:40]
   wire [62:0] _mstatus_T_11 = {mstatus[63:13],1'h0,mstatus[10:8],1'h1,mstatus[6:4],mstatus[7],mstatus[2:0]}; // @[Cat.scala 31:58]
-  wire  _T_4 = io_intr & io_IFDone; // @[CSR.scala 85:23]
   wire [63:0] _GEN_0 = io_intr & io_IFDone ? {{32'd0}, io_pc} : mepc; // @[CSR.scala 85:37 87:10 31:24]
   wire [63:0] _GEN_1 = io_intr & io_IFDone ? 64'h8000000000000007 : mcause; // @[CSR.scala 85:37 88:12 32:24]
   wire [63:0] _GEN_2 = io_intr & io_IFDone ? _mstatus_T_5 : mstatus; // @[CSR.scala 85:37 89:13 29:24]
@@ -2168,17 +2165,6 @@ module CSR(
     end else begin
       io_rData_REG <= _rDataT_T_9;
     end
-    `ifndef SYNTHESIS
-    `ifdef PRINTF_COND
-      if (`PRINTF_COND) begin
-    `endif
-        if (~_T_1 & ~_T_3 & _T_4 & ~reset) begin
-          $fwrite(32'h80000002,"\n-- clint --pc = %x\n",io_pc); // @[CSR.scala 86:11]
-        end
-    `ifdef PRINTF_COND
-      end
-    `endif
-    `endif // SYNTHESIS
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -2262,7 +2248,7 @@ module CLINT(
 `endif // RANDOMIZE_REG_INIT
   reg [63:0] mtime; // @[CLINT.scala 23:22]
   reg [63:0] mtimecmp; // @[CLINT.scala 24:25]
-  wire [63:0] _mtime_T_1 = mtime + 64'h1; // @[CLINT.scala 27:18]
+  wire [63:0] _mtime_T_1 = mtime + 64'h64; // @[CLINT.scala 27:18]
   wire [63:0] _io_cmp_rdata_T_1 = io_cmp_addr == 64'h200bff8 ? mtime : mtimecmp; // @[CLINT.scala 33:24]
   assign io_cmp_rdata = io_cmp_ren ? _io_cmp_rdata_T_1 : 64'h0; // @[CLINT.scala 32:22]
   assign io_time_int = io_mstatus[3] & io_mie[7] & mtime >= mtimecmp; // @[CLINT.scala 31:64]
@@ -2395,6 +2381,8 @@ module WriteBack(
   wire [63:0] _rdData_T_1 = 2'h0 == io_in_memtoReg ? io_in_aluRes : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _rdData_T_3 = 2'h1 == io_in_memtoReg ? io_in_memData : _rdData_T_1; // @[Mux.scala 81:58]
   wire [63:0] rdData = 2'h2 == io_in_memtoReg ? resW : _rdData_T_3; // @[Mux.scala 81:58]
+  wire [4:0] _io_wbRdAddr_T = clint_io_time_int ? 5'h0 : io_in_rdAddr; // @[WriteBack.scala 78:36]
+  wire [63:0] _io_wbRdData_T_1 = io_in_csrOp == 4'h0 ? rdData : csr_io_rData; // @[WriteBack.scala 79:36]
   CSR csr ( // @[WriteBack.scala 42:21]
     .clock(csr_clock),
     .reset(csr_reset),
@@ -2425,9 +2413,9 @@ module WriteBack(
   );
   assign io_pc = io_in_pc; // @[WriteBack.scala 70:9]
   assign io_inst = io_in_inst; // @[WriteBack.scala 71:11]
-  assign io_wbRdEn = io_in_rdEn; // @[WriteBack.scala 77:13]
-  assign io_wbRdAddr = io_in_rdAddr; // @[WriteBack.scala 78:15]
-  assign io_wbRdData = io_in_csrOp == 4'h0 ? rdData : csr_io_rData; // @[WriteBack.scala 79:21]
+  assign io_wbRdEn = io_IFDone & io_in_rdEn; // @[WriteBack.scala 77:19]
+  assign io_wbRdAddr = io_IFDone ? _io_wbRdAddr_T : 5'h0; // @[WriteBack.scala 78:21]
+  assign io_wbRdData = io_IFDone ? _io_wbRdData_T_1 : 64'h0; // @[WriteBack.scala 79:21]
   assign io_ready_cmt = io_in_inst != 32'h0 & io_in_valid & ~clint_io_time_int; // @[WriteBack.scala 73:53]
   assign io_csrOp_WB = io_in_csrOp; // @[WriteBack.scala 83:15]
   assign io_mepc = csr_io_mepc; // @[WriteBack.scala 81:14]
@@ -2899,7 +2887,7 @@ module Core(
   wire [31:0] _exceptionPC_T_5 = EX_io_out_pc != 32'h0 ? EX_io_out_pc : _exceptionPC_T_4; // @[Core.scala 31:38]
   wire [31:0] _exceptionPC_T_6 = MEM_io_out_pc != 32'h0 ? MEM_io_out_pc : _exceptionPC_T_5; // @[Core.scala 30:36]
   wire [31:0] _exceptionPC_T_7 = WB_io_pc != 32'h0 ? WB_io_pc : _exceptionPC_T_6; // @[Core.scala 29:34]
-  wire  EXLHitID = ~ExRegMem_io_instChange & (ID_io_bubbleId & EX_io_bubbleEx); // @[Core.scala 35:21]
+  wire  EXLHitID = ~WB_io_intr & (~ExRegMem_io_instChange & (ID_io_bubbleId & EX_io_bubbleEx)); // @[Core.scala 35:21]
   wire  ecallEn = WB_io_csrOp_WB[3] | WB_io_intr; // @[Core.scala 38:43]
   wire  _flushIdExEn_T_1 = EX_io_pcSrc != 2'h0 | EXLHitID; // @[Core.scala 42:49]
   wire  _flushIdExEn_T_3 = IF_io_IFDone & _flushIdExEn_T_1; // @[Core.scala 41:26]
