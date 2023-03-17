@@ -7,6 +7,8 @@
   ** 3. IFDone无效（未完成取指）暂停流水线一切。
     ****************************************************************
   ** Modified: stall有效时，valid拉低不再去读取指令，IFDone拉高
+    ****************************************************************
+  *! BUG:第一次fire时，但memDone低电平，导致只能第二次握手才有效
   */
 
 import chisel3._
@@ -32,32 +34,31 @@ class InstFetch extends Module {
   val inst = RegInit(0.U(WLEN.W))
 
   io.imem.inst_valid := !io.stall                       //* IF valid一直有效，请求AXI传输指令
-  io.imem.inst_req := REQ_READ
-  io.imem.inst_addr := pc.asUInt()              //? intr：pc应该更新完nextpc的值
-  io.imem.inst_size := SIZE_W
+  io.imem.inst_req   := REQ_READ
+  io.imem.inst_addr := pc.asUInt()
+  io.imem.inst_size  := SIZE_W
   
   val fire = Mux(io.stall, true.B, 
-                Mux(io.intr , false.B, io.imem.inst_valid && io.imem.inst_ready))  //* 握手成功，从总线上取出指令
+                Mux(io.intr , false.B, 
+                    io.imem.inst_valid && io.imem.inst_ready))  //* 握手成功，从总线上取出指令
+
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
   val ifPCfire = RegNext(fire)
   val ifPCstall = RegNext(io.stall)
-/*
-  val ifPC = Mux(ifPCfire && !ifPCstall,   // 更新下一周期地址
-              Mux(io.exc, io.nextPC, 
-                Mux(io.pcSrc === 0.U, pc + 4.U, io.nextPC)),
-              Mux(io.intr, io.nextPC, pc)
-              )
-*/
+
   val ifPC = Mux(ifPCfire && !ifPCstall,   // 更新下一周期地址 
                 Mux(io.pcSrc === 0.U && !io.exc, pc + 4.U, io.nextPC),  // 无中断异常情况下，pc+4
-                Mux(io.intr, io.nextPC, pc)
+                  Mux(io.intr, io.nextPC, pc)
+//                  pc
               )
+
 
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
   io.IFDone := Mux(io.intr, true.B, fire && io.memDone)                  //* fire有效，取到inst，取指阶段完成
+//  io.IFDone := fire && io.memDone
 
 //------------------- IF ----------------------------
   io.out.valid    := fire

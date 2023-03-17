@@ -70,13 +70,17 @@ class WriteBack extends Module {
   io.pc := io.in.pc
   io.inst := io.in.inst
 //  io.ready_cmt := io.in.inst =/= 0.U && io.in.valid && !io.in.intr
-  io.ready_cmt := io.in.inst =/= 0.U && io.in.valid && !clint.io.time_int
+//  io.ready_cmt := io.in.inst =/= 0.U && io.in.valid && !clint.io.time_int
 
 //  io.wbRdEn := Mux(clint.io.time_int, 0.U, io.in.rdEn)               //?中断时 数据写回寄存器嘛？
 //  io.wbRdEn := Mux(io.in.intr, 0.U, io.in.rdEn)                    //?中断时 数据写回寄存器嘛？
   io.wbRdEn := Mux(io.IFDone, io.in.rdEn, false.B)                  //?中断时 数据写回寄存器嘛？
   io.wbRdAddr := Mux(io.IFDone, Mux(clint.io.time_int, 0.U, io.in.rdAddr), 0.U)  // time interrupt writeback 0 reg
   io.wbRdData := Mux(io.IFDone, Mux(io.in.csrOp === 0.U, rdData, csr.io.rData), 0.U)
+
+  io.ready_cmt := io.in.inst =/= 0.U &&                            // nop
+                    !clint.io.time_int &&                          // interrupt
+                      (Mux(io.in.rdEn, io.IFDone, io.in.valid))    // wb
 
   io.mepc    := csr.io.mepc
   io.mtvec   := csr.io.mtvec
