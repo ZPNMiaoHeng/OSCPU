@@ -44,7 +44,7 @@ class AxiLite2Axi  extends Module {
   val w_state = RegInit(w_idle)
 
   
-  val axi_intr_en = WireInit(false.B)   //Mux(r_state === r_inst_read && axi_addr =/= (in1.inst_addr) & "hffff_fff0".U(32.W), true.B, false.B)
+//  val axi_intr_en = WireInit(false.B)   //Mux(r_state === r_inst_read && axi_addr =/= (in1.inst_addr) & "hffff_fff0".U(32.W), true.B, false.B)
 
 //*--------------------------------- State Machine --------------------------------------------------------
 // 读通道状态切换
@@ -65,9 +65,10 @@ class AxiLite2Axi  extends Module {
     is(r_inst_read) {              // 010
       when(r_done) {               // 读指令完成标志，进入done状态
         r_state := r_inst_done 
-      } .elsewhen(axi_intr_en) {
-        r_state := r_state
       }
+//       .elsewhen(axi_intr_en) {
+//        r_state := r_state
+//      }
     }
     is(r_inst_done) {              //011  取指完成后进入访存，不过访存优先级应该更高
       when (data_ren) {
@@ -131,11 +132,11 @@ class AxiLite2Axi  extends Module {
                   Mux(r_state === r_data_addr, (in2.data_addr) & "hffff_fff0".U(32.W), 0.U))  // Byte alignment
 
 //*
-  val axi_addr_reg = RegInit(0.U(64.W))
-  when(r_state === r_inst_addr) {
-    axi_addr_reg := axi_addr
-  }
-  axi_intr_en := r_state === r_inst_read && (axi_addr_reg =/= ((in1.inst_addr) & "hffff_fff0".U(32.W)))
+//  val axi_addr_reg = RegInit(0.U(64.W))
+//  when(r_state === r_inst_addr) {
+//    axi_addr_reg := axi_addr
+//  }
+//  axi_intr_en := r_state === r_inst_read && (axi_addr_reg =/= ((in1.inst_addr) & "hffff_fff0".U(32.W)))
 //*
 
   out.ar.valid := (r_state === r_inst_addr || r_state === r_data_addr)
