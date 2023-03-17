@@ -57,8 +57,8 @@ class InstFetch extends Module {
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
-  io.IFDone := Mux(io.intr, true.B, fire && io.memDone)                  //* fire有效，取到inst，取指阶段完成
-//  io.IFDone := fire && io.memDone
+//  io.IFDone := Mux(io.intr, true.B, fire && io.memDone)                  //* fire有效，取到inst，取指阶段完成
+  io.IFDone := fire && io.memDone
 
 //------------------- IF ----------------------------
   io.out.valid    := fire

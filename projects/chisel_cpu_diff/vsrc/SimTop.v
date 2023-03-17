@@ -38,7 +38,7 @@ module InstFetch(
   assign io_out_valid = io_stall | _fire_T_1; // @[InstFetch.scala 41:17]
   assign io_out_pc = ifPCfire & ~ifPCstall ? _ifPC_T_7 : _ifPC_T_8; // @[InstFetch.scala 50:17]
   assign io_out_inst = fire & _io_imem_inst_valid_T ? io_imem_inst_read : inst; // @[InstFetch.scala 46:19]
-  assign io_IFDone = io_intr | fire & io_memDone; // @[InstFetch.scala 60:19]
+  assign io_IFDone = fire & io_memDone; // @[InstFetch.scala 61:21]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 33:19]
       pc <= 32'h80000000; // @[InstFetch.scala 33:19]

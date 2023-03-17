@@ -99,7 +99,7 @@ class Core extends Module {
   EX.io.csrOp := WB.io.csrOp_WB
   EX.io.mepc := WB.io.mepc
   EX.io.mtvec := WB.io.mtvec
-  EX.io.time_int := WB.io.time_int
+  EX.io.time_int := clint.io.time_int
 
   ExRegMem.io.in <> EX.io.out
   ExRegMem.io.stall := stallExMemEn
@@ -117,10 +117,23 @@ class Core extends Module {
   WB.io.in <> MemRegWb.io.out
   WB.io.IFDone := IF.io.IFDone
   WB.io.pc_intr := exceptionPC
-  WB.io.cmp_ren := MEM.io.cmp_ren
-  WB.io.cmp_wen := MEM.io.cmp_wen
-  WB.io.cmp_addr := MEM.io.cmp_addr
-  WB.io.cmp_wdata := MEM.io.cmp_wdata
+//  WB.io.cmp_ren := MEM.io.cmp_ren
+//  WB.io.cmp_wen := MEM.io.cmp_wen
+//  WB.io.cmp_addr := MEM.io.cmp_addr
+//  WB.io.cmp_wdata := MEM.io.cmp_wdata
+
+//------------------------------------------------------------------
+    val clint = Module(new CLINT)
+
+    clint.io.mstatus := WB.io.mstatus
+    clint.io.mie := WB.io.mie
+    clint.io.csrOp_WB := WB.in.csrOp
+
+    clint.io.cmp_ren := MEM.io.cmp_ren
+    clint.io.cmp_wen := MEM.io.cmp_wen
+    clint.io.cmp_addr := MEM.io.cmp_addr
+    clint.io.cmp_wdata := MEM.io.cmp_wdata
+//------------------------------------------------------------------
 
   /* ----- Difftest ------------------------------ */
   val valid = WB.io.ready_cmt && IF.io.IFDone && MEM.io.memDone
