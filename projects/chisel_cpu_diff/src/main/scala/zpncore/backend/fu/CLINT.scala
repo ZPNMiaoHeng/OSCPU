@@ -9,7 +9,7 @@ class CLINT extends Module {
     val mstatus = Input(UInt(64.W))
     val mie = Input(UInt(64.W))
 //    val IFDone = Input(Bool())
-    val csrOp_WB = Input(UInt(4.W))      // 流水线中的clint 信号
+//    val csrOp_WB = Input(UInt(4.W))      // 流水线中的clint 信号
 
     val cmp_ren    = Input(Bool())
     val cmp_wen    = Input(Bool())

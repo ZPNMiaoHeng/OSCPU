@@ -36,6 +36,18 @@ class NextPC extends Module {
     ((io.branch === "b010".U) || (io.branch === "b011".U))                      -> "b11".U                        // rs1 + imm
   ))
 
+//** 先判断异常 intr
+  io.nextPC := Mux((io.csrOp(0) === 0.U || io.time_int), io.mtvec(31, 2) << 2.U ,
+                Mux(io.exc, io.mepc,  // ecall/time , mret
+                  LookupTreeDefault(pcSrc, "h8000_0000".U, List(
+                    "b00".U -> (io.pc +  4.U   ),
+                    "b10".U -> (io.pc + io.imm ),
+                    "b11".U -> (io.rs1Data + io.imm)
+    ))
+  )
+  )
+
+/*
   io.nextPC := Mux(io.exc, 
     Mux((io.csrOp(0) === 0.U || io.time_int), io.mtvec(31, 2) << 2.U , io.mepc),  // ecall/time , mret
     LookupTreeDefault(pcSrc, "h8000_0000".U, List(
@@ -44,5 +56,7 @@ class NextPC extends Module {
       "b11".U -> (io.rs1Data + io.imm)
     ))
   )
+*/
+
   io.pcSrc := pcSrc
 }

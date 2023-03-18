@@ -22,15 +22,18 @@ class Core extends Module {
   val MEM = Module(new DataMem)
   val MemRegWb = Module(new PipelineReg)
   val WB = Module(new WriteBack)
+  val clint = Module(new CLINT)
 
 //*-----------------------------------------------------------------
   val intr = WB.io.intr
-  val intr_no = Mux(intr, WB.io.intr_no, 0.U)
-  val exceptionPC = Mux(intr, Mux(WB.io.pc =/= 0.U, WB.io.pc,
-                                Mux(MEM.io.out.pc =/= 0.U, MEM.io.out.pc,
-                                  Mux(EX.io.out.pc =/= 0.U, EX.io.out.pc,
-                                    Mux(ID.io.out.pc =/= 0.U, ID.io.out.pc,
-                                      IF.io.out.pc)))), 0.U)
+  val intr_no = Mux(intr, 7.U, 0.U)  
+  val exceptionPC = WB.io.pc
+
+//  val exceptionPC = Mux(intr, Mux(WB.io.pc =/= 0.U, WB.io.pc,
+//                                Mux(MEM.io.out.pc =/= 0.U, MEM.io.out.pc,
+//                                  Mux(EX.io.out.pc =/= 0.U, EX.io.out.pc,
+//                                    Mux(ID.io.out.pc =/= 0.U, ID.io.out.pc,
+//                                      IF.io.out.pc)))), 0.U)
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
   val EXLHitID = Mux(!intr, Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B), false.B) //切换指令(and intrrupt)时，此信号一周期无效
 
@@ -108,7 +111,7 @@ class Core extends Module {
   MEM.io.in <> ExRegMem.io.out
   MEM.io.dmem <> io.dmem
   MEM.io.IFReady := io.imem.inst_ready
-  MEM.io.cmp_rdata := WB.io.cmp_rdata     // 写回mtime/mtimecmp
+  MEM.io.cmp_rdata := clint.io.cmp_rdata     // 写回mtime/mtimecmp
 
   MemRegWb.io.in <> MEM.io.out
   MemRegWb.io.stall := stallMemWbEn
@@ -116,18 +119,13 @@ class Core extends Module {
 //------------------- WB ---------------------------------
   WB.io.in <> MemRegWb.io.out
   WB.io.IFDone := IF.io.IFDone
-  WB.io.pc_intr := exceptionPC
-//  WB.io.cmp_ren := MEM.io.cmp_ren
-//  WB.io.cmp_wen := MEM.io.cmp_wen
-//  WB.io.cmp_addr := MEM.io.cmp_addr
-//  WB.io.cmp_wdata := MEM.io.cmp_wdata
+//  WB.io.pc_intr := exceptionPC
 
 //------------------------------------------------------------------
-    val clint = Module(new CLINT)
 
     clint.io.mstatus := WB.io.mstatus
     clint.io.mie := WB.io.mie
-    clint.io.csrOp_WB := WB.in.csrOp
+//    clint.io.csrOp_WB := WB.in.csrOp
 
     clint.io.cmp_ren := MEM.io.cmp_ren
     clint.io.cmp_wen := MEM.io.cmp_wen
