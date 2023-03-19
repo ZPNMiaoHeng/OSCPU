@@ -13,13 +13,11 @@ class DataMem extends Module {
 //    val dmem = new RamIO 
     val dmem = new CoreData
 
-    val in = Input(new BUS_R)
-    val out = Output(new BUS_R)
-
     val IFReady = Input(Bool())
+    val in = Input(new BUS_R)
 
+    val out = Output(new BUS_R)
     val memRdData = Output(UInt(XLEN.W))
-
     val memDone = Output(Bool())
 
     val cmp_ren    = Output(Bool())

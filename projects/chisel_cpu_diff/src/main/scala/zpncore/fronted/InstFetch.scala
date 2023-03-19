@@ -27,7 +27,6 @@ class InstFetch extends Module {
     val intr = Input(Bool())
 
     val out = Output(new BUS_R)
-
     val IFDone = Output(Bool())                          //* 有效时才取到指令。后面流水级才能运行，否则处于暂停状态
   })
   val pc = RegInit("h8000_0000".U(WLEN.W))               //* nextPC = 0x8000_0000,可以取到正确指令

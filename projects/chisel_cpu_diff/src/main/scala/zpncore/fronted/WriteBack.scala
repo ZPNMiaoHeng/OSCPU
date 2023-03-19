@@ -49,7 +49,6 @@ class WriteBack extends Module {
 
     clint.io.mstatus := csr.io.mstatus
     clint.io.mie := csr.io.mie
-    clint.io.csrOp_WB := io.in.csrOp
     clint.io.IFDone := io.IFDone
 
     clint.io.cmp_ren := io.cmp_ren

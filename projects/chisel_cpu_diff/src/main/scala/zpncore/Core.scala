@@ -64,7 +64,6 @@ class Core extends Module {
   IF.io.imem.inst_read := io.imem.inst_read
   IF.io.imem.inst_ready := io.imem.inst_ready
   
-//  IF.io.exInst := EX.io.out.inst
   IF.io.pcSrc := EX.io.out.pcSrc
   IF.io.nextPC := EX.io.out.nextPC
   IF.io.stall := EXLHitID || !MEM.io.memDone //! EX 优先级大于MEM

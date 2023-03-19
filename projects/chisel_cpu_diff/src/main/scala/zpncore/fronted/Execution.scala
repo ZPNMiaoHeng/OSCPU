@@ -6,8 +6,8 @@ import utils._
 class Execution extends Module {
     val io = IO(new Bundle {
         val in = Input(new BUS_R)
-        val out = Output(new BUS_R)
 
+        val out = Output(new BUS_R)
         val exeRdData = Output(UInt(XLEN.W)) 
         val bubbleEx = Output(Bool())
 
