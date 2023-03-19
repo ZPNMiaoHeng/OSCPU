@@ -28,7 +28,7 @@ class BUS_R extends Bundle {
   val memData = UInt(XLEN.W)
   
   val csrOp = UInt(4.W)               //* +
-  val intr = Bool()
+//  val intr = Bool()
 
 //  val bp_taken  = Bool()
 //  val bp_targer = UInt(32.W)
@@ -62,7 +62,7 @@ class BUS_R extends Bundle {
     memData  := 0.U
 
     csrOp := 0.U
-    intr := false.B
+//    intr := false.B
 
 //    bp_taken  := false.B
 //    bp_targer := 0.U

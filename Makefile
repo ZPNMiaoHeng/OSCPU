@@ -51,8 +51,8 @@ hello:
 mario:
 	$(TOOLS) -d -b -s -a "-i custom-output/mario/fceux-mario.bin " -m "$(FLASS)"
 
-rtthread:
-	$(TOOLS) -d -b -s -a "-i custom-output/rt-thread/rtthread.bin " -m "$(FLASS)"
+rtt:
+	$(TOOLS) -d -b -s -a "-i custom-output/rt-thread/rtthread.bin $(VCD)" -m "$(FLASS)"
 
 time:
 	$(TOOLS) -d -b -s -a "-i custom-output/time-test/amtest-time-test.bin $(VCD)" -m "$(FLASS)"

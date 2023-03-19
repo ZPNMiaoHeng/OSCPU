@@ -90,7 +90,7 @@ class CSR extends Module {
 //    printf("-- clint1 --pc = %x\n",io.pc)
   }
 
-  mcycle := mcycle + 1.U     //TODO:这个该咋弄呢？ 应该不写回寄存器的话，应该永远是0+1才对呢
+//  mcycle := mcycle + 1.U
 //* ------------------------------------- 写回寄存器 -------------------------------------------
   when(csrRW) {
     when(wAddr === Csrs.mcycle) {

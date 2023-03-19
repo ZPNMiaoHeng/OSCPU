@@ -34,9 +34,6 @@ class WriteBack extends Module {
         val memWr = Output(UInt(1.W))
         val mem_addr = Output(UInt(32.W))
         val time_int = Output(Bool())
-
-        val intr = Output(Bool())
-        val intr_no = Output(UInt(32.W))
     })
 
     val csr = Module(new CSR)
@@ -46,13 +43,14 @@ class WriteBack extends Module {
     csr.io.inst := io.in.inst
     csr.io.IFDone := io.IFDone
     csr.io.rs1Data := io.in.rs1Data
-    csr.io.csrOp := Mux(io.in.intr, 0.U, io.in.csrOp)
+    csr.io.csrOp := io.in.csrOp
     csr.io.rAddr := io.in.inst(31, 20)
     csr.io.intr := clint.io.time_int
 
     clint.io.mstatus := csr.io.mstatus
     clint.io.mie := csr.io.mie
     clint.io.csrOp_WB := io.in.csrOp
+    clint.io.IFDone := io.IFDone
 
     clint.io.cmp_ren := io.cmp_ren
     clint.io.cmp_wen := io.cmp_wen
@@ -69,12 +67,8 @@ class WriteBack extends Module {
 
   io.pc := io.in.pc
   io.inst := io.in.inst
-//  io.ready_cmt := io.in.inst =/= 0.U && io.in.valid && !io.in.intr
-//  io.ready_cmt := io.in.inst =/= 0.U && io.in.valid && !clint.io.time_int
 
-//  io.wbRdEn := Mux(clint.io.time_int, 0.U, io.in.rdEn)               //?中断时 数据写回寄存器嘛？
-//  io.wbRdEn := Mux(io.in.intr, 0.U, io.in.rdEn)                    //?中断时 数据写回寄存器嘛？
-  io.wbRdEn := Mux(io.IFDone, io.in.rdEn, false.B)                  //?中断时 数据写回寄存器嘛？
+  io.wbRdEn := Mux(io.IFDone, io.in.rdEn, false.B)
   io.wbRdAddr := Mux(io.IFDone, Mux(clint.io.time_int, 0.U, io.in.rdAddr), 0.U)  // time interrupt writeback 0 reg
   io.wbRdData := Mux(io.IFDone, Mux(io.in.csrOp === 0.U, rdData, csr.io.rData), 0.U)
 
@@ -93,7 +87,5 @@ class WriteBack extends Module {
   io.exc := (io.in.csrOp(3) === 1.U || clint.io.time_int)    // 异常/中断 pc跳转
 
   io.time_int := clint.io.time_int 
-  io.intr := clint.io.time_int // io.in.intr                   //+
-  io.intr_no := 7.U
 }
   

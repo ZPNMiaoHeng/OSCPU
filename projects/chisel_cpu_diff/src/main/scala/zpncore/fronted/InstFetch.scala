@@ -39,27 +39,23 @@ class InstFetch extends Module {
   io.imem.inst_size  := SIZE_W
   
   val fire = Mux(io.stall, true.B, 
-                Mux(io.intr , false.B, 
-                    io.imem.inst_valid && io.imem.inst_ready))  //* 握手成功，从总线上取出指令
+                    io.imem.inst_valid && io.imem.inst_ready)  //* 握手成功，从总线上取出指令
 
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
   val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
+  val ifIntr = RegNext(io.intr)
   val ifPCfire = RegNext(fire)
   val ifPCstall = RegNext(io.stall)
 
-  val ifPC = Mux(ifPCfire && !ifPCstall,   // 更新下一周期地址 
+  val ifPC = Mux(ifPCfire && !ifPCstall && !ifIntr,   // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
                 Mux(io.pcSrc === 0.U && !io.exc, pc + 4.U, io.nextPC),  // 无中断异常情况下，pc+4
                   Mux(io.intr, io.nextPC, pc)
-//                  pc
               )
-
 
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
-  io.IFDone := Mux(io.intr, true.B, fire && io.memDone)                  //* fire有效，取到inst，取指阶段完成
-//  io.IFDone := fire && io.memDone
-
+  io.IFDone := fire && io.memDone
 //------------------- IF ----------------------------
   io.out.valid    := fire
   io.out.pc       := ifPC
@@ -84,6 +80,5 @@ class InstFetch extends Module {
   io.out.memData  := 0.U
 
   io.out.csrOp := 0.U
-  io.out.intr := false.B
 
 }

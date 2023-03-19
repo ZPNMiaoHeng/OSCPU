@@ -22,6 +22,6 @@ class ImmGen extends Module {
   immType(3.U) := Fill(52, io.inst(31)) ## io.inst(31)    ## io.inst(7)     ## io.inst(30,25) ## io.inst(11,8)  ## 0.U(1.W)   /** B???? 43  ??? */
   immType(4.U) := Fill(43, io.inst(31)) ## io.inst(31)    ## io.inst(19,12) ## io.inst(20)    ## io.inst(30,21) ## 0.U(1.W)   // J
 
-  io.imm := immType(io.immOp) 
+  io.imm := Mux(io.immOp > 4.U , 0.U, immType(io.immOp))
 
 }

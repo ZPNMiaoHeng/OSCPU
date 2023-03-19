@@ -24,22 +24,22 @@ class Core extends Module {
   val WB = Module(new WriteBack)
 
 //*-----------------------------------------------------------------
-  val intr = WB.io.intr
-  val intr_no = Mux(intr, WB.io.intr_no, 0.U)
+  val intr = WB.io.time_int
+  val intr_no = Mux(intr, 7.U, 0.U)
   val exceptionPC = Mux(intr, Mux(WB.io.pc =/= 0.U, WB.io.pc,
                                 Mux(MEM.io.out.pc =/= 0.U, MEM.io.out.pc,
                                   Mux(EX.io.out.pc =/= 0.U, EX.io.out.pc,
                                     Mux(ID.io.out.pc =/= 0.U, ID.io.out.pc,
                                       IF.io.out.pc)))), 0.U)
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
-  val EXLHitID = Mux(!intr, Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B), false.B) //切换指令(and intrrupt)时，此信号一周期无效
+  val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
 
 //* ----------------------------------------------------------------
   val ecallEn = WB.io.csrOp_WB(3) === 1.U || intr  //ecall/mret/time
-  val flushIfIdEn  = intr //false.B
+  val flushIfIdEn  = intr
   val flushIdExEn  = Mux(ecallEn, true.B,
                       Mux(IF.io.IFDone, 
-                        Mux(EX.io.pcSrc =/= 0.U || EXLHitID,
+                        Mux(EX.io.out.pcSrc =/= 0.U || EXLHitID,
                           true.B, false.B),
                             false.B))
   val flushExMemEn = ecallEn
@@ -48,7 +48,7 @@ class Core extends Module {
 //* ------------------------------------------------------------------
 // 流水线暂停：IF总线取指未完成、MEM总线访问未完成、发生访存指令数据冒险
 
-  val stallIfIdEn =  !IF.io.IFDone || EXLHitID
+  val stallIfIdEn =  !IF.io.IFDone || (EXLHitID && !intr)  //排除发生load数据冲突时遇到时钟中断情况：时钟中断>数据冲突
   val stallIdExEn =  !IF.io.IFDone
   val stallExMemEn = !IF.io.IFDone
   val stallMemWbEn = !IF.io.IFDone
@@ -64,11 +64,12 @@ class Core extends Module {
   IF.io.imem.inst_read := io.imem.inst_read
   IF.io.imem.inst_ready := io.imem.inst_ready
   
-  IF.io.pcSrc := EX.io.pcSrc
-  IF.io.nextPC := EX.io.nextPC
+//  IF.io.exInst := EX.io.out.inst
+  IF.io.pcSrc := EX.io.out.pcSrc
+  IF.io.nextPC := EX.io.out.nextPC
   IF.io.stall := EXLHitID || !MEM.io.memDone //! EX 优先级大于MEM
   IF.io.memDone := MEM.io.memDone
-  IF.io.exc := WB.io.exc                   //?
+  IF.io.exc := WB.io.exc
   IF.io.intr := intr
 
   IfRegId.io.in <> IF.io.out
@@ -80,11 +81,11 @@ class Core extends Module {
   ID.io.rdAddr := WB.io.wbRdAddr
   ID.io.rdData := WB.io.wbRdData
 //* Bypass
-  ID.io.exeRdEn := EX.io.exeRdEn
-  ID.io.exeRdAddr := EX.io.exeRdAddr
+  ID.io.exeRdEn := EX.io.out.rdEn
+  ID.io.exeRdAddr := EX.io.out.rdAddr
   ID.io.exeRdData := EX.io.exeRdData
-  ID.io.memRdEn := MEM.io.memRdEn
-  ID.io.memRdAddr := MEM.io.memRdAddr
+  ID.io.memRdEn := MEM.io.out.rdEn
+  ID.io.memRdAddr := MEM.io.out.rdAddr
   ID.io.memRdData := MEM.io.memRdData
   ID.io.wbRdEn := WB.io.wbRdEn
   ID.io.wbRdAddr := WB.io.wbRdAddr
@@ -95,7 +96,7 @@ class Core extends Module {
   IdRegEx.io.flush := flushIdExEn
 //------------------- EX --------------------------------
   EX.io.in <> IdRegEx.io.out
-  EX.io.exc := WB.io.exc                   //??
+  EX.io.exc := WB.io.exc
   EX.io.csrOp := WB.io.csrOp_WB
   EX.io.mepc := WB.io.mepc
   EX.io.mtvec := WB.io.mtvec
@@ -153,10 +154,8 @@ class Core extends Module {
   val dt_ae = Module(new DifftestArchEvent)
   dt_ae.io.clock        := clock
   dt_ae.io.coreid       := 0.U
-//  dt_ae.io.intrNO       := intr_no     //RegNext(intr_no)       // 外部中断使用
   dt_ae.io.intrNO       := RegNext(intr_no)       // 外部中断使用
   dt_ae.io.cause        := 0.U
-//  dt_ae.io.exceptionPC  := exceptionPC //RegNext(exceptionPC)   // 外部中断PC
   dt_ae.io.exceptionPC  := RegNext(exceptionPC)   // 外部中断PC
 
   val cycle_cnt = RegInit(0.U(64.W))

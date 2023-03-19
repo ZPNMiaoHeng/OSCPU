@@ -107,9 +107,7 @@ class Decode extends Module {
   io.out.nextPC   := 0.U
   io.out.aluRes   := 0.U
   io.out.memData  := 0.U
-
   io.out.csrOp    := con.io.csrOp
-  io.out.intr := false.B
 
   io.bubbleId := (rdRs1HitEx || rdRs2HitEx)
 }

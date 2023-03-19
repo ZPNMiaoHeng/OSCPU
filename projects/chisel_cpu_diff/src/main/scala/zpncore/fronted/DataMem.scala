@@ -18,8 +18,6 @@ class DataMem extends Module {
 
     val IFReady = Input(Bool())
 
-    val memRdEn = Output(Bool())
-    val memRdAddr = Output(UInt(5.W))
     val memRdData = Output(UInt(XLEN.W))
 
     val memDone = Output(Bool())
@@ -173,7 +171,6 @@ class DataMem extends Module {
       ("b10".U) -> resW
   ))
 
-
   //*------------------------------------   Clint   --------------------------------------------------------
   io.cmp_wen := cmpWEn                        // Load inst -> mtime/mtimecmp
   io.cmp_ren := cmpREn
@@ -202,7 +199,6 @@ class DataMem extends Module {
   val memAluRes = io.in.aluRes
   val memData = wData
   val memCsrOp = io.in.csrOp
-  val memIntr = io.in.intr
 
 //----------------------------------------------------------------
   io.out.valid    := memValid
@@ -226,11 +222,7 @@ class DataMem extends Module {
   io.out.nextPC   := memNextPC
   io.out.aluRes   := memAluRes
   io.out.memData  := memData
-  
   io.out.csrOp    := memCsrOp
-  io.out.intr := memIntr
 
-  io.memRdEn := io.in.rdEn
-  io.memRdAddr := memRdAddr
   io.memRdData := memBPData
 }
