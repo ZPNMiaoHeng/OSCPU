@@ -32,7 +32,10 @@ class Core extends Module {
                                     Mux(ID.io.out.pc =/= 0.U, ID.io.out.pc,
                                       IF.io.out.pc)))), 0.U)
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
-  val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
+//  val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
+  val EXLHitID = !ExRegMem.io.instChange && ID.io.bubbleId && EX.io.bubbleEx               //切换指令时，此信号一周期无效
+
+//  val EXSHitID = ID.io.bubbleId && (EX.io.out.csrOp =/= 0.U)
 
 //* ----------------------------------------------------------------
   val ecallEn = WB.io.csrOp_WB(3) === 1.U || intr  //ecall/mret/time
@@ -83,9 +86,13 @@ class Core extends Module {
   ID.io.exeRdEn := EX.io.out.rdEn
   ID.io.exeRdAddr := EX.io.out.rdAddr
   ID.io.exeRdData := EX.io.exeRdData
+//  ID.io.exeCsrOp := EX.io.out.csrOp
+
   ID.io.memRdEn := MEM.io.out.rdEn
   ID.io.memRdAddr := MEM.io.out.rdAddr
   ID.io.memRdData := MEM.io.memRdData
+//  ID.io.memCsrOp := MEM.io.out.csrOp
+
   ID.io.wbRdEn := WB.io.wbRdEn
   ID.io.wbRdAddr := WB.io.wbRdAddr
   ID.io.wbRdData := WB.io.wbRdData

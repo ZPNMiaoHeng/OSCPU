@@ -67,7 +67,7 @@ o_dhrystone:
 	$(TOOLS) -d -b -s -a "-i custom-output/benchmark/dhrystone/dhrystone.bin " -m "$(FLASS)"
 
 o_microbench:
-	$(TOOLS) -d -b -s -a "-i custom-output/benchmark/microbench/microbench.bin " -m "$(FLASS)"
+	$(TOOLS) -d -b -s -a "-i custom-output/benchmark/microbench/microbench-$(TOP).bin " -m "$(FLASS)"
 
 # run indecation tests
 run_riscv:

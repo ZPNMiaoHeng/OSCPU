@@ -21,9 +21,11 @@ class Decode extends Module {
     val exeRdEn = Input(Bool())
     val exeRdAddr = Input(UInt(5.W))
     val exeRdData = Input(UInt(XLEN.W))
+//    val exeCsrOp = Input(UInt(4.W))
     val memRdEn = Input(Bool())
     val memRdAddr = Input(UInt(5.W))
     val memRdData = Input(UInt(XLEN.W))
+//    val memCsrOp = Input(UInt(4.W))
     val wbRdEn = Input(Bool())
     val wbRdAddr = Input(UInt(5.W))
     val wbRdData = Input(UInt(XLEN.W))
@@ -46,15 +48,16 @@ class Decode extends Module {
   con.io.inst := io.in.inst
 
 //* bypass control signals
+// csr 指令在EX与MEM无法传输
 
   val rs1Addr = Mux(con.io.regCtrl.rs1En, con.io.regCtrl.rs1Addr, 0.U)
   val rs2Addr = Mux(con.io.regCtrl.rs2En, con.io.regCtrl.rs2Addr, 0.U)
-  val rdRs1HitEx = io.exeRdEn && (rs1Addr === io.exeRdAddr) && (rs1Addr =/= 0.U)
-  val rdRs1HitMem = io.memRdEn && (rs1Addr === io.memRdAddr) && (rs1Addr =/= 0.U)
+  val rdRs1HitEx = io.exeRdEn && (rs1Addr === io.exeRdAddr) && (rs1Addr =/= 0.U)   // && (io.exeCsrOp === 0.U)
+  val rdRs1HitMem = io.memRdEn && (rs1Addr === io.memRdAddr) && (rs1Addr =/= 0.U)  // && (io.memCsrOp === 0.U)
   val rdRs1HitWb = io.wbRdEn && (rs1Addr === io.wbRdAddr) && (rs1Addr =/= 0.U)
   
-  val rdRs2HitEx = io.exeRdEn && (rs2Addr === io.exeRdAddr) && (rs2Addr =/= 0.U)
-  val rdRs2HitMem = io.memRdEn && (rs2Addr === io.memRdAddr) && (rs2Addr =/= 0.U)
+  val rdRs2HitEx = io.exeRdEn && (rs2Addr === io.exeRdAddr) && (rs2Addr =/= 0.U)   // && (io.exeCsrOp === 0.U)
+  val rdRs2HitMem = io.memRdEn && (rs2Addr === io.memRdAddr) && (rs2Addr =/= 0.U)  // && (io.memCsrOp === 0.U)
   val rdRs2HitWb = io.wbRdEn && (rs2Addr === io.wbRdAddr) && (rs2Addr =/= 0.U)
 //* bypass：EX > MEM > WB
   val rs1Data = Mux(con.io.regCtrl.rs1En, 

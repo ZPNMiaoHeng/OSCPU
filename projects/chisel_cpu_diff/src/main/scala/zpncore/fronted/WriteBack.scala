@@ -68,6 +68,8 @@ class WriteBack extends Module {
   io.inst := io.in.inst
 
   io.wbRdEn := Mux(io.IFDone, io.in.rdEn, false.B)
+//  io.wbRdAddr := Mux(clint.io.time_int, 0.U, io.in.rdAddr)  // time interrupt writeback 0 reg
+//  io.wbRdData := Mux(io.in.csrOp === 0.U, rdData, csr.io.rData)
   io.wbRdAddr := Mux(io.IFDone, Mux(clint.io.time_int, 0.U, io.in.rdAddr), 0.U)  // time interrupt writeback 0 reg
   io.wbRdData := Mux(io.IFDone, Mux(io.in.csrOp === 0.U, rdData, csr.io.rData), 0.U)
 

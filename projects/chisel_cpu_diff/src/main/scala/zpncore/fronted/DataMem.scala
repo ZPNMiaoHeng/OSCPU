@@ -56,7 +56,7 @@ class DataMem extends Module {
   val dmemEn = (!(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U)) &&                  // W/R memory space
                   ((memtoReg === "b01".U) || (memWr === 1.U))                                // Load/store
   io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone // && !debug               // 将IF取指那一周除去-->优先级:IF>MEM
-  io.dmem.data_addr := memAddr
+  io.dmem.data_addr := Mux(io.dmem.data_valid, memAddr, 0.U)
 
   val dmemFire = io.dmem.data_valid && io.dmem.data_ready
   val alignBits = memAddr % 16.U

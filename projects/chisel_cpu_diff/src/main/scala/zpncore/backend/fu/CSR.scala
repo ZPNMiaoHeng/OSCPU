@@ -75,19 +75,16 @@ class CSR extends Module {
   when((io.csrOp === "b1000".U) && io.IFDone) {         //ecall
 //    printf("------------- ecall ------------------\n")
     mcause  := 11.U
-//    mtvec  := // 存储地址
     mepc    := io.pc
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
   } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  // mret
 //    printf("------------- mret ------------------\n")
-    mstatus := Cat(mstatus(63,13), "b00".U, mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
-//  } .elsewhen(io.intr ) {//&& io.IFDone) {
+    mstatus := Cat(mstatus(63,13), "b00".U(2.W), mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
   } .elsewhen(io.intr && io.IFDone) {
 //    printf("\n-- clint --pc = %x\n",io.pc)
     mepc := io.pc
     mcause := "h8000_0000_0000_0007".U                              // Machine timer interrupt
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
-//    printf("-- clint1 --pc = %x\n",io.pc)
   }
 
 //  mcycle := mcycle + 1.U
