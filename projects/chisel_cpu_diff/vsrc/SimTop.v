@@ -2037,7 +2037,7 @@ module CSR(
   always @(posedge clock) begin
     if (reset) begin // @[CSR.scala 29:24]
       mstatus <= 64'h1800; // @[CSR.scala 29:24]
-    end else if (csrRW) begin // @[CSR.scala 92:15]
+    end else if (csrRW & io_IFDone) begin // @[CSR.scala 92:28]
       if (wAddr == 12'h300) begin // @[CSR.scala 105:34]
         mstatus <= _mstatus_T_26; // @[CSR.scala 106:15]
       end else begin
@@ -2048,14 +2048,14 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 30:24]
       mtvec <= 64'h0; // @[CSR.scala 30:24]
-    end else if (csrRW) begin // @[CSR.scala 92:15]
+    end else if (csrRW & io_IFDone) begin // @[CSR.scala 92:28]
       if (wAddr == 12'h305) begin // @[CSR.scala 96:32]
         mtvec <= mtvec_REG; // @[CSR.scala 97:13]
       end
     end
     if (reset) begin // @[CSR.scala 31:24]
       mepc <= 64'h0; // @[CSR.scala 31:24]
-    end else if (csrRW) begin // @[CSR.scala 92:15]
+    end else if (csrRW & io_IFDone) begin // @[CSR.scala 92:28]
       if (wAddr == 12'h341) begin // @[CSR.scala 99:31]
         if (csrRW) begin // @[CSR.scala 66:18]
           mepc <= _wdata_T_9;
@@ -2070,7 +2070,7 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 32:24]
       mcause <= 64'h0; // @[CSR.scala 32:24]
-    end else if (csrRW) begin // @[CSR.scala 92:15]
+    end else if (csrRW & io_IFDone) begin // @[CSR.scala 92:28]
       if (wAddr == 12'h342) begin // @[CSR.scala 102:33]
         if (csrRW) begin // @[CSR.scala 66:18]
           mcause <= _wdata_T_9;
@@ -2085,14 +2085,14 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 35:26]
       mie <= 64'h0; // @[CSR.scala 35:26]
-    end else if (csrRW) begin // @[CSR.scala 92:15]
+    end else if (csrRW & io_IFDone) begin // @[CSR.scala 92:28]
       if (wAddr == 12'h304) begin // @[CSR.scala 108:30]
         mie <= mie_REG; // @[CSR.scala 109:11]
       end
     end
     if (reset) begin // @[CSR.scala 37:26]
       mscratch <= 64'h0; // @[CSR.scala 37:26]
-    end else if (csrRW) begin // @[CSR.scala 92:15]
+    end else if (csrRW & io_IFDone) begin // @[CSR.scala 92:28]
       if (wAddr == 12'h340) begin // @[CSR.scala 111:35]
         if (csrRW) begin // @[CSR.scala 66:18]
           mscratch <= _wdata_T_9;
@@ -2103,7 +2103,7 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 38:26]
       mcycle <= 64'h0; // @[CSR.scala 38:26]
-    end else if (csrRW) begin // @[CSR.scala 92:15]
+    end else if (csrRW & io_IFDone) begin // @[CSR.scala 92:28]
       if (wAddr == 12'hb00) begin // @[CSR.scala 93:33]
         if (csrRW) begin // @[CSR.scala 66:18]
           mcycle <= _wdata_T_9;

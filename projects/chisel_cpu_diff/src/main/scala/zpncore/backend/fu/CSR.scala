@@ -89,7 +89,7 @@ class CSR extends Module {
 
 //  mcycle := mcycle + 1.U
 //* ------------------------------------- 写回寄存器 -------------------------------------------
-  when(csrRW) {
+  when(csrRW && io.IFDone) {
     when(wAddr === Csrs.mcycle) {
       mcycle := wdata 
     }
