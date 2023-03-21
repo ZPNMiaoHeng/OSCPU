@@ -13,6 +13,7 @@ class ContrGen extends Module {
     val rdEn = Output(Bool())
     val rdAddr = Output(UInt(5.W))
     val typeL = Output(Bool())
+    val typeS = Output(Bool())
     val csrOp = Output(UInt(4.W))
     
     val aluCtr = new AluCtr
@@ -210,6 +211,7 @@ class ContrGen extends Module {
           (instLwu ) -> "b110".U))
 
   io.typeL := typeL
+  io.typeS := typeS
   io.csrOp := MuxCase("b0000".U, List(          // 0 ## csr_func3
     (csrrw ) -> "b0001".U,
     (csrrs ) -> "b0010".U,

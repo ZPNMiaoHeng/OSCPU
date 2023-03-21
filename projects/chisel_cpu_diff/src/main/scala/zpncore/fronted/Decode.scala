@@ -31,6 +31,8 @@ class Decode extends Module {
     val wbRdData = Input(UInt(XLEN.W))
 
     val bubbleId = Output(Bool())
+    val sBubbleEx = Output(Bool())
+    val sBubbleMem = Output(Bool())
     val out = Output(new BUS_R)
   })
 
@@ -113,4 +115,7 @@ class Decode extends Module {
   io.out.csrOp    := con.io.csrOp
 
   io.bubbleId := (rdRs1HitEx || rdRs2HitEx)
+//  io.sBubbleId := (rdRs1HitMem || rdRs2HitMem) && con.io.typeS  // Store 类型指令与csr发生冲突
+  io.sBubbleEx := (rdRs1HitEx || rdRs2HitEx) && con.io.typeS  // Store 类型指令与csr发生冲突
+  io.sBubbleMem := (rdRs1HitMem || rdRs2HitMem) && con.io.typeS  // Store 类型指令与csr发生冲突
 }

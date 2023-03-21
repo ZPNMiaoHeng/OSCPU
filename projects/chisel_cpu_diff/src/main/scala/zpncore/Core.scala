@@ -33,16 +33,18 @@ class Core extends Module {
                                       IF.io.out.pc)))), 0.U)
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
 //  val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
-  val EXLHitID = !ExRegMem.io.instChange && ID.io.bubbleId && EX.io.bubbleEx               //切换指令时，此信号一周期无效
+  val EXLHitID = !ExRegMem.io.instChange && ID.io.bubbleId && (EX.io.bubbleEx) // || EX.io.out.csrOp =/= 0.U)               //切换指令时，此信号一周期无效
 
-//  val EXSHitID = ID.io.bubbleId && (EX.io.out.csrOp =/= 0.U)
-
+// EX阶段csr型指令与ID阶段s指令发生数据冒险--暂停IF两周期，/ID与取指，从而在ID与WB插入两个nop，最后由ID/WB bypass返回
+  val EXSHitID = !ExRegMem.io.instChange && ID.io.sBubbleEx && (EX.io.out.csrOp =/= 0.U)     //csr在EX与ID冲突
+  val MEMSHitID = !MemRegWb.io.instChange && ID.io.sBubbleMem && (MEM.io.out.csrOp =/= 0.U)  // csrMEM冲突
+  val EXSHitIDEn = EXSHitID || MEMSHitID
 //* ----------------------------------------------------------------
   val ecallEn = WB.io.csrOp_WB(3) === 1.U || intr  //ecall/mret/time
   val flushIfIdEn  = intr
   val flushIdExEn  = Mux(ecallEn, true.B,
                       Mux(IF.io.IFDone, 
-                        Mux(EX.io.out.pcSrc =/= 0.U || EXLHitID,
+                        Mux(EX.io.out.pcSrc =/= 0.U || EXLHitID || EXSHitIDEn,                                 // ????
                           true.B, false.B),
                             false.B))
   val flushExMemEn = ecallEn
@@ -51,7 +53,7 @@ class Core extends Module {
 //* ------------------------------------------------------------------
 // 流水线暂停：IF总线取指未完成、MEM总线访问未完成、发生访存指令数据冒险
 
-  val stallIfIdEn =  !IF.io.IFDone || (EXLHitID && !intr)  //排除发生load数据冲突时遇到时钟中断情况：时钟中断>数据冲突
+  val stallIfIdEn =  !IF.io.IFDone || ((EXLHitID || EXSHitIDEn ) && !intr)  //排除发生load数据冲突时遇到时钟中断情况：时钟中断>数据冲突
   val stallIdExEn =  !IF.io.IFDone
   val stallExMemEn = !IF.io.IFDone
   val stallMemWbEn = !IF.io.IFDone
@@ -69,7 +71,7 @@ class Core extends Module {
   
   IF.io.pcSrc := EX.io.out.pcSrc
   IF.io.nextPC := EX.io.out.nextPC
-  IF.io.stall := EXLHitID || !MEM.io.memDone //! EX 优先级大于MEM
+  IF.io.stall := EXLHitID || !MEM.io.memDone || EXSHitIDEn //! EX 优先级大于MEM
   IF.io.memDone := MEM.io.memDone
   IF.io.exc := WB.io.exc
   IF.io.intr := intr
