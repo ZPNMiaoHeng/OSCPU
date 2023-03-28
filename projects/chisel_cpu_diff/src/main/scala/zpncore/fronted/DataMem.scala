@@ -197,6 +197,8 @@ class DataMem extends Module {
   val memAluRes = io.in.aluRes
   val memData = wData
   val memCsrOp = io.in.csrOp
+  val memTakenPre = io.in.takenPre
+  val memTakenPrePC = io.in.takenPrePC
 
 //----------------------------------------------------------------
   io.out.valid    := memValid
@@ -221,6 +223,8 @@ class DataMem extends Module {
   io.out.aluRes   := memAluRes
   io.out.memData  := memData
   io.out.csrOp    := memCsrOp
+  io.out.takenPre := memTakenPre
+  io.out.takenPrePC := memTakenPrePC
 
   io.memRdData := memBPData
 }

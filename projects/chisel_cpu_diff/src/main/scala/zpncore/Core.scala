@@ -44,7 +44,8 @@ class Core extends Module {
   val flushIfIdEn  = intr
   val flushIdExEn  = Mux(ecallEn, true.B,
                       Mux(IF.io.IFDone, 
-                        Mux(EX.io.out.pcSrc =/= 0.U || EXLHitID || EXSHitIDEn,                                 // ????
+                        // Mux(EX.io.out.pcSrc =/= 0.U || EXLHitID || EXSHitIDEn,                                 // ????
+                        Mux(EX.io.takenMiss || EXLHitID || EXSHitIDEn,                                 // ????
                           true.B, false.B),
                             false.B))
   val flushExMemEn = ecallEn
@@ -69,8 +70,12 @@ class Core extends Module {
   IF.io.imem.inst_read := io.imem.inst_read
   IF.io.imem.inst_ready := io.imem.inst_ready
   
-  IF.io.pcSrc := EX.io.out.pcSrc
+//  IF.io.pcSrc := EX.io.out.pcSrc
+  IF.io.takenMiss := EX.io.takenMiss
   IF.io.nextPC := EX.io.out.nextPC
+  IF.io.preRs1Data := ID.io.preRs1Data
+  IF.io.preRs1x1Data := ID.io.preRs1x1Data
+
   IF.io.stall := EXLHitID || !MEM.io.memDone || EXSHitIDEn //! EX 优先级大于MEM
   IF.io.memDone := MEM.io.memDone
   IF.io.exc := WB.io.exc
@@ -84,6 +89,9 @@ class Core extends Module {
   ID.io.rdEn := WB.io.wbRdEn
   ID.io.rdAddr := WB.io.wbRdAddr
   ID.io.rdData := WB.io.wbRdData
+
+  ID.io.preRs1En := IF.io.preRs1En
+  ID.io.preRs1Addr := IF.io.preRs1Addr
 //* Bypass
   ID.io.exeRdEn := EX.io.out.rdEn
   ID.io.exeRdAddr := EX.io.out.rdAddr

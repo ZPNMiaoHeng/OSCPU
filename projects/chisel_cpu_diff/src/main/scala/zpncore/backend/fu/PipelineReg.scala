@@ -30,8 +30,8 @@ class BUS_R extends Bundle {
   val csrOp = UInt(4.W)               //* +
 //  val intr = Bool()
 
-//  val bp_taken  = Bool()
-//  val bp_targer = UInt(32.W)
+  val takenPre  = Bool()
+  val takenPrePC = UInt(WLEN.W)
 
   def flush() : Unit = {
     valid    := false.B
@@ -51,7 +51,6 @@ class BUS_R extends Bundle {
 
     rdEn     := 0.U
     rdAddr   := 0.U
-//    rdData   := 0.U
     rs1Data  := 0.U
     rs2Data  := 0.U
     imm      := 0.U
@@ -62,10 +61,9 @@ class BUS_R extends Bundle {
     memData  := 0.U
 
     csrOp := 0.U
-//    intr := false.B
 
-//    bp_taken  := false.B
-//    bp_targer := 0.U
+    takenPre  := false.B
+    takenPrePC := 0.U
   }
 }
 //  val ready = true.B

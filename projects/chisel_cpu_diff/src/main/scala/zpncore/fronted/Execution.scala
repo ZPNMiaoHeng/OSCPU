@@ -10,6 +10,7 @@ class Execution extends Module {
         val out = Output(new BUS_R)
         val exeRdData = Output(UInt(XLEN.W)) 
         val bubbleEx = Output(Bool())
+        val takenMiss = Output(Bool())
 
         val exc = Input(Bool())
         val csrOp = Input(UInt(4.W))
@@ -62,6 +63,8 @@ class Execution extends Module {
   val exeNextPC = nextPC.io.nextPC
   val exeAluRes = alu.io.aluRes
   val exeCsrOp = io.in.csrOp
+  val exeTakenPre = io.in.takenPre
+  val exeTakenPrePC = io.in.takenPrePC
 
 //----------------------------------------------------------------
   io.out.valid    := exeValid
@@ -86,7 +89,13 @@ class Execution extends Module {
   io.out.aluRes   := exeAluRes
   io.out.memData  := 0.U
   io.out.csrOp    := exeCsrOp
+  io.out.takenPre := exeTakenPre
+  io.out.takenPrePC := exeTakenPrePC
 
-  io.exeRdData :=exeAluRes  
+  io.exeRdData := exeAluRes  
   io.bubbleEx := io.in.typeL
+  // io.takenMiss := Mux(exeTakenPre, exeNextPC < exePC, exeNextPC > exePC)
+  // io.takenMiss := Mux(exeTakenPre, exeNextPC < (exePC + 4.U), exeNextPC > (exePC + 4.U))
+  //  io.takenMiss := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, 0.U)
+   io.takenMiss := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, exePCSrc =/= 0.U)
 }

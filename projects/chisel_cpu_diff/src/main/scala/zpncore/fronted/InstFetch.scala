@@ -14,13 +14,17 @@
 import chisel3._
 import chisel3.util._
 import Constant._
+import javax.swing.plaf.metal.MetalTreeUI
 
 class InstFetch extends Module {
   val io = IO(new Bundle {
     val imem = new CoreInst
 
-    val pcSrc = Input(UInt(2.W))
-    val nextPC = Input(UInt(WLEN.W))
+//    val pcSrc = Input(UInt(2.W))              //* =/=0,预测失败，flush+nextpc  //改进：EX阶段检测跳转方向是否向后，不然
+    // true pc
+    val takenMiss = Input(Bool())
+    val nextPC = Input(UInt(WLEN.W))          //
+
     val stall = Input(Bool())
     val memDone = Input(Bool())
     val exc = Input(Bool())
@@ -28,7 +32,15 @@ class InstFetch extends Module {
 
     val out = Output(new BUS_R)
     val IFDone = Output(Bool())                          //* 有效时才取到指令。后面流水级才能运行，否则处于暂停状态
+
+    val preRs1En = Output(Bool())
+    val preRs1Addr = Output(UInt(5.W))
+    val preRs1Data = Input(UInt(64.W))
+    val preRs1x1Data = Input(UInt(64.W))
   })
+  val minidec = Module(new minidec)
+  val bht = Module(new bht)
+
   val pc = RegInit("h8000_0000".U(WLEN.W))               //* nextPC = 0x8000_0000,可以取到正确指令
   val inst = RegInit(0.U(WLEN.W))
 
@@ -47,14 +59,42 @@ class InstFetch extends Module {
   val ifPCstall = RegNext(io.stall)
 
   val ifPC = Mux(ifPCfire && !ifPCstall && !ifIntr,   // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
-                Mux(io.pcSrc === 0.U && !io.exc, pc + 4.U, io.nextPC),  // 无中断异常情况下，pc+4
-                  Mux(io.intr, io.nextPC, pc)
+//                Mux(io.pcSrc === 0.U && !io.exc, pc + 4.U, io.nextPC),  // 无中断异常情况下，pc+4
+                Mux(io.exc | io.takenMiss, io.nextPC,
+                  Mux(bht.io.takenPre, bht.io.takenPrePC, pc + 4.U)),
+                Mux(io.intr, io.nextPC, pc)
               )
 
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
   io.IFDone := fire && io.memDone
+// --------------------------------------------------
+  minidec.io.inst := ifInst
+
+  // bht.io.pc := ifPC   //pc
+  bht.io.pc := pc
+  bht.io.jal := minidec.io.jal
+  bht.io.jalr := minidec.io.jalr
+  bht.io.bxx := minidec.io.bxx
+  bht.io.imm := minidec.io.imm
+  bht.io.rs1Addr := minidec.io.rs1Addr
+
+  bht.io.rs1Data := io.preRs1Data
+  bht.io.rs1x1Data := io.preRs1x1Data
+  io.preRs1En := minidec.io.rs1En
+  io.preRs1Addr := minidec.io.rs1Addr
+
+  // val takenPre = RegInit(false.B)
+  // val takenPrePC = RegInit(0.U(64.W))
+  // when(ifPCfire) {
+  //   takenPre := bht.io.takenPre
+  //   takenPrePC := bht.io.takenPrePC
+  // }
+  
+    // takenPre := Mux(ifPCfire, bht.io.takenPre, 0.U)
+    // takenPrePC := Mux(ifPCfire, bht.io.takenPrePC, 0.U)
+
 //------------------- IF ----------------------------
   io.out.valid    := fire
   io.out.pc       := ifPC
@@ -79,5 +119,6 @@ class InstFetch extends Module {
   io.out.memData  := 0.U
 
   io.out.csrOp := 0.U
-
+  io.out.takenPre := bht.io.takenPre
+  io.out.takenPrePC := bht.io.takenPrePC
 }

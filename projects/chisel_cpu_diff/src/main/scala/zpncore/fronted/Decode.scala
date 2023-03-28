@@ -2,6 +2,7 @@ import chisel3._
 import chisel3.util._
 import Constant._
 import utils._
+import javax.swing.plaf.metal.MetalTreeUI
 /**
   * IDU module is output instruction parameter and instruction type
   * 
@@ -15,6 +16,11 @@ class Decode extends Module {
     val rdEn = Input(Bool())               // 流水线结束才会写回
     val rdAddr = Input(UInt(5.W))
     val rdData = Input(UInt(XLEN.W))
+
+    val preRs1En = Input(Bool())
+    val preRs1Addr = Input(UInt(5.W))
+    val preRs1Data = Output(UInt(64.W))
+    val preRs1x1Data = Output(UInt(64.W))
 
     val in = Input(new BUS_R)
 
@@ -44,6 +50,10 @@ class Decode extends Module {
   regs.io.rdEn := io.rdEn
   regs.io.rdAddr := io.rdAddr
   regs.io.rdData := io.rdData
+  regs.io.preRs1En := io.preRs1En
+  regs.io.preRs1Addr := io.preRs1Addr
+  io.preRs1Data := regs.io.preRs1Data
+  io.preRs1x1Data := regs.io.preRs1x1Data
 
   imm.io.inst := io.in.inst
   imm.io.immOp := con.io.immOp
@@ -89,6 +99,8 @@ class Decode extends Module {
   val idRs1Data = rs1Data
   val idRs2Data = rs2Data
   val idImm = imm.io.imm
+  val idTakenPre = io.in.takenPre
+  val idTakenPrePC = io.in.takenPrePC
 
 //----------------------------------------------------------------
   io.out.valid    := idValid
@@ -113,6 +125,8 @@ class Decode extends Module {
   io.out.aluRes   := 0.U
   io.out.memData  := 0.U
   io.out.csrOp    := con.io.csrOp
+  io.out.takenPre := idTakenPre
+  io.out.takenPrePC := idTakenPrePC
 
   io.bubbleId := (rdRs1HitEx || rdRs2HitEx)
 //  io.sBubbleId := (rdRs1HitMem || rdRs2HitMem) && con.io.typeS  // Store 类型指令与csr发生冲突
