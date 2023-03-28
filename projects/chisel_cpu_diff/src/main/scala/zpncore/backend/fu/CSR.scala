@@ -81,7 +81,7 @@ class CSR extends Module {
 //    printf("------------- mret ------------------\n")
     mstatus := Cat(mstatus(63,13), "b00".U(2.W), mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
   } .elsewhen(io.intr && io.IFDone) {
-//    printf("\n-- clint --pc = %x\n",io.pc)
+    // printf("\n-- clint --pc = %x\n",io.pc)
     mepc := io.pc
     mcause := "h8000_0000_0000_0007".U                              // Machine timer interrupt
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
@@ -89,7 +89,7 @@ class CSR extends Module {
 
 //  mcycle := mcycle + 1.U
 //* ------------------------------------- 写回寄存器 -------------------------------------------
-  when(csrRW && io.IFDone) {
+  when(csrRW && io.IFDone && !io.intr) {
     when(wAddr === Csrs.mcycle) {
       mcycle := wdata 
     }
