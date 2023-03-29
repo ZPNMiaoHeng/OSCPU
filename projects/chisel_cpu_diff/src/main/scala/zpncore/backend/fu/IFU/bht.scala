@@ -38,6 +38,7 @@ import utils._
 
     io.takenPrePC := op1 + op2
     io.takenPre := io.jal | io.jalr | (io.bxx & io.imm(63)) //jal、jalr、以及向后一定跳转
+    // io.takenPre := io.jal | io.jalr | (io.bxx & (!io.imm(63))) //jal、jalr、以及向后一定跳转
 
 /*     val T = WireInit(false.B)
     val NT = WireInit(false.B)
