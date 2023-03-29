@@ -32,8 +32,7 @@ class Core extends Module {
                                     Mux(ID.io.out.pc =/= 0.U, ID.io.out.pc,
                                       IF.io.out.pc)))), 0.U)
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
-//  val EXLHitID = Mux(!ExRegMem.io.instChange, ID.io.bubbleId && EX.io.bubbleEx, false.B) //切换指令时，此信号一周期无效
-  val EXLHitID = !ExRegMem.io.instChange && ID.io.bubbleId && (EX.io.bubbleEx) // || EX.io.out.csrOp =/= 0.U)               //切换指令时，此信号一周期无效
+  val EXLHitID = !ExRegMem.io.instChange && ID.io.bubbleId && (EX.io.bubbleEx)              //切换指令时，此信号一周期无效
 
 // EX阶段csr型指令与ID阶段s指令发生数据冒险--暂停IF两周期，/ID与取指，从而在ID与WB插入两个nop，最后由ID/WB bypass返回
   val EXSHitID = !ExRegMem.io.instChange && ID.io.sBubbleEx && (EX.io.out.csrOp =/= 0.U)     //csr在EX与ID冲突
@@ -42,12 +41,7 @@ class Core extends Module {
 //* ----------------------------------------------------------------
   val ecallEn = WB.io.csrOp_WB(3) === 1.U || intr  //ecall/mret/time
   val flushIfIdEn  = intr
-  val flushIdExEn  = Mux(ecallEn, true.B,
-                      Mux(IF.io.IFDone, 
-                        // Mux(EX.io.out.pcSrc =/= 0.U || EXLHitID || EXSHitIDEn,                                 // ????
-                        Mux(EX.io.takenMiss || EXLHitID || EXSHitIDEn,                                 // ????
-                          true.B, false.B),
-                            false.B))
+  val flushIdExEn  = Mux(ecallEn, true.B, IF.io.IFDone & (EX.io.takenMiss || EXLHitID || EXSHitIDEn))                      // 预测失败冲刷
   val flushExMemEn = ecallEn
   val flushMemWbEn = ecallEn
 
@@ -70,7 +64,6 @@ class Core extends Module {
   IF.io.imem.inst_read := io.imem.inst_read
   IF.io.imem.inst_ready := io.imem.inst_ready
   
-//  IF.io.pcSrc := EX.io.out.pcSrc
   IF.io.takenMiss := EX.io.takenMiss
   IF.io.nextPC := EX.io.out.nextPC
   IF.io.preRs1Data := ID.io.preRs1Data
@@ -96,12 +89,10 @@ class Core extends Module {
   ID.io.exeRdEn := EX.io.out.rdEn
   ID.io.exeRdAddr := EX.io.out.rdAddr
   ID.io.exeRdData := EX.io.exeRdData
-//  ID.io.exeCsrOp := EX.io.out.csrOp
 
   ID.io.memRdEn := MEM.io.out.rdEn
   ID.io.memRdAddr := MEM.io.out.rdAddr
   ID.io.memRdData := MEM.io.memRdData
-//  ID.io.memCsrOp := MEM.io.out.csrOp
 
   ID.io.wbRdEn := WB.io.wbRdEn
   ID.io.wbRdAddr := WB.io.wbRdAddr

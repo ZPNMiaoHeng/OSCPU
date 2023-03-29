@@ -21,7 +21,6 @@ class InstFetch extends Module {
     val imem = new CoreInst
 
 //    val pcSrc = Input(UInt(2.W))              //* =/=0,预测失败，flush+nextpc  //改进：EX阶段检测跳转方向是否向后，不然
-    // true pc
     val takenMiss = Input(Bool())
     val nextPC = Input(UInt(WLEN.W))          //
 
@@ -72,7 +71,6 @@ class InstFetch extends Module {
 // --------------------------------------------------
   minidec.io.inst := ifInst
 
-  // bht.io.pc := ifPC   //pc
   bht.io.pc := pc
   bht.io.jal := minidec.io.jal
   bht.io.jalr := minidec.io.jalr
@@ -84,16 +82,6 @@ class InstFetch extends Module {
   bht.io.rs1x1Data := io.preRs1x1Data
   io.preRs1En := minidec.io.rs1En
   io.preRs1Addr := minidec.io.rs1Addr
-
-  // val takenPre = RegInit(false.B)
-  // val takenPrePC = RegInit(0.U(64.W))
-  // when(ifPCfire) {
-  //   takenPre := bht.io.takenPre
-  //   takenPrePC := bht.io.takenPrePC
-  // }
-  
-    // takenPre := Mux(ifPCfire, bht.io.takenPre, 0.U)
-    // takenPrePC := Mux(ifPCfire, bht.io.takenPrePC, 0.U)
 
 //------------------- IF ----------------------------
   io.out.valid    := fire

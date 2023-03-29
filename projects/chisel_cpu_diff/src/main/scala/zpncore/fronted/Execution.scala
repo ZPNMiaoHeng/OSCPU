@@ -94,8 +94,5 @@ class Execution extends Module {
 
   io.exeRdData := exeAluRes  
   io.bubbleEx := io.in.typeL
-  // io.takenMiss := Mux(exeTakenPre, exeNextPC < exePC, exeNextPC > exePC)
-  // io.takenMiss := Mux(exeTakenPre, exeNextPC < (exePC + 4.U), exeNextPC > (exePC + 4.U))
-  //  io.takenMiss := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, 0.U)
    io.takenMiss := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, exePCSrc =/= 0.U)
 }
