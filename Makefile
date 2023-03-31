@@ -11,7 +11,7 @@
 #************************************************************************************************
 # EXAMPLE: make run_riscv TOP=add   // 测试riscv目录下add执行
 #************************************************************************************************
-.PHONY : clean test_cpu test_riscv coremark run_riscv run_cpu axi vcd dhrystone interrupt hello
+.PHONY : clean test_cpu test_riscv coremark run_riscv run_cpu axi wave dhrystone interrupt hello
 
 TARGET = chisel_cpu_diff
 TOOLS = ./build.sh -e $(TARGET)
@@ -80,7 +80,7 @@ run_cpu:
 axi:
 	$(TOOLS) -d -b -s -a "-i inst_diff.bin --dump-wave -b 0" -m "$(FLASS)"
 
-vcd:
+wave:
 	$(TOOLS) -d -w
 
 clean:

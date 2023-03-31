@@ -20,9 +20,9 @@ class InstFetch extends Module {
   val io = IO(new Bundle {
     val imem = new CoreInst
 
-//    val pcSrc = Input(UInt(2.W))              //* =/=0,预测失败，flush+nextpc  //改进：EX阶段检测跳转方向是否向后，不然
+    val takenValid = Input(Bool())
     val takenMiss = Input(Bool())
-    val nextPC = Input(UInt(WLEN.W))          //
+    val nextPC = Input(UInt(WLEN.W))
 
     val stall = Input(Bool())
     val memDone = Input(Bool())
@@ -30,7 +30,7 @@ class InstFetch extends Module {
     val intr = Input(Bool())
 
     val out = Output(new BUS_R)
-    val IFDone = Output(Bool())                          //* 有效时才取到指令。后面流水级才能运行，否则处于暂停状态
+    val IFDone = Output(Bool())                          //* 有效时才取到指令。后面流水级才能运行，否则处于暂停状态：**当前设计为bht预测结束后才算完成**
 
     val preRs1En = Output(Bool())
     val preRs1Addr = Output(UInt(5.W))
@@ -40,6 +40,7 @@ class InstFetch extends Module {
   val minidec = Module(new minidec)
   val bht = Module(new bht)
 
+  //val pc = RegInit("h7fff_fffc".U(WLEN.W))               //* nextPC = 0x8000_0000,可以取到正确指令
   val pc = RegInit("h8000_0000".U(WLEN.W))               //* nextPC = 0x8000_0000,可以取到正确指令
   val inst = RegInit(0.U(WLEN.W))
 
@@ -48,43 +49,50 @@ class InstFetch extends Module {
   io.imem.inst_addr := pc.asUInt()
   io.imem.inst_size  := SIZE_W
   
-  val fire = Mux(io.stall, true.B, 
-                    io.imem.inst_valid && io.imem.inst_ready)  //* 握手成功，从总线上取出指令
+  val fire = Mux(io.stall, true.B, io.imem.inst_valid && io.imem.inst_ready)  //* 握手成功，从总线上取出指令，
+                                                               //TODO: 判断：如果当前指令是分支预测指令，需要等待BHT完成（将预测结果传递级间寄存器--当前至少一周期）
 
 // 握手成功，从总线上取到指令，更新寄存器PC与inst
-  val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)
+  val ifInst = Mux(fire && (!io.stall), io.imem.inst_read, inst)  //!!
   val ifIntr = RegNext(io.intr)
   val ifPCfire = RegNext(fire)
   val ifPCstall = RegNext(io.stall)
 
-  val ifPC = Mux(ifPCfire && !ifPCstall && !ifIntr,   // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
+  val ifPC = Mux(bht.io.ready && !ifPCstall && !ifIntr,   // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
 //                Mux(io.pcSrc === 0.U && !io.exc, pc + 4.U, io.nextPC),  // 无中断异常情况下，pc+4
                 Mux(io.exc | io.takenMiss, io.nextPC,
-                  Mux(bht.io.takenPre, bht.io.takenPrePC, pc + 4.U)),
+                  Mux(bht.io.takenPre & minidec.io.bjp, bht.io.takenPrePC, pc + 4.U)),
                 Mux(io.intr, io.nextPC, pc)
               )
 
   pc := ifPC                                          //* 更新pc/inst寄存器值,并保持当前寄存器状态 
   inst := ifInst
 
-  io.IFDone := fire && io.memDone
+  io.IFDone := bht.io.ready && io.memDone
+  // io.IFDone := fire && io.memDone
 // --------------------------------------------------
   minidec.io.inst := ifInst
 
   bht.io.pc := pc
+  // bht.io.valid := minidec.io.bjp
+  bht.io.fire := fire
   bht.io.jal := minidec.io.jal
   bht.io.jalr := minidec.io.jalr
   bht.io.bxx := minidec.io.bxx
   bht.io.imm := minidec.io.imm
   bht.io.rs1Addr := minidec.io.rs1Addr
 
+  bht.io.takenValid := io.takenValid
+  bht.io.takenMiss := io.takenMiss
   bht.io.rs1Data := io.preRs1Data
   bht.io.rs1x1Data := io.preRs1x1Data
+
   io.preRs1En := minidec.io.rs1En
   io.preRs1Addr := minidec.io.rs1Addr
 
 //------------------- IF ----------------------------
-  io.out.valid    := fire
+  io.out.valid    := ifPCfire
+  // io.out.valid    := fire
   io.out.pc       := ifPC
   io.out.inst     := ifInst
   io.out.typeL    := false.B

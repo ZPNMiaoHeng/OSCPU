@@ -64,8 +64,10 @@ class Core extends Module {
   IF.io.imem.inst_read := io.imem.inst_read
   IF.io.imem.inst_ready := io.imem.inst_ready
   
+  IF.io.takenValid := EX.io.takenValid
   IF.io.takenMiss := EX.io.takenMiss
-  IF.io.nextPC := EX.io.out.nextPC
+  IF.io.nextPC := EX.io.out.nextPC                    // 时钟中断、异常跳转PC / 分支预测失败后pC
+
   IF.io.preRs1Data := ID.io.preRs1Data
   IF.io.preRs1x1Data := ID.io.preRs1x1Data
 

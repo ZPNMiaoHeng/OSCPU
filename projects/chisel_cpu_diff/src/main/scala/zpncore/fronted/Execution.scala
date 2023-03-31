@@ -10,6 +10,7 @@ class Execution extends Module {
         val out = Output(new BUS_R)
         val exeRdData = Output(UInt(XLEN.W)) 
         val bubbleEx = Output(Bool())
+        val takenValid = Output(Bool())
         val takenMiss = Output(Bool())
 
         val exc = Input(Bool())
@@ -94,5 +95,6 @@ class Execution extends Module {
 
   io.exeRdData := exeAluRes  
   io.bubbleEx := io.in.typeL
-   io.takenMiss := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, exePCSrc =/= 0.U)
+  io.takenValid := (exeBranch(2) | (exeBranch(1) ^ exeBranch(0))).asBool  // bxx/jalr/jal
+  io.takenMiss := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, exePCSrc =/= 0.U)
 }
