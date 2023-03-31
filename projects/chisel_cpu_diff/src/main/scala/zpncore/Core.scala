@@ -32,7 +32,8 @@ class Core extends Module {
                                     Mux(ID.io.out.pc =/= 0.U, ID.io.out.pc,
                                       IF.io.out.pc)))), 0.U)
 // EX阶段L型指令与ID阶段指令发生数据冒险--暂停IF/ID与取指，flush ID/EX
-  val EXLHitID = !ExRegMem.io.instChange && ID.io.bubbleId && (EX.io.bubbleEx)              //切换指令时，此信号一周期无效
+  val EXLHitID = ID.io.bubbleId && (EX.io.bubbleEx)              //切换指令时，此信号一周期无效
+  // val EXLHitID = !ExRegMem.io.instChange && ID.io.bubbleId && (EX.io.bubbleEx)              //切换指令时，此信号一周期无效
 
 // EX阶段csr型指令与ID阶段s指令发生数据冒险--暂停IF两周期，/ID与取指，从而在ID与WB插入两个nop，最后由ID/WB bypass返回
   val EXSHitID = !ExRegMem.io.instChange && ID.io.sBubbleEx && (EX.io.out.csrOp =/= 0.U)     //csr在EX与ID冲突
@@ -40,7 +41,7 @@ class Core extends Module {
   val EXSHitIDEn = EXSHitID || MEMSHitID
 //* ----------------------------------------------------------------
   val ecallEn = WB.io.csrOp_WB(3) === 1.U || intr  //ecall/mret/time
-  val flushIfIdEn  = intr
+  val flushIfIdEn  = intr || EX.io.takenMiss
   val flushIdExEn  = Mux(ecallEn, true.B, IF.io.IFDone & (EX.io.takenMiss || EXLHitID || EXSHitIDEn))                      // 预测失败冲刷
   val flushExMemEn = ecallEn
   val flushMemWbEn = ecallEn
@@ -71,6 +72,7 @@ class Core extends Module {
   IF.io.preRs1Data := ID.io.preRs1Data
   IF.io.preRs1x1Data := ID.io.preRs1x1Data
 
+  // IF.io.stall := !MEM.io.memDone || EXSHitIDEn //! EX 优先级大于MEM
   IF.io.stall := EXLHitID || !MEM.io.memDone || EXSHitIDEn //! EX 优先级大于MEM
   IF.io.memDone := MEM.io.memDone
   IF.io.exc := WB.io.exc
