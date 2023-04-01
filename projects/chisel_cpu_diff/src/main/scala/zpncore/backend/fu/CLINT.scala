@@ -8,7 +8,7 @@ class CLINT extends Module {
   val io = IO(new Bundle {
     val mstatus = Input(UInt(64.W))
     val mie = Input(UInt(64.W))
-    val IFDone = Input(Bool())
+    val csrEn = Input(Bool())
 
     val cmp_ren    = Input(Bool())
     val cmp_wen    = Input(Bool())
@@ -27,7 +27,7 @@ class CLINT extends Module {
     mtimecmp := io.cmp_wdata
   }
   io.time_int := ((io.mstatus(3) === 1.U) && (io.mie(7)===1.U) && 
-                  (mtime >= mtimecmp)) && io.IFDone
+                  (mtime >= mtimecmp)) && io.csrEn
   io.cmp_rdata := Mux(io.cmp_ren, 
                     Mux(io.cmp_addr === MTIME, 
                       mtime, mtimecmp), 0.U)

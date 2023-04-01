@@ -2,11 +2,13 @@ import chisel3._
 import chisel3.util._
 import Constant._
 import utils._
+import javax.swing.InputMap
 
 class WriteBack extends Module {
     val io = IO(new Bundle {
         val in = Input(new BUS_R)
         val IFDone = Input(Bool())
+        val memDone = Input(Bool())
         val pc_intr = Input(UInt(WLEN.W))
 
         val pc   = Output(UInt(32.W))
@@ -39,9 +41,11 @@ class WriteBack extends Module {
     val csr = Module(new CSR)
     val clint = Module(new CLINT)
 
+    val csrEn = io.IFDone & io.memDone
+
     csr.io.pc := Mux(clint.io.time_int, io.pc_intr, io.in.pc)
     csr.io.inst := io.in.inst
-    csr.io.IFDone := io.IFDone
+    csr.io.csrEn := csrEn
     csr.io.rs1Data := io.in.rs1Data
     csr.io.csrOp := io.in.csrOp
     csr.io.rAddr := io.in.inst(31, 20)
@@ -49,7 +53,7 @@ class WriteBack extends Module {
 
     clint.io.mstatus := csr.io.mstatus
     clint.io.mie := csr.io.mie
-    clint.io.IFDone := io.IFDone
+    clint.io.csrEn := csrEn
 
     clint.io.cmp_ren := io.cmp_ren
     clint.io.cmp_wen := io.cmp_wen
@@ -67,15 +71,13 @@ class WriteBack extends Module {
   io.pc := io.in.pc
   io.inst := io.in.inst
 
-  io.wbRdEn := Mux(io.IFDone, io.in.rdEn, false.B)
-//  io.wbRdAddr := Mux(clint.io.time_int, 0.U, io.in.rdAddr)  // time interrupt writeback 0 reg
-//  io.wbRdData := Mux(io.in.csrOp === 0.U, rdData, csr.io.rData)
-  io.wbRdAddr := Mux(io.IFDone, Mux(clint.io.time_int, 0.U, io.in.rdAddr), 0.U)  // time interrupt writeback 0 reg
-  io.wbRdData := Mux(io.IFDone, Mux(io.in.csrOp === 0.U, rdData, csr.io.rData), 0.U)
+  io.wbRdEn := Mux(csrEn, io.in.rdEn, false.B)
+  io.wbRdAddr := Mux(csrEn, Mux(clint.io.time_int, 0.U, io.in.rdAddr), 0.U)  // time interrupt writeback 0 reg
+  io.wbRdData := Mux(csrEn, Mux(io.in.csrOp === 0.U, rdData, csr.io.rData), 0.U)
 
   io.ready_cmt := io.in.inst =/= 0.U &&                            // nop
                     !clint.io.time_int &&                          // interrupt
-                      (Mux(io.in.rdEn, io.IFDone, io.in.valid))    // wb
+                      (Mux(csrEn, io.IFDone, io.in.valid))    // wb
 
   io.mepc    := csr.io.mepc
   io.mtvec   := csr.io.mtvec

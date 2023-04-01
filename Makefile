@@ -58,7 +58,7 @@ time:
 	$(TOOLS) -d -b -s -a "-i custom-output/time-test/amtest-time-test.bin $(VCD)" -m "$(FLASS)"
 
 yield:
-	$(TOOLS) -d -b -s -a "-i custom-output/yield-test/amtest-yield-test.bin " -m "$(FLASS)"
+	$(TOOLS) -d -b -s -a "-i custom-output/yield-test/amtest-yield-test.bin $(VCD) " -m "$(FLASS)"
 
 o_coremark:
 	$(TOOLS) -d -b -s -a "-i custom-output/benchmark/coremark/coremark.bin " -m "$(FLASS)"

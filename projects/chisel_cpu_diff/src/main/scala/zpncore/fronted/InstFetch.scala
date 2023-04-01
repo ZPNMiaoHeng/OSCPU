@@ -46,13 +46,14 @@ class InstFetch extends Module {
   io.imem.inst_req := REQ_READ
   io.imem.inst_addr := pc.asUInt()
   io.imem.inst_size := SIZE_W
-  
+
   val fire = io.imem.inst_valid && io.imem.inst_ready
   val ifIntr = io.intr
   val bhtDone = bht.io.ready
 
   val ifInst = Mux(fire && !io.stall, io.imem.inst_read, inst)             //* stall，fire拉高，但inst也不能更
-  val ifPC = Mux(bhtDone && !io.stall && !ifIntr,                         // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
+  val ifPcEn = bhtDone && !io.stall && !ifIntr
+  val ifPC = Mux(ifPcEn,                         // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
                 Mux(io.exc | io.takenMiss, io.nextPC,
                   Mux(bht.io.takenPre & minidec.io.bjp, bht.io.takenPrePC, pc + 4.U)),
                 Mux(io.intr, io.nextPC, pc)

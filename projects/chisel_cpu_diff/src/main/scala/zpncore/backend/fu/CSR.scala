@@ -10,7 +10,7 @@ class CSR extends Module {
     val pc = Input(UInt(32.W))
     val inst = Input(UInt(32.W))
 
-    val IFDone = Input(Bool())
+    val csrEn = Input(Bool())
     val rs1Data = Input(UInt(64.W))
     val csrOp = Input(UInt( 4.W))
     val rAddr = Input(UInt(12.W))   // 将csr中数据读出，写入寄存器中
@@ -47,6 +47,8 @@ class CSR extends Module {
 //**************************************************************
   val csrOp   = io.csrOp
   val wAddr   = io.inst(31, 20)
+  val csrEn = io.csrEn
+  // val csrEn = io.IFDone & io.memDone
   val rs1Data = Mux(csrOp(2)=== 1.U, 
                       Cat(0.U(59.W), io.inst(19, 15)),                      // csr i type instruction
                         io.rs1Data)
@@ -72,15 +74,15 @@ class CSR extends Module {
     ),
   0.U)
 
-  when((io.csrOp === "b1000".U) && io.IFDone) {         //ecall
+  when((io.csrOp === "b1000".U) && csrEn) {         //ecall
 //    printf("------------- ecall ------------------\n")
     mcause  := 11.U
     mepc    := io.pc
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
-  } .elsewhen((io.csrOp === "b1001".U) && io.IFDone) {  // mret
+  } .elsewhen((io.csrOp === "b1001".U) && csrEn) {  // mret
 //    printf("------------- mret ------------------\n")
     mstatus := Cat(mstatus(63,13), "b00".U(2.W), mstatus(10,8), "b1".U, mstatus(6, 4), mstatus(7), mstatus(2, 0))
-  } .elsewhen(io.intr && io.IFDone) {
+  } .elsewhen(io.intr && csrEn) {
     // printf("\n-- clint --pc = %x\n",io.pc)
     mepc := io.pc
     mcause := "h8000_0000_0000_0007".U                              // Machine timer interrupt
@@ -89,7 +91,7 @@ class CSR extends Module {
 
 //  mcycle := mcycle + 1.U
 //* ------------------------------------- 写回寄存器 -------------------------------------------
-  when(csrRW && io.IFDone && !io.intr) {
+  when(csrRW && csrEn && !io.intr) {
     when(wAddr === Csrs.mcycle) {
       mcycle := wdata 
     }

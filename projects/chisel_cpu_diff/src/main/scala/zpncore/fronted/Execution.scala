@@ -95,6 +95,6 @@ class Execution extends Module {
 
   io.exeRdData := exeAluRes  
   io.bubbleEx := io.in.typeL
-  io.takenValid := (exeBranch(2) | (exeBranch(1) ^ exeBranch(0))).asBool  // bxx/jalr/jal
+  io.takenValid := exeBranch(2).asBool  // bxx
   io.takenMiss := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, exePCSrc =/= 0.U)
 }

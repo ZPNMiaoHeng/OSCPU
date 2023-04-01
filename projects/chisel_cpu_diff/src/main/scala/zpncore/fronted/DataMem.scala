@@ -44,14 +44,6 @@ class DataMem extends Module {
   val dmemDone = RegInit(true.B)  //* 访存完成后dmemDone拉高，只有进入下一条inst时才进入总线访存；
   val inst = Reg(UInt(WLEN.W))
   inst := io.in.inst
-  // when (inst =/= io.in.inst) {    //* IF完成，更新级间寄存器，
-  // when (dmemEn & io.IFDone) {    //* IF完成，更新级间寄存器，
-  // // // when ((dmemEn || cmpWEn || cmpREn) & io.IFDone) {    //
-  //   dmemDone := false.B
-  // } .elsewhen (io.dmem.data_ready & io.IFDone) {
-  // // // } .elsewhen (inst =/= io.in.inst) {
-  //   dmemDone := true.B
-  // }
 
   when (io.dmem.data_ready & io.IFDone) {    //* IF完成，更新级间寄存器，
     dmemDone := true.B

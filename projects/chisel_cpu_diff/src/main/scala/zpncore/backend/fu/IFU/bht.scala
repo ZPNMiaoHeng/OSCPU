@@ -59,7 +59,9 @@ import utils._
     }
 
     // io.takenPreValid := io.valid
-    io.takenPre := Mux((io.jal | io.jalr | io.bxx), prBits(1).asBool(), false.B)
+    io.takenPre := Mux(io.jal | io.jalr, true.B,
+                    Mux(io.bxx, prBits(1).asBool(), false.B))
+    // io.takenPre := Mux((io.jal | io.jalr | io.bxx), prBits(1).asBool(), false.B)
     io.takenPrePC := Mux(io.takenPre, op1 + op2, 0.U)
     io.ready := RegNext(io.fire)  // 当前需要一周期完成
     // io.ready := RegNext(io.valid & io.fire)  // 当前需要一周期完成

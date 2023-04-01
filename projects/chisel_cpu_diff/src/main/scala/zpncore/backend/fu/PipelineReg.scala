@@ -76,7 +76,7 @@ class PipelineReg extends Module {
     val flush   = Input(Bool())
     val stall   = Input(Bool())
 //    val ready = Input(Bool())
-    val instChange = Output(Bool())
+    // val instChange = Output(Bool())
   })
 
   val reg = RegInit(0.U.asTypeOf(new BUS_R))
@@ -89,8 +89,8 @@ class PipelineReg extends Module {
 
   io.out := reg
 
-  val pcT = Reg(UInt(WLEN.W))
-  pcT := io.in.pc
-  io.instChange := Mux(pcT =/= io.in.pc, true.B, false.B)
+  // val pcT = Reg(UInt(WLEN.W))
+  // pcT := io.in.pc
+  // io.instChange := Mux(pcT =/= io.in.pc, true.B, false.B)
 }
 
