@@ -25,7 +25,6 @@ class InstFetch extends Module {
     val nextPC = Input(UInt(WLEN.W))
 
     val stall = Input(Bool())
-    val memDone = Input(Bool())
     val exc = Input(Bool())
     val intr = Input(Bool())
 
@@ -48,16 +47,12 @@ class InstFetch extends Module {
   io.imem.inst_addr := pc.asUInt()
   io.imem.inst_size := SIZE_W
   
-  val fire = Mux(io.stall, false.B, io.imem.inst_valid && io.imem.inst_ready) // -> inst
-  // val fire = Mux(io.stall, true.B, io.imem.inst_valid && io.imem.inst_ready) // -> inst
-
-  val ifIntr = RegNext(io.intr)
-  val ifPCstall = RegNext(io.stall)
-  // val bhtDone = RegNext(bht.io.ready)
+  val fire = io.imem.inst_valid && io.imem.inst_ready
+  val ifIntr = io.intr
   val bhtDone = bht.io.ready
 
-  val ifInst = Mux(fire, io.imem.inst_read, inst)
-  val ifPC = Mux(bhtDone && !ifPCstall && !ifIntr,   // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
+  val ifInst = Mux(fire && !io.stall, io.imem.inst_read, inst)             //* stall，fire拉高，但inst也不能更
+  val ifPC = Mux(bhtDone && !io.stall && !ifIntr,                         // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
                 Mux(io.exc | io.takenMiss, io.nextPC,
                   Mux(bht.io.takenPre & minidec.io.bjp, bht.io.takenPrePC, pc + 4.U)),
                 Mux(io.intr, io.nextPC, pc)
@@ -65,7 +60,7 @@ class InstFetch extends Module {
   pc := ifPC
   inst := ifInst
 
-  io.IFDone := bhtDone && io.memDone
+  io.IFDone := Mux(io.stall, true.B, bhtDone)   // stall:让外部流水线运转
 // --------------------------------------------------
   minidec.io.inst := ifInst
 

@@ -13,7 +13,7 @@ class DataMem extends Module {
 //    val dmem = new RamIO 
     val dmem = new CoreData
 
-    val IFReady = Input(Bool())
+    val IFDone = Input(Bool())
     val in = Input(new BUS_R)
 
     val out = Output(new BUS_R)
@@ -32,35 +32,39 @@ class DataMem extends Module {
   val memOP =     io.in.memOp
   val memWr =     io.in.memWr             // 1-> Store inst
   val memDataIn = io.in.rs2Data
-
+  val alignBits = memAddr % 16.U
   val data_size = WireInit(0.U(2.W))
 
-  val cmpWEn = (memWr === 1.U) && ((memAddr === MTIMECMP) || (memAddr === MTIME))           // Store inst -> mtime/mtimecmp //todo:!!
-  val cmpREn = (memtoReg === 1.U) && ((memAddr === MTIMECMP) || (memAddr === MTIME))       // Load inst -> mtime/mtimecmp  //todo:应该加上从DCache读取成功信号，才能写回寄存器
-
+  val cmpWEn = (memWr === 1.U) && ((memAddr === MTIMECMP) || (memAddr === MTIME))           // Store inst -> mtime/mtimecmp //todo：不考虑
+  val cmpREn = (memtoReg === 1.U) && ((memAddr === MTIMECMP) || (memAddr === MTIME))       // Load inst -> mtime/mtimecmp
+  val dmemEn = (!(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U)) &&                  // W/R memory space
+                  ((memtoReg === "b01".U) || (memWr === 1.U))                                // Load/store
 //*------------------------------------ AXI4 访存 --------------------------------------------------------
 // ------------ 跳转到下一条指令时，dmemDone就false -------------------
-  val dmemDone = RegInit(false.B)  //* 访存完成后dmemDone拉高，只有进入下一条inst时才进入总线访存；
+  val dmemDone = RegInit(true.B)  //* 访存完成后dmemDone拉高，只有进入下一条inst时才进入总线访存；
   val inst = Reg(UInt(WLEN.W))
-
   inst := io.in.inst
-  when (io.dmem.data_ready || cmpWEn || cmpREn) {    //? 当触发时钟中断寄存器，默认两个周期
+  // when (inst =/= io.in.inst) {    //* IF完成，更新级间寄存器，
+  // when (dmemEn & io.IFDone) {    //* IF完成，更新级间寄存器，
+  // // // when ((dmemEn || cmpWEn || cmpREn) & io.IFDone) {    //
+  //   dmemDone := false.B
+  // } .elsewhen (io.dmem.data_ready & io.IFDone) {
+  // // // } .elsewhen (inst =/= io.in.inst) {
+  //   dmemDone := true.B
+  // }
+
+  when (io.dmem.data_ready & io.IFDone) {    //* IF完成，更新级间寄存器，
     dmemDone := true.B
-  } .elsewhen (inst =/= io.in.inst) {
+  } .elsewhen (io.dmem.data_valid & io.IFDone & inst =/= io.in.inst) {
     dmemDone := false.B
   }
 
 //* ------------------------------------------------------ ----- Debug ----- 当访问mtimecmp，两个周期后暂停
 //  val debug = RegNext(RegNext(memAddr === MTIMECMP)) 
 //* ------------------------------------------------------ ----- Debug -----
-  val dmemEn = (!(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U)) &&                  // W/R memory space
-                  ((memtoReg === "b01".U) || (memWr === 1.U))                                // Load/store
-  io.dmem.data_valid := dmemEn && !io.IFReady && !dmemDone // && !debug               // 将IF取指那一周除去-->优先级:IF>MEM
-  io.dmem.data_addr := Mux(io.dmem.data_valid, memAddr, 0.U)
 
-  val dmemFire = io.dmem.data_valid && io.dmem.data_ready
-  val alignBits = memAddr % 16.U
-  
+  io.dmem.data_valid := !io.memDone
+  io.dmem.data_addr := Mux(io.dmem.data_valid, memAddr, 0.U)
   io.dmem.data_write := memDataIn << alignBits * 8.U
   io.dmem.data_req := Mux(memWr === 1.U && !cmpWEn, REQ_WRITE, REQ_READ)
   io.dmem.data_size := data_size
@@ -95,7 +99,8 @@ class DataMem extends Module {
       "b011".U -> "b1111_1111".U                                                           // Sd
   )))
 
-//*------------------------------ Load 指令 ----------------------------------------------------------------
+//*------------------------------ Load 指令 ----------------------------------------------------------------  
+  val dmemFire = io.dmem.data_valid && io.dmem.data_ready
   val rdata = RegInit(0.U(XLEN.W))
   when(dmemFire) {
     rdata := io.dmem.data_read
@@ -103,11 +108,8 @@ class DataMem extends Module {
     rdata := io.cmp_rdata
   }
 
-  val memAxi = Mux(dmemEn && !dmemFire, true.B, false.B)
-//防止IF未更新inst，再次进入总线访存，导致流水线一直处于暂停状态
   io.memDone := Mux(cmpREn || cmpWEn, true.B, 
-                  Mux(!io.in.typeL, !memAxi || io.IFReady, dmemDone))  //!! 当连续load指令时，选取dmemDone延迟一周期；
-
+                  Mux(inst =/= io.in.inst, false.B, dmemDone))
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&

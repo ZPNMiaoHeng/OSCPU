@@ -36,8 +36,10 @@ class Core extends Module {
   // val EXLHitID = !ExRegMem.io.instChange && ID.io.bubbleId && (EX.io.bubbleEx)              //切换指令时，此信号一周期无效
 
 // EX阶段csr型指令与ID阶段s指令发生数据冒险--暂停IF两周期，/ID与取指，从而在ID与WB插入两个nop，最后由ID/WB bypass返回
-  val EXSHitID = !ExRegMem.io.instChange && ID.io.sBubbleEx && (EX.io.out.csrOp =/= 0.U)     //csr在EX与ID冲突
-  val MEMSHitID = !MemRegWb.io.instChange && ID.io.sBubbleMem && (MEM.io.out.csrOp =/= 0.U)  // csrMEM冲突
+  val EXSHitID = ID.io.sBubbleEx && (EX.io.out.csrOp =/= 0.U)     //csr在EX与ID冲突 
+  val MEMSHitID = ID.io.sBubbleMem && (MEM.io.out.csrOp =/= 0.U)  // csrMEM冲突 
+  // val EXSHitID = !ExRegMem.io.instChange && ID.io.sBubbleEx && (EX.io.out.csrOp =/= 0.U)     //csr在EX与ID冲突 //! 
+  // val MEMSHitID = !MemRegWb.io.instChange && ID.io.sBubbleMem && (MEM.io.out.csrOp =/= 0.U)  // csrMEM冲突     //!
   val EXSHitIDEn = EXSHitID || MEMSHitID
 //* ----------------------------------------------------------------
   val ecallEn = WB.io.csrOp_WB(3) === 1.U || intr  //ecall/mret/time
@@ -49,11 +51,15 @@ class Core extends Module {
 //* ------------------------------------------------------------------
 // 流水线暂停：IF总线取指未完成、MEM总线访问未完成、发生访存指令数据冒险
 
-  val stallIfIdEn =  !IF.io.IFDone || ((EXLHitID || EXSHitIDEn ) && !intr)  //排除发生load数据冲突时遇到时钟中断情况：时钟中断>数据冲突
-  val stallIdExEn =  !IF.io.IFDone
-  val stallExMemEn = !IF.io.IFDone
-  val stallMemWbEn = !IF.io.IFDone
+  // val stallIfIdEn =  !IF.io.IFDone || ((EXLHitID || EXSHitIDEn ) && !intr)  //排除发生load数据冲突时遇到时钟中断情况：时钟中断>数据冲突
+  // val stallIdExEn =  !IF.io.IFDone
+  // val stallExMemEn = !IF.io.IFDone
+  // val stallMemWbEn = !IF.io.IFDone
 
+  val stallIfIdEn =  !IF.io.IFDone || !MEM.io.memDone || ((EXLHitID || EXSHitIDEn ) && !intr)  //排除发生load数据冲突时遇到时钟中断情况：时钟中断>数据冲突
+  val stallIdExEn =  !IF.io.IFDone || !MEM.io.memDone
+  val stallExMemEn = !IF.io.IFDone || !MEM.io.memDone
+  val stallMemWbEn = !IF.io.IFDone || !MEM.io.memDone
 //------------------- IF --------------------------------
 //  IF.io.imem <> io.imem
 
@@ -72,9 +78,7 @@ class Core extends Module {
   IF.io.preRs1Data := ID.io.preRs1Data
   IF.io.preRs1x1Data := ID.io.preRs1x1Data
 
-  // IF.io.stall := !MEM.io.memDone || EXSHitIDEn //! EX 优先级大于MEM
   IF.io.stall := EXLHitID || !MEM.io.memDone || EXSHitIDEn //! EX 优先级大于MEM
-  IF.io.memDone := MEM.io.memDone
   IF.io.exc := WB.io.exc
   IF.io.intr := intr
 
@@ -119,7 +123,7 @@ class Core extends Module {
 //------------------- MEM -------------------------------
   MEM.io.in <> ExRegMem.io.out
   MEM.io.dmem <> io.dmem
-  MEM.io.IFReady := io.imem.inst_ready
+  MEM.io.IFDone := IF.io.IFDone
   MEM.io.cmp_rdata := WB.io.cmp_rdata     // 写回mtime/mtimecmp
 
   MemRegWb.io.in <> MEM.io.out
