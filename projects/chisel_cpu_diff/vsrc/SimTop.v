@@ -93,12 +93,12 @@ module bht(
   wire [1:0] _bits2_T_2 = io_takenMiss ? 2'h1 : 2'h3; // @[bht.scala 56:19]
   wire [1:0] _bits2_T_5 = 2'h1 == bits2 ? _bits2_T_1 : {{1'd0}, _bits2_T}; // @[Mux.scala 81:58]
   wire  _io_takenPre_T_3 = io_bxx & bits2[1]; // @[bht.scala 63:24]
-  wire [63:0] _io_takenPrePC_T_1 = op1 + io_imm; // @[bht.scala 65:43]
-  wire [63:0] _io_takenPrePC_T_2 = io_takenPre ? _io_takenPrePC_T_1 : 64'h0; // @[bht.scala 65:25]
-  reg  io_ready_REG; // @[bht.scala 66:24]
+  wire [63:0] _io_takenPrePC_T_1 = op1 + io_imm; // @[bht.scala 64:43]
+  wire [63:0] _io_takenPrePC_T_2 = io_takenPre ? _io_takenPrePC_T_1 : 64'h0; // @[bht.scala 64:25]
+  reg  io_ready_REG; // @[bht.scala 65:36]
   assign io_takenPre = io_jal | io_jalr | _io_takenPre_T_3; // @[bht.scala 62:23]
-  assign io_takenPrePC = _io_takenPrePC_T_2[31:0]; // @[bht.scala 65:19]
-  assign io_ready = io_ready_REG; // @[bht.scala 66:14]
+  assign io_takenPrePC = _io_takenPrePC_T_2[31:0]; // @[bht.scala 64:19]
+  assign io_ready = io_bxx ? io_ready_REG : io_fire; // @[bht.scala 65:20]
   always @(posedge clock) begin
     if (reset) begin // @[bht.scala 48:24]
       bits2 <= 2'h1; // @[bht.scala 48:24]
@@ -115,7 +115,7 @@ module bht(
         bits2 <= _bits2_T_5;
       end
     end
-    io_ready_REG <= io_fire; // @[bht.scala 66:24]
+    io_ready_REG <= io_fire; // @[bht.scala 65:36]
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -191,7 +191,6 @@ module InstFetch(
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
-  reg [31:0] _RAND_1;
 `endif // RANDOMIZE_REG_INIT
   wire [31:0] minidec_io_inst; // @[InstFetch.scala 39:23]
   wire  minidec_io_rs1En; // @[InstFetch.scala 39:23]
@@ -218,9 +217,7 @@ module InstFetch(
   wire [31:0] bht_io_takenPrePC; // @[InstFetch.scala 40:19]
   wire  bht_io_ready; // @[InstFetch.scala 40:19]
   reg [31:0] pc; // @[InstFetch.scala 42:19]
-  reg [31:0] inst; // @[InstFetch.scala 43:21]
   wire  _io_imem_inst_valid_T = ~io_stall; // @[InstFetch.scala 45:25]
-  wire  fire = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 50:33]
   wire  ifPcEn = bht_io_ready & _io_imem_inst_valid_T & ~io_intr; // @[InstFetch.scala 55:37]
   wire [31:0] _ifPC_T_3 = pc + 32'h4; // @[InstFetch.scala 58:79]
   minidec minidec ( // @[InstFetch.scala 39:23]
@@ -253,28 +250,28 @@ module InstFetch(
   );
   assign io_imem_inst_valid = ~io_stall; // @[InstFetch.scala 45:25]
   assign io_imem_inst_addr = pc; // @[InstFetch.scala 47:21]
-  assign io_out_valid = bht_io_ready; // @[InstFetch.scala 86:19]
-  assign io_out_pc = pc; // @[InstFetch.scala 87:19]
-  assign io_out_inst = inst; // @[InstFetch.scala 88:19]
-  assign io_out_takenPre = bht_io_takenPre; // @[InstFetch.scala 109:19]
-  assign io_out_takenPrePC = bht_io_takenPrePC; // @[InstFetch.scala 110:21]
+  assign io_out_valid = bht_io_ready; // @[InstFetch.scala 87:19]
+  assign io_out_pc = pc; // @[InstFetch.scala 88:19]
+  assign io_out_inst = io_imem_inst_read; // @[InstFetch.scala 89:19]
+  assign io_out_takenPre = bht_io_takenPre; // @[InstFetch.scala 111:19]
+  assign io_out_takenPrePC = bht_io_takenPrePC; // @[InstFetch.scala 112:21]
   assign io_IFDone = io_stall | bht_io_ready; // @[InstFetch.scala 64:19]
-  assign io_preRs1En = minidec_io_rs1En; // @[InstFetch.scala 82:15]
-  assign io_preRs1Addr = minidec_io_rs1Addr; // @[InstFetch.scala 83:17]
-  assign minidec_io_inst = fire & _io_imem_inst_valid_T ? io_imem_inst_read : inst; // @[InstFetch.scala 54:19]
+  assign io_preRs1En = minidec_io_rs1En; // @[InstFetch.scala 83:15]
+  assign io_preRs1Addr = minidec_io_rs1Addr; // @[InstFetch.scala 84:17]
+  assign minidec_io_inst = io_imem_inst_read; // @[InstFetch.scala 66:19]
   assign bht_clock = clock;
   assign bht_reset = reset;
   assign bht_io_fire = io_imem_inst_valid & io_imem_inst_ready; // @[InstFetch.scala 50:33]
-  assign bht_io_pc = pc; // @[InstFetch.scala 68:13]
-  assign bht_io_jal = minidec_io_jal; // @[InstFetch.scala 71:14]
-  assign bht_io_jalr = minidec_io_jalr; // @[InstFetch.scala 72:15]
-  assign bht_io_bxx = minidec_io_bxx; // @[InstFetch.scala 73:14]
-  assign bht_io_imm = minidec_io_imm; // @[InstFetch.scala 74:14]
-  assign bht_io_rs1Addr = minidec_io_rs1Addr; // @[InstFetch.scala 75:18]
-  assign bht_io_rs1Data = io_preRs1Data; // @[InstFetch.scala 79:18]
-  assign bht_io_rs1x1Data = io_preRs1x1Data; // @[InstFetch.scala 80:20]
-  assign bht_io_takenValid = io_takenValid; // @[InstFetch.scala 77:21]
-  assign bht_io_takenMiss = io_takenMiss; // @[InstFetch.scala 78:20]
+  assign bht_io_pc = pc; // @[InstFetch.scala 69:13]
+  assign bht_io_jal = minidec_io_jal; // @[InstFetch.scala 72:14]
+  assign bht_io_jalr = minidec_io_jalr; // @[InstFetch.scala 73:15]
+  assign bht_io_bxx = minidec_io_bxx; // @[InstFetch.scala 74:14]
+  assign bht_io_imm = minidec_io_imm; // @[InstFetch.scala 75:14]
+  assign bht_io_rs1Addr = minidec_io_rs1Addr; // @[InstFetch.scala 76:18]
+  assign bht_io_rs1Data = io_preRs1Data; // @[InstFetch.scala 80:18]
+  assign bht_io_rs1x1Data = io_preRs1x1Data; // @[InstFetch.scala 81:20]
+  assign bht_io_takenValid = io_takenValid; // @[InstFetch.scala 78:21]
+  assign bht_io_takenMiss = io_takenMiss; // @[InstFetch.scala 79:20]
   always @(posedge clock) begin
     if (reset) begin // @[InstFetch.scala 42:19]
       pc <= 32'h80000000; // @[InstFetch.scala 42:19]
@@ -288,11 +285,6 @@ module InstFetch(
       end
     end else if (io_intr) begin // @[InstFetch.scala 59:20]
       pc <= io_nextPC;
-    end
-    if (reset) begin // @[InstFetch.scala 43:21]
-      inst <= 32'h0; // @[InstFetch.scala 43:21]
-    end else if (fire & _io_imem_inst_valid_T) begin // @[InstFetch.scala 54:19]
-      inst <= io_imem_inst_read;
     end
   end
 // Register and memory initialization
@@ -333,8 +325,6 @@ initial begin
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
   pc = _RAND_0[31:0];
-  _RAND_1 = {1{`RANDOM}};
-  inst = _RAND_1[31:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial

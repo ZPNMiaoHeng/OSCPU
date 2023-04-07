@@ -38,9 +38,12 @@ class ICache extends Module {
   val state = RegInit(s_IDLE)
 
   val validAddr = in.inst_addr
+  // val preAddr = RegNext(in.inst_addr)
   val reqTag = validAddr(31,11)
   val reqIndex = validAddr(10, 4)
   val reqOff = validAddr(3, 0)
+
+  // val sameCachelineEn = (preAddr(31, 4) === validAddr(31, 4))
 
   val way0Hit = way0V(reqIndex) && (way0Tag(reqIndex) === reqTag)  //* 两路组相连 Hit情况
   val way1Hit = way1V(reqIndex) && (way1Tag(reqIndex) === reqTag)
@@ -85,6 +88,7 @@ class ICache extends Module {
 //*------------------------------------------------------------------------------------------//
   val sReadEn = state === s_READ_CACHE                             // 在Cache中读取相对应的指令
   val rData = Mux(sReadEn && cacheHitEn, cacheRData, 0.U)
+  // in.inst_ready := Mux(sameCachelineEn, true.B, sReadEn) && cacheHitEn  //*同一个cacheline，不需要访问sram
   in.inst_ready := sReadEn && cacheHitEn
   in.inst_read := LookupTreeDefault(reqOff(3, 2), 0.U , List(
     "b00".U -> rData(31 , 0 ),

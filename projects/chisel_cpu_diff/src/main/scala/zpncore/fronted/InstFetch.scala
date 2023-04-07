@@ -40,7 +40,7 @@ class InstFetch extends Module {
   val bht = Module(new bht)
 
   val pc = RegInit("h8000_0000".U(WLEN.W))
-  val inst = RegInit(0.U(WLEN.W))
+  // val inst = RegInit(0.U(WLEN.W))
 
   io.imem.inst_valid := !io.stall
   io.imem.inst_req := REQ_READ
@@ -51,7 +51,7 @@ class InstFetch extends Module {
   val ifIntr = io.intr
   val bhtDone = bht.io.ready
 
-  val ifInst = Mux(fire && !io.stall, io.imem.inst_read, inst)             //* stall，fire拉高，但inst也不能更
+  // val ifInst = Mux(fire && !io.stall, io.imem.inst_read, inst)             //* stall，fire拉高，但inst也不能更
   val ifPcEn = bhtDone && !io.stall && !ifIntr
   val ifPC = Mux(ifPcEn,                         // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
                 Mux(io.exc | io.takenMiss, io.nextPC,
@@ -59,11 +59,12 @@ class InstFetch extends Module {
                 Mux(io.intr, io.nextPC, pc)
               )
   pc := ifPC
-  inst := ifInst
+  // inst := ifInst
 
   io.IFDone := Mux(io.stall, true.B, bhtDone)   // stall:让外部流水线运转
 // --------------------------------------------------
-  minidec.io.inst := ifInst
+  minidec.io.inst := io.imem.inst_read
+  // minidec.io.inst := ifInst
 
   bht.io.pc := pc
   // bht.io.valid := minidec.io.bjp
@@ -85,7 +86,8 @@ class InstFetch extends Module {
 //------------------- IF ----------------------------
   io.out.valid    := bhtDone
   io.out.pc       := pc
-  io.out.inst     := inst
+  io.out.inst     := io.imem.inst_read
+  // io.out.inst     := inst
   io.out.typeL    := false.B
   io.out.aluA     := 0.U
   io.out.aluB     := 0.U
