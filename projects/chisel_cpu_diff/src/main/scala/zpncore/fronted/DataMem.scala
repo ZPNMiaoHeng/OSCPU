@@ -101,7 +101,7 @@ class DataMem extends Module {
   }
 
   io.memDone := Mux(cmpREn || cmpWEn, true.B, 
-                  Mux(inst =/= io.in.inst, false.B, dmemDone))
+                  Mux(inst =/= io.in.inst && dmemEn, false.B, dmemDone))
 //*------------------------------------ ram 访存 ---------------------------------------------------------
 /*
   io.dmem.en := !(memAddr < "h8000_0000".U || memAddr > "h8800_0000".U) &&

@@ -12,7 +12,7 @@ import utils._
 
   class bht extends Module {
     val io = IO(new Bundle {
-//      val valid = Input(Bool())
+      val valid = Input(Bool())
       val fire = Input(Bool())
       val pc = Input(UInt(32.W)) //Current PC
 
@@ -30,7 +30,6 @@ import utils._
 //      val nextPC = Input(UInt(WLEN.W))
 
       val takenPre = Output(Bool())
-      // val takenPreValid = Output(Bool())
       val takenPrePC = Output(UInt(32.W))
       val ready = Output(Bool())
     })
@@ -58,14 +57,13 @@ import utils._
       ))
     }
 
-    // io.takenPreValid := io.valid
-    io.takenPre := Mux(io.jal | io.jalr, true.B,
-                    Mux(io.bxx, prBits(1).asBool(), false.B))                   // 2bits
-    io.takenPrePC := Mux(io.takenPre, op1 + op2, 0.U)
-    io.ready := Mux(io.bxx, RegNext(io.fire), io.fire)  // 只有bxx指令才需要延迟一个周期
-    // io.ready := RegNext(io.fire)
+    io.takenPre := Mux(io.valid,
+                    Mux(io.jal | io.jalr, true.B,
+                      Mux(io.bxx, prBits(1).asBool(), false.B)), false.B)                   // 2bits
+    io.takenPrePC := Mux(io.valid && io.takenPre, op1 + op2, 0.U)
+    io.ready := Mux(io.valid && io.bxx, RegNext(io.fire), io.fire)  // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
 
-
+    //* --------- 静态分支预测：向后跳 ------------
     // io.takenPrePC := op1 + op2
     // io.takenPre := io.jal | io.jalr | (io.bxx & io.imm(63)) //jal、jalr、以及向后一定跳转
   }
