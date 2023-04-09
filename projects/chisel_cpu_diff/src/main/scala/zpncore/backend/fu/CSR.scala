@@ -128,7 +128,8 @@ class CSR extends Module {
     Csrs.minstret -> minstret,
   ))
 
-  io.rData := RegNext(rDataT)
+  // io.rData := RegNext(rDataT)
+  io.rData := rDataT
 
   io.mepc := mepc
   io.mtvec := mtvec

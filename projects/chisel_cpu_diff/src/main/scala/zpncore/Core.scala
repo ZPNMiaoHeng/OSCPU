@@ -48,11 +48,6 @@ class Core extends Module {
 //* ------------------------------------------------------------------
 // 流水线暂停：IF总线取指未完成、MEM总线访问未完成、发生访存指令数据冒险
 
-  // val stallIfIdEn =  !IF.io.IFDone || ((EXLHitID || EXSHitIDEn ) && !intr)  //排除发生load数据冲突时遇到时钟中断情况：时钟中断>数据冲突
-  // val stallIdExEn =  !IF.io.IFDone
-  // val stallExMemEn = !IF.io.IFDone
-  // val stallMemWbEn = !IF.io.IFDone
-
   val stallIfIdEn =  !IF.io.IFDone || !MEM.io.memDone || ((EXLHitID || EXSHitIDEn ) && !intr)  //排除发生load数据冲突时遇到时钟中断情况：时钟中断>数据冲突
   val stallIdExEn =  !IF.io.IFDone || !MEM.io.memDone
   val stallExMemEn = !IF.io.IFDone || !MEM.io.memDone

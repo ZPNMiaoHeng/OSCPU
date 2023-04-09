@@ -49,11 +49,11 @@ class InstFetch extends Module {
   io.imem.inst_size := SIZE_W
 
   val fire = io.imem.inst_valid && io.imem.inst_ready
-  val ifIntr = io.intr
-  val bhtDone = bht.io.ready
+  val bhtDone = Mux(minidec.io.bxx, bht.io.ready, fire)
+  val plInst = Mux(minidec.io.bxx, inst, io.imem.inst_read)
 
   val ifInst = Mux(fire && !io.stall, io.imem.inst_read, inst)             //* stall，fire拉高，但inst也不能更
-  val ifPcEn = bhtDone && !io.stall && !ifIntr
+  val ifPcEn = bhtDone && !io.stall && !io.intr
   val ifPC = Mux(ifPcEn,                         // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
                 Mux(io.exc | io.takenMiss, io.nextPC,
                   Mux(bht.io.takenPre & minidec.io.bjp, bht.io.takenPrePC, pc + 4.U)),
@@ -64,12 +64,12 @@ class InstFetch extends Module {
 
   io.IFDone := Mux(io.stall, true.B, bhtDone)   // stall:让外部流水线运转
 // --------------------------------------------------
-  // minidec.io.inst := io.imem.inst_read
   minidec.io.inst := ifInst
 
   bht.io.pc := pc
   bht.io.valid := minidec.io.bjp                                 // 只有跳转指令时才工作
-  bht.io.fire := fire
+  // bht.io.valid := minidec.io.bxx                                 // 只有跳转指令时才工作
+  bht.io.fire := fire && minidec.io.bjp
   bht.io.jal := minidec.io.jal
   bht.io.jalr := minidec.io.jalr
   bht.io.bxx := minidec.io.bxx
@@ -84,7 +84,6 @@ class InstFetch extends Module {
   io.preRs1En := minidec.io.rs1En
   io.preRs1Addr := minidec.io.rs1Addr
 
-  val plInst = Mux(minidec.io.bxx, inst, io.imem.inst_read)
 //------------------- IF ----------------------------
   io.out.valid    := bhtDone
   io.out.pc       := pc

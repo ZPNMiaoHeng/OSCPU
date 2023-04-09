@@ -61,7 +61,8 @@ import utils._
                     Mux(io.jal | io.jalr, true.B,
                       Mux(io.bxx, prBits(1).asBool(), false.B)), false.B)                   // 2bits
     io.takenPrePC := Mux(io.valid && io.takenPre, op1 + op2, 0.U)
-    io.ready := Mux(io.valid && io.bxx, RegNext(io.fire), io.fire)  // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
+    io.ready := Mux(io.valid && io.bxx, RegNext(io.fire), false.B)  // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
+    // io.ready := Mux(io.valid, Mux(io.bxx, RegNext(io.fire), io.fire), false.B)  // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
 
     //* --------- 静态分支预测：向后跳 ------------
     // io.takenPrePC := op1 + op2
