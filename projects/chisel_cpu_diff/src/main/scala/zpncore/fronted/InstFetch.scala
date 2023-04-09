@@ -64,7 +64,6 @@ class InstFetch extends Module {
 
   io.IFDone := Mux(io.stall, true.B, bhtDone)   // stall:让外部流水线运转
 // --------------------------------------------------
-  // minidec.io.inst := io.imem.inst_read
   minidec.io.inst := ifInst
 
   bht.io.pc := pc
