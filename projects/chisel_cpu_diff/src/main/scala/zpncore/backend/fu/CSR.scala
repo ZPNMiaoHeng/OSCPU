@@ -116,7 +116,7 @@ class CSR extends Module {
   }
 
 //* --------------------------------------------------------------------------------
-  val rDataT = LookupTreeDefault(io.rAddr, 0.U, List(   // 写入的csr 寄存器
+  io.rData := LookupTreeDefault(io.rAddr, 0.U, List(   // 写入的csr 寄存器
     Csrs.mstatus  -> mstatus,
     Csrs.mcause   -> mcause,
     Csrs.mie      -> mie,
@@ -127,8 +127,6 @@ class CSR extends Module {
     Csrs.mcycle   -> mcycle,
     Csrs.minstret -> minstret,
   ))
-
-  io.rData := RegNext(rDataT)
 
   io.mepc := mepc
   io.mtvec := mtvec
