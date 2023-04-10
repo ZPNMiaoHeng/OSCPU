@@ -14,6 +14,7 @@
 .PHONY : clean test_cpu test_riscv coremark run_riscv run_cpu axi wave dhrystone interrupt hello
 
 TARGET = chisel_cpu_diff
+FST = ./projects/$(TARGET)/build
 TOOLS = ./build.sh -e $(TARGET)
 FLASS = EMU_TRACE=1
 FLASS += WITH_DRAMSIM3=1
@@ -75,6 +76,8 @@ run_riscv:
 
 run_cpu:
 	$(TOOLS) -d -b -s -a "-i non-output/cpu-tests/$(TOP)-cpu-tests.bin --dump-wave -b 0" -m "$(FLASS)"
+	vcd2fst -v $(FST)/*.vcd -f $(FST)/$(TOP).fst
+	gtkwave $(FST)/$(TOP).fst
 
 # test axi
 axi:
@@ -85,4 +88,3 @@ wave:
 
 clean:
 	$(TOOLS) -c
-	rm -rf $(VSRC)
