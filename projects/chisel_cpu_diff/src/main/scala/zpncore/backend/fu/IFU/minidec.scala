@@ -41,9 +41,10 @@ import utils._
   val rs1Addr = Mux(rs1En, inst(19, 15), 0.U(5.W))
 
   val immOp = WireInit(0.U(3.W))
-  immOp := Mux(jxx, 4.U,
+  immOp := Mux(jal, 4.U,
              Mux(bxx, 3.U,
-              5.U))               // 0.U
+              Mux(jalr, 0.U,
+              5.U)))               // 0.U
   
   val imm = Module(new ImmGen)
   imm.io.inst := io.inst

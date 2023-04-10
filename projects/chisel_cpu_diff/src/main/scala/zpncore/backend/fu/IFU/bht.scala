@@ -2,6 +2,7 @@ import chisel3._
 import chisel3.util._
 import Constant._
 import utils._
+import javax.swing.InputMap
 /**
   * biomodal predictor
   *   size is 2KB;
@@ -24,6 +25,14 @@ import utils._
 
       val rs1Data = Input(UInt(64.W))
       val rs1x1Data = Input(UInt(64.W))
+      val exeX1En = Input(Bool())
+      val exeAluRes = Input(UInt(64.W))
+      val memX1En = Input(Bool())
+      val memAluRes = Input(UInt(64.W))
+      val wbRdEn = Input(Bool())
+      val wbRdAddr = Input(UInt(5.W))
+      val wbRdData = Input(UInt(64.W))
+
 
       val takenValid = Input(Bool())
       val takenMiss = Input(Bool())
@@ -37,9 +46,14 @@ import utils._
     val rs1x0 = (io.rs1Addr === 0.U(5.W))
     val rs1x1 = (io.rs1Addr === 1.U(5.W))
     val rs1xn = !(rs1x0 | rs1x1)
+    val rs1x1Data = Mux(io.exeX1En, io.exeAluRes,          // EXE选择ALU计算后结果
+                      Mux(io.memX1En, io.memAluRes,        // NEN选择输入结果
+                        Mux(io.wbRdEn && io.wbRdAddr === 1.U, io.wbRdData,
+                          io.rs1x1Data)))
+    // val rs1xn = !rs1x0
     val op1 = Mux(io.bxx | io.jal, io.pc,
                 Mux(io.jalr & rs1x0, 0.U(64.W),
-                Mux(io.jalr & rs1x1, io.rs1x1Data, io.rs1Data)))
+                  Mux(io.jalr & rs1x1, rs1x1Data, io.rs1Data)))
     val op2 = io.imm
     val takenMiss = io.takenMiss
 

@@ -35,6 +35,14 @@ class InstFetch extends Module {
     val preRs1Addr = Output(UInt(5.W))
     val preRs1Data = Input(UInt(64.W))
     val preRs1x1Data = Input(UInt(64.W))
+    
+    val exeX1En = Input(Bool())
+    val exeAluRes = Input(UInt(64.W))
+    val memX1En = Input(Bool())
+    val memAluRes = Input(UInt(64.W))
+    val wbRdEn = Input(Bool())
+    val wbRdAddr = Input(UInt(5.W))
+    val wbRdData = Input(UInt(64.W))
   })
   val minidec = Module(new minidec)
   val bht = Module(new bht)
@@ -79,6 +87,13 @@ class InstFetch extends Module {
   bht.io.takenMiss := io.takenMiss
   bht.io.rs1Data := io.preRs1Data
   bht.io.rs1x1Data := io.preRs1x1Data
+  bht.io.exeX1En := io.exeX1En
+  bht.io.exeAluRes := io.exeAluRes
+  bht.io.memX1En := io.memX1En
+  bht.io.memAluRes := io.memAluRes
+  bht.io.wbRdEn := io.wbRdEn
+  bht.io.wbRdAddr := io.wbRdAddr
+  bht.io.wbRdData := io.wbRdData
 
   io.preRs1En := minidec.io.rs1En
   io.preRs1Addr := minidec.io.rs1Addr

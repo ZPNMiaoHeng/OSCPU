@@ -24,6 +24,13 @@ class Core extends Module {
   val WB = Module(new WriteBack)
 
 //*-----------------------------------------------------------------
+  val preDebug = Module(new preDebug)
+  preDebug.io.exeBranch := EX.io.out.branch
+  preDebug.io.takenMiss := EX.io.takenMiss
+  preDebug.io.coreEnd := WB.io.inst === "h0000006b".U
+  preDebug.io.IFDone := IF.io.IFDone
+  preDebug.io.memDone := MEM.io.memDone
+//*-----------------------------------------------------------------
   val intr = WB.io.time_int
   val intr_no = Mux(intr, 7.U, 0.U)
   val exceptionPC = Mux(intr, Mux(WB.io.pc =/= 0.U, WB.io.pc,
@@ -69,6 +76,13 @@ class Core extends Module {
 
   IF.io.preRs1Data := ID.io.preRs1Data
   IF.io.preRs1x1Data := ID.io.preRs1x1Data
+  IF.io.exeX1En := EX.io.exeX1En
+  IF.io.exeAluRes := EX.io.exeAluRes
+  IF.io.memX1En := MEM.io.memX1En
+  IF.io.memAluRes := MEM.io.memAluRes
+  IF.io.wbRdEn := WB.io.wbRdEn
+  IF.io.wbRdAddr := WB.io.wbRdAddr
+  IF.io.wbRdData := WB.io.wbRdData
 
   IF.io.stall := EXLHitID || !MEM.io.memDone || EXSHitIDEn //! EX 优先级大于MEM
   IF.io.exc := WB.io.exc

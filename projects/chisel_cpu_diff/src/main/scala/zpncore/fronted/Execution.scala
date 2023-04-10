@@ -12,6 +12,8 @@ class Execution extends Module {
         val bubbleEx = Output(Bool())
         val takenValid = Output(Bool())
         val takenMiss = Output(Bool())
+        val exeX1En = Output(Bool())
+        val exeAluRes = Output(UInt(64.W))
 
         val exc = Input(Bool())
         val csrOp = Input(UInt(4.W))
@@ -96,5 +98,8 @@ class Execution extends Module {
   io.exeRdData := exeAluRes  
   io.bubbleEx := io.in.typeL
   io.takenValid := exeBranch(2).asBool  // bxx
-  io.takenMiss := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, exePCSrc =/= 0.U)
+  io.takenMiss := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, exePCSrc =/= 0.U)  // 若预测跳转，对比计算后的PC；若预测不跳转。看是否跳转；
+  
+  io.exeX1En := io.in.rdEn && (io.in.rdAddr === 1.U)
+  io.exeAluRes := alu.io.aluRes
 }

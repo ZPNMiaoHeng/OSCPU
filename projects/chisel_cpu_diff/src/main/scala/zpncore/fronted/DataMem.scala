@@ -19,6 +19,8 @@ class DataMem extends Module {
     val out = Output(new BUS_R)
     val memRdData = Output(UInt(XLEN.W))
     val memDone = Output(Bool())
+    val memX1En = Output(Bool())
+    val memAluRes = Output(UInt(64.W))
 
     val cmp_ren    = Output(Bool())
     val cmp_wen    = Output(Bool())
@@ -221,4 +223,8 @@ class DataMem extends Module {
   io.out.takenPrePC := memTakenPrePC
 
   io.memRdData := memBPData
+
+  
+  io.memX1En := io.in.rdEn && (io.in.rdAddr === 1.U)
+  io.memAluRes := memAluRes
 }

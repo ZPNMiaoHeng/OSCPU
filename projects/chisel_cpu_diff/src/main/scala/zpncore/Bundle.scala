@@ -4,6 +4,11 @@ import chisel3.util._
 import Constant._
 /* 可以采用DecoupledIO 添加握手信号  */
 //--------------------------- ContrIO -----------------------------------
+// class preDebug extends Bundle {
+  // val jal = Output(Bool())
+  // val jal = Output(Bool())
+  // val jalr =
+// }
 class RegCtrlIO extends Bundle {
   val rs1En = Output(Bool())
   val rs2En = Output(Bool())
