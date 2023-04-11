@@ -1377,7 +1377,6 @@ module ContrGen(
   output        io_rdEn,
   output [4:0]  io_rdAddr,
   output        io_typeL,
-  output        io_typeS,
   output [3:0]  io_csrOp,
   output        io_aluCtr_aluA,
   output [1:0]  io_aluCtr_aluB,
@@ -1544,7 +1543,6 @@ module ContrGen(
   assign io_rdEn = ~(typeS | typeB | Ebreak); // @[ContrGen.scala 185:16]
   assign io_rdAddr = wRegEn ? io_inst[11:7] : 5'h0; // @[ContrGen.scala 187:19]
   assign io_typeL = _typeL_T_4 | instLwu; // @[ContrGen.scala 70:22]
-  assign io_typeS = instSb | instSh | instSw | instSd; // @[ContrGen.scala 117:49]
   assign io_csrOp = csrrw ? 4'h1 : _io_csrOp_T_6; // @[Mux.scala 101:16]
   assign io_aluCtr_aluA = instAuipc | typeJ; // @[ContrGen.scala 131:35]
   assign io_aluCtr_aluB = _io_aluCtr_aluB_T ? 2'h0 : _io_aluCtr_aluB_T_1; // @[Mux.scala 101:16]
@@ -1630,7 +1628,6 @@ module Decode(
   wire  con_io_rdEn; // @[Decode.scala 45:20]
   wire [4:0] con_io_rdAddr; // @[Decode.scala 45:20]
   wire  con_io_typeL; // @[Decode.scala 45:20]
-  wire  con_io_typeS; // @[Decode.scala 45:20]
   wire [3:0] con_io_csrOp; // @[Decode.scala 45:20]
   wire  con_io_aluCtr_aluA; // @[Decode.scala 45:20]
   wire [1:0] con_io_aluCtr_aluB; // @[Decode.scala 45:20]
@@ -1658,7 +1655,6 @@ module Decode(
   wire [63:0] _rs2Data_T = rdRs2HitWb ? io_wbRdData : regs_io_rs2Data; // @[Decode.scala 81:8]
   wire [63:0] _rs2Data_T_1 = rdRs2HitMem ? io_memRdData : _rs2Data_T; // @[Decode.scala 80:8]
   wire [63:0] _rs2Data_T_2 = rdRs2HitEx ? io_exeRdData : _rs2Data_T_1; // @[Decode.scala 79:8]
-  wire  _io_bubbleId_T = rdRs1HitEx | rdRs2HitEx; // @[Decode.scala 129:30]
   RegFile regs ( // @[Decode.scala 43:20]
     .clock(regs_clock),
     .reset(regs_reset),
@@ -1689,7 +1685,6 @@ module Decode(
     .io_rdEn(con_io_rdEn),
     .io_rdAddr(con_io_rdAddr),
     .io_typeL(con_io_typeL),
-    .io_typeS(con_io_typeS),
     .io_csrOp(con_io_csrOp),
     .io_aluCtr_aluA(con_io_aluCtr_aluA),
     .io_aluCtr_aluB(con_io_aluCtr_aluB),
@@ -1705,8 +1700,8 @@ module Decode(
   assign io_preRs1Data = regs_io_preRs1Data; // @[Decode.scala 53:17]
   assign io_preRs1x1Data = regs_io_preRs1x1Data; // @[Decode.scala 54:19]
   assign io_bubbleId = rdRs1HitEx | rdRs2HitEx; // @[Decode.scala 129:30]
-  assign io_sBubbleEx = _io_bubbleId_T & con_io_typeS; // @[Decode.scala 130:46]
-  assign io_sBubbleMem = (rdRs1HitMem | rdRs2HitMem) & con_io_typeS; // @[Decode.scala 131:49]
+  assign io_sBubbleEx = rdRs1HitEx | rdRs2HitEx; // @[Decode.scala 132:31]
+  assign io_sBubbleMem = rdRs1HitMem | rdRs2HitMem; // @[Decode.scala 133:33]
   assign io_out_valid = io_in_valid; // @[Decode.scala 104:19]
   assign io_out_pc = io_in_pc; // @[Decode.scala 105:19]
   assign io_out_inst = io_in_inst; // @[Decode.scala 106:19]

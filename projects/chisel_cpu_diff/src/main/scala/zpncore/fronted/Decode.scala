@@ -127,6 +127,8 @@ class Decode extends Module {
   io.out.takenPrePC := idTakenPrePC
 
   io.bubbleId := (rdRs1HitEx || rdRs2HitEx)                      // Load  类型数据冲突
-  io.sBubbleEx := (rdRs1HitEx || rdRs2HitEx) && con.io.typeS     // Store 类型指令与csr发生冲突
-  io.sBubbleMem := (rdRs1HitMem || rdRs2HitMem) && con.io.typeS  // Store 类型指令与csr发生冲突
+  // io.sBubbleEx := (rdRs1HitEx || rdRs2HitEx) && con.io.typeS     // Store 类型指令与csr发生冲突
+  // io.sBubbleMem := (rdRs1HitMem || rdRs2HitMem) && con.io.typeS  // Store 类型指令与csr发生冲突
+  io.sBubbleEx := (rdRs1HitEx || rdRs2HitEx)                      //csr发生冲突
+  io.sBubbleMem := (rdRs1HitMem || rdRs2HitMem)                   //csr发生冲突
 }
