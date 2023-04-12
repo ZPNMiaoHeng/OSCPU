@@ -64,10 +64,10 @@ import javax.swing.InputMap
 // Update 2bits
     when(io.fire & io.takenValid ){   /*EX 反馈信息*/
       bits2 := LookupTreeDefault(prBits, defaultState(), List(
-        0.U -> Mux(takenMiss, 0.U, 1.U),
-        1.U -> Mux(takenMiss, 0.U, 2.U),
-        2.U -> Mux(takenMiss, 1.U, 3.U),
-        3.U -> Mux(takenMiss, 3.U, 2.U)
+        0.U -> Mux(takenMiss, 0.U, 1.U),     // Stronngly taken
+        1.U -> Mux(takenMiss, 0.U, 2.U),     // Weakly taken
+        2.U -> Mux(takenMiss, 1.U, 3.U),     // Weakly not taken
+        3.U -> Mux(takenMiss, 3.U, 2.U)      // Strongly not taken
       ))
     }
 
