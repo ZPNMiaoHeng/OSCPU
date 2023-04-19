@@ -2,8 +2,6 @@ import chisel3._
 import chisel3.util._
 import Constant._
 import utils._
-import javax.swing.InputMap
-import scala.collection.Stepper.UnboxingIntStepper
 /**
   * biomodal predictor
   *   size is 2KB;
@@ -36,6 +34,7 @@ import scala.collection.Stepper.UnboxingIntStepper
 
       val takenValid = Input(Bool())    // predecte result
       val takenMiss = Input(Bool())
+      val takenPC = Input(UInt(WLEN.W))
 //      val nextPC = Input(UInt(WLEN.W))
 
       val takenPre = Output(Bool())
@@ -57,36 +56,46 @@ import scala.collection.Stepper.UnboxingIntStepper
     val takenMiss = io.takenMiss
 
 //*------------------------------ BHT PHT --------------------------------------------
-    val BhtWidth = 9
+    val BhtWidth = 8
     val BhtSize = 64
-    val BhtAddrSize = log2Up(BhtSize)   // 7
-    val PhSize = 2 ^ BhtWidth
+    val BhtAddrSize = log2Up(BhtSize)   // 6
+    val PhtSize = 256           // 2^8=256
+    // val PhtSize = 2 ^ BhtWidth           // 2^8=256
 
-    def defaultState() : UInt = 1.U (2.W)
-    def bhtAddr(x: UInt) : UInt = x(1 + BhtSize, 2)
-    def phtAddr(x: UInt, bhtData: UInt) : UInt = x(1 + BhtSize, 2) ^ bhtData
+    def defaultState() : UInt = 1.U (2.W)  //2bits start 
+    def bhtAddr(x: UInt) : UInt = x(1 + BhtAddrSize, 2)   // (7, 2) //TODO: Add Hash
+    def phtAddr(x: UInt, bhtData: UInt) : UInt = x(1 + BhtWidth, 2) ^ bhtData   // pc(9 ,2) ^ bht Data
 
-    val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BitWidth.W))))  // 64 * 9 bits
-    val pht = RegFile(VecInit(Seq.fill(PhtSize)(defaultState())))   // 256 * 2 (01) bits
+    val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 64 * 8 bits
+    val pht = RegInit(VecInit(Seq.fill(PhtSize)(defaultState())))   // 256 * 2 (01) bits
 
-    val bhtData = bht(bhtAddr(io.pc))
-    val phtData = pht(phtAddr(io.pc, bhtData))
+
+    val bhtAddrT = bhtAddr(io.pc)
+    val bhtData = bht(bhtAddrT)
+    val phtAddrT = phtAddr(io.pc, bhtData)
+    val phtData = pht(phtAddrT)
+
+    // val bhtData = bht(bhtAddr(io.pc))
+    // val phtData = pht(phtAddr(io.pc, bhtData))
 
 //*------------------------------ update: pht bht -----------------------------------
     //todo()
+    val bhtWAddr = bhtAddr(io.takenPC)
+    val bhtWData = bht(bhtWAddr) 
+    when(io.fire && io.takenValid) {
+      bht(bhtWAddr) := bhtWData(BhtWidth-1, 1) ## io.takenMiss//.asUnit
+    }
 
+    val phtWAddr = phtAddr(io.takenPC, bhtWData)
+    val phtWData = pht(phtWAddr)
 
-//*------------------------------ 2 bits --------------------------------------------
-    val bits2 = RegInit(defaultState())
-    val prBits = bits2
-
-// Update 2bits
+//    val bits2 = RegInit(defaultState())
     when(io.fire & io.takenValid ){   /*EX 反馈信息*/
-      bits2 := LookupTreeDefault(prBits, defaultState(), List(    //todo()
-        0.U -> Mux(takenMiss, 0.U, 1.U),     // Stronngly taken
-        1.U -> Mux(takenMiss, 0.U, 2.U),     // Weakly taken
-        2.U -> Mux(takenMiss, 1.U, 3.U),     // Weakly not taken
-        3.U -> Mux(takenMiss, 3.U, 2.U)      // Strongly not taken
+      pht(phtWAddr) := LookupTreeDefault(phtWData, defaultState(), List(
+        "b00".U -> Mux(takenMiss, "b01".U, "b00".U),     // Stronngly taken
+        "b01".U -> Mux(takenMiss, "b10".U, "b00".U),     // Weakly taken
+        "b10".U -> Mux(takenMiss, "b01".U, "b11".U),     // Weakly not taken
+        "b11".U -> Mux(takenMiss, "b10".U, "b11".U)      // Strongly not takenaaa
       ))
     }
 
@@ -94,11 +103,6 @@ import scala.collection.Stepper.UnboxingIntStepper
     io.takenPre := Mux(io.valid,
                     Mux(io.jal | io.jalr, true.B,
                       Mux(io.bxx, phtData(1).asBool(), false.B)), false.B)                   // pht
-                      // Mux(io.bxx, prBits(1).asBool(), false.B)), false.B)                   // 2bits
     io.takenPrePC := Mux(io.valid && io.takenPre, op1 + op2, 0.U)
     io.ready := Mux(io.valid && io.bxx, RegNext(io.fire), io.fire)  // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
-
-    //* --------- 静态分支预测：向后跳 ------------
-    // io.takenPrePC := op1 + op2
-    // io.takenPre := io.jal | io.jalr | (io.bxx & io.imm(63)) //jal、jalr、以及向后一定跳转
   }
