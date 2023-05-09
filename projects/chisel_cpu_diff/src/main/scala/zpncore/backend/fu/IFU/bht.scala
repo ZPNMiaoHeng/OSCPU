@@ -69,8 +69,7 @@ import utils._
 
     val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 64 * 8 bits
     val pht = RegInit(VecInit(Seq.fill(PhtSize)(defaultState())))   // 256 * 2 (01) bits
-
-
+  
     val bhtAddrT = bhtAddr(io.pc)
     val bhtData = bht(bhtAddrT)
     val phtAddrT = phtAddr(io.pc, bhtData)
@@ -79,18 +78,30 @@ import utils._
     // val bhtData = bht(bhtAddr(io.pc))
     // val phtData = pht(phtAddr(io.pc, bhtData))
 
+  // 基于全局分支预测方法
+    //TODO：添加hash；扩大ghr位宽；
+    // val ghr = RegInit(0.U(BhtWidth.W))
+    // val phtAddrT = phtAddr(io.pc, ghr)
+    // val phtData = pht(phtAddrT)
+    // when(io.fire && io.takenValid) {
+    //   // bht(bhtWAddr) := io.exTakenPre ## bhtWData(BhtWidth-1, 1)
+    //   ghr := ghr(BhtWidth-2, 0) ## io.exTakenPre
+    // }
+    // val phtWAddr = phtAddr(io.takenPC, ghr)
+    // val phtWData = pht(phtWAddr)
+
 //*------------------------------ update: pht bht -----------------------------------
-    //todo()
     val bhtWAddr = bhtAddr(io.takenPC)
     val bhtWData = bht(bhtWAddr) 
     when(io.fire && io.takenValid) {
-      bht(bhtWAddr) := io.exTakenPre ## bhtWData(BhtWidth-1, 1)
-      // bht(bhtWAddr) := bhtWData(BhtWidth-1, 1) ## io.takenMiss//.asUnit
+      // bht(bhtWAddr) := io.exTakenPre ## bhtWData(BhtWidth-1, 1)
+      bht(bhtWAddr) :=  bhtWData(BhtWidth-2, 0) ## io.exTakenPre
     }
 
     val phtWAddr = phtAddr(io.takenPC, bhtWData)
     val phtWData = pht(phtWAddr)
 
+// update pht     
     when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
       pht(phtWAddr) := LookupTreeDefault(phtWData, defaultState(), List(
         "b00".U -> Mux(takenMiss, "b01".U, "b00".U),     // Stronngly taken
