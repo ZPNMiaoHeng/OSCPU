@@ -22,6 +22,7 @@ class InstFetch extends Module {
 
     val takenValid = Input(Bool())
     val takenMiss = Input(Bool())
+    val exTakenPre = Input(Bool())
     val takenPC =Input(UInt(WLEN.W))
     val nextPC = Input(UInt(WLEN.W))
 
@@ -86,6 +87,7 @@ class InstFetch extends Module {
 
   bht.io.takenValid := io.takenValid
   bht.io.takenMiss := io.takenMiss
+  bht.io.exTakenPre := io.exTakenPre
   bht.io.takenPC := io.takenPC
   bht.io.rs1Data := io.preRs1Data
   bht.io.rs1x1Data := io.preRs1x1Data

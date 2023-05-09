@@ -73,6 +73,7 @@ class Core extends Module {
   
   IF.io.takenValid := EX.io.takenValid
   IF.io.takenMiss := EX.io.takenMiss
+  IF.io.exTakenPre := EX.io.exTakenPre
   IF.io.takenPC := EX.io.takenPC
   IF.io.nextPC := EX.io.out.nextPC                    // 时钟中断、异常跳转PC / 分支预测失败后pC
 

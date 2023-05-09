@@ -76,8 +76,8 @@ run_riscv:
 
 run_cpu:
 	$(TOOLS) -d -b -s -a "-i non-output/cpu-tests/$(TOP)-cpu-tests.bin --dump-wave -b 0" -m "$(FLASS)"
-	vcd2fst -v $(FST)/*.vcd -f $(FST)/$(TOP).fst
-	gtkwave $(FST)/$(TOP).fst
+	#vcd2fst -v $(FST)/*.vcd -f $(FST)/$(TOP).fst
+	#gtkwave $(FST)/$(TOP).fst
 
 # test axi
 axi:

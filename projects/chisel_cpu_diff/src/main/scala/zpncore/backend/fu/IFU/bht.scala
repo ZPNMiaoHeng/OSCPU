@@ -33,7 +33,8 @@ import utils._
       val wbRdData = Input(UInt(64.W))
 
       val takenValid = Input(Bool())    // predecte result
-      val takenMiss = Input(Bool())
+      val takenMiss = Input(Bool())     // 预测失败信号
+      val exTakenPre = Input(Bool())
       val takenPC = Input(UInt(WLEN.W))
 //      val nextPC = Input(UInt(WLEN.W))
 
@@ -58,8 +59,8 @@ import utils._
 //*------------------------------ BHT PHT --------------------------------------------
     val BhtWidth = 8
     val BhtSize = 64
-    val BhtAddrSize = log2Up(BhtSize)   // 6
-    val PhtSize = 256           // 2^8=256
+    val BhtAddrSize = log2Up(BhtSize)       // 6
+    val PhtSize = 256                       // 2^8=256
     // val PhtSize = 2 ^ BhtWidth           // 2^8=256
 
     def defaultState() : UInt = 1.U (2.W)  //2bits start 
@@ -83,14 +84,14 @@ import utils._
     val bhtWAddr = bhtAddr(io.takenPC)
     val bhtWData = bht(bhtWAddr) 
     when(io.fire && io.takenValid) {
-      bht(bhtWAddr) := bhtWData(BhtWidth-1, 1) ## io.takenMiss//.asUnit
+      bht(bhtWAddr) := io.exTakenPre ## bhtWData(BhtWidth-1, 1)
+      // bht(bhtWAddr) := bhtWData(BhtWidth-1, 1) ## io.takenMiss//.asUnit
     }
 
     val phtWAddr = phtAddr(io.takenPC, bhtWData)
     val phtWData = pht(phtWAddr)
 
-//    val bits2 = RegInit(defaultState())
-    when(io.fire & io.takenValid ){   /*EX 反馈信息*/
+    when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
       pht(phtWAddr) := LookupTreeDefault(phtWData, defaultState(), List(
         "b00".U -> Mux(takenMiss, "b01".U, "b00".U),     // Stronngly taken
         "b01".U -> Mux(takenMiss, "b10".U, "b00".U),     // Weakly taken
