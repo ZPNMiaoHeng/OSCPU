@@ -57,17 +57,17 @@ when(io.IFDone && io.memDone) {
   }
 }
 
-  val jal  = bjpMiss(0) / bjp(0)
-  val jalr = bjpMiss(1) / bjp(1)
-  val beq  = bjpMiss(2) / bjp(2)
-  val bne  = bjpMiss(3) / bjp(3)
-  val blt  = bjpMiss(4) / bjp(4)
-  val bge  = bjpMiss(5) / bjp(5)
+  // val jal  = bjpMiss(0)* 100.U / bjp(0)
+  // val jalr = bjpMiss(1)* 100.U / bjp(1)
+  // val beq  = bjpMiss(2)* 100.U / bjp(2)
+  // val bne  = bjpMiss(3)* 100.U / bjp(3)
+  // val blt  = bjpMiss(4)* 100.U / bjp(4)
+  // val bge  = bjpMiss(5)* 100.U / bjp(5)
 
   when(io.coreEnd && io.IFDone && io.memDone) {
     printf("Name:\tjal\t\tjalr\t\tret\t\tbeq\t\tbne\t\tblt\t\tbge\n")
     printf("ALL:\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", bjp(0), bjp(1), bjp(6), bjp(2), bjp(3), bjp(4), bjp(5))
     printf("Miss:\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", bjpMiss(0), bjpMiss(1), bjpMiss(6),bjpMiss(2), bjpMiss(3), bjpMiss(4), bjpMiss(5))
-    printf("Res:\t%d\t%d\t%d\t%d\t%d\t%d\n", jal, jalr, beq, bne, blt, bge)
+    // printf("Res:\t%d\t%d\t%d\t%d\t%d\t%d\n", jal, jalr, beq, bne, blt, bge)
   }
 }
