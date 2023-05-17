@@ -72,23 +72,23 @@ import utils._
   
     val bhtAddrT = bhtAddr(io.pc)
     val bhtData = bht(bhtAddrT)
-    val phtAddrT = phtAddr(io.pc, bhtData)
-    val phtData = pht(phtAddrT)
+    // val phtAddrT = phtAddr(io.pc, bhtData)
+    // val phtData = pht(phtAddrT)
 
-    // val bhtData = bht(bhtAddr(io.pc))
-    // val phtData = pht(phtAddr(io.pc, bhtData))
+    // val bhtData = bht(bhtAddr(io.pc))            //NOTE:bhr
+    // val phtData = pht(phtAddr(io.pc, bhtData))   //NOTE:bhr
 
   // 基于全局分支预测方法
     //TODO：添加hash；扩大ghr位宽；
-    // val ghr = RegInit(0.U(BhtWidth.W))
-    // val phtAddrT = phtAddr(io.pc, ghr)
-    // val phtData = pht(phtAddrT)
-    // when(io.fire && io.takenValid) {
-    //   // bht(bhtWAddr) := io.exTakenPre ## bhtWData(BhtWidth-1, 1)
-    //   ghr := ghr(BhtWidth-2, 0) ## io.exTakenPre
-    // }
-    // val phtWAddr = phtAddr(io.takenPC, ghr)
-    // val phtWData = pht(phtWAddr)
+    val ghr = RegInit(0.U(BhtWidth.W))
+    val phtAddrT = phtAddr(io.pc, ghr)
+    val phtData = pht(phtAddrT)
+    when(io.fire && io.takenValid) {
+      // bht(bhtWAddr) := io.exTakenPre ## bhtWData(BhtWidth-1, 1)
+      ghr := ghr(BhtWidth-2, 0) ## io.exTakenPre
+    }
+    val phtWAddr = phtAddr(io.takenPC, ghr)
+    val phtWData = pht(phtWAddr)
 
 //*------------------------------ update: pht bht -----------------------------------
     val bhtWAddr = bhtAddr(io.takenPC)
@@ -98,8 +98,8 @@ import utils._
       bht(bhtWAddr) :=  bhtWData(BhtWidth-2, 0) ## io.exTakenPre
     }
 
-    val phtWAddr = phtAddr(io.takenPC, bhtWData)
-    val phtWData = pht(phtWAddr)
+    // val phtWAddr = phtAddr(io.takenPC, bhtWData)   //NOTE:bhr
+    // val phtWData = pht(phtWAddr)                   //NOTE:bhr
 
 // update pht     
     when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
@@ -114,7 +114,7 @@ import utils._
 //*------------------------------ Res --------------------------------------------
     io.takenPre := Mux(io.valid,
                     Mux(io.jal | io.jalr, true.B,
-                      Mux(io.bxx, phtData(1).asBool(), false.B)), false.B)                   // pht
+                      Mux(io.bxx, phtData(1).asBool(), false.B)), false.B)                   // ghr
     io.takenPrePC := Mux(io.valid && io.takenPre, op1 + op2, 0.U)
     io.ready := Mux(io.valid && io.bxx, RegNext(io.fire), io.fire)  // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
   }
