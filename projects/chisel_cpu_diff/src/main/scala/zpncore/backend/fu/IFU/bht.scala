@@ -62,20 +62,30 @@ import utils._
     val PhtNum = 3                          // P0:CPHT P1:GHR P2:BHT
     val PhtSize = 256                       // 2^8=256
     // val PhtSize = 2 ^ BhtWidth           // 2^8=256
+    val hashres = 216613626
+    val prime   = 16777619
 
     def defaultState()                  : UInt = 1.U (2.W)                      // 2bits start 
     def bhtAddr(x: UInt)                : UInt = x(1 + BhtAddrSize, 2)          // PC(7, 2) -> bht //TODO: Add Hash 
     def phtAddr(x: UInt, bhtData: UInt) : UInt = x(1 + BhtWidth, 2) ^ bhtData   // pc(9 ,2) ^ bht Data
+    def hash(pc: UInt, hashres:UInt, FNV_prime:UInt) :UInt = {
+      val hashresOr = hashres ^ pc
+      val hashresM  = hashresOr * FNV_prime
+      hashresM
+    }
+
+    def hashres(pc: UInt, hashres:UInt, FNV_prime:UInt) :UInt = {
+      val hashres1 = hash(pc( 7: 0), hashres , prime)
+      val hashres2 = hash(pc(15: 8), hashres1, prime)
+      val hashres3 = hash(pc(23:16), hashres2, prime)
+      val hashres4 = hash(pc(31:24), hashres3, prime)
+      hashres4(7:0)
+    }
 
     val ghr = RegInit(0.U(BhtWidth.W))
     val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 64 * 8 bits
     val pht = RegInit(VecInit(Seq.fill(PhtNum)(VecInit(Seq.fill(PhtSize)(defaultState())))))   // 3 * 256 * 2 (01) bits
-/*  
-    val bhtAddrT = bhtAddr(io.pc)
-    val bhtData = bht(bhtAddrT)
-    val pht1AddrT = phtAddr(io.pc, bhtData)
-    val pht1Data = pht(phtAddrT)
-*/
+
     val p1Addr   = phtAddr(io.pc, ghr)
     val bhtData  = bht(bhtAddr(io.pc))
     val pht0Data = pht(0)(p1Addr)
