@@ -99,10 +99,11 @@ class Execution extends Module {
 
   io.exeRdData := exeAluRes  
   io.bubbleEx := io.in.typeL
+
   io.takenValid := exeBranch(2).asBool  // bxx
-  io.takenMiss := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, exePCSrc =/= 0.U)  // 若预测跳转，对比计算后的PC；若预测不跳转。看是否跳转；
-  io.exTakenPre := exePCSrc =/= 0.U
-  io.takenPC := exePC
+  io.takenMiss  := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, exePCSrc =/= 0.U)  // 若预测跳转，对比计算后的PC；若预测不跳转。看是否跳转；
+  io.exTakenPre := exePCSrc =/= 0.U     // bxx 是否跳转
+  io.takenPC    := exePC                   //当前bxx的pc
   
   io.exeX1En := io.in.rdEn && (io.in.rdAddr === 1.U)
   io.exeAluRes := alu.io.aluRes

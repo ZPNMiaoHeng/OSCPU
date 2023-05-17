@@ -56,65 +56,92 @@ import utils._
     val op2 = io.imm
     val takenMiss = io.takenMiss
 
-//*------------------------------ BHT PHT --------------------------------------------
     val BhtWidth = 8
     val BhtSize = 64
     val BhtAddrSize = log2Up(BhtSize)       // 6
+    val PhtNum = 3                          // P0:CPHT P1:GHR P2:BHT
     val PhtSize = 256                       // 2^8=256
     // val PhtSize = 2 ^ BhtWidth           // 2^8=256
 
-    def defaultState() : UInt = 1.U (2.W)  //2bits start 
-    def bhtAddr(x: UInt) : UInt = x(1 + BhtAddrSize, 2)   // (7, 2) //TODO: Add Hash
+    def defaultState()                  : UInt = 1.U (2.W)                      // 2bits start 
+    def bhtAddr(x: UInt)                : UInt = x(1 + BhtAddrSize, 2)          // PC(7, 2) -> bht //TODO: Add Hash 
     def phtAddr(x: UInt, bhtData: UInt) : UInt = x(1 + BhtWidth, 2) ^ bhtData   // pc(9 ,2) ^ bht Data
 
+    val ghr = RegInit(0.U(BhtWidth.W))
     val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 64 * 8 bits
-    val pht = RegInit(VecInit(Seq.fill(PhtSize)(defaultState())))   // 256 * 2 (01) bits
-  
+    val pht = RegInit(VecInit(Seq.fill(PhtNum)(VecInit(Seq.fill(PhtSize)(defaultState())))))   // 3 * 256 * 2 (01) bits
+/*  
     val bhtAddrT = bhtAddr(io.pc)
     val bhtData = bht(bhtAddrT)
-    // val phtAddrT = phtAddr(io.pc, bhtData)
-    // val phtData = pht(phtAddrT)
+    val pht1AddrT = phtAddr(io.pc, bhtData)
+    val pht1Data = pht(phtAddrT)
+*/
+    val p1Addr   = phtAddr(io.pc, ghr)
+    val bhtData  = bht(bhtAddr(io.pc))
+    val pht0Data = pht(0)(p1Addr)
+    val pht1Data = pht(1)(p1Addr)
+    val pht2Data = pht(2)(phtAddr(io.pc, bhtData))
+    val phtData  = Mux(pht0Data(1).asBool(), pht2Data, pht1Data)
 
-    // val bhtData = bht(bhtAddr(io.pc))            //NOTE:bhr
-    // val phtData = pht(phtAddr(io.pc, bhtData))   //NOTE:bhr
+    // Output
+    io.takenPre := Mux(io.valid,
+                    Mux(io.jal | io.jalr, true.B,
+                      Mux(io.bxx, phtData(1).asBool(), false.B)), false.B)
+    io.takenPrePC := Mux(io.valid && io.takenPre, op1 + op2, 0.U)
+    io.ready := Mux(io.valid && io.bxx, RegNext(io.fire), io.fire)                 // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
 
-  // 基于全局分支预测方法
-    //TODO：添加hash；扩大ghr位宽；
-    val ghr = RegInit(0.U(BhtWidth.W))
-    val phtAddrT = phtAddr(io.pc, ghr)
-    val phtData = pht(phtAddrT)
-    when(io.fire && io.takenValid) {
-      // bht(bhtWAddr) := io.exTakenPre ## bhtWData(BhtWidth-1, 1)
-      ghr := ghr(BhtWidth-2, 0) ## io.exTakenPre
-    }
-    val phtWAddr = phtAddr(io.takenPC, ghr)
-    val phtWData = pht(phtWAddr)
-
-//*------------------------------ update: pht bht -----------------------------------
+    // update: bht ghr
     val bhtWAddr = bhtAddr(io.takenPC)
-    val bhtWData = bht(bhtWAddr) 
-    when(io.fire && io.takenValid) {
-      // bht(bhtWAddr) := io.exTakenPre ## bhtWData(BhtWidth-1, 1)
-      bht(bhtWAddr) :=  bhtWData(BhtWidth-2, 0) ## io.exTakenPre
-    }
+    val bhtWData = bht(bhtWAddr)
 
-    // val phtWAddr = phtAddr(io.takenPC, bhtWData)   //NOTE:bhr
-    // val phtWData = pht(phtWAddr)                   //NOTE:bhr
+    // update pht
+    val pht1WAddr = phtAddr(io.takenPC, ghr)
+    val pht2WAddr = phtAddr(io.takenPC, bhtWData)   //NOTE:bhr
+    val pht0WData = pht(0)(pht1WAddr)
+    val pht1WData = pht(1)(pht1WAddr)
+    val pht2WData = pht(2)(pht2WAddr)                   //NOTE:bhr
 
-// update pht     
+    val p1TakenAddr = phtAddr(io.takenPC, ghr)
+    val p1TakenTure = pht(1)(p1TakenAddr)(1).asBool()
+    val p1Suc = p1TakenTure === io.exTakenPre
+    
+    val p2TakenAddr = bht(bhtAddr(io.takenPC))
+    val p2TakenTure = pht(2)(p2TakenAddr)(1).asBool()
+    val p2Suc = p2TakenTure === io.exTakenPre
+
+    val pht0Choice = p1Suc ## p2Suc
+
+// update pht
     when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
-      pht(phtWAddr) := LookupTreeDefault(phtWData, defaultState(), List(
+      pht(0)(pht1WAddr) := LookupTreeDefault(pht0WData, defaultState(), List(
+        "b00".U -> Mux(pht0Choice === "b01".U, "b01".U, "b00".U),     // Stronngly taken
+        "b01".U -> Mux(pht0Choice === "b01".U, "b10".U, 
+                      Mux(pht0Choice === "b10".U, "b00".U, "b01".U)),     // Weakly taken
+        "b10".U -> Mux(pht0Choice === "b10".U, "b01".U, 
+                      Mux(pht0Choice === "b01".U, "b11".U, "b10".U)),     // Weakly not taken
+        "b11".U -> Mux(pht0Choice === "b10".U, "b10".U, "b11".U)      // Strongly not takenaaa
+      ))
+    } 
+    when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
+      pht(1)(pht1WAddr) := LookupTreeDefault(pht1WData, defaultState(), List(
         "b00".U -> Mux(takenMiss, "b01".U, "b00".U),     // Stronngly taken
         "b01".U -> Mux(takenMiss, "b10".U, "b00".U),     // Weakly taken
         "b10".U -> Mux(takenMiss, "b01".U, "b11".U),     // Weakly not taken
         "b11".U -> Mux(takenMiss, "b10".U, "b11".U)      // Strongly not takenaaa
       ))
     }
+    when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
+      pht(2)(pht2WAddr) := LookupTreeDefault(pht2WData, defaultState(), List(
+        "b00".U -> Mux(takenMiss, "b01".U, "b00".U),     // Stronngly taken
+        "b01".U -> Mux(takenMiss, "b10".U, "b00".U),     // Weakly taken
+        "b10".U -> Mux(takenMiss, "b01".U, "b11".U),     // Weakly not taken
+        "b11".U -> Mux(takenMiss, "b10".U, "b11".U)      // Strongly not takenaaa
+      ))
+    }
+    
+    when(io.fire && io.takenValid) {
+      bht(bhtWAddr) :=  bhtWData(BhtWidth-2, 0) ## io.exTakenPre
+      ghr := ghr(BhtWidth-2, 0) ## io.exTakenPre
+    }
 
-//*------------------------------ Res --------------------------------------------
-    io.takenPre := Mux(io.valid,
-                    Mux(io.jal | io.jalr, true.B,
-                      Mux(io.bxx, phtData(1).asBool(), false.B)), false.B)                   // ghr
-    io.takenPrePC := Mux(io.valid && io.takenPre, op1 + op2, 0.U)
-    io.ready := Mux(io.valid && io.bxx, RegNext(io.fire), io.fire)  // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
   }
