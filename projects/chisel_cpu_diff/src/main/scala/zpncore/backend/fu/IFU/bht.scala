@@ -57,33 +57,26 @@ import utils._
     val takenMiss = io.takenMiss
 
     val BhtWidth = 8
-    val BhtSize = 64
+    val BhtSize = 256
     val BhtAddrSize = log2Up(BhtSize)       // 6
     val PhtNum = 3                          // P0:CPHT P1:GHR P2:BHT
     val PhtSize = 256                       // 2^8=256
     // val PhtSize = 2 ^ BhtWidth           // 2^8=256
-    val hashres = 216613626
-    val prime   = 16777619
 
-    def defaultState()                  : UInt = 1.U (2.W)                      // 2bits start 
-    def bhtAddr(x: UInt)                : UInt = x(1 + BhtAddrSize, 2)          // PC(7, 2) -> bht //TODO: Add Hash 
-    def phtAddr(x: UInt, bhtData: UInt) : UInt = x(1 + BhtWidth, 2) ^ bhtData   // pc(9 ,2) ^ bht Data
-    def hash(pc: UInt, hashres:UInt, FNV_prime:UInt) :UInt = {
-      val hashresOr = hashres ^ pc
-      val hashresM  = hashresOr * FNV_prime
-      hashresM
+    def defaultState()                  : UInt = 1.U (2.W)                      // 2bits start
+    def fnvHash(data: UInt): UInt = {
+      val prime = BigInt("16777619")
+      var hash: UInt = 216613626.U
+      for (i <- 0 until data.getWidth by 8) {
+        val byte = data(i+7, i)
+        hash = (hash ^ byte.asUInt()) * prime.U
+      }
+      hash
     }
-
-    def hashres(pc: UInt, hashres:UInt, FNV_prime:UInt) :UInt = {
-      val hashres1 = hash(pc( 7: 0), hashres , prime)
-      val hashres2 = hash(pc(15: 8), hashres1, prime)
-      val hashres3 = hash(pc(23:16), hashres2, prime)
-      val hashres4 = hash(pc(31:24), hashres3, prime)
-      hashres4(7:0)
-    }
-
+    def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(7,0)
+    def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(7,0) ^ regData
     val ghr = RegInit(0.U(BhtWidth.W))
-    val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 64 * 8 bits
+    val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 256 * 8 bits
     val pht = RegInit(VecInit(Seq.fill(PhtNum)(VecInit(Seq.fill(PhtSize)(defaultState())))))   // 3 * 256 * 2 (01) bits
 
     val p1Addr   = phtAddr(io.pc, ghr)
@@ -110,15 +103,9 @@ import utils._
     val pht0WData = pht(0)(pht1WAddr)
     val pht1WData = pht(1)(pht1WAddr)
     val pht2WData = pht(2)(pht2WAddr)                   //NOTE:bhr
-
-    val p1TakenAddr = phtAddr(io.takenPC, ghr)
-    val p1TakenTure = pht(1)(p1TakenAddr)(1).asBool()
-    val p1Suc = p1TakenTure === io.exTakenPre
     
-    val p2TakenAddr = bht(bhtAddr(io.takenPC))
-    val p2TakenTure = pht(2)(p2TakenAddr)(1).asBool()
-    val p2Suc = p2TakenTure === io.exTakenPre
-
+    val p1Suc = pht1WData(1).asBool() === io.exTakenPre
+    val p2Suc = pht2WData(1).asBool() === io.exTakenPre
     val pht0Choice = p1Suc ## p2Suc
 
 // update pht
