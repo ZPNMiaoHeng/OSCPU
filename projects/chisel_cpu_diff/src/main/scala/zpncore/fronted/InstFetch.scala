@@ -21,6 +21,7 @@ class InstFetch extends Module {
     val imem = new CoreInst
 
     val takenValid = Input(Bool())
+    val takenValidJalr = Input(Bool()) //TODO(jalr) connect
     val takenMiss = Input(Bool())
     val exTakenPre = Input(Bool())
     val takenPC =Input(UInt(WLEN.W))
@@ -86,9 +87,11 @@ class InstFetch extends Module {
   bht.io.rs1Addr := minidec.io.rs1Addr
 
   bht.io.takenValid := io.takenValid
+  bht.io.takenValidJalr := io.takenValidJalr
   bht.io.takenMiss := io.takenMiss
   bht.io.exTakenPre := io.exTakenPre
   bht.io.takenPC := io.takenPC
+  bht.io.nextPC := io.nextPC
   bht.io.rs1Data := io.preRs1Data
   bht.io.rs1x1Data := io.preRs1x1Data
   bht.io.exeX1En := io.exeX1En

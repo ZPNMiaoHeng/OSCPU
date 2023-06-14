@@ -5,9 +5,7 @@ import utils._
 /**
   * biomodal predictor
   *   size is 2KB;
-  *   choose is 13bits, pc[15 : 3];
-  * ****************************************
-  * First:实现简单静态分支预测-向后跳转
+  *   choose is 14bits, pc[15 : 2];
   */
 
   class bht extends Module {
@@ -33,10 +31,11 @@ import utils._
       val wbRdData = Input(UInt(64.W))
 
       val takenValid = Input(Bool())    // predecte result
+      val takenValidJalr = Input(Bool()) //TODO(jalr) connect
       val takenMiss = Input(Bool())     // 预测失败信号
       val exTakenPre = Input(Bool())
       val takenPC = Input(UInt(WLEN.W))
-//      val nextPC = Input(UInt(WLEN.W))
+      val nextPC = Input(UInt(WLEN.W)) // 跳转指令跳转的地址
 
       val takenPre = Output(Bool())
       val takenPrePC = Output(UInt(32.W))
@@ -62,8 +61,21 @@ import utils._
     val PhtNum = 3                          // P0:CPHT P1:GHR P2:BHT
     val PhtSize = 128                       // 2^7=128
     // val PhtSize = 2 ^ BhtWidth           // 2^8=256
+    val BTBSets = 128
+    val BTBWays = 1
+    //val BTBWidth = 1+7+32
+    val BTBTag = 7
+    val BTBMeta = 32
 
-    def defaultState()                  : UInt = 1.U (2.W)                      // 2bits start
+/*
+    case class ZpnBTBParams(
+      nSets: Int = 128,
+      nWays: Int = 1,
+      tags: Int = 7,
+      offsetSz: Int = 32
+    ) */
+
+    def defaultState() : UInt = 1.U (2.W)                      // 2bits start
 
     def fnvHash(data: UInt): UInt = {
       val prime = BigInt("16777619")
@@ -92,12 +104,17 @@ import utils._
     def phtAddr(pc: UInt, regData: UInt) : UInt = { 
       xorHash(pc(15, 2)) ^ regData
     }
-  //  def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(7,0)
-  //  def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(7,0) ^ regData
+  //  def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(6,0)
+  //  def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(6,0) ^ regData
 
     val ghr = RegInit(0.U(BhtWidth.W))
     val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 128 * 7 bits
     val pht = RegInit(VecInit(Seq.fill(PhtNum)(VecInit(Seq.fill(PhtSize)(defaultState())))))   // 3 * 128 * 2 (01) bits
+
+    // val btbV = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(false.B)))))   // 1 * 128 * 1 bits
+    val btbV = RegInit(VecInit(Seq.fill(BTBSets)(false.B)))   // 1 * 128 * 1 bits
+    val btbTag = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))))   // 1 * 128 * 7 bits
+    val btbMeta = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))))   // 1 * 128 * 32 bits
 
     val p1Addr   = phtAddr(io.pc, ghr)
     val bhtData  = bht(bhtAddr(io.pc))
@@ -106,11 +123,22 @@ import utils._
     val pht2Data = pht(2)(phtAddr(io.pc, bhtData))
     val phtData  = Mux(pht0Data(1).asBool(), pht2Data, pht1Data)
 
+//    val btbV
+    val reqTag = bhtAddr(io.pc)
+    val reqIndex = io.pc(10, 4)
+    val btbHit = btbV(0)(reqIndex) && (btbTag(0)(reqIndex) === reqTag)
+    val reqAdd = btbMeta(reqIndex)
+
     // Output
     io.takenPre := Mux(io.valid,
                     Mux(io.jal | io.jalr, true.B,
                       Mux(io.bxx, phtData(1).asBool(), false.B)), false.B)
     io.takenPrePC := Mux(io.valid && io.takenPre, op1 + op2, 0.U)
+/* 
+    io.takenPrePC := Mux(io.valid && io.takenPre,
+                      Mux(!io.jal && btbHit, reqAdd, op1 + op2), 
+                        0.U)
+*/
     io.ready := Mux(io.valid && io.bxx, RegNext(io.fire), io.fire)                 // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
 
     // update: bht ghr
@@ -161,4 +189,13 @@ import utils._
       ghr := ghr(BhtWidth-2, 0) ## io.exTakenPre
     }
 
+// update btb
+  val upIndex = io.takenPC(10, 4)
+  
+  when(io.fire && (io.takenValid || io.takenValidJalr)) {
+    btbV(upIndex) := true.B
+    btbTag(upIndex) := bhtAddr(io.takenPC)
+    btbMeta(upIndex) := io.nextPC
   }
+
+}

@@ -72,6 +72,7 @@ class Core extends Module {
   IF.io.imem.inst_ready := io.imem.inst_ready
   
   IF.io.takenValid := EX.io.takenValid
+  IF.io.takenValidJalr := EX.io.takenValidJalr
   IF.io.takenMiss := EX.io.takenMiss
   IF.io.exTakenPre := EX.io.exTakenPre
   IF.io.takenPC := EX.io.takenPC
