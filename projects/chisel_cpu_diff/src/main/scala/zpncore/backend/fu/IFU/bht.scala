@@ -74,10 +74,28 @@ import utils._
       }
       hash
     }
-//    def xorHash()
 
-    def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(7,0)
-    def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(7,0) ^ regData
+    def xorHash(data: UInt): UInt = {
+//      val hash = Wire(UInt(8.W))
+//      hash := 0.U
+      val hash0 = data(0) ^ data(12)
+      val hash1 = (data(7) ^ data(8)) ^ ((data(1) ^ data(13)))
+      val hash2 = data(2) ^ (data(8) ^ data(9))
+      val hash3 = data(3) ^ (data(9) ^ data(10))
+      val hash4 = data(4) ^ (data(10) ^ data(11))
+      val hash5 = data(5) ^ (data(11) ^ data(12))
+      val hash6 = data(6) ^ (data(7) ^ data(8))
+      val hash7 = 0.U // TODO(MH): test 
+      hash7 ## hash6 ## hash5 ## hash4 ## hash3 ## hash2 ## hash1 ## hash0
+    }
+
+    def bhtAddr(pc: UInt) : UInt = xorHash(pc)
+    def phtAddr(pc: UInt, regData: UInt) : UInt = { 
+      xorHash(pc) ^ regData
+    }
+  //  def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(7,0)
+  //  def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(7,0) ^ regData
+
     val ghr = RegInit(0.U(BhtWidth.W))
     val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 256 * 8 bits
     val pht = RegInit(VecInit(Seq.fill(PhtNum)(VecInit(Seq.fill(PhtSize)(defaultState())))))   // 3 * 256 * 2 (01) bits
