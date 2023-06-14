@@ -64,6 +64,7 @@ import utils._
     // val PhtSize = 2 ^ BhtWidth           // 2^8=256
 
     def defaultState()                  : UInt = 1.U (2.W)                      // 2bits start
+
     def fnvHash(data: UInt): UInt = {
       val prime = BigInt("16777619")
       var hash: UInt = 216613626.U
@@ -73,6 +74,8 @@ import utils._
       }
       hash
     }
+//    def xorHash()
+
     def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(7,0)
     def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(7,0) ^ regData
     val ghr = RegInit(0.U(BhtWidth.W))
