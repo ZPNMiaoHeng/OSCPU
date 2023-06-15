@@ -63,7 +63,6 @@ import utils._
     // val PhtSize = 2 ^ BhtWidth           // 2^8=256
     val BTBSets = 128
     val BTBWays = 1
-    //val BTBWidth = 1+7+32
     val BTBTag = 7
     val BTBMeta = 32
 
@@ -88,8 +87,6 @@ import utils._
     }
 
     def xorHash(data: UInt): UInt = {
-//      val hash = Wire(UInt(8.W))
-//      hash := 0.U
       val hash0 = data(0) ^ data(12)
       val hash1 = (data(7) ^ data(8)) ^ ((data(1) ^ data(13)))
       val hash2 = data(2) ^ (data(8) ^ data(9))
@@ -113,8 +110,10 @@ import utils._
 
     // val btbV = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(false.B)))))   // 1 * 128 * 1 bits
     val btbV = RegInit(VecInit(Seq.fill(BTBSets)(false.B)))   // 1 * 128 * 1 bits
-    val btbTag = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))))   // 1 * 128 * 7 bits
-    val btbMeta = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))))   // 1 * 128 * 32 bits
+    val btbTag = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))   // 1 * 128 * 1 bits
+    val btbMeta = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))   // 1 * 128 * 1 bits
+    // val btbTag = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))))   // 1 * 128 * 7 bits
+    // val btbMeta = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))))   // 1 * 128 * 32 bits
 
     val p1Addr   = phtAddr(io.pc, ghr)
     val bhtData  = bht(bhtAddr(io.pc))
@@ -126,20 +125,22 @@ import utils._
 //    val btbV
     val reqTag = bhtAddr(io.pc)
     val reqIndex = io.pc(10, 4)
-    val btbHit = btbV(0)(reqIndex) && (btbTag(0)(reqIndex) === reqTag)
+    val btbHit = (io.bxx || io.jalr) && io.takenPre && btbV(reqIndex) && (btbTag(reqIndex) === reqTag)
     val reqAdd = btbMeta(reqIndex)
 
     // Output
     io.takenPre := Mux(io.valid,
                     Mux(io.jal | io.jalr, true.B,
                       Mux(io.bxx, phtData(1).asBool(), false.B)), false.B)
-    io.takenPrePC := Mux(io.valid && io.takenPre, op1 + op2, 0.U)
-/* 
+    // io.takenPrePC := Mux(io.valid && io.takenPre, op1 + op2, 0.U)
+// /* 
     io.takenPrePC := Mux(io.valid && io.takenPre,
-                      Mux(!io.jal && btbHit, reqAdd, op1 + op2), 
+                      Mux(btbHit, reqAdd, op1 + op2), 
+                      // Mux(!io.jal && btbHit, reqAdd, op1 + op2), 
                         0.U)
-*/
+// */
     io.ready := Mux(io.valid && io.bxx, RegNext(io.fire), io.fire)                 // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
+    // io.ready := io.fire                 // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
 
     // update: bht ghr
     val bhtWAddr = bhtAddr(io.takenPC)
@@ -193,6 +194,7 @@ import utils._
   val upIndex = io.takenPC(10, 4)
   
   when(io.fire && (io.takenValid || io.takenValidJalr)) {
+  // when((io.takenValid || io.takenValidJalr)) {
     btbV(upIndex) := true.B
     btbTag(upIndex) := bhtAddr(io.takenPC)
     btbMeta(upIndex) := io.nextPC

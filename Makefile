@@ -84,7 +84,9 @@ axi:
 	$(TOOLS) -d -b -s -a "-i inst_diff.bin --dump-wave -b 0" -m "$(FLASS)"
 
 wave:
-	$(TOOLS) -d -w
+	vcd2fst -v $(FST)/*.vcd -f $(FST)/a.fst
+	gtkwave $(FST)/a.fst
+#	$(TOOLS) -d -w
 
 clean:
 	$(TOOLS) -c
