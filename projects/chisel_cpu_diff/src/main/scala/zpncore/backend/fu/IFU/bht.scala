@@ -61,9 +61,9 @@ import utils._
     val PhtNum = 3                          // P0:CPHT P1:GHR P2:BHT
     val PhtSize = 128                       // 2^7=128
     // val PhtSize = 2 ^ BhtWidth           // 2^8=256
-    val BTBSets = 128
+    val BTBSets = 64 // 128
     val BTBWays = 1
-    val BTBTag = 7
+    val BTBTag =  6 // 7
     val BTBMeta = 32
 
 /*
@@ -107,10 +107,33 @@ import utils._
       hash6 ## hash5 ## hash4 ## hash3 ## hash2 ## hash1
     }
 
+    def xorHash_126_WJH(data: UInt): UInt = {
+      val hash0 = data(0) ^ (data(6) ^ data(10))
+      val hash1 = (data(6) ^ data(7)) ^ ((data(1) ^ data(11)))
+      val hash2 = data(2) ^ (data(8) ^ data(7))
+      val hash3 = data(3) ^ (data(9) ^ data(8))
+      val hash4 = data(4) ^ (data(10) ^ data(9))
+      val hash5 = data(5) ^ (data(11) ^ data(10))
+      hash5 ## hash4 ## hash3 ## hash2 ## hash1 ## hash0
+    }
+
+    def xorHash_126_MH(data: UInt): UInt = {
+      val hash0 = data(0) ^ (data(6) ^ data(11))
+      val hash1 = (data(6) ^ data(7)) ^ data(1)
+      val hash2 = data(2) ^ (data(8) ^ data(7))
+      val hash3 = data(3) ^ (data(9) ^ data(8))
+      val hash4 = data(4) ^ (data(10) ^ data(9))
+      val hash5 = data(5) ^ (data(11) ^ data(10))
+      hash5 ## hash4 ## hash3 ## hash2 ## hash1 ## hash0
+    }
+
     def bhtAddr(pc: UInt) : UInt = xorHash(pc(15, 2))
     def phtAddr(pc: UInt, regData: UInt) : UInt = { 
       xorHash(pc(15, 2)) ^ regData
     }
+
+    // def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
+    def btbAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
   //  def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(6,0)
   //  def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(6,0) ^ regData
 
@@ -119,9 +142,9 @@ import utils._
     val pht = RegInit(VecInit(Seq.fill(PhtNum)(VecInit(Seq.fill(PhtSize)(defaultState())))))   // 3 * 128 * 2 (01) bits
 
     // val btbV = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(false.B)))))   // 1 * 128 * 1 bits
-    val btbV = RegInit(VecInit(Seq.fill(BTBSets)(false.B)))   // 1 * 128 * 1 bits
-    val btbTag = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))   // 1 * 128 * 1 bits
-    val btbMeta = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))   // 1 * 128 * 1 bits
+    val btbV = RegInit(VecInit(Seq.fill(BTBSets)(false.B)))
+    val btbTag = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))
+    val btbMeta = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
     // val btbTag = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))))   // 1 * 128 * 7 bits
     // val btbMeta = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))))   // 1 * 128 * 32 bits
 
@@ -133,8 +156,11 @@ import utils._
     val phtData  = Mux(pht0Data(1).asBool(), pht2Data, pht1Data)
 
 //    val btbV
-    val reqTag = bhtAddr(io.pc)
-    val reqIndex = io.pc(10, 4)
+    // val reqTag = bhtAddr(io.pc)
+    // val reqTag = xorHash_126_WJH(io.pc(13, 2))
+    val reqTag = btbAddr(io.pc)
+    val reqIndex = io.pc(9, 4)
+    // val reqIndex = io.pc(10, 4)
     val btbHit = (io.bxx || io.jalr) && io.takenPre && btbV(reqIndex) && (btbTag(reqIndex) === reqTag)
     val reqAdd = btbMeta(reqIndex)
 
@@ -143,14 +169,10 @@ import utils._
                     Mux(io.jal | io.jalr, true.B,
                       Mux(io.bxx, phtData(1).asBool(), false.B)), false.B)
     // io.takenPrePC := Mux(io.valid && io.takenPre, op1 + op2, 0.U)
-// /* 
     io.takenPrePC := Mux(io.valid && io.takenPre,
                       Mux(btbHit, reqAdd, op1 + op2), 
-                      // Mux(!io.jal && btbHit, reqAdd, op1 + op2), 
                         0.U)
-// */
     io.ready := Mux(io.valid && io.bxx, RegNext(io.fire), io.fire)                 // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
-    // io.ready := io.fire                 // 只有bxx指令才需要延迟一个周期,从2bits reg读取数据
 
     // update: bht ghr
     val bhtWAddr = bhtAddr(io.takenPC)
@@ -201,12 +223,14 @@ import utils._
     }
 
 // update btb
-  val upIndex = io.takenPC(10, 4)
+  val upIndex = io.takenPC(9, 4)
+  // val upIndex = io.takenPC(10, 4)
   
   when(io.fire && (io.takenValid || io.takenValidJalr)) {
   // when((io.takenValid || io.takenValidJalr)) {
     btbV(upIndex) := true.B
-    btbTag(upIndex) := bhtAddr(io.takenPC)
+    btbTag(upIndex) := btbAddr(io.takenPC)
+    // btbTag(upIndex) := bhtAddr(io.takenPC)
     btbMeta(upIndex) := io.nextPC
   }
 
