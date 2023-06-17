@@ -542,262 +542,6 @@ module bht(
   reg [31:0] _RAND_447;
   reg [31:0] _RAND_448;
   reg [31:0] _RAND_449;
-  reg [31:0] _RAND_450;
-  reg [31:0] _RAND_451;
-  reg [31:0] _RAND_452;
-  reg [31:0] _RAND_453;
-  reg [31:0] _RAND_454;
-  reg [31:0] _RAND_455;
-  reg [31:0] _RAND_456;
-  reg [31:0] _RAND_457;
-  reg [31:0] _RAND_458;
-  reg [31:0] _RAND_459;
-  reg [31:0] _RAND_460;
-  reg [31:0] _RAND_461;
-  reg [31:0] _RAND_462;
-  reg [31:0] _RAND_463;
-  reg [31:0] _RAND_464;
-  reg [31:0] _RAND_465;
-  reg [31:0] _RAND_466;
-  reg [31:0] _RAND_467;
-  reg [31:0] _RAND_468;
-  reg [31:0] _RAND_469;
-  reg [31:0] _RAND_470;
-  reg [31:0] _RAND_471;
-  reg [31:0] _RAND_472;
-  reg [31:0] _RAND_473;
-  reg [31:0] _RAND_474;
-  reg [31:0] _RAND_475;
-  reg [31:0] _RAND_476;
-  reg [31:0] _RAND_477;
-  reg [31:0] _RAND_478;
-  reg [31:0] _RAND_479;
-  reg [31:0] _RAND_480;
-  reg [31:0] _RAND_481;
-  reg [31:0] _RAND_482;
-  reg [31:0] _RAND_483;
-  reg [31:0] _RAND_484;
-  reg [31:0] _RAND_485;
-  reg [31:0] _RAND_486;
-  reg [31:0] _RAND_487;
-  reg [31:0] _RAND_488;
-  reg [31:0] _RAND_489;
-  reg [31:0] _RAND_490;
-  reg [31:0] _RAND_491;
-  reg [31:0] _RAND_492;
-  reg [31:0] _RAND_493;
-  reg [31:0] _RAND_494;
-  reg [31:0] _RAND_495;
-  reg [31:0] _RAND_496;
-  reg [31:0] _RAND_497;
-  reg [31:0] _RAND_498;
-  reg [31:0] _RAND_499;
-  reg [31:0] _RAND_500;
-  reg [31:0] _RAND_501;
-  reg [31:0] _RAND_502;
-  reg [31:0] _RAND_503;
-  reg [31:0] _RAND_504;
-  reg [31:0] _RAND_505;
-  reg [31:0] _RAND_506;
-  reg [31:0] _RAND_507;
-  reg [31:0] _RAND_508;
-  reg [31:0] _RAND_509;
-  reg [31:0] _RAND_510;
-  reg [31:0] _RAND_511;
-  reg [31:0] _RAND_512;
-  reg [31:0] _RAND_513;
-  reg [31:0] _RAND_514;
-  reg [31:0] _RAND_515;
-  reg [31:0] _RAND_516;
-  reg [31:0] _RAND_517;
-  reg [31:0] _RAND_518;
-  reg [31:0] _RAND_519;
-  reg [31:0] _RAND_520;
-  reg [31:0] _RAND_521;
-  reg [31:0] _RAND_522;
-  reg [31:0] _RAND_523;
-  reg [31:0] _RAND_524;
-  reg [31:0] _RAND_525;
-  reg [31:0] _RAND_526;
-  reg [31:0] _RAND_527;
-  reg [31:0] _RAND_528;
-  reg [31:0] _RAND_529;
-  reg [31:0] _RAND_530;
-  reg [31:0] _RAND_531;
-  reg [31:0] _RAND_532;
-  reg [31:0] _RAND_533;
-  reg [31:0] _RAND_534;
-  reg [31:0] _RAND_535;
-  reg [31:0] _RAND_536;
-  reg [31:0] _RAND_537;
-  reg [31:0] _RAND_538;
-  reg [31:0] _RAND_539;
-  reg [31:0] _RAND_540;
-  reg [31:0] _RAND_541;
-  reg [31:0] _RAND_542;
-  reg [31:0] _RAND_543;
-  reg [31:0] _RAND_544;
-  reg [31:0] _RAND_545;
-  reg [31:0] _RAND_546;
-  reg [31:0] _RAND_547;
-  reg [31:0] _RAND_548;
-  reg [31:0] _RAND_549;
-  reg [31:0] _RAND_550;
-  reg [31:0] _RAND_551;
-  reg [31:0] _RAND_552;
-  reg [31:0] _RAND_553;
-  reg [31:0] _RAND_554;
-  reg [31:0] _RAND_555;
-  reg [31:0] _RAND_556;
-  reg [31:0] _RAND_557;
-  reg [31:0] _RAND_558;
-  reg [31:0] _RAND_559;
-  reg [31:0] _RAND_560;
-  reg [31:0] _RAND_561;
-  reg [31:0] _RAND_562;
-  reg [31:0] _RAND_563;
-  reg [31:0] _RAND_564;
-  reg [31:0] _RAND_565;
-  reg [31:0] _RAND_566;
-  reg [31:0] _RAND_567;
-  reg [31:0] _RAND_568;
-  reg [31:0] _RAND_569;
-  reg [31:0] _RAND_570;
-  reg [31:0] _RAND_571;
-  reg [31:0] _RAND_572;
-  reg [31:0] _RAND_573;
-  reg [31:0] _RAND_574;
-  reg [31:0] _RAND_575;
-  reg [31:0] _RAND_576;
-  reg [31:0] _RAND_577;
-  reg [31:0] _RAND_578;
-  reg [31:0] _RAND_579;
-  reg [31:0] _RAND_580;
-  reg [31:0] _RAND_581;
-  reg [31:0] _RAND_582;
-  reg [31:0] _RAND_583;
-  reg [31:0] _RAND_584;
-  reg [31:0] _RAND_585;
-  reg [31:0] _RAND_586;
-  reg [31:0] _RAND_587;
-  reg [31:0] _RAND_588;
-  reg [31:0] _RAND_589;
-  reg [31:0] _RAND_590;
-  reg [31:0] _RAND_591;
-  reg [31:0] _RAND_592;
-  reg [31:0] _RAND_593;
-  reg [31:0] _RAND_594;
-  reg [31:0] _RAND_595;
-  reg [31:0] _RAND_596;
-  reg [31:0] _RAND_597;
-  reg [31:0] _RAND_598;
-  reg [31:0] _RAND_599;
-  reg [31:0] _RAND_600;
-  reg [31:0] _RAND_601;
-  reg [31:0] _RAND_602;
-  reg [31:0] _RAND_603;
-  reg [31:0] _RAND_604;
-  reg [31:0] _RAND_605;
-  reg [31:0] _RAND_606;
-  reg [31:0] _RAND_607;
-  reg [31:0] _RAND_608;
-  reg [31:0] _RAND_609;
-  reg [31:0] _RAND_610;
-  reg [31:0] _RAND_611;
-  reg [31:0] _RAND_612;
-  reg [31:0] _RAND_613;
-  reg [31:0] _RAND_614;
-  reg [31:0] _RAND_615;
-  reg [31:0] _RAND_616;
-  reg [31:0] _RAND_617;
-  reg [31:0] _RAND_618;
-  reg [31:0] _RAND_619;
-  reg [31:0] _RAND_620;
-  reg [31:0] _RAND_621;
-  reg [31:0] _RAND_622;
-  reg [31:0] _RAND_623;
-  reg [31:0] _RAND_624;
-  reg [31:0] _RAND_625;
-  reg [31:0] _RAND_626;
-  reg [31:0] _RAND_627;
-  reg [31:0] _RAND_628;
-  reg [31:0] _RAND_629;
-  reg [31:0] _RAND_630;
-  reg [31:0] _RAND_631;
-  reg [31:0] _RAND_632;
-  reg [31:0] _RAND_633;
-  reg [31:0] _RAND_634;
-  reg [31:0] _RAND_635;
-  reg [31:0] _RAND_636;
-  reg [31:0] _RAND_637;
-  reg [31:0] _RAND_638;
-  reg [31:0] _RAND_639;
-  reg [31:0] _RAND_640;
-  reg [31:0] _RAND_641;
-  reg [31:0] _RAND_642;
-  reg [31:0] _RAND_643;
-  reg [31:0] _RAND_644;
-  reg [31:0] _RAND_645;
-  reg [31:0] _RAND_646;
-  reg [31:0] _RAND_647;
-  reg [31:0] _RAND_648;
-  reg [31:0] _RAND_649;
-  reg [31:0] _RAND_650;
-  reg [31:0] _RAND_651;
-  reg [31:0] _RAND_652;
-  reg [31:0] _RAND_653;
-  reg [31:0] _RAND_654;
-  reg [31:0] _RAND_655;
-  reg [31:0] _RAND_656;
-  reg [31:0] _RAND_657;
-  reg [31:0] _RAND_658;
-  reg [31:0] _RAND_659;
-  reg [31:0] _RAND_660;
-  reg [31:0] _RAND_661;
-  reg [31:0] _RAND_662;
-  reg [31:0] _RAND_663;
-  reg [31:0] _RAND_664;
-  reg [31:0] _RAND_665;
-  reg [31:0] _RAND_666;
-  reg [31:0] _RAND_667;
-  reg [31:0] _RAND_668;
-  reg [31:0] _RAND_669;
-  reg [31:0] _RAND_670;
-  reg [31:0] _RAND_671;
-  reg [31:0] _RAND_672;
-  reg [31:0] _RAND_673;
-  reg [31:0] _RAND_674;
-  reg [31:0] _RAND_675;
-  reg [31:0] _RAND_676;
-  reg [31:0] _RAND_677;
-  reg [31:0] _RAND_678;
-  reg [31:0] _RAND_679;
-  reg [31:0] _RAND_680;
-  reg [31:0] _RAND_681;
-  reg [31:0] _RAND_682;
-  reg [31:0] _RAND_683;
-  reg [31:0] _RAND_684;
-  reg [31:0] _RAND_685;
-  reg [31:0] _RAND_686;
-  reg [31:0] _RAND_687;
-  reg [31:0] _RAND_688;
-  reg [31:0] _RAND_689;
-  reg [31:0] _RAND_690;
-  reg [31:0] _RAND_691;
-  reg [31:0] _RAND_692;
-  reg [31:0] _RAND_693;
-  reg [31:0] _RAND_694;
-  reg [31:0] _RAND_695;
-  reg [31:0] _RAND_696;
-  reg [31:0] _RAND_697;
-  reg [31:0] _RAND_698;
-  reg [31:0] _RAND_699;
-  reg [31:0] _RAND_700;
-  reg [31:0] _RAND_701;
-  reg [31:0] _RAND_702;
-  reg [31:0] _RAND_703;
-  reg [31:0] _RAND_704;
-  reg [31:0] _RAND_705;
 `endif // RANDOMIZE_REG_INIT
   wire  rs1x0 = io_rs1Addr == 5'h0; // @[bht.scala 45:29]
   wire  rs1x1 = io_rs1Addr == 5'h1; // @[bht.scala 46:29]
@@ -807,135 +551,71 @@ module bht(
   wire [63:0] _op1_T_3 = io_jalr & rs1x1 ? rs1x1Data : io_rs1Data; // @[bht.scala 54:22]
   wire [63:0] _op1_T_4 = io_jalr & rs1x0 ? 64'h0 : _op1_T_3; // @[bht.scala 53:20]
   wire [63:0] op1 = io_bxx | io_jal ? {{32'd0}, io_pc} : _op1_T_4; // @[bht.scala 52:18]
-  reg [6:0] ghr; // @[bht.scala 140:22]
-  reg [6:0] bht_0; // @[bht.scala 141:22]
-  reg [6:0] bht_1; // @[bht.scala 141:22]
-  reg [6:0] bht_2; // @[bht.scala 141:22]
-  reg [6:0] bht_3; // @[bht.scala 141:22]
-  reg [6:0] bht_4; // @[bht.scala 141:22]
-  reg [6:0] bht_5; // @[bht.scala 141:22]
-  reg [6:0] bht_6; // @[bht.scala 141:22]
-  reg [6:0] bht_7; // @[bht.scala 141:22]
-  reg [6:0] bht_8; // @[bht.scala 141:22]
-  reg [6:0] bht_9; // @[bht.scala 141:22]
-  reg [6:0] bht_10; // @[bht.scala 141:22]
-  reg [6:0] bht_11; // @[bht.scala 141:22]
-  reg [6:0] bht_12; // @[bht.scala 141:22]
-  reg [6:0] bht_13; // @[bht.scala 141:22]
-  reg [6:0] bht_14; // @[bht.scala 141:22]
-  reg [6:0] bht_15; // @[bht.scala 141:22]
-  reg [6:0] bht_16; // @[bht.scala 141:22]
-  reg [6:0] bht_17; // @[bht.scala 141:22]
-  reg [6:0] bht_18; // @[bht.scala 141:22]
-  reg [6:0] bht_19; // @[bht.scala 141:22]
-  reg [6:0] bht_20; // @[bht.scala 141:22]
-  reg [6:0] bht_21; // @[bht.scala 141:22]
-  reg [6:0] bht_22; // @[bht.scala 141:22]
-  reg [6:0] bht_23; // @[bht.scala 141:22]
-  reg [6:0] bht_24; // @[bht.scala 141:22]
-  reg [6:0] bht_25; // @[bht.scala 141:22]
-  reg [6:0] bht_26; // @[bht.scala 141:22]
-  reg [6:0] bht_27; // @[bht.scala 141:22]
-  reg [6:0] bht_28; // @[bht.scala 141:22]
-  reg [6:0] bht_29; // @[bht.scala 141:22]
-  reg [6:0] bht_30; // @[bht.scala 141:22]
-  reg [6:0] bht_31; // @[bht.scala 141:22]
-  reg [6:0] bht_32; // @[bht.scala 141:22]
-  reg [6:0] bht_33; // @[bht.scala 141:22]
-  reg [6:0] bht_34; // @[bht.scala 141:22]
-  reg [6:0] bht_35; // @[bht.scala 141:22]
-  reg [6:0] bht_36; // @[bht.scala 141:22]
-  reg [6:0] bht_37; // @[bht.scala 141:22]
-  reg [6:0] bht_38; // @[bht.scala 141:22]
-  reg [6:0] bht_39; // @[bht.scala 141:22]
-  reg [6:0] bht_40; // @[bht.scala 141:22]
-  reg [6:0] bht_41; // @[bht.scala 141:22]
-  reg [6:0] bht_42; // @[bht.scala 141:22]
-  reg [6:0] bht_43; // @[bht.scala 141:22]
-  reg [6:0] bht_44; // @[bht.scala 141:22]
-  reg [6:0] bht_45; // @[bht.scala 141:22]
-  reg [6:0] bht_46; // @[bht.scala 141:22]
-  reg [6:0] bht_47; // @[bht.scala 141:22]
-  reg [6:0] bht_48; // @[bht.scala 141:22]
-  reg [6:0] bht_49; // @[bht.scala 141:22]
-  reg [6:0] bht_50; // @[bht.scala 141:22]
-  reg [6:0] bht_51; // @[bht.scala 141:22]
-  reg [6:0] bht_52; // @[bht.scala 141:22]
-  reg [6:0] bht_53; // @[bht.scala 141:22]
-  reg [6:0] bht_54; // @[bht.scala 141:22]
-  reg [6:0] bht_55; // @[bht.scala 141:22]
-  reg [6:0] bht_56; // @[bht.scala 141:22]
-  reg [6:0] bht_57; // @[bht.scala 141:22]
-  reg [6:0] bht_58; // @[bht.scala 141:22]
-  reg [6:0] bht_59; // @[bht.scala 141:22]
-  reg [6:0] bht_60; // @[bht.scala 141:22]
-  reg [6:0] bht_61; // @[bht.scala 141:22]
-  reg [6:0] bht_62; // @[bht.scala 141:22]
-  reg [6:0] bht_63; // @[bht.scala 141:22]
-  reg [6:0] bht_64; // @[bht.scala 141:22]
-  reg [6:0] bht_65; // @[bht.scala 141:22]
-  reg [6:0] bht_66; // @[bht.scala 141:22]
-  reg [6:0] bht_67; // @[bht.scala 141:22]
-  reg [6:0] bht_68; // @[bht.scala 141:22]
-  reg [6:0] bht_69; // @[bht.scala 141:22]
-  reg [6:0] bht_70; // @[bht.scala 141:22]
-  reg [6:0] bht_71; // @[bht.scala 141:22]
-  reg [6:0] bht_72; // @[bht.scala 141:22]
-  reg [6:0] bht_73; // @[bht.scala 141:22]
-  reg [6:0] bht_74; // @[bht.scala 141:22]
-  reg [6:0] bht_75; // @[bht.scala 141:22]
-  reg [6:0] bht_76; // @[bht.scala 141:22]
-  reg [6:0] bht_77; // @[bht.scala 141:22]
-  reg [6:0] bht_78; // @[bht.scala 141:22]
-  reg [6:0] bht_79; // @[bht.scala 141:22]
-  reg [6:0] bht_80; // @[bht.scala 141:22]
-  reg [6:0] bht_81; // @[bht.scala 141:22]
-  reg [6:0] bht_82; // @[bht.scala 141:22]
-  reg [6:0] bht_83; // @[bht.scala 141:22]
-  reg [6:0] bht_84; // @[bht.scala 141:22]
-  reg [6:0] bht_85; // @[bht.scala 141:22]
-  reg [6:0] bht_86; // @[bht.scala 141:22]
-  reg [6:0] bht_87; // @[bht.scala 141:22]
-  reg [6:0] bht_88; // @[bht.scala 141:22]
-  reg [6:0] bht_89; // @[bht.scala 141:22]
-  reg [6:0] bht_90; // @[bht.scala 141:22]
-  reg [6:0] bht_91; // @[bht.scala 141:22]
-  reg [6:0] bht_92; // @[bht.scala 141:22]
-  reg [6:0] bht_93; // @[bht.scala 141:22]
-  reg [6:0] bht_94; // @[bht.scala 141:22]
-  reg [6:0] bht_95; // @[bht.scala 141:22]
-  reg [6:0] bht_96; // @[bht.scala 141:22]
-  reg [6:0] bht_97; // @[bht.scala 141:22]
-  reg [6:0] bht_98; // @[bht.scala 141:22]
-  reg [6:0] bht_99; // @[bht.scala 141:22]
-  reg [6:0] bht_100; // @[bht.scala 141:22]
-  reg [6:0] bht_101; // @[bht.scala 141:22]
-  reg [6:0] bht_102; // @[bht.scala 141:22]
-  reg [6:0] bht_103; // @[bht.scala 141:22]
-  reg [6:0] bht_104; // @[bht.scala 141:22]
-  reg [6:0] bht_105; // @[bht.scala 141:22]
-  reg [6:0] bht_106; // @[bht.scala 141:22]
-  reg [6:0] bht_107; // @[bht.scala 141:22]
-  reg [6:0] bht_108; // @[bht.scala 141:22]
-  reg [6:0] bht_109; // @[bht.scala 141:22]
-  reg [6:0] bht_110; // @[bht.scala 141:22]
-  reg [6:0] bht_111; // @[bht.scala 141:22]
-  reg [6:0] bht_112; // @[bht.scala 141:22]
-  reg [6:0] bht_113; // @[bht.scala 141:22]
-  reg [6:0] bht_114; // @[bht.scala 141:22]
-  reg [6:0] bht_115; // @[bht.scala 141:22]
-  reg [6:0] bht_116; // @[bht.scala 141:22]
-  reg [6:0] bht_117; // @[bht.scala 141:22]
-  reg [6:0] bht_118; // @[bht.scala 141:22]
-  reg [6:0] bht_119; // @[bht.scala 141:22]
-  reg [6:0] bht_120; // @[bht.scala 141:22]
-  reg [6:0] bht_121; // @[bht.scala 141:22]
-  reg [6:0] bht_122; // @[bht.scala 141:22]
-  reg [6:0] bht_123; // @[bht.scala 141:22]
-  reg [6:0] bht_124; // @[bht.scala 141:22]
-  reg [6:0] bht_125; // @[bht.scala 141:22]
-  reg [6:0] bht_126; // @[bht.scala 141:22]
-  reg [6:0] bht_127; // @[bht.scala 141:22]
+  reg [5:0] ghr; // @[bht.scala 140:22]
+  reg [5:0] bht_0; // @[bht.scala 141:22]
+  reg [5:0] bht_1; // @[bht.scala 141:22]
+  reg [5:0] bht_2; // @[bht.scala 141:22]
+  reg [5:0] bht_3; // @[bht.scala 141:22]
+  reg [5:0] bht_4; // @[bht.scala 141:22]
+  reg [5:0] bht_5; // @[bht.scala 141:22]
+  reg [5:0] bht_6; // @[bht.scala 141:22]
+  reg [5:0] bht_7; // @[bht.scala 141:22]
+  reg [5:0] bht_8; // @[bht.scala 141:22]
+  reg [5:0] bht_9; // @[bht.scala 141:22]
+  reg [5:0] bht_10; // @[bht.scala 141:22]
+  reg [5:0] bht_11; // @[bht.scala 141:22]
+  reg [5:0] bht_12; // @[bht.scala 141:22]
+  reg [5:0] bht_13; // @[bht.scala 141:22]
+  reg [5:0] bht_14; // @[bht.scala 141:22]
+  reg [5:0] bht_15; // @[bht.scala 141:22]
+  reg [5:0] bht_16; // @[bht.scala 141:22]
+  reg [5:0] bht_17; // @[bht.scala 141:22]
+  reg [5:0] bht_18; // @[bht.scala 141:22]
+  reg [5:0] bht_19; // @[bht.scala 141:22]
+  reg [5:0] bht_20; // @[bht.scala 141:22]
+  reg [5:0] bht_21; // @[bht.scala 141:22]
+  reg [5:0] bht_22; // @[bht.scala 141:22]
+  reg [5:0] bht_23; // @[bht.scala 141:22]
+  reg [5:0] bht_24; // @[bht.scala 141:22]
+  reg [5:0] bht_25; // @[bht.scala 141:22]
+  reg [5:0] bht_26; // @[bht.scala 141:22]
+  reg [5:0] bht_27; // @[bht.scala 141:22]
+  reg [5:0] bht_28; // @[bht.scala 141:22]
+  reg [5:0] bht_29; // @[bht.scala 141:22]
+  reg [5:0] bht_30; // @[bht.scala 141:22]
+  reg [5:0] bht_31; // @[bht.scala 141:22]
+  reg [5:0] bht_32; // @[bht.scala 141:22]
+  reg [5:0] bht_33; // @[bht.scala 141:22]
+  reg [5:0] bht_34; // @[bht.scala 141:22]
+  reg [5:0] bht_35; // @[bht.scala 141:22]
+  reg [5:0] bht_36; // @[bht.scala 141:22]
+  reg [5:0] bht_37; // @[bht.scala 141:22]
+  reg [5:0] bht_38; // @[bht.scala 141:22]
+  reg [5:0] bht_39; // @[bht.scala 141:22]
+  reg [5:0] bht_40; // @[bht.scala 141:22]
+  reg [5:0] bht_41; // @[bht.scala 141:22]
+  reg [5:0] bht_42; // @[bht.scala 141:22]
+  reg [5:0] bht_43; // @[bht.scala 141:22]
+  reg [5:0] bht_44; // @[bht.scala 141:22]
+  reg [5:0] bht_45; // @[bht.scala 141:22]
+  reg [5:0] bht_46; // @[bht.scala 141:22]
+  reg [5:0] bht_47; // @[bht.scala 141:22]
+  reg [5:0] bht_48; // @[bht.scala 141:22]
+  reg [5:0] bht_49; // @[bht.scala 141:22]
+  reg [5:0] bht_50; // @[bht.scala 141:22]
+  reg [5:0] bht_51; // @[bht.scala 141:22]
+  reg [5:0] bht_52; // @[bht.scala 141:22]
+  reg [5:0] bht_53; // @[bht.scala 141:22]
+  reg [5:0] bht_54; // @[bht.scala 141:22]
+  reg [5:0] bht_55; // @[bht.scala 141:22]
+  reg [5:0] bht_56; // @[bht.scala 141:22]
+  reg [5:0] bht_57; // @[bht.scala 141:22]
+  reg [5:0] bht_58; // @[bht.scala 141:22]
+  reg [5:0] bht_59; // @[bht.scala 141:22]
+  reg [5:0] bht_60; // @[bht.scala 141:22]
+  reg [5:0] bht_61; // @[bht.scala 141:22]
+  reg [5:0] bht_62; // @[bht.scala 141:22]
+  reg [5:0] bht_63; // @[bht.scala 141:22]
   reg [1:0] pht_0_0; // @[bht.scala 142:22]
   reg [1:0] pht_0_1; // @[bht.scala 142:22]
   reg [1:0] pht_0_2; // @[bht.scala 142:22]
@@ -1000,70 +680,6 @@ module bht(
   reg [1:0] pht_0_61; // @[bht.scala 142:22]
   reg [1:0] pht_0_62; // @[bht.scala 142:22]
   reg [1:0] pht_0_63; // @[bht.scala 142:22]
-  reg [1:0] pht_0_64; // @[bht.scala 142:22]
-  reg [1:0] pht_0_65; // @[bht.scala 142:22]
-  reg [1:0] pht_0_66; // @[bht.scala 142:22]
-  reg [1:0] pht_0_67; // @[bht.scala 142:22]
-  reg [1:0] pht_0_68; // @[bht.scala 142:22]
-  reg [1:0] pht_0_69; // @[bht.scala 142:22]
-  reg [1:0] pht_0_70; // @[bht.scala 142:22]
-  reg [1:0] pht_0_71; // @[bht.scala 142:22]
-  reg [1:0] pht_0_72; // @[bht.scala 142:22]
-  reg [1:0] pht_0_73; // @[bht.scala 142:22]
-  reg [1:0] pht_0_74; // @[bht.scala 142:22]
-  reg [1:0] pht_0_75; // @[bht.scala 142:22]
-  reg [1:0] pht_0_76; // @[bht.scala 142:22]
-  reg [1:0] pht_0_77; // @[bht.scala 142:22]
-  reg [1:0] pht_0_78; // @[bht.scala 142:22]
-  reg [1:0] pht_0_79; // @[bht.scala 142:22]
-  reg [1:0] pht_0_80; // @[bht.scala 142:22]
-  reg [1:0] pht_0_81; // @[bht.scala 142:22]
-  reg [1:0] pht_0_82; // @[bht.scala 142:22]
-  reg [1:0] pht_0_83; // @[bht.scala 142:22]
-  reg [1:0] pht_0_84; // @[bht.scala 142:22]
-  reg [1:0] pht_0_85; // @[bht.scala 142:22]
-  reg [1:0] pht_0_86; // @[bht.scala 142:22]
-  reg [1:0] pht_0_87; // @[bht.scala 142:22]
-  reg [1:0] pht_0_88; // @[bht.scala 142:22]
-  reg [1:0] pht_0_89; // @[bht.scala 142:22]
-  reg [1:0] pht_0_90; // @[bht.scala 142:22]
-  reg [1:0] pht_0_91; // @[bht.scala 142:22]
-  reg [1:0] pht_0_92; // @[bht.scala 142:22]
-  reg [1:0] pht_0_93; // @[bht.scala 142:22]
-  reg [1:0] pht_0_94; // @[bht.scala 142:22]
-  reg [1:0] pht_0_95; // @[bht.scala 142:22]
-  reg [1:0] pht_0_96; // @[bht.scala 142:22]
-  reg [1:0] pht_0_97; // @[bht.scala 142:22]
-  reg [1:0] pht_0_98; // @[bht.scala 142:22]
-  reg [1:0] pht_0_99; // @[bht.scala 142:22]
-  reg [1:0] pht_0_100; // @[bht.scala 142:22]
-  reg [1:0] pht_0_101; // @[bht.scala 142:22]
-  reg [1:0] pht_0_102; // @[bht.scala 142:22]
-  reg [1:0] pht_0_103; // @[bht.scala 142:22]
-  reg [1:0] pht_0_104; // @[bht.scala 142:22]
-  reg [1:0] pht_0_105; // @[bht.scala 142:22]
-  reg [1:0] pht_0_106; // @[bht.scala 142:22]
-  reg [1:0] pht_0_107; // @[bht.scala 142:22]
-  reg [1:0] pht_0_108; // @[bht.scala 142:22]
-  reg [1:0] pht_0_109; // @[bht.scala 142:22]
-  reg [1:0] pht_0_110; // @[bht.scala 142:22]
-  reg [1:0] pht_0_111; // @[bht.scala 142:22]
-  reg [1:0] pht_0_112; // @[bht.scala 142:22]
-  reg [1:0] pht_0_113; // @[bht.scala 142:22]
-  reg [1:0] pht_0_114; // @[bht.scala 142:22]
-  reg [1:0] pht_0_115; // @[bht.scala 142:22]
-  reg [1:0] pht_0_116; // @[bht.scala 142:22]
-  reg [1:0] pht_0_117; // @[bht.scala 142:22]
-  reg [1:0] pht_0_118; // @[bht.scala 142:22]
-  reg [1:0] pht_0_119; // @[bht.scala 142:22]
-  reg [1:0] pht_0_120; // @[bht.scala 142:22]
-  reg [1:0] pht_0_121; // @[bht.scala 142:22]
-  reg [1:0] pht_0_122; // @[bht.scala 142:22]
-  reg [1:0] pht_0_123; // @[bht.scala 142:22]
-  reg [1:0] pht_0_124; // @[bht.scala 142:22]
-  reg [1:0] pht_0_125; // @[bht.scala 142:22]
-  reg [1:0] pht_0_126; // @[bht.scala 142:22]
-  reg [1:0] pht_0_127; // @[bht.scala 142:22]
   reg [1:0] pht_1_0; // @[bht.scala 142:22]
   reg [1:0] pht_1_1; // @[bht.scala 142:22]
   reg [1:0] pht_1_2; // @[bht.scala 142:22]
@@ -1128,70 +744,6 @@ module bht(
   reg [1:0] pht_1_61; // @[bht.scala 142:22]
   reg [1:0] pht_1_62; // @[bht.scala 142:22]
   reg [1:0] pht_1_63; // @[bht.scala 142:22]
-  reg [1:0] pht_1_64; // @[bht.scala 142:22]
-  reg [1:0] pht_1_65; // @[bht.scala 142:22]
-  reg [1:0] pht_1_66; // @[bht.scala 142:22]
-  reg [1:0] pht_1_67; // @[bht.scala 142:22]
-  reg [1:0] pht_1_68; // @[bht.scala 142:22]
-  reg [1:0] pht_1_69; // @[bht.scala 142:22]
-  reg [1:0] pht_1_70; // @[bht.scala 142:22]
-  reg [1:0] pht_1_71; // @[bht.scala 142:22]
-  reg [1:0] pht_1_72; // @[bht.scala 142:22]
-  reg [1:0] pht_1_73; // @[bht.scala 142:22]
-  reg [1:0] pht_1_74; // @[bht.scala 142:22]
-  reg [1:0] pht_1_75; // @[bht.scala 142:22]
-  reg [1:0] pht_1_76; // @[bht.scala 142:22]
-  reg [1:0] pht_1_77; // @[bht.scala 142:22]
-  reg [1:0] pht_1_78; // @[bht.scala 142:22]
-  reg [1:0] pht_1_79; // @[bht.scala 142:22]
-  reg [1:0] pht_1_80; // @[bht.scala 142:22]
-  reg [1:0] pht_1_81; // @[bht.scala 142:22]
-  reg [1:0] pht_1_82; // @[bht.scala 142:22]
-  reg [1:0] pht_1_83; // @[bht.scala 142:22]
-  reg [1:0] pht_1_84; // @[bht.scala 142:22]
-  reg [1:0] pht_1_85; // @[bht.scala 142:22]
-  reg [1:0] pht_1_86; // @[bht.scala 142:22]
-  reg [1:0] pht_1_87; // @[bht.scala 142:22]
-  reg [1:0] pht_1_88; // @[bht.scala 142:22]
-  reg [1:0] pht_1_89; // @[bht.scala 142:22]
-  reg [1:0] pht_1_90; // @[bht.scala 142:22]
-  reg [1:0] pht_1_91; // @[bht.scala 142:22]
-  reg [1:0] pht_1_92; // @[bht.scala 142:22]
-  reg [1:0] pht_1_93; // @[bht.scala 142:22]
-  reg [1:0] pht_1_94; // @[bht.scala 142:22]
-  reg [1:0] pht_1_95; // @[bht.scala 142:22]
-  reg [1:0] pht_1_96; // @[bht.scala 142:22]
-  reg [1:0] pht_1_97; // @[bht.scala 142:22]
-  reg [1:0] pht_1_98; // @[bht.scala 142:22]
-  reg [1:0] pht_1_99; // @[bht.scala 142:22]
-  reg [1:0] pht_1_100; // @[bht.scala 142:22]
-  reg [1:0] pht_1_101; // @[bht.scala 142:22]
-  reg [1:0] pht_1_102; // @[bht.scala 142:22]
-  reg [1:0] pht_1_103; // @[bht.scala 142:22]
-  reg [1:0] pht_1_104; // @[bht.scala 142:22]
-  reg [1:0] pht_1_105; // @[bht.scala 142:22]
-  reg [1:0] pht_1_106; // @[bht.scala 142:22]
-  reg [1:0] pht_1_107; // @[bht.scala 142:22]
-  reg [1:0] pht_1_108; // @[bht.scala 142:22]
-  reg [1:0] pht_1_109; // @[bht.scala 142:22]
-  reg [1:0] pht_1_110; // @[bht.scala 142:22]
-  reg [1:0] pht_1_111; // @[bht.scala 142:22]
-  reg [1:0] pht_1_112; // @[bht.scala 142:22]
-  reg [1:0] pht_1_113; // @[bht.scala 142:22]
-  reg [1:0] pht_1_114; // @[bht.scala 142:22]
-  reg [1:0] pht_1_115; // @[bht.scala 142:22]
-  reg [1:0] pht_1_116; // @[bht.scala 142:22]
-  reg [1:0] pht_1_117; // @[bht.scala 142:22]
-  reg [1:0] pht_1_118; // @[bht.scala 142:22]
-  reg [1:0] pht_1_119; // @[bht.scala 142:22]
-  reg [1:0] pht_1_120; // @[bht.scala 142:22]
-  reg [1:0] pht_1_121; // @[bht.scala 142:22]
-  reg [1:0] pht_1_122; // @[bht.scala 142:22]
-  reg [1:0] pht_1_123; // @[bht.scala 142:22]
-  reg [1:0] pht_1_124; // @[bht.scala 142:22]
-  reg [1:0] pht_1_125; // @[bht.scala 142:22]
-  reg [1:0] pht_1_126; // @[bht.scala 142:22]
-  reg [1:0] pht_1_127; // @[bht.scala 142:22]
   reg [1:0] pht_2_0; // @[bht.scala 142:22]
   reg [1:0] pht_2_1; // @[bht.scala 142:22]
   reg [1:0] pht_2_2; // @[bht.scala 142:22]
@@ -1256,70 +808,6 @@ module bht(
   reg [1:0] pht_2_61; // @[bht.scala 142:22]
   reg [1:0] pht_2_62; // @[bht.scala 142:22]
   reg [1:0] pht_2_63; // @[bht.scala 142:22]
-  reg [1:0] pht_2_64; // @[bht.scala 142:22]
-  reg [1:0] pht_2_65; // @[bht.scala 142:22]
-  reg [1:0] pht_2_66; // @[bht.scala 142:22]
-  reg [1:0] pht_2_67; // @[bht.scala 142:22]
-  reg [1:0] pht_2_68; // @[bht.scala 142:22]
-  reg [1:0] pht_2_69; // @[bht.scala 142:22]
-  reg [1:0] pht_2_70; // @[bht.scala 142:22]
-  reg [1:0] pht_2_71; // @[bht.scala 142:22]
-  reg [1:0] pht_2_72; // @[bht.scala 142:22]
-  reg [1:0] pht_2_73; // @[bht.scala 142:22]
-  reg [1:0] pht_2_74; // @[bht.scala 142:22]
-  reg [1:0] pht_2_75; // @[bht.scala 142:22]
-  reg [1:0] pht_2_76; // @[bht.scala 142:22]
-  reg [1:0] pht_2_77; // @[bht.scala 142:22]
-  reg [1:0] pht_2_78; // @[bht.scala 142:22]
-  reg [1:0] pht_2_79; // @[bht.scala 142:22]
-  reg [1:0] pht_2_80; // @[bht.scala 142:22]
-  reg [1:0] pht_2_81; // @[bht.scala 142:22]
-  reg [1:0] pht_2_82; // @[bht.scala 142:22]
-  reg [1:0] pht_2_83; // @[bht.scala 142:22]
-  reg [1:0] pht_2_84; // @[bht.scala 142:22]
-  reg [1:0] pht_2_85; // @[bht.scala 142:22]
-  reg [1:0] pht_2_86; // @[bht.scala 142:22]
-  reg [1:0] pht_2_87; // @[bht.scala 142:22]
-  reg [1:0] pht_2_88; // @[bht.scala 142:22]
-  reg [1:0] pht_2_89; // @[bht.scala 142:22]
-  reg [1:0] pht_2_90; // @[bht.scala 142:22]
-  reg [1:0] pht_2_91; // @[bht.scala 142:22]
-  reg [1:0] pht_2_92; // @[bht.scala 142:22]
-  reg [1:0] pht_2_93; // @[bht.scala 142:22]
-  reg [1:0] pht_2_94; // @[bht.scala 142:22]
-  reg [1:0] pht_2_95; // @[bht.scala 142:22]
-  reg [1:0] pht_2_96; // @[bht.scala 142:22]
-  reg [1:0] pht_2_97; // @[bht.scala 142:22]
-  reg [1:0] pht_2_98; // @[bht.scala 142:22]
-  reg [1:0] pht_2_99; // @[bht.scala 142:22]
-  reg [1:0] pht_2_100; // @[bht.scala 142:22]
-  reg [1:0] pht_2_101; // @[bht.scala 142:22]
-  reg [1:0] pht_2_102; // @[bht.scala 142:22]
-  reg [1:0] pht_2_103; // @[bht.scala 142:22]
-  reg [1:0] pht_2_104; // @[bht.scala 142:22]
-  reg [1:0] pht_2_105; // @[bht.scala 142:22]
-  reg [1:0] pht_2_106; // @[bht.scala 142:22]
-  reg [1:0] pht_2_107; // @[bht.scala 142:22]
-  reg [1:0] pht_2_108; // @[bht.scala 142:22]
-  reg [1:0] pht_2_109; // @[bht.scala 142:22]
-  reg [1:0] pht_2_110; // @[bht.scala 142:22]
-  reg [1:0] pht_2_111; // @[bht.scala 142:22]
-  reg [1:0] pht_2_112; // @[bht.scala 142:22]
-  reg [1:0] pht_2_113; // @[bht.scala 142:22]
-  reg [1:0] pht_2_114; // @[bht.scala 142:22]
-  reg [1:0] pht_2_115; // @[bht.scala 142:22]
-  reg [1:0] pht_2_116; // @[bht.scala 142:22]
-  reg [1:0] pht_2_117; // @[bht.scala 142:22]
-  reg [1:0] pht_2_118; // @[bht.scala 142:22]
-  reg [1:0] pht_2_119; // @[bht.scala 142:22]
-  reg [1:0] pht_2_120; // @[bht.scala 142:22]
-  reg [1:0] pht_2_121; // @[bht.scala 142:22]
-  reg [1:0] pht_2_122; // @[bht.scala 142:22]
-  reg [1:0] pht_2_123; // @[bht.scala 142:22]
-  reg [1:0] pht_2_124; // @[bht.scala 142:22]
-  reg [1:0] pht_2_125; // @[bht.scala 142:22]
-  reg [1:0] pht_2_126; // @[bht.scala 142:22]
-  reg [1:0] pht_2_127; // @[bht.scala 142:22]
   reg  btbV_0; // @[bht.scala 145:23]
   reg  btbV_1; // @[bht.scala 145:23]
   reg  btbV_2; // @[bht.scala 145:23]
@@ -1512,2254 +1000,1290 @@ module bht(
   reg [31:0] btbMeta_61; // @[bht.scala 147:26]
   reg [31:0] btbMeta_62; // @[bht.scala 147:26]
   reg [31:0] btbMeta_63; // @[bht.scala 147:26]
-  wire  p1Addr_hash0 = io_pc[2] ^ (io_pc[8] ^ io_pc[14]); // @[bht.scala 90:27]
-  wire  _p1Addr_hash1_T_2 = io_pc[9] ^ io_pc[10]; // @[bht.scala 91:28]
-  wire  p1Addr_hash1 = io_pc[9] ^ io_pc[10] ^ (io_pc[3] ^ io_pc[15]); // @[bht.scala 91:39]
-  wire  p1Addr_hash2 = io_pc[4] ^ (io_pc[10] ^ io_pc[11]); // @[bht.scala 92:27]
-  wire  p1Addr_hash3 = io_pc[5] ^ (io_pc[11] ^ io_pc[12]); // @[bht.scala 93:27]
-  wire  p1Addr_hash4 = io_pc[6] ^ (io_pc[12] ^ io_pc[13]); // @[bht.scala 94:27]
-  wire  p1Addr_hash5 = io_pc[7] ^ (io_pc[13] ^ io_pc[14]); // @[bht.scala 95:27]
-  wire  p1Addr_hash6 = io_pc[8] ^ _p1Addr_hash1_T_2; // @[bht.scala 96:27]
-  wire [6:0] _p1Addr_T_6 = {p1Addr_hash6,p1Addr_hash5,p1Addr_hash4,p1Addr_hash3,p1Addr_hash2,p1Addr_hash1,p1Addr_hash0}; // @[bht.scala 97:58]
-  wire [6:0] p1Addr = _p1Addr_T_6 ^ ghr; // @[bht.scala 132:26]
-  wire [6:0] _GEN_1 = 7'h1 == _p1Addr_T_6 ? bht_1 : bht_0; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_2 = 7'h2 == _p1Addr_T_6 ? bht_2 : _GEN_1; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_3 = 7'h3 == _p1Addr_T_6 ? bht_3 : _GEN_2; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_4 = 7'h4 == _p1Addr_T_6 ? bht_4 : _GEN_3; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_5 = 7'h5 == _p1Addr_T_6 ? bht_5 : _GEN_4; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_6 = 7'h6 == _p1Addr_T_6 ? bht_6 : _GEN_5; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_7 = 7'h7 == _p1Addr_T_6 ? bht_7 : _GEN_6; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_8 = 7'h8 == _p1Addr_T_6 ? bht_8 : _GEN_7; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_9 = 7'h9 == _p1Addr_T_6 ? bht_9 : _GEN_8; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_10 = 7'ha == _p1Addr_T_6 ? bht_10 : _GEN_9; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_11 = 7'hb == _p1Addr_T_6 ? bht_11 : _GEN_10; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_12 = 7'hc == _p1Addr_T_6 ? bht_12 : _GEN_11; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_13 = 7'hd == _p1Addr_T_6 ? bht_13 : _GEN_12; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_14 = 7'he == _p1Addr_T_6 ? bht_14 : _GEN_13; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_15 = 7'hf == _p1Addr_T_6 ? bht_15 : _GEN_14; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_16 = 7'h10 == _p1Addr_T_6 ? bht_16 : _GEN_15; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_17 = 7'h11 == _p1Addr_T_6 ? bht_17 : _GEN_16; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_18 = 7'h12 == _p1Addr_T_6 ? bht_18 : _GEN_17; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_19 = 7'h13 == _p1Addr_T_6 ? bht_19 : _GEN_18; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_20 = 7'h14 == _p1Addr_T_6 ? bht_20 : _GEN_19; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_21 = 7'h15 == _p1Addr_T_6 ? bht_21 : _GEN_20; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_22 = 7'h16 == _p1Addr_T_6 ? bht_22 : _GEN_21; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_23 = 7'h17 == _p1Addr_T_6 ? bht_23 : _GEN_22; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_24 = 7'h18 == _p1Addr_T_6 ? bht_24 : _GEN_23; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_25 = 7'h19 == _p1Addr_T_6 ? bht_25 : _GEN_24; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_26 = 7'h1a == _p1Addr_T_6 ? bht_26 : _GEN_25; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_27 = 7'h1b == _p1Addr_T_6 ? bht_27 : _GEN_26; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_28 = 7'h1c == _p1Addr_T_6 ? bht_28 : _GEN_27; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_29 = 7'h1d == _p1Addr_T_6 ? bht_29 : _GEN_28; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_30 = 7'h1e == _p1Addr_T_6 ? bht_30 : _GEN_29; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_31 = 7'h1f == _p1Addr_T_6 ? bht_31 : _GEN_30; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_32 = 7'h20 == _p1Addr_T_6 ? bht_32 : _GEN_31; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_33 = 7'h21 == _p1Addr_T_6 ? bht_33 : _GEN_32; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_34 = 7'h22 == _p1Addr_T_6 ? bht_34 : _GEN_33; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_35 = 7'h23 == _p1Addr_T_6 ? bht_35 : _GEN_34; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_36 = 7'h24 == _p1Addr_T_6 ? bht_36 : _GEN_35; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_37 = 7'h25 == _p1Addr_T_6 ? bht_37 : _GEN_36; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_38 = 7'h26 == _p1Addr_T_6 ? bht_38 : _GEN_37; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_39 = 7'h27 == _p1Addr_T_6 ? bht_39 : _GEN_38; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_40 = 7'h28 == _p1Addr_T_6 ? bht_40 : _GEN_39; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_41 = 7'h29 == _p1Addr_T_6 ? bht_41 : _GEN_40; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_42 = 7'h2a == _p1Addr_T_6 ? bht_42 : _GEN_41; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_43 = 7'h2b == _p1Addr_T_6 ? bht_43 : _GEN_42; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_44 = 7'h2c == _p1Addr_T_6 ? bht_44 : _GEN_43; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_45 = 7'h2d == _p1Addr_T_6 ? bht_45 : _GEN_44; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_46 = 7'h2e == _p1Addr_T_6 ? bht_46 : _GEN_45; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_47 = 7'h2f == _p1Addr_T_6 ? bht_47 : _GEN_46; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_48 = 7'h30 == _p1Addr_T_6 ? bht_48 : _GEN_47; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_49 = 7'h31 == _p1Addr_T_6 ? bht_49 : _GEN_48; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_50 = 7'h32 == _p1Addr_T_6 ? bht_50 : _GEN_49; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_51 = 7'h33 == _p1Addr_T_6 ? bht_51 : _GEN_50; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_52 = 7'h34 == _p1Addr_T_6 ? bht_52 : _GEN_51; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_53 = 7'h35 == _p1Addr_T_6 ? bht_53 : _GEN_52; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_54 = 7'h36 == _p1Addr_T_6 ? bht_54 : _GEN_53; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_55 = 7'h37 == _p1Addr_T_6 ? bht_55 : _GEN_54; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_56 = 7'h38 == _p1Addr_T_6 ? bht_56 : _GEN_55; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_57 = 7'h39 == _p1Addr_T_6 ? bht_57 : _GEN_56; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_58 = 7'h3a == _p1Addr_T_6 ? bht_58 : _GEN_57; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_59 = 7'h3b == _p1Addr_T_6 ? bht_59 : _GEN_58; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_60 = 7'h3c == _p1Addr_T_6 ? bht_60 : _GEN_59; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_61 = 7'h3d == _p1Addr_T_6 ? bht_61 : _GEN_60; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_62 = 7'h3e == _p1Addr_T_6 ? bht_62 : _GEN_61; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_63 = 7'h3f == _p1Addr_T_6 ? bht_63 : _GEN_62; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_64 = 7'h40 == _p1Addr_T_6 ? bht_64 : _GEN_63; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_65 = 7'h41 == _p1Addr_T_6 ? bht_65 : _GEN_64; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_66 = 7'h42 == _p1Addr_T_6 ? bht_66 : _GEN_65; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_67 = 7'h43 == _p1Addr_T_6 ? bht_67 : _GEN_66; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_68 = 7'h44 == _p1Addr_T_6 ? bht_68 : _GEN_67; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_69 = 7'h45 == _p1Addr_T_6 ? bht_69 : _GEN_68; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_70 = 7'h46 == _p1Addr_T_6 ? bht_70 : _GEN_69; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_71 = 7'h47 == _p1Addr_T_6 ? bht_71 : _GEN_70; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_72 = 7'h48 == _p1Addr_T_6 ? bht_72 : _GEN_71; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_73 = 7'h49 == _p1Addr_T_6 ? bht_73 : _GEN_72; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_74 = 7'h4a == _p1Addr_T_6 ? bht_74 : _GEN_73; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_75 = 7'h4b == _p1Addr_T_6 ? bht_75 : _GEN_74; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_76 = 7'h4c == _p1Addr_T_6 ? bht_76 : _GEN_75; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_77 = 7'h4d == _p1Addr_T_6 ? bht_77 : _GEN_76; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_78 = 7'h4e == _p1Addr_T_6 ? bht_78 : _GEN_77; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_79 = 7'h4f == _p1Addr_T_6 ? bht_79 : _GEN_78; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_80 = 7'h50 == _p1Addr_T_6 ? bht_80 : _GEN_79; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_81 = 7'h51 == _p1Addr_T_6 ? bht_81 : _GEN_80; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_82 = 7'h52 == _p1Addr_T_6 ? bht_82 : _GEN_81; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_83 = 7'h53 == _p1Addr_T_6 ? bht_83 : _GEN_82; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_84 = 7'h54 == _p1Addr_T_6 ? bht_84 : _GEN_83; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_85 = 7'h55 == _p1Addr_T_6 ? bht_85 : _GEN_84; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_86 = 7'h56 == _p1Addr_T_6 ? bht_86 : _GEN_85; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_87 = 7'h57 == _p1Addr_T_6 ? bht_87 : _GEN_86; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_88 = 7'h58 == _p1Addr_T_6 ? bht_88 : _GEN_87; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_89 = 7'h59 == _p1Addr_T_6 ? bht_89 : _GEN_88; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_90 = 7'h5a == _p1Addr_T_6 ? bht_90 : _GEN_89; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_91 = 7'h5b == _p1Addr_T_6 ? bht_91 : _GEN_90; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_92 = 7'h5c == _p1Addr_T_6 ? bht_92 : _GEN_91; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_93 = 7'h5d == _p1Addr_T_6 ? bht_93 : _GEN_92; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_94 = 7'h5e == _p1Addr_T_6 ? bht_94 : _GEN_93; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_95 = 7'h5f == _p1Addr_T_6 ? bht_95 : _GEN_94; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_96 = 7'h60 == _p1Addr_T_6 ? bht_96 : _GEN_95; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_97 = 7'h61 == _p1Addr_T_6 ? bht_97 : _GEN_96; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_98 = 7'h62 == _p1Addr_T_6 ? bht_98 : _GEN_97; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_99 = 7'h63 == _p1Addr_T_6 ? bht_99 : _GEN_98; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_100 = 7'h64 == _p1Addr_T_6 ? bht_100 : _GEN_99; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_101 = 7'h65 == _p1Addr_T_6 ? bht_101 : _GEN_100; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_102 = 7'h66 == _p1Addr_T_6 ? bht_102 : _GEN_101; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_103 = 7'h67 == _p1Addr_T_6 ? bht_103 : _GEN_102; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_104 = 7'h68 == _p1Addr_T_6 ? bht_104 : _GEN_103; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_105 = 7'h69 == _p1Addr_T_6 ? bht_105 : _GEN_104; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_106 = 7'h6a == _p1Addr_T_6 ? bht_106 : _GEN_105; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_107 = 7'h6b == _p1Addr_T_6 ? bht_107 : _GEN_106; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_108 = 7'h6c == _p1Addr_T_6 ? bht_108 : _GEN_107; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_109 = 7'h6d == _p1Addr_T_6 ? bht_109 : _GEN_108; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_110 = 7'h6e == _p1Addr_T_6 ? bht_110 : _GEN_109; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_111 = 7'h6f == _p1Addr_T_6 ? bht_111 : _GEN_110; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_112 = 7'h70 == _p1Addr_T_6 ? bht_112 : _GEN_111; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_113 = 7'h71 == _p1Addr_T_6 ? bht_113 : _GEN_112; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_114 = 7'h72 == _p1Addr_T_6 ? bht_114 : _GEN_113; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_115 = 7'h73 == _p1Addr_T_6 ? bht_115 : _GEN_114; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_116 = 7'h74 == _p1Addr_T_6 ? bht_116 : _GEN_115; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_117 = 7'h75 == _p1Addr_T_6 ? bht_117 : _GEN_116; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_118 = 7'h76 == _p1Addr_T_6 ? bht_118 : _GEN_117; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_119 = 7'h77 == _p1Addr_T_6 ? bht_119 : _GEN_118; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_120 = 7'h78 == _p1Addr_T_6 ? bht_120 : _GEN_119; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_121 = 7'h79 == _p1Addr_T_6 ? bht_121 : _GEN_120; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_122 = 7'h7a == _p1Addr_T_6 ? bht_122 : _GEN_121; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_123 = 7'h7b == _p1Addr_T_6 ? bht_123 : _GEN_122; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_124 = 7'h7c == _p1Addr_T_6 ? bht_124 : _GEN_123; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_125 = 7'h7d == _p1Addr_T_6 ? bht_125 : _GEN_124; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_126 = 7'h7e == _p1Addr_T_6 ? bht_126 : _GEN_125; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_127 = 7'h7f == _p1Addr_T_6 ? bht_127 : _GEN_126; // @[bht.scala 132:{26,26}]
-  wire [6:0] _pht2Data_T_7 = _p1Addr_T_6 ^ _GEN_127; // @[bht.scala 132:26]
-  wire [1:0] _GEN_129 = 7'h1 == p1Addr ? pht_0_1 : pht_0_0; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_130 = 7'h2 == p1Addr ? pht_0_2 : _GEN_129; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_131 = 7'h3 == p1Addr ? pht_0_3 : _GEN_130; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_132 = 7'h4 == p1Addr ? pht_0_4 : _GEN_131; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_133 = 7'h5 == p1Addr ? pht_0_5 : _GEN_132; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_134 = 7'h6 == p1Addr ? pht_0_6 : _GEN_133; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_135 = 7'h7 == p1Addr ? pht_0_7 : _GEN_134; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_136 = 7'h8 == p1Addr ? pht_0_8 : _GEN_135; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_137 = 7'h9 == p1Addr ? pht_0_9 : _GEN_136; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_138 = 7'ha == p1Addr ? pht_0_10 : _GEN_137; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_139 = 7'hb == p1Addr ? pht_0_11 : _GEN_138; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_140 = 7'hc == p1Addr ? pht_0_12 : _GEN_139; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_141 = 7'hd == p1Addr ? pht_0_13 : _GEN_140; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_142 = 7'he == p1Addr ? pht_0_14 : _GEN_141; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_143 = 7'hf == p1Addr ? pht_0_15 : _GEN_142; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_144 = 7'h10 == p1Addr ? pht_0_16 : _GEN_143; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_145 = 7'h11 == p1Addr ? pht_0_17 : _GEN_144; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_146 = 7'h12 == p1Addr ? pht_0_18 : _GEN_145; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_147 = 7'h13 == p1Addr ? pht_0_19 : _GEN_146; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_148 = 7'h14 == p1Addr ? pht_0_20 : _GEN_147; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_149 = 7'h15 == p1Addr ? pht_0_21 : _GEN_148; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_150 = 7'h16 == p1Addr ? pht_0_22 : _GEN_149; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_151 = 7'h17 == p1Addr ? pht_0_23 : _GEN_150; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_152 = 7'h18 == p1Addr ? pht_0_24 : _GEN_151; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_153 = 7'h19 == p1Addr ? pht_0_25 : _GEN_152; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_154 = 7'h1a == p1Addr ? pht_0_26 : _GEN_153; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_155 = 7'h1b == p1Addr ? pht_0_27 : _GEN_154; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_156 = 7'h1c == p1Addr ? pht_0_28 : _GEN_155; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_157 = 7'h1d == p1Addr ? pht_0_29 : _GEN_156; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_158 = 7'h1e == p1Addr ? pht_0_30 : _GEN_157; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_159 = 7'h1f == p1Addr ? pht_0_31 : _GEN_158; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_160 = 7'h20 == p1Addr ? pht_0_32 : _GEN_159; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_161 = 7'h21 == p1Addr ? pht_0_33 : _GEN_160; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_162 = 7'h22 == p1Addr ? pht_0_34 : _GEN_161; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_163 = 7'h23 == p1Addr ? pht_0_35 : _GEN_162; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_164 = 7'h24 == p1Addr ? pht_0_36 : _GEN_163; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_165 = 7'h25 == p1Addr ? pht_0_37 : _GEN_164; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_166 = 7'h26 == p1Addr ? pht_0_38 : _GEN_165; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_167 = 7'h27 == p1Addr ? pht_0_39 : _GEN_166; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_168 = 7'h28 == p1Addr ? pht_0_40 : _GEN_167; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_169 = 7'h29 == p1Addr ? pht_0_41 : _GEN_168; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_170 = 7'h2a == p1Addr ? pht_0_42 : _GEN_169; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_171 = 7'h2b == p1Addr ? pht_0_43 : _GEN_170; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_172 = 7'h2c == p1Addr ? pht_0_44 : _GEN_171; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_173 = 7'h2d == p1Addr ? pht_0_45 : _GEN_172; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_174 = 7'h2e == p1Addr ? pht_0_46 : _GEN_173; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_175 = 7'h2f == p1Addr ? pht_0_47 : _GEN_174; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_176 = 7'h30 == p1Addr ? pht_0_48 : _GEN_175; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_177 = 7'h31 == p1Addr ? pht_0_49 : _GEN_176; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_178 = 7'h32 == p1Addr ? pht_0_50 : _GEN_177; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_179 = 7'h33 == p1Addr ? pht_0_51 : _GEN_178; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_180 = 7'h34 == p1Addr ? pht_0_52 : _GEN_179; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_181 = 7'h35 == p1Addr ? pht_0_53 : _GEN_180; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_182 = 7'h36 == p1Addr ? pht_0_54 : _GEN_181; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_183 = 7'h37 == p1Addr ? pht_0_55 : _GEN_182; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_184 = 7'h38 == p1Addr ? pht_0_56 : _GEN_183; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_185 = 7'h39 == p1Addr ? pht_0_57 : _GEN_184; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_186 = 7'h3a == p1Addr ? pht_0_58 : _GEN_185; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_187 = 7'h3b == p1Addr ? pht_0_59 : _GEN_186; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_188 = 7'h3c == p1Addr ? pht_0_60 : _GEN_187; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_189 = 7'h3d == p1Addr ? pht_0_61 : _GEN_188; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_190 = 7'h3e == p1Addr ? pht_0_62 : _GEN_189; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_191 = 7'h3f == p1Addr ? pht_0_63 : _GEN_190; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_192 = 7'h40 == p1Addr ? pht_0_64 : _GEN_191; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_193 = 7'h41 == p1Addr ? pht_0_65 : _GEN_192; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_194 = 7'h42 == p1Addr ? pht_0_66 : _GEN_193; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_195 = 7'h43 == p1Addr ? pht_0_67 : _GEN_194; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_196 = 7'h44 == p1Addr ? pht_0_68 : _GEN_195; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_197 = 7'h45 == p1Addr ? pht_0_69 : _GEN_196; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_198 = 7'h46 == p1Addr ? pht_0_70 : _GEN_197; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_199 = 7'h47 == p1Addr ? pht_0_71 : _GEN_198; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_200 = 7'h48 == p1Addr ? pht_0_72 : _GEN_199; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_201 = 7'h49 == p1Addr ? pht_0_73 : _GEN_200; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_202 = 7'h4a == p1Addr ? pht_0_74 : _GEN_201; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_203 = 7'h4b == p1Addr ? pht_0_75 : _GEN_202; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_204 = 7'h4c == p1Addr ? pht_0_76 : _GEN_203; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_205 = 7'h4d == p1Addr ? pht_0_77 : _GEN_204; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_206 = 7'h4e == p1Addr ? pht_0_78 : _GEN_205; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_207 = 7'h4f == p1Addr ? pht_0_79 : _GEN_206; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_208 = 7'h50 == p1Addr ? pht_0_80 : _GEN_207; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_209 = 7'h51 == p1Addr ? pht_0_81 : _GEN_208; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_210 = 7'h52 == p1Addr ? pht_0_82 : _GEN_209; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_211 = 7'h53 == p1Addr ? pht_0_83 : _GEN_210; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_212 = 7'h54 == p1Addr ? pht_0_84 : _GEN_211; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_213 = 7'h55 == p1Addr ? pht_0_85 : _GEN_212; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_214 = 7'h56 == p1Addr ? pht_0_86 : _GEN_213; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_215 = 7'h57 == p1Addr ? pht_0_87 : _GEN_214; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_216 = 7'h58 == p1Addr ? pht_0_88 : _GEN_215; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_217 = 7'h59 == p1Addr ? pht_0_89 : _GEN_216; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_218 = 7'h5a == p1Addr ? pht_0_90 : _GEN_217; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_219 = 7'h5b == p1Addr ? pht_0_91 : _GEN_218; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_220 = 7'h5c == p1Addr ? pht_0_92 : _GEN_219; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_221 = 7'h5d == p1Addr ? pht_0_93 : _GEN_220; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_222 = 7'h5e == p1Addr ? pht_0_94 : _GEN_221; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_223 = 7'h5f == p1Addr ? pht_0_95 : _GEN_222; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_224 = 7'h60 == p1Addr ? pht_0_96 : _GEN_223; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_225 = 7'h61 == p1Addr ? pht_0_97 : _GEN_224; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_226 = 7'h62 == p1Addr ? pht_0_98 : _GEN_225; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_227 = 7'h63 == p1Addr ? pht_0_99 : _GEN_226; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_228 = 7'h64 == p1Addr ? pht_0_100 : _GEN_227; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_229 = 7'h65 == p1Addr ? pht_0_101 : _GEN_228; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_230 = 7'h66 == p1Addr ? pht_0_102 : _GEN_229; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_231 = 7'h67 == p1Addr ? pht_0_103 : _GEN_230; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_232 = 7'h68 == p1Addr ? pht_0_104 : _GEN_231; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_233 = 7'h69 == p1Addr ? pht_0_105 : _GEN_232; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_234 = 7'h6a == p1Addr ? pht_0_106 : _GEN_233; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_235 = 7'h6b == p1Addr ? pht_0_107 : _GEN_234; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_236 = 7'h6c == p1Addr ? pht_0_108 : _GEN_235; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_237 = 7'h6d == p1Addr ? pht_0_109 : _GEN_236; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_238 = 7'h6e == p1Addr ? pht_0_110 : _GEN_237; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_239 = 7'h6f == p1Addr ? pht_0_111 : _GEN_238; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_240 = 7'h70 == p1Addr ? pht_0_112 : _GEN_239; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_241 = 7'h71 == p1Addr ? pht_0_113 : _GEN_240; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_242 = 7'h72 == p1Addr ? pht_0_114 : _GEN_241; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_243 = 7'h73 == p1Addr ? pht_0_115 : _GEN_242; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_244 = 7'h74 == p1Addr ? pht_0_116 : _GEN_243; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_245 = 7'h75 == p1Addr ? pht_0_117 : _GEN_244; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_246 = 7'h76 == p1Addr ? pht_0_118 : _GEN_245; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_247 = 7'h77 == p1Addr ? pht_0_119 : _GEN_246; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_248 = 7'h78 == p1Addr ? pht_0_120 : _GEN_247; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_249 = 7'h79 == p1Addr ? pht_0_121 : _GEN_248; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_250 = 7'h7a == p1Addr ? pht_0_122 : _GEN_249; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_251 = 7'h7b == p1Addr ? pht_0_123 : _GEN_250; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_252 = 7'h7c == p1Addr ? pht_0_124 : _GEN_251; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_253 = 7'h7d == p1Addr ? pht_0_125 : _GEN_252; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_254 = 7'h7e == p1Addr ? pht_0_126 : _GEN_253; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_255 = 7'h7f == p1Addr ? pht_0_127 : _GEN_254; // @[bht.scala 156:{32,32}]
-  wire [1:0] _GEN_257 = 7'h1 == _pht2Data_T_7 ? pht_2_1 : pht_2_0; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_258 = 7'h2 == _pht2Data_T_7 ? pht_2_2 : _GEN_257; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_259 = 7'h3 == _pht2Data_T_7 ? pht_2_3 : _GEN_258; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_260 = 7'h4 == _pht2Data_T_7 ? pht_2_4 : _GEN_259; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_261 = 7'h5 == _pht2Data_T_7 ? pht_2_5 : _GEN_260; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_262 = 7'h6 == _pht2Data_T_7 ? pht_2_6 : _GEN_261; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_263 = 7'h7 == _pht2Data_T_7 ? pht_2_7 : _GEN_262; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_264 = 7'h8 == _pht2Data_T_7 ? pht_2_8 : _GEN_263; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_265 = 7'h9 == _pht2Data_T_7 ? pht_2_9 : _GEN_264; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_266 = 7'ha == _pht2Data_T_7 ? pht_2_10 : _GEN_265; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_267 = 7'hb == _pht2Data_T_7 ? pht_2_11 : _GEN_266; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_268 = 7'hc == _pht2Data_T_7 ? pht_2_12 : _GEN_267; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_269 = 7'hd == _pht2Data_T_7 ? pht_2_13 : _GEN_268; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_270 = 7'he == _pht2Data_T_7 ? pht_2_14 : _GEN_269; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_271 = 7'hf == _pht2Data_T_7 ? pht_2_15 : _GEN_270; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_272 = 7'h10 == _pht2Data_T_7 ? pht_2_16 : _GEN_271; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_273 = 7'h11 == _pht2Data_T_7 ? pht_2_17 : _GEN_272; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_274 = 7'h12 == _pht2Data_T_7 ? pht_2_18 : _GEN_273; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_275 = 7'h13 == _pht2Data_T_7 ? pht_2_19 : _GEN_274; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_276 = 7'h14 == _pht2Data_T_7 ? pht_2_20 : _GEN_275; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_277 = 7'h15 == _pht2Data_T_7 ? pht_2_21 : _GEN_276; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_278 = 7'h16 == _pht2Data_T_7 ? pht_2_22 : _GEN_277; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_279 = 7'h17 == _pht2Data_T_7 ? pht_2_23 : _GEN_278; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_280 = 7'h18 == _pht2Data_T_7 ? pht_2_24 : _GEN_279; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_281 = 7'h19 == _pht2Data_T_7 ? pht_2_25 : _GEN_280; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_282 = 7'h1a == _pht2Data_T_7 ? pht_2_26 : _GEN_281; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_283 = 7'h1b == _pht2Data_T_7 ? pht_2_27 : _GEN_282; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_284 = 7'h1c == _pht2Data_T_7 ? pht_2_28 : _GEN_283; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_285 = 7'h1d == _pht2Data_T_7 ? pht_2_29 : _GEN_284; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_286 = 7'h1e == _pht2Data_T_7 ? pht_2_30 : _GEN_285; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_287 = 7'h1f == _pht2Data_T_7 ? pht_2_31 : _GEN_286; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_288 = 7'h20 == _pht2Data_T_7 ? pht_2_32 : _GEN_287; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_289 = 7'h21 == _pht2Data_T_7 ? pht_2_33 : _GEN_288; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_290 = 7'h22 == _pht2Data_T_7 ? pht_2_34 : _GEN_289; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_291 = 7'h23 == _pht2Data_T_7 ? pht_2_35 : _GEN_290; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_292 = 7'h24 == _pht2Data_T_7 ? pht_2_36 : _GEN_291; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_293 = 7'h25 == _pht2Data_T_7 ? pht_2_37 : _GEN_292; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_294 = 7'h26 == _pht2Data_T_7 ? pht_2_38 : _GEN_293; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_295 = 7'h27 == _pht2Data_T_7 ? pht_2_39 : _GEN_294; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_296 = 7'h28 == _pht2Data_T_7 ? pht_2_40 : _GEN_295; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_297 = 7'h29 == _pht2Data_T_7 ? pht_2_41 : _GEN_296; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_298 = 7'h2a == _pht2Data_T_7 ? pht_2_42 : _GEN_297; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_299 = 7'h2b == _pht2Data_T_7 ? pht_2_43 : _GEN_298; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_300 = 7'h2c == _pht2Data_T_7 ? pht_2_44 : _GEN_299; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_301 = 7'h2d == _pht2Data_T_7 ? pht_2_45 : _GEN_300; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_302 = 7'h2e == _pht2Data_T_7 ? pht_2_46 : _GEN_301; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_303 = 7'h2f == _pht2Data_T_7 ? pht_2_47 : _GEN_302; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_304 = 7'h30 == _pht2Data_T_7 ? pht_2_48 : _GEN_303; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_305 = 7'h31 == _pht2Data_T_7 ? pht_2_49 : _GEN_304; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_306 = 7'h32 == _pht2Data_T_7 ? pht_2_50 : _GEN_305; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_307 = 7'h33 == _pht2Data_T_7 ? pht_2_51 : _GEN_306; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_308 = 7'h34 == _pht2Data_T_7 ? pht_2_52 : _GEN_307; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_309 = 7'h35 == _pht2Data_T_7 ? pht_2_53 : _GEN_308; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_310 = 7'h36 == _pht2Data_T_7 ? pht_2_54 : _GEN_309; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_311 = 7'h37 == _pht2Data_T_7 ? pht_2_55 : _GEN_310; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_312 = 7'h38 == _pht2Data_T_7 ? pht_2_56 : _GEN_311; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_313 = 7'h39 == _pht2Data_T_7 ? pht_2_57 : _GEN_312; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_314 = 7'h3a == _pht2Data_T_7 ? pht_2_58 : _GEN_313; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_315 = 7'h3b == _pht2Data_T_7 ? pht_2_59 : _GEN_314; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_316 = 7'h3c == _pht2Data_T_7 ? pht_2_60 : _GEN_315; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_317 = 7'h3d == _pht2Data_T_7 ? pht_2_61 : _GEN_316; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_318 = 7'h3e == _pht2Data_T_7 ? pht_2_62 : _GEN_317; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_319 = 7'h3f == _pht2Data_T_7 ? pht_2_63 : _GEN_318; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_320 = 7'h40 == _pht2Data_T_7 ? pht_2_64 : _GEN_319; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_321 = 7'h41 == _pht2Data_T_7 ? pht_2_65 : _GEN_320; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_322 = 7'h42 == _pht2Data_T_7 ? pht_2_66 : _GEN_321; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_323 = 7'h43 == _pht2Data_T_7 ? pht_2_67 : _GEN_322; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_324 = 7'h44 == _pht2Data_T_7 ? pht_2_68 : _GEN_323; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_325 = 7'h45 == _pht2Data_T_7 ? pht_2_69 : _GEN_324; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_326 = 7'h46 == _pht2Data_T_7 ? pht_2_70 : _GEN_325; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_327 = 7'h47 == _pht2Data_T_7 ? pht_2_71 : _GEN_326; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_328 = 7'h48 == _pht2Data_T_7 ? pht_2_72 : _GEN_327; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_329 = 7'h49 == _pht2Data_T_7 ? pht_2_73 : _GEN_328; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_330 = 7'h4a == _pht2Data_T_7 ? pht_2_74 : _GEN_329; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_331 = 7'h4b == _pht2Data_T_7 ? pht_2_75 : _GEN_330; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_332 = 7'h4c == _pht2Data_T_7 ? pht_2_76 : _GEN_331; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_333 = 7'h4d == _pht2Data_T_7 ? pht_2_77 : _GEN_332; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_334 = 7'h4e == _pht2Data_T_7 ? pht_2_78 : _GEN_333; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_335 = 7'h4f == _pht2Data_T_7 ? pht_2_79 : _GEN_334; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_336 = 7'h50 == _pht2Data_T_7 ? pht_2_80 : _GEN_335; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_337 = 7'h51 == _pht2Data_T_7 ? pht_2_81 : _GEN_336; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_338 = 7'h52 == _pht2Data_T_7 ? pht_2_82 : _GEN_337; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_339 = 7'h53 == _pht2Data_T_7 ? pht_2_83 : _GEN_338; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_340 = 7'h54 == _pht2Data_T_7 ? pht_2_84 : _GEN_339; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_341 = 7'h55 == _pht2Data_T_7 ? pht_2_85 : _GEN_340; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_342 = 7'h56 == _pht2Data_T_7 ? pht_2_86 : _GEN_341; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_343 = 7'h57 == _pht2Data_T_7 ? pht_2_87 : _GEN_342; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_344 = 7'h58 == _pht2Data_T_7 ? pht_2_88 : _GEN_343; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_345 = 7'h59 == _pht2Data_T_7 ? pht_2_89 : _GEN_344; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_346 = 7'h5a == _pht2Data_T_7 ? pht_2_90 : _GEN_345; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_347 = 7'h5b == _pht2Data_T_7 ? pht_2_91 : _GEN_346; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_348 = 7'h5c == _pht2Data_T_7 ? pht_2_92 : _GEN_347; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_349 = 7'h5d == _pht2Data_T_7 ? pht_2_93 : _GEN_348; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_350 = 7'h5e == _pht2Data_T_7 ? pht_2_94 : _GEN_349; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_351 = 7'h5f == _pht2Data_T_7 ? pht_2_95 : _GEN_350; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_352 = 7'h60 == _pht2Data_T_7 ? pht_2_96 : _GEN_351; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_353 = 7'h61 == _pht2Data_T_7 ? pht_2_97 : _GEN_352; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_354 = 7'h62 == _pht2Data_T_7 ? pht_2_98 : _GEN_353; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_355 = 7'h63 == _pht2Data_T_7 ? pht_2_99 : _GEN_354; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_356 = 7'h64 == _pht2Data_T_7 ? pht_2_100 : _GEN_355; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_357 = 7'h65 == _pht2Data_T_7 ? pht_2_101 : _GEN_356; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_358 = 7'h66 == _pht2Data_T_7 ? pht_2_102 : _GEN_357; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_359 = 7'h67 == _pht2Data_T_7 ? pht_2_103 : _GEN_358; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_360 = 7'h68 == _pht2Data_T_7 ? pht_2_104 : _GEN_359; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_361 = 7'h69 == _pht2Data_T_7 ? pht_2_105 : _GEN_360; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_362 = 7'h6a == _pht2Data_T_7 ? pht_2_106 : _GEN_361; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_363 = 7'h6b == _pht2Data_T_7 ? pht_2_107 : _GEN_362; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_364 = 7'h6c == _pht2Data_T_7 ? pht_2_108 : _GEN_363; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_365 = 7'h6d == _pht2Data_T_7 ? pht_2_109 : _GEN_364; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_366 = 7'h6e == _pht2Data_T_7 ? pht_2_110 : _GEN_365; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_367 = 7'h6f == _pht2Data_T_7 ? pht_2_111 : _GEN_366; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_368 = 7'h70 == _pht2Data_T_7 ? pht_2_112 : _GEN_367; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_369 = 7'h71 == _pht2Data_T_7 ? pht_2_113 : _GEN_368; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_370 = 7'h72 == _pht2Data_T_7 ? pht_2_114 : _GEN_369; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_371 = 7'h73 == _pht2Data_T_7 ? pht_2_115 : _GEN_370; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_372 = 7'h74 == _pht2Data_T_7 ? pht_2_116 : _GEN_371; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_373 = 7'h75 == _pht2Data_T_7 ? pht_2_117 : _GEN_372; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_374 = 7'h76 == _pht2Data_T_7 ? pht_2_118 : _GEN_373; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_375 = 7'h77 == _pht2Data_T_7 ? pht_2_119 : _GEN_374; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_376 = 7'h78 == _pht2Data_T_7 ? pht_2_120 : _GEN_375; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_377 = 7'h79 == _pht2Data_T_7 ? pht_2_121 : _GEN_376; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_378 = 7'h7a == _pht2Data_T_7 ? pht_2_122 : _GEN_377; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_379 = 7'h7b == _pht2Data_T_7 ? pht_2_123 : _GEN_378; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_380 = 7'h7c == _pht2Data_T_7 ? pht_2_124 : _GEN_379; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_381 = 7'h7d == _pht2Data_T_7 ? pht_2_125 : _GEN_380; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_382 = 7'h7e == _pht2Data_T_7 ? pht_2_126 : _GEN_381; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_383 = 7'h7f == _pht2Data_T_7 ? pht_2_127 : _GEN_382; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_385 = 7'h1 == p1Addr ? pht_1_1 : pht_1_0; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_386 = 7'h2 == p1Addr ? pht_1_2 : _GEN_385; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_387 = 7'h3 == p1Addr ? pht_1_3 : _GEN_386; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_388 = 7'h4 == p1Addr ? pht_1_4 : _GEN_387; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_389 = 7'h5 == p1Addr ? pht_1_5 : _GEN_388; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_390 = 7'h6 == p1Addr ? pht_1_6 : _GEN_389; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_391 = 7'h7 == p1Addr ? pht_1_7 : _GEN_390; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_392 = 7'h8 == p1Addr ? pht_1_8 : _GEN_391; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_393 = 7'h9 == p1Addr ? pht_1_9 : _GEN_392; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_394 = 7'ha == p1Addr ? pht_1_10 : _GEN_393; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_395 = 7'hb == p1Addr ? pht_1_11 : _GEN_394; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_396 = 7'hc == p1Addr ? pht_1_12 : _GEN_395; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_397 = 7'hd == p1Addr ? pht_1_13 : _GEN_396; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_398 = 7'he == p1Addr ? pht_1_14 : _GEN_397; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_399 = 7'hf == p1Addr ? pht_1_15 : _GEN_398; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_400 = 7'h10 == p1Addr ? pht_1_16 : _GEN_399; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_401 = 7'h11 == p1Addr ? pht_1_17 : _GEN_400; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_402 = 7'h12 == p1Addr ? pht_1_18 : _GEN_401; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_403 = 7'h13 == p1Addr ? pht_1_19 : _GEN_402; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_404 = 7'h14 == p1Addr ? pht_1_20 : _GEN_403; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_405 = 7'h15 == p1Addr ? pht_1_21 : _GEN_404; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_406 = 7'h16 == p1Addr ? pht_1_22 : _GEN_405; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_407 = 7'h17 == p1Addr ? pht_1_23 : _GEN_406; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_408 = 7'h18 == p1Addr ? pht_1_24 : _GEN_407; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_409 = 7'h19 == p1Addr ? pht_1_25 : _GEN_408; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_410 = 7'h1a == p1Addr ? pht_1_26 : _GEN_409; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_411 = 7'h1b == p1Addr ? pht_1_27 : _GEN_410; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_412 = 7'h1c == p1Addr ? pht_1_28 : _GEN_411; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_413 = 7'h1d == p1Addr ? pht_1_29 : _GEN_412; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_414 = 7'h1e == p1Addr ? pht_1_30 : _GEN_413; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_415 = 7'h1f == p1Addr ? pht_1_31 : _GEN_414; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_416 = 7'h20 == p1Addr ? pht_1_32 : _GEN_415; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_417 = 7'h21 == p1Addr ? pht_1_33 : _GEN_416; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_418 = 7'h22 == p1Addr ? pht_1_34 : _GEN_417; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_419 = 7'h23 == p1Addr ? pht_1_35 : _GEN_418; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_420 = 7'h24 == p1Addr ? pht_1_36 : _GEN_419; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_421 = 7'h25 == p1Addr ? pht_1_37 : _GEN_420; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_422 = 7'h26 == p1Addr ? pht_1_38 : _GEN_421; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_423 = 7'h27 == p1Addr ? pht_1_39 : _GEN_422; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_424 = 7'h28 == p1Addr ? pht_1_40 : _GEN_423; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_425 = 7'h29 == p1Addr ? pht_1_41 : _GEN_424; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_426 = 7'h2a == p1Addr ? pht_1_42 : _GEN_425; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_427 = 7'h2b == p1Addr ? pht_1_43 : _GEN_426; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_428 = 7'h2c == p1Addr ? pht_1_44 : _GEN_427; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_429 = 7'h2d == p1Addr ? pht_1_45 : _GEN_428; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_430 = 7'h2e == p1Addr ? pht_1_46 : _GEN_429; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_431 = 7'h2f == p1Addr ? pht_1_47 : _GEN_430; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_432 = 7'h30 == p1Addr ? pht_1_48 : _GEN_431; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_433 = 7'h31 == p1Addr ? pht_1_49 : _GEN_432; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_434 = 7'h32 == p1Addr ? pht_1_50 : _GEN_433; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_435 = 7'h33 == p1Addr ? pht_1_51 : _GEN_434; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_436 = 7'h34 == p1Addr ? pht_1_52 : _GEN_435; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_437 = 7'h35 == p1Addr ? pht_1_53 : _GEN_436; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_438 = 7'h36 == p1Addr ? pht_1_54 : _GEN_437; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_439 = 7'h37 == p1Addr ? pht_1_55 : _GEN_438; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_440 = 7'h38 == p1Addr ? pht_1_56 : _GEN_439; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_441 = 7'h39 == p1Addr ? pht_1_57 : _GEN_440; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_442 = 7'h3a == p1Addr ? pht_1_58 : _GEN_441; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_443 = 7'h3b == p1Addr ? pht_1_59 : _GEN_442; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_444 = 7'h3c == p1Addr ? pht_1_60 : _GEN_443; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_445 = 7'h3d == p1Addr ? pht_1_61 : _GEN_444; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_446 = 7'h3e == p1Addr ? pht_1_62 : _GEN_445; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_447 = 7'h3f == p1Addr ? pht_1_63 : _GEN_446; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_448 = 7'h40 == p1Addr ? pht_1_64 : _GEN_447; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_449 = 7'h41 == p1Addr ? pht_1_65 : _GEN_448; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_450 = 7'h42 == p1Addr ? pht_1_66 : _GEN_449; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_451 = 7'h43 == p1Addr ? pht_1_67 : _GEN_450; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_452 = 7'h44 == p1Addr ? pht_1_68 : _GEN_451; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_453 = 7'h45 == p1Addr ? pht_1_69 : _GEN_452; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_454 = 7'h46 == p1Addr ? pht_1_70 : _GEN_453; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_455 = 7'h47 == p1Addr ? pht_1_71 : _GEN_454; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_456 = 7'h48 == p1Addr ? pht_1_72 : _GEN_455; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_457 = 7'h49 == p1Addr ? pht_1_73 : _GEN_456; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_458 = 7'h4a == p1Addr ? pht_1_74 : _GEN_457; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_459 = 7'h4b == p1Addr ? pht_1_75 : _GEN_458; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_460 = 7'h4c == p1Addr ? pht_1_76 : _GEN_459; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_461 = 7'h4d == p1Addr ? pht_1_77 : _GEN_460; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_462 = 7'h4e == p1Addr ? pht_1_78 : _GEN_461; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_463 = 7'h4f == p1Addr ? pht_1_79 : _GEN_462; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_464 = 7'h50 == p1Addr ? pht_1_80 : _GEN_463; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_465 = 7'h51 == p1Addr ? pht_1_81 : _GEN_464; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_466 = 7'h52 == p1Addr ? pht_1_82 : _GEN_465; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_467 = 7'h53 == p1Addr ? pht_1_83 : _GEN_466; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_468 = 7'h54 == p1Addr ? pht_1_84 : _GEN_467; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_469 = 7'h55 == p1Addr ? pht_1_85 : _GEN_468; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_470 = 7'h56 == p1Addr ? pht_1_86 : _GEN_469; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_471 = 7'h57 == p1Addr ? pht_1_87 : _GEN_470; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_472 = 7'h58 == p1Addr ? pht_1_88 : _GEN_471; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_473 = 7'h59 == p1Addr ? pht_1_89 : _GEN_472; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_474 = 7'h5a == p1Addr ? pht_1_90 : _GEN_473; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_475 = 7'h5b == p1Addr ? pht_1_91 : _GEN_474; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_476 = 7'h5c == p1Addr ? pht_1_92 : _GEN_475; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_477 = 7'h5d == p1Addr ? pht_1_93 : _GEN_476; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_478 = 7'h5e == p1Addr ? pht_1_94 : _GEN_477; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_479 = 7'h5f == p1Addr ? pht_1_95 : _GEN_478; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_480 = 7'h60 == p1Addr ? pht_1_96 : _GEN_479; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_481 = 7'h61 == p1Addr ? pht_1_97 : _GEN_480; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_482 = 7'h62 == p1Addr ? pht_1_98 : _GEN_481; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_483 = 7'h63 == p1Addr ? pht_1_99 : _GEN_482; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_484 = 7'h64 == p1Addr ? pht_1_100 : _GEN_483; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_485 = 7'h65 == p1Addr ? pht_1_101 : _GEN_484; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_486 = 7'h66 == p1Addr ? pht_1_102 : _GEN_485; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_487 = 7'h67 == p1Addr ? pht_1_103 : _GEN_486; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_488 = 7'h68 == p1Addr ? pht_1_104 : _GEN_487; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_489 = 7'h69 == p1Addr ? pht_1_105 : _GEN_488; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_490 = 7'h6a == p1Addr ? pht_1_106 : _GEN_489; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_491 = 7'h6b == p1Addr ? pht_1_107 : _GEN_490; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_492 = 7'h6c == p1Addr ? pht_1_108 : _GEN_491; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_493 = 7'h6d == p1Addr ? pht_1_109 : _GEN_492; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_494 = 7'h6e == p1Addr ? pht_1_110 : _GEN_493; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_495 = 7'h6f == p1Addr ? pht_1_111 : _GEN_494; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_496 = 7'h70 == p1Addr ? pht_1_112 : _GEN_495; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_497 = 7'h71 == p1Addr ? pht_1_113 : _GEN_496; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_498 = 7'h72 == p1Addr ? pht_1_114 : _GEN_497; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_499 = 7'h73 == p1Addr ? pht_1_115 : _GEN_498; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_500 = 7'h74 == p1Addr ? pht_1_116 : _GEN_499; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_501 = 7'h75 == p1Addr ? pht_1_117 : _GEN_500; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_502 = 7'h76 == p1Addr ? pht_1_118 : _GEN_501; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_503 = 7'h77 == p1Addr ? pht_1_119 : _GEN_502; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_504 = 7'h78 == p1Addr ? pht_1_120 : _GEN_503; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_505 = 7'h79 == p1Addr ? pht_1_121 : _GEN_504; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_506 = 7'h7a == p1Addr ? pht_1_122 : _GEN_505; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_507 = 7'h7b == p1Addr ? pht_1_123 : _GEN_506; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_508 = 7'h7c == p1Addr ? pht_1_124 : _GEN_507; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_509 = 7'h7d == p1Addr ? pht_1_125 : _GEN_508; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_510 = 7'h7e == p1Addr ? pht_1_126 : _GEN_509; // @[bht.scala 156:{23,23}]
-  wire [1:0] _GEN_511 = 7'h7f == p1Addr ? pht_1_127 : _GEN_510; // @[bht.scala 156:{23,23}]
-  wire [1:0] phtData = _GEN_255[1] ? _GEN_383 : _GEN_511; // @[bht.scala 156:23]
-  wire  reqTag_hash0 = io_pc[2] ^ (io_pc[8] ^ io_pc[13]); // @[bht.scala 121:27]
-  wire  reqTag_hash1 = io_pc[8] ^ io_pc[9] ^ io_pc[3]; // @[bht.scala 122:39]
-  wire  reqTag_hash2 = io_pc[4] ^ (io_pc[10] ^ io_pc[9]); // @[bht.scala 123:27]
-  wire  reqTag_hash3 = io_pc[5] ^ (io_pc[11] ^ io_pc[10]); // @[bht.scala 124:27]
-  wire  reqTag_hash4 = io_pc[6] ^ (io_pc[12] ^ io_pc[11]); // @[bht.scala 125:27]
-  wire  reqTag_hash5 = io_pc[7] ^ (io_pc[13] ^ io_pc[12]); // @[bht.scala 126:27]
-  wire [5:0] reqTag = {reqTag_hash5,reqTag_hash4,reqTag_hash3,reqTag_hash2,reqTag_hash1,reqTag_hash0}; // @[bht.scala 127:49]
+  wire  p1Addr_hash0 = io_pc[2] ^ (io_pc[8] ^ io_pc[12]); // @[bht.scala 111:27]
+  wire  p1Addr_hash1 = io_pc[8] ^ io_pc[9] ^ (io_pc[3] ^ io_pc[13]); // @[bht.scala 112:39]
+  wire  p1Addr_hash2 = io_pc[4] ^ (io_pc[10] ^ io_pc[9]); // @[bht.scala 113:27]
+  wire  p1Addr_hash3 = io_pc[5] ^ (io_pc[11] ^ io_pc[10]); // @[bht.scala 114:27]
+  wire  p1Addr_hash4 = io_pc[6] ^ (io_pc[12] ^ io_pc[11]); // @[bht.scala 115:27]
+  wire  p1Addr_hash5 = io_pc[7] ^ (io_pc[13] ^ io_pc[12]); // @[bht.scala 116:27]
+  wire [5:0] _p1Addr_T_5 = {p1Addr_hash5,p1Addr_hash4,p1Addr_hash3,p1Addr_hash2,p1Addr_hash1,p1Addr_hash0}; // @[bht.scala 117:49]
+  wire [5:0] p1Addr = _p1Addr_T_5 ^ ghr; // @[bht.scala 134:78]
+  wire  bhtData_hash0 = io_pc[2] ^ (io_pc[8] ^ io_pc[12]); // @[bht.scala 111:27]
+  wire  bhtData_hash1 = io_pc[8] ^ io_pc[9] ^ (io_pc[3] ^ io_pc[13]); // @[bht.scala 112:39]
+  wire  bhtData_hash2 = io_pc[4] ^ (io_pc[10] ^ io_pc[9]); // @[bht.scala 113:27]
+  wire  bhtData_hash3 = io_pc[5] ^ (io_pc[11] ^ io_pc[10]); // @[bht.scala 114:27]
+  wire  bhtData_hash4 = io_pc[6] ^ (io_pc[12] ^ io_pc[11]); // @[bht.scala 115:27]
+  wire  bhtData_hash5 = io_pc[7] ^ (io_pc[13] ^ io_pc[12]); // @[bht.scala 116:27]
+  wire [5:0] _bhtData_T_5 = {bhtData_hash5,bhtData_hash4,bhtData_hash3,bhtData_hash2,bhtData_hash1,bhtData_hash0}; // @[bht.scala 117:49]
+  wire [5:0] _GEN_1 = 6'h1 == _bhtData_T_5 ? bht_1 : bht_0; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_2 = 6'h2 == _bhtData_T_5 ? bht_2 : _GEN_1; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_3 = 6'h3 == _bhtData_T_5 ? bht_3 : _GEN_2; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_4 = 6'h4 == _bhtData_T_5 ? bht_4 : _GEN_3; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_5 = 6'h5 == _bhtData_T_5 ? bht_5 : _GEN_4; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_6 = 6'h6 == _bhtData_T_5 ? bht_6 : _GEN_5; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_7 = 6'h7 == _bhtData_T_5 ? bht_7 : _GEN_6; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_8 = 6'h8 == _bhtData_T_5 ? bht_8 : _GEN_7; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_9 = 6'h9 == _bhtData_T_5 ? bht_9 : _GEN_8; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_10 = 6'ha == _bhtData_T_5 ? bht_10 : _GEN_9; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_11 = 6'hb == _bhtData_T_5 ? bht_11 : _GEN_10; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_12 = 6'hc == _bhtData_T_5 ? bht_12 : _GEN_11; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_13 = 6'hd == _bhtData_T_5 ? bht_13 : _GEN_12; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_14 = 6'he == _bhtData_T_5 ? bht_14 : _GEN_13; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_15 = 6'hf == _bhtData_T_5 ? bht_15 : _GEN_14; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_16 = 6'h10 == _bhtData_T_5 ? bht_16 : _GEN_15; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_17 = 6'h11 == _bhtData_T_5 ? bht_17 : _GEN_16; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_18 = 6'h12 == _bhtData_T_5 ? bht_18 : _GEN_17; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_19 = 6'h13 == _bhtData_T_5 ? bht_19 : _GEN_18; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_20 = 6'h14 == _bhtData_T_5 ? bht_20 : _GEN_19; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_21 = 6'h15 == _bhtData_T_5 ? bht_21 : _GEN_20; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_22 = 6'h16 == _bhtData_T_5 ? bht_22 : _GEN_21; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_23 = 6'h17 == _bhtData_T_5 ? bht_23 : _GEN_22; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_24 = 6'h18 == _bhtData_T_5 ? bht_24 : _GEN_23; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_25 = 6'h19 == _bhtData_T_5 ? bht_25 : _GEN_24; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_26 = 6'h1a == _bhtData_T_5 ? bht_26 : _GEN_25; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_27 = 6'h1b == _bhtData_T_5 ? bht_27 : _GEN_26; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_28 = 6'h1c == _bhtData_T_5 ? bht_28 : _GEN_27; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_29 = 6'h1d == _bhtData_T_5 ? bht_29 : _GEN_28; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_30 = 6'h1e == _bhtData_T_5 ? bht_30 : _GEN_29; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_31 = 6'h1f == _bhtData_T_5 ? bht_31 : _GEN_30; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_32 = 6'h20 == _bhtData_T_5 ? bht_32 : _GEN_31; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_33 = 6'h21 == _bhtData_T_5 ? bht_33 : _GEN_32; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_34 = 6'h22 == _bhtData_T_5 ? bht_34 : _GEN_33; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_35 = 6'h23 == _bhtData_T_5 ? bht_35 : _GEN_34; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_36 = 6'h24 == _bhtData_T_5 ? bht_36 : _GEN_35; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_37 = 6'h25 == _bhtData_T_5 ? bht_37 : _GEN_36; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_38 = 6'h26 == _bhtData_T_5 ? bht_38 : _GEN_37; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_39 = 6'h27 == _bhtData_T_5 ? bht_39 : _GEN_38; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_40 = 6'h28 == _bhtData_T_5 ? bht_40 : _GEN_39; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_41 = 6'h29 == _bhtData_T_5 ? bht_41 : _GEN_40; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_42 = 6'h2a == _bhtData_T_5 ? bht_42 : _GEN_41; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_43 = 6'h2b == _bhtData_T_5 ? bht_43 : _GEN_42; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_44 = 6'h2c == _bhtData_T_5 ? bht_44 : _GEN_43; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_45 = 6'h2d == _bhtData_T_5 ? bht_45 : _GEN_44; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_46 = 6'h2e == _bhtData_T_5 ? bht_46 : _GEN_45; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_47 = 6'h2f == _bhtData_T_5 ? bht_47 : _GEN_46; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_48 = 6'h30 == _bhtData_T_5 ? bht_48 : _GEN_47; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_49 = 6'h31 == _bhtData_T_5 ? bht_49 : _GEN_48; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_50 = 6'h32 == _bhtData_T_5 ? bht_50 : _GEN_49; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_51 = 6'h33 == _bhtData_T_5 ? bht_51 : _GEN_50; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_52 = 6'h34 == _bhtData_T_5 ? bht_52 : _GEN_51; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_53 = 6'h35 == _bhtData_T_5 ? bht_53 : _GEN_52; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_54 = 6'h36 == _bhtData_T_5 ? bht_54 : _GEN_53; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_55 = 6'h37 == _bhtData_T_5 ? bht_55 : _GEN_54; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_56 = 6'h38 == _bhtData_T_5 ? bht_56 : _GEN_55; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_57 = 6'h39 == _bhtData_T_5 ? bht_57 : _GEN_56; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_58 = 6'h3a == _bhtData_T_5 ? bht_58 : _GEN_57; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_59 = 6'h3b == _bhtData_T_5 ? bht_59 : _GEN_58; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_60 = 6'h3c == _bhtData_T_5 ? bht_60 : _GEN_59; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_61 = 6'h3d == _bhtData_T_5 ? bht_61 : _GEN_60; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_62 = 6'h3e == _bhtData_T_5 ? bht_62 : _GEN_61; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_63 = 6'h3f == _bhtData_T_5 ? bht_63 : _GEN_62; // @[bht.scala 134:{78,78}]
+  wire [5:0] _pht2Data_T_6 = _p1Addr_T_5 ^ _GEN_63; // @[bht.scala 134:78]
+  wire [1:0] _GEN_65 = 6'h1 == p1Addr ? pht_0_1 : pht_0_0; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_66 = 6'h2 == p1Addr ? pht_0_2 : _GEN_65; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_67 = 6'h3 == p1Addr ? pht_0_3 : _GEN_66; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_68 = 6'h4 == p1Addr ? pht_0_4 : _GEN_67; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_69 = 6'h5 == p1Addr ? pht_0_5 : _GEN_68; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_70 = 6'h6 == p1Addr ? pht_0_6 : _GEN_69; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_71 = 6'h7 == p1Addr ? pht_0_7 : _GEN_70; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_72 = 6'h8 == p1Addr ? pht_0_8 : _GEN_71; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_73 = 6'h9 == p1Addr ? pht_0_9 : _GEN_72; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_74 = 6'ha == p1Addr ? pht_0_10 : _GEN_73; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_75 = 6'hb == p1Addr ? pht_0_11 : _GEN_74; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_76 = 6'hc == p1Addr ? pht_0_12 : _GEN_75; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_77 = 6'hd == p1Addr ? pht_0_13 : _GEN_76; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_78 = 6'he == p1Addr ? pht_0_14 : _GEN_77; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_79 = 6'hf == p1Addr ? pht_0_15 : _GEN_78; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_80 = 6'h10 == p1Addr ? pht_0_16 : _GEN_79; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_81 = 6'h11 == p1Addr ? pht_0_17 : _GEN_80; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_82 = 6'h12 == p1Addr ? pht_0_18 : _GEN_81; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_83 = 6'h13 == p1Addr ? pht_0_19 : _GEN_82; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_84 = 6'h14 == p1Addr ? pht_0_20 : _GEN_83; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_85 = 6'h15 == p1Addr ? pht_0_21 : _GEN_84; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_86 = 6'h16 == p1Addr ? pht_0_22 : _GEN_85; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_87 = 6'h17 == p1Addr ? pht_0_23 : _GEN_86; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_88 = 6'h18 == p1Addr ? pht_0_24 : _GEN_87; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_89 = 6'h19 == p1Addr ? pht_0_25 : _GEN_88; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_90 = 6'h1a == p1Addr ? pht_0_26 : _GEN_89; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_91 = 6'h1b == p1Addr ? pht_0_27 : _GEN_90; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_92 = 6'h1c == p1Addr ? pht_0_28 : _GEN_91; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_93 = 6'h1d == p1Addr ? pht_0_29 : _GEN_92; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_94 = 6'h1e == p1Addr ? pht_0_30 : _GEN_93; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_95 = 6'h1f == p1Addr ? pht_0_31 : _GEN_94; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_96 = 6'h20 == p1Addr ? pht_0_32 : _GEN_95; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_97 = 6'h21 == p1Addr ? pht_0_33 : _GEN_96; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_98 = 6'h22 == p1Addr ? pht_0_34 : _GEN_97; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_99 = 6'h23 == p1Addr ? pht_0_35 : _GEN_98; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_100 = 6'h24 == p1Addr ? pht_0_36 : _GEN_99; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_101 = 6'h25 == p1Addr ? pht_0_37 : _GEN_100; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_102 = 6'h26 == p1Addr ? pht_0_38 : _GEN_101; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_103 = 6'h27 == p1Addr ? pht_0_39 : _GEN_102; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_104 = 6'h28 == p1Addr ? pht_0_40 : _GEN_103; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_105 = 6'h29 == p1Addr ? pht_0_41 : _GEN_104; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_106 = 6'h2a == p1Addr ? pht_0_42 : _GEN_105; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_107 = 6'h2b == p1Addr ? pht_0_43 : _GEN_106; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_108 = 6'h2c == p1Addr ? pht_0_44 : _GEN_107; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_109 = 6'h2d == p1Addr ? pht_0_45 : _GEN_108; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_110 = 6'h2e == p1Addr ? pht_0_46 : _GEN_109; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_111 = 6'h2f == p1Addr ? pht_0_47 : _GEN_110; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_112 = 6'h30 == p1Addr ? pht_0_48 : _GEN_111; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_113 = 6'h31 == p1Addr ? pht_0_49 : _GEN_112; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_114 = 6'h32 == p1Addr ? pht_0_50 : _GEN_113; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_115 = 6'h33 == p1Addr ? pht_0_51 : _GEN_114; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_116 = 6'h34 == p1Addr ? pht_0_52 : _GEN_115; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_117 = 6'h35 == p1Addr ? pht_0_53 : _GEN_116; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_118 = 6'h36 == p1Addr ? pht_0_54 : _GEN_117; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_119 = 6'h37 == p1Addr ? pht_0_55 : _GEN_118; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_120 = 6'h38 == p1Addr ? pht_0_56 : _GEN_119; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_121 = 6'h39 == p1Addr ? pht_0_57 : _GEN_120; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_122 = 6'h3a == p1Addr ? pht_0_58 : _GEN_121; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_123 = 6'h3b == p1Addr ? pht_0_59 : _GEN_122; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_124 = 6'h3c == p1Addr ? pht_0_60 : _GEN_123; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_125 = 6'h3d == p1Addr ? pht_0_61 : _GEN_124; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_126 = 6'h3e == p1Addr ? pht_0_62 : _GEN_125; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_127 = 6'h3f == p1Addr ? pht_0_63 : _GEN_126; // @[bht.scala 156:{32,32}]
+  wire [1:0] _GEN_129 = 6'h1 == _pht2Data_T_6 ? pht_2_1 : pht_2_0; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_130 = 6'h2 == _pht2Data_T_6 ? pht_2_2 : _GEN_129; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_131 = 6'h3 == _pht2Data_T_6 ? pht_2_3 : _GEN_130; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_132 = 6'h4 == _pht2Data_T_6 ? pht_2_4 : _GEN_131; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_133 = 6'h5 == _pht2Data_T_6 ? pht_2_5 : _GEN_132; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_134 = 6'h6 == _pht2Data_T_6 ? pht_2_6 : _GEN_133; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_135 = 6'h7 == _pht2Data_T_6 ? pht_2_7 : _GEN_134; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_136 = 6'h8 == _pht2Data_T_6 ? pht_2_8 : _GEN_135; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_137 = 6'h9 == _pht2Data_T_6 ? pht_2_9 : _GEN_136; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_138 = 6'ha == _pht2Data_T_6 ? pht_2_10 : _GEN_137; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_139 = 6'hb == _pht2Data_T_6 ? pht_2_11 : _GEN_138; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_140 = 6'hc == _pht2Data_T_6 ? pht_2_12 : _GEN_139; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_141 = 6'hd == _pht2Data_T_6 ? pht_2_13 : _GEN_140; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_142 = 6'he == _pht2Data_T_6 ? pht_2_14 : _GEN_141; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_143 = 6'hf == _pht2Data_T_6 ? pht_2_15 : _GEN_142; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_144 = 6'h10 == _pht2Data_T_6 ? pht_2_16 : _GEN_143; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_145 = 6'h11 == _pht2Data_T_6 ? pht_2_17 : _GEN_144; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_146 = 6'h12 == _pht2Data_T_6 ? pht_2_18 : _GEN_145; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_147 = 6'h13 == _pht2Data_T_6 ? pht_2_19 : _GEN_146; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_148 = 6'h14 == _pht2Data_T_6 ? pht_2_20 : _GEN_147; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_149 = 6'h15 == _pht2Data_T_6 ? pht_2_21 : _GEN_148; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_150 = 6'h16 == _pht2Data_T_6 ? pht_2_22 : _GEN_149; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_151 = 6'h17 == _pht2Data_T_6 ? pht_2_23 : _GEN_150; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_152 = 6'h18 == _pht2Data_T_6 ? pht_2_24 : _GEN_151; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_153 = 6'h19 == _pht2Data_T_6 ? pht_2_25 : _GEN_152; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_154 = 6'h1a == _pht2Data_T_6 ? pht_2_26 : _GEN_153; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_155 = 6'h1b == _pht2Data_T_6 ? pht_2_27 : _GEN_154; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_156 = 6'h1c == _pht2Data_T_6 ? pht_2_28 : _GEN_155; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_157 = 6'h1d == _pht2Data_T_6 ? pht_2_29 : _GEN_156; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_158 = 6'h1e == _pht2Data_T_6 ? pht_2_30 : _GEN_157; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_159 = 6'h1f == _pht2Data_T_6 ? pht_2_31 : _GEN_158; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_160 = 6'h20 == _pht2Data_T_6 ? pht_2_32 : _GEN_159; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_161 = 6'h21 == _pht2Data_T_6 ? pht_2_33 : _GEN_160; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_162 = 6'h22 == _pht2Data_T_6 ? pht_2_34 : _GEN_161; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_163 = 6'h23 == _pht2Data_T_6 ? pht_2_35 : _GEN_162; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_164 = 6'h24 == _pht2Data_T_6 ? pht_2_36 : _GEN_163; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_165 = 6'h25 == _pht2Data_T_6 ? pht_2_37 : _GEN_164; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_166 = 6'h26 == _pht2Data_T_6 ? pht_2_38 : _GEN_165; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_167 = 6'h27 == _pht2Data_T_6 ? pht_2_39 : _GEN_166; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_168 = 6'h28 == _pht2Data_T_6 ? pht_2_40 : _GEN_167; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_169 = 6'h29 == _pht2Data_T_6 ? pht_2_41 : _GEN_168; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_170 = 6'h2a == _pht2Data_T_6 ? pht_2_42 : _GEN_169; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_171 = 6'h2b == _pht2Data_T_6 ? pht_2_43 : _GEN_170; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_172 = 6'h2c == _pht2Data_T_6 ? pht_2_44 : _GEN_171; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_173 = 6'h2d == _pht2Data_T_6 ? pht_2_45 : _GEN_172; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_174 = 6'h2e == _pht2Data_T_6 ? pht_2_46 : _GEN_173; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_175 = 6'h2f == _pht2Data_T_6 ? pht_2_47 : _GEN_174; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_176 = 6'h30 == _pht2Data_T_6 ? pht_2_48 : _GEN_175; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_177 = 6'h31 == _pht2Data_T_6 ? pht_2_49 : _GEN_176; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_178 = 6'h32 == _pht2Data_T_6 ? pht_2_50 : _GEN_177; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_179 = 6'h33 == _pht2Data_T_6 ? pht_2_51 : _GEN_178; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_180 = 6'h34 == _pht2Data_T_6 ? pht_2_52 : _GEN_179; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_181 = 6'h35 == _pht2Data_T_6 ? pht_2_53 : _GEN_180; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_182 = 6'h36 == _pht2Data_T_6 ? pht_2_54 : _GEN_181; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_183 = 6'h37 == _pht2Data_T_6 ? pht_2_55 : _GEN_182; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_184 = 6'h38 == _pht2Data_T_6 ? pht_2_56 : _GEN_183; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_185 = 6'h39 == _pht2Data_T_6 ? pht_2_57 : _GEN_184; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_186 = 6'h3a == _pht2Data_T_6 ? pht_2_58 : _GEN_185; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_187 = 6'h3b == _pht2Data_T_6 ? pht_2_59 : _GEN_186; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_188 = 6'h3c == _pht2Data_T_6 ? pht_2_60 : _GEN_187; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_189 = 6'h3d == _pht2Data_T_6 ? pht_2_61 : _GEN_188; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_190 = 6'h3e == _pht2Data_T_6 ? pht_2_62 : _GEN_189; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_191 = 6'h3f == _pht2Data_T_6 ? pht_2_63 : _GEN_190; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_193 = 6'h1 == p1Addr ? pht_1_1 : pht_1_0; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_194 = 6'h2 == p1Addr ? pht_1_2 : _GEN_193; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_195 = 6'h3 == p1Addr ? pht_1_3 : _GEN_194; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_196 = 6'h4 == p1Addr ? pht_1_4 : _GEN_195; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_197 = 6'h5 == p1Addr ? pht_1_5 : _GEN_196; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_198 = 6'h6 == p1Addr ? pht_1_6 : _GEN_197; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_199 = 6'h7 == p1Addr ? pht_1_7 : _GEN_198; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_200 = 6'h8 == p1Addr ? pht_1_8 : _GEN_199; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_201 = 6'h9 == p1Addr ? pht_1_9 : _GEN_200; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_202 = 6'ha == p1Addr ? pht_1_10 : _GEN_201; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_203 = 6'hb == p1Addr ? pht_1_11 : _GEN_202; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_204 = 6'hc == p1Addr ? pht_1_12 : _GEN_203; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_205 = 6'hd == p1Addr ? pht_1_13 : _GEN_204; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_206 = 6'he == p1Addr ? pht_1_14 : _GEN_205; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_207 = 6'hf == p1Addr ? pht_1_15 : _GEN_206; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_208 = 6'h10 == p1Addr ? pht_1_16 : _GEN_207; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_209 = 6'h11 == p1Addr ? pht_1_17 : _GEN_208; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_210 = 6'h12 == p1Addr ? pht_1_18 : _GEN_209; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_211 = 6'h13 == p1Addr ? pht_1_19 : _GEN_210; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_212 = 6'h14 == p1Addr ? pht_1_20 : _GEN_211; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_213 = 6'h15 == p1Addr ? pht_1_21 : _GEN_212; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_214 = 6'h16 == p1Addr ? pht_1_22 : _GEN_213; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_215 = 6'h17 == p1Addr ? pht_1_23 : _GEN_214; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_216 = 6'h18 == p1Addr ? pht_1_24 : _GEN_215; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_217 = 6'h19 == p1Addr ? pht_1_25 : _GEN_216; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_218 = 6'h1a == p1Addr ? pht_1_26 : _GEN_217; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_219 = 6'h1b == p1Addr ? pht_1_27 : _GEN_218; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_220 = 6'h1c == p1Addr ? pht_1_28 : _GEN_219; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_221 = 6'h1d == p1Addr ? pht_1_29 : _GEN_220; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_222 = 6'h1e == p1Addr ? pht_1_30 : _GEN_221; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_223 = 6'h1f == p1Addr ? pht_1_31 : _GEN_222; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_224 = 6'h20 == p1Addr ? pht_1_32 : _GEN_223; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_225 = 6'h21 == p1Addr ? pht_1_33 : _GEN_224; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_226 = 6'h22 == p1Addr ? pht_1_34 : _GEN_225; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_227 = 6'h23 == p1Addr ? pht_1_35 : _GEN_226; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_228 = 6'h24 == p1Addr ? pht_1_36 : _GEN_227; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_229 = 6'h25 == p1Addr ? pht_1_37 : _GEN_228; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_230 = 6'h26 == p1Addr ? pht_1_38 : _GEN_229; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_231 = 6'h27 == p1Addr ? pht_1_39 : _GEN_230; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_232 = 6'h28 == p1Addr ? pht_1_40 : _GEN_231; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_233 = 6'h29 == p1Addr ? pht_1_41 : _GEN_232; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_234 = 6'h2a == p1Addr ? pht_1_42 : _GEN_233; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_235 = 6'h2b == p1Addr ? pht_1_43 : _GEN_234; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_236 = 6'h2c == p1Addr ? pht_1_44 : _GEN_235; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_237 = 6'h2d == p1Addr ? pht_1_45 : _GEN_236; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_238 = 6'h2e == p1Addr ? pht_1_46 : _GEN_237; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_239 = 6'h2f == p1Addr ? pht_1_47 : _GEN_238; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_240 = 6'h30 == p1Addr ? pht_1_48 : _GEN_239; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_241 = 6'h31 == p1Addr ? pht_1_49 : _GEN_240; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_242 = 6'h32 == p1Addr ? pht_1_50 : _GEN_241; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_243 = 6'h33 == p1Addr ? pht_1_51 : _GEN_242; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_244 = 6'h34 == p1Addr ? pht_1_52 : _GEN_243; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_245 = 6'h35 == p1Addr ? pht_1_53 : _GEN_244; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_246 = 6'h36 == p1Addr ? pht_1_54 : _GEN_245; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_247 = 6'h37 == p1Addr ? pht_1_55 : _GEN_246; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_248 = 6'h38 == p1Addr ? pht_1_56 : _GEN_247; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_249 = 6'h39 == p1Addr ? pht_1_57 : _GEN_248; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_250 = 6'h3a == p1Addr ? pht_1_58 : _GEN_249; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_251 = 6'h3b == p1Addr ? pht_1_59 : _GEN_250; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_252 = 6'h3c == p1Addr ? pht_1_60 : _GEN_251; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_253 = 6'h3d == p1Addr ? pht_1_61 : _GEN_252; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_254 = 6'h3e == p1Addr ? pht_1_62 : _GEN_253; // @[bht.scala 156:{23,23}]
+  wire [1:0] _GEN_255 = 6'h3f == p1Addr ? pht_1_63 : _GEN_254; // @[bht.scala 156:{23,23}]
+  wire [1:0] phtData = _GEN_127[1] ? _GEN_191 : _GEN_255; // @[bht.scala 156:23]
   wire [5:0] reqIndex = io_pc[9:4]; // @[bht.scala 162:25]
-  wire  _GEN_513 = 6'h1 == reqIndex ? btbV_1 : btbV_0; // @[bht.scala 164:{53,53}]
-  wire  _GEN_514 = 6'h2 == reqIndex ? btbV_2 : _GEN_513; // @[bht.scala 164:{53,53}]
-  wire  _GEN_515 = 6'h3 == reqIndex ? btbV_3 : _GEN_514; // @[bht.scala 164:{53,53}]
-  wire  _GEN_516 = 6'h4 == reqIndex ? btbV_4 : _GEN_515; // @[bht.scala 164:{53,53}]
-  wire  _GEN_517 = 6'h5 == reqIndex ? btbV_5 : _GEN_516; // @[bht.scala 164:{53,53}]
-  wire  _GEN_518 = 6'h6 == reqIndex ? btbV_6 : _GEN_517; // @[bht.scala 164:{53,53}]
-  wire  _GEN_519 = 6'h7 == reqIndex ? btbV_7 : _GEN_518; // @[bht.scala 164:{53,53}]
-  wire  _GEN_520 = 6'h8 == reqIndex ? btbV_8 : _GEN_519; // @[bht.scala 164:{53,53}]
-  wire  _GEN_521 = 6'h9 == reqIndex ? btbV_9 : _GEN_520; // @[bht.scala 164:{53,53}]
-  wire  _GEN_522 = 6'ha == reqIndex ? btbV_10 : _GEN_521; // @[bht.scala 164:{53,53}]
-  wire  _GEN_523 = 6'hb == reqIndex ? btbV_11 : _GEN_522; // @[bht.scala 164:{53,53}]
-  wire  _GEN_524 = 6'hc == reqIndex ? btbV_12 : _GEN_523; // @[bht.scala 164:{53,53}]
-  wire  _GEN_525 = 6'hd == reqIndex ? btbV_13 : _GEN_524; // @[bht.scala 164:{53,53}]
-  wire  _GEN_526 = 6'he == reqIndex ? btbV_14 : _GEN_525; // @[bht.scala 164:{53,53}]
-  wire  _GEN_527 = 6'hf == reqIndex ? btbV_15 : _GEN_526; // @[bht.scala 164:{53,53}]
-  wire  _GEN_528 = 6'h10 == reqIndex ? btbV_16 : _GEN_527; // @[bht.scala 164:{53,53}]
-  wire  _GEN_529 = 6'h11 == reqIndex ? btbV_17 : _GEN_528; // @[bht.scala 164:{53,53}]
-  wire  _GEN_530 = 6'h12 == reqIndex ? btbV_18 : _GEN_529; // @[bht.scala 164:{53,53}]
-  wire  _GEN_531 = 6'h13 == reqIndex ? btbV_19 : _GEN_530; // @[bht.scala 164:{53,53}]
-  wire  _GEN_532 = 6'h14 == reqIndex ? btbV_20 : _GEN_531; // @[bht.scala 164:{53,53}]
-  wire  _GEN_533 = 6'h15 == reqIndex ? btbV_21 : _GEN_532; // @[bht.scala 164:{53,53}]
-  wire  _GEN_534 = 6'h16 == reqIndex ? btbV_22 : _GEN_533; // @[bht.scala 164:{53,53}]
-  wire  _GEN_535 = 6'h17 == reqIndex ? btbV_23 : _GEN_534; // @[bht.scala 164:{53,53}]
-  wire  _GEN_536 = 6'h18 == reqIndex ? btbV_24 : _GEN_535; // @[bht.scala 164:{53,53}]
-  wire  _GEN_537 = 6'h19 == reqIndex ? btbV_25 : _GEN_536; // @[bht.scala 164:{53,53}]
-  wire  _GEN_538 = 6'h1a == reqIndex ? btbV_26 : _GEN_537; // @[bht.scala 164:{53,53}]
-  wire  _GEN_539 = 6'h1b == reqIndex ? btbV_27 : _GEN_538; // @[bht.scala 164:{53,53}]
-  wire  _GEN_540 = 6'h1c == reqIndex ? btbV_28 : _GEN_539; // @[bht.scala 164:{53,53}]
-  wire  _GEN_541 = 6'h1d == reqIndex ? btbV_29 : _GEN_540; // @[bht.scala 164:{53,53}]
-  wire  _GEN_542 = 6'h1e == reqIndex ? btbV_30 : _GEN_541; // @[bht.scala 164:{53,53}]
-  wire  _GEN_543 = 6'h1f == reqIndex ? btbV_31 : _GEN_542; // @[bht.scala 164:{53,53}]
-  wire  _GEN_544 = 6'h20 == reqIndex ? btbV_32 : _GEN_543; // @[bht.scala 164:{53,53}]
-  wire  _GEN_545 = 6'h21 == reqIndex ? btbV_33 : _GEN_544; // @[bht.scala 164:{53,53}]
-  wire  _GEN_546 = 6'h22 == reqIndex ? btbV_34 : _GEN_545; // @[bht.scala 164:{53,53}]
-  wire  _GEN_547 = 6'h23 == reqIndex ? btbV_35 : _GEN_546; // @[bht.scala 164:{53,53}]
-  wire  _GEN_548 = 6'h24 == reqIndex ? btbV_36 : _GEN_547; // @[bht.scala 164:{53,53}]
-  wire  _GEN_549 = 6'h25 == reqIndex ? btbV_37 : _GEN_548; // @[bht.scala 164:{53,53}]
-  wire  _GEN_550 = 6'h26 == reqIndex ? btbV_38 : _GEN_549; // @[bht.scala 164:{53,53}]
-  wire  _GEN_551 = 6'h27 == reqIndex ? btbV_39 : _GEN_550; // @[bht.scala 164:{53,53}]
-  wire  _GEN_552 = 6'h28 == reqIndex ? btbV_40 : _GEN_551; // @[bht.scala 164:{53,53}]
-  wire  _GEN_553 = 6'h29 == reqIndex ? btbV_41 : _GEN_552; // @[bht.scala 164:{53,53}]
-  wire  _GEN_554 = 6'h2a == reqIndex ? btbV_42 : _GEN_553; // @[bht.scala 164:{53,53}]
-  wire  _GEN_555 = 6'h2b == reqIndex ? btbV_43 : _GEN_554; // @[bht.scala 164:{53,53}]
-  wire  _GEN_556 = 6'h2c == reqIndex ? btbV_44 : _GEN_555; // @[bht.scala 164:{53,53}]
-  wire  _GEN_557 = 6'h2d == reqIndex ? btbV_45 : _GEN_556; // @[bht.scala 164:{53,53}]
-  wire  _GEN_558 = 6'h2e == reqIndex ? btbV_46 : _GEN_557; // @[bht.scala 164:{53,53}]
-  wire  _GEN_559 = 6'h2f == reqIndex ? btbV_47 : _GEN_558; // @[bht.scala 164:{53,53}]
-  wire  _GEN_560 = 6'h30 == reqIndex ? btbV_48 : _GEN_559; // @[bht.scala 164:{53,53}]
-  wire  _GEN_561 = 6'h31 == reqIndex ? btbV_49 : _GEN_560; // @[bht.scala 164:{53,53}]
-  wire  _GEN_562 = 6'h32 == reqIndex ? btbV_50 : _GEN_561; // @[bht.scala 164:{53,53}]
-  wire  _GEN_563 = 6'h33 == reqIndex ? btbV_51 : _GEN_562; // @[bht.scala 164:{53,53}]
-  wire  _GEN_564 = 6'h34 == reqIndex ? btbV_52 : _GEN_563; // @[bht.scala 164:{53,53}]
-  wire  _GEN_565 = 6'h35 == reqIndex ? btbV_53 : _GEN_564; // @[bht.scala 164:{53,53}]
-  wire  _GEN_566 = 6'h36 == reqIndex ? btbV_54 : _GEN_565; // @[bht.scala 164:{53,53}]
-  wire  _GEN_567 = 6'h37 == reqIndex ? btbV_55 : _GEN_566; // @[bht.scala 164:{53,53}]
-  wire  _GEN_568 = 6'h38 == reqIndex ? btbV_56 : _GEN_567; // @[bht.scala 164:{53,53}]
-  wire  _GEN_569 = 6'h39 == reqIndex ? btbV_57 : _GEN_568; // @[bht.scala 164:{53,53}]
-  wire  _GEN_570 = 6'h3a == reqIndex ? btbV_58 : _GEN_569; // @[bht.scala 164:{53,53}]
-  wire  _GEN_571 = 6'h3b == reqIndex ? btbV_59 : _GEN_570; // @[bht.scala 164:{53,53}]
-  wire  _GEN_572 = 6'h3c == reqIndex ? btbV_60 : _GEN_571; // @[bht.scala 164:{53,53}]
-  wire  _GEN_573 = 6'h3d == reqIndex ? btbV_61 : _GEN_572; // @[bht.scala 164:{53,53}]
-  wire  _GEN_574 = 6'h3e == reqIndex ? btbV_62 : _GEN_573; // @[bht.scala 164:{53,53}]
-  wire  _GEN_575 = 6'h3f == reqIndex ? btbV_63 : _GEN_574; // @[bht.scala 164:{53,53}]
-  wire [5:0] _GEN_577 = 6'h1 == reqIndex ? btbTag_1 : btbTag_0; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_578 = 6'h2 == reqIndex ? btbTag_2 : _GEN_577; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_579 = 6'h3 == reqIndex ? btbTag_3 : _GEN_578; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_580 = 6'h4 == reqIndex ? btbTag_4 : _GEN_579; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_581 = 6'h5 == reqIndex ? btbTag_5 : _GEN_580; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_582 = 6'h6 == reqIndex ? btbTag_6 : _GEN_581; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_583 = 6'h7 == reqIndex ? btbTag_7 : _GEN_582; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_584 = 6'h8 == reqIndex ? btbTag_8 : _GEN_583; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_585 = 6'h9 == reqIndex ? btbTag_9 : _GEN_584; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_586 = 6'ha == reqIndex ? btbTag_10 : _GEN_585; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_587 = 6'hb == reqIndex ? btbTag_11 : _GEN_586; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_588 = 6'hc == reqIndex ? btbTag_12 : _GEN_587; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_589 = 6'hd == reqIndex ? btbTag_13 : _GEN_588; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_590 = 6'he == reqIndex ? btbTag_14 : _GEN_589; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_591 = 6'hf == reqIndex ? btbTag_15 : _GEN_590; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_592 = 6'h10 == reqIndex ? btbTag_16 : _GEN_591; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_593 = 6'h11 == reqIndex ? btbTag_17 : _GEN_592; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_594 = 6'h12 == reqIndex ? btbTag_18 : _GEN_593; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_595 = 6'h13 == reqIndex ? btbTag_19 : _GEN_594; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_596 = 6'h14 == reqIndex ? btbTag_20 : _GEN_595; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_597 = 6'h15 == reqIndex ? btbTag_21 : _GEN_596; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_598 = 6'h16 == reqIndex ? btbTag_22 : _GEN_597; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_599 = 6'h17 == reqIndex ? btbTag_23 : _GEN_598; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_600 = 6'h18 == reqIndex ? btbTag_24 : _GEN_599; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_601 = 6'h19 == reqIndex ? btbTag_25 : _GEN_600; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_602 = 6'h1a == reqIndex ? btbTag_26 : _GEN_601; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_603 = 6'h1b == reqIndex ? btbTag_27 : _GEN_602; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_604 = 6'h1c == reqIndex ? btbTag_28 : _GEN_603; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_605 = 6'h1d == reqIndex ? btbTag_29 : _GEN_604; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_606 = 6'h1e == reqIndex ? btbTag_30 : _GEN_605; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_607 = 6'h1f == reqIndex ? btbTag_31 : _GEN_606; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_608 = 6'h20 == reqIndex ? btbTag_32 : _GEN_607; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_609 = 6'h21 == reqIndex ? btbTag_33 : _GEN_608; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_610 = 6'h22 == reqIndex ? btbTag_34 : _GEN_609; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_611 = 6'h23 == reqIndex ? btbTag_35 : _GEN_610; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_612 = 6'h24 == reqIndex ? btbTag_36 : _GEN_611; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_613 = 6'h25 == reqIndex ? btbTag_37 : _GEN_612; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_614 = 6'h26 == reqIndex ? btbTag_38 : _GEN_613; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_615 = 6'h27 == reqIndex ? btbTag_39 : _GEN_614; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_616 = 6'h28 == reqIndex ? btbTag_40 : _GEN_615; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_617 = 6'h29 == reqIndex ? btbTag_41 : _GEN_616; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_618 = 6'h2a == reqIndex ? btbTag_42 : _GEN_617; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_619 = 6'h2b == reqIndex ? btbTag_43 : _GEN_618; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_620 = 6'h2c == reqIndex ? btbTag_44 : _GEN_619; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_621 = 6'h2d == reqIndex ? btbTag_45 : _GEN_620; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_622 = 6'h2e == reqIndex ? btbTag_46 : _GEN_621; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_623 = 6'h2f == reqIndex ? btbTag_47 : _GEN_622; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_624 = 6'h30 == reqIndex ? btbTag_48 : _GEN_623; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_625 = 6'h31 == reqIndex ? btbTag_49 : _GEN_624; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_626 = 6'h32 == reqIndex ? btbTag_50 : _GEN_625; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_627 = 6'h33 == reqIndex ? btbTag_51 : _GEN_626; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_628 = 6'h34 == reqIndex ? btbTag_52 : _GEN_627; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_629 = 6'h35 == reqIndex ? btbTag_53 : _GEN_628; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_630 = 6'h36 == reqIndex ? btbTag_54 : _GEN_629; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_631 = 6'h37 == reqIndex ? btbTag_55 : _GEN_630; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_632 = 6'h38 == reqIndex ? btbTag_56 : _GEN_631; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_633 = 6'h39 == reqIndex ? btbTag_57 : _GEN_632; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_634 = 6'h3a == reqIndex ? btbTag_58 : _GEN_633; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_635 = 6'h3b == reqIndex ? btbTag_59 : _GEN_634; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_636 = 6'h3c == reqIndex ? btbTag_60 : _GEN_635; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_637 = 6'h3d == reqIndex ? btbTag_61 : _GEN_636; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_638 = 6'h3e == reqIndex ? btbTag_62 : _GEN_637; // @[bht.scala 164:{92,92}]
-  wire [5:0] _GEN_639 = 6'h3f == reqIndex ? btbTag_63 : _GEN_638; // @[bht.scala 164:{92,92}]
-  wire  btbHit = (io_bxx | io_jalr) & io_takenPre & _GEN_575 & _GEN_639 == reqTag; // @[bht.scala 164:71]
+  wire  _GEN_257 = 6'h1 == reqIndex ? btbV_1 : btbV_0; // @[bht.scala 164:{53,53}]
+  wire  _GEN_258 = 6'h2 == reqIndex ? btbV_2 : _GEN_257; // @[bht.scala 164:{53,53}]
+  wire  _GEN_259 = 6'h3 == reqIndex ? btbV_3 : _GEN_258; // @[bht.scala 164:{53,53}]
+  wire  _GEN_260 = 6'h4 == reqIndex ? btbV_4 : _GEN_259; // @[bht.scala 164:{53,53}]
+  wire  _GEN_261 = 6'h5 == reqIndex ? btbV_5 : _GEN_260; // @[bht.scala 164:{53,53}]
+  wire  _GEN_262 = 6'h6 == reqIndex ? btbV_6 : _GEN_261; // @[bht.scala 164:{53,53}]
+  wire  _GEN_263 = 6'h7 == reqIndex ? btbV_7 : _GEN_262; // @[bht.scala 164:{53,53}]
+  wire  _GEN_264 = 6'h8 == reqIndex ? btbV_8 : _GEN_263; // @[bht.scala 164:{53,53}]
+  wire  _GEN_265 = 6'h9 == reqIndex ? btbV_9 : _GEN_264; // @[bht.scala 164:{53,53}]
+  wire  _GEN_266 = 6'ha == reqIndex ? btbV_10 : _GEN_265; // @[bht.scala 164:{53,53}]
+  wire  _GEN_267 = 6'hb == reqIndex ? btbV_11 : _GEN_266; // @[bht.scala 164:{53,53}]
+  wire  _GEN_268 = 6'hc == reqIndex ? btbV_12 : _GEN_267; // @[bht.scala 164:{53,53}]
+  wire  _GEN_269 = 6'hd == reqIndex ? btbV_13 : _GEN_268; // @[bht.scala 164:{53,53}]
+  wire  _GEN_270 = 6'he == reqIndex ? btbV_14 : _GEN_269; // @[bht.scala 164:{53,53}]
+  wire  _GEN_271 = 6'hf == reqIndex ? btbV_15 : _GEN_270; // @[bht.scala 164:{53,53}]
+  wire  _GEN_272 = 6'h10 == reqIndex ? btbV_16 : _GEN_271; // @[bht.scala 164:{53,53}]
+  wire  _GEN_273 = 6'h11 == reqIndex ? btbV_17 : _GEN_272; // @[bht.scala 164:{53,53}]
+  wire  _GEN_274 = 6'h12 == reqIndex ? btbV_18 : _GEN_273; // @[bht.scala 164:{53,53}]
+  wire  _GEN_275 = 6'h13 == reqIndex ? btbV_19 : _GEN_274; // @[bht.scala 164:{53,53}]
+  wire  _GEN_276 = 6'h14 == reqIndex ? btbV_20 : _GEN_275; // @[bht.scala 164:{53,53}]
+  wire  _GEN_277 = 6'h15 == reqIndex ? btbV_21 : _GEN_276; // @[bht.scala 164:{53,53}]
+  wire  _GEN_278 = 6'h16 == reqIndex ? btbV_22 : _GEN_277; // @[bht.scala 164:{53,53}]
+  wire  _GEN_279 = 6'h17 == reqIndex ? btbV_23 : _GEN_278; // @[bht.scala 164:{53,53}]
+  wire  _GEN_280 = 6'h18 == reqIndex ? btbV_24 : _GEN_279; // @[bht.scala 164:{53,53}]
+  wire  _GEN_281 = 6'h19 == reqIndex ? btbV_25 : _GEN_280; // @[bht.scala 164:{53,53}]
+  wire  _GEN_282 = 6'h1a == reqIndex ? btbV_26 : _GEN_281; // @[bht.scala 164:{53,53}]
+  wire  _GEN_283 = 6'h1b == reqIndex ? btbV_27 : _GEN_282; // @[bht.scala 164:{53,53}]
+  wire  _GEN_284 = 6'h1c == reqIndex ? btbV_28 : _GEN_283; // @[bht.scala 164:{53,53}]
+  wire  _GEN_285 = 6'h1d == reqIndex ? btbV_29 : _GEN_284; // @[bht.scala 164:{53,53}]
+  wire  _GEN_286 = 6'h1e == reqIndex ? btbV_30 : _GEN_285; // @[bht.scala 164:{53,53}]
+  wire  _GEN_287 = 6'h1f == reqIndex ? btbV_31 : _GEN_286; // @[bht.scala 164:{53,53}]
+  wire  _GEN_288 = 6'h20 == reqIndex ? btbV_32 : _GEN_287; // @[bht.scala 164:{53,53}]
+  wire  _GEN_289 = 6'h21 == reqIndex ? btbV_33 : _GEN_288; // @[bht.scala 164:{53,53}]
+  wire  _GEN_290 = 6'h22 == reqIndex ? btbV_34 : _GEN_289; // @[bht.scala 164:{53,53}]
+  wire  _GEN_291 = 6'h23 == reqIndex ? btbV_35 : _GEN_290; // @[bht.scala 164:{53,53}]
+  wire  _GEN_292 = 6'h24 == reqIndex ? btbV_36 : _GEN_291; // @[bht.scala 164:{53,53}]
+  wire  _GEN_293 = 6'h25 == reqIndex ? btbV_37 : _GEN_292; // @[bht.scala 164:{53,53}]
+  wire  _GEN_294 = 6'h26 == reqIndex ? btbV_38 : _GEN_293; // @[bht.scala 164:{53,53}]
+  wire  _GEN_295 = 6'h27 == reqIndex ? btbV_39 : _GEN_294; // @[bht.scala 164:{53,53}]
+  wire  _GEN_296 = 6'h28 == reqIndex ? btbV_40 : _GEN_295; // @[bht.scala 164:{53,53}]
+  wire  _GEN_297 = 6'h29 == reqIndex ? btbV_41 : _GEN_296; // @[bht.scala 164:{53,53}]
+  wire  _GEN_298 = 6'h2a == reqIndex ? btbV_42 : _GEN_297; // @[bht.scala 164:{53,53}]
+  wire  _GEN_299 = 6'h2b == reqIndex ? btbV_43 : _GEN_298; // @[bht.scala 164:{53,53}]
+  wire  _GEN_300 = 6'h2c == reqIndex ? btbV_44 : _GEN_299; // @[bht.scala 164:{53,53}]
+  wire  _GEN_301 = 6'h2d == reqIndex ? btbV_45 : _GEN_300; // @[bht.scala 164:{53,53}]
+  wire  _GEN_302 = 6'h2e == reqIndex ? btbV_46 : _GEN_301; // @[bht.scala 164:{53,53}]
+  wire  _GEN_303 = 6'h2f == reqIndex ? btbV_47 : _GEN_302; // @[bht.scala 164:{53,53}]
+  wire  _GEN_304 = 6'h30 == reqIndex ? btbV_48 : _GEN_303; // @[bht.scala 164:{53,53}]
+  wire  _GEN_305 = 6'h31 == reqIndex ? btbV_49 : _GEN_304; // @[bht.scala 164:{53,53}]
+  wire  _GEN_306 = 6'h32 == reqIndex ? btbV_50 : _GEN_305; // @[bht.scala 164:{53,53}]
+  wire  _GEN_307 = 6'h33 == reqIndex ? btbV_51 : _GEN_306; // @[bht.scala 164:{53,53}]
+  wire  _GEN_308 = 6'h34 == reqIndex ? btbV_52 : _GEN_307; // @[bht.scala 164:{53,53}]
+  wire  _GEN_309 = 6'h35 == reqIndex ? btbV_53 : _GEN_308; // @[bht.scala 164:{53,53}]
+  wire  _GEN_310 = 6'h36 == reqIndex ? btbV_54 : _GEN_309; // @[bht.scala 164:{53,53}]
+  wire  _GEN_311 = 6'h37 == reqIndex ? btbV_55 : _GEN_310; // @[bht.scala 164:{53,53}]
+  wire  _GEN_312 = 6'h38 == reqIndex ? btbV_56 : _GEN_311; // @[bht.scala 164:{53,53}]
+  wire  _GEN_313 = 6'h39 == reqIndex ? btbV_57 : _GEN_312; // @[bht.scala 164:{53,53}]
+  wire  _GEN_314 = 6'h3a == reqIndex ? btbV_58 : _GEN_313; // @[bht.scala 164:{53,53}]
+  wire  _GEN_315 = 6'h3b == reqIndex ? btbV_59 : _GEN_314; // @[bht.scala 164:{53,53}]
+  wire  _GEN_316 = 6'h3c == reqIndex ? btbV_60 : _GEN_315; // @[bht.scala 164:{53,53}]
+  wire  _GEN_317 = 6'h3d == reqIndex ? btbV_61 : _GEN_316; // @[bht.scala 164:{53,53}]
+  wire  _GEN_318 = 6'h3e == reqIndex ? btbV_62 : _GEN_317; // @[bht.scala 164:{53,53}]
+  wire  _GEN_319 = 6'h3f == reqIndex ? btbV_63 : _GEN_318; // @[bht.scala 164:{53,53}]
+  wire [5:0] _GEN_321 = 6'h1 == reqIndex ? btbTag_1 : btbTag_0; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_322 = 6'h2 == reqIndex ? btbTag_2 : _GEN_321; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_323 = 6'h3 == reqIndex ? btbTag_3 : _GEN_322; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_324 = 6'h4 == reqIndex ? btbTag_4 : _GEN_323; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_325 = 6'h5 == reqIndex ? btbTag_5 : _GEN_324; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_326 = 6'h6 == reqIndex ? btbTag_6 : _GEN_325; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_327 = 6'h7 == reqIndex ? btbTag_7 : _GEN_326; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_328 = 6'h8 == reqIndex ? btbTag_8 : _GEN_327; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_329 = 6'h9 == reqIndex ? btbTag_9 : _GEN_328; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_330 = 6'ha == reqIndex ? btbTag_10 : _GEN_329; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_331 = 6'hb == reqIndex ? btbTag_11 : _GEN_330; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_332 = 6'hc == reqIndex ? btbTag_12 : _GEN_331; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_333 = 6'hd == reqIndex ? btbTag_13 : _GEN_332; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_334 = 6'he == reqIndex ? btbTag_14 : _GEN_333; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_335 = 6'hf == reqIndex ? btbTag_15 : _GEN_334; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_336 = 6'h10 == reqIndex ? btbTag_16 : _GEN_335; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_337 = 6'h11 == reqIndex ? btbTag_17 : _GEN_336; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_338 = 6'h12 == reqIndex ? btbTag_18 : _GEN_337; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_339 = 6'h13 == reqIndex ? btbTag_19 : _GEN_338; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_340 = 6'h14 == reqIndex ? btbTag_20 : _GEN_339; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_341 = 6'h15 == reqIndex ? btbTag_21 : _GEN_340; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_342 = 6'h16 == reqIndex ? btbTag_22 : _GEN_341; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_343 = 6'h17 == reqIndex ? btbTag_23 : _GEN_342; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_344 = 6'h18 == reqIndex ? btbTag_24 : _GEN_343; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_345 = 6'h19 == reqIndex ? btbTag_25 : _GEN_344; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_346 = 6'h1a == reqIndex ? btbTag_26 : _GEN_345; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_347 = 6'h1b == reqIndex ? btbTag_27 : _GEN_346; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_348 = 6'h1c == reqIndex ? btbTag_28 : _GEN_347; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_349 = 6'h1d == reqIndex ? btbTag_29 : _GEN_348; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_350 = 6'h1e == reqIndex ? btbTag_30 : _GEN_349; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_351 = 6'h1f == reqIndex ? btbTag_31 : _GEN_350; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_352 = 6'h20 == reqIndex ? btbTag_32 : _GEN_351; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_353 = 6'h21 == reqIndex ? btbTag_33 : _GEN_352; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_354 = 6'h22 == reqIndex ? btbTag_34 : _GEN_353; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_355 = 6'h23 == reqIndex ? btbTag_35 : _GEN_354; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_356 = 6'h24 == reqIndex ? btbTag_36 : _GEN_355; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_357 = 6'h25 == reqIndex ? btbTag_37 : _GEN_356; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_358 = 6'h26 == reqIndex ? btbTag_38 : _GEN_357; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_359 = 6'h27 == reqIndex ? btbTag_39 : _GEN_358; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_360 = 6'h28 == reqIndex ? btbTag_40 : _GEN_359; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_361 = 6'h29 == reqIndex ? btbTag_41 : _GEN_360; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_362 = 6'h2a == reqIndex ? btbTag_42 : _GEN_361; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_363 = 6'h2b == reqIndex ? btbTag_43 : _GEN_362; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_364 = 6'h2c == reqIndex ? btbTag_44 : _GEN_363; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_365 = 6'h2d == reqIndex ? btbTag_45 : _GEN_364; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_366 = 6'h2e == reqIndex ? btbTag_46 : _GEN_365; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_367 = 6'h2f == reqIndex ? btbTag_47 : _GEN_366; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_368 = 6'h30 == reqIndex ? btbTag_48 : _GEN_367; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_369 = 6'h31 == reqIndex ? btbTag_49 : _GEN_368; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_370 = 6'h32 == reqIndex ? btbTag_50 : _GEN_369; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_371 = 6'h33 == reqIndex ? btbTag_51 : _GEN_370; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_372 = 6'h34 == reqIndex ? btbTag_52 : _GEN_371; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_373 = 6'h35 == reqIndex ? btbTag_53 : _GEN_372; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_374 = 6'h36 == reqIndex ? btbTag_54 : _GEN_373; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_375 = 6'h37 == reqIndex ? btbTag_55 : _GEN_374; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_376 = 6'h38 == reqIndex ? btbTag_56 : _GEN_375; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_377 = 6'h39 == reqIndex ? btbTag_57 : _GEN_376; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_378 = 6'h3a == reqIndex ? btbTag_58 : _GEN_377; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_379 = 6'h3b == reqIndex ? btbTag_59 : _GEN_378; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_380 = 6'h3c == reqIndex ? btbTag_60 : _GEN_379; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_381 = 6'h3d == reqIndex ? btbTag_61 : _GEN_380; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_382 = 6'h3e == reqIndex ? btbTag_62 : _GEN_381; // @[bht.scala 164:{92,92}]
+  wire [5:0] _GEN_383 = 6'h3f == reqIndex ? btbTag_63 : _GEN_382; // @[bht.scala 164:{92,92}]
+  wire  btbHit = (io_bxx | io_jalr) & io_takenPre & _GEN_319 & _GEN_383 == _bhtData_T_5; // @[bht.scala 164:71]
   wire  _io_takenPre_T_3 = io_bxx & phtData[1]; // @[bht.scala 170:26]
   wire  _io_takenPre_T_4 = io_jal | io_jalr | _io_takenPre_T_3; // @[bht.scala 169:24]
-  wire [63:0] _io_takenPrePC_T_2 = op1 + io_imm; // @[bht.scala 174:47]
-  wire [31:0] _GEN_641 = 6'h1 == reqIndex ? btbMeta_1 : btbMeta_0; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_642 = 6'h2 == reqIndex ? btbMeta_2 : _GEN_641; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_643 = 6'h3 == reqIndex ? btbMeta_3 : _GEN_642; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_644 = 6'h4 == reqIndex ? btbMeta_4 : _GEN_643; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_645 = 6'h5 == reqIndex ? btbMeta_5 : _GEN_644; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_646 = 6'h6 == reqIndex ? btbMeta_6 : _GEN_645; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_647 = 6'h7 == reqIndex ? btbMeta_7 : _GEN_646; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_648 = 6'h8 == reqIndex ? btbMeta_8 : _GEN_647; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_649 = 6'h9 == reqIndex ? btbMeta_9 : _GEN_648; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_650 = 6'ha == reqIndex ? btbMeta_10 : _GEN_649; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_651 = 6'hb == reqIndex ? btbMeta_11 : _GEN_650; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_652 = 6'hc == reqIndex ? btbMeta_12 : _GEN_651; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_653 = 6'hd == reqIndex ? btbMeta_13 : _GEN_652; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_654 = 6'he == reqIndex ? btbMeta_14 : _GEN_653; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_655 = 6'hf == reqIndex ? btbMeta_15 : _GEN_654; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_656 = 6'h10 == reqIndex ? btbMeta_16 : _GEN_655; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_657 = 6'h11 == reqIndex ? btbMeta_17 : _GEN_656; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_658 = 6'h12 == reqIndex ? btbMeta_18 : _GEN_657; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_659 = 6'h13 == reqIndex ? btbMeta_19 : _GEN_658; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_660 = 6'h14 == reqIndex ? btbMeta_20 : _GEN_659; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_661 = 6'h15 == reqIndex ? btbMeta_21 : _GEN_660; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_662 = 6'h16 == reqIndex ? btbMeta_22 : _GEN_661; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_663 = 6'h17 == reqIndex ? btbMeta_23 : _GEN_662; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_664 = 6'h18 == reqIndex ? btbMeta_24 : _GEN_663; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_665 = 6'h19 == reqIndex ? btbMeta_25 : _GEN_664; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_666 = 6'h1a == reqIndex ? btbMeta_26 : _GEN_665; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_667 = 6'h1b == reqIndex ? btbMeta_27 : _GEN_666; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_668 = 6'h1c == reqIndex ? btbMeta_28 : _GEN_667; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_669 = 6'h1d == reqIndex ? btbMeta_29 : _GEN_668; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_670 = 6'h1e == reqIndex ? btbMeta_30 : _GEN_669; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_671 = 6'h1f == reqIndex ? btbMeta_31 : _GEN_670; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_672 = 6'h20 == reqIndex ? btbMeta_32 : _GEN_671; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_673 = 6'h21 == reqIndex ? btbMeta_33 : _GEN_672; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_674 = 6'h22 == reqIndex ? btbMeta_34 : _GEN_673; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_675 = 6'h23 == reqIndex ? btbMeta_35 : _GEN_674; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_676 = 6'h24 == reqIndex ? btbMeta_36 : _GEN_675; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_677 = 6'h25 == reqIndex ? btbMeta_37 : _GEN_676; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_678 = 6'h26 == reqIndex ? btbMeta_38 : _GEN_677; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_679 = 6'h27 == reqIndex ? btbMeta_39 : _GEN_678; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_680 = 6'h28 == reqIndex ? btbMeta_40 : _GEN_679; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_681 = 6'h29 == reqIndex ? btbMeta_41 : _GEN_680; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_682 = 6'h2a == reqIndex ? btbMeta_42 : _GEN_681; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_683 = 6'h2b == reqIndex ? btbMeta_43 : _GEN_682; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_684 = 6'h2c == reqIndex ? btbMeta_44 : _GEN_683; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_685 = 6'h2d == reqIndex ? btbMeta_45 : _GEN_684; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_686 = 6'h2e == reqIndex ? btbMeta_46 : _GEN_685; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_687 = 6'h2f == reqIndex ? btbMeta_47 : _GEN_686; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_688 = 6'h30 == reqIndex ? btbMeta_48 : _GEN_687; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_689 = 6'h31 == reqIndex ? btbMeta_49 : _GEN_688; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_690 = 6'h32 == reqIndex ? btbMeta_50 : _GEN_689; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_691 = 6'h33 == reqIndex ? btbMeta_51 : _GEN_690; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_692 = 6'h34 == reqIndex ? btbMeta_52 : _GEN_691; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_693 = 6'h35 == reqIndex ? btbMeta_53 : _GEN_692; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_694 = 6'h36 == reqIndex ? btbMeta_54 : _GEN_693; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_695 = 6'h37 == reqIndex ? btbMeta_55 : _GEN_694; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_696 = 6'h38 == reqIndex ? btbMeta_56 : _GEN_695; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_697 = 6'h39 == reqIndex ? btbMeta_57 : _GEN_696; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_698 = 6'h3a == reqIndex ? btbMeta_58 : _GEN_697; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_699 = 6'h3b == reqIndex ? btbMeta_59 : _GEN_698; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_700 = 6'h3c == reqIndex ? btbMeta_60 : _GEN_699; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_701 = 6'h3d == reqIndex ? btbMeta_61 : _GEN_700; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_702 = 6'h3e == reqIndex ? btbMeta_62 : _GEN_701; // @[bht.scala 174:{26,26}]
-  wire [31:0] _GEN_703 = 6'h3f == reqIndex ? btbMeta_63 : _GEN_702; // @[bht.scala 174:{26,26}]
-  wire [63:0] _io_takenPrePC_T_3 = btbHit ? {{32'd0}, _GEN_703} : _io_takenPrePC_T_2; // @[bht.scala 174:26]
-  wire [63:0] _io_takenPrePC_T_4 = io_valid & io_takenPre ? _io_takenPrePC_T_3 : 64'h0; // @[bht.scala 173:25]
-  reg  io_ready_REG; // @[bht.scala 178:48]
-  wire  bhtWAddr_hash0 = io_takenPC[2] ^ (io_takenPC[8] ^ io_takenPC[14]); // @[bht.scala 90:27]
-  wire  _bhtWAddr_hash1_T_2 = io_takenPC[9] ^ io_takenPC[10]; // @[bht.scala 91:28]
-  wire  bhtWAddr_hash1 = io_takenPC[9] ^ io_takenPC[10] ^ (io_takenPC[3] ^ io_takenPC[15]); // @[bht.scala 91:39]
-  wire  bhtWAddr_hash2 = io_takenPC[4] ^ (io_takenPC[10] ^ io_takenPC[11]); // @[bht.scala 92:27]
-  wire  bhtWAddr_hash3 = io_takenPC[5] ^ (io_takenPC[11] ^ io_takenPC[12]); // @[bht.scala 93:27]
-  wire  bhtWAddr_hash4 = io_takenPC[6] ^ (io_takenPC[12] ^ io_takenPC[13]); // @[bht.scala 94:27]
-  wire  bhtWAddr_hash5 = io_takenPC[7] ^ (io_takenPC[13] ^ io_takenPC[14]); // @[bht.scala 95:27]
-  wire  bhtWAddr_hash6 = io_takenPC[8] ^ _bhtWAddr_hash1_T_2; // @[bht.scala 96:27]
-  wire [6:0] bhtWAddr = {bhtWAddr_hash6,bhtWAddr_hash5,bhtWAddr_hash4,bhtWAddr_hash3,bhtWAddr_hash2,bhtWAddr_hash1,
-    bhtWAddr_hash0}; // @[bht.scala 97:58]
-  wire [6:0] pht1WAddr = bhtWAddr ^ ghr; // @[bht.scala 132:26]
-  wire [6:0] _GEN_705 = 7'h1 == bhtWAddr ? bht_1 : bht_0; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_706 = 7'h2 == bhtWAddr ? bht_2 : _GEN_705; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_707 = 7'h3 == bhtWAddr ? bht_3 : _GEN_706; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_708 = 7'h4 == bhtWAddr ? bht_4 : _GEN_707; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_709 = 7'h5 == bhtWAddr ? bht_5 : _GEN_708; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_710 = 7'h6 == bhtWAddr ? bht_6 : _GEN_709; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_711 = 7'h7 == bhtWAddr ? bht_7 : _GEN_710; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_712 = 7'h8 == bhtWAddr ? bht_8 : _GEN_711; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_713 = 7'h9 == bhtWAddr ? bht_9 : _GEN_712; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_714 = 7'ha == bhtWAddr ? bht_10 : _GEN_713; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_715 = 7'hb == bhtWAddr ? bht_11 : _GEN_714; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_716 = 7'hc == bhtWAddr ? bht_12 : _GEN_715; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_717 = 7'hd == bhtWAddr ? bht_13 : _GEN_716; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_718 = 7'he == bhtWAddr ? bht_14 : _GEN_717; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_719 = 7'hf == bhtWAddr ? bht_15 : _GEN_718; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_720 = 7'h10 == bhtWAddr ? bht_16 : _GEN_719; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_721 = 7'h11 == bhtWAddr ? bht_17 : _GEN_720; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_722 = 7'h12 == bhtWAddr ? bht_18 : _GEN_721; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_723 = 7'h13 == bhtWAddr ? bht_19 : _GEN_722; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_724 = 7'h14 == bhtWAddr ? bht_20 : _GEN_723; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_725 = 7'h15 == bhtWAddr ? bht_21 : _GEN_724; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_726 = 7'h16 == bhtWAddr ? bht_22 : _GEN_725; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_727 = 7'h17 == bhtWAddr ? bht_23 : _GEN_726; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_728 = 7'h18 == bhtWAddr ? bht_24 : _GEN_727; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_729 = 7'h19 == bhtWAddr ? bht_25 : _GEN_728; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_730 = 7'h1a == bhtWAddr ? bht_26 : _GEN_729; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_731 = 7'h1b == bhtWAddr ? bht_27 : _GEN_730; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_732 = 7'h1c == bhtWAddr ? bht_28 : _GEN_731; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_733 = 7'h1d == bhtWAddr ? bht_29 : _GEN_732; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_734 = 7'h1e == bhtWAddr ? bht_30 : _GEN_733; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_735 = 7'h1f == bhtWAddr ? bht_31 : _GEN_734; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_736 = 7'h20 == bhtWAddr ? bht_32 : _GEN_735; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_737 = 7'h21 == bhtWAddr ? bht_33 : _GEN_736; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_738 = 7'h22 == bhtWAddr ? bht_34 : _GEN_737; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_739 = 7'h23 == bhtWAddr ? bht_35 : _GEN_738; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_740 = 7'h24 == bhtWAddr ? bht_36 : _GEN_739; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_741 = 7'h25 == bhtWAddr ? bht_37 : _GEN_740; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_742 = 7'h26 == bhtWAddr ? bht_38 : _GEN_741; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_743 = 7'h27 == bhtWAddr ? bht_39 : _GEN_742; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_744 = 7'h28 == bhtWAddr ? bht_40 : _GEN_743; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_745 = 7'h29 == bhtWAddr ? bht_41 : _GEN_744; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_746 = 7'h2a == bhtWAddr ? bht_42 : _GEN_745; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_747 = 7'h2b == bhtWAddr ? bht_43 : _GEN_746; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_748 = 7'h2c == bhtWAddr ? bht_44 : _GEN_747; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_749 = 7'h2d == bhtWAddr ? bht_45 : _GEN_748; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_750 = 7'h2e == bhtWAddr ? bht_46 : _GEN_749; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_751 = 7'h2f == bhtWAddr ? bht_47 : _GEN_750; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_752 = 7'h30 == bhtWAddr ? bht_48 : _GEN_751; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_753 = 7'h31 == bhtWAddr ? bht_49 : _GEN_752; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_754 = 7'h32 == bhtWAddr ? bht_50 : _GEN_753; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_755 = 7'h33 == bhtWAddr ? bht_51 : _GEN_754; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_756 = 7'h34 == bhtWAddr ? bht_52 : _GEN_755; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_757 = 7'h35 == bhtWAddr ? bht_53 : _GEN_756; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_758 = 7'h36 == bhtWAddr ? bht_54 : _GEN_757; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_759 = 7'h37 == bhtWAddr ? bht_55 : _GEN_758; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_760 = 7'h38 == bhtWAddr ? bht_56 : _GEN_759; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_761 = 7'h39 == bhtWAddr ? bht_57 : _GEN_760; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_762 = 7'h3a == bhtWAddr ? bht_58 : _GEN_761; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_763 = 7'h3b == bhtWAddr ? bht_59 : _GEN_762; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_764 = 7'h3c == bhtWAddr ? bht_60 : _GEN_763; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_765 = 7'h3d == bhtWAddr ? bht_61 : _GEN_764; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_766 = 7'h3e == bhtWAddr ? bht_62 : _GEN_765; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_767 = 7'h3f == bhtWAddr ? bht_63 : _GEN_766; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_768 = 7'h40 == bhtWAddr ? bht_64 : _GEN_767; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_769 = 7'h41 == bhtWAddr ? bht_65 : _GEN_768; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_770 = 7'h42 == bhtWAddr ? bht_66 : _GEN_769; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_771 = 7'h43 == bhtWAddr ? bht_67 : _GEN_770; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_772 = 7'h44 == bhtWAddr ? bht_68 : _GEN_771; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_773 = 7'h45 == bhtWAddr ? bht_69 : _GEN_772; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_774 = 7'h46 == bhtWAddr ? bht_70 : _GEN_773; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_775 = 7'h47 == bhtWAddr ? bht_71 : _GEN_774; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_776 = 7'h48 == bhtWAddr ? bht_72 : _GEN_775; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_777 = 7'h49 == bhtWAddr ? bht_73 : _GEN_776; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_778 = 7'h4a == bhtWAddr ? bht_74 : _GEN_777; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_779 = 7'h4b == bhtWAddr ? bht_75 : _GEN_778; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_780 = 7'h4c == bhtWAddr ? bht_76 : _GEN_779; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_781 = 7'h4d == bhtWAddr ? bht_77 : _GEN_780; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_782 = 7'h4e == bhtWAddr ? bht_78 : _GEN_781; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_783 = 7'h4f == bhtWAddr ? bht_79 : _GEN_782; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_784 = 7'h50 == bhtWAddr ? bht_80 : _GEN_783; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_785 = 7'h51 == bhtWAddr ? bht_81 : _GEN_784; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_786 = 7'h52 == bhtWAddr ? bht_82 : _GEN_785; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_787 = 7'h53 == bhtWAddr ? bht_83 : _GEN_786; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_788 = 7'h54 == bhtWAddr ? bht_84 : _GEN_787; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_789 = 7'h55 == bhtWAddr ? bht_85 : _GEN_788; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_790 = 7'h56 == bhtWAddr ? bht_86 : _GEN_789; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_791 = 7'h57 == bhtWAddr ? bht_87 : _GEN_790; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_792 = 7'h58 == bhtWAddr ? bht_88 : _GEN_791; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_793 = 7'h59 == bhtWAddr ? bht_89 : _GEN_792; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_794 = 7'h5a == bhtWAddr ? bht_90 : _GEN_793; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_795 = 7'h5b == bhtWAddr ? bht_91 : _GEN_794; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_796 = 7'h5c == bhtWAddr ? bht_92 : _GEN_795; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_797 = 7'h5d == bhtWAddr ? bht_93 : _GEN_796; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_798 = 7'h5e == bhtWAddr ? bht_94 : _GEN_797; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_799 = 7'h5f == bhtWAddr ? bht_95 : _GEN_798; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_800 = 7'h60 == bhtWAddr ? bht_96 : _GEN_799; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_801 = 7'h61 == bhtWAddr ? bht_97 : _GEN_800; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_802 = 7'h62 == bhtWAddr ? bht_98 : _GEN_801; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_803 = 7'h63 == bhtWAddr ? bht_99 : _GEN_802; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_804 = 7'h64 == bhtWAddr ? bht_100 : _GEN_803; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_805 = 7'h65 == bhtWAddr ? bht_101 : _GEN_804; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_806 = 7'h66 == bhtWAddr ? bht_102 : _GEN_805; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_807 = 7'h67 == bhtWAddr ? bht_103 : _GEN_806; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_808 = 7'h68 == bhtWAddr ? bht_104 : _GEN_807; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_809 = 7'h69 == bhtWAddr ? bht_105 : _GEN_808; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_810 = 7'h6a == bhtWAddr ? bht_106 : _GEN_809; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_811 = 7'h6b == bhtWAddr ? bht_107 : _GEN_810; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_812 = 7'h6c == bhtWAddr ? bht_108 : _GEN_811; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_813 = 7'h6d == bhtWAddr ? bht_109 : _GEN_812; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_814 = 7'h6e == bhtWAddr ? bht_110 : _GEN_813; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_815 = 7'h6f == bhtWAddr ? bht_111 : _GEN_814; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_816 = 7'h70 == bhtWAddr ? bht_112 : _GEN_815; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_817 = 7'h71 == bhtWAddr ? bht_113 : _GEN_816; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_818 = 7'h72 == bhtWAddr ? bht_114 : _GEN_817; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_819 = 7'h73 == bhtWAddr ? bht_115 : _GEN_818; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_820 = 7'h74 == bhtWAddr ? bht_116 : _GEN_819; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_821 = 7'h75 == bhtWAddr ? bht_117 : _GEN_820; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_822 = 7'h76 == bhtWAddr ? bht_118 : _GEN_821; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_823 = 7'h77 == bhtWAddr ? bht_119 : _GEN_822; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_824 = 7'h78 == bhtWAddr ? bht_120 : _GEN_823; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_825 = 7'h79 == bhtWAddr ? bht_121 : _GEN_824; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_826 = 7'h7a == bhtWAddr ? bht_122 : _GEN_825; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_827 = 7'h7b == bhtWAddr ? bht_123 : _GEN_826; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_828 = 7'h7c == bhtWAddr ? bht_124 : _GEN_827; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_829 = 7'h7d == bhtWAddr ? bht_125 : _GEN_828; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_830 = 7'h7e == bhtWAddr ? bht_126 : _GEN_829; // @[bht.scala 132:{26,26}]
-  wire [6:0] _GEN_831 = 7'h7f == bhtWAddr ? bht_127 : _GEN_830; // @[bht.scala 132:{26,26}]
-  wire [6:0] pht2WAddr = bhtWAddr ^ _GEN_831; // @[bht.scala 132:26]
-  wire [1:0] _GEN_833 = 7'h1 == pht1WAddr ? pht_1_1 : pht_1_0; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_834 = 7'h2 == pht1WAddr ? pht_1_2 : _GEN_833; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_835 = 7'h3 == pht1WAddr ? pht_1_3 : _GEN_834; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_836 = 7'h4 == pht1WAddr ? pht_1_4 : _GEN_835; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_837 = 7'h5 == pht1WAddr ? pht_1_5 : _GEN_836; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_838 = 7'h6 == pht1WAddr ? pht_1_6 : _GEN_837; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_839 = 7'h7 == pht1WAddr ? pht_1_7 : _GEN_838; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_840 = 7'h8 == pht1WAddr ? pht_1_8 : _GEN_839; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_841 = 7'h9 == pht1WAddr ? pht_1_9 : _GEN_840; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_842 = 7'ha == pht1WAddr ? pht_1_10 : _GEN_841; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_843 = 7'hb == pht1WAddr ? pht_1_11 : _GEN_842; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_844 = 7'hc == pht1WAddr ? pht_1_12 : _GEN_843; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_845 = 7'hd == pht1WAddr ? pht_1_13 : _GEN_844; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_846 = 7'he == pht1WAddr ? pht_1_14 : _GEN_845; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_847 = 7'hf == pht1WAddr ? pht_1_15 : _GEN_846; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_848 = 7'h10 == pht1WAddr ? pht_1_16 : _GEN_847; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_849 = 7'h11 == pht1WAddr ? pht_1_17 : _GEN_848; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_850 = 7'h12 == pht1WAddr ? pht_1_18 : _GEN_849; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_851 = 7'h13 == pht1WAddr ? pht_1_19 : _GEN_850; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_852 = 7'h14 == pht1WAddr ? pht_1_20 : _GEN_851; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_853 = 7'h15 == pht1WAddr ? pht_1_21 : _GEN_852; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_854 = 7'h16 == pht1WAddr ? pht_1_22 : _GEN_853; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_855 = 7'h17 == pht1WAddr ? pht_1_23 : _GEN_854; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_856 = 7'h18 == pht1WAddr ? pht_1_24 : _GEN_855; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_857 = 7'h19 == pht1WAddr ? pht_1_25 : _GEN_856; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_858 = 7'h1a == pht1WAddr ? pht_1_26 : _GEN_857; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_859 = 7'h1b == pht1WAddr ? pht_1_27 : _GEN_858; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_860 = 7'h1c == pht1WAddr ? pht_1_28 : _GEN_859; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_861 = 7'h1d == pht1WAddr ? pht_1_29 : _GEN_860; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_862 = 7'h1e == pht1WAddr ? pht_1_30 : _GEN_861; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_863 = 7'h1f == pht1WAddr ? pht_1_31 : _GEN_862; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_864 = 7'h20 == pht1WAddr ? pht_1_32 : _GEN_863; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_865 = 7'h21 == pht1WAddr ? pht_1_33 : _GEN_864; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_866 = 7'h22 == pht1WAddr ? pht_1_34 : _GEN_865; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_867 = 7'h23 == pht1WAddr ? pht_1_35 : _GEN_866; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_868 = 7'h24 == pht1WAddr ? pht_1_36 : _GEN_867; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_869 = 7'h25 == pht1WAddr ? pht_1_37 : _GEN_868; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_870 = 7'h26 == pht1WAddr ? pht_1_38 : _GEN_869; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_871 = 7'h27 == pht1WAddr ? pht_1_39 : _GEN_870; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_872 = 7'h28 == pht1WAddr ? pht_1_40 : _GEN_871; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_873 = 7'h29 == pht1WAddr ? pht_1_41 : _GEN_872; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_874 = 7'h2a == pht1WAddr ? pht_1_42 : _GEN_873; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_875 = 7'h2b == pht1WAddr ? pht_1_43 : _GEN_874; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_876 = 7'h2c == pht1WAddr ? pht_1_44 : _GEN_875; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_877 = 7'h2d == pht1WAddr ? pht_1_45 : _GEN_876; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_878 = 7'h2e == pht1WAddr ? pht_1_46 : _GEN_877; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_879 = 7'h2f == pht1WAddr ? pht_1_47 : _GEN_878; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_880 = 7'h30 == pht1WAddr ? pht_1_48 : _GEN_879; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_881 = 7'h31 == pht1WAddr ? pht_1_49 : _GEN_880; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_882 = 7'h32 == pht1WAddr ? pht_1_50 : _GEN_881; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_883 = 7'h33 == pht1WAddr ? pht_1_51 : _GEN_882; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_884 = 7'h34 == pht1WAddr ? pht_1_52 : _GEN_883; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_885 = 7'h35 == pht1WAddr ? pht_1_53 : _GEN_884; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_886 = 7'h36 == pht1WAddr ? pht_1_54 : _GEN_885; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_887 = 7'h37 == pht1WAddr ? pht_1_55 : _GEN_886; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_888 = 7'h38 == pht1WAddr ? pht_1_56 : _GEN_887; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_889 = 7'h39 == pht1WAddr ? pht_1_57 : _GEN_888; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_890 = 7'h3a == pht1WAddr ? pht_1_58 : _GEN_889; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_891 = 7'h3b == pht1WAddr ? pht_1_59 : _GEN_890; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_892 = 7'h3c == pht1WAddr ? pht_1_60 : _GEN_891; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_893 = 7'h3d == pht1WAddr ? pht_1_61 : _GEN_892; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_894 = 7'h3e == pht1WAddr ? pht_1_62 : _GEN_893; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_895 = 7'h3f == pht1WAddr ? pht_1_63 : _GEN_894; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_896 = 7'h40 == pht1WAddr ? pht_1_64 : _GEN_895; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_897 = 7'h41 == pht1WAddr ? pht_1_65 : _GEN_896; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_898 = 7'h42 == pht1WAddr ? pht_1_66 : _GEN_897; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_899 = 7'h43 == pht1WAddr ? pht_1_67 : _GEN_898; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_900 = 7'h44 == pht1WAddr ? pht_1_68 : _GEN_899; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_901 = 7'h45 == pht1WAddr ? pht_1_69 : _GEN_900; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_902 = 7'h46 == pht1WAddr ? pht_1_70 : _GEN_901; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_903 = 7'h47 == pht1WAddr ? pht_1_71 : _GEN_902; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_904 = 7'h48 == pht1WAddr ? pht_1_72 : _GEN_903; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_905 = 7'h49 == pht1WAddr ? pht_1_73 : _GEN_904; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_906 = 7'h4a == pht1WAddr ? pht_1_74 : _GEN_905; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_907 = 7'h4b == pht1WAddr ? pht_1_75 : _GEN_906; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_908 = 7'h4c == pht1WAddr ? pht_1_76 : _GEN_907; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_909 = 7'h4d == pht1WAddr ? pht_1_77 : _GEN_908; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_910 = 7'h4e == pht1WAddr ? pht_1_78 : _GEN_909; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_911 = 7'h4f == pht1WAddr ? pht_1_79 : _GEN_910; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_912 = 7'h50 == pht1WAddr ? pht_1_80 : _GEN_911; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_913 = 7'h51 == pht1WAddr ? pht_1_81 : _GEN_912; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_914 = 7'h52 == pht1WAddr ? pht_1_82 : _GEN_913; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_915 = 7'h53 == pht1WAddr ? pht_1_83 : _GEN_914; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_916 = 7'h54 == pht1WAddr ? pht_1_84 : _GEN_915; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_917 = 7'h55 == pht1WAddr ? pht_1_85 : _GEN_916; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_918 = 7'h56 == pht1WAddr ? pht_1_86 : _GEN_917; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_919 = 7'h57 == pht1WAddr ? pht_1_87 : _GEN_918; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_920 = 7'h58 == pht1WAddr ? pht_1_88 : _GEN_919; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_921 = 7'h59 == pht1WAddr ? pht_1_89 : _GEN_920; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_922 = 7'h5a == pht1WAddr ? pht_1_90 : _GEN_921; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_923 = 7'h5b == pht1WAddr ? pht_1_91 : _GEN_922; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_924 = 7'h5c == pht1WAddr ? pht_1_92 : _GEN_923; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_925 = 7'h5d == pht1WAddr ? pht_1_93 : _GEN_924; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_926 = 7'h5e == pht1WAddr ? pht_1_94 : _GEN_925; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_927 = 7'h5f == pht1WAddr ? pht_1_95 : _GEN_926; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_928 = 7'h60 == pht1WAddr ? pht_1_96 : _GEN_927; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_929 = 7'h61 == pht1WAddr ? pht_1_97 : _GEN_928; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_930 = 7'h62 == pht1WAddr ? pht_1_98 : _GEN_929; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_931 = 7'h63 == pht1WAddr ? pht_1_99 : _GEN_930; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_932 = 7'h64 == pht1WAddr ? pht_1_100 : _GEN_931; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_933 = 7'h65 == pht1WAddr ? pht_1_101 : _GEN_932; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_934 = 7'h66 == pht1WAddr ? pht_1_102 : _GEN_933; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_935 = 7'h67 == pht1WAddr ? pht_1_103 : _GEN_934; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_936 = 7'h68 == pht1WAddr ? pht_1_104 : _GEN_935; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_937 = 7'h69 == pht1WAddr ? pht_1_105 : _GEN_936; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_938 = 7'h6a == pht1WAddr ? pht_1_106 : _GEN_937; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_939 = 7'h6b == pht1WAddr ? pht_1_107 : _GEN_938; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_940 = 7'h6c == pht1WAddr ? pht_1_108 : _GEN_939; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_941 = 7'h6d == pht1WAddr ? pht_1_109 : _GEN_940; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_942 = 7'h6e == pht1WAddr ? pht_1_110 : _GEN_941; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_943 = 7'h6f == pht1WAddr ? pht_1_111 : _GEN_942; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_944 = 7'h70 == pht1WAddr ? pht_1_112 : _GEN_943; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_945 = 7'h71 == pht1WAddr ? pht_1_113 : _GEN_944; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_946 = 7'h72 == pht1WAddr ? pht_1_114 : _GEN_945; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_947 = 7'h73 == pht1WAddr ? pht_1_115 : _GEN_946; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_948 = 7'h74 == pht1WAddr ? pht_1_116 : _GEN_947; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_949 = 7'h75 == pht1WAddr ? pht_1_117 : _GEN_948; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_950 = 7'h76 == pht1WAddr ? pht_1_118 : _GEN_949; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_951 = 7'h77 == pht1WAddr ? pht_1_119 : _GEN_950; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_952 = 7'h78 == pht1WAddr ? pht_1_120 : _GEN_951; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_953 = 7'h79 == pht1WAddr ? pht_1_121 : _GEN_952; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_954 = 7'h7a == pht1WAddr ? pht_1_122 : _GEN_953; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_955 = 7'h7b == pht1WAddr ? pht_1_123 : _GEN_954; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_956 = 7'h7c == pht1WAddr ? pht_1_124 : _GEN_955; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_957 = 7'h7d == pht1WAddr ? pht_1_125 : _GEN_956; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_958 = 7'h7e == pht1WAddr ? pht_1_126 : _GEN_957; // @[bht.scala 192:{26,26}]
-  wire [1:0] _GEN_959 = 7'h7f == pht1WAddr ? pht_1_127 : _GEN_958; // @[bht.scala 192:{26,26}]
-  wire  p1Suc = _GEN_959[1] == io_exTakenPre; // @[bht.scala 192:39]
-  wire [1:0] _GEN_961 = 7'h1 == pht2WAddr ? pht_2_1 : pht_2_0; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_962 = 7'h2 == pht2WAddr ? pht_2_2 : _GEN_961; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_963 = 7'h3 == pht2WAddr ? pht_2_3 : _GEN_962; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_964 = 7'h4 == pht2WAddr ? pht_2_4 : _GEN_963; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_965 = 7'h5 == pht2WAddr ? pht_2_5 : _GEN_964; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_966 = 7'h6 == pht2WAddr ? pht_2_6 : _GEN_965; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_967 = 7'h7 == pht2WAddr ? pht_2_7 : _GEN_966; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_968 = 7'h8 == pht2WAddr ? pht_2_8 : _GEN_967; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_969 = 7'h9 == pht2WAddr ? pht_2_9 : _GEN_968; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_970 = 7'ha == pht2WAddr ? pht_2_10 : _GEN_969; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_971 = 7'hb == pht2WAddr ? pht_2_11 : _GEN_970; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_972 = 7'hc == pht2WAddr ? pht_2_12 : _GEN_971; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_973 = 7'hd == pht2WAddr ? pht_2_13 : _GEN_972; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_974 = 7'he == pht2WAddr ? pht_2_14 : _GEN_973; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_975 = 7'hf == pht2WAddr ? pht_2_15 : _GEN_974; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_976 = 7'h10 == pht2WAddr ? pht_2_16 : _GEN_975; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_977 = 7'h11 == pht2WAddr ? pht_2_17 : _GEN_976; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_978 = 7'h12 == pht2WAddr ? pht_2_18 : _GEN_977; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_979 = 7'h13 == pht2WAddr ? pht_2_19 : _GEN_978; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_980 = 7'h14 == pht2WAddr ? pht_2_20 : _GEN_979; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_981 = 7'h15 == pht2WAddr ? pht_2_21 : _GEN_980; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_982 = 7'h16 == pht2WAddr ? pht_2_22 : _GEN_981; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_983 = 7'h17 == pht2WAddr ? pht_2_23 : _GEN_982; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_984 = 7'h18 == pht2WAddr ? pht_2_24 : _GEN_983; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_985 = 7'h19 == pht2WAddr ? pht_2_25 : _GEN_984; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_986 = 7'h1a == pht2WAddr ? pht_2_26 : _GEN_985; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_987 = 7'h1b == pht2WAddr ? pht_2_27 : _GEN_986; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_988 = 7'h1c == pht2WAddr ? pht_2_28 : _GEN_987; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_989 = 7'h1d == pht2WAddr ? pht_2_29 : _GEN_988; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_990 = 7'h1e == pht2WAddr ? pht_2_30 : _GEN_989; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_991 = 7'h1f == pht2WAddr ? pht_2_31 : _GEN_990; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_992 = 7'h20 == pht2WAddr ? pht_2_32 : _GEN_991; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_993 = 7'h21 == pht2WAddr ? pht_2_33 : _GEN_992; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_994 = 7'h22 == pht2WAddr ? pht_2_34 : _GEN_993; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_995 = 7'h23 == pht2WAddr ? pht_2_35 : _GEN_994; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_996 = 7'h24 == pht2WAddr ? pht_2_36 : _GEN_995; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_997 = 7'h25 == pht2WAddr ? pht_2_37 : _GEN_996; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_998 = 7'h26 == pht2WAddr ? pht_2_38 : _GEN_997; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_999 = 7'h27 == pht2WAddr ? pht_2_39 : _GEN_998; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1000 = 7'h28 == pht2WAddr ? pht_2_40 : _GEN_999; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1001 = 7'h29 == pht2WAddr ? pht_2_41 : _GEN_1000; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1002 = 7'h2a == pht2WAddr ? pht_2_42 : _GEN_1001; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1003 = 7'h2b == pht2WAddr ? pht_2_43 : _GEN_1002; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1004 = 7'h2c == pht2WAddr ? pht_2_44 : _GEN_1003; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1005 = 7'h2d == pht2WAddr ? pht_2_45 : _GEN_1004; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1006 = 7'h2e == pht2WAddr ? pht_2_46 : _GEN_1005; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1007 = 7'h2f == pht2WAddr ? pht_2_47 : _GEN_1006; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1008 = 7'h30 == pht2WAddr ? pht_2_48 : _GEN_1007; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1009 = 7'h31 == pht2WAddr ? pht_2_49 : _GEN_1008; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1010 = 7'h32 == pht2WAddr ? pht_2_50 : _GEN_1009; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1011 = 7'h33 == pht2WAddr ? pht_2_51 : _GEN_1010; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1012 = 7'h34 == pht2WAddr ? pht_2_52 : _GEN_1011; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1013 = 7'h35 == pht2WAddr ? pht_2_53 : _GEN_1012; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1014 = 7'h36 == pht2WAddr ? pht_2_54 : _GEN_1013; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1015 = 7'h37 == pht2WAddr ? pht_2_55 : _GEN_1014; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1016 = 7'h38 == pht2WAddr ? pht_2_56 : _GEN_1015; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1017 = 7'h39 == pht2WAddr ? pht_2_57 : _GEN_1016; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1018 = 7'h3a == pht2WAddr ? pht_2_58 : _GEN_1017; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1019 = 7'h3b == pht2WAddr ? pht_2_59 : _GEN_1018; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1020 = 7'h3c == pht2WAddr ? pht_2_60 : _GEN_1019; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1021 = 7'h3d == pht2WAddr ? pht_2_61 : _GEN_1020; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1022 = 7'h3e == pht2WAddr ? pht_2_62 : _GEN_1021; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1023 = 7'h3f == pht2WAddr ? pht_2_63 : _GEN_1022; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1024 = 7'h40 == pht2WAddr ? pht_2_64 : _GEN_1023; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1025 = 7'h41 == pht2WAddr ? pht_2_65 : _GEN_1024; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1026 = 7'h42 == pht2WAddr ? pht_2_66 : _GEN_1025; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1027 = 7'h43 == pht2WAddr ? pht_2_67 : _GEN_1026; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1028 = 7'h44 == pht2WAddr ? pht_2_68 : _GEN_1027; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1029 = 7'h45 == pht2WAddr ? pht_2_69 : _GEN_1028; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1030 = 7'h46 == pht2WAddr ? pht_2_70 : _GEN_1029; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1031 = 7'h47 == pht2WAddr ? pht_2_71 : _GEN_1030; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1032 = 7'h48 == pht2WAddr ? pht_2_72 : _GEN_1031; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1033 = 7'h49 == pht2WAddr ? pht_2_73 : _GEN_1032; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1034 = 7'h4a == pht2WAddr ? pht_2_74 : _GEN_1033; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1035 = 7'h4b == pht2WAddr ? pht_2_75 : _GEN_1034; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1036 = 7'h4c == pht2WAddr ? pht_2_76 : _GEN_1035; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1037 = 7'h4d == pht2WAddr ? pht_2_77 : _GEN_1036; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1038 = 7'h4e == pht2WAddr ? pht_2_78 : _GEN_1037; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1039 = 7'h4f == pht2WAddr ? pht_2_79 : _GEN_1038; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1040 = 7'h50 == pht2WAddr ? pht_2_80 : _GEN_1039; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1041 = 7'h51 == pht2WAddr ? pht_2_81 : _GEN_1040; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1042 = 7'h52 == pht2WAddr ? pht_2_82 : _GEN_1041; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1043 = 7'h53 == pht2WAddr ? pht_2_83 : _GEN_1042; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1044 = 7'h54 == pht2WAddr ? pht_2_84 : _GEN_1043; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1045 = 7'h55 == pht2WAddr ? pht_2_85 : _GEN_1044; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1046 = 7'h56 == pht2WAddr ? pht_2_86 : _GEN_1045; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1047 = 7'h57 == pht2WAddr ? pht_2_87 : _GEN_1046; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1048 = 7'h58 == pht2WAddr ? pht_2_88 : _GEN_1047; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1049 = 7'h59 == pht2WAddr ? pht_2_89 : _GEN_1048; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1050 = 7'h5a == pht2WAddr ? pht_2_90 : _GEN_1049; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1051 = 7'h5b == pht2WAddr ? pht_2_91 : _GEN_1050; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1052 = 7'h5c == pht2WAddr ? pht_2_92 : _GEN_1051; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1053 = 7'h5d == pht2WAddr ? pht_2_93 : _GEN_1052; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1054 = 7'h5e == pht2WAddr ? pht_2_94 : _GEN_1053; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1055 = 7'h5f == pht2WAddr ? pht_2_95 : _GEN_1054; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1056 = 7'h60 == pht2WAddr ? pht_2_96 : _GEN_1055; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1057 = 7'h61 == pht2WAddr ? pht_2_97 : _GEN_1056; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1058 = 7'h62 == pht2WAddr ? pht_2_98 : _GEN_1057; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1059 = 7'h63 == pht2WAddr ? pht_2_99 : _GEN_1058; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1060 = 7'h64 == pht2WAddr ? pht_2_100 : _GEN_1059; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1061 = 7'h65 == pht2WAddr ? pht_2_101 : _GEN_1060; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1062 = 7'h66 == pht2WAddr ? pht_2_102 : _GEN_1061; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1063 = 7'h67 == pht2WAddr ? pht_2_103 : _GEN_1062; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1064 = 7'h68 == pht2WAddr ? pht_2_104 : _GEN_1063; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1065 = 7'h69 == pht2WAddr ? pht_2_105 : _GEN_1064; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1066 = 7'h6a == pht2WAddr ? pht_2_106 : _GEN_1065; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1067 = 7'h6b == pht2WAddr ? pht_2_107 : _GEN_1066; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1068 = 7'h6c == pht2WAddr ? pht_2_108 : _GEN_1067; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1069 = 7'h6d == pht2WAddr ? pht_2_109 : _GEN_1068; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1070 = 7'h6e == pht2WAddr ? pht_2_110 : _GEN_1069; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1071 = 7'h6f == pht2WAddr ? pht_2_111 : _GEN_1070; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1072 = 7'h70 == pht2WAddr ? pht_2_112 : _GEN_1071; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1073 = 7'h71 == pht2WAddr ? pht_2_113 : _GEN_1072; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1074 = 7'h72 == pht2WAddr ? pht_2_114 : _GEN_1073; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1075 = 7'h73 == pht2WAddr ? pht_2_115 : _GEN_1074; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1076 = 7'h74 == pht2WAddr ? pht_2_116 : _GEN_1075; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1077 = 7'h75 == pht2WAddr ? pht_2_117 : _GEN_1076; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1078 = 7'h76 == pht2WAddr ? pht_2_118 : _GEN_1077; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1079 = 7'h77 == pht2WAddr ? pht_2_119 : _GEN_1078; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1080 = 7'h78 == pht2WAddr ? pht_2_120 : _GEN_1079; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1081 = 7'h79 == pht2WAddr ? pht_2_121 : _GEN_1080; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1082 = 7'h7a == pht2WAddr ? pht_2_122 : _GEN_1081; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1083 = 7'h7b == pht2WAddr ? pht_2_123 : _GEN_1082; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1084 = 7'h7c == pht2WAddr ? pht_2_124 : _GEN_1083; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1085 = 7'h7d == pht2WAddr ? pht_2_125 : _GEN_1084; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1086 = 7'h7e == pht2WAddr ? pht_2_126 : _GEN_1085; // @[bht.scala 193:{26,26}]
-  wire [1:0] _GEN_1087 = 7'h7f == pht2WAddr ? pht_2_127 : _GEN_1086; // @[bht.scala 193:{26,26}]
-  wire  p2Suc = _GEN_1087[1] == io_exTakenPre; // @[bht.scala 193:39]
-  wire [1:0] pht0Choice = {p1Suc,p2Suc}; // @[bht.scala 194:28]
-  wire  _T = io_fire & io_takenValid; // @[bht.scala 197:18]
-  wire  _pht_0_T = pht0Choice == 2'h1; // @[bht.scala 199:35]
-  wire  _pht_0_T_3 = pht0Choice == 2'h2; // @[bht.scala 201:38]
-  wire  _pht_0_T_4 = pht0Choice == 2'h2 ? 1'h0 : 1'h1; // @[bht.scala 201:26]
-  wire [1:0] _pht_0_T_5 = _pht_0_T ? 2'h2 : {{1'd0}, _pht_0_T_4}; // @[bht.scala 200:23]
-  wire [1:0] _pht_0_T_8 = _pht_0_T ? 2'h3 : 2'h2; // @[bht.scala 203:26]
-  wire [1:0] _pht_0_T_9 = _pht_0_T_3 ? 2'h1 : _pht_0_T_8; // @[bht.scala 202:23]
-  wire [1:0] _pht_0_T_11 = _pht_0_T_3 ? 2'h2 : 2'h3; // @[bht.scala 204:23]
-  wire [1:0] _GEN_1089 = 7'h1 == pht1WAddr ? pht_0_1 : pht_0_0; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1090 = 7'h2 == pht1WAddr ? pht_0_2 : _GEN_1089; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1091 = 7'h3 == pht1WAddr ? pht_0_3 : _GEN_1090; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1092 = 7'h4 == pht1WAddr ? pht_0_4 : _GEN_1091; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1093 = 7'h5 == pht1WAddr ? pht_0_5 : _GEN_1092; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1094 = 7'h6 == pht1WAddr ? pht_0_6 : _GEN_1093; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1095 = 7'h7 == pht1WAddr ? pht_0_7 : _GEN_1094; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1096 = 7'h8 == pht1WAddr ? pht_0_8 : _GEN_1095; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1097 = 7'h9 == pht1WAddr ? pht_0_9 : _GEN_1096; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1098 = 7'ha == pht1WAddr ? pht_0_10 : _GEN_1097; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1099 = 7'hb == pht1WAddr ? pht_0_11 : _GEN_1098; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1100 = 7'hc == pht1WAddr ? pht_0_12 : _GEN_1099; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1101 = 7'hd == pht1WAddr ? pht_0_13 : _GEN_1100; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1102 = 7'he == pht1WAddr ? pht_0_14 : _GEN_1101; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1103 = 7'hf == pht1WAddr ? pht_0_15 : _GEN_1102; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1104 = 7'h10 == pht1WAddr ? pht_0_16 : _GEN_1103; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1105 = 7'h11 == pht1WAddr ? pht_0_17 : _GEN_1104; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1106 = 7'h12 == pht1WAddr ? pht_0_18 : _GEN_1105; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1107 = 7'h13 == pht1WAddr ? pht_0_19 : _GEN_1106; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1108 = 7'h14 == pht1WAddr ? pht_0_20 : _GEN_1107; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1109 = 7'h15 == pht1WAddr ? pht_0_21 : _GEN_1108; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1110 = 7'h16 == pht1WAddr ? pht_0_22 : _GEN_1109; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1111 = 7'h17 == pht1WAddr ? pht_0_23 : _GEN_1110; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1112 = 7'h18 == pht1WAddr ? pht_0_24 : _GEN_1111; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1113 = 7'h19 == pht1WAddr ? pht_0_25 : _GEN_1112; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1114 = 7'h1a == pht1WAddr ? pht_0_26 : _GEN_1113; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1115 = 7'h1b == pht1WAddr ? pht_0_27 : _GEN_1114; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1116 = 7'h1c == pht1WAddr ? pht_0_28 : _GEN_1115; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1117 = 7'h1d == pht1WAddr ? pht_0_29 : _GEN_1116; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1118 = 7'h1e == pht1WAddr ? pht_0_30 : _GEN_1117; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1119 = 7'h1f == pht1WAddr ? pht_0_31 : _GEN_1118; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1120 = 7'h20 == pht1WAddr ? pht_0_32 : _GEN_1119; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1121 = 7'h21 == pht1WAddr ? pht_0_33 : _GEN_1120; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1122 = 7'h22 == pht1WAddr ? pht_0_34 : _GEN_1121; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1123 = 7'h23 == pht1WAddr ? pht_0_35 : _GEN_1122; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1124 = 7'h24 == pht1WAddr ? pht_0_36 : _GEN_1123; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1125 = 7'h25 == pht1WAddr ? pht_0_37 : _GEN_1124; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1126 = 7'h26 == pht1WAddr ? pht_0_38 : _GEN_1125; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1127 = 7'h27 == pht1WAddr ? pht_0_39 : _GEN_1126; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1128 = 7'h28 == pht1WAddr ? pht_0_40 : _GEN_1127; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1129 = 7'h29 == pht1WAddr ? pht_0_41 : _GEN_1128; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1130 = 7'h2a == pht1WAddr ? pht_0_42 : _GEN_1129; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1131 = 7'h2b == pht1WAddr ? pht_0_43 : _GEN_1130; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1132 = 7'h2c == pht1WAddr ? pht_0_44 : _GEN_1131; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1133 = 7'h2d == pht1WAddr ? pht_0_45 : _GEN_1132; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1134 = 7'h2e == pht1WAddr ? pht_0_46 : _GEN_1133; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1135 = 7'h2f == pht1WAddr ? pht_0_47 : _GEN_1134; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1136 = 7'h30 == pht1WAddr ? pht_0_48 : _GEN_1135; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1137 = 7'h31 == pht1WAddr ? pht_0_49 : _GEN_1136; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1138 = 7'h32 == pht1WAddr ? pht_0_50 : _GEN_1137; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1139 = 7'h33 == pht1WAddr ? pht_0_51 : _GEN_1138; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1140 = 7'h34 == pht1WAddr ? pht_0_52 : _GEN_1139; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1141 = 7'h35 == pht1WAddr ? pht_0_53 : _GEN_1140; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1142 = 7'h36 == pht1WAddr ? pht_0_54 : _GEN_1141; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1143 = 7'h37 == pht1WAddr ? pht_0_55 : _GEN_1142; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1144 = 7'h38 == pht1WAddr ? pht_0_56 : _GEN_1143; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1145 = 7'h39 == pht1WAddr ? pht_0_57 : _GEN_1144; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1146 = 7'h3a == pht1WAddr ? pht_0_58 : _GEN_1145; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1147 = 7'h3b == pht1WAddr ? pht_0_59 : _GEN_1146; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1148 = 7'h3c == pht1WAddr ? pht_0_60 : _GEN_1147; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1149 = 7'h3d == pht1WAddr ? pht_0_61 : _GEN_1148; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1150 = 7'h3e == pht1WAddr ? pht_0_62 : _GEN_1149; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1151 = 7'h3f == pht1WAddr ? pht_0_63 : _GEN_1150; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1152 = 7'h40 == pht1WAddr ? pht_0_64 : _GEN_1151; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1153 = 7'h41 == pht1WAddr ? pht_0_65 : _GEN_1152; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1154 = 7'h42 == pht1WAddr ? pht_0_66 : _GEN_1153; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1155 = 7'h43 == pht1WAddr ? pht_0_67 : _GEN_1154; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1156 = 7'h44 == pht1WAddr ? pht_0_68 : _GEN_1155; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1157 = 7'h45 == pht1WAddr ? pht_0_69 : _GEN_1156; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1158 = 7'h46 == pht1WAddr ? pht_0_70 : _GEN_1157; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1159 = 7'h47 == pht1WAddr ? pht_0_71 : _GEN_1158; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1160 = 7'h48 == pht1WAddr ? pht_0_72 : _GEN_1159; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1161 = 7'h49 == pht1WAddr ? pht_0_73 : _GEN_1160; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1162 = 7'h4a == pht1WAddr ? pht_0_74 : _GEN_1161; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1163 = 7'h4b == pht1WAddr ? pht_0_75 : _GEN_1162; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1164 = 7'h4c == pht1WAddr ? pht_0_76 : _GEN_1163; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1165 = 7'h4d == pht1WAddr ? pht_0_77 : _GEN_1164; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1166 = 7'h4e == pht1WAddr ? pht_0_78 : _GEN_1165; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1167 = 7'h4f == pht1WAddr ? pht_0_79 : _GEN_1166; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1168 = 7'h50 == pht1WAddr ? pht_0_80 : _GEN_1167; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1169 = 7'h51 == pht1WAddr ? pht_0_81 : _GEN_1168; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1170 = 7'h52 == pht1WAddr ? pht_0_82 : _GEN_1169; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1171 = 7'h53 == pht1WAddr ? pht_0_83 : _GEN_1170; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1172 = 7'h54 == pht1WAddr ? pht_0_84 : _GEN_1171; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1173 = 7'h55 == pht1WAddr ? pht_0_85 : _GEN_1172; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1174 = 7'h56 == pht1WAddr ? pht_0_86 : _GEN_1173; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1175 = 7'h57 == pht1WAddr ? pht_0_87 : _GEN_1174; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1176 = 7'h58 == pht1WAddr ? pht_0_88 : _GEN_1175; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1177 = 7'h59 == pht1WAddr ? pht_0_89 : _GEN_1176; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1178 = 7'h5a == pht1WAddr ? pht_0_90 : _GEN_1177; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1179 = 7'h5b == pht1WAddr ? pht_0_91 : _GEN_1178; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1180 = 7'h5c == pht1WAddr ? pht_0_92 : _GEN_1179; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1181 = 7'h5d == pht1WAddr ? pht_0_93 : _GEN_1180; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1182 = 7'h5e == pht1WAddr ? pht_0_94 : _GEN_1181; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1183 = 7'h5f == pht1WAddr ? pht_0_95 : _GEN_1182; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1184 = 7'h60 == pht1WAddr ? pht_0_96 : _GEN_1183; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1185 = 7'h61 == pht1WAddr ? pht_0_97 : _GEN_1184; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1186 = 7'h62 == pht1WAddr ? pht_0_98 : _GEN_1185; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1187 = 7'h63 == pht1WAddr ? pht_0_99 : _GEN_1186; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1188 = 7'h64 == pht1WAddr ? pht_0_100 : _GEN_1187; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1189 = 7'h65 == pht1WAddr ? pht_0_101 : _GEN_1188; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1190 = 7'h66 == pht1WAddr ? pht_0_102 : _GEN_1189; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1191 = 7'h67 == pht1WAddr ? pht_0_103 : _GEN_1190; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1192 = 7'h68 == pht1WAddr ? pht_0_104 : _GEN_1191; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1193 = 7'h69 == pht1WAddr ? pht_0_105 : _GEN_1192; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1194 = 7'h6a == pht1WAddr ? pht_0_106 : _GEN_1193; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1195 = 7'h6b == pht1WAddr ? pht_0_107 : _GEN_1194; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1196 = 7'h6c == pht1WAddr ? pht_0_108 : _GEN_1195; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1197 = 7'h6d == pht1WAddr ? pht_0_109 : _GEN_1196; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1198 = 7'h6e == pht1WAddr ? pht_0_110 : _GEN_1197; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1199 = 7'h6f == pht1WAddr ? pht_0_111 : _GEN_1198; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1200 = 7'h70 == pht1WAddr ? pht_0_112 : _GEN_1199; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1201 = 7'h71 == pht1WAddr ? pht_0_113 : _GEN_1200; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1202 = 7'h72 == pht1WAddr ? pht_0_114 : _GEN_1201; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1203 = 7'h73 == pht1WAddr ? pht_0_115 : _GEN_1202; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1204 = 7'h74 == pht1WAddr ? pht_0_116 : _GEN_1203; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1205 = 7'h75 == pht1WAddr ? pht_0_117 : _GEN_1204; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1206 = 7'h76 == pht1WAddr ? pht_0_118 : _GEN_1205; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1207 = 7'h77 == pht1WAddr ? pht_0_119 : _GEN_1206; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1208 = 7'h78 == pht1WAddr ? pht_0_120 : _GEN_1207; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1209 = 7'h79 == pht1WAddr ? pht_0_121 : _GEN_1208; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1210 = 7'h7a == pht1WAddr ? pht_0_122 : _GEN_1209; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1211 = 7'h7b == pht1WAddr ? pht_0_123 : _GEN_1210; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1212 = 7'h7c == pht1WAddr ? pht_0_124 : _GEN_1211; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1213 = 7'h7d == pht1WAddr ? pht_0_125 : _GEN_1212; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1214 = 7'h7e == pht1WAddr ? pht_0_126 : _GEN_1213; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _GEN_1215 = 7'h7f == pht1WAddr ? pht_0_127 : _GEN_1214; // @[Mux.scala 81:{61,61}]
-  wire [1:0] _pht_0_T_13 = 2'h1 == _GEN_1215 ? _pht_0_T_5 : {{1'd0}, _pht_0_T}; // @[Mux.scala 81:58]
-  wire [1:0] _pht_0_T_15 = 2'h2 == _GEN_1215 ? _pht_0_T_9 : _pht_0_T_13; // @[Mux.scala 81:58]
-  wire [1:0] _pht_1_T_1 = io_takenMiss ? 2'h2 : 2'h0; // @[bht.scala 210:23]
-  wire [1:0] _pht_1_T_2 = io_takenMiss ? 2'h1 : 2'h3; // @[bht.scala 211:23]
-  wire [1:0] _pht_1_T_3 = io_takenMiss ? 2'h2 : 2'h3; // @[bht.scala 212:23]
-  wire [1:0] _pht_1_T_5 = 2'h1 == _GEN_959 ? _pht_1_T_1 : {{1'd0}, io_takenMiss}; // @[Mux.scala 81:58]
-  wire [1:0] _pht_1_T_7 = 2'h2 == _GEN_959 ? _pht_1_T_2 : _pht_1_T_5; // @[Mux.scala 81:58]
-  wire [1:0] _pht_2_T_5 = 2'h1 == _GEN_1087 ? _pht_1_T_1 : {{1'd0}, io_takenMiss}; // @[Mux.scala 81:58]
-  wire [1:0] _pht_2_T_7 = 2'h2 == _GEN_1087 ? _pht_1_T_2 : _pht_2_T_5; // @[Mux.scala 81:58]
-  wire [6:0] _bht_T_1 = {_GEN_831[5:0],io_exTakenPre}; // @[bht.scala 225:49]
-  wire [6:0] _ghr_T_1 = {ghr[5:0],io_exTakenPre}; // @[bht.scala 226:33]
-  wire [5:0] upIndex = io_takenPC[9:4]; // @[bht.scala 230:27]
-  wire  _GEN_2241 = 6'h0 == upIndex | btbV_0; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2242 = 6'h1 == upIndex | btbV_1; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2243 = 6'h2 == upIndex | btbV_2; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2244 = 6'h3 == upIndex | btbV_3; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2245 = 6'h4 == upIndex | btbV_4; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2246 = 6'h5 == upIndex | btbV_5; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2247 = 6'h6 == upIndex | btbV_6; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2248 = 6'h7 == upIndex | btbV_7; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2249 = 6'h8 == upIndex | btbV_8; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2250 = 6'h9 == upIndex | btbV_9; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2251 = 6'ha == upIndex | btbV_10; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2252 = 6'hb == upIndex | btbV_11; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2253 = 6'hc == upIndex | btbV_12; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2254 = 6'hd == upIndex | btbV_13; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2255 = 6'he == upIndex | btbV_14; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2256 = 6'hf == upIndex | btbV_15; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2257 = 6'h10 == upIndex | btbV_16; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2258 = 6'h11 == upIndex | btbV_17; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2259 = 6'h12 == upIndex | btbV_18; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2260 = 6'h13 == upIndex | btbV_19; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2261 = 6'h14 == upIndex | btbV_20; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2262 = 6'h15 == upIndex | btbV_21; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2263 = 6'h16 == upIndex | btbV_22; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2264 = 6'h17 == upIndex | btbV_23; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2265 = 6'h18 == upIndex | btbV_24; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2266 = 6'h19 == upIndex | btbV_25; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2267 = 6'h1a == upIndex | btbV_26; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2268 = 6'h1b == upIndex | btbV_27; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2269 = 6'h1c == upIndex | btbV_28; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2270 = 6'h1d == upIndex | btbV_29; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2271 = 6'h1e == upIndex | btbV_30; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2272 = 6'h1f == upIndex | btbV_31; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2273 = 6'h20 == upIndex | btbV_32; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2274 = 6'h21 == upIndex | btbV_33; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2275 = 6'h22 == upIndex | btbV_34; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2276 = 6'h23 == upIndex | btbV_35; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2277 = 6'h24 == upIndex | btbV_36; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2278 = 6'h25 == upIndex | btbV_37; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2279 = 6'h26 == upIndex | btbV_38; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2280 = 6'h27 == upIndex | btbV_39; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2281 = 6'h28 == upIndex | btbV_40; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2282 = 6'h29 == upIndex | btbV_41; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2283 = 6'h2a == upIndex | btbV_42; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2284 = 6'h2b == upIndex | btbV_43; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2285 = 6'h2c == upIndex | btbV_44; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2286 = 6'h2d == upIndex | btbV_45; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2287 = 6'h2e == upIndex | btbV_46; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2288 = 6'h2f == upIndex | btbV_47; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2289 = 6'h30 == upIndex | btbV_48; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2290 = 6'h31 == upIndex | btbV_49; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2291 = 6'h32 == upIndex | btbV_50; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2292 = 6'h33 == upIndex | btbV_51; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2293 = 6'h34 == upIndex | btbV_52; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2294 = 6'h35 == upIndex | btbV_53; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2295 = 6'h36 == upIndex | btbV_54; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2296 = 6'h37 == upIndex | btbV_55; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2297 = 6'h38 == upIndex | btbV_56; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2298 = 6'h39 == upIndex | btbV_57; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2299 = 6'h3a == upIndex | btbV_58; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2300 = 6'h3b == upIndex | btbV_59; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2301 = 6'h3c == upIndex | btbV_60; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2302 = 6'h3d == upIndex | btbV_61; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2303 = 6'h3e == upIndex | btbV_62; // @[bht.scala 235:{19,19} 145:23]
-  wire  _GEN_2304 = 6'h3f == upIndex | btbV_63; // @[bht.scala 235:{19,19} 145:23]
-  wire  btbTag_hash0 = io_takenPC[2] ^ (io_takenPC[8] ^ io_takenPC[13]); // @[bht.scala 121:27]
-  wire  btbTag_hash1 = io_takenPC[8] ^ io_takenPC[9] ^ io_takenPC[3]; // @[bht.scala 122:39]
-  wire  btbTag_hash2 = io_takenPC[4] ^ (io_takenPC[10] ^ io_takenPC[9]); // @[bht.scala 123:27]
-  wire  btbTag_hash3 = io_takenPC[5] ^ (io_takenPC[11] ^ io_takenPC[10]); // @[bht.scala 124:27]
-  wire  btbTag_hash4 = io_takenPC[6] ^ (io_takenPC[12] ^ io_takenPC[11]); // @[bht.scala 125:27]
-  wire  btbTag_hash5 = io_takenPC[7] ^ (io_takenPC[13] ^ io_takenPC[12]); // @[bht.scala 126:27]
-  wire [5:0] _btbTag_T_5 = {btbTag_hash5,btbTag_hash4,btbTag_hash3,btbTag_hash2,btbTag_hash1,btbTag_hash0}; // @[bht.scala 127:49]
+  wire [63:0] _io_takenPrePC_T_2 = op1 + io_imm; // @[bht.scala 173:47]
+  wire [31:0] _GEN_385 = 6'h1 == reqIndex ? btbMeta_1 : btbMeta_0; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_386 = 6'h2 == reqIndex ? btbMeta_2 : _GEN_385; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_387 = 6'h3 == reqIndex ? btbMeta_3 : _GEN_386; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_388 = 6'h4 == reqIndex ? btbMeta_4 : _GEN_387; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_389 = 6'h5 == reqIndex ? btbMeta_5 : _GEN_388; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_390 = 6'h6 == reqIndex ? btbMeta_6 : _GEN_389; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_391 = 6'h7 == reqIndex ? btbMeta_7 : _GEN_390; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_392 = 6'h8 == reqIndex ? btbMeta_8 : _GEN_391; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_393 = 6'h9 == reqIndex ? btbMeta_9 : _GEN_392; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_394 = 6'ha == reqIndex ? btbMeta_10 : _GEN_393; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_395 = 6'hb == reqIndex ? btbMeta_11 : _GEN_394; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_396 = 6'hc == reqIndex ? btbMeta_12 : _GEN_395; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_397 = 6'hd == reqIndex ? btbMeta_13 : _GEN_396; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_398 = 6'he == reqIndex ? btbMeta_14 : _GEN_397; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_399 = 6'hf == reqIndex ? btbMeta_15 : _GEN_398; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_400 = 6'h10 == reqIndex ? btbMeta_16 : _GEN_399; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_401 = 6'h11 == reqIndex ? btbMeta_17 : _GEN_400; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_402 = 6'h12 == reqIndex ? btbMeta_18 : _GEN_401; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_403 = 6'h13 == reqIndex ? btbMeta_19 : _GEN_402; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_404 = 6'h14 == reqIndex ? btbMeta_20 : _GEN_403; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_405 = 6'h15 == reqIndex ? btbMeta_21 : _GEN_404; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_406 = 6'h16 == reqIndex ? btbMeta_22 : _GEN_405; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_407 = 6'h17 == reqIndex ? btbMeta_23 : _GEN_406; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_408 = 6'h18 == reqIndex ? btbMeta_24 : _GEN_407; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_409 = 6'h19 == reqIndex ? btbMeta_25 : _GEN_408; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_410 = 6'h1a == reqIndex ? btbMeta_26 : _GEN_409; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_411 = 6'h1b == reqIndex ? btbMeta_27 : _GEN_410; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_412 = 6'h1c == reqIndex ? btbMeta_28 : _GEN_411; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_413 = 6'h1d == reqIndex ? btbMeta_29 : _GEN_412; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_414 = 6'h1e == reqIndex ? btbMeta_30 : _GEN_413; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_415 = 6'h1f == reqIndex ? btbMeta_31 : _GEN_414; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_416 = 6'h20 == reqIndex ? btbMeta_32 : _GEN_415; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_417 = 6'h21 == reqIndex ? btbMeta_33 : _GEN_416; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_418 = 6'h22 == reqIndex ? btbMeta_34 : _GEN_417; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_419 = 6'h23 == reqIndex ? btbMeta_35 : _GEN_418; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_420 = 6'h24 == reqIndex ? btbMeta_36 : _GEN_419; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_421 = 6'h25 == reqIndex ? btbMeta_37 : _GEN_420; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_422 = 6'h26 == reqIndex ? btbMeta_38 : _GEN_421; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_423 = 6'h27 == reqIndex ? btbMeta_39 : _GEN_422; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_424 = 6'h28 == reqIndex ? btbMeta_40 : _GEN_423; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_425 = 6'h29 == reqIndex ? btbMeta_41 : _GEN_424; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_426 = 6'h2a == reqIndex ? btbMeta_42 : _GEN_425; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_427 = 6'h2b == reqIndex ? btbMeta_43 : _GEN_426; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_428 = 6'h2c == reqIndex ? btbMeta_44 : _GEN_427; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_429 = 6'h2d == reqIndex ? btbMeta_45 : _GEN_428; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_430 = 6'h2e == reqIndex ? btbMeta_46 : _GEN_429; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_431 = 6'h2f == reqIndex ? btbMeta_47 : _GEN_430; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_432 = 6'h30 == reqIndex ? btbMeta_48 : _GEN_431; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_433 = 6'h31 == reqIndex ? btbMeta_49 : _GEN_432; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_434 = 6'h32 == reqIndex ? btbMeta_50 : _GEN_433; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_435 = 6'h33 == reqIndex ? btbMeta_51 : _GEN_434; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_436 = 6'h34 == reqIndex ? btbMeta_52 : _GEN_435; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_437 = 6'h35 == reqIndex ? btbMeta_53 : _GEN_436; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_438 = 6'h36 == reqIndex ? btbMeta_54 : _GEN_437; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_439 = 6'h37 == reqIndex ? btbMeta_55 : _GEN_438; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_440 = 6'h38 == reqIndex ? btbMeta_56 : _GEN_439; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_441 = 6'h39 == reqIndex ? btbMeta_57 : _GEN_440; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_442 = 6'h3a == reqIndex ? btbMeta_58 : _GEN_441; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_443 = 6'h3b == reqIndex ? btbMeta_59 : _GEN_442; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_444 = 6'h3c == reqIndex ? btbMeta_60 : _GEN_443; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_445 = 6'h3d == reqIndex ? btbMeta_61 : _GEN_444; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_446 = 6'h3e == reqIndex ? btbMeta_62 : _GEN_445; // @[bht.scala 173:{26,26}]
+  wire [31:0] _GEN_447 = 6'h3f == reqIndex ? btbMeta_63 : _GEN_446; // @[bht.scala 173:{26,26}]
+  wire [63:0] _io_takenPrePC_T_3 = btbHit ? {{32'd0}, _GEN_447} : _io_takenPrePC_T_2; // @[bht.scala 173:26]
+  wire [63:0] _io_takenPrePC_T_4 = io_valid & io_takenPre ? _io_takenPrePC_T_3 : 64'h0; // @[bht.scala 172:25]
+  reg  io_ready_REG; // @[bht.scala 175:48]
+  wire  bhtWAddr_hash0 = io_takenPC[2] ^ (io_takenPC[8] ^ io_takenPC[12]); // @[bht.scala 111:27]
+  wire  bhtWAddr_hash1 = io_takenPC[8] ^ io_takenPC[9] ^ (io_takenPC[3] ^ io_takenPC[13]); // @[bht.scala 112:39]
+  wire  bhtWAddr_hash2 = io_takenPC[4] ^ (io_takenPC[10] ^ io_takenPC[9]); // @[bht.scala 113:27]
+  wire  bhtWAddr_hash3 = io_takenPC[5] ^ (io_takenPC[11] ^ io_takenPC[10]); // @[bht.scala 114:27]
+  wire  bhtWAddr_hash4 = io_takenPC[6] ^ (io_takenPC[12] ^ io_takenPC[11]); // @[bht.scala 115:27]
+  wire  bhtWAddr_hash5 = io_takenPC[7] ^ (io_takenPC[13] ^ io_takenPC[12]); // @[bht.scala 116:27]
+  wire [5:0] bhtWAddr = {bhtWAddr_hash5,bhtWAddr_hash4,bhtWAddr_hash3,bhtWAddr_hash2,bhtWAddr_hash1,bhtWAddr_hash0}; // @[bht.scala 117:49]
+  wire  pht1WAddr_hash0 = io_takenPC[2] ^ (io_takenPC[8] ^ io_takenPC[12]); // @[bht.scala 111:27]
+  wire  pht1WAddr_hash1 = io_takenPC[8] ^ io_takenPC[9] ^ (io_takenPC[3] ^ io_takenPC[13]); // @[bht.scala 112:39]
+  wire  pht1WAddr_hash2 = io_takenPC[4] ^ (io_takenPC[10] ^ io_takenPC[9]); // @[bht.scala 113:27]
+  wire  pht1WAddr_hash3 = io_takenPC[5] ^ (io_takenPC[11] ^ io_takenPC[10]); // @[bht.scala 114:27]
+  wire  pht1WAddr_hash4 = io_takenPC[6] ^ (io_takenPC[12] ^ io_takenPC[11]); // @[bht.scala 115:27]
+  wire  pht1WAddr_hash5 = io_takenPC[7] ^ (io_takenPC[13] ^ io_takenPC[12]); // @[bht.scala 116:27]
+  wire [5:0] _pht1WAddr_T_5 = {pht1WAddr_hash5,pht1WAddr_hash4,pht1WAddr_hash3,pht1WAddr_hash2,pht1WAddr_hash1,
+    pht1WAddr_hash0}; // @[bht.scala 117:49]
+  wire [5:0] pht1WAddr = _pht1WAddr_T_5 ^ ghr; // @[bht.scala 134:78]
+  wire [5:0] _GEN_449 = 6'h1 == bhtWAddr ? bht_1 : bht_0; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_450 = 6'h2 == bhtWAddr ? bht_2 : _GEN_449; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_451 = 6'h3 == bhtWAddr ? bht_3 : _GEN_450; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_452 = 6'h4 == bhtWAddr ? bht_4 : _GEN_451; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_453 = 6'h5 == bhtWAddr ? bht_5 : _GEN_452; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_454 = 6'h6 == bhtWAddr ? bht_6 : _GEN_453; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_455 = 6'h7 == bhtWAddr ? bht_7 : _GEN_454; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_456 = 6'h8 == bhtWAddr ? bht_8 : _GEN_455; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_457 = 6'h9 == bhtWAddr ? bht_9 : _GEN_456; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_458 = 6'ha == bhtWAddr ? bht_10 : _GEN_457; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_459 = 6'hb == bhtWAddr ? bht_11 : _GEN_458; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_460 = 6'hc == bhtWAddr ? bht_12 : _GEN_459; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_461 = 6'hd == bhtWAddr ? bht_13 : _GEN_460; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_462 = 6'he == bhtWAddr ? bht_14 : _GEN_461; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_463 = 6'hf == bhtWAddr ? bht_15 : _GEN_462; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_464 = 6'h10 == bhtWAddr ? bht_16 : _GEN_463; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_465 = 6'h11 == bhtWAddr ? bht_17 : _GEN_464; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_466 = 6'h12 == bhtWAddr ? bht_18 : _GEN_465; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_467 = 6'h13 == bhtWAddr ? bht_19 : _GEN_466; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_468 = 6'h14 == bhtWAddr ? bht_20 : _GEN_467; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_469 = 6'h15 == bhtWAddr ? bht_21 : _GEN_468; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_470 = 6'h16 == bhtWAddr ? bht_22 : _GEN_469; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_471 = 6'h17 == bhtWAddr ? bht_23 : _GEN_470; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_472 = 6'h18 == bhtWAddr ? bht_24 : _GEN_471; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_473 = 6'h19 == bhtWAddr ? bht_25 : _GEN_472; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_474 = 6'h1a == bhtWAddr ? bht_26 : _GEN_473; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_475 = 6'h1b == bhtWAddr ? bht_27 : _GEN_474; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_476 = 6'h1c == bhtWAddr ? bht_28 : _GEN_475; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_477 = 6'h1d == bhtWAddr ? bht_29 : _GEN_476; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_478 = 6'h1e == bhtWAddr ? bht_30 : _GEN_477; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_479 = 6'h1f == bhtWAddr ? bht_31 : _GEN_478; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_480 = 6'h20 == bhtWAddr ? bht_32 : _GEN_479; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_481 = 6'h21 == bhtWAddr ? bht_33 : _GEN_480; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_482 = 6'h22 == bhtWAddr ? bht_34 : _GEN_481; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_483 = 6'h23 == bhtWAddr ? bht_35 : _GEN_482; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_484 = 6'h24 == bhtWAddr ? bht_36 : _GEN_483; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_485 = 6'h25 == bhtWAddr ? bht_37 : _GEN_484; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_486 = 6'h26 == bhtWAddr ? bht_38 : _GEN_485; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_487 = 6'h27 == bhtWAddr ? bht_39 : _GEN_486; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_488 = 6'h28 == bhtWAddr ? bht_40 : _GEN_487; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_489 = 6'h29 == bhtWAddr ? bht_41 : _GEN_488; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_490 = 6'h2a == bhtWAddr ? bht_42 : _GEN_489; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_491 = 6'h2b == bhtWAddr ? bht_43 : _GEN_490; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_492 = 6'h2c == bhtWAddr ? bht_44 : _GEN_491; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_493 = 6'h2d == bhtWAddr ? bht_45 : _GEN_492; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_494 = 6'h2e == bhtWAddr ? bht_46 : _GEN_493; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_495 = 6'h2f == bhtWAddr ? bht_47 : _GEN_494; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_496 = 6'h30 == bhtWAddr ? bht_48 : _GEN_495; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_497 = 6'h31 == bhtWAddr ? bht_49 : _GEN_496; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_498 = 6'h32 == bhtWAddr ? bht_50 : _GEN_497; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_499 = 6'h33 == bhtWAddr ? bht_51 : _GEN_498; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_500 = 6'h34 == bhtWAddr ? bht_52 : _GEN_499; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_501 = 6'h35 == bhtWAddr ? bht_53 : _GEN_500; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_502 = 6'h36 == bhtWAddr ? bht_54 : _GEN_501; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_503 = 6'h37 == bhtWAddr ? bht_55 : _GEN_502; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_504 = 6'h38 == bhtWAddr ? bht_56 : _GEN_503; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_505 = 6'h39 == bhtWAddr ? bht_57 : _GEN_504; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_506 = 6'h3a == bhtWAddr ? bht_58 : _GEN_505; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_507 = 6'h3b == bhtWAddr ? bht_59 : _GEN_506; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_508 = 6'h3c == bhtWAddr ? bht_60 : _GEN_507; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_509 = 6'h3d == bhtWAddr ? bht_61 : _GEN_508; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_510 = 6'h3e == bhtWAddr ? bht_62 : _GEN_509; // @[bht.scala 134:{78,78}]
+  wire [5:0] _GEN_511 = 6'h3f == bhtWAddr ? bht_63 : _GEN_510; // @[bht.scala 134:{78,78}]
+  wire [5:0] pht2WAddr = _pht1WAddr_T_5 ^ _GEN_511; // @[bht.scala 134:78]
+  wire [1:0] _GEN_513 = 6'h1 == pht1WAddr ? pht_1_1 : pht_1_0; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_514 = 6'h2 == pht1WAddr ? pht_1_2 : _GEN_513; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_515 = 6'h3 == pht1WAddr ? pht_1_3 : _GEN_514; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_516 = 6'h4 == pht1WAddr ? pht_1_4 : _GEN_515; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_517 = 6'h5 == pht1WAddr ? pht_1_5 : _GEN_516; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_518 = 6'h6 == pht1WAddr ? pht_1_6 : _GEN_517; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_519 = 6'h7 == pht1WAddr ? pht_1_7 : _GEN_518; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_520 = 6'h8 == pht1WAddr ? pht_1_8 : _GEN_519; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_521 = 6'h9 == pht1WAddr ? pht_1_9 : _GEN_520; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_522 = 6'ha == pht1WAddr ? pht_1_10 : _GEN_521; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_523 = 6'hb == pht1WAddr ? pht_1_11 : _GEN_522; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_524 = 6'hc == pht1WAddr ? pht_1_12 : _GEN_523; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_525 = 6'hd == pht1WAddr ? pht_1_13 : _GEN_524; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_526 = 6'he == pht1WAddr ? pht_1_14 : _GEN_525; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_527 = 6'hf == pht1WAddr ? pht_1_15 : _GEN_526; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_528 = 6'h10 == pht1WAddr ? pht_1_16 : _GEN_527; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_529 = 6'h11 == pht1WAddr ? pht_1_17 : _GEN_528; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_530 = 6'h12 == pht1WAddr ? pht_1_18 : _GEN_529; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_531 = 6'h13 == pht1WAddr ? pht_1_19 : _GEN_530; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_532 = 6'h14 == pht1WAddr ? pht_1_20 : _GEN_531; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_533 = 6'h15 == pht1WAddr ? pht_1_21 : _GEN_532; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_534 = 6'h16 == pht1WAddr ? pht_1_22 : _GEN_533; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_535 = 6'h17 == pht1WAddr ? pht_1_23 : _GEN_534; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_536 = 6'h18 == pht1WAddr ? pht_1_24 : _GEN_535; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_537 = 6'h19 == pht1WAddr ? pht_1_25 : _GEN_536; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_538 = 6'h1a == pht1WAddr ? pht_1_26 : _GEN_537; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_539 = 6'h1b == pht1WAddr ? pht_1_27 : _GEN_538; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_540 = 6'h1c == pht1WAddr ? pht_1_28 : _GEN_539; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_541 = 6'h1d == pht1WAddr ? pht_1_29 : _GEN_540; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_542 = 6'h1e == pht1WAddr ? pht_1_30 : _GEN_541; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_543 = 6'h1f == pht1WAddr ? pht_1_31 : _GEN_542; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_544 = 6'h20 == pht1WAddr ? pht_1_32 : _GEN_543; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_545 = 6'h21 == pht1WAddr ? pht_1_33 : _GEN_544; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_546 = 6'h22 == pht1WAddr ? pht_1_34 : _GEN_545; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_547 = 6'h23 == pht1WAddr ? pht_1_35 : _GEN_546; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_548 = 6'h24 == pht1WAddr ? pht_1_36 : _GEN_547; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_549 = 6'h25 == pht1WAddr ? pht_1_37 : _GEN_548; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_550 = 6'h26 == pht1WAddr ? pht_1_38 : _GEN_549; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_551 = 6'h27 == pht1WAddr ? pht_1_39 : _GEN_550; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_552 = 6'h28 == pht1WAddr ? pht_1_40 : _GEN_551; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_553 = 6'h29 == pht1WAddr ? pht_1_41 : _GEN_552; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_554 = 6'h2a == pht1WAddr ? pht_1_42 : _GEN_553; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_555 = 6'h2b == pht1WAddr ? pht_1_43 : _GEN_554; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_556 = 6'h2c == pht1WAddr ? pht_1_44 : _GEN_555; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_557 = 6'h2d == pht1WAddr ? pht_1_45 : _GEN_556; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_558 = 6'h2e == pht1WAddr ? pht_1_46 : _GEN_557; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_559 = 6'h2f == pht1WAddr ? pht_1_47 : _GEN_558; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_560 = 6'h30 == pht1WAddr ? pht_1_48 : _GEN_559; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_561 = 6'h31 == pht1WAddr ? pht_1_49 : _GEN_560; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_562 = 6'h32 == pht1WAddr ? pht_1_50 : _GEN_561; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_563 = 6'h33 == pht1WAddr ? pht_1_51 : _GEN_562; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_564 = 6'h34 == pht1WAddr ? pht_1_52 : _GEN_563; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_565 = 6'h35 == pht1WAddr ? pht_1_53 : _GEN_564; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_566 = 6'h36 == pht1WAddr ? pht_1_54 : _GEN_565; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_567 = 6'h37 == pht1WAddr ? pht_1_55 : _GEN_566; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_568 = 6'h38 == pht1WAddr ? pht_1_56 : _GEN_567; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_569 = 6'h39 == pht1WAddr ? pht_1_57 : _GEN_568; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_570 = 6'h3a == pht1WAddr ? pht_1_58 : _GEN_569; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_571 = 6'h3b == pht1WAddr ? pht_1_59 : _GEN_570; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_572 = 6'h3c == pht1WAddr ? pht_1_60 : _GEN_571; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_573 = 6'h3d == pht1WAddr ? pht_1_61 : _GEN_572; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_574 = 6'h3e == pht1WAddr ? pht_1_62 : _GEN_573; // @[bht.scala 188:{26,26}]
+  wire [1:0] _GEN_575 = 6'h3f == pht1WAddr ? pht_1_63 : _GEN_574; // @[bht.scala 188:{26,26}]
+  wire  p1Suc = _GEN_575[1] == io_exTakenPre; // @[bht.scala 188:39]
+  wire [1:0] _GEN_577 = 6'h1 == pht2WAddr ? pht_2_1 : pht_2_0; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_578 = 6'h2 == pht2WAddr ? pht_2_2 : _GEN_577; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_579 = 6'h3 == pht2WAddr ? pht_2_3 : _GEN_578; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_580 = 6'h4 == pht2WAddr ? pht_2_4 : _GEN_579; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_581 = 6'h5 == pht2WAddr ? pht_2_5 : _GEN_580; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_582 = 6'h6 == pht2WAddr ? pht_2_6 : _GEN_581; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_583 = 6'h7 == pht2WAddr ? pht_2_7 : _GEN_582; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_584 = 6'h8 == pht2WAddr ? pht_2_8 : _GEN_583; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_585 = 6'h9 == pht2WAddr ? pht_2_9 : _GEN_584; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_586 = 6'ha == pht2WAddr ? pht_2_10 : _GEN_585; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_587 = 6'hb == pht2WAddr ? pht_2_11 : _GEN_586; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_588 = 6'hc == pht2WAddr ? pht_2_12 : _GEN_587; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_589 = 6'hd == pht2WAddr ? pht_2_13 : _GEN_588; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_590 = 6'he == pht2WAddr ? pht_2_14 : _GEN_589; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_591 = 6'hf == pht2WAddr ? pht_2_15 : _GEN_590; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_592 = 6'h10 == pht2WAddr ? pht_2_16 : _GEN_591; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_593 = 6'h11 == pht2WAddr ? pht_2_17 : _GEN_592; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_594 = 6'h12 == pht2WAddr ? pht_2_18 : _GEN_593; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_595 = 6'h13 == pht2WAddr ? pht_2_19 : _GEN_594; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_596 = 6'h14 == pht2WAddr ? pht_2_20 : _GEN_595; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_597 = 6'h15 == pht2WAddr ? pht_2_21 : _GEN_596; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_598 = 6'h16 == pht2WAddr ? pht_2_22 : _GEN_597; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_599 = 6'h17 == pht2WAddr ? pht_2_23 : _GEN_598; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_600 = 6'h18 == pht2WAddr ? pht_2_24 : _GEN_599; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_601 = 6'h19 == pht2WAddr ? pht_2_25 : _GEN_600; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_602 = 6'h1a == pht2WAddr ? pht_2_26 : _GEN_601; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_603 = 6'h1b == pht2WAddr ? pht_2_27 : _GEN_602; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_604 = 6'h1c == pht2WAddr ? pht_2_28 : _GEN_603; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_605 = 6'h1d == pht2WAddr ? pht_2_29 : _GEN_604; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_606 = 6'h1e == pht2WAddr ? pht_2_30 : _GEN_605; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_607 = 6'h1f == pht2WAddr ? pht_2_31 : _GEN_606; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_608 = 6'h20 == pht2WAddr ? pht_2_32 : _GEN_607; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_609 = 6'h21 == pht2WAddr ? pht_2_33 : _GEN_608; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_610 = 6'h22 == pht2WAddr ? pht_2_34 : _GEN_609; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_611 = 6'h23 == pht2WAddr ? pht_2_35 : _GEN_610; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_612 = 6'h24 == pht2WAddr ? pht_2_36 : _GEN_611; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_613 = 6'h25 == pht2WAddr ? pht_2_37 : _GEN_612; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_614 = 6'h26 == pht2WAddr ? pht_2_38 : _GEN_613; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_615 = 6'h27 == pht2WAddr ? pht_2_39 : _GEN_614; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_616 = 6'h28 == pht2WAddr ? pht_2_40 : _GEN_615; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_617 = 6'h29 == pht2WAddr ? pht_2_41 : _GEN_616; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_618 = 6'h2a == pht2WAddr ? pht_2_42 : _GEN_617; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_619 = 6'h2b == pht2WAddr ? pht_2_43 : _GEN_618; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_620 = 6'h2c == pht2WAddr ? pht_2_44 : _GEN_619; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_621 = 6'h2d == pht2WAddr ? pht_2_45 : _GEN_620; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_622 = 6'h2e == pht2WAddr ? pht_2_46 : _GEN_621; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_623 = 6'h2f == pht2WAddr ? pht_2_47 : _GEN_622; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_624 = 6'h30 == pht2WAddr ? pht_2_48 : _GEN_623; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_625 = 6'h31 == pht2WAddr ? pht_2_49 : _GEN_624; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_626 = 6'h32 == pht2WAddr ? pht_2_50 : _GEN_625; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_627 = 6'h33 == pht2WAddr ? pht_2_51 : _GEN_626; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_628 = 6'h34 == pht2WAddr ? pht_2_52 : _GEN_627; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_629 = 6'h35 == pht2WAddr ? pht_2_53 : _GEN_628; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_630 = 6'h36 == pht2WAddr ? pht_2_54 : _GEN_629; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_631 = 6'h37 == pht2WAddr ? pht_2_55 : _GEN_630; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_632 = 6'h38 == pht2WAddr ? pht_2_56 : _GEN_631; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_633 = 6'h39 == pht2WAddr ? pht_2_57 : _GEN_632; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_634 = 6'h3a == pht2WAddr ? pht_2_58 : _GEN_633; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_635 = 6'h3b == pht2WAddr ? pht_2_59 : _GEN_634; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_636 = 6'h3c == pht2WAddr ? pht_2_60 : _GEN_635; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_637 = 6'h3d == pht2WAddr ? pht_2_61 : _GEN_636; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_638 = 6'h3e == pht2WAddr ? pht_2_62 : _GEN_637; // @[bht.scala 189:{26,26}]
+  wire [1:0] _GEN_639 = 6'h3f == pht2WAddr ? pht_2_63 : _GEN_638; // @[bht.scala 189:{26,26}]
+  wire  p2Suc = _GEN_639[1] == io_exTakenPre; // @[bht.scala 189:39]
+  wire [1:0] pht0Choice = {p1Suc,p2Suc}; // @[bht.scala 190:28]
+  wire  _T = io_fire & io_takenValid; // @[bht.scala 193:18]
+  wire  _pht_0_T = pht0Choice == 2'h1; // @[bht.scala 195:35]
+  wire  _pht_0_T_3 = pht0Choice == 2'h2; // @[bht.scala 197:38]
+  wire  _pht_0_T_4 = pht0Choice == 2'h2 ? 1'h0 : 1'h1; // @[bht.scala 197:26]
+  wire [1:0] _pht_0_T_5 = _pht_0_T ? 2'h2 : {{1'd0}, _pht_0_T_4}; // @[bht.scala 196:23]
+  wire [1:0] _pht_0_T_8 = _pht_0_T ? 2'h3 : 2'h2; // @[bht.scala 199:26]
+  wire [1:0] _pht_0_T_9 = _pht_0_T_3 ? 2'h1 : _pht_0_T_8; // @[bht.scala 198:23]
+  wire [1:0] _pht_0_T_11 = _pht_0_T_3 ? 2'h2 : 2'h3; // @[bht.scala 200:23]
+  wire [1:0] _GEN_641 = 6'h1 == pht1WAddr ? pht_0_1 : pht_0_0; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_642 = 6'h2 == pht1WAddr ? pht_0_2 : _GEN_641; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_643 = 6'h3 == pht1WAddr ? pht_0_3 : _GEN_642; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_644 = 6'h4 == pht1WAddr ? pht_0_4 : _GEN_643; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_645 = 6'h5 == pht1WAddr ? pht_0_5 : _GEN_644; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_646 = 6'h6 == pht1WAddr ? pht_0_6 : _GEN_645; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_647 = 6'h7 == pht1WAddr ? pht_0_7 : _GEN_646; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_648 = 6'h8 == pht1WAddr ? pht_0_8 : _GEN_647; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_649 = 6'h9 == pht1WAddr ? pht_0_9 : _GEN_648; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_650 = 6'ha == pht1WAddr ? pht_0_10 : _GEN_649; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_651 = 6'hb == pht1WAddr ? pht_0_11 : _GEN_650; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_652 = 6'hc == pht1WAddr ? pht_0_12 : _GEN_651; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_653 = 6'hd == pht1WAddr ? pht_0_13 : _GEN_652; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_654 = 6'he == pht1WAddr ? pht_0_14 : _GEN_653; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_655 = 6'hf == pht1WAddr ? pht_0_15 : _GEN_654; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_656 = 6'h10 == pht1WAddr ? pht_0_16 : _GEN_655; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_657 = 6'h11 == pht1WAddr ? pht_0_17 : _GEN_656; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_658 = 6'h12 == pht1WAddr ? pht_0_18 : _GEN_657; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_659 = 6'h13 == pht1WAddr ? pht_0_19 : _GEN_658; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_660 = 6'h14 == pht1WAddr ? pht_0_20 : _GEN_659; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_661 = 6'h15 == pht1WAddr ? pht_0_21 : _GEN_660; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_662 = 6'h16 == pht1WAddr ? pht_0_22 : _GEN_661; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_663 = 6'h17 == pht1WAddr ? pht_0_23 : _GEN_662; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_664 = 6'h18 == pht1WAddr ? pht_0_24 : _GEN_663; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_665 = 6'h19 == pht1WAddr ? pht_0_25 : _GEN_664; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_666 = 6'h1a == pht1WAddr ? pht_0_26 : _GEN_665; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_667 = 6'h1b == pht1WAddr ? pht_0_27 : _GEN_666; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_668 = 6'h1c == pht1WAddr ? pht_0_28 : _GEN_667; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_669 = 6'h1d == pht1WAddr ? pht_0_29 : _GEN_668; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_670 = 6'h1e == pht1WAddr ? pht_0_30 : _GEN_669; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_671 = 6'h1f == pht1WAddr ? pht_0_31 : _GEN_670; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_672 = 6'h20 == pht1WAddr ? pht_0_32 : _GEN_671; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_673 = 6'h21 == pht1WAddr ? pht_0_33 : _GEN_672; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_674 = 6'h22 == pht1WAddr ? pht_0_34 : _GEN_673; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_675 = 6'h23 == pht1WAddr ? pht_0_35 : _GEN_674; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_676 = 6'h24 == pht1WAddr ? pht_0_36 : _GEN_675; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_677 = 6'h25 == pht1WAddr ? pht_0_37 : _GEN_676; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_678 = 6'h26 == pht1WAddr ? pht_0_38 : _GEN_677; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_679 = 6'h27 == pht1WAddr ? pht_0_39 : _GEN_678; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_680 = 6'h28 == pht1WAddr ? pht_0_40 : _GEN_679; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_681 = 6'h29 == pht1WAddr ? pht_0_41 : _GEN_680; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_682 = 6'h2a == pht1WAddr ? pht_0_42 : _GEN_681; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_683 = 6'h2b == pht1WAddr ? pht_0_43 : _GEN_682; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_684 = 6'h2c == pht1WAddr ? pht_0_44 : _GEN_683; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_685 = 6'h2d == pht1WAddr ? pht_0_45 : _GEN_684; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_686 = 6'h2e == pht1WAddr ? pht_0_46 : _GEN_685; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_687 = 6'h2f == pht1WAddr ? pht_0_47 : _GEN_686; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_688 = 6'h30 == pht1WAddr ? pht_0_48 : _GEN_687; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_689 = 6'h31 == pht1WAddr ? pht_0_49 : _GEN_688; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_690 = 6'h32 == pht1WAddr ? pht_0_50 : _GEN_689; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_691 = 6'h33 == pht1WAddr ? pht_0_51 : _GEN_690; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_692 = 6'h34 == pht1WAddr ? pht_0_52 : _GEN_691; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_693 = 6'h35 == pht1WAddr ? pht_0_53 : _GEN_692; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_694 = 6'h36 == pht1WAddr ? pht_0_54 : _GEN_693; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_695 = 6'h37 == pht1WAddr ? pht_0_55 : _GEN_694; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_696 = 6'h38 == pht1WAddr ? pht_0_56 : _GEN_695; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_697 = 6'h39 == pht1WAddr ? pht_0_57 : _GEN_696; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_698 = 6'h3a == pht1WAddr ? pht_0_58 : _GEN_697; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_699 = 6'h3b == pht1WAddr ? pht_0_59 : _GEN_698; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_700 = 6'h3c == pht1WAddr ? pht_0_60 : _GEN_699; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_701 = 6'h3d == pht1WAddr ? pht_0_61 : _GEN_700; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_702 = 6'h3e == pht1WAddr ? pht_0_62 : _GEN_701; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _GEN_703 = 6'h3f == pht1WAddr ? pht_0_63 : _GEN_702; // @[Mux.scala 81:{61,61}]
+  wire [1:0] _pht_0_T_13 = 2'h1 == _GEN_703 ? _pht_0_T_5 : {{1'd0}, _pht_0_T}; // @[Mux.scala 81:58]
+  wire [1:0] _pht_0_T_15 = 2'h2 == _GEN_703 ? _pht_0_T_9 : _pht_0_T_13; // @[Mux.scala 81:58]
+  wire [1:0] _pht_1_T_1 = io_takenMiss ? 2'h2 : 2'h0; // @[bht.scala 206:23]
+  wire [1:0] _pht_1_T_2 = io_takenMiss ? 2'h1 : 2'h3; // @[bht.scala 207:23]
+  wire [1:0] _pht_1_T_3 = io_takenMiss ? 2'h2 : 2'h3; // @[bht.scala 208:23]
+  wire [1:0] _pht_1_T_5 = 2'h1 == _GEN_575 ? _pht_1_T_1 : {{1'd0}, io_takenMiss}; // @[Mux.scala 81:58]
+  wire [1:0] _pht_1_T_7 = 2'h2 == _GEN_575 ? _pht_1_T_2 : _pht_1_T_5; // @[Mux.scala 81:58]
+  wire [1:0] _pht_2_T_5 = 2'h1 == _GEN_639 ? _pht_1_T_1 : {{1'd0}, io_takenMiss}; // @[Mux.scala 81:58]
+  wire [1:0] _pht_2_T_7 = 2'h2 == _GEN_639 ? _pht_1_T_2 : _pht_2_T_5; // @[Mux.scala 81:58]
+  wire [5:0] _bht_T_1 = {_GEN_511[4:0],io_exTakenPre}; // @[bht.scala 221:49]
+  wire [5:0] _ghr_T_1 = {ghr[4:0],io_exTakenPre}; // @[bht.scala 222:33]
+  wire [5:0] upIndex = io_takenPC[9:4]; // @[bht.scala 226:27]
+  wire  _GEN_1217 = 6'h0 == upIndex | btbV_0; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1218 = 6'h1 == upIndex | btbV_1; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1219 = 6'h2 == upIndex | btbV_2; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1220 = 6'h3 == upIndex | btbV_3; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1221 = 6'h4 == upIndex | btbV_4; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1222 = 6'h5 == upIndex | btbV_5; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1223 = 6'h6 == upIndex | btbV_6; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1224 = 6'h7 == upIndex | btbV_7; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1225 = 6'h8 == upIndex | btbV_8; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1226 = 6'h9 == upIndex | btbV_9; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1227 = 6'ha == upIndex | btbV_10; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1228 = 6'hb == upIndex | btbV_11; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1229 = 6'hc == upIndex | btbV_12; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1230 = 6'hd == upIndex | btbV_13; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1231 = 6'he == upIndex | btbV_14; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1232 = 6'hf == upIndex | btbV_15; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1233 = 6'h10 == upIndex | btbV_16; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1234 = 6'h11 == upIndex | btbV_17; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1235 = 6'h12 == upIndex | btbV_18; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1236 = 6'h13 == upIndex | btbV_19; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1237 = 6'h14 == upIndex | btbV_20; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1238 = 6'h15 == upIndex | btbV_21; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1239 = 6'h16 == upIndex | btbV_22; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1240 = 6'h17 == upIndex | btbV_23; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1241 = 6'h18 == upIndex | btbV_24; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1242 = 6'h19 == upIndex | btbV_25; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1243 = 6'h1a == upIndex | btbV_26; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1244 = 6'h1b == upIndex | btbV_27; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1245 = 6'h1c == upIndex | btbV_28; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1246 = 6'h1d == upIndex | btbV_29; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1247 = 6'h1e == upIndex | btbV_30; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1248 = 6'h1f == upIndex | btbV_31; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1249 = 6'h20 == upIndex | btbV_32; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1250 = 6'h21 == upIndex | btbV_33; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1251 = 6'h22 == upIndex | btbV_34; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1252 = 6'h23 == upIndex | btbV_35; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1253 = 6'h24 == upIndex | btbV_36; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1254 = 6'h25 == upIndex | btbV_37; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1255 = 6'h26 == upIndex | btbV_38; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1256 = 6'h27 == upIndex | btbV_39; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1257 = 6'h28 == upIndex | btbV_40; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1258 = 6'h29 == upIndex | btbV_41; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1259 = 6'h2a == upIndex | btbV_42; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1260 = 6'h2b == upIndex | btbV_43; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1261 = 6'h2c == upIndex | btbV_44; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1262 = 6'h2d == upIndex | btbV_45; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1263 = 6'h2e == upIndex | btbV_46; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1264 = 6'h2f == upIndex | btbV_47; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1265 = 6'h30 == upIndex | btbV_48; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1266 = 6'h31 == upIndex | btbV_49; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1267 = 6'h32 == upIndex | btbV_50; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1268 = 6'h33 == upIndex | btbV_51; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1269 = 6'h34 == upIndex | btbV_52; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1270 = 6'h35 == upIndex | btbV_53; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1271 = 6'h36 == upIndex | btbV_54; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1272 = 6'h37 == upIndex | btbV_55; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1273 = 6'h38 == upIndex | btbV_56; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1274 = 6'h39 == upIndex | btbV_57; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1275 = 6'h3a == upIndex | btbV_58; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1276 = 6'h3b == upIndex | btbV_59; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1277 = 6'h3c == upIndex | btbV_60; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1278 = 6'h3d == upIndex | btbV_61; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1279 = 6'h3e == upIndex | btbV_62; // @[bht.scala 231:{19,19} 145:23]
+  wire  _GEN_1280 = 6'h3f == upIndex | btbV_63; // @[bht.scala 231:{19,19} 145:23]
   assign io_takenPre = io_valid & _io_takenPre_T_4; // @[bht.scala 168:23]
-  assign io_takenPrePC = _io_takenPrePC_T_4[31:0]; // @[bht.scala 173:19]
-  assign io_ready = io_valid & io_bxx ? io_ready_REG : io_fire; // @[bht.scala 178:20]
+  assign io_takenPrePC = _io_takenPrePC_T_4[31:0]; // @[bht.scala 172:19]
+  assign io_ready = io_valid & io_bxx ? io_ready_REG : io_fire; // @[bht.scala 175:20]
   always @(posedge clock) begin
     if (reset) begin // @[bht.scala 140:22]
-      ghr <= 7'h0; // @[bht.scala 140:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      ghr <= _ghr_T_1; // @[bht.scala 226:11]
+      ghr <= 6'h0; // @[bht.scala 140:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      ghr <= _ghr_T_1; // @[bht.scala 222:11]
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_0 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h0 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_0 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_0 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h0 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_0 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_1 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h1 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_1 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_1 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h1 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_1 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_2 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h2 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_2 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_2 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h2 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_2 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_3 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h3 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_3 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_3 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h3 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_3 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_4 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h4 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_4 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_4 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h4 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_4 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_5 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h5 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_5 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_5 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h5 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_5 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_6 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h6 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_6 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_6 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h6 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_6 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_7 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h7 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_7 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_7 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h7 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_7 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_8 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h8 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_8 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_8 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h8 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_8 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_9 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h9 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_9 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_9 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h9 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_9 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_10 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'ha == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_10 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_10 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'ha == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_10 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_11 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'hb == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_11 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_11 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'hb == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_11 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_12 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'hc == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_12 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_12 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'hc == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_12 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_13 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'hd == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_13 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_13 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'hd == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_13 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_14 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'he == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_14 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_14 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'he == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_14 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_15 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'hf == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_15 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_15 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'hf == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_15 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_16 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h10 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_16 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_16 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h10 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_16 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_17 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h11 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_17 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_17 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h11 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_17 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_18 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h12 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_18 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_18 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h12 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_18 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_19 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h13 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_19 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_19 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h13 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_19 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_20 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h14 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_20 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_20 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h14 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_20 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_21 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h15 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_21 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_21 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h15 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_21 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_22 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h16 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_22 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_22 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h16 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_22 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_23 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h17 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_23 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_23 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h17 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_23 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_24 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h18 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_24 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_24 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h18 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_24 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_25 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h19 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_25 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_25 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h19 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_25 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_26 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h1a == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_26 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_26 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h1a == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_26 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_27 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h1b == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_27 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_27 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h1b == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_27 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_28 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h1c == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_28 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_28 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h1c == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_28 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_29 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h1d == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_29 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_29 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h1d == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_29 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_30 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h1e == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_30 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_30 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h1e == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_30 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_31 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h1f == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_31 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_31 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h1f == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_31 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_32 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h20 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_32 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_32 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h20 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_32 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_33 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h21 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_33 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_33 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h21 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_33 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_34 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h22 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_34 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_34 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h22 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_34 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_35 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h23 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_35 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_35 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h23 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_35 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_36 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h24 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_36 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_36 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h24 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_36 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_37 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h25 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_37 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_37 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h25 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_37 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_38 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h26 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_38 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_38 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h26 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_38 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_39 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h27 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_39 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_39 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h27 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_39 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_40 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h28 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_40 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_40 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h28 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_40 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_41 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h29 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_41 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_41 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h29 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_41 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_42 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h2a == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_42 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_42 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h2a == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_42 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_43 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h2b == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_43 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_43 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h2b == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_43 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_44 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h2c == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_44 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_44 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h2c == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_44 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_45 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h2d == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_45 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_45 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h2d == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_45 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_46 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h2e == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_46 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_46 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h2e == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_46 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_47 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h2f == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_47 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_47 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h2f == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_47 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_48 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h30 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_48 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_48 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h30 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_48 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_49 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h31 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_49 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_49 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h31 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_49 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_50 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h32 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_50 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_50 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h32 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_50 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_51 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h33 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_51 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_51 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h33 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_51 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_52 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h34 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_52 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_52 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h34 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_52 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_53 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h35 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_53 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_53 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h35 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_53 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_54 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h36 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_54 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_54 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h36 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_54 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_55 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h37 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_55 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_55 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h37 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_55 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_56 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h38 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_56 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_56 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h38 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_56 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_57 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h39 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_57 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_57 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h39 == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_57 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_58 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h3a == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_58 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_58 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h3a == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_58 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_59 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h3b == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_59 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_59 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h3b == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_59 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_60 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h3c == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_60 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_60 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h3c == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_60 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_61 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h3d == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_61 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_61 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h3d == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_61 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_62 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h3e == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_62 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_62 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h3e == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_62 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 141:22]
-      bht_63 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h3f == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_63 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_64 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h40 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_64 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_65 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h41 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_65 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_66 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h42 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_66 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_67 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h43 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_67 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_68 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h44 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_68 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_69 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h45 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_69 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_70 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h46 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_70 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_71 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h47 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_71 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_72 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h48 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_72 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_73 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h49 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_73 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_74 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h4a == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_74 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_75 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h4b == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_75 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_76 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h4c == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_76 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_77 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h4d == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_77 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_78 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h4e == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_78 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_79 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h4f == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_79 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_80 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h50 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_80 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_81 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h51 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_81 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_82 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h52 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_82 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_83 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h53 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_83 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_84 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h54 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_84 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_85 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h55 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_85 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_86 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h56 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_86 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_87 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h57 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_87 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_88 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h58 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_88 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_89 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h59 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_89 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_90 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h5a == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_90 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_91 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h5b == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_91 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_92 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h5c == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_92 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_93 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h5d == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_93 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_94 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h5e == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_94 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_95 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h5f == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_95 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_96 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h60 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_96 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_97 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h61 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_97 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_98 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h62 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_98 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_99 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h63 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_99 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_100 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h64 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_100 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_101 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h65 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_101 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_102 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h66 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_102 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_103 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h67 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_103 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_104 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h68 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_104 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_105 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h69 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_105 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_106 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h6a == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_106 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_107 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h6b == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_107 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_108 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h6c == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_108 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_109 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h6d == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_109 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_110 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h6e == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_110 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_111 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h6f == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_111 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_112 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h70 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_112 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_113 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h71 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_113 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_114 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h72 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_114 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_115 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h73 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_115 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_116 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h74 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_116 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_117 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h75 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_117 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_118 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h76 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_118 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_119 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h77 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_119 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_120 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h78 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_120 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_121 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h79 == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_121 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_122 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h7a == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_122 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_123 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h7b == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_123 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_124 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h7c == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_124 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_125 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h7d == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_125 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_126 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h7e == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_126 <= _bht_T_1; // @[bht.scala 225:21]
-      end
-    end
-    if (reset) begin // @[bht.scala 141:22]
-      bht_127 <= 7'h0; // @[bht.scala 141:22]
-    end else if (_T) begin // @[bht.scala 224:36]
-      if (7'h7f == bhtWAddr) begin // @[bht.scala 225:21]
-        bht_127 <= _bht_T_1; // @[bht.scala 225:21]
+      bht_63 <= 6'h0; // @[bht.scala 141:22]
+    end else if (_T) begin // @[bht.scala 220:36]
+      if (6'h3f == bhtWAddr) begin // @[bht.scala 221:21]
+        bht_63 <= _bht_T_1; // @[bht.scala 221:21]
       end
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_0 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h0 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h0 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_0 <= _pht_0_T_11;
         end else begin
           pht_0_0 <= _pht_0_T_15;
@@ -3768,9 +2292,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_1 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h1 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h1 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_1 <= _pht_0_T_11;
         end else begin
           pht_0_1 <= _pht_0_T_15;
@@ -3779,9 +2303,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_2 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h2 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h2 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_2 <= _pht_0_T_11;
         end else begin
           pht_0_2 <= _pht_0_T_15;
@@ -3790,9 +2314,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_3 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h3 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h3 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_3 <= _pht_0_T_11;
         end else begin
           pht_0_3 <= _pht_0_T_15;
@@ -3801,9 +2325,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_4 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h4 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h4 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_4 <= _pht_0_T_11;
         end else begin
           pht_0_4 <= _pht_0_T_15;
@@ -3812,9 +2336,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_5 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h5 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h5 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_5 <= _pht_0_T_11;
         end else begin
           pht_0_5 <= _pht_0_T_15;
@@ -3823,9 +2347,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_6 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h6 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h6 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_6 <= _pht_0_T_11;
         end else begin
           pht_0_6 <= _pht_0_T_15;
@@ -3834,9 +2358,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_7 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h7 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h7 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_7 <= _pht_0_T_11;
         end else begin
           pht_0_7 <= _pht_0_T_15;
@@ -3845,9 +2369,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_8 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h8 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h8 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_8 <= _pht_0_T_11;
         end else begin
           pht_0_8 <= _pht_0_T_15;
@@ -3856,9 +2380,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_9 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h9 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h9 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_9 <= _pht_0_T_11;
         end else begin
           pht_0_9 <= _pht_0_T_15;
@@ -3867,9 +2391,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_10 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'ha == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'ha == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_10 <= _pht_0_T_11;
         end else begin
           pht_0_10 <= _pht_0_T_15;
@@ -3878,9 +2402,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_11 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'hb == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'hb == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_11 <= _pht_0_T_11;
         end else begin
           pht_0_11 <= _pht_0_T_15;
@@ -3889,9 +2413,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_12 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'hc == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'hc == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_12 <= _pht_0_T_11;
         end else begin
           pht_0_12 <= _pht_0_T_15;
@@ -3900,9 +2424,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_13 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'hd == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'hd == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_13 <= _pht_0_T_11;
         end else begin
           pht_0_13 <= _pht_0_T_15;
@@ -3911,9 +2435,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_14 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'he == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'he == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_14 <= _pht_0_T_11;
         end else begin
           pht_0_14 <= _pht_0_T_15;
@@ -3922,9 +2446,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_15 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'hf == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'hf == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_15 <= _pht_0_T_11;
         end else begin
           pht_0_15 <= _pht_0_T_15;
@@ -3933,9 +2457,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_16 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h10 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h10 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_16 <= _pht_0_T_11;
         end else begin
           pht_0_16 <= _pht_0_T_15;
@@ -3944,9 +2468,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_17 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h11 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h11 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_17 <= _pht_0_T_11;
         end else begin
           pht_0_17 <= _pht_0_T_15;
@@ -3955,9 +2479,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_18 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h12 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h12 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_18 <= _pht_0_T_11;
         end else begin
           pht_0_18 <= _pht_0_T_15;
@@ -3966,9 +2490,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_19 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h13 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h13 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_19 <= _pht_0_T_11;
         end else begin
           pht_0_19 <= _pht_0_T_15;
@@ -3977,9 +2501,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_20 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h14 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h14 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_20 <= _pht_0_T_11;
         end else begin
           pht_0_20 <= _pht_0_T_15;
@@ -3988,9 +2512,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_21 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h15 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h15 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_21 <= _pht_0_T_11;
         end else begin
           pht_0_21 <= _pht_0_T_15;
@@ -3999,9 +2523,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_22 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h16 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h16 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_22 <= _pht_0_T_11;
         end else begin
           pht_0_22 <= _pht_0_T_15;
@@ -4010,9 +2534,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_23 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h17 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h17 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_23 <= _pht_0_T_11;
         end else begin
           pht_0_23 <= _pht_0_T_15;
@@ -4021,9 +2545,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_24 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h18 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h18 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_24 <= _pht_0_T_11;
         end else begin
           pht_0_24 <= _pht_0_T_15;
@@ -4032,9 +2556,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_25 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h19 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h19 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_25 <= _pht_0_T_11;
         end else begin
           pht_0_25 <= _pht_0_T_15;
@@ -4043,9 +2567,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_26 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h1a == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h1a == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_26 <= _pht_0_T_11;
         end else begin
           pht_0_26 <= _pht_0_T_15;
@@ -4054,9 +2578,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_27 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h1b == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h1b == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_27 <= _pht_0_T_11;
         end else begin
           pht_0_27 <= _pht_0_T_15;
@@ -4065,9 +2589,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_28 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h1c == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h1c == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_28 <= _pht_0_T_11;
         end else begin
           pht_0_28 <= _pht_0_T_15;
@@ -4076,9 +2600,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_29 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h1d == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h1d == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_29 <= _pht_0_T_11;
         end else begin
           pht_0_29 <= _pht_0_T_15;
@@ -4087,9 +2611,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_30 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h1e == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h1e == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_30 <= _pht_0_T_11;
         end else begin
           pht_0_30 <= _pht_0_T_15;
@@ -4098,9 +2622,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_31 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h1f == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h1f == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_31 <= _pht_0_T_11;
         end else begin
           pht_0_31 <= _pht_0_T_15;
@@ -4109,9 +2633,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_32 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h20 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h20 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_32 <= _pht_0_T_11;
         end else begin
           pht_0_32 <= _pht_0_T_15;
@@ -4120,9 +2644,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_33 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h21 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h21 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_33 <= _pht_0_T_11;
         end else begin
           pht_0_33 <= _pht_0_T_15;
@@ -4131,9 +2655,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_34 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h22 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h22 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_34 <= _pht_0_T_11;
         end else begin
           pht_0_34 <= _pht_0_T_15;
@@ -4142,9 +2666,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_35 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h23 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h23 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_35 <= _pht_0_T_11;
         end else begin
           pht_0_35 <= _pht_0_T_15;
@@ -4153,9 +2677,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_36 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h24 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h24 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_36 <= _pht_0_T_11;
         end else begin
           pht_0_36 <= _pht_0_T_15;
@@ -4164,9 +2688,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_37 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h25 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h25 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_37 <= _pht_0_T_11;
         end else begin
           pht_0_37 <= _pht_0_T_15;
@@ -4175,9 +2699,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_38 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h26 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h26 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_38 <= _pht_0_T_11;
         end else begin
           pht_0_38 <= _pht_0_T_15;
@@ -4186,9 +2710,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_39 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h27 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h27 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_39 <= _pht_0_T_11;
         end else begin
           pht_0_39 <= _pht_0_T_15;
@@ -4197,9 +2721,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_40 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h28 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h28 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_40 <= _pht_0_T_11;
         end else begin
           pht_0_40 <= _pht_0_T_15;
@@ -4208,9 +2732,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_41 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h29 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h29 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_41 <= _pht_0_T_11;
         end else begin
           pht_0_41 <= _pht_0_T_15;
@@ -4219,9 +2743,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_42 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h2a == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h2a == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_42 <= _pht_0_T_11;
         end else begin
           pht_0_42 <= _pht_0_T_15;
@@ -4230,9 +2754,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_43 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h2b == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h2b == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_43 <= _pht_0_T_11;
         end else begin
           pht_0_43 <= _pht_0_T_15;
@@ -4241,9 +2765,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_44 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h2c == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h2c == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_44 <= _pht_0_T_11;
         end else begin
           pht_0_44 <= _pht_0_T_15;
@@ -4252,9 +2776,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_45 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h2d == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h2d == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_45 <= _pht_0_T_11;
         end else begin
           pht_0_45 <= _pht_0_T_15;
@@ -4263,9 +2787,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_46 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h2e == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h2e == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_46 <= _pht_0_T_11;
         end else begin
           pht_0_46 <= _pht_0_T_15;
@@ -4274,9 +2798,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_47 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h2f == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h2f == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_47 <= _pht_0_T_11;
         end else begin
           pht_0_47 <= _pht_0_T_15;
@@ -4285,9 +2809,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_48 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h30 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h30 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_48 <= _pht_0_T_11;
         end else begin
           pht_0_48 <= _pht_0_T_15;
@@ -4296,9 +2820,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_49 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h31 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h31 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_49 <= _pht_0_T_11;
         end else begin
           pht_0_49 <= _pht_0_T_15;
@@ -4307,9 +2831,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_50 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h32 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h32 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_50 <= _pht_0_T_11;
         end else begin
           pht_0_50 <= _pht_0_T_15;
@@ -4318,9 +2842,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_51 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h33 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h33 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_51 <= _pht_0_T_11;
         end else begin
           pht_0_51 <= _pht_0_T_15;
@@ -4329,9 +2853,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_52 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h34 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h34 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_52 <= _pht_0_T_11;
         end else begin
           pht_0_52 <= _pht_0_T_15;
@@ -4340,9 +2864,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_53 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h35 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h35 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_53 <= _pht_0_T_11;
         end else begin
           pht_0_53 <= _pht_0_T_15;
@@ -4351,9 +2875,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_54 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h36 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h36 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_54 <= _pht_0_T_11;
         end else begin
           pht_0_54 <= _pht_0_T_15;
@@ -4362,9 +2886,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_55 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h37 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h37 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_55 <= _pht_0_T_11;
         end else begin
           pht_0_55 <= _pht_0_T_15;
@@ -4373,9 +2897,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_56 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h38 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h38 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_56 <= _pht_0_T_11;
         end else begin
           pht_0_56 <= _pht_0_T_15;
@@ -4384,9 +2908,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_57 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h39 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h39 == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_57 <= _pht_0_T_11;
         end else begin
           pht_0_57 <= _pht_0_T_15;
@@ -4395,9 +2919,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_58 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h3a == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h3a == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_58 <= _pht_0_T_11;
         end else begin
           pht_0_58 <= _pht_0_T_15;
@@ -4406,9 +2930,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_59 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h3b == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h3b == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_59 <= _pht_0_T_11;
         end else begin
           pht_0_59 <= _pht_0_T_15;
@@ -4417,9 +2941,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_60 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h3c == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h3c == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_60 <= _pht_0_T_11;
         end else begin
           pht_0_60 <= _pht_0_T_15;
@@ -4428,9 +2952,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_61 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h3d == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h3d == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_61 <= _pht_0_T_11;
         end else begin
           pht_0_61 <= _pht_0_T_15;
@@ -4439,9 +2963,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_62 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h3e == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h3e == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_62 <= _pht_0_T_11;
         end else begin
           pht_0_62 <= _pht_0_T_15;
@@ -4450,9 +2974,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_0_63 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h3f == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
+    end else if (io_fire & io_takenValid) begin // @[bht.scala 193:35]
+      if (6'h3f == pht1WAddr) begin // @[bht.scala 194:25]
+        if (2'h3 == _GEN_703) begin // @[Mux.scala 81:58]
           pht_0_63 <= _pht_0_T_11;
         end else begin
           pht_0_63 <= _pht_0_T_15;
@@ -4460,714 +2984,10 @@ module bht(
       end
     end
     if (reset) begin // @[bht.scala 142:22]
-      pht_0_64 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h40 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_64 <= _pht_0_T_11;
-        end else begin
-          pht_0_64 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_65 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h41 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_65 <= _pht_0_T_11;
-        end else begin
-          pht_0_65 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_66 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h42 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_66 <= _pht_0_T_11;
-        end else begin
-          pht_0_66 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_67 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h43 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_67 <= _pht_0_T_11;
-        end else begin
-          pht_0_67 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_68 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h44 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_68 <= _pht_0_T_11;
-        end else begin
-          pht_0_68 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_69 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h45 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_69 <= _pht_0_T_11;
-        end else begin
-          pht_0_69 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_70 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h46 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_70 <= _pht_0_T_11;
-        end else begin
-          pht_0_70 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_71 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h47 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_71 <= _pht_0_T_11;
-        end else begin
-          pht_0_71 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_72 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h48 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_72 <= _pht_0_T_11;
-        end else begin
-          pht_0_72 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_73 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h49 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_73 <= _pht_0_T_11;
-        end else begin
-          pht_0_73 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_74 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h4a == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_74 <= _pht_0_T_11;
-        end else begin
-          pht_0_74 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_75 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h4b == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_75 <= _pht_0_T_11;
-        end else begin
-          pht_0_75 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_76 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h4c == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_76 <= _pht_0_T_11;
-        end else begin
-          pht_0_76 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_77 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h4d == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_77 <= _pht_0_T_11;
-        end else begin
-          pht_0_77 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_78 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h4e == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_78 <= _pht_0_T_11;
-        end else begin
-          pht_0_78 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_79 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h4f == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_79 <= _pht_0_T_11;
-        end else begin
-          pht_0_79 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_80 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h50 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_80 <= _pht_0_T_11;
-        end else begin
-          pht_0_80 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_81 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h51 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_81 <= _pht_0_T_11;
-        end else begin
-          pht_0_81 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_82 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h52 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_82 <= _pht_0_T_11;
-        end else begin
-          pht_0_82 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_83 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h53 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_83 <= _pht_0_T_11;
-        end else begin
-          pht_0_83 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_84 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h54 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_84 <= _pht_0_T_11;
-        end else begin
-          pht_0_84 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_85 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h55 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_85 <= _pht_0_T_11;
-        end else begin
-          pht_0_85 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_86 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h56 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_86 <= _pht_0_T_11;
-        end else begin
-          pht_0_86 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_87 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h57 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_87 <= _pht_0_T_11;
-        end else begin
-          pht_0_87 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_88 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h58 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_88 <= _pht_0_T_11;
-        end else begin
-          pht_0_88 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_89 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h59 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_89 <= _pht_0_T_11;
-        end else begin
-          pht_0_89 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_90 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h5a == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_90 <= _pht_0_T_11;
-        end else begin
-          pht_0_90 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_91 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h5b == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_91 <= _pht_0_T_11;
-        end else begin
-          pht_0_91 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_92 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h5c == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_92 <= _pht_0_T_11;
-        end else begin
-          pht_0_92 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_93 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h5d == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_93 <= _pht_0_T_11;
-        end else begin
-          pht_0_93 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_94 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h5e == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_94 <= _pht_0_T_11;
-        end else begin
-          pht_0_94 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_95 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h5f == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_95 <= _pht_0_T_11;
-        end else begin
-          pht_0_95 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_96 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h60 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_96 <= _pht_0_T_11;
-        end else begin
-          pht_0_96 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_97 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h61 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_97 <= _pht_0_T_11;
-        end else begin
-          pht_0_97 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_98 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h62 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_98 <= _pht_0_T_11;
-        end else begin
-          pht_0_98 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_99 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h63 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_99 <= _pht_0_T_11;
-        end else begin
-          pht_0_99 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_100 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h64 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_100 <= _pht_0_T_11;
-        end else begin
-          pht_0_100 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_101 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h65 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_101 <= _pht_0_T_11;
-        end else begin
-          pht_0_101 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_102 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h66 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_102 <= _pht_0_T_11;
-        end else begin
-          pht_0_102 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_103 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h67 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_103 <= _pht_0_T_11;
-        end else begin
-          pht_0_103 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_104 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h68 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_104 <= _pht_0_T_11;
-        end else begin
-          pht_0_104 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_105 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h69 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_105 <= _pht_0_T_11;
-        end else begin
-          pht_0_105 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_106 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h6a == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_106 <= _pht_0_T_11;
-        end else begin
-          pht_0_106 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_107 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h6b == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_107 <= _pht_0_T_11;
-        end else begin
-          pht_0_107 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_108 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h6c == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_108 <= _pht_0_T_11;
-        end else begin
-          pht_0_108 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_109 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h6d == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_109 <= _pht_0_T_11;
-        end else begin
-          pht_0_109 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_110 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h6e == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_110 <= _pht_0_T_11;
-        end else begin
-          pht_0_110 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_111 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h6f == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_111 <= _pht_0_T_11;
-        end else begin
-          pht_0_111 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_112 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h70 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_112 <= _pht_0_T_11;
-        end else begin
-          pht_0_112 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_113 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h71 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_113 <= _pht_0_T_11;
-        end else begin
-          pht_0_113 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_114 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h72 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_114 <= _pht_0_T_11;
-        end else begin
-          pht_0_114 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_115 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h73 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_115 <= _pht_0_T_11;
-        end else begin
-          pht_0_115 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_116 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h74 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_116 <= _pht_0_T_11;
-        end else begin
-          pht_0_116 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_117 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h75 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_117 <= _pht_0_T_11;
-        end else begin
-          pht_0_117 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_118 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h76 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_118 <= _pht_0_T_11;
-        end else begin
-          pht_0_118 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_119 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h77 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_119 <= _pht_0_T_11;
-        end else begin
-          pht_0_119 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_120 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h78 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_120 <= _pht_0_T_11;
-        end else begin
-          pht_0_120 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_121 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h79 == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_121 <= _pht_0_T_11;
-        end else begin
-          pht_0_121 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_122 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h7a == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_122 <= _pht_0_T_11;
-        end else begin
-          pht_0_122 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_123 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h7b == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_123 <= _pht_0_T_11;
-        end else begin
-          pht_0_123 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_124 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h7c == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_124 <= _pht_0_T_11;
-        end else begin
-          pht_0_124 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_125 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h7d == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_125 <= _pht_0_T_11;
-        end else begin
-          pht_0_125 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_126 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h7e == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_126 <= _pht_0_T_11;
-        end else begin
-          pht_0_126 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_0_127 <= 2'h1; // @[bht.scala 142:22]
-    end else if (io_fire & io_takenValid) begin // @[bht.scala 197:35]
-      if (7'h7f == pht1WAddr) begin // @[bht.scala 198:25]
-        if (2'h3 == _GEN_1215) begin // @[Mux.scala 81:58]
-          pht_0_127 <= _pht_0_T_11;
-        end else begin
-          pht_0_127 <= _pht_0_T_15;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
       pht_1_0 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h0 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h0 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_0 <= _pht_1_T_3;
         end else begin
           pht_1_0 <= _pht_1_T_7;
@@ -5176,9 +2996,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_1 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h1 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h1 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_1 <= _pht_1_T_3;
         end else begin
           pht_1_1 <= _pht_1_T_7;
@@ -5187,9 +3007,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_2 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h2 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h2 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_2 <= _pht_1_T_3;
         end else begin
           pht_1_2 <= _pht_1_T_7;
@@ -5198,9 +3018,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_3 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h3 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h3 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_3 <= _pht_1_T_3;
         end else begin
           pht_1_3 <= _pht_1_T_7;
@@ -5209,9 +3029,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_4 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h4 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h4 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_4 <= _pht_1_T_3;
         end else begin
           pht_1_4 <= _pht_1_T_7;
@@ -5220,9 +3040,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_5 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h5 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h5 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_5 <= _pht_1_T_3;
         end else begin
           pht_1_5 <= _pht_1_T_7;
@@ -5231,9 +3051,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_6 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h6 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h6 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_6 <= _pht_1_T_3;
         end else begin
           pht_1_6 <= _pht_1_T_7;
@@ -5242,9 +3062,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_7 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h7 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h7 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_7 <= _pht_1_T_3;
         end else begin
           pht_1_7 <= _pht_1_T_7;
@@ -5253,9 +3073,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_8 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h8 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h8 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_8 <= _pht_1_T_3;
         end else begin
           pht_1_8 <= _pht_1_T_7;
@@ -5264,9 +3084,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_9 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h9 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h9 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_9 <= _pht_1_T_3;
         end else begin
           pht_1_9 <= _pht_1_T_7;
@@ -5275,9 +3095,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_10 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'ha == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'ha == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_10 <= _pht_1_T_3;
         end else begin
           pht_1_10 <= _pht_1_T_7;
@@ -5286,9 +3106,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_11 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'hb == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'hb == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_11 <= _pht_1_T_3;
         end else begin
           pht_1_11 <= _pht_1_T_7;
@@ -5297,9 +3117,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_12 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'hc == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'hc == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_12 <= _pht_1_T_3;
         end else begin
           pht_1_12 <= _pht_1_T_7;
@@ -5308,9 +3128,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_13 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'hd == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'hd == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_13 <= _pht_1_T_3;
         end else begin
           pht_1_13 <= _pht_1_T_7;
@@ -5319,9 +3139,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_14 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'he == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'he == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_14 <= _pht_1_T_3;
         end else begin
           pht_1_14 <= _pht_1_T_7;
@@ -5330,9 +3150,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_15 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'hf == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'hf == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_15 <= _pht_1_T_3;
         end else begin
           pht_1_15 <= _pht_1_T_7;
@@ -5341,9 +3161,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_16 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h10 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h10 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_16 <= _pht_1_T_3;
         end else begin
           pht_1_16 <= _pht_1_T_7;
@@ -5352,9 +3172,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_17 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h11 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h11 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_17 <= _pht_1_T_3;
         end else begin
           pht_1_17 <= _pht_1_T_7;
@@ -5363,9 +3183,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_18 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h12 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h12 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_18 <= _pht_1_T_3;
         end else begin
           pht_1_18 <= _pht_1_T_7;
@@ -5374,9 +3194,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_19 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h13 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h13 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_19 <= _pht_1_T_3;
         end else begin
           pht_1_19 <= _pht_1_T_7;
@@ -5385,9 +3205,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_20 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h14 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h14 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_20 <= _pht_1_T_3;
         end else begin
           pht_1_20 <= _pht_1_T_7;
@@ -5396,9 +3216,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_21 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h15 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h15 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_21 <= _pht_1_T_3;
         end else begin
           pht_1_21 <= _pht_1_T_7;
@@ -5407,9 +3227,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_22 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h16 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h16 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_22 <= _pht_1_T_3;
         end else begin
           pht_1_22 <= _pht_1_T_7;
@@ -5418,9 +3238,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_23 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h17 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h17 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_23 <= _pht_1_T_3;
         end else begin
           pht_1_23 <= _pht_1_T_7;
@@ -5429,9 +3249,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_24 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h18 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h18 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_24 <= _pht_1_T_3;
         end else begin
           pht_1_24 <= _pht_1_T_7;
@@ -5440,9 +3260,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_25 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h19 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h19 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_25 <= _pht_1_T_3;
         end else begin
           pht_1_25 <= _pht_1_T_7;
@@ -5451,9 +3271,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_26 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h1a == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h1a == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_26 <= _pht_1_T_3;
         end else begin
           pht_1_26 <= _pht_1_T_7;
@@ -5462,9 +3282,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_27 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h1b == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h1b == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_27 <= _pht_1_T_3;
         end else begin
           pht_1_27 <= _pht_1_T_7;
@@ -5473,9 +3293,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_28 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h1c == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h1c == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_28 <= _pht_1_T_3;
         end else begin
           pht_1_28 <= _pht_1_T_7;
@@ -5484,9 +3304,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_29 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h1d == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h1d == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_29 <= _pht_1_T_3;
         end else begin
           pht_1_29 <= _pht_1_T_7;
@@ -5495,9 +3315,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_30 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h1e == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h1e == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_30 <= _pht_1_T_3;
         end else begin
           pht_1_30 <= _pht_1_T_7;
@@ -5506,9 +3326,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_31 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h1f == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h1f == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_31 <= _pht_1_T_3;
         end else begin
           pht_1_31 <= _pht_1_T_7;
@@ -5517,9 +3337,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_32 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h20 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h20 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_32 <= _pht_1_T_3;
         end else begin
           pht_1_32 <= _pht_1_T_7;
@@ -5528,9 +3348,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_33 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h21 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h21 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_33 <= _pht_1_T_3;
         end else begin
           pht_1_33 <= _pht_1_T_7;
@@ -5539,9 +3359,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_34 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h22 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h22 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_34 <= _pht_1_T_3;
         end else begin
           pht_1_34 <= _pht_1_T_7;
@@ -5550,9 +3370,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_35 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h23 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h23 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_35 <= _pht_1_T_3;
         end else begin
           pht_1_35 <= _pht_1_T_7;
@@ -5561,9 +3381,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_36 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h24 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h24 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_36 <= _pht_1_T_3;
         end else begin
           pht_1_36 <= _pht_1_T_7;
@@ -5572,9 +3392,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_37 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h25 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h25 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_37 <= _pht_1_T_3;
         end else begin
           pht_1_37 <= _pht_1_T_7;
@@ -5583,9 +3403,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_38 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h26 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h26 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_38 <= _pht_1_T_3;
         end else begin
           pht_1_38 <= _pht_1_T_7;
@@ -5594,9 +3414,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_39 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h27 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h27 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_39 <= _pht_1_T_3;
         end else begin
           pht_1_39 <= _pht_1_T_7;
@@ -5605,9 +3425,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_40 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h28 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h28 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_40 <= _pht_1_T_3;
         end else begin
           pht_1_40 <= _pht_1_T_7;
@@ -5616,9 +3436,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_41 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h29 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h29 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_41 <= _pht_1_T_3;
         end else begin
           pht_1_41 <= _pht_1_T_7;
@@ -5627,9 +3447,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_42 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h2a == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h2a == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_42 <= _pht_1_T_3;
         end else begin
           pht_1_42 <= _pht_1_T_7;
@@ -5638,9 +3458,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_43 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h2b == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h2b == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_43 <= _pht_1_T_3;
         end else begin
           pht_1_43 <= _pht_1_T_7;
@@ -5649,9 +3469,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_44 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h2c == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h2c == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_44 <= _pht_1_T_3;
         end else begin
           pht_1_44 <= _pht_1_T_7;
@@ -5660,9 +3480,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_45 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h2d == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h2d == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_45 <= _pht_1_T_3;
         end else begin
           pht_1_45 <= _pht_1_T_7;
@@ -5671,9 +3491,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_46 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h2e == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h2e == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_46 <= _pht_1_T_3;
         end else begin
           pht_1_46 <= _pht_1_T_7;
@@ -5682,9 +3502,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_47 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h2f == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h2f == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_47 <= _pht_1_T_3;
         end else begin
           pht_1_47 <= _pht_1_T_7;
@@ -5693,9 +3513,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_48 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h30 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h30 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_48 <= _pht_1_T_3;
         end else begin
           pht_1_48 <= _pht_1_T_7;
@@ -5704,9 +3524,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_49 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h31 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h31 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_49 <= _pht_1_T_3;
         end else begin
           pht_1_49 <= _pht_1_T_7;
@@ -5715,9 +3535,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_50 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h32 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h32 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_50 <= _pht_1_T_3;
         end else begin
           pht_1_50 <= _pht_1_T_7;
@@ -5726,9 +3546,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_51 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h33 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h33 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_51 <= _pht_1_T_3;
         end else begin
           pht_1_51 <= _pht_1_T_7;
@@ -5737,9 +3557,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_52 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h34 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h34 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_52 <= _pht_1_T_3;
         end else begin
           pht_1_52 <= _pht_1_T_7;
@@ -5748,9 +3568,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_53 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h35 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h35 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_53 <= _pht_1_T_3;
         end else begin
           pht_1_53 <= _pht_1_T_7;
@@ -5759,9 +3579,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_54 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h36 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h36 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_54 <= _pht_1_T_3;
         end else begin
           pht_1_54 <= _pht_1_T_7;
@@ -5770,9 +3590,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_55 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h37 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h37 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_55 <= _pht_1_T_3;
         end else begin
           pht_1_55 <= _pht_1_T_7;
@@ -5781,9 +3601,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_56 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h38 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h38 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_56 <= _pht_1_T_3;
         end else begin
           pht_1_56 <= _pht_1_T_7;
@@ -5792,9 +3612,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_57 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h39 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h39 == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_57 <= _pht_1_T_3;
         end else begin
           pht_1_57 <= _pht_1_T_7;
@@ -5803,9 +3623,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_58 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h3a == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h3a == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_58 <= _pht_1_T_3;
         end else begin
           pht_1_58 <= _pht_1_T_7;
@@ -5814,9 +3634,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_59 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h3b == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h3b == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_59 <= _pht_1_T_3;
         end else begin
           pht_1_59 <= _pht_1_T_7;
@@ -5825,9 +3645,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_60 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h3c == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h3c == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_60 <= _pht_1_T_3;
         end else begin
           pht_1_60 <= _pht_1_T_7;
@@ -5836,9 +3656,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_61 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h3d == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h3d == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_61 <= _pht_1_T_3;
         end else begin
           pht_1_61 <= _pht_1_T_7;
@@ -5847,9 +3667,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_62 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h3e == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h3e == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_62 <= _pht_1_T_3;
         end else begin
           pht_1_62 <= _pht_1_T_7;
@@ -5858,9 +3678,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_1_63 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h3f == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 203:35]
+      if (6'h3f == pht1WAddr) begin // @[bht.scala 204:25]
+        if (2'h3 == _GEN_575) begin // @[Mux.scala 81:58]
           pht_1_63 <= _pht_1_T_3;
         end else begin
           pht_1_63 <= _pht_1_T_7;
@@ -5868,714 +3688,10 @@ module bht(
       end
     end
     if (reset) begin // @[bht.scala 142:22]
-      pht_1_64 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h40 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_64 <= _pht_1_T_3;
-        end else begin
-          pht_1_64 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_65 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h41 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_65 <= _pht_1_T_3;
-        end else begin
-          pht_1_65 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_66 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h42 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_66 <= _pht_1_T_3;
-        end else begin
-          pht_1_66 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_67 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h43 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_67 <= _pht_1_T_3;
-        end else begin
-          pht_1_67 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_68 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h44 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_68 <= _pht_1_T_3;
-        end else begin
-          pht_1_68 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_69 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h45 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_69 <= _pht_1_T_3;
-        end else begin
-          pht_1_69 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_70 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h46 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_70 <= _pht_1_T_3;
-        end else begin
-          pht_1_70 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_71 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h47 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_71 <= _pht_1_T_3;
-        end else begin
-          pht_1_71 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_72 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h48 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_72 <= _pht_1_T_3;
-        end else begin
-          pht_1_72 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_73 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h49 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_73 <= _pht_1_T_3;
-        end else begin
-          pht_1_73 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_74 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h4a == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_74 <= _pht_1_T_3;
-        end else begin
-          pht_1_74 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_75 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h4b == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_75 <= _pht_1_T_3;
-        end else begin
-          pht_1_75 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_76 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h4c == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_76 <= _pht_1_T_3;
-        end else begin
-          pht_1_76 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_77 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h4d == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_77 <= _pht_1_T_3;
-        end else begin
-          pht_1_77 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_78 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h4e == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_78 <= _pht_1_T_3;
-        end else begin
-          pht_1_78 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_79 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h4f == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_79 <= _pht_1_T_3;
-        end else begin
-          pht_1_79 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_80 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h50 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_80 <= _pht_1_T_3;
-        end else begin
-          pht_1_80 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_81 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h51 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_81 <= _pht_1_T_3;
-        end else begin
-          pht_1_81 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_82 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h52 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_82 <= _pht_1_T_3;
-        end else begin
-          pht_1_82 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_83 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h53 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_83 <= _pht_1_T_3;
-        end else begin
-          pht_1_83 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_84 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h54 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_84 <= _pht_1_T_3;
-        end else begin
-          pht_1_84 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_85 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h55 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_85 <= _pht_1_T_3;
-        end else begin
-          pht_1_85 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_86 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h56 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_86 <= _pht_1_T_3;
-        end else begin
-          pht_1_86 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_87 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h57 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_87 <= _pht_1_T_3;
-        end else begin
-          pht_1_87 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_88 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h58 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_88 <= _pht_1_T_3;
-        end else begin
-          pht_1_88 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_89 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h59 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_89 <= _pht_1_T_3;
-        end else begin
-          pht_1_89 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_90 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h5a == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_90 <= _pht_1_T_3;
-        end else begin
-          pht_1_90 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_91 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h5b == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_91 <= _pht_1_T_3;
-        end else begin
-          pht_1_91 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_92 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h5c == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_92 <= _pht_1_T_3;
-        end else begin
-          pht_1_92 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_93 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h5d == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_93 <= _pht_1_T_3;
-        end else begin
-          pht_1_93 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_94 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h5e == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_94 <= _pht_1_T_3;
-        end else begin
-          pht_1_94 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_95 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h5f == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_95 <= _pht_1_T_3;
-        end else begin
-          pht_1_95 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_96 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h60 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_96 <= _pht_1_T_3;
-        end else begin
-          pht_1_96 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_97 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h61 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_97 <= _pht_1_T_3;
-        end else begin
-          pht_1_97 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_98 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h62 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_98 <= _pht_1_T_3;
-        end else begin
-          pht_1_98 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_99 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h63 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_99 <= _pht_1_T_3;
-        end else begin
-          pht_1_99 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_100 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h64 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_100 <= _pht_1_T_3;
-        end else begin
-          pht_1_100 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_101 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h65 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_101 <= _pht_1_T_3;
-        end else begin
-          pht_1_101 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_102 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h66 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_102 <= _pht_1_T_3;
-        end else begin
-          pht_1_102 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_103 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h67 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_103 <= _pht_1_T_3;
-        end else begin
-          pht_1_103 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_104 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h68 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_104 <= _pht_1_T_3;
-        end else begin
-          pht_1_104 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_105 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h69 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_105 <= _pht_1_T_3;
-        end else begin
-          pht_1_105 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_106 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h6a == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_106 <= _pht_1_T_3;
-        end else begin
-          pht_1_106 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_107 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h6b == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_107 <= _pht_1_T_3;
-        end else begin
-          pht_1_107 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_108 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h6c == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_108 <= _pht_1_T_3;
-        end else begin
-          pht_1_108 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_109 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h6d == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_109 <= _pht_1_T_3;
-        end else begin
-          pht_1_109 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_110 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h6e == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_110 <= _pht_1_T_3;
-        end else begin
-          pht_1_110 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_111 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h6f == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_111 <= _pht_1_T_3;
-        end else begin
-          pht_1_111 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_112 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h70 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_112 <= _pht_1_T_3;
-        end else begin
-          pht_1_112 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_113 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h71 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_113 <= _pht_1_T_3;
-        end else begin
-          pht_1_113 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_114 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h72 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_114 <= _pht_1_T_3;
-        end else begin
-          pht_1_114 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_115 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h73 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_115 <= _pht_1_T_3;
-        end else begin
-          pht_1_115 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_116 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h74 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_116 <= _pht_1_T_3;
-        end else begin
-          pht_1_116 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_117 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h75 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_117 <= _pht_1_T_3;
-        end else begin
-          pht_1_117 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_118 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h76 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_118 <= _pht_1_T_3;
-        end else begin
-          pht_1_118 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_119 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h77 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_119 <= _pht_1_T_3;
-        end else begin
-          pht_1_119 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_120 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h78 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_120 <= _pht_1_T_3;
-        end else begin
-          pht_1_120 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_121 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h79 == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_121 <= _pht_1_T_3;
-        end else begin
-          pht_1_121 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_122 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h7a == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_122 <= _pht_1_T_3;
-        end else begin
-          pht_1_122 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_123 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h7b == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_123 <= _pht_1_T_3;
-        end else begin
-          pht_1_123 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_124 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h7c == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_124 <= _pht_1_T_3;
-        end else begin
-          pht_1_124 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_125 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h7d == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_125 <= _pht_1_T_3;
-        end else begin
-          pht_1_125 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_126 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h7e == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_126 <= _pht_1_T_3;
-        end else begin
-          pht_1_126 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_1_127 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 207:35]
-      if (7'h7f == pht1WAddr) begin // @[bht.scala 208:25]
-        if (2'h3 == _GEN_959) begin // @[Mux.scala 81:58]
-          pht_1_127 <= _pht_1_T_3;
-        end else begin
-          pht_1_127 <= _pht_1_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
       pht_2_0 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h0 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h0 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_0 <= _pht_1_T_3;
         end else begin
           pht_2_0 <= _pht_2_T_7;
@@ -6584,9 +3700,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_1 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h1 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h1 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_1 <= _pht_1_T_3;
         end else begin
           pht_2_1 <= _pht_2_T_7;
@@ -6595,9 +3711,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_2 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h2 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h2 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_2 <= _pht_1_T_3;
         end else begin
           pht_2_2 <= _pht_2_T_7;
@@ -6606,9 +3722,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_3 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h3 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h3 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_3 <= _pht_1_T_3;
         end else begin
           pht_2_3 <= _pht_2_T_7;
@@ -6617,9 +3733,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_4 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h4 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h4 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_4 <= _pht_1_T_3;
         end else begin
           pht_2_4 <= _pht_2_T_7;
@@ -6628,9 +3744,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_5 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h5 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h5 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_5 <= _pht_1_T_3;
         end else begin
           pht_2_5 <= _pht_2_T_7;
@@ -6639,9 +3755,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_6 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h6 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h6 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_6 <= _pht_1_T_3;
         end else begin
           pht_2_6 <= _pht_2_T_7;
@@ -6650,9 +3766,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_7 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h7 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h7 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_7 <= _pht_1_T_3;
         end else begin
           pht_2_7 <= _pht_2_T_7;
@@ -6661,9 +3777,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_8 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h8 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h8 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_8 <= _pht_1_T_3;
         end else begin
           pht_2_8 <= _pht_2_T_7;
@@ -6672,9 +3788,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_9 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h9 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h9 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_9 <= _pht_1_T_3;
         end else begin
           pht_2_9 <= _pht_2_T_7;
@@ -6683,9 +3799,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_10 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'ha == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'ha == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_10 <= _pht_1_T_3;
         end else begin
           pht_2_10 <= _pht_2_T_7;
@@ -6694,9 +3810,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_11 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'hb == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'hb == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_11 <= _pht_1_T_3;
         end else begin
           pht_2_11 <= _pht_2_T_7;
@@ -6705,9 +3821,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_12 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'hc == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'hc == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_12 <= _pht_1_T_3;
         end else begin
           pht_2_12 <= _pht_2_T_7;
@@ -6716,9 +3832,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_13 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'hd == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'hd == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_13 <= _pht_1_T_3;
         end else begin
           pht_2_13 <= _pht_2_T_7;
@@ -6727,9 +3843,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_14 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'he == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'he == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_14 <= _pht_1_T_3;
         end else begin
           pht_2_14 <= _pht_2_T_7;
@@ -6738,9 +3854,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_15 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'hf == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'hf == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_15 <= _pht_1_T_3;
         end else begin
           pht_2_15 <= _pht_2_T_7;
@@ -6749,9 +3865,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_16 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h10 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h10 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_16 <= _pht_1_T_3;
         end else begin
           pht_2_16 <= _pht_2_T_7;
@@ -6760,9 +3876,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_17 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h11 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h11 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_17 <= _pht_1_T_3;
         end else begin
           pht_2_17 <= _pht_2_T_7;
@@ -6771,9 +3887,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_18 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h12 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h12 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_18 <= _pht_1_T_3;
         end else begin
           pht_2_18 <= _pht_2_T_7;
@@ -6782,9 +3898,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_19 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h13 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h13 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_19 <= _pht_1_T_3;
         end else begin
           pht_2_19 <= _pht_2_T_7;
@@ -6793,9 +3909,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_20 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h14 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h14 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_20 <= _pht_1_T_3;
         end else begin
           pht_2_20 <= _pht_2_T_7;
@@ -6804,9 +3920,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_21 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h15 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h15 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_21 <= _pht_1_T_3;
         end else begin
           pht_2_21 <= _pht_2_T_7;
@@ -6815,9 +3931,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_22 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h16 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h16 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_22 <= _pht_1_T_3;
         end else begin
           pht_2_22 <= _pht_2_T_7;
@@ -6826,9 +3942,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_23 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h17 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h17 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_23 <= _pht_1_T_3;
         end else begin
           pht_2_23 <= _pht_2_T_7;
@@ -6837,9 +3953,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_24 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h18 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h18 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_24 <= _pht_1_T_3;
         end else begin
           pht_2_24 <= _pht_2_T_7;
@@ -6848,9 +3964,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_25 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h19 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h19 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_25 <= _pht_1_T_3;
         end else begin
           pht_2_25 <= _pht_2_T_7;
@@ -6859,9 +3975,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_26 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h1a == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h1a == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_26 <= _pht_1_T_3;
         end else begin
           pht_2_26 <= _pht_2_T_7;
@@ -6870,9 +3986,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_27 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h1b == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h1b == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_27 <= _pht_1_T_3;
         end else begin
           pht_2_27 <= _pht_2_T_7;
@@ -6881,9 +3997,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_28 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h1c == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h1c == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_28 <= _pht_1_T_3;
         end else begin
           pht_2_28 <= _pht_2_T_7;
@@ -6892,9 +4008,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_29 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h1d == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h1d == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_29 <= _pht_1_T_3;
         end else begin
           pht_2_29 <= _pht_2_T_7;
@@ -6903,9 +4019,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_30 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h1e == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h1e == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_30 <= _pht_1_T_3;
         end else begin
           pht_2_30 <= _pht_2_T_7;
@@ -6914,9 +4030,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_31 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h1f == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h1f == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_31 <= _pht_1_T_3;
         end else begin
           pht_2_31 <= _pht_2_T_7;
@@ -6925,9 +4041,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_32 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h20 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h20 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_32 <= _pht_1_T_3;
         end else begin
           pht_2_32 <= _pht_2_T_7;
@@ -6936,9 +4052,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_33 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h21 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h21 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_33 <= _pht_1_T_3;
         end else begin
           pht_2_33 <= _pht_2_T_7;
@@ -6947,9 +4063,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_34 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h22 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h22 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_34 <= _pht_1_T_3;
         end else begin
           pht_2_34 <= _pht_2_T_7;
@@ -6958,9 +4074,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_35 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h23 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h23 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_35 <= _pht_1_T_3;
         end else begin
           pht_2_35 <= _pht_2_T_7;
@@ -6969,9 +4085,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_36 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h24 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h24 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_36 <= _pht_1_T_3;
         end else begin
           pht_2_36 <= _pht_2_T_7;
@@ -6980,9 +4096,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_37 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h25 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h25 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_37 <= _pht_1_T_3;
         end else begin
           pht_2_37 <= _pht_2_T_7;
@@ -6991,9 +4107,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_38 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h26 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h26 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_38 <= _pht_1_T_3;
         end else begin
           pht_2_38 <= _pht_2_T_7;
@@ -7002,9 +4118,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_39 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h27 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h27 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_39 <= _pht_1_T_3;
         end else begin
           pht_2_39 <= _pht_2_T_7;
@@ -7013,9 +4129,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_40 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h28 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h28 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_40 <= _pht_1_T_3;
         end else begin
           pht_2_40 <= _pht_2_T_7;
@@ -7024,9 +4140,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_41 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h29 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h29 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_41 <= _pht_1_T_3;
         end else begin
           pht_2_41 <= _pht_2_T_7;
@@ -7035,9 +4151,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_42 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h2a == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h2a == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_42 <= _pht_1_T_3;
         end else begin
           pht_2_42 <= _pht_2_T_7;
@@ -7046,9 +4162,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_43 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h2b == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h2b == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_43 <= _pht_1_T_3;
         end else begin
           pht_2_43 <= _pht_2_T_7;
@@ -7057,9 +4173,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_44 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h2c == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h2c == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_44 <= _pht_1_T_3;
         end else begin
           pht_2_44 <= _pht_2_T_7;
@@ -7068,9 +4184,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_45 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h2d == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h2d == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_45 <= _pht_1_T_3;
         end else begin
           pht_2_45 <= _pht_2_T_7;
@@ -7079,9 +4195,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_46 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h2e == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h2e == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_46 <= _pht_1_T_3;
         end else begin
           pht_2_46 <= _pht_2_T_7;
@@ -7090,9 +4206,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_47 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h2f == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h2f == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_47 <= _pht_1_T_3;
         end else begin
           pht_2_47 <= _pht_2_T_7;
@@ -7101,9 +4217,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_48 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h30 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h30 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_48 <= _pht_1_T_3;
         end else begin
           pht_2_48 <= _pht_2_T_7;
@@ -7112,9 +4228,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_49 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h31 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h31 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_49 <= _pht_1_T_3;
         end else begin
           pht_2_49 <= _pht_2_T_7;
@@ -7123,9 +4239,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_50 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h32 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h32 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_50 <= _pht_1_T_3;
         end else begin
           pht_2_50 <= _pht_2_T_7;
@@ -7134,9 +4250,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_51 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h33 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h33 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_51 <= _pht_1_T_3;
         end else begin
           pht_2_51 <= _pht_2_T_7;
@@ -7145,9 +4261,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_52 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h34 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h34 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_52 <= _pht_1_T_3;
         end else begin
           pht_2_52 <= _pht_2_T_7;
@@ -7156,9 +4272,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_53 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h35 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h35 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_53 <= _pht_1_T_3;
         end else begin
           pht_2_53 <= _pht_2_T_7;
@@ -7167,9 +4283,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_54 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h36 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h36 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_54 <= _pht_1_T_3;
         end else begin
           pht_2_54 <= _pht_2_T_7;
@@ -7178,9 +4294,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_55 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h37 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h37 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_55 <= _pht_1_T_3;
         end else begin
           pht_2_55 <= _pht_2_T_7;
@@ -7189,9 +4305,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_56 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h38 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h38 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_56 <= _pht_1_T_3;
         end else begin
           pht_2_56 <= _pht_2_T_7;
@@ -7200,9 +4316,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_57 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h39 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h39 == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_57 <= _pht_1_T_3;
         end else begin
           pht_2_57 <= _pht_2_T_7;
@@ -7211,9 +4327,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_58 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h3a == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h3a == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_58 <= _pht_1_T_3;
         end else begin
           pht_2_58 <= _pht_2_T_7;
@@ -7222,9 +4338,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_59 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h3b == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h3b == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_59 <= _pht_1_T_3;
         end else begin
           pht_2_59 <= _pht_2_T_7;
@@ -7233,9 +4349,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_60 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h3c == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h3c == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_60 <= _pht_1_T_3;
         end else begin
           pht_2_60 <= _pht_2_T_7;
@@ -7244,9 +4360,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_61 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h3d == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h3d == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_61 <= _pht_1_T_3;
         end else begin
           pht_2_61 <= _pht_2_T_7;
@@ -7255,9 +4371,9 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_62 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h3e == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h3e == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_62 <= _pht_1_T_3;
         end else begin
           pht_2_62 <= _pht_2_T_7;
@@ -7266,1936 +4382,1232 @@ module bht(
     end
     if (reset) begin // @[bht.scala 142:22]
       pht_2_63 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h3f == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
+    end else if (_T) begin // @[bht.scala 211:35]
+      if (6'h3f == pht2WAddr) begin // @[bht.scala 212:25]
+        if (2'h3 == _GEN_639) begin // @[Mux.scala 81:58]
           pht_2_63 <= _pht_1_T_3;
         end else begin
           pht_2_63 <= _pht_2_T_7;
         end
       end
     end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_64 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h40 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_64 <= _pht_1_T_3;
-        end else begin
-          pht_2_64 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_65 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h41 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_65 <= _pht_1_T_3;
-        end else begin
-          pht_2_65 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_66 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h42 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_66 <= _pht_1_T_3;
-        end else begin
-          pht_2_66 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_67 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h43 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_67 <= _pht_1_T_3;
-        end else begin
-          pht_2_67 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_68 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h44 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_68 <= _pht_1_T_3;
-        end else begin
-          pht_2_68 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_69 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h45 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_69 <= _pht_1_T_3;
-        end else begin
-          pht_2_69 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_70 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h46 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_70 <= _pht_1_T_3;
-        end else begin
-          pht_2_70 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_71 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h47 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_71 <= _pht_1_T_3;
-        end else begin
-          pht_2_71 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_72 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h48 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_72 <= _pht_1_T_3;
-        end else begin
-          pht_2_72 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_73 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h49 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_73 <= _pht_1_T_3;
-        end else begin
-          pht_2_73 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_74 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h4a == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_74 <= _pht_1_T_3;
-        end else begin
-          pht_2_74 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_75 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h4b == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_75 <= _pht_1_T_3;
-        end else begin
-          pht_2_75 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_76 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h4c == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_76 <= _pht_1_T_3;
-        end else begin
-          pht_2_76 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_77 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h4d == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_77 <= _pht_1_T_3;
-        end else begin
-          pht_2_77 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_78 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h4e == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_78 <= _pht_1_T_3;
-        end else begin
-          pht_2_78 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_79 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h4f == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_79 <= _pht_1_T_3;
-        end else begin
-          pht_2_79 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_80 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h50 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_80 <= _pht_1_T_3;
-        end else begin
-          pht_2_80 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_81 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h51 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_81 <= _pht_1_T_3;
-        end else begin
-          pht_2_81 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_82 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h52 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_82 <= _pht_1_T_3;
-        end else begin
-          pht_2_82 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_83 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h53 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_83 <= _pht_1_T_3;
-        end else begin
-          pht_2_83 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_84 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h54 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_84 <= _pht_1_T_3;
-        end else begin
-          pht_2_84 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_85 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h55 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_85 <= _pht_1_T_3;
-        end else begin
-          pht_2_85 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_86 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h56 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_86 <= _pht_1_T_3;
-        end else begin
-          pht_2_86 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_87 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h57 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_87 <= _pht_1_T_3;
-        end else begin
-          pht_2_87 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_88 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h58 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_88 <= _pht_1_T_3;
-        end else begin
-          pht_2_88 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_89 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h59 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_89 <= _pht_1_T_3;
-        end else begin
-          pht_2_89 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_90 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h5a == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_90 <= _pht_1_T_3;
-        end else begin
-          pht_2_90 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_91 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h5b == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_91 <= _pht_1_T_3;
-        end else begin
-          pht_2_91 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_92 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h5c == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_92 <= _pht_1_T_3;
-        end else begin
-          pht_2_92 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_93 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h5d == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_93 <= _pht_1_T_3;
-        end else begin
-          pht_2_93 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_94 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h5e == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_94 <= _pht_1_T_3;
-        end else begin
-          pht_2_94 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_95 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h5f == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_95 <= _pht_1_T_3;
-        end else begin
-          pht_2_95 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_96 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h60 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_96 <= _pht_1_T_3;
-        end else begin
-          pht_2_96 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_97 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h61 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_97 <= _pht_1_T_3;
-        end else begin
-          pht_2_97 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_98 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h62 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_98 <= _pht_1_T_3;
-        end else begin
-          pht_2_98 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_99 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h63 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_99 <= _pht_1_T_3;
-        end else begin
-          pht_2_99 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_100 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h64 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_100 <= _pht_1_T_3;
-        end else begin
-          pht_2_100 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_101 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h65 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_101 <= _pht_1_T_3;
-        end else begin
-          pht_2_101 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_102 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h66 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_102 <= _pht_1_T_3;
-        end else begin
-          pht_2_102 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_103 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h67 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_103 <= _pht_1_T_3;
-        end else begin
-          pht_2_103 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_104 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h68 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_104 <= _pht_1_T_3;
-        end else begin
-          pht_2_104 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_105 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h69 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_105 <= _pht_1_T_3;
-        end else begin
-          pht_2_105 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_106 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h6a == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_106 <= _pht_1_T_3;
-        end else begin
-          pht_2_106 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_107 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h6b == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_107 <= _pht_1_T_3;
-        end else begin
-          pht_2_107 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_108 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h6c == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_108 <= _pht_1_T_3;
-        end else begin
-          pht_2_108 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_109 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h6d == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_109 <= _pht_1_T_3;
-        end else begin
-          pht_2_109 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_110 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h6e == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_110 <= _pht_1_T_3;
-        end else begin
-          pht_2_110 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_111 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h6f == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_111 <= _pht_1_T_3;
-        end else begin
-          pht_2_111 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_112 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h70 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_112 <= _pht_1_T_3;
-        end else begin
-          pht_2_112 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_113 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h71 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_113 <= _pht_1_T_3;
-        end else begin
-          pht_2_113 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_114 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h72 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_114 <= _pht_1_T_3;
-        end else begin
-          pht_2_114 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_115 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h73 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_115 <= _pht_1_T_3;
-        end else begin
-          pht_2_115 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_116 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h74 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_116 <= _pht_1_T_3;
-        end else begin
-          pht_2_116 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_117 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h75 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_117 <= _pht_1_T_3;
-        end else begin
-          pht_2_117 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_118 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h76 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_118 <= _pht_1_T_3;
-        end else begin
-          pht_2_118 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_119 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h77 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_119 <= _pht_1_T_3;
-        end else begin
-          pht_2_119 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_120 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h78 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_120 <= _pht_1_T_3;
-        end else begin
-          pht_2_120 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_121 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h79 == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_121 <= _pht_1_T_3;
-        end else begin
-          pht_2_121 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_122 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h7a == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_122 <= _pht_1_T_3;
-        end else begin
-          pht_2_122 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_123 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h7b == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_123 <= _pht_1_T_3;
-        end else begin
-          pht_2_123 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_124 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h7c == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_124 <= _pht_1_T_3;
-        end else begin
-          pht_2_124 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_125 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h7d == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_125 <= _pht_1_T_3;
-        end else begin
-          pht_2_125 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_126 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h7e == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_126 <= _pht_1_T_3;
-        end else begin
-          pht_2_126 <= _pht_2_T_7;
-        end
-      end
-    end
-    if (reset) begin // @[bht.scala 142:22]
-      pht_2_127 <= 2'h1; // @[bht.scala 142:22]
-    end else if (_T) begin // @[bht.scala 215:35]
-      if (7'h7f == pht2WAddr) begin // @[bht.scala 216:25]
-        if (2'h3 == _GEN_1087) begin // @[Mux.scala 81:58]
-          pht_2_127 <= _pht_1_T_3;
-        end else begin
-          pht_2_127 <= _pht_2_T_7;
-        end
-      end
-    end
     if (reset) begin // @[bht.scala 145:23]
       btbV_0 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_0 <= _GEN_2241;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_0 <= _GEN_1217;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_1 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_1 <= _GEN_2242;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_1 <= _GEN_1218;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_2 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_2 <= _GEN_2243;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_2 <= _GEN_1219;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_3 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_3 <= _GEN_2244;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_3 <= _GEN_1220;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_4 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_4 <= _GEN_2245;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_4 <= _GEN_1221;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_5 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_5 <= _GEN_2246;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_5 <= _GEN_1222;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_6 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_6 <= _GEN_2247;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_6 <= _GEN_1223;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_7 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_7 <= _GEN_2248;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_7 <= _GEN_1224;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_8 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_8 <= _GEN_2249;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_8 <= _GEN_1225;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_9 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_9 <= _GEN_2250;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_9 <= _GEN_1226;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_10 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_10 <= _GEN_2251;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_10 <= _GEN_1227;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_11 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_11 <= _GEN_2252;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_11 <= _GEN_1228;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_12 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_12 <= _GEN_2253;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_12 <= _GEN_1229;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_13 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_13 <= _GEN_2254;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_13 <= _GEN_1230;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_14 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_14 <= _GEN_2255;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_14 <= _GEN_1231;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_15 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_15 <= _GEN_2256;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_15 <= _GEN_1232;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_16 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_16 <= _GEN_2257;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_16 <= _GEN_1233;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_17 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_17 <= _GEN_2258;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_17 <= _GEN_1234;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_18 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_18 <= _GEN_2259;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_18 <= _GEN_1235;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_19 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_19 <= _GEN_2260;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_19 <= _GEN_1236;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_20 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_20 <= _GEN_2261;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_20 <= _GEN_1237;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_21 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_21 <= _GEN_2262;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_21 <= _GEN_1238;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_22 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_22 <= _GEN_2263;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_22 <= _GEN_1239;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_23 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_23 <= _GEN_2264;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_23 <= _GEN_1240;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_24 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_24 <= _GEN_2265;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_24 <= _GEN_1241;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_25 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_25 <= _GEN_2266;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_25 <= _GEN_1242;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_26 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_26 <= _GEN_2267;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_26 <= _GEN_1243;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_27 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_27 <= _GEN_2268;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_27 <= _GEN_1244;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_28 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_28 <= _GEN_2269;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_28 <= _GEN_1245;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_29 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_29 <= _GEN_2270;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_29 <= _GEN_1246;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_30 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_30 <= _GEN_2271;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_30 <= _GEN_1247;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_31 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_31 <= _GEN_2272;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_31 <= _GEN_1248;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_32 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_32 <= _GEN_2273;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_32 <= _GEN_1249;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_33 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_33 <= _GEN_2274;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_33 <= _GEN_1250;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_34 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_34 <= _GEN_2275;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_34 <= _GEN_1251;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_35 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_35 <= _GEN_2276;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_35 <= _GEN_1252;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_36 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_36 <= _GEN_2277;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_36 <= _GEN_1253;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_37 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_37 <= _GEN_2278;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_37 <= _GEN_1254;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_38 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_38 <= _GEN_2279;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_38 <= _GEN_1255;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_39 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_39 <= _GEN_2280;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_39 <= _GEN_1256;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_40 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_40 <= _GEN_2281;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_40 <= _GEN_1257;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_41 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_41 <= _GEN_2282;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_41 <= _GEN_1258;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_42 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_42 <= _GEN_2283;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_42 <= _GEN_1259;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_43 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_43 <= _GEN_2284;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_43 <= _GEN_1260;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_44 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_44 <= _GEN_2285;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_44 <= _GEN_1261;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_45 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_45 <= _GEN_2286;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_45 <= _GEN_1262;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_46 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_46 <= _GEN_2287;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_46 <= _GEN_1263;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_47 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_47 <= _GEN_2288;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_47 <= _GEN_1264;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_48 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_48 <= _GEN_2289;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_48 <= _GEN_1265;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_49 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_49 <= _GEN_2290;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_49 <= _GEN_1266;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_50 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_50 <= _GEN_2291;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_50 <= _GEN_1267;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_51 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_51 <= _GEN_2292;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_51 <= _GEN_1268;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_52 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_52 <= _GEN_2293;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_52 <= _GEN_1269;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_53 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_53 <= _GEN_2294;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_53 <= _GEN_1270;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_54 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_54 <= _GEN_2295;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_54 <= _GEN_1271;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_55 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_55 <= _GEN_2296;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_55 <= _GEN_1272;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_56 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_56 <= _GEN_2297;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_56 <= _GEN_1273;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_57 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_57 <= _GEN_2298;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_57 <= _GEN_1274;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_58 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_58 <= _GEN_2299;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_58 <= _GEN_1275;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_59 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_59 <= _GEN_2300;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_59 <= _GEN_1276;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_60 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_60 <= _GEN_2301;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_60 <= _GEN_1277;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_61 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_61 <= _GEN_2302;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_61 <= _GEN_1278;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_62 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_62 <= _GEN_2303;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_62 <= _GEN_1279;
     end
     if (reset) begin // @[bht.scala 145:23]
       btbV_63 <= 1'h0; // @[bht.scala 145:23]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      btbV_63 <= _GEN_2304;
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      btbV_63 <= _GEN_1280;
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_0 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h0 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_0 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h0 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_0 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_1 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_1 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_1 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_2 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_2 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_2 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_3 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_3 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_3 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_4 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h4 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_4 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h4 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_4 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_5 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h5 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_5 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h5 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_5 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_6 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h6 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_6 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h6 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_6 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_7 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h7 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_7 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h7 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_7 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_8 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h8 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_8 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h8 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_8 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_9 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h9 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_9 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h9 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_9 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_10 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'ha == upIndex) begin // @[bht.scala 236:21]
-        btbTag_10 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'ha == upIndex) begin // @[bht.scala 232:21]
+        btbTag_10 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_11 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'hb == upIndex) begin // @[bht.scala 236:21]
-        btbTag_11 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'hb == upIndex) begin // @[bht.scala 232:21]
+        btbTag_11 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_12 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'hc == upIndex) begin // @[bht.scala 236:21]
-        btbTag_12 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'hc == upIndex) begin // @[bht.scala 232:21]
+        btbTag_12 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_13 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'hd == upIndex) begin // @[bht.scala 236:21]
-        btbTag_13 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'hd == upIndex) begin // @[bht.scala 232:21]
+        btbTag_13 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_14 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'he == upIndex) begin // @[bht.scala 236:21]
-        btbTag_14 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'he == upIndex) begin // @[bht.scala 232:21]
+        btbTag_14 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_15 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'hf == upIndex) begin // @[bht.scala 236:21]
-        btbTag_15 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'hf == upIndex) begin // @[bht.scala 232:21]
+        btbTag_15 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_16 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h10 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_16 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h10 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_16 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_17 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h11 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_17 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h11 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_17 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_18 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h12 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_18 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h12 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_18 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_19 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h13 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_19 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h13 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_19 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_20 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h14 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_20 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h14 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_20 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_21 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h15 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_21 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h15 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_21 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_22 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h16 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_22 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h16 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_22 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_23 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h17 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_23 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h17 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_23 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_24 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h18 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_24 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h18 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_24 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_25 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h19 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_25 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h19 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_25 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_26 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1a == upIndex) begin // @[bht.scala 236:21]
-        btbTag_26 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1a == upIndex) begin // @[bht.scala 232:21]
+        btbTag_26 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_27 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1b == upIndex) begin // @[bht.scala 236:21]
-        btbTag_27 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1b == upIndex) begin // @[bht.scala 232:21]
+        btbTag_27 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_28 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1c == upIndex) begin // @[bht.scala 236:21]
-        btbTag_28 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1c == upIndex) begin // @[bht.scala 232:21]
+        btbTag_28 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_29 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1d == upIndex) begin // @[bht.scala 236:21]
-        btbTag_29 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1d == upIndex) begin // @[bht.scala 232:21]
+        btbTag_29 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_30 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1e == upIndex) begin // @[bht.scala 236:21]
-        btbTag_30 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1e == upIndex) begin // @[bht.scala 232:21]
+        btbTag_30 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_31 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1f == upIndex) begin // @[bht.scala 236:21]
-        btbTag_31 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1f == upIndex) begin // @[bht.scala 232:21]
+        btbTag_31 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_32 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h20 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_32 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h20 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_32 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_33 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h21 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_33 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h21 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_33 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_34 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h22 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_34 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h22 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_34 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_35 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h23 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_35 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h23 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_35 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_36 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h24 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_36 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h24 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_36 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_37 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h25 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_37 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h25 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_37 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_38 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h26 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_38 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h26 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_38 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_39 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h27 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_39 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h27 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_39 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_40 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h28 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_40 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h28 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_40 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_41 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h29 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_41 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h29 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_41 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_42 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2a == upIndex) begin // @[bht.scala 236:21]
-        btbTag_42 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2a == upIndex) begin // @[bht.scala 232:21]
+        btbTag_42 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_43 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2b == upIndex) begin // @[bht.scala 236:21]
-        btbTag_43 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2b == upIndex) begin // @[bht.scala 232:21]
+        btbTag_43 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_44 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2c == upIndex) begin // @[bht.scala 236:21]
-        btbTag_44 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2c == upIndex) begin // @[bht.scala 232:21]
+        btbTag_44 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_45 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2d == upIndex) begin // @[bht.scala 236:21]
-        btbTag_45 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2d == upIndex) begin // @[bht.scala 232:21]
+        btbTag_45 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_46 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2e == upIndex) begin // @[bht.scala 236:21]
-        btbTag_46 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2e == upIndex) begin // @[bht.scala 232:21]
+        btbTag_46 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_47 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2f == upIndex) begin // @[bht.scala 236:21]
-        btbTag_47 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2f == upIndex) begin // @[bht.scala 232:21]
+        btbTag_47 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_48 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h30 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_48 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h30 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_48 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_49 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h31 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_49 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h31 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_49 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_50 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h32 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_50 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h32 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_50 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_51 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h33 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_51 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h33 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_51 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_52 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h34 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_52 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h34 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_52 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_53 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h35 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_53 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h35 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_53 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_54 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h36 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_54 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h36 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_54 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_55 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h37 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_55 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h37 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_55 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_56 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h38 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_56 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h38 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_56 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_57 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h39 == upIndex) begin // @[bht.scala 236:21]
-        btbTag_57 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h39 == upIndex) begin // @[bht.scala 232:21]
+        btbTag_57 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_58 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3a == upIndex) begin // @[bht.scala 236:21]
-        btbTag_58 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3a == upIndex) begin // @[bht.scala 232:21]
+        btbTag_58 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_59 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3b == upIndex) begin // @[bht.scala 236:21]
-        btbTag_59 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3b == upIndex) begin // @[bht.scala 232:21]
+        btbTag_59 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_60 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3c == upIndex) begin // @[bht.scala 236:21]
-        btbTag_60 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3c == upIndex) begin // @[bht.scala 232:21]
+        btbTag_60 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_61 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3d == upIndex) begin // @[bht.scala 236:21]
-        btbTag_61 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3d == upIndex) begin // @[bht.scala 232:21]
+        btbTag_61 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_62 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3e == upIndex) begin // @[bht.scala 236:21]
-        btbTag_62 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3e == upIndex) begin // @[bht.scala 232:21]
+        btbTag_62 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 146:25]
       btbTag_63 <= 6'h0; // @[bht.scala 146:25]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3f == upIndex) begin // @[bht.scala 236:21]
-        btbTag_63 <= _btbTag_T_5; // @[bht.scala 236:21]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3f == upIndex) begin // @[bht.scala 232:21]
+        btbTag_63 <= bhtWAddr; // @[bht.scala 232:21]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_0 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h0 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_0 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h0 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_0 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_1 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_1 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_1 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_2 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_2 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_2 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_3 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_3 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_3 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_4 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h4 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_4 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h4 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_4 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_5 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h5 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_5 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h5 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_5 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_6 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h6 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_6 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h6 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_6 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_7 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h7 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_7 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h7 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_7 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_8 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h8 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_8 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h8 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_8 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_9 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h9 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_9 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h9 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_9 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_10 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'ha == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_10 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'ha == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_10 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_11 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'hb == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_11 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'hb == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_11 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_12 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'hc == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_12 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'hc == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_12 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_13 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'hd == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_13 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'hd == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_13 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_14 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'he == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_14 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'he == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_14 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_15 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'hf == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_15 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'hf == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_15 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_16 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h10 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_16 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h10 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_16 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_17 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h11 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_17 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h11 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_17 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_18 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h12 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_18 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h12 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_18 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_19 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h13 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_19 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h13 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_19 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_20 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h14 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_20 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h14 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_20 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_21 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h15 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_21 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h15 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_21 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_22 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h16 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_22 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h16 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_22 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_23 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h17 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_23 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h17 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_23 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_24 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h18 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_24 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h18 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_24 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_25 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h19 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_25 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h19 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_25 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_26 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1a == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_26 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1a == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_26 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_27 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1b == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_27 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1b == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_27 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_28 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1c == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_28 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1c == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_28 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_29 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1d == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_29 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1d == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_29 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_30 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1e == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_30 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1e == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_30 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_31 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h1f == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_31 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h1f == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_31 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_32 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h20 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_32 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h20 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_32 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_33 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h21 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_33 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h21 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_33 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_34 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h22 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_34 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h22 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_34 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_35 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h23 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_35 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h23 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_35 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_36 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h24 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_36 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h24 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_36 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_37 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h25 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_37 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h25 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_37 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_38 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h26 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_38 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h26 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_38 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_39 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h27 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_39 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h27 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_39 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_40 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h28 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_40 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h28 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_40 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_41 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h29 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_41 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h29 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_41 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_42 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2a == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_42 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2a == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_42 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_43 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2b == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_43 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2b == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_43 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_44 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2c == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_44 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2c == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_44 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_45 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2d == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_45 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2d == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_45 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_46 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2e == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_46 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2e == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_46 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_47 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h2f == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_47 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h2f == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_47 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_48 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h30 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_48 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h30 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_48 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_49 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h31 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_49 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h31 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_49 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_50 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h32 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_50 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h32 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_50 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_51 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h33 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_51 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h33 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_51 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_52 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h34 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_52 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h34 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_52 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_53 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h35 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_53 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h35 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_53 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_54 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h36 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_54 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h36 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_54 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_55 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h37 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_55 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h37 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_55 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_56 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h38 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_56 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h38 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_56 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_57 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h39 == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_57 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h39 == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_57 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_58 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3a == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_58 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3a == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_58 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_59 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3b == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_59 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3b == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_59 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_60 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3c == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_60 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3c == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_60 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_61 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3d == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_61 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3d == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_61 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_62 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3e == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_62 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3e == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_62 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
     if (reset) begin // @[bht.scala 147:26]
       btbMeta_63 <= 32'h0; // @[bht.scala 147:26]
-    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 233:57]
-      if (6'h3f == upIndex) begin // @[bht.scala 238:22]
-        btbMeta_63 <= io_nextPC; // @[bht.scala 238:22]
+    end else if (io_fire & (io_takenValid | io_takenValidJalr)) begin // @[bht.scala 229:57]
+      if (6'h3f == upIndex) begin // @[bht.scala 234:22]
+        btbMeta_63 <= io_nextPC; // @[bht.scala 234:22]
       end
     end
-    io_ready_REG <= io_fire; // @[bht.scala 178:48]
+    io_ready_REG <= io_fire; // @[bht.scala 175:48]
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN
@@ -9234,1417 +5646,905 @@ initial begin
     `endif
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
-  ghr = _RAND_0[6:0];
+  ghr = _RAND_0[5:0];
   _RAND_1 = {1{`RANDOM}};
-  bht_0 = _RAND_1[6:0];
+  bht_0 = _RAND_1[5:0];
   _RAND_2 = {1{`RANDOM}};
-  bht_1 = _RAND_2[6:0];
+  bht_1 = _RAND_2[5:0];
   _RAND_3 = {1{`RANDOM}};
-  bht_2 = _RAND_3[6:0];
+  bht_2 = _RAND_3[5:0];
   _RAND_4 = {1{`RANDOM}};
-  bht_3 = _RAND_4[6:0];
+  bht_3 = _RAND_4[5:0];
   _RAND_5 = {1{`RANDOM}};
-  bht_4 = _RAND_5[6:0];
+  bht_4 = _RAND_5[5:0];
   _RAND_6 = {1{`RANDOM}};
-  bht_5 = _RAND_6[6:0];
+  bht_5 = _RAND_6[5:0];
   _RAND_7 = {1{`RANDOM}};
-  bht_6 = _RAND_7[6:0];
+  bht_6 = _RAND_7[5:0];
   _RAND_8 = {1{`RANDOM}};
-  bht_7 = _RAND_8[6:0];
+  bht_7 = _RAND_8[5:0];
   _RAND_9 = {1{`RANDOM}};
-  bht_8 = _RAND_9[6:0];
+  bht_8 = _RAND_9[5:0];
   _RAND_10 = {1{`RANDOM}};
-  bht_9 = _RAND_10[6:0];
+  bht_9 = _RAND_10[5:0];
   _RAND_11 = {1{`RANDOM}};
-  bht_10 = _RAND_11[6:0];
+  bht_10 = _RAND_11[5:0];
   _RAND_12 = {1{`RANDOM}};
-  bht_11 = _RAND_12[6:0];
+  bht_11 = _RAND_12[5:0];
   _RAND_13 = {1{`RANDOM}};
-  bht_12 = _RAND_13[6:0];
+  bht_12 = _RAND_13[5:0];
   _RAND_14 = {1{`RANDOM}};
-  bht_13 = _RAND_14[6:0];
+  bht_13 = _RAND_14[5:0];
   _RAND_15 = {1{`RANDOM}};
-  bht_14 = _RAND_15[6:0];
+  bht_14 = _RAND_15[5:0];
   _RAND_16 = {1{`RANDOM}};
-  bht_15 = _RAND_16[6:0];
+  bht_15 = _RAND_16[5:0];
   _RAND_17 = {1{`RANDOM}};
-  bht_16 = _RAND_17[6:0];
+  bht_16 = _RAND_17[5:0];
   _RAND_18 = {1{`RANDOM}};
-  bht_17 = _RAND_18[6:0];
+  bht_17 = _RAND_18[5:0];
   _RAND_19 = {1{`RANDOM}};
-  bht_18 = _RAND_19[6:0];
+  bht_18 = _RAND_19[5:0];
   _RAND_20 = {1{`RANDOM}};
-  bht_19 = _RAND_20[6:0];
+  bht_19 = _RAND_20[5:0];
   _RAND_21 = {1{`RANDOM}};
-  bht_20 = _RAND_21[6:0];
+  bht_20 = _RAND_21[5:0];
   _RAND_22 = {1{`RANDOM}};
-  bht_21 = _RAND_22[6:0];
+  bht_21 = _RAND_22[5:0];
   _RAND_23 = {1{`RANDOM}};
-  bht_22 = _RAND_23[6:0];
+  bht_22 = _RAND_23[5:0];
   _RAND_24 = {1{`RANDOM}};
-  bht_23 = _RAND_24[6:0];
+  bht_23 = _RAND_24[5:0];
   _RAND_25 = {1{`RANDOM}};
-  bht_24 = _RAND_25[6:0];
+  bht_24 = _RAND_25[5:0];
   _RAND_26 = {1{`RANDOM}};
-  bht_25 = _RAND_26[6:0];
+  bht_25 = _RAND_26[5:0];
   _RAND_27 = {1{`RANDOM}};
-  bht_26 = _RAND_27[6:0];
+  bht_26 = _RAND_27[5:0];
   _RAND_28 = {1{`RANDOM}};
-  bht_27 = _RAND_28[6:0];
+  bht_27 = _RAND_28[5:0];
   _RAND_29 = {1{`RANDOM}};
-  bht_28 = _RAND_29[6:0];
+  bht_28 = _RAND_29[5:0];
   _RAND_30 = {1{`RANDOM}};
-  bht_29 = _RAND_30[6:0];
+  bht_29 = _RAND_30[5:0];
   _RAND_31 = {1{`RANDOM}};
-  bht_30 = _RAND_31[6:0];
+  bht_30 = _RAND_31[5:0];
   _RAND_32 = {1{`RANDOM}};
-  bht_31 = _RAND_32[6:0];
+  bht_31 = _RAND_32[5:0];
   _RAND_33 = {1{`RANDOM}};
-  bht_32 = _RAND_33[6:0];
+  bht_32 = _RAND_33[5:0];
   _RAND_34 = {1{`RANDOM}};
-  bht_33 = _RAND_34[6:0];
+  bht_33 = _RAND_34[5:0];
   _RAND_35 = {1{`RANDOM}};
-  bht_34 = _RAND_35[6:0];
+  bht_34 = _RAND_35[5:0];
   _RAND_36 = {1{`RANDOM}};
-  bht_35 = _RAND_36[6:0];
+  bht_35 = _RAND_36[5:0];
   _RAND_37 = {1{`RANDOM}};
-  bht_36 = _RAND_37[6:0];
+  bht_36 = _RAND_37[5:0];
   _RAND_38 = {1{`RANDOM}};
-  bht_37 = _RAND_38[6:0];
+  bht_37 = _RAND_38[5:0];
   _RAND_39 = {1{`RANDOM}};
-  bht_38 = _RAND_39[6:0];
+  bht_38 = _RAND_39[5:0];
   _RAND_40 = {1{`RANDOM}};
-  bht_39 = _RAND_40[6:0];
+  bht_39 = _RAND_40[5:0];
   _RAND_41 = {1{`RANDOM}};
-  bht_40 = _RAND_41[6:0];
+  bht_40 = _RAND_41[5:0];
   _RAND_42 = {1{`RANDOM}};
-  bht_41 = _RAND_42[6:0];
+  bht_41 = _RAND_42[5:0];
   _RAND_43 = {1{`RANDOM}};
-  bht_42 = _RAND_43[6:0];
+  bht_42 = _RAND_43[5:0];
   _RAND_44 = {1{`RANDOM}};
-  bht_43 = _RAND_44[6:0];
+  bht_43 = _RAND_44[5:0];
   _RAND_45 = {1{`RANDOM}};
-  bht_44 = _RAND_45[6:0];
+  bht_44 = _RAND_45[5:0];
   _RAND_46 = {1{`RANDOM}};
-  bht_45 = _RAND_46[6:0];
+  bht_45 = _RAND_46[5:0];
   _RAND_47 = {1{`RANDOM}};
-  bht_46 = _RAND_47[6:0];
+  bht_46 = _RAND_47[5:0];
   _RAND_48 = {1{`RANDOM}};
-  bht_47 = _RAND_48[6:0];
+  bht_47 = _RAND_48[5:0];
   _RAND_49 = {1{`RANDOM}};
-  bht_48 = _RAND_49[6:0];
+  bht_48 = _RAND_49[5:0];
   _RAND_50 = {1{`RANDOM}};
-  bht_49 = _RAND_50[6:0];
+  bht_49 = _RAND_50[5:0];
   _RAND_51 = {1{`RANDOM}};
-  bht_50 = _RAND_51[6:0];
+  bht_50 = _RAND_51[5:0];
   _RAND_52 = {1{`RANDOM}};
-  bht_51 = _RAND_52[6:0];
+  bht_51 = _RAND_52[5:0];
   _RAND_53 = {1{`RANDOM}};
-  bht_52 = _RAND_53[6:0];
+  bht_52 = _RAND_53[5:0];
   _RAND_54 = {1{`RANDOM}};
-  bht_53 = _RAND_54[6:0];
+  bht_53 = _RAND_54[5:0];
   _RAND_55 = {1{`RANDOM}};
-  bht_54 = _RAND_55[6:0];
+  bht_54 = _RAND_55[5:0];
   _RAND_56 = {1{`RANDOM}};
-  bht_55 = _RAND_56[6:0];
+  bht_55 = _RAND_56[5:0];
   _RAND_57 = {1{`RANDOM}};
-  bht_56 = _RAND_57[6:0];
+  bht_56 = _RAND_57[5:0];
   _RAND_58 = {1{`RANDOM}};
-  bht_57 = _RAND_58[6:0];
+  bht_57 = _RAND_58[5:0];
   _RAND_59 = {1{`RANDOM}};
-  bht_58 = _RAND_59[6:0];
+  bht_58 = _RAND_59[5:0];
   _RAND_60 = {1{`RANDOM}};
-  bht_59 = _RAND_60[6:0];
+  bht_59 = _RAND_60[5:0];
   _RAND_61 = {1{`RANDOM}};
-  bht_60 = _RAND_61[6:0];
+  bht_60 = _RAND_61[5:0];
   _RAND_62 = {1{`RANDOM}};
-  bht_61 = _RAND_62[6:0];
+  bht_61 = _RAND_62[5:0];
   _RAND_63 = {1{`RANDOM}};
-  bht_62 = _RAND_63[6:0];
+  bht_62 = _RAND_63[5:0];
   _RAND_64 = {1{`RANDOM}};
-  bht_63 = _RAND_64[6:0];
+  bht_63 = _RAND_64[5:0];
   _RAND_65 = {1{`RANDOM}};
-  bht_64 = _RAND_65[6:0];
+  pht_0_0 = _RAND_65[1:0];
   _RAND_66 = {1{`RANDOM}};
-  bht_65 = _RAND_66[6:0];
+  pht_0_1 = _RAND_66[1:0];
   _RAND_67 = {1{`RANDOM}};
-  bht_66 = _RAND_67[6:0];
+  pht_0_2 = _RAND_67[1:0];
   _RAND_68 = {1{`RANDOM}};
-  bht_67 = _RAND_68[6:0];
+  pht_0_3 = _RAND_68[1:0];
   _RAND_69 = {1{`RANDOM}};
-  bht_68 = _RAND_69[6:0];
+  pht_0_4 = _RAND_69[1:0];
   _RAND_70 = {1{`RANDOM}};
-  bht_69 = _RAND_70[6:0];
+  pht_0_5 = _RAND_70[1:0];
   _RAND_71 = {1{`RANDOM}};
-  bht_70 = _RAND_71[6:0];
+  pht_0_6 = _RAND_71[1:0];
   _RAND_72 = {1{`RANDOM}};
-  bht_71 = _RAND_72[6:0];
+  pht_0_7 = _RAND_72[1:0];
   _RAND_73 = {1{`RANDOM}};
-  bht_72 = _RAND_73[6:0];
+  pht_0_8 = _RAND_73[1:0];
   _RAND_74 = {1{`RANDOM}};
-  bht_73 = _RAND_74[6:0];
+  pht_0_9 = _RAND_74[1:0];
   _RAND_75 = {1{`RANDOM}};
-  bht_74 = _RAND_75[6:0];
+  pht_0_10 = _RAND_75[1:0];
   _RAND_76 = {1{`RANDOM}};
-  bht_75 = _RAND_76[6:0];
+  pht_0_11 = _RAND_76[1:0];
   _RAND_77 = {1{`RANDOM}};
-  bht_76 = _RAND_77[6:0];
+  pht_0_12 = _RAND_77[1:0];
   _RAND_78 = {1{`RANDOM}};
-  bht_77 = _RAND_78[6:0];
+  pht_0_13 = _RAND_78[1:0];
   _RAND_79 = {1{`RANDOM}};
-  bht_78 = _RAND_79[6:0];
+  pht_0_14 = _RAND_79[1:0];
   _RAND_80 = {1{`RANDOM}};
-  bht_79 = _RAND_80[6:0];
+  pht_0_15 = _RAND_80[1:0];
   _RAND_81 = {1{`RANDOM}};
-  bht_80 = _RAND_81[6:0];
+  pht_0_16 = _RAND_81[1:0];
   _RAND_82 = {1{`RANDOM}};
-  bht_81 = _RAND_82[6:0];
+  pht_0_17 = _RAND_82[1:0];
   _RAND_83 = {1{`RANDOM}};
-  bht_82 = _RAND_83[6:0];
+  pht_0_18 = _RAND_83[1:0];
   _RAND_84 = {1{`RANDOM}};
-  bht_83 = _RAND_84[6:0];
+  pht_0_19 = _RAND_84[1:0];
   _RAND_85 = {1{`RANDOM}};
-  bht_84 = _RAND_85[6:0];
+  pht_0_20 = _RAND_85[1:0];
   _RAND_86 = {1{`RANDOM}};
-  bht_85 = _RAND_86[6:0];
+  pht_0_21 = _RAND_86[1:0];
   _RAND_87 = {1{`RANDOM}};
-  bht_86 = _RAND_87[6:0];
+  pht_0_22 = _RAND_87[1:0];
   _RAND_88 = {1{`RANDOM}};
-  bht_87 = _RAND_88[6:0];
+  pht_0_23 = _RAND_88[1:0];
   _RAND_89 = {1{`RANDOM}};
-  bht_88 = _RAND_89[6:0];
+  pht_0_24 = _RAND_89[1:0];
   _RAND_90 = {1{`RANDOM}};
-  bht_89 = _RAND_90[6:0];
+  pht_0_25 = _RAND_90[1:0];
   _RAND_91 = {1{`RANDOM}};
-  bht_90 = _RAND_91[6:0];
+  pht_0_26 = _RAND_91[1:0];
   _RAND_92 = {1{`RANDOM}};
-  bht_91 = _RAND_92[6:0];
+  pht_0_27 = _RAND_92[1:0];
   _RAND_93 = {1{`RANDOM}};
-  bht_92 = _RAND_93[6:0];
+  pht_0_28 = _RAND_93[1:0];
   _RAND_94 = {1{`RANDOM}};
-  bht_93 = _RAND_94[6:0];
+  pht_0_29 = _RAND_94[1:0];
   _RAND_95 = {1{`RANDOM}};
-  bht_94 = _RAND_95[6:0];
+  pht_0_30 = _RAND_95[1:0];
   _RAND_96 = {1{`RANDOM}};
-  bht_95 = _RAND_96[6:0];
+  pht_0_31 = _RAND_96[1:0];
   _RAND_97 = {1{`RANDOM}};
-  bht_96 = _RAND_97[6:0];
+  pht_0_32 = _RAND_97[1:0];
   _RAND_98 = {1{`RANDOM}};
-  bht_97 = _RAND_98[6:0];
+  pht_0_33 = _RAND_98[1:0];
   _RAND_99 = {1{`RANDOM}};
-  bht_98 = _RAND_99[6:0];
+  pht_0_34 = _RAND_99[1:0];
   _RAND_100 = {1{`RANDOM}};
-  bht_99 = _RAND_100[6:0];
+  pht_0_35 = _RAND_100[1:0];
   _RAND_101 = {1{`RANDOM}};
-  bht_100 = _RAND_101[6:0];
+  pht_0_36 = _RAND_101[1:0];
   _RAND_102 = {1{`RANDOM}};
-  bht_101 = _RAND_102[6:0];
+  pht_0_37 = _RAND_102[1:0];
   _RAND_103 = {1{`RANDOM}};
-  bht_102 = _RAND_103[6:0];
+  pht_0_38 = _RAND_103[1:0];
   _RAND_104 = {1{`RANDOM}};
-  bht_103 = _RAND_104[6:0];
+  pht_0_39 = _RAND_104[1:0];
   _RAND_105 = {1{`RANDOM}};
-  bht_104 = _RAND_105[6:0];
+  pht_0_40 = _RAND_105[1:0];
   _RAND_106 = {1{`RANDOM}};
-  bht_105 = _RAND_106[6:0];
+  pht_0_41 = _RAND_106[1:0];
   _RAND_107 = {1{`RANDOM}};
-  bht_106 = _RAND_107[6:0];
+  pht_0_42 = _RAND_107[1:0];
   _RAND_108 = {1{`RANDOM}};
-  bht_107 = _RAND_108[6:0];
+  pht_0_43 = _RAND_108[1:0];
   _RAND_109 = {1{`RANDOM}};
-  bht_108 = _RAND_109[6:0];
+  pht_0_44 = _RAND_109[1:0];
   _RAND_110 = {1{`RANDOM}};
-  bht_109 = _RAND_110[6:0];
+  pht_0_45 = _RAND_110[1:0];
   _RAND_111 = {1{`RANDOM}};
-  bht_110 = _RAND_111[6:0];
+  pht_0_46 = _RAND_111[1:0];
   _RAND_112 = {1{`RANDOM}};
-  bht_111 = _RAND_112[6:0];
+  pht_0_47 = _RAND_112[1:0];
   _RAND_113 = {1{`RANDOM}};
-  bht_112 = _RAND_113[6:0];
+  pht_0_48 = _RAND_113[1:0];
   _RAND_114 = {1{`RANDOM}};
-  bht_113 = _RAND_114[6:0];
+  pht_0_49 = _RAND_114[1:0];
   _RAND_115 = {1{`RANDOM}};
-  bht_114 = _RAND_115[6:0];
+  pht_0_50 = _RAND_115[1:0];
   _RAND_116 = {1{`RANDOM}};
-  bht_115 = _RAND_116[6:0];
+  pht_0_51 = _RAND_116[1:0];
   _RAND_117 = {1{`RANDOM}};
-  bht_116 = _RAND_117[6:0];
+  pht_0_52 = _RAND_117[1:0];
   _RAND_118 = {1{`RANDOM}};
-  bht_117 = _RAND_118[6:0];
+  pht_0_53 = _RAND_118[1:0];
   _RAND_119 = {1{`RANDOM}};
-  bht_118 = _RAND_119[6:0];
+  pht_0_54 = _RAND_119[1:0];
   _RAND_120 = {1{`RANDOM}};
-  bht_119 = _RAND_120[6:0];
+  pht_0_55 = _RAND_120[1:0];
   _RAND_121 = {1{`RANDOM}};
-  bht_120 = _RAND_121[6:0];
+  pht_0_56 = _RAND_121[1:0];
   _RAND_122 = {1{`RANDOM}};
-  bht_121 = _RAND_122[6:0];
+  pht_0_57 = _RAND_122[1:0];
   _RAND_123 = {1{`RANDOM}};
-  bht_122 = _RAND_123[6:0];
+  pht_0_58 = _RAND_123[1:0];
   _RAND_124 = {1{`RANDOM}};
-  bht_123 = _RAND_124[6:0];
+  pht_0_59 = _RAND_124[1:0];
   _RAND_125 = {1{`RANDOM}};
-  bht_124 = _RAND_125[6:0];
+  pht_0_60 = _RAND_125[1:0];
   _RAND_126 = {1{`RANDOM}};
-  bht_125 = _RAND_126[6:0];
+  pht_0_61 = _RAND_126[1:0];
   _RAND_127 = {1{`RANDOM}};
-  bht_126 = _RAND_127[6:0];
+  pht_0_62 = _RAND_127[1:0];
   _RAND_128 = {1{`RANDOM}};
-  bht_127 = _RAND_128[6:0];
+  pht_0_63 = _RAND_128[1:0];
   _RAND_129 = {1{`RANDOM}};
-  pht_0_0 = _RAND_129[1:0];
+  pht_1_0 = _RAND_129[1:0];
   _RAND_130 = {1{`RANDOM}};
-  pht_0_1 = _RAND_130[1:0];
+  pht_1_1 = _RAND_130[1:0];
   _RAND_131 = {1{`RANDOM}};
-  pht_0_2 = _RAND_131[1:0];
+  pht_1_2 = _RAND_131[1:0];
   _RAND_132 = {1{`RANDOM}};
-  pht_0_3 = _RAND_132[1:0];
+  pht_1_3 = _RAND_132[1:0];
   _RAND_133 = {1{`RANDOM}};
-  pht_0_4 = _RAND_133[1:0];
+  pht_1_4 = _RAND_133[1:0];
   _RAND_134 = {1{`RANDOM}};
-  pht_0_5 = _RAND_134[1:0];
+  pht_1_5 = _RAND_134[1:0];
   _RAND_135 = {1{`RANDOM}};
-  pht_0_6 = _RAND_135[1:0];
+  pht_1_6 = _RAND_135[1:0];
   _RAND_136 = {1{`RANDOM}};
-  pht_0_7 = _RAND_136[1:0];
+  pht_1_7 = _RAND_136[1:0];
   _RAND_137 = {1{`RANDOM}};
-  pht_0_8 = _RAND_137[1:0];
+  pht_1_8 = _RAND_137[1:0];
   _RAND_138 = {1{`RANDOM}};
-  pht_0_9 = _RAND_138[1:0];
+  pht_1_9 = _RAND_138[1:0];
   _RAND_139 = {1{`RANDOM}};
-  pht_0_10 = _RAND_139[1:0];
+  pht_1_10 = _RAND_139[1:0];
   _RAND_140 = {1{`RANDOM}};
-  pht_0_11 = _RAND_140[1:0];
+  pht_1_11 = _RAND_140[1:0];
   _RAND_141 = {1{`RANDOM}};
-  pht_0_12 = _RAND_141[1:0];
+  pht_1_12 = _RAND_141[1:0];
   _RAND_142 = {1{`RANDOM}};
-  pht_0_13 = _RAND_142[1:0];
+  pht_1_13 = _RAND_142[1:0];
   _RAND_143 = {1{`RANDOM}};
-  pht_0_14 = _RAND_143[1:0];
+  pht_1_14 = _RAND_143[1:0];
   _RAND_144 = {1{`RANDOM}};
-  pht_0_15 = _RAND_144[1:0];
+  pht_1_15 = _RAND_144[1:0];
   _RAND_145 = {1{`RANDOM}};
-  pht_0_16 = _RAND_145[1:0];
+  pht_1_16 = _RAND_145[1:0];
   _RAND_146 = {1{`RANDOM}};
-  pht_0_17 = _RAND_146[1:0];
+  pht_1_17 = _RAND_146[1:0];
   _RAND_147 = {1{`RANDOM}};
-  pht_0_18 = _RAND_147[1:0];
+  pht_1_18 = _RAND_147[1:0];
   _RAND_148 = {1{`RANDOM}};
-  pht_0_19 = _RAND_148[1:0];
+  pht_1_19 = _RAND_148[1:0];
   _RAND_149 = {1{`RANDOM}};
-  pht_0_20 = _RAND_149[1:0];
+  pht_1_20 = _RAND_149[1:0];
   _RAND_150 = {1{`RANDOM}};
-  pht_0_21 = _RAND_150[1:0];
+  pht_1_21 = _RAND_150[1:0];
   _RAND_151 = {1{`RANDOM}};
-  pht_0_22 = _RAND_151[1:0];
+  pht_1_22 = _RAND_151[1:0];
   _RAND_152 = {1{`RANDOM}};
-  pht_0_23 = _RAND_152[1:0];
+  pht_1_23 = _RAND_152[1:0];
   _RAND_153 = {1{`RANDOM}};
-  pht_0_24 = _RAND_153[1:0];
+  pht_1_24 = _RAND_153[1:0];
   _RAND_154 = {1{`RANDOM}};
-  pht_0_25 = _RAND_154[1:0];
+  pht_1_25 = _RAND_154[1:0];
   _RAND_155 = {1{`RANDOM}};
-  pht_0_26 = _RAND_155[1:0];
+  pht_1_26 = _RAND_155[1:0];
   _RAND_156 = {1{`RANDOM}};
-  pht_0_27 = _RAND_156[1:0];
+  pht_1_27 = _RAND_156[1:0];
   _RAND_157 = {1{`RANDOM}};
-  pht_0_28 = _RAND_157[1:0];
+  pht_1_28 = _RAND_157[1:0];
   _RAND_158 = {1{`RANDOM}};
-  pht_0_29 = _RAND_158[1:0];
+  pht_1_29 = _RAND_158[1:0];
   _RAND_159 = {1{`RANDOM}};
-  pht_0_30 = _RAND_159[1:0];
+  pht_1_30 = _RAND_159[1:0];
   _RAND_160 = {1{`RANDOM}};
-  pht_0_31 = _RAND_160[1:0];
+  pht_1_31 = _RAND_160[1:0];
   _RAND_161 = {1{`RANDOM}};
-  pht_0_32 = _RAND_161[1:0];
+  pht_1_32 = _RAND_161[1:0];
   _RAND_162 = {1{`RANDOM}};
-  pht_0_33 = _RAND_162[1:0];
+  pht_1_33 = _RAND_162[1:0];
   _RAND_163 = {1{`RANDOM}};
-  pht_0_34 = _RAND_163[1:0];
+  pht_1_34 = _RAND_163[1:0];
   _RAND_164 = {1{`RANDOM}};
-  pht_0_35 = _RAND_164[1:0];
+  pht_1_35 = _RAND_164[1:0];
   _RAND_165 = {1{`RANDOM}};
-  pht_0_36 = _RAND_165[1:0];
+  pht_1_36 = _RAND_165[1:0];
   _RAND_166 = {1{`RANDOM}};
-  pht_0_37 = _RAND_166[1:0];
+  pht_1_37 = _RAND_166[1:0];
   _RAND_167 = {1{`RANDOM}};
-  pht_0_38 = _RAND_167[1:0];
+  pht_1_38 = _RAND_167[1:0];
   _RAND_168 = {1{`RANDOM}};
-  pht_0_39 = _RAND_168[1:0];
+  pht_1_39 = _RAND_168[1:0];
   _RAND_169 = {1{`RANDOM}};
-  pht_0_40 = _RAND_169[1:0];
+  pht_1_40 = _RAND_169[1:0];
   _RAND_170 = {1{`RANDOM}};
-  pht_0_41 = _RAND_170[1:0];
+  pht_1_41 = _RAND_170[1:0];
   _RAND_171 = {1{`RANDOM}};
-  pht_0_42 = _RAND_171[1:0];
+  pht_1_42 = _RAND_171[1:0];
   _RAND_172 = {1{`RANDOM}};
-  pht_0_43 = _RAND_172[1:0];
+  pht_1_43 = _RAND_172[1:0];
   _RAND_173 = {1{`RANDOM}};
-  pht_0_44 = _RAND_173[1:0];
+  pht_1_44 = _RAND_173[1:0];
   _RAND_174 = {1{`RANDOM}};
-  pht_0_45 = _RAND_174[1:0];
+  pht_1_45 = _RAND_174[1:0];
   _RAND_175 = {1{`RANDOM}};
-  pht_0_46 = _RAND_175[1:0];
+  pht_1_46 = _RAND_175[1:0];
   _RAND_176 = {1{`RANDOM}};
-  pht_0_47 = _RAND_176[1:0];
+  pht_1_47 = _RAND_176[1:0];
   _RAND_177 = {1{`RANDOM}};
-  pht_0_48 = _RAND_177[1:0];
+  pht_1_48 = _RAND_177[1:0];
   _RAND_178 = {1{`RANDOM}};
-  pht_0_49 = _RAND_178[1:0];
+  pht_1_49 = _RAND_178[1:0];
   _RAND_179 = {1{`RANDOM}};
-  pht_0_50 = _RAND_179[1:0];
+  pht_1_50 = _RAND_179[1:0];
   _RAND_180 = {1{`RANDOM}};
-  pht_0_51 = _RAND_180[1:0];
+  pht_1_51 = _RAND_180[1:0];
   _RAND_181 = {1{`RANDOM}};
-  pht_0_52 = _RAND_181[1:0];
+  pht_1_52 = _RAND_181[1:0];
   _RAND_182 = {1{`RANDOM}};
-  pht_0_53 = _RAND_182[1:0];
+  pht_1_53 = _RAND_182[1:0];
   _RAND_183 = {1{`RANDOM}};
-  pht_0_54 = _RAND_183[1:0];
+  pht_1_54 = _RAND_183[1:0];
   _RAND_184 = {1{`RANDOM}};
-  pht_0_55 = _RAND_184[1:0];
+  pht_1_55 = _RAND_184[1:0];
   _RAND_185 = {1{`RANDOM}};
-  pht_0_56 = _RAND_185[1:0];
+  pht_1_56 = _RAND_185[1:0];
   _RAND_186 = {1{`RANDOM}};
-  pht_0_57 = _RAND_186[1:0];
+  pht_1_57 = _RAND_186[1:0];
   _RAND_187 = {1{`RANDOM}};
-  pht_0_58 = _RAND_187[1:0];
+  pht_1_58 = _RAND_187[1:0];
   _RAND_188 = {1{`RANDOM}};
-  pht_0_59 = _RAND_188[1:0];
+  pht_1_59 = _RAND_188[1:0];
   _RAND_189 = {1{`RANDOM}};
-  pht_0_60 = _RAND_189[1:0];
+  pht_1_60 = _RAND_189[1:0];
   _RAND_190 = {1{`RANDOM}};
-  pht_0_61 = _RAND_190[1:0];
+  pht_1_61 = _RAND_190[1:0];
   _RAND_191 = {1{`RANDOM}};
-  pht_0_62 = _RAND_191[1:0];
+  pht_1_62 = _RAND_191[1:0];
   _RAND_192 = {1{`RANDOM}};
-  pht_0_63 = _RAND_192[1:0];
+  pht_1_63 = _RAND_192[1:0];
   _RAND_193 = {1{`RANDOM}};
-  pht_0_64 = _RAND_193[1:0];
+  pht_2_0 = _RAND_193[1:0];
   _RAND_194 = {1{`RANDOM}};
-  pht_0_65 = _RAND_194[1:0];
+  pht_2_1 = _RAND_194[1:0];
   _RAND_195 = {1{`RANDOM}};
-  pht_0_66 = _RAND_195[1:0];
+  pht_2_2 = _RAND_195[1:0];
   _RAND_196 = {1{`RANDOM}};
-  pht_0_67 = _RAND_196[1:0];
+  pht_2_3 = _RAND_196[1:0];
   _RAND_197 = {1{`RANDOM}};
-  pht_0_68 = _RAND_197[1:0];
+  pht_2_4 = _RAND_197[1:0];
   _RAND_198 = {1{`RANDOM}};
-  pht_0_69 = _RAND_198[1:0];
+  pht_2_5 = _RAND_198[1:0];
   _RAND_199 = {1{`RANDOM}};
-  pht_0_70 = _RAND_199[1:0];
+  pht_2_6 = _RAND_199[1:0];
   _RAND_200 = {1{`RANDOM}};
-  pht_0_71 = _RAND_200[1:0];
+  pht_2_7 = _RAND_200[1:0];
   _RAND_201 = {1{`RANDOM}};
-  pht_0_72 = _RAND_201[1:0];
+  pht_2_8 = _RAND_201[1:0];
   _RAND_202 = {1{`RANDOM}};
-  pht_0_73 = _RAND_202[1:0];
+  pht_2_9 = _RAND_202[1:0];
   _RAND_203 = {1{`RANDOM}};
-  pht_0_74 = _RAND_203[1:0];
+  pht_2_10 = _RAND_203[1:0];
   _RAND_204 = {1{`RANDOM}};
-  pht_0_75 = _RAND_204[1:0];
+  pht_2_11 = _RAND_204[1:0];
   _RAND_205 = {1{`RANDOM}};
-  pht_0_76 = _RAND_205[1:0];
+  pht_2_12 = _RAND_205[1:0];
   _RAND_206 = {1{`RANDOM}};
-  pht_0_77 = _RAND_206[1:0];
+  pht_2_13 = _RAND_206[1:0];
   _RAND_207 = {1{`RANDOM}};
-  pht_0_78 = _RAND_207[1:0];
+  pht_2_14 = _RAND_207[1:0];
   _RAND_208 = {1{`RANDOM}};
-  pht_0_79 = _RAND_208[1:0];
+  pht_2_15 = _RAND_208[1:0];
   _RAND_209 = {1{`RANDOM}};
-  pht_0_80 = _RAND_209[1:0];
+  pht_2_16 = _RAND_209[1:0];
   _RAND_210 = {1{`RANDOM}};
-  pht_0_81 = _RAND_210[1:0];
+  pht_2_17 = _RAND_210[1:0];
   _RAND_211 = {1{`RANDOM}};
-  pht_0_82 = _RAND_211[1:0];
+  pht_2_18 = _RAND_211[1:0];
   _RAND_212 = {1{`RANDOM}};
-  pht_0_83 = _RAND_212[1:0];
+  pht_2_19 = _RAND_212[1:0];
   _RAND_213 = {1{`RANDOM}};
-  pht_0_84 = _RAND_213[1:0];
+  pht_2_20 = _RAND_213[1:0];
   _RAND_214 = {1{`RANDOM}};
-  pht_0_85 = _RAND_214[1:0];
+  pht_2_21 = _RAND_214[1:0];
   _RAND_215 = {1{`RANDOM}};
-  pht_0_86 = _RAND_215[1:0];
+  pht_2_22 = _RAND_215[1:0];
   _RAND_216 = {1{`RANDOM}};
-  pht_0_87 = _RAND_216[1:0];
+  pht_2_23 = _RAND_216[1:0];
   _RAND_217 = {1{`RANDOM}};
-  pht_0_88 = _RAND_217[1:0];
+  pht_2_24 = _RAND_217[1:0];
   _RAND_218 = {1{`RANDOM}};
-  pht_0_89 = _RAND_218[1:0];
+  pht_2_25 = _RAND_218[1:0];
   _RAND_219 = {1{`RANDOM}};
-  pht_0_90 = _RAND_219[1:0];
+  pht_2_26 = _RAND_219[1:0];
   _RAND_220 = {1{`RANDOM}};
-  pht_0_91 = _RAND_220[1:0];
+  pht_2_27 = _RAND_220[1:0];
   _RAND_221 = {1{`RANDOM}};
-  pht_0_92 = _RAND_221[1:0];
+  pht_2_28 = _RAND_221[1:0];
   _RAND_222 = {1{`RANDOM}};
-  pht_0_93 = _RAND_222[1:0];
+  pht_2_29 = _RAND_222[1:0];
   _RAND_223 = {1{`RANDOM}};
-  pht_0_94 = _RAND_223[1:0];
+  pht_2_30 = _RAND_223[1:0];
   _RAND_224 = {1{`RANDOM}};
-  pht_0_95 = _RAND_224[1:0];
+  pht_2_31 = _RAND_224[1:0];
   _RAND_225 = {1{`RANDOM}};
-  pht_0_96 = _RAND_225[1:0];
+  pht_2_32 = _RAND_225[1:0];
   _RAND_226 = {1{`RANDOM}};
-  pht_0_97 = _RAND_226[1:0];
+  pht_2_33 = _RAND_226[1:0];
   _RAND_227 = {1{`RANDOM}};
-  pht_0_98 = _RAND_227[1:0];
+  pht_2_34 = _RAND_227[1:0];
   _RAND_228 = {1{`RANDOM}};
-  pht_0_99 = _RAND_228[1:0];
+  pht_2_35 = _RAND_228[1:0];
   _RAND_229 = {1{`RANDOM}};
-  pht_0_100 = _RAND_229[1:0];
+  pht_2_36 = _RAND_229[1:0];
   _RAND_230 = {1{`RANDOM}};
-  pht_0_101 = _RAND_230[1:0];
+  pht_2_37 = _RAND_230[1:0];
   _RAND_231 = {1{`RANDOM}};
-  pht_0_102 = _RAND_231[1:0];
+  pht_2_38 = _RAND_231[1:0];
   _RAND_232 = {1{`RANDOM}};
-  pht_0_103 = _RAND_232[1:0];
+  pht_2_39 = _RAND_232[1:0];
   _RAND_233 = {1{`RANDOM}};
-  pht_0_104 = _RAND_233[1:0];
+  pht_2_40 = _RAND_233[1:0];
   _RAND_234 = {1{`RANDOM}};
-  pht_0_105 = _RAND_234[1:0];
+  pht_2_41 = _RAND_234[1:0];
   _RAND_235 = {1{`RANDOM}};
-  pht_0_106 = _RAND_235[1:0];
+  pht_2_42 = _RAND_235[1:0];
   _RAND_236 = {1{`RANDOM}};
-  pht_0_107 = _RAND_236[1:0];
+  pht_2_43 = _RAND_236[1:0];
   _RAND_237 = {1{`RANDOM}};
-  pht_0_108 = _RAND_237[1:0];
+  pht_2_44 = _RAND_237[1:0];
   _RAND_238 = {1{`RANDOM}};
-  pht_0_109 = _RAND_238[1:0];
+  pht_2_45 = _RAND_238[1:0];
   _RAND_239 = {1{`RANDOM}};
-  pht_0_110 = _RAND_239[1:0];
+  pht_2_46 = _RAND_239[1:0];
   _RAND_240 = {1{`RANDOM}};
-  pht_0_111 = _RAND_240[1:0];
+  pht_2_47 = _RAND_240[1:0];
   _RAND_241 = {1{`RANDOM}};
-  pht_0_112 = _RAND_241[1:0];
+  pht_2_48 = _RAND_241[1:0];
   _RAND_242 = {1{`RANDOM}};
-  pht_0_113 = _RAND_242[1:0];
+  pht_2_49 = _RAND_242[1:0];
   _RAND_243 = {1{`RANDOM}};
-  pht_0_114 = _RAND_243[1:0];
+  pht_2_50 = _RAND_243[1:0];
   _RAND_244 = {1{`RANDOM}};
-  pht_0_115 = _RAND_244[1:0];
+  pht_2_51 = _RAND_244[1:0];
   _RAND_245 = {1{`RANDOM}};
-  pht_0_116 = _RAND_245[1:0];
+  pht_2_52 = _RAND_245[1:0];
   _RAND_246 = {1{`RANDOM}};
-  pht_0_117 = _RAND_246[1:0];
+  pht_2_53 = _RAND_246[1:0];
   _RAND_247 = {1{`RANDOM}};
-  pht_0_118 = _RAND_247[1:0];
+  pht_2_54 = _RAND_247[1:0];
   _RAND_248 = {1{`RANDOM}};
-  pht_0_119 = _RAND_248[1:0];
+  pht_2_55 = _RAND_248[1:0];
   _RAND_249 = {1{`RANDOM}};
-  pht_0_120 = _RAND_249[1:0];
+  pht_2_56 = _RAND_249[1:0];
   _RAND_250 = {1{`RANDOM}};
-  pht_0_121 = _RAND_250[1:0];
+  pht_2_57 = _RAND_250[1:0];
   _RAND_251 = {1{`RANDOM}};
-  pht_0_122 = _RAND_251[1:0];
+  pht_2_58 = _RAND_251[1:0];
   _RAND_252 = {1{`RANDOM}};
-  pht_0_123 = _RAND_252[1:0];
+  pht_2_59 = _RAND_252[1:0];
   _RAND_253 = {1{`RANDOM}};
-  pht_0_124 = _RAND_253[1:0];
+  pht_2_60 = _RAND_253[1:0];
   _RAND_254 = {1{`RANDOM}};
-  pht_0_125 = _RAND_254[1:0];
+  pht_2_61 = _RAND_254[1:0];
   _RAND_255 = {1{`RANDOM}};
-  pht_0_126 = _RAND_255[1:0];
+  pht_2_62 = _RAND_255[1:0];
   _RAND_256 = {1{`RANDOM}};
-  pht_0_127 = _RAND_256[1:0];
+  pht_2_63 = _RAND_256[1:0];
   _RAND_257 = {1{`RANDOM}};
-  pht_1_0 = _RAND_257[1:0];
+  btbV_0 = _RAND_257[0:0];
   _RAND_258 = {1{`RANDOM}};
-  pht_1_1 = _RAND_258[1:0];
+  btbV_1 = _RAND_258[0:0];
   _RAND_259 = {1{`RANDOM}};
-  pht_1_2 = _RAND_259[1:0];
+  btbV_2 = _RAND_259[0:0];
   _RAND_260 = {1{`RANDOM}};
-  pht_1_3 = _RAND_260[1:0];
+  btbV_3 = _RAND_260[0:0];
   _RAND_261 = {1{`RANDOM}};
-  pht_1_4 = _RAND_261[1:0];
+  btbV_4 = _RAND_261[0:0];
   _RAND_262 = {1{`RANDOM}};
-  pht_1_5 = _RAND_262[1:0];
+  btbV_5 = _RAND_262[0:0];
   _RAND_263 = {1{`RANDOM}};
-  pht_1_6 = _RAND_263[1:0];
+  btbV_6 = _RAND_263[0:0];
   _RAND_264 = {1{`RANDOM}};
-  pht_1_7 = _RAND_264[1:0];
+  btbV_7 = _RAND_264[0:0];
   _RAND_265 = {1{`RANDOM}};
-  pht_1_8 = _RAND_265[1:0];
+  btbV_8 = _RAND_265[0:0];
   _RAND_266 = {1{`RANDOM}};
-  pht_1_9 = _RAND_266[1:0];
+  btbV_9 = _RAND_266[0:0];
   _RAND_267 = {1{`RANDOM}};
-  pht_1_10 = _RAND_267[1:0];
+  btbV_10 = _RAND_267[0:0];
   _RAND_268 = {1{`RANDOM}};
-  pht_1_11 = _RAND_268[1:0];
+  btbV_11 = _RAND_268[0:0];
   _RAND_269 = {1{`RANDOM}};
-  pht_1_12 = _RAND_269[1:0];
+  btbV_12 = _RAND_269[0:0];
   _RAND_270 = {1{`RANDOM}};
-  pht_1_13 = _RAND_270[1:0];
+  btbV_13 = _RAND_270[0:0];
   _RAND_271 = {1{`RANDOM}};
-  pht_1_14 = _RAND_271[1:0];
+  btbV_14 = _RAND_271[0:0];
   _RAND_272 = {1{`RANDOM}};
-  pht_1_15 = _RAND_272[1:0];
+  btbV_15 = _RAND_272[0:0];
   _RAND_273 = {1{`RANDOM}};
-  pht_1_16 = _RAND_273[1:0];
+  btbV_16 = _RAND_273[0:0];
   _RAND_274 = {1{`RANDOM}};
-  pht_1_17 = _RAND_274[1:0];
+  btbV_17 = _RAND_274[0:0];
   _RAND_275 = {1{`RANDOM}};
-  pht_1_18 = _RAND_275[1:0];
+  btbV_18 = _RAND_275[0:0];
   _RAND_276 = {1{`RANDOM}};
-  pht_1_19 = _RAND_276[1:0];
+  btbV_19 = _RAND_276[0:0];
   _RAND_277 = {1{`RANDOM}};
-  pht_1_20 = _RAND_277[1:0];
+  btbV_20 = _RAND_277[0:0];
   _RAND_278 = {1{`RANDOM}};
-  pht_1_21 = _RAND_278[1:0];
+  btbV_21 = _RAND_278[0:0];
   _RAND_279 = {1{`RANDOM}};
-  pht_1_22 = _RAND_279[1:0];
+  btbV_22 = _RAND_279[0:0];
   _RAND_280 = {1{`RANDOM}};
-  pht_1_23 = _RAND_280[1:0];
+  btbV_23 = _RAND_280[0:0];
   _RAND_281 = {1{`RANDOM}};
-  pht_1_24 = _RAND_281[1:0];
+  btbV_24 = _RAND_281[0:0];
   _RAND_282 = {1{`RANDOM}};
-  pht_1_25 = _RAND_282[1:0];
+  btbV_25 = _RAND_282[0:0];
   _RAND_283 = {1{`RANDOM}};
-  pht_1_26 = _RAND_283[1:0];
+  btbV_26 = _RAND_283[0:0];
   _RAND_284 = {1{`RANDOM}};
-  pht_1_27 = _RAND_284[1:0];
+  btbV_27 = _RAND_284[0:0];
   _RAND_285 = {1{`RANDOM}};
-  pht_1_28 = _RAND_285[1:0];
+  btbV_28 = _RAND_285[0:0];
   _RAND_286 = {1{`RANDOM}};
-  pht_1_29 = _RAND_286[1:0];
+  btbV_29 = _RAND_286[0:0];
   _RAND_287 = {1{`RANDOM}};
-  pht_1_30 = _RAND_287[1:0];
+  btbV_30 = _RAND_287[0:0];
   _RAND_288 = {1{`RANDOM}};
-  pht_1_31 = _RAND_288[1:0];
+  btbV_31 = _RAND_288[0:0];
   _RAND_289 = {1{`RANDOM}};
-  pht_1_32 = _RAND_289[1:0];
+  btbV_32 = _RAND_289[0:0];
   _RAND_290 = {1{`RANDOM}};
-  pht_1_33 = _RAND_290[1:0];
+  btbV_33 = _RAND_290[0:0];
   _RAND_291 = {1{`RANDOM}};
-  pht_1_34 = _RAND_291[1:0];
+  btbV_34 = _RAND_291[0:0];
   _RAND_292 = {1{`RANDOM}};
-  pht_1_35 = _RAND_292[1:0];
+  btbV_35 = _RAND_292[0:0];
   _RAND_293 = {1{`RANDOM}};
-  pht_1_36 = _RAND_293[1:0];
+  btbV_36 = _RAND_293[0:0];
   _RAND_294 = {1{`RANDOM}};
-  pht_1_37 = _RAND_294[1:0];
+  btbV_37 = _RAND_294[0:0];
   _RAND_295 = {1{`RANDOM}};
-  pht_1_38 = _RAND_295[1:0];
+  btbV_38 = _RAND_295[0:0];
   _RAND_296 = {1{`RANDOM}};
-  pht_1_39 = _RAND_296[1:0];
+  btbV_39 = _RAND_296[0:0];
   _RAND_297 = {1{`RANDOM}};
-  pht_1_40 = _RAND_297[1:0];
+  btbV_40 = _RAND_297[0:0];
   _RAND_298 = {1{`RANDOM}};
-  pht_1_41 = _RAND_298[1:0];
+  btbV_41 = _RAND_298[0:0];
   _RAND_299 = {1{`RANDOM}};
-  pht_1_42 = _RAND_299[1:0];
+  btbV_42 = _RAND_299[0:0];
   _RAND_300 = {1{`RANDOM}};
-  pht_1_43 = _RAND_300[1:0];
+  btbV_43 = _RAND_300[0:0];
   _RAND_301 = {1{`RANDOM}};
-  pht_1_44 = _RAND_301[1:0];
+  btbV_44 = _RAND_301[0:0];
   _RAND_302 = {1{`RANDOM}};
-  pht_1_45 = _RAND_302[1:0];
+  btbV_45 = _RAND_302[0:0];
   _RAND_303 = {1{`RANDOM}};
-  pht_1_46 = _RAND_303[1:0];
+  btbV_46 = _RAND_303[0:0];
   _RAND_304 = {1{`RANDOM}};
-  pht_1_47 = _RAND_304[1:0];
+  btbV_47 = _RAND_304[0:0];
   _RAND_305 = {1{`RANDOM}};
-  pht_1_48 = _RAND_305[1:0];
+  btbV_48 = _RAND_305[0:0];
   _RAND_306 = {1{`RANDOM}};
-  pht_1_49 = _RAND_306[1:0];
+  btbV_49 = _RAND_306[0:0];
   _RAND_307 = {1{`RANDOM}};
-  pht_1_50 = _RAND_307[1:0];
+  btbV_50 = _RAND_307[0:0];
   _RAND_308 = {1{`RANDOM}};
-  pht_1_51 = _RAND_308[1:0];
+  btbV_51 = _RAND_308[0:0];
   _RAND_309 = {1{`RANDOM}};
-  pht_1_52 = _RAND_309[1:0];
+  btbV_52 = _RAND_309[0:0];
   _RAND_310 = {1{`RANDOM}};
-  pht_1_53 = _RAND_310[1:0];
+  btbV_53 = _RAND_310[0:0];
   _RAND_311 = {1{`RANDOM}};
-  pht_1_54 = _RAND_311[1:0];
+  btbV_54 = _RAND_311[0:0];
   _RAND_312 = {1{`RANDOM}};
-  pht_1_55 = _RAND_312[1:0];
+  btbV_55 = _RAND_312[0:0];
   _RAND_313 = {1{`RANDOM}};
-  pht_1_56 = _RAND_313[1:0];
+  btbV_56 = _RAND_313[0:0];
   _RAND_314 = {1{`RANDOM}};
-  pht_1_57 = _RAND_314[1:0];
+  btbV_57 = _RAND_314[0:0];
   _RAND_315 = {1{`RANDOM}};
-  pht_1_58 = _RAND_315[1:0];
+  btbV_58 = _RAND_315[0:0];
   _RAND_316 = {1{`RANDOM}};
-  pht_1_59 = _RAND_316[1:0];
+  btbV_59 = _RAND_316[0:0];
   _RAND_317 = {1{`RANDOM}};
-  pht_1_60 = _RAND_317[1:0];
+  btbV_60 = _RAND_317[0:0];
   _RAND_318 = {1{`RANDOM}};
-  pht_1_61 = _RAND_318[1:0];
+  btbV_61 = _RAND_318[0:0];
   _RAND_319 = {1{`RANDOM}};
-  pht_1_62 = _RAND_319[1:0];
+  btbV_62 = _RAND_319[0:0];
   _RAND_320 = {1{`RANDOM}};
-  pht_1_63 = _RAND_320[1:0];
+  btbV_63 = _RAND_320[0:0];
   _RAND_321 = {1{`RANDOM}};
-  pht_1_64 = _RAND_321[1:0];
+  btbTag_0 = _RAND_321[5:0];
   _RAND_322 = {1{`RANDOM}};
-  pht_1_65 = _RAND_322[1:0];
+  btbTag_1 = _RAND_322[5:0];
   _RAND_323 = {1{`RANDOM}};
-  pht_1_66 = _RAND_323[1:0];
+  btbTag_2 = _RAND_323[5:0];
   _RAND_324 = {1{`RANDOM}};
-  pht_1_67 = _RAND_324[1:0];
+  btbTag_3 = _RAND_324[5:0];
   _RAND_325 = {1{`RANDOM}};
-  pht_1_68 = _RAND_325[1:0];
+  btbTag_4 = _RAND_325[5:0];
   _RAND_326 = {1{`RANDOM}};
-  pht_1_69 = _RAND_326[1:0];
+  btbTag_5 = _RAND_326[5:0];
   _RAND_327 = {1{`RANDOM}};
-  pht_1_70 = _RAND_327[1:0];
+  btbTag_6 = _RAND_327[5:0];
   _RAND_328 = {1{`RANDOM}};
-  pht_1_71 = _RAND_328[1:0];
+  btbTag_7 = _RAND_328[5:0];
   _RAND_329 = {1{`RANDOM}};
-  pht_1_72 = _RAND_329[1:0];
+  btbTag_8 = _RAND_329[5:0];
   _RAND_330 = {1{`RANDOM}};
-  pht_1_73 = _RAND_330[1:0];
+  btbTag_9 = _RAND_330[5:0];
   _RAND_331 = {1{`RANDOM}};
-  pht_1_74 = _RAND_331[1:0];
+  btbTag_10 = _RAND_331[5:0];
   _RAND_332 = {1{`RANDOM}};
-  pht_1_75 = _RAND_332[1:0];
+  btbTag_11 = _RAND_332[5:0];
   _RAND_333 = {1{`RANDOM}};
-  pht_1_76 = _RAND_333[1:0];
+  btbTag_12 = _RAND_333[5:0];
   _RAND_334 = {1{`RANDOM}};
-  pht_1_77 = _RAND_334[1:0];
+  btbTag_13 = _RAND_334[5:0];
   _RAND_335 = {1{`RANDOM}};
-  pht_1_78 = _RAND_335[1:0];
+  btbTag_14 = _RAND_335[5:0];
   _RAND_336 = {1{`RANDOM}};
-  pht_1_79 = _RAND_336[1:0];
+  btbTag_15 = _RAND_336[5:0];
   _RAND_337 = {1{`RANDOM}};
-  pht_1_80 = _RAND_337[1:0];
+  btbTag_16 = _RAND_337[5:0];
   _RAND_338 = {1{`RANDOM}};
-  pht_1_81 = _RAND_338[1:0];
+  btbTag_17 = _RAND_338[5:0];
   _RAND_339 = {1{`RANDOM}};
-  pht_1_82 = _RAND_339[1:0];
+  btbTag_18 = _RAND_339[5:0];
   _RAND_340 = {1{`RANDOM}};
-  pht_1_83 = _RAND_340[1:0];
+  btbTag_19 = _RAND_340[5:0];
   _RAND_341 = {1{`RANDOM}};
-  pht_1_84 = _RAND_341[1:0];
+  btbTag_20 = _RAND_341[5:0];
   _RAND_342 = {1{`RANDOM}};
-  pht_1_85 = _RAND_342[1:0];
+  btbTag_21 = _RAND_342[5:0];
   _RAND_343 = {1{`RANDOM}};
-  pht_1_86 = _RAND_343[1:0];
+  btbTag_22 = _RAND_343[5:0];
   _RAND_344 = {1{`RANDOM}};
-  pht_1_87 = _RAND_344[1:0];
+  btbTag_23 = _RAND_344[5:0];
   _RAND_345 = {1{`RANDOM}};
-  pht_1_88 = _RAND_345[1:0];
+  btbTag_24 = _RAND_345[5:0];
   _RAND_346 = {1{`RANDOM}};
-  pht_1_89 = _RAND_346[1:0];
+  btbTag_25 = _RAND_346[5:0];
   _RAND_347 = {1{`RANDOM}};
-  pht_1_90 = _RAND_347[1:0];
+  btbTag_26 = _RAND_347[5:0];
   _RAND_348 = {1{`RANDOM}};
-  pht_1_91 = _RAND_348[1:0];
+  btbTag_27 = _RAND_348[5:0];
   _RAND_349 = {1{`RANDOM}};
-  pht_1_92 = _RAND_349[1:0];
+  btbTag_28 = _RAND_349[5:0];
   _RAND_350 = {1{`RANDOM}};
-  pht_1_93 = _RAND_350[1:0];
+  btbTag_29 = _RAND_350[5:0];
   _RAND_351 = {1{`RANDOM}};
-  pht_1_94 = _RAND_351[1:0];
+  btbTag_30 = _RAND_351[5:0];
   _RAND_352 = {1{`RANDOM}};
-  pht_1_95 = _RAND_352[1:0];
+  btbTag_31 = _RAND_352[5:0];
   _RAND_353 = {1{`RANDOM}};
-  pht_1_96 = _RAND_353[1:0];
+  btbTag_32 = _RAND_353[5:0];
   _RAND_354 = {1{`RANDOM}};
-  pht_1_97 = _RAND_354[1:0];
+  btbTag_33 = _RAND_354[5:0];
   _RAND_355 = {1{`RANDOM}};
-  pht_1_98 = _RAND_355[1:0];
+  btbTag_34 = _RAND_355[5:0];
   _RAND_356 = {1{`RANDOM}};
-  pht_1_99 = _RAND_356[1:0];
+  btbTag_35 = _RAND_356[5:0];
   _RAND_357 = {1{`RANDOM}};
-  pht_1_100 = _RAND_357[1:0];
+  btbTag_36 = _RAND_357[5:0];
   _RAND_358 = {1{`RANDOM}};
-  pht_1_101 = _RAND_358[1:0];
+  btbTag_37 = _RAND_358[5:0];
   _RAND_359 = {1{`RANDOM}};
-  pht_1_102 = _RAND_359[1:0];
+  btbTag_38 = _RAND_359[5:0];
   _RAND_360 = {1{`RANDOM}};
-  pht_1_103 = _RAND_360[1:0];
+  btbTag_39 = _RAND_360[5:0];
   _RAND_361 = {1{`RANDOM}};
-  pht_1_104 = _RAND_361[1:0];
+  btbTag_40 = _RAND_361[5:0];
   _RAND_362 = {1{`RANDOM}};
-  pht_1_105 = _RAND_362[1:0];
+  btbTag_41 = _RAND_362[5:0];
   _RAND_363 = {1{`RANDOM}};
-  pht_1_106 = _RAND_363[1:0];
+  btbTag_42 = _RAND_363[5:0];
   _RAND_364 = {1{`RANDOM}};
-  pht_1_107 = _RAND_364[1:0];
+  btbTag_43 = _RAND_364[5:0];
   _RAND_365 = {1{`RANDOM}};
-  pht_1_108 = _RAND_365[1:0];
+  btbTag_44 = _RAND_365[5:0];
   _RAND_366 = {1{`RANDOM}};
-  pht_1_109 = _RAND_366[1:0];
+  btbTag_45 = _RAND_366[5:0];
   _RAND_367 = {1{`RANDOM}};
-  pht_1_110 = _RAND_367[1:0];
+  btbTag_46 = _RAND_367[5:0];
   _RAND_368 = {1{`RANDOM}};
-  pht_1_111 = _RAND_368[1:0];
+  btbTag_47 = _RAND_368[5:0];
   _RAND_369 = {1{`RANDOM}};
-  pht_1_112 = _RAND_369[1:0];
+  btbTag_48 = _RAND_369[5:0];
   _RAND_370 = {1{`RANDOM}};
-  pht_1_113 = _RAND_370[1:0];
+  btbTag_49 = _RAND_370[5:0];
   _RAND_371 = {1{`RANDOM}};
-  pht_1_114 = _RAND_371[1:0];
+  btbTag_50 = _RAND_371[5:0];
   _RAND_372 = {1{`RANDOM}};
-  pht_1_115 = _RAND_372[1:0];
+  btbTag_51 = _RAND_372[5:0];
   _RAND_373 = {1{`RANDOM}};
-  pht_1_116 = _RAND_373[1:0];
+  btbTag_52 = _RAND_373[5:0];
   _RAND_374 = {1{`RANDOM}};
-  pht_1_117 = _RAND_374[1:0];
+  btbTag_53 = _RAND_374[5:0];
   _RAND_375 = {1{`RANDOM}};
-  pht_1_118 = _RAND_375[1:0];
+  btbTag_54 = _RAND_375[5:0];
   _RAND_376 = {1{`RANDOM}};
-  pht_1_119 = _RAND_376[1:0];
+  btbTag_55 = _RAND_376[5:0];
   _RAND_377 = {1{`RANDOM}};
-  pht_1_120 = _RAND_377[1:0];
+  btbTag_56 = _RAND_377[5:0];
   _RAND_378 = {1{`RANDOM}};
-  pht_1_121 = _RAND_378[1:0];
+  btbTag_57 = _RAND_378[5:0];
   _RAND_379 = {1{`RANDOM}};
-  pht_1_122 = _RAND_379[1:0];
+  btbTag_58 = _RAND_379[5:0];
   _RAND_380 = {1{`RANDOM}};
-  pht_1_123 = _RAND_380[1:0];
+  btbTag_59 = _RAND_380[5:0];
   _RAND_381 = {1{`RANDOM}};
-  pht_1_124 = _RAND_381[1:0];
+  btbTag_60 = _RAND_381[5:0];
   _RAND_382 = {1{`RANDOM}};
-  pht_1_125 = _RAND_382[1:0];
+  btbTag_61 = _RAND_382[5:0];
   _RAND_383 = {1{`RANDOM}};
-  pht_1_126 = _RAND_383[1:0];
+  btbTag_62 = _RAND_383[5:0];
   _RAND_384 = {1{`RANDOM}};
-  pht_1_127 = _RAND_384[1:0];
+  btbTag_63 = _RAND_384[5:0];
   _RAND_385 = {1{`RANDOM}};
-  pht_2_0 = _RAND_385[1:0];
+  btbMeta_0 = _RAND_385[31:0];
   _RAND_386 = {1{`RANDOM}};
-  pht_2_1 = _RAND_386[1:0];
+  btbMeta_1 = _RAND_386[31:0];
   _RAND_387 = {1{`RANDOM}};
-  pht_2_2 = _RAND_387[1:0];
+  btbMeta_2 = _RAND_387[31:0];
   _RAND_388 = {1{`RANDOM}};
-  pht_2_3 = _RAND_388[1:0];
+  btbMeta_3 = _RAND_388[31:0];
   _RAND_389 = {1{`RANDOM}};
-  pht_2_4 = _RAND_389[1:0];
+  btbMeta_4 = _RAND_389[31:0];
   _RAND_390 = {1{`RANDOM}};
-  pht_2_5 = _RAND_390[1:0];
+  btbMeta_5 = _RAND_390[31:0];
   _RAND_391 = {1{`RANDOM}};
-  pht_2_6 = _RAND_391[1:0];
+  btbMeta_6 = _RAND_391[31:0];
   _RAND_392 = {1{`RANDOM}};
-  pht_2_7 = _RAND_392[1:0];
+  btbMeta_7 = _RAND_392[31:0];
   _RAND_393 = {1{`RANDOM}};
-  pht_2_8 = _RAND_393[1:0];
+  btbMeta_8 = _RAND_393[31:0];
   _RAND_394 = {1{`RANDOM}};
-  pht_2_9 = _RAND_394[1:0];
+  btbMeta_9 = _RAND_394[31:0];
   _RAND_395 = {1{`RANDOM}};
-  pht_2_10 = _RAND_395[1:0];
+  btbMeta_10 = _RAND_395[31:0];
   _RAND_396 = {1{`RANDOM}};
-  pht_2_11 = _RAND_396[1:0];
+  btbMeta_11 = _RAND_396[31:0];
   _RAND_397 = {1{`RANDOM}};
-  pht_2_12 = _RAND_397[1:0];
+  btbMeta_12 = _RAND_397[31:0];
   _RAND_398 = {1{`RANDOM}};
-  pht_2_13 = _RAND_398[1:0];
+  btbMeta_13 = _RAND_398[31:0];
   _RAND_399 = {1{`RANDOM}};
-  pht_2_14 = _RAND_399[1:0];
+  btbMeta_14 = _RAND_399[31:0];
   _RAND_400 = {1{`RANDOM}};
-  pht_2_15 = _RAND_400[1:0];
+  btbMeta_15 = _RAND_400[31:0];
   _RAND_401 = {1{`RANDOM}};
-  pht_2_16 = _RAND_401[1:0];
+  btbMeta_16 = _RAND_401[31:0];
   _RAND_402 = {1{`RANDOM}};
-  pht_2_17 = _RAND_402[1:0];
+  btbMeta_17 = _RAND_402[31:0];
   _RAND_403 = {1{`RANDOM}};
-  pht_2_18 = _RAND_403[1:0];
+  btbMeta_18 = _RAND_403[31:0];
   _RAND_404 = {1{`RANDOM}};
-  pht_2_19 = _RAND_404[1:0];
+  btbMeta_19 = _RAND_404[31:0];
   _RAND_405 = {1{`RANDOM}};
-  pht_2_20 = _RAND_405[1:0];
+  btbMeta_20 = _RAND_405[31:0];
   _RAND_406 = {1{`RANDOM}};
-  pht_2_21 = _RAND_406[1:0];
+  btbMeta_21 = _RAND_406[31:0];
   _RAND_407 = {1{`RANDOM}};
-  pht_2_22 = _RAND_407[1:0];
+  btbMeta_22 = _RAND_407[31:0];
   _RAND_408 = {1{`RANDOM}};
-  pht_2_23 = _RAND_408[1:0];
+  btbMeta_23 = _RAND_408[31:0];
   _RAND_409 = {1{`RANDOM}};
-  pht_2_24 = _RAND_409[1:0];
+  btbMeta_24 = _RAND_409[31:0];
   _RAND_410 = {1{`RANDOM}};
-  pht_2_25 = _RAND_410[1:0];
+  btbMeta_25 = _RAND_410[31:0];
   _RAND_411 = {1{`RANDOM}};
-  pht_2_26 = _RAND_411[1:0];
+  btbMeta_26 = _RAND_411[31:0];
   _RAND_412 = {1{`RANDOM}};
-  pht_2_27 = _RAND_412[1:0];
+  btbMeta_27 = _RAND_412[31:0];
   _RAND_413 = {1{`RANDOM}};
-  pht_2_28 = _RAND_413[1:0];
+  btbMeta_28 = _RAND_413[31:0];
   _RAND_414 = {1{`RANDOM}};
-  pht_2_29 = _RAND_414[1:0];
+  btbMeta_29 = _RAND_414[31:0];
   _RAND_415 = {1{`RANDOM}};
-  pht_2_30 = _RAND_415[1:0];
+  btbMeta_30 = _RAND_415[31:0];
   _RAND_416 = {1{`RANDOM}};
-  pht_2_31 = _RAND_416[1:0];
+  btbMeta_31 = _RAND_416[31:0];
   _RAND_417 = {1{`RANDOM}};
-  pht_2_32 = _RAND_417[1:0];
+  btbMeta_32 = _RAND_417[31:0];
   _RAND_418 = {1{`RANDOM}};
-  pht_2_33 = _RAND_418[1:0];
+  btbMeta_33 = _RAND_418[31:0];
   _RAND_419 = {1{`RANDOM}};
-  pht_2_34 = _RAND_419[1:0];
+  btbMeta_34 = _RAND_419[31:0];
   _RAND_420 = {1{`RANDOM}};
-  pht_2_35 = _RAND_420[1:0];
+  btbMeta_35 = _RAND_420[31:0];
   _RAND_421 = {1{`RANDOM}};
-  pht_2_36 = _RAND_421[1:0];
+  btbMeta_36 = _RAND_421[31:0];
   _RAND_422 = {1{`RANDOM}};
-  pht_2_37 = _RAND_422[1:0];
+  btbMeta_37 = _RAND_422[31:0];
   _RAND_423 = {1{`RANDOM}};
-  pht_2_38 = _RAND_423[1:0];
+  btbMeta_38 = _RAND_423[31:0];
   _RAND_424 = {1{`RANDOM}};
-  pht_2_39 = _RAND_424[1:0];
+  btbMeta_39 = _RAND_424[31:0];
   _RAND_425 = {1{`RANDOM}};
-  pht_2_40 = _RAND_425[1:0];
+  btbMeta_40 = _RAND_425[31:0];
   _RAND_426 = {1{`RANDOM}};
-  pht_2_41 = _RAND_426[1:0];
+  btbMeta_41 = _RAND_426[31:0];
   _RAND_427 = {1{`RANDOM}};
-  pht_2_42 = _RAND_427[1:0];
+  btbMeta_42 = _RAND_427[31:0];
   _RAND_428 = {1{`RANDOM}};
-  pht_2_43 = _RAND_428[1:0];
+  btbMeta_43 = _RAND_428[31:0];
   _RAND_429 = {1{`RANDOM}};
-  pht_2_44 = _RAND_429[1:0];
+  btbMeta_44 = _RAND_429[31:0];
   _RAND_430 = {1{`RANDOM}};
-  pht_2_45 = _RAND_430[1:0];
+  btbMeta_45 = _RAND_430[31:0];
   _RAND_431 = {1{`RANDOM}};
-  pht_2_46 = _RAND_431[1:0];
+  btbMeta_46 = _RAND_431[31:0];
   _RAND_432 = {1{`RANDOM}};
-  pht_2_47 = _RAND_432[1:0];
+  btbMeta_47 = _RAND_432[31:0];
   _RAND_433 = {1{`RANDOM}};
-  pht_2_48 = _RAND_433[1:0];
+  btbMeta_48 = _RAND_433[31:0];
   _RAND_434 = {1{`RANDOM}};
-  pht_2_49 = _RAND_434[1:0];
+  btbMeta_49 = _RAND_434[31:0];
   _RAND_435 = {1{`RANDOM}};
-  pht_2_50 = _RAND_435[1:0];
+  btbMeta_50 = _RAND_435[31:0];
   _RAND_436 = {1{`RANDOM}};
-  pht_2_51 = _RAND_436[1:0];
+  btbMeta_51 = _RAND_436[31:0];
   _RAND_437 = {1{`RANDOM}};
-  pht_2_52 = _RAND_437[1:0];
+  btbMeta_52 = _RAND_437[31:0];
   _RAND_438 = {1{`RANDOM}};
-  pht_2_53 = _RAND_438[1:0];
+  btbMeta_53 = _RAND_438[31:0];
   _RAND_439 = {1{`RANDOM}};
-  pht_2_54 = _RAND_439[1:0];
+  btbMeta_54 = _RAND_439[31:0];
   _RAND_440 = {1{`RANDOM}};
-  pht_2_55 = _RAND_440[1:0];
+  btbMeta_55 = _RAND_440[31:0];
   _RAND_441 = {1{`RANDOM}};
-  pht_2_56 = _RAND_441[1:0];
+  btbMeta_56 = _RAND_441[31:0];
   _RAND_442 = {1{`RANDOM}};
-  pht_2_57 = _RAND_442[1:0];
+  btbMeta_57 = _RAND_442[31:0];
   _RAND_443 = {1{`RANDOM}};
-  pht_2_58 = _RAND_443[1:0];
+  btbMeta_58 = _RAND_443[31:0];
   _RAND_444 = {1{`RANDOM}};
-  pht_2_59 = _RAND_444[1:0];
+  btbMeta_59 = _RAND_444[31:0];
   _RAND_445 = {1{`RANDOM}};
-  pht_2_60 = _RAND_445[1:0];
+  btbMeta_60 = _RAND_445[31:0];
   _RAND_446 = {1{`RANDOM}};
-  pht_2_61 = _RAND_446[1:0];
+  btbMeta_61 = _RAND_446[31:0];
   _RAND_447 = {1{`RANDOM}};
-  pht_2_62 = _RAND_447[1:0];
+  btbMeta_62 = _RAND_447[31:0];
   _RAND_448 = {1{`RANDOM}};
-  pht_2_63 = _RAND_448[1:0];
+  btbMeta_63 = _RAND_448[31:0];
   _RAND_449 = {1{`RANDOM}};
-  pht_2_64 = _RAND_449[1:0];
-  _RAND_450 = {1{`RANDOM}};
-  pht_2_65 = _RAND_450[1:0];
-  _RAND_451 = {1{`RANDOM}};
-  pht_2_66 = _RAND_451[1:0];
-  _RAND_452 = {1{`RANDOM}};
-  pht_2_67 = _RAND_452[1:0];
-  _RAND_453 = {1{`RANDOM}};
-  pht_2_68 = _RAND_453[1:0];
-  _RAND_454 = {1{`RANDOM}};
-  pht_2_69 = _RAND_454[1:0];
-  _RAND_455 = {1{`RANDOM}};
-  pht_2_70 = _RAND_455[1:0];
-  _RAND_456 = {1{`RANDOM}};
-  pht_2_71 = _RAND_456[1:0];
-  _RAND_457 = {1{`RANDOM}};
-  pht_2_72 = _RAND_457[1:0];
-  _RAND_458 = {1{`RANDOM}};
-  pht_2_73 = _RAND_458[1:0];
-  _RAND_459 = {1{`RANDOM}};
-  pht_2_74 = _RAND_459[1:0];
-  _RAND_460 = {1{`RANDOM}};
-  pht_2_75 = _RAND_460[1:0];
-  _RAND_461 = {1{`RANDOM}};
-  pht_2_76 = _RAND_461[1:0];
-  _RAND_462 = {1{`RANDOM}};
-  pht_2_77 = _RAND_462[1:0];
-  _RAND_463 = {1{`RANDOM}};
-  pht_2_78 = _RAND_463[1:0];
-  _RAND_464 = {1{`RANDOM}};
-  pht_2_79 = _RAND_464[1:0];
-  _RAND_465 = {1{`RANDOM}};
-  pht_2_80 = _RAND_465[1:0];
-  _RAND_466 = {1{`RANDOM}};
-  pht_2_81 = _RAND_466[1:0];
-  _RAND_467 = {1{`RANDOM}};
-  pht_2_82 = _RAND_467[1:0];
-  _RAND_468 = {1{`RANDOM}};
-  pht_2_83 = _RAND_468[1:0];
-  _RAND_469 = {1{`RANDOM}};
-  pht_2_84 = _RAND_469[1:0];
-  _RAND_470 = {1{`RANDOM}};
-  pht_2_85 = _RAND_470[1:0];
-  _RAND_471 = {1{`RANDOM}};
-  pht_2_86 = _RAND_471[1:0];
-  _RAND_472 = {1{`RANDOM}};
-  pht_2_87 = _RAND_472[1:0];
-  _RAND_473 = {1{`RANDOM}};
-  pht_2_88 = _RAND_473[1:0];
-  _RAND_474 = {1{`RANDOM}};
-  pht_2_89 = _RAND_474[1:0];
-  _RAND_475 = {1{`RANDOM}};
-  pht_2_90 = _RAND_475[1:0];
-  _RAND_476 = {1{`RANDOM}};
-  pht_2_91 = _RAND_476[1:0];
-  _RAND_477 = {1{`RANDOM}};
-  pht_2_92 = _RAND_477[1:0];
-  _RAND_478 = {1{`RANDOM}};
-  pht_2_93 = _RAND_478[1:0];
-  _RAND_479 = {1{`RANDOM}};
-  pht_2_94 = _RAND_479[1:0];
-  _RAND_480 = {1{`RANDOM}};
-  pht_2_95 = _RAND_480[1:0];
-  _RAND_481 = {1{`RANDOM}};
-  pht_2_96 = _RAND_481[1:0];
-  _RAND_482 = {1{`RANDOM}};
-  pht_2_97 = _RAND_482[1:0];
-  _RAND_483 = {1{`RANDOM}};
-  pht_2_98 = _RAND_483[1:0];
-  _RAND_484 = {1{`RANDOM}};
-  pht_2_99 = _RAND_484[1:0];
-  _RAND_485 = {1{`RANDOM}};
-  pht_2_100 = _RAND_485[1:0];
-  _RAND_486 = {1{`RANDOM}};
-  pht_2_101 = _RAND_486[1:0];
-  _RAND_487 = {1{`RANDOM}};
-  pht_2_102 = _RAND_487[1:0];
-  _RAND_488 = {1{`RANDOM}};
-  pht_2_103 = _RAND_488[1:0];
-  _RAND_489 = {1{`RANDOM}};
-  pht_2_104 = _RAND_489[1:0];
-  _RAND_490 = {1{`RANDOM}};
-  pht_2_105 = _RAND_490[1:0];
-  _RAND_491 = {1{`RANDOM}};
-  pht_2_106 = _RAND_491[1:0];
-  _RAND_492 = {1{`RANDOM}};
-  pht_2_107 = _RAND_492[1:0];
-  _RAND_493 = {1{`RANDOM}};
-  pht_2_108 = _RAND_493[1:0];
-  _RAND_494 = {1{`RANDOM}};
-  pht_2_109 = _RAND_494[1:0];
-  _RAND_495 = {1{`RANDOM}};
-  pht_2_110 = _RAND_495[1:0];
-  _RAND_496 = {1{`RANDOM}};
-  pht_2_111 = _RAND_496[1:0];
-  _RAND_497 = {1{`RANDOM}};
-  pht_2_112 = _RAND_497[1:0];
-  _RAND_498 = {1{`RANDOM}};
-  pht_2_113 = _RAND_498[1:0];
-  _RAND_499 = {1{`RANDOM}};
-  pht_2_114 = _RAND_499[1:0];
-  _RAND_500 = {1{`RANDOM}};
-  pht_2_115 = _RAND_500[1:0];
-  _RAND_501 = {1{`RANDOM}};
-  pht_2_116 = _RAND_501[1:0];
-  _RAND_502 = {1{`RANDOM}};
-  pht_2_117 = _RAND_502[1:0];
-  _RAND_503 = {1{`RANDOM}};
-  pht_2_118 = _RAND_503[1:0];
-  _RAND_504 = {1{`RANDOM}};
-  pht_2_119 = _RAND_504[1:0];
-  _RAND_505 = {1{`RANDOM}};
-  pht_2_120 = _RAND_505[1:0];
-  _RAND_506 = {1{`RANDOM}};
-  pht_2_121 = _RAND_506[1:0];
-  _RAND_507 = {1{`RANDOM}};
-  pht_2_122 = _RAND_507[1:0];
-  _RAND_508 = {1{`RANDOM}};
-  pht_2_123 = _RAND_508[1:0];
-  _RAND_509 = {1{`RANDOM}};
-  pht_2_124 = _RAND_509[1:0];
-  _RAND_510 = {1{`RANDOM}};
-  pht_2_125 = _RAND_510[1:0];
-  _RAND_511 = {1{`RANDOM}};
-  pht_2_126 = _RAND_511[1:0];
-  _RAND_512 = {1{`RANDOM}};
-  pht_2_127 = _RAND_512[1:0];
-  _RAND_513 = {1{`RANDOM}};
-  btbV_0 = _RAND_513[0:0];
-  _RAND_514 = {1{`RANDOM}};
-  btbV_1 = _RAND_514[0:0];
-  _RAND_515 = {1{`RANDOM}};
-  btbV_2 = _RAND_515[0:0];
-  _RAND_516 = {1{`RANDOM}};
-  btbV_3 = _RAND_516[0:0];
-  _RAND_517 = {1{`RANDOM}};
-  btbV_4 = _RAND_517[0:0];
-  _RAND_518 = {1{`RANDOM}};
-  btbV_5 = _RAND_518[0:0];
-  _RAND_519 = {1{`RANDOM}};
-  btbV_6 = _RAND_519[0:0];
-  _RAND_520 = {1{`RANDOM}};
-  btbV_7 = _RAND_520[0:0];
-  _RAND_521 = {1{`RANDOM}};
-  btbV_8 = _RAND_521[0:0];
-  _RAND_522 = {1{`RANDOM}};
-  btbV_9 = _RAND_522[0:0];
-  _RAND_523 = {1{`RANDOM}};
-  btbV_10 = _RAND_523[0:0];
-  _RAND_524 = {1{`RANDOM}};
-  btbV_11 = _RAND_524[0:0];
-  _RAND_525 = {1{`RANDOM}};
-  btbV_12 = _RAND_525[0:0];
-  _RAND_526 = {1{`RANDOM}};
-  btbV_13 = _RAND_526[0:0];
-  _RAND_527 = {1{`RANDOM}};
-  btbV_14 = _RAND_527[0:0];
-  _RAND_528 = {1{`RANDOM}};
-  btbV_15 = _RAND_528[0:0];
-  _RAND_529 = {1{`RANDOM}};
-  btbV_16 = _RAND_529[0:0];
-  _RAND_530 = {1{`RANDOM}};
-  btbV_17 = _RAND_530[0:0];
-  _RAND_531 = {1{`RANDOM}};
-  btbV_18 = _RAND_531[0:0];
-  _RAND_532 = {1{`RANDOM}};
-  btbV_19 = _RAND_532[0:0];
-  _RAND_533 = {1{`RANDOM}};
-  btbV_20 = _RAND_533[0:0];
-  _RAND_534 = {1{`RANDOM}};
-  btbV_21 = _RAND_534[0:0];
-  _RAND_535 = {1{`RANDOM}};
-  btbV_22 = _RAND_535[0:0];
-  _RAND_536 = {1{`RANDOM}};
-  btbV_23 = _RAND_536[0:0];
-  _RAND_537 = {1{`RANDOM}};
-  btbV_24 = _RAND_537[0:0];
-  _RAND_538 = {1{`RANDOM}};
-  btbV_25 = _RAND_538[0:0];
-  _RAND_539 = {1{`RANDOM}};
-  btbV_26 = _RAND_539[0:0];
-  _RAND_540 = {1{`RANDOM}};
-  btbV_27 = _RAND_540[0:0];
-  _RAND_541 = {1{`RANDOM}};
-  btbV_28 = _RAND_541[0:0];
-  _RAND_542 = {1{`RANDOM}};
-  btbV_29 = _RAND_542[0:0];
-  _RAND_543 = {1{`RANDOM}};
-  btbV_30 = _RAND_543[0:0];
-  _RAND_544 = {1{`RANDOM}};
-  btbV_31 = _RAND_544[0:0];
-  _RAND_545 = {1{`RANDOM}};
-  btbV_32 = _RAND_545[0:0];
-  _RAND_546 = {1{`RANDOM}};
-  btbV_33 = _RAND_546[0:0];
-  _RAND_547 = {1{`RANDOM}};
-  btbV_34 = _RAND_547[0:0];
-  _RAND_548 = {1{`RANDOM}};
-  btbV_35 = _RAND_548[0:0];
-  _RAND_549 = {1{`RANDOM}};
-  btbV_36 = _RAND_549[0:0];
-  _RAND_550 = {1{`RANDOM}};
-  btbV_37 = _RAND_550[0:0];
-  _RAND_551 = {1{`RANDOM}};
-  btbV_38 = _RAND_551[0:0];
-  _RAND_552 = {1{`RANDOM}};
-  btbV_39 = _RAND_552[0:0];
-  _RAND_553 = {1{`RANDOM}};
-  btbV_40 = _RAND_553[0:0];
-  _RAND_554 = {1{`RANDOM}};
-  btbV_41 = _RAND_554[0:0];
-  _RAND_555 = {1{`RANDOM}};
-  btbV_42 = _RAND_555[0:0];
-  _RAND_556 = {1{`RANDOM}};
-  btbV_43 = _RAND_556[0:0];
-  _RAND_557 = {1{`RANDOM}};
-  btbV_44 = _RAND_557[0:0];
-  _RAND_558 = {1{`RANDOM}};
-  btbV_45 = _RAND_558[0:0];
-  _RAND_559 = {1{`RANDOM}};
-  btbV_46 = _RAND_559[0:0];
-  _RAND_560 = {1{`RANDOM}};
-  btbV_47 = _RAND_560[0:0];
-  _RAND_561 = {1{`RANDOM}};
-  btbV_48 = _RAND_561[0:0];
-  _RAND_562 = {1{`RANDOM}};
-  btbV_49 = _RAND_562[0:0];
-  _RAND_563 = {1{`RANDOM}};
-  btbV_50 = _RAND_563[0:0];
-  _RAND_564 = {1{`RANDOM}};
-  btbV_51 = _RAND_564[0:0];
-  _RAND_565 = {1{`RANDOM}};
-  btbV_52 = _RAND_565[0:0];
-  _RAND_566 = {1{`RANDOM}};
-  btbV_53 = _RAND_566[0:0];
-  _RAND_567 = {1{`RANDOM}};
-  btbV_54 = _RAND_567[0:0];
-  _RAND_568 = {1{`RANDOM}};
-  btbV_55 = _RAND_568[0:0];
-  _RAND_569 = {1{`RANDOM}};
-  btbV_56 = _RAND_569[0:0];
-  _RAND_570 = {1{`RANDOM}};
-  btbV_57 = _RAND_570[0:0];
-  _RAND_571 = {1{`RANDOM}};
-  btbV_58 = _RAND_571[0:0];
-  _RAND_572 = {1{`RANDOM}};
-  btbV_59 = _RAND_572[0:0];
-  _RAND_573 = {1{`RANDOM}};
-  btbV_60 = _RAND_573[0:0];
-  _RAND_574 = {1{`RANDOM}};
-  btbV_61 = _RAND_574[0:0];
-  _RAND_575 = {1{`RANDOM}};
-  btbV_62 = _RAND_575[0:0];
-  _RAND_576 = {1{`RANDOM}};
-  btbV_63 = _RAND_576[0:0];
-  _RAND_577 = {1{`RANDOM}};
-  btbTag_0 = _RAND_577[5:0];
-  _RAND_578 = {1{`RANDOM}};
-  btbTag_1 = _RAND_578[5:0];
-  _RAND_579 = {1{`RANDOM}};
-  btbTag_2 = _RAND_579[5:0];
-  _RAND_580 = {1{`RANDOM}};
-  btbTag_3 = _RAND_580[5:0];
-  _RAND_581 = {1{`RANDOM}};
-  btbTag_4 = _RAND_581[5:0];
-  _RAND_582 = {1{`RANDOM}};
-  btbTag_5 = _RAND_582[5:0];
-  _RAND_583 = {1{`RANDOM}};
-  btbTag_6 = _RAND_583[5:0];
-  _RAND_584 = {1{`RANDOM}};
-  btbTag_7 = _RAND_584[5:0];
-  _RAND_585 = {1{`RANDOM}};
-  btbTag_8 = _RAND_585[5:0];
-  _RAND_586 = {1{`RANDOM}};
-  btbTag_9 = _RAND_586[5:0];
-  _RAND_587 = {1{`RANDOM}};
-  btbTag_10 = _RAND_587[5:0];
-  _RAND_588 = {1{`RANDOM}};
-  btbTag_11 = _RAND_588[5:0];
-  _RAND_589 = {1{`RANDOM}};
-  btbTag_12 = _RAND_589[5:0];
-  _RAND_590 = {1{`RANDOM}};
-  btbTag_13 = _RAND_590[5:0];
-  _RAND_591 = {1{`RANDOM}};
-  btbTag_14 = _RAND_591[5:0];
-  _RAND_592 = {1{`RANDOM}};
-  btbTag_15 = _RAND_592[5:0];
-  _RAND_593 = {1{`RANDOM}};
-  btbTag_16 = _RAND_593[5:0];
-  _RAND_594 = {1{`RANDOM}};
-  btbTag_17 = _RAND_594[5:0];
-  _RAND_595 = {1{`RANDOM}};
-  btbTag_18 = _RAND_595[5:0];
-  _RAND_596 = {1{`RANDOM}};
-  btbTag_19 = _RAND_596[5:0];
-  _RAND_597 = {1{`RANDOM}};
-  btbTag_20 = _RAND_597[5:0];
-  _RAND_598 = {1{`RANDOM}};
-  btbTag_21 = _RAND_598[5:0];
-  _RAND_599 = {1{`RANDOM}};
-  btbTag_22 = _RAND_599[5:0];
-  _RAND_600 = {1{`RANDOM}};
-  btbTag_23 = _RAND_600[5:0];
-  _RAND_601 = {1{`RANDOM}};
-  btbTag_24 = _RAND_601[5:0];
-  _RAND_602 = {1{`RANDOM}};
-  btbTag_25 = _RAND_602[5:0];
-  _RAND_603 = {1{`RANDOM}};
-  btbTag_26 = _RAND_603[5:0];
-  _RAND_604 = {1{`RANDOM}};
-  btbTag_27 = _RAND_604[5:0];
-  _RAND_605 = {1{`RANDOM}};
-  btbTag_28 = _RAND_605[5:0];
-  _RAND_606 = {1{`RANDOM}};
-  btbTag_29 = _RAND_606[5:0];
-  _RAND_607 = {1{`RANDOM}};
-  btbTag_30 = _RAND_607[5:0];
-  _RAND_608 = {1{`RANDOM}};
-  btbTag_31 = _RAND_608[5:0];
-  _RAND_609 = {1{`RANDOM}};
-  btbTag_32 = _RAND_609[5:0];
-  _RAND_610 = {1{`RANDOM}};
-  btbTag_33 = _RAND_610[5:0];
-  _RAND_611 = {1{`RANDOM}};
-  btbTag_34 = _RAND_611[5:0];
-  _RAND_612 = {1{`RANDOM}};
-  btbTag_35 = _RAND_612[5:0];
-  _RAND_613 = {1{`RANDOM}};
-  btbTag_36 = _RAND_613[5:0];
-  _RAND_614 = {1{`RANDOM}};
-  btbTag_37 = _RAND_614[5:0];
-  _RAND_615 = {1{`RANDOM}};
-  btbTag_38 = _RAND_615[5:0];
-  _RAND_616 = {1{`RANDOM}};
-  btbTag_39 = _RAND_616[5:0];
-  _RAND_617 = {1{`RANDOM}};
-  btbTag_40 = _RAND_617[5:0];
-  _RAND_618 = {1{`RANDOM}};
-  btbTag_41 = _RAND_618[5:0];
-  _RAND_619 = {1{`RANDOM}};
-  btbTag_42 = _RAND_619[5:0];
-  _RAND_620 = {1{`RANDOM}};
-  btbTag_43 = _RAND_620[5:0];
-  _RAND_621 = {1{`RANDOM}};
-  btbTag_44 = _RAND_621[5:0];
-  _RAND_622 = {1{`RANDOM}};
-  btbTag_45 = _RAND_622[5:0];
-  _RAND_623 = {1{`RANDOM}};
-  btbTag_46 = _RAND_623[5:0];
-  _RAND_624 = {1{`RANDOM}};
-  btbTag_47 = _RAND_624[5:0];
-  _RAND_625 = {1{`RANDOM}};
-  btbTag_48 = _RAND_625[5:0];
-  _RAND_626 = {1{`RANDOM}};
-  btbTag_49 = _RAND_626[5:0];
-  _RAND_627 = {1{`RANDOM}};
-  btbTag_50 = _RAND_627[5:0];
-  _RAND_628 = {1{`RANDOM}};
-  btbTag_51 = _RAND_628[5:0];
-  _RAND_629 = {1{`RANDOM}};
-  btbTag_52 = _RAND_629[5:0];
-  _RAND_630 = {1{`RANDOM}};
-  btbTag_53 = _RAND_630[5:0];
-  _RAND_631 = {1{`RANDOM}};
-  btbTag_54 = _RAND_631[5:0];
-  _RAND_632 = {1{`RANDOM}};
-  btbTag_55 = _RAND_632[5:0];
-  _RAND_633 = {1{`RANDOM}};
-  btbTag_56 = _RAND_633[5:0];
-  _RAND_634 = {1{`RANDOM}};
-  btbTag_57 = _RAND_634[5:0];
-  _RAND_635 = {1{`RANDOM}};
-  btbTag_58 = _RAND_635[5:0];
-  _RAND_636 = {1{`RANDOM}};
-  btbTag_59 = _RAND_636[5:0];
-  _RAND_637 = {1{`RANDOM}};
-  btbTag_60 = _RAND_637[5:0];
-  _RAND_638 = {1{`RANDOM}};
-  btbTag_61 = _RAND_638[5:0];
-  _RAND_639 = {1{`RANDOM}};
-  btbTag_62 = _RAND_639[5:0];
-  _RAND_640 = {1{`RANDOM}};
-  btbTag_63 = _RAND_640[5:0];
-  _RAND_641 = {1{`RANDOM}};
-  btbMeta_0 = _RAND_641[31:0];
-  _RAND_642 = {1{`RANDOM}};
-  btbMeta_1 = _RAND_642[31:0];
-  _RAND_643 = {1{`RANDOM}};
-  btbMeta_2 = _RAND_643[31:0];
-  _RAND_644 = {1{`RANDOM}};
-  btbMeta_3 = _RAND_644[31:0];
-  _RAND_645 = {1{`RANDOM}};
-  btbMeta_4 = _RAND_645[31:0];
-  _RAND_646 = {1{`RANDOM}};
-  btbMeta_5 = _RAND_646[31:0];
-  _RAND_647 = {1{`RANDOM}};
-  btbMeta_6 = _RAND_647[31:0];
-  _RAND_648 = {1{`RANDOM}};
-  btbMeta_7 = _RAND_648[31:0];
-  _RAND_649 = {1{`RANDOM}};
-  btbMeta_8 = _RAND_649[31:0];
-  _RAND_650 = {1{`RANDOM}};
-  btbMeta_9 = _RAND_650[31:0];
-  _RAND_651 = {1{`RANDOM}};
-  btbMeta_10 = _RAND_651[31:0];
-  _RAND_652 = {1{`RANDOM}};
-  btbMeta_11 = _RAND_652[31:0];
-  _RAND_653 = {1{`RANDOM}};
-  btbMeta_12 = _RAND_653[31:0];
-  _RAND_654 = {1{`RANDOM}};
-  btbMeta_13 = _RAND_654[31:0];
-  _RAND_655 = {1{`RANDOM}};
-  btbMeta_14 = _RAND_655[31:0];
-  _RAND_656 = {1{`RANDOM}};
-  btbMeta_15 = _RAND_656[31:0];
-  _RAND_657 = {1{`RANDOM}};
-  btbMeta_16 = _RAND_657[31:0];
-  _RAND_658 = {1{`RANDOM}};
-  btbMeta_17 = _RAND_658[31:0];
-  _RAND_659 = {1{`RANDOM}};
-  btbMeta_18 = _RAND_659[31:0];
-  _RAND_660 = {1{`RANDOM}};
-  btbMeta_19 = _RAND_660[31:0];
-  _RAND_661 = {1{`RANDOM}};
-  btbMeta_20 = _RAND_661[31:0];
-  _RAND_662 = {1{`RANDOM}};
-  btbMeta_21 = _RAND_662[31:0];
-  _RAND_663 = {1{`RANDOM}};
-  btbMeta_22 = _RAND_663[31:0];
-  _RAND_664 = {1{`RANDOM}};
-  btbMeta_23 = _RAND_664[31:0];
-  _RAND_665 = {1{`RANDOM}};
-  btbMeta_24 = _RAND_665[31:0];
-  _RAND_666 = {1{`RANDOM}};
-  btbMeta_25 = _RAND_666[31:0];
-  _RAND_667 = {1{`RANDOM}};
-  btbMeta_26 = _RAND_667[31:0];
-  _RAND_668 = {1{`RANDOM}};
-  btbMeta_27 = _RAND_668[31:0];
-  _RAND_669 = {1{`RANDOM}};
-  btbMeta_28 = _RAND_669[31:0];
-  _RAND_670 = {1{`RANDOM}};
-  btbMeta_29 = _RAND_670[31:0];
-  _RAND_671 = {1{`RANDOM}};
-  btbMeta_30 = _RAND_671[31:0];
-  _RAND_672 = {1{`RANDOM}};
-  btbMeta_31 = _RAND_672[31:0];
-  _RAND_673 = {1{`RANDOM}};
-  btbMeta_32 = _RAND_673[31:0];
-  _RAND_674 = {1{`RANDOM}};
-  btbMeta_33 = _RAND_674[31:0];
-  _RAND_675 = {1{`RANDOM}};
-  btbMeta_34 = _RAND_675[31:0];
-  _RAND_676 = {1{`RANDOM}};
-  btbMeta_35 = _RAND_676[31:0];
-  _RAND_677 = {1{`RANDOM}};
-  btbMeta_36 = _RAND_677[31:0];
-  _RAND_678 = {1{`RANDOM}};
-  btbMeta_37 = _RAND_678[31:0];
-  _RAND_679 = {1{`RANDOM}};
-  btbMeta_38 = _RAND_679[31:0];
-  _RAND_680 = {1{`RANDOM}};
-  btbMeta_39 = _RAND_680[31:0];
-  _RAND_681 = {1{`RANDOM}};
-  btbMeta_40 = _RAND_681[31:0];
-  _RAND_682 = {1{`RANDOM}};
-  btbMeta_41 = _RAND_682[31:0];
-  _RAND_683 = {1{`RANDOM}};
-  btbMeta_42 = _RAND_683[31:0];
-  _RAND_684 = {1{`RANDOM}};
-  btbMeta_43 = _RAND_684[31:0];
-  _RAND_685 = {1{`RANDOM}};
-  btbMeta_44 = _RAND_685[31:0];
-  _RAND_686 = {1{`RANDOM}};
-  btbMeta_45 = _RAND_686[31:0];
-  _RAND_687 = {1{`RANDOM}};
-  btbMeta_46 = _RAND_687[31:0];
-  _RAND_688 = {1{`RANDOM}};
-  btbMeta_47 = _RAND_688[31:0];
-  _RAND_689 = {1{`RANDOM}};
-  btbMeta_48 = _RAND_689[31:0];
-  _RAND_690 = {1{`RANDOM}};
-  btbMeta_49 = _RAND_690[31:0];
-  _RAND_691 = {1{`RANDOM}};
-  btbMeta_50 = _RAND_691[31:0];
-  _RAND_692 = {1{`RANDOM}};
-  btbMeta_51 = _RAND_692[31:0];
-  _RAND_693 = {1{`RANDOM}};
-  btbMeta_52 = _RAND_693[31:0];
-  _RAND_694 = {1{`RANDOM}};
-  btbMeta_53 = _RAND_694[31:0];
-  _RAND_695 = {1{`RANDOM}};
-  btbMeta_54 = _RAND_695[31:0];
-  _RAND_696 = {1{`RANDOM}};
-  btbMeta_55 = _RAND_696[31:0];
-  _RAND_697 = {1{`RANDOM}};
-  btbMeta_56 = _RAND_697[31:0];
-  _RAND_698 = {1{`RANDOM}};
-  btbMeta_57 = _RAND_698[31:0];
-  _RAND_699 = {1{`RANDOM}};
-  btbMeta_58 = _RAND_699[31:0];
-  _RAND_700 = {1{`RANDOM}};
-  btbMeta_59 = _RAND_700[31:0];
-  _RAND_701 = {1{`RANDOM}};
-  btbMeta_60 = _RAND_701[31:0];
-  _RAND_702 = {1{`RANDOM}};
-  btbMeta_61 = _RAND_702[31:0];
-  _RAND_703 = {1{`RANDOM}};
-  btbMeta_62 = _RAND_703[31:0];
-  _RAND_704 = {1{`RANDOM}};
-  btbMeta_63 = _RAND_704[31:0];
-  _RAND_705 = {1{`RANDOM}};
-  io_ready_REG = _RAND_705[0:0];
+  io_ready_REG = _RAND_449[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
