@@ -130,10 +130,16 @@ import utils._
     def bhtAddr(pc: UInt) : UInt = xorHash(pc(15, 2))
     def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash(pc(15, 2)) ^ regData
 */
+    def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(5, 0)
+    def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(5, 0) ^ regData
+    // def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
+    def btbAddr(pc: UInt) : UInt = fnvHash(pc)(5, 0)
+/*
     def bhtAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
     def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash_126_WJH(pc(15, 2)) ^ regData
     // def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
     def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
+    */
   //  def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(6,0)
   //  def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(6,0) ^ regData
 
