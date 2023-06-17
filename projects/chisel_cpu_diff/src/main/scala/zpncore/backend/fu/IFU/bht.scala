@@ -55,11 +55,11 @@ import utils._
     val op2 = io.imm
     val takenMiss = io.takenMiss
 
-    val BhtWidth = 7
-    val BhtSize = 128
-    val BhtAddrSize = log2Up(BhtSize)       // 7
+    val BhtWidth = 6 // 7
+    val BhtSize = 64 //* 128
+    val BhtAddrSize = log2Up(BhtSize) //* 6       // 7
     val PhtNum = 3                          // P0:CPHT P1:GHR P2:BHT
-    val PhtSize = 128                       // 2^7=128
+    val PhtSize = 64 // 128                       // 2^7=128
     // val PhtSize = 2 ^ BhtWidth           // 2^8=256
     val BTBSets = 64 // 128
     val BTBWays = 1
@@ -126,12 +126,12 @@ import utils._
       val hash5 = data(5) ^ (data(11) ^ data(10))
       hash5 ## hash4 ## hash3 ## hash2 ## hash1 ## hash0
     }
-
+/*
     def bhtAddr(pc: UInt) : UInt = xorHash(pc(15, 2))
-    def phtAddr(pc: UInt, regData: UInt) : UInt = { 
-      xorHash(pc(15, 2)) ^ regData
-    }
-
+    def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash(pc(15, 2)) ^ regData
+*/
+    def bhtAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
+    def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash_126_MH(pc(15, 2)) ^ regData
     // def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
     def btbAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
   //  def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(6,0)
@@ -159,7 +159,7 @@ import utils._
     // val reqTag = bhtAddr(io.pc)
     // val reqTag = xorHash_126_WJH(io.pc(13, 2))
     val reqTag = btbAddr(io.pc)
-    val reqIndex = io.pc(9, 4)
+    val reqIndex = io.pc(9, 4)  // NOTE BTB index
     // val reqIndex = io.pc(10, 4)
     val btbHit = (io.bxx || io.jalr) && io.takenPre && btbV(reqIndex) && (btbTag(reqIndex) === reqTag)
     val reqAdd = btbMeta(reqIndex)
