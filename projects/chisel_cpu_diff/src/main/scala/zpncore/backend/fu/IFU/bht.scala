@@ -105,11 +105,11 @@ import utils._
       val hash5 = data(5) ^ (data(11) ^ data(10))
       hash5 ## hash4 ## hash3 ## hash2 ## hash1 ## hash0
     }
-// /*
+/*
     def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(5, 0)
     def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(5, 0) ^ regData
     def btbAddr(pc: UInt) : UInt = fnvHash(pc)(5, 0)
-// */
+*/
 
 /*
     def bhtAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
@@ -117,11 +117,11 @@ import utils._
     def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
    */
 
-/*
+// /*
     def bhtAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
     def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash_126_MH(pc(13, 2)) ^ regData
     def btbAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
-   */
+  //  */
 
     val ghr = RegInit(0.U(BhtWidth.W))
     val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 128 * 7 bits
@@ -132,7 +132,6 @@ import utils._
     val btbTag = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))
     val btbMeta = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
 
-//    val coreEnd = io.pc === "h0000006b".U
     val btbCounter = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
     val btbPC = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))     // 保存PC, 用以查看 冲突
     val hashCounter = RegInit(0.U(BTBMeta.W))
@@ -150,7 +149,11 @@ import utils._
     // val reqTag = bhtAddr(io.pc)
     // val reqTag = xorHash_126_WJH(io.pc(13, 2))
     val reqTag = btbAddr(io.pc)
-    val reqIndex = io.pc(9, 4)  // NOTE BTB index
+    // val reqIndex = io.pc(9, 4)  // NOTE BTB index
+    val reqIndex = io.pc(8, 3)  // NOTE BTB index
+    // val reqIndex = io.pc(10, 5)  // NOTE BTB index
+
+    // val reqIndex = btbAddr(io.pc)  // NOTE BTB index
     // val reqIndex = io.pc(10, 4)
     val btbHit = (io.bxx || io.jalr) && io.takenPre && btbV(reqIndex) && (btbTag(reqIndex) === reqTag)
     val reqAdd = btbMeta(reqIndex)
@@ -214,7 +217,10 @@ import utils._
     }
 
 // update btb
-  val upIndex = io.takenPC(9, 4)
+  val upIndex = io.takenPC(8, 3)
+  // val upIndex = io.takenPC(10, 5)
+  // val upIndex = io.takenPC(9, 4)
+  // val upIndex = btbAddr(io.takenPC)
   // val upIndex = io.takenPC(10, 4)
   
   when(io.exTakenPre && io.fire && (io.takenValid || io.takenValidJalr)) {
