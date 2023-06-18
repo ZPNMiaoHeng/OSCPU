@@ -46,6 +46,8 @@ class InstFetch extends Module {
     val wbRdEn = Input(Bool())
     val wbRdAddr = Input(UInt(5.W))
     val wbRdData = Input(UInt(64.W))
+
+    val coreEnd = Input(Bool())
   })
   val minidec = Module(new minidec)
   val bht = Module(new bht)
@@ -101,6 +103,8 @@ class InstFetch extends Module {
   bht.io.wbRdEn := io.wbRdEn
   bht.io.wbRdAddr := io.wbRdAddr
   bht.io.wbRdData := io.wbRdData
+
+  bht.io.coreEnd := io.coreEnd
 
   io.preRs1En := minidec.io.rs1En
   io.preRs1Addr := minidec.io.rs1Addr

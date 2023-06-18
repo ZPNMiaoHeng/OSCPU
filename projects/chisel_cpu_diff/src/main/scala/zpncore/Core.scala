@@ -88,6 +88,8 @@ class Core extends Module {
   IF.io.wbRdAddr := WB.io.wbRdAddr
   IF.io.wbRdData := WB.io.wbRdData
 
+  IF.io.coreEnd := WB.io.inst === "h0000006b".U
+
   IF.io.stall := EXLHitID || !MEM.io.memDone || EXSHitIDEn //! EX 优先级大于MEM
   IF.io.exc := WB.io.exc
   IF.io.intr := intr

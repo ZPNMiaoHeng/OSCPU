@@ -2,11 +2,6 @@ import chisel3._
 import chisel3.util._
 import Constant._
 import utils._
-/**
-  * biomodal predictor
-  *   size is 2KB;
-  *   choose is 14bits, pc[15 : 2];
-  */
 
   class bht extends Module {
     val io = IO(new Bundle {
@@ -40,6 +35,8 @@ import utils._
       val takenPre = Output(Bool())
       val takenPrePC = Output(UInt(32.W))
       val ready = Output(Bool())
+
+      val coreEnd = Input(Bool())
     })
 
     val rs1x0 = (io.rs1Addr === 0.U(5.W))
@@ -66,14 +63,6 @@ import utils._
     val BTBTag =  6 // 7
     val BTBMeta = 32
 
-/*
-    case class ZpnBTBParams(
-      nSets: Int = 128,
-      nWays: Int = 1,
-      tags: Int = 7,
-      offsetSz: Int = 32
-    ) */
-
     def defaultState() : UInt = 1.U (2.W)                      // 2bits start
 
     def fnvHash(data: UInt): UInt = {
@@ -97,16 +86,6 @@ import utils._
       hash6 ## hash5 ## hash4 ## hash3 ## hash2 ## hash1 ## hash0
     }
 
-    def xorHash_6(data: UInt): UInt = {
-      val hash1 = (data(7) ^ data(8)) ^ ((data(1) ^ data(13)))
-      val hash2 = data(2) ^ (data(8) ^ data(9))
-      val hash3 = data(3) ^ (data(9) ^ data(10))
-      val hash4 = data(4) ^ (data(10) ^ data(11))
-      val hash5 = data(5) ^ (data(11) ^ data(12))
-      val hash6 = data(6) ^ (data(7) ^ data(8))
-      hash6 ## hash5 ## hash4 ## hash3 ## hash2 ## hash1
-    }
-
     def xorHash_126_WJH(data: UInt): UInt = {
       val hash0 = data(0) ^ (data(6) ^ data(10))
       val hash1 = (data(6) ^ data(7)) ^ ((data(1) ^ data(11)))
@@ -126,22 +105,23 @@ import utils._
       val hash5 = data(5) ^ (data(11) ^ data(10))
       hash5 ## hash4 ## hash3 ## hash2 ## hash1 ## hash0
     }
-/*
-    def bhtAddr(pc: UInt) : UInt = xorHash(pc(15, 2))
-    def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash(pc(15, 2)) ^ regData
-*/
+// /*
     def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(5, 0)
     def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(5, 0) ^ regData
-    // def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
     def btbAddr(pc: UInt) : UInt = fnvHash(pc)(5, 0)
+// */
+
 /*
     def bhtAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
-    def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash_126_WJH(pc(15, 2)) ^ regData
-    // def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
+    def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash_126_WJH(pc(13, 2)) ^ regData
     def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
-    */
-  //  def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(6,0)
-  //  def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(6,0) ^ regData
+   */
+
+/*
+    def bhtAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
+    def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash_126_MH(pc(13, 2)) ^ regData
+    def btbAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
+   */
 
     val ghr = RegInit(0.U(BhtWidth.W))
     val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 128 * 7 bits
@@ -151,6 +131,11 @@ import utils._
     val btbV = RegInit(VecInit(Seq.fill(BTBSets)(false.B)))
     val btbTag = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))
     val btbMeta = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
+
+//    val coreEnd = io.pc === "h0000006b".U
+    val btbCounter = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
+    val btbPC = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))     // 保存PC, 用以查看 冲突
+    val hashCounter = RegInit(0.U(BTBMeta.W))
     // val btbTag = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))))   // 1 * 128 * 7 bits
     // val btbMeta = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))))   // 1 * 128 * 32 bits
 
@@ -232,12 +217,29 @@ import utils._
   val upIndex = io.takenPC(9, 4)
   // val upIndex = io.takenPC(10, 4)
   
-  when(io.fire && (io.takenValid || io.takenValidJalr)) {
+  when(io.exTakenPre && io.fire && (io.takenValid || io.takenValidJalr)) {
   // when((io.takenValid || io.takenValidJalr)) {
     btbV(upIndex) := true.B
     btbTag(upIndex) := btbAddr(io.takenPC)
     // btbTag(upIndex) := bhtAddr(io.takenPC)
     btbMeta(upIndex) := io.nextPC
+    // btbCounter(upIndex) := btbCounter(upIndex) + 1.U
+    btbPC(upIndex) := io.takenPC
+    when(io.takenPC =/= btbPC(upIndex)) {
+      btbCounter(upIndex) := btbCounter(upIndex) + 1.U
+      hashCounter := hashCounter + 1.U
+    }
   }
 
+  when(RegNext(io.coreEnd)) {
+   printf("BTB hit\t%d\n", hashCounter)
+   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(0), btbCounter(1), btbCounter(2), btbCounter(3), btbCounter(4), btbCounter(5), btbCounter(6), btbCounter(7))
+   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(8), btbCounter(9), btbCounter(10), btbCounter(11), btbCounter(12), btbCounter(13), btbCounter(14), btbCounter(15))
+   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(16), btbCounter(17), btbCounter(18), btbCounter(19), btbCounter(20), btbCounter(21), btbCounter(22), btbCounter(23))
+   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(24), btbCounter(25), btbCounter(26), btbCounter(27), btbCounter(28), btbCounter(29), btbCounter(30), btbCounter(31))
+   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(32), btbCounter(33), btbCounter(34), btbCounter(35), btbCounter(36), btbCounter(37), btbCounter(38), btbCounter(39))
+   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(40), btbCounter(41), btbCounter(42), btbCounter(43), btbCounter(44), btbCounter(45), btbCounter(46), btbCounter(47))
+   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(48), btbCounter(49), btbCounter(50), btbCounter(51), btbCounter(52), btbCounter(53), btbCounter(54), btbCounter(55))
+   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(56), btbCounter(57), btbCounter(58), btbCounter(59), btbCounter(60), btbCounter(61), btbCounter(62), btbCounter(63))
+  }
 }
