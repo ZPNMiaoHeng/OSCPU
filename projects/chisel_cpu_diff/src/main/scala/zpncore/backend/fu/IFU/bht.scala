@@ -150,7 +150,9 @@ import utils._
     // val reqTag = xorHash_126_WJH(io.pc(13, 2))
     val reqTag = btbAddr(io.pc)
     // val reqIndex = io.pc(9, 4)  // NOTE BTB index
-    val reqIndex = io.pc(8, 3)  // NOTE BTB index
+    // val reqIndex = io.pc(8, 3)  // NOTE BTB index
+    val reqIndex = io.pc(12, 7)  // NOTE BTB index
+    // val reqIndex = io.pc(11, 6)  // NOTE BTB index
     // val reqIndex = io.pc(10, 5)  // NOTE BTB index
 
     // val reqIndex = btbAddr(io.pc)  // NOTE BTB index
@@ -217,7 +219,9 @@ import utils._
     }
 
 // update btb
-  val upIndex = io.takenPC(8, 3)
+  // val upIndex = io.takenPC(11, 6)
+  val upIndex = io.takenPC(12, 7)
+  // val upIndex = io.takenPC(8, 3)
   // val upIndex = io.takenPC(10, 5)
   // val upIndex = io.takenPC(9, 4)
   // val upIndex = btbAddr(io.takenPC)
