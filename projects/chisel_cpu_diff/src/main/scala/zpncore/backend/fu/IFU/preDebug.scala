@@ -66,8 +66,8 @@ when(io.IFDone && io.memDone) {
 
   when(io.coreEnd && io.IFDone && io.memDone) {
     printf("Name:\tjal\t\tjalr\t\tret\t\tbeq\t\tbne\t\tblt\t\tbge\n")
-    printf("ALL:\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", bjp(0), bjp(1), bjp(6), bjp(2), bjp(3), bjp(4), bjp(5))
-    printf("Miss:\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", bjpMiss(0), bjpMiss(1), bjpMiss(6),bjpMiss(2), bjpMiss(3), bjpMiss(4), bjpMiss(5))
+    printf("ALL:\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", bjp(0), bjp(1), bjp(6), bjp(2), bjp(3), bjp(4), bjp(5), bjp(0)+ bjp(1)+ bjp(6)+ bjp(2)+ bjp(3)+ bjp(4)+ bjp(5))
+    printf("Miss:\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", bjpMiss(0), bjpMiss(1), bjpMiss(6),bjpMiss(2), bjpMiss(3), bjpMiss(4), bjpMiss(5), bjpMiss(0)+bjpMiss(1)+ bjpMiss(6)+bjpMiss(2)+ bjpMiss(3)+ bjpMiss(4)+ bjpMiss(5))
     // printf("Res:\t%d\t%d\t%d\t%d\t%d\t%d\n", jal, jalr, beq, bne, blt, bge)
   }
 }
