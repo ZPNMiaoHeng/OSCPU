@@ -1,6 +1,6 @@
 import chisel3._
 import chisel3.util.experimental._
-import difftest._
+// import difftest._
 import Constant._
 import javax.swing.InputMap
 import javax.swing.plaf.metal.MetalTreeUI
@@ -33,10 +33,10 @@ class RegFile extends Module {
   io.preRs1x1Data := rf(1.U(5.W))
   io.preRs1Data := Mux((io.preRs1En && io.preRs1Addr =/= 0.U && io.preRs1Addr =/= 1.U), rf(io.preRs1Addr), 0.U)
 
-  val dt_ar = Module(new DifftestArchIntRegState)
-  dt_ar.io.clock  := clock
-  dt_ar.io.coreid := 0.U
-  dt_ar.io.gpr    := rf
+  // val dt_ar = Module(new DifftestArchIntRegState)
+  // dt_ar.io.clock  := clock
+  // dt_ar.io.coreid := 0.U
+  // dt_ar.io.gpr    := rf
 
   BoringUtils.addSource(rf(10), "rf_a0")
 }

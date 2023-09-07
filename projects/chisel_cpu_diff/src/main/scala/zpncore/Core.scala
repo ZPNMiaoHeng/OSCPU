@@ -2,7 +2,7 @@ import chisel3._
 import chisel3.util.experimental._
 import Instructions._
 import Constant._
-import difftest._
+// import difftest._
 import utils._
 
 class Core extends Module {
@@ -165,6 +165,7 @@ class Core extends Module {
                   (WB.io.memtoReg === 1.U || WB.io.memWr === 1.U)
   val skip = WB.io.inst === MY_INST || (WB.io.inst(31, 20) === Csrs.mcycle && WB.io.csrOp_WB =/=0.U) || req_clint
 
+/*
   val dt_ic = Module(new DifftestInstrCommit)
   dt_ic.io.clock    := clock
   dt_ic.io.coreid   := 0.U
@@ -200,4 +201,5 @@ class Core extends Module {
   dt_te.io.pc       := WB.io.pc
   dt_te.io.cycleCnt := cycle_cnt                       // cycle计数器
   dt_te.io.instrCnt := instr_cnt                       // 指令计数器
+*/
 }

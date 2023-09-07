@@ -144,13 +144,13 @@ class AxiLite2Axi  extends Module {
   out.ar.bits.len := 1.U
   out.ar.bits.size := "b11".U
 
-  out.ar.bits.prot    := "b000".U
-  out.ar.bits.id      := 0.U
-  out.ar.bits.user    := 0.U
+  // out.ar.bits.prot    := "b000".U
+  // out.ar.bits.id      := 0.U
+  // out.ar.bits.user    := 0.U
   out.ar.bits.burst   := "b01".U
-  out.ar.bits.lock    := 0.U
+  // out.ar.bits.lock    := 0.U
   out.ar.bits.cache   := "b0010".U
-  out.ar.bits.qos     := 0.U
+  // out.ar.bits.qos     := 0.U
 
   out.r.ready := true.B
 
@@ -159,15 +159,15 @@ class AxiLite2Axi  extends Module {
 
   out.aw.valid        := w_state === w_data_addr
   out.aw.bits.addr    := axi_waddr
-  out.aw.bits.prot    := "b000".U
-  out.aw.bits.id      := 0.U
-  out.aw.bits.user    := 0.U
+  // out.aw.bits.prot    := "b000".U
+  // out.aw.bits.id      := 0.U
+  // out.aw.bits.user    := 0.U
   out.aw.bits.len     := 0.U
   out.aw.bits.size    := "b11".U
   out.aw.bits.burst   := "b01".U                           
-  out.aw.bits.lock    := 0.U
+  // out.aw.bits.lock    := 0.U
   out.aw.bits.cache   := "b0010".U    //"b1111".U
-  out.aw.bits.qos     := 0.U
+  // out.aw.bits.qos     := 0.U
 
   // write data channel signals
   out.w.valid         := w_state === w_data_write

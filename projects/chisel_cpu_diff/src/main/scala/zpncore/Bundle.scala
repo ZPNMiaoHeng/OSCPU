@@ -90,22 +90,22 @@ class CoreData extends DATAIO   {
 }
 /** ID */
 trait AxiIdUser extends Bundle   {
-  val id = Output(UInt(AxiIdWidth.W))
-  val user = Output(UInt(AxiUserWidth.W))
+  // val id = Output(UInt(AxiIdWidth.W))
+  // val user = Output(UInt(AxiUserWidth.W))
 }
 
 class AxiLiteA extends Bundle   {
   val addr = Output(UInt(AxiAddrWidth.W))
-  val prot = Output(UInt(3.W))
+  // val prot = Output(UInt(3.W))
 }
 
 class AxiA extends AxiLiteA with AxiIdUser {
   val len = Output(UInt(8.W))
   val size = Output(UInt(3.W))
   val burst = Output(UInt(2.W))
-  val lock = Output(Bool())
+  // val lock = Output(Bool())
   val cache = Output(UInt(4.W))
-  val qos = Output(UInt(4.W))                                        // ???
+  // val qos = Output(UInt(4.W))                                        // ???
 }
 
 class AxiLiteW extends Bundle   {

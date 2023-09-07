@@ -32,7 +32,12 @@ object Elaborate extends App {
     println("------------------- InstFetch.v---------------- ")
     (new ChiselStage).execute(args, Seq(
       ChiselGeneratorAnnotation(() => new InstFetch())))
-  } /*
+  }  else if(top == "SimTop") {
+    println("------------------- SimTop.v---------------- ")
+    (new ChiselStage).execute(args, Seq(
+      ChiselGeneratorAnnotation(() => new SimTop())))
+  } 
+  /*
     else if(top == "Axi") {
     println("--------Axi.v---------------- ")
     (new ChiselStage).execute(args, Seq(
