@@ -144,9 +144,9 @@ import utils._
     val btbTag = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))
     val btbMeta = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
 
-    val btbCounter = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
+    // val btbCounter = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
     val btbPC = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))     // 保存PC, 用以查看 冲突
-    val hashCounter = RegInit(0.U(BTBMeta.W))
+    // val hashCounter = RegInit(0.U(BTBMeta.W))
     // val btbTag = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))))   // 1 * 128 * 7 bits
     // val btbMeta = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))))   // 1 * 128 * 32 bits
 
@@ -155,7 +155,9 @@ import utils._
     val pht0Data = pht(0)(p1Addr)
     val pht1Data = pht(1)(p1Addr)
     val pht2Data = pht(2)(phtAddr(io.pc, bhtData))
-    val phtData  = Mux(pht0Data(1).asBool(), pht2Data, pht1Data)
+    // val phtData  = Mux(pht0Data(1).asBool(), pht2Data, pht1Data)
+    // val phtData  = pht1Data
+    val phtData  = pht2Data
 
 //    val btbV
     // val reqTag = bhtAddr(io.pc)
@@ -198,24 +200,24 @@ import utils._
     val pht0Choice = p1Suc ## p2Suc
 
 // update pht
-    when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
-      pht(0)(pht1WAddr) := LookupTreeDefault(pht0WData, defaultState(), List(
-        "b00".U -> Mux(pht0Choice === "b01".U, "b01".U, "b00".U),     // Stronngly taken
-        "b01".U -> Mux(pht0Choice === "b01".U, "b10".U, 
-                      Mux(pht0Choice === "b10".U, "b00".U, "b01".U)),     // Weakly taken
-        "b10".U -> Mux(pht0Choice === "b10".U, "b01".U, 
-                      Mux(pht0Choice === "b01".U, "b11".U, "b10".U)),     // Weakly not taken
-        "b11".U -> Mux(pht0Choice === "b10".U, "b10".U, "b11".U)      // Strongly not takenaaa
-      ))
-    } 
-    when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
-      pht(1)(pht1WAddr) := LookupTreeDefault(pht1WData, defaultState(), List(
-        "b00".U -> Mux(takenMiss, "b01".U, "b00".U),     // Stronngly taken
-        "b01".U -> Mux(takenMiss, "b10".U, "b00".U),     // Weakly taken
-        "b10".U -> Mux(takenMiss, "b01".U, "b11".U),     // Weakly not taken
-        "b11".U -> Mux(takenMiss, "b10".U, "b11".U)      // Strongly not takenaaa
-      ))
-    }
+    // when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
+    //   pht(0)(pht1WAddr) := LookupTreeDefault(pht0WData, defaultState(), List(
+    //     "b00".U -> Mux(pht0Choice === "b01".U, "b01".U, "b00".U),     // Stronngly taken
+    //     "b01".U -> Mux(pht0Choice === "b01".U, "b10".U, 
+    //                   Mux(pht0Choice === "b10".U, "b00".U, "b01".U)),     // Weakly taken
+    //     "b10".U -> Mux(pht0Choice === "b10".U, "b01".U, 
+    //                   Mux(pht0Choice === "b01".U, "b11".U, "b10".U)),     // Weakly not taken
+    //     "b11".U -> Mux(pht0Choice === "b10".U, "b10".U, "b11".U)      // Strongly not takenaaa
+    //   ))
+    // } 
+    // when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
+    //   pht(1)(pht1WAddr) := LookupTreeDefault(pht1WData, defaultState(), List(
+    //     "b00".U -> Mux(takenMiss, "b01".U, "b00".U),     // Stronngly taken
+    //     "b01".U -> Mux(takenMiss, "b10".U, "b00".U),     // Weakly taken
+    //     "b10".U -> Mux(takenMiss, "b01".U, "b11".U),     // Weakly not taken
+    //     "b11".U -> Mux(takenMiss, "b10".U, "b11".U)      // Strongly not takenaaa
+    //   ))
+    // }
     when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
       pht(2)(pht2WAddr) := LookupTreeDefault(pht2WData, defaultState(), List(
         "b00".U -> Mux(takenMiss, "b01".U, "b00".U),     // Stronngly taken
@@ -247,21 +249,21 @@ import utils._
     btbMeta(upIndex) := io.nextPC
     // btbCounter(upIndex) := btbCounter(upIndex) + 1.U
     btbPC(upIndex) := io.takenPC
-    when(io.takenPC =/= btbPC(upIndex)) {
-      btbCounter(upIndex) := btbCounter(upIndex) + 1.U
-      hashCounter := hashCounter + 1.U
-    }
+    // when(io.takenPC =/= btbPC(upIndex)) {
+    //   btbCounter(upIndex) := btbCounter(upIndex) + 1.U
+    //   hashCounter := hashCounter + 1.U
+    // }
   }
 
-  when(RegNext(io.coreEnd)) {
-   printf("BTB hit\t%d\n", hashCounter)
-   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(0), btbCounter(1), btbCounter(2), btbCounter(3), btbCounter(4), btbCounter(5), btbCounter(6), btbCounter(7))
-   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(8), btbCounter(9), btbCounter(10), btbCounter(11), btbCounter(12), btbCounter(13), btbCounter(14), btbCounter(15))
-   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(16), btbCounter(17), btbCounter(18), btbCounter(19), btbCounter(20), btbCounter(21), btbCounter(22), btbCounter(23))
-   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(24), btbCounter(25), btbCounter(26), btbCounter(27), btbCounter(28), btbCounter(29), btbCounter(30), btbCounter(31))
-   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(32), btbCounter(33), btbCounter(34), btbCounter(35), btbCounter(36), btbCounter(37), btbCounter(38), btbCounter(39))
-   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(40), btbCounter(41), btbCounter(42), btbCounter(43), btbCounter(44), btbCounter(45), btbCounter(46), btbCounter(47))
-   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(48), btbCounter(49), btbCounter(50), btbCounter(51), btbCounter(52), btbCounter(53), btbCounter(54), btbCounter(55))
-   printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(56), btbCounter(57), btbCounter(58), btbCounter(59), btbCounter(60), btbCounter(61), btbCounter(62), btbCounter(63))
-  }
+  // when(RegNext(io.coreEnd)) {
+  //  printf("BTB hit\t%d\n", hashCounter)
+  //  printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(0), btbCounter(1), btbCounter(2), btbCounter(3), btbCounter(4), btbCounter(5), btbCounter(6), btbCounter(7))
+  //  printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(8), btbCounter(9), btbCounter(10), btbCounter(11), btbCounter(12), btbCounter(13), btbCounter(14), btbCounter(15))
+  //  printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(16), btbCounter(17), btbCounter(18), btbCounter(19), btbCounter(20), btbCounter(21), btbCounter(22), btbCounter(23))
+  //  printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(24), btbCounter(25), btbCounter(26), btbCounter(27), btbCounter(28), btbCounter(29), btbCounter(30), btbCounter(31))
+  //  printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(32), btbCounter(33), btbCounter(34), btbCounter(35), btbCounter(36), btbCounter(37), btbCounter(38), btbCounter(39))
+  //  printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(40), btbCounter(41), btbCounter(42), btbCounter(43), btbCounter(44), btbCounter(45), btbCounter(46), btbCounter(47))
+  //  printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(48), btbCounter(49), btbCounter(50), btbCounter(51), btbCounter(52), btbCounter(53), btbCounter(54), btbCounter(55))
+  //  printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(56), btbCounter(57), btbCounter(58), btbCounter(59), btbCounter(60), btbCounter(61), btbCounter(62), btbCounter(63))
+  // }
 }
