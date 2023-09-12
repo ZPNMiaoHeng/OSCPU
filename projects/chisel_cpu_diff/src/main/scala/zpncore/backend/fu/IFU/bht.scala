@@ -152,10 +152,12 @@ import utils._
 
     val p1Addr   = phtAddr(io.pc, ghr)
     val bhtData  = bht(bhtAddr(io.pc))
+    val p2Addr   = phtAddr(io.pc, bhtData)
     val pht0Data = pht(0)(p1Addr)
     val pht1Data = pht(1)(p1Addr)
-    val pht2Data = pht(2)(phtAddr(io.pc, bhtData))
+    val pht2Data = pht(2)(p2Addr)
     val phtData  = Mux(pht0Data(1).asBool(), pht2Data, pht1Data)
+    // val phtData  = Mux(pht0Data(1).asBool(), pht1Data, pht2Data)   // bhr 优先级高
     // val phtData  = pht1Data
     // val phtData  = pht2Data
 
