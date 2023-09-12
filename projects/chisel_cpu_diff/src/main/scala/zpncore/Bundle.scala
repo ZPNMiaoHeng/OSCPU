@@ -147,3 +147,5 @@ class AxiIO extends Bundle {
   val ar = Decoupled(new AxiA)
   val r = Flipped(Decoupled(new AxiR))
 }
+
+

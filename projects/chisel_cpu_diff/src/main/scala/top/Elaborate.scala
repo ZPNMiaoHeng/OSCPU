@@ -36,6 +36,10 @@ object Elaborate extends App {
     println("------------------- SimTop.v---------------- ")
     (new ChiselStage).execute(args, Seq(
       ChiselGeneratorAnnotation(() => new SimTop())))
+  } else if(top == "FPGATop") {
+    println("------------------- FPGATop.v---------------- ")
+    (new ChiselStage).execute(args, Seq(
+      ChiselGeneratorAnnotation(() => new FPGATop())))
   } 
   /*
     else if(top == "Axi") {
