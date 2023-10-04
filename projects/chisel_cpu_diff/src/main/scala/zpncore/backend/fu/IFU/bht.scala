@@ -3,7 +3,23 @@ import chisel3.util._
 import Constant._
 import utils._
 
-  class bht extends Module {
+/** BTB 配置
+  *  NOTE - BTB(分支预测器统称) v0.000
+  * 1.BHT(分支预测方向),锦标赛分支预测器包含全局历史子预测器(P1)和局部历史子预测器(P2),2bit饱和预测器,PHT大小为1*64*2bit,历史寄存器6bit;
+  *   1.P1:
+  * 2.简单BTB:64* (1bit-v + 6bit-Tag + 32bit-BTA);
+  * 3.优化后的xorhash,截取PC[13,2]得到6bit hash值;
+  * 4.等待后续流水线返回结果更新分支预测器;
+  * 5.内含一些不同hash算法以及位提取做对比实现;
+  * 
+  * FIXME - 整体太过混乱!!实现存在错误问题;
+  * TODO : BTB v1.000
+  - [] 分支预测方向模块分开实现;
+  - [] 参数化配置;
+  - [] 实现RAS;
+  */
+
+class bht extends Module {
     val io = IO(new Bundle {
       val valid = Input(Bool())
       val fire = Input(Bool())
@@ -105,35 +121,25 @@ import utils._
       val hash5 = data(5) ^ (data(11) ^ data(10))
       hash5 ## hash4 ## hash3 ## hash2 ## hash1 ## hash0
     }
-/*
-    def bhtAddr(pc: UInt) : UInt = xorHash(pc)
-    def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash(pc) ^ regData
-    def btbAddr(pc: UInt) : UInt = xorHash(pc)
-*/
-/*
-    def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(5, 0)
-    def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(5, 0) ^ regData
-    def btbAddr(pc: UInt) : UInt = fnvHash(pc)(5, 0)
-*/
+  //     def bhtAddr(pc: UInt) : UInt = xorHash(pc)
+  //     def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash(pc) ^ regData
+  //     def btbAddr(pc: UInt) : UInt = xorHash(pc)
 
-/*
-    def bhtAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
-    def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash_126_WJH(pc(13, 2)) ^ regData
-    def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
-   */
-
-// /*
-    def bhtAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
-    def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash_126_MH(pc(13, 2)) ^ regData
-    def btbAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
-  //  */
-/*/
-    def bhtAddr(pc: UInt) : UInt = pc(7,2)
-    def phtAddr(pc: UInt, regData: UInt) : UInt = pc(7, 2) ^ regData
-    def btbAddr(pc: UInt) : UInt = pc(7,2)
-   */
-
-
+  //     def bhtAddr(pc: UInt) : UInt = fnvHash(pc)(5, 0)
+  //     def phtAddr(pc: UInt, regData: UInt) : UInt = fnvHash(pc)(5, 0) ^ regData
+  //     def btbAddr(pc: UInt) : UInt = fnvHash(pc)(5, 0)
+  
+  //     def bhtAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
+  //     def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash_126_WJH(pc(13, 2)) ^ regData
+  //     def btbAddr(pc: UInt) : UInt = xorHash_126_WJH(pc(13, 2))
+  
+      def bhtAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
+      def phtAddr(pc: UInt, regData: UInt) : UInt = xorHash_126_MH(pc(13, 2)) ^ regData
+      def btbAddr(pc: UInt) : UInt = xorHash_126_MH(pc(13, 2))
+  
+  //     def bhtAddr(pc: UInt) : UInt = pc(7,2)
+  //     def phtAddr(pc: UInt, regData: UInt) : UInt = pc(7, 2) ^ regData
+  //     def btbAddr(pc: UInt) : UInt = pc(7,2)
 
     val ghr = RegInit(0.U(BhtWidth.W))
     val bht = RegInit(VecInit(Seq.fill(BhtSize)(0.U(BhtWidth.W))))  // 128 * 7 bits
@@ -161,7 +167,7 @@ import utils._
     // val phtData  = pht1Data
     // val phtData  = pht2Data
 
-//    val btbV
+    //    val btbV
     // val reqTag = bhtAddr(io.pc)
     // val reqTag = xorHash_126_WJH(io.pc(13, 2))
     val reqTag = btbAddr(io.pc)
@@ -201,7 +207,7 @@ import utils._
     val p2Suc = pht2WData(1).asBool() === io.exTakenPre
     val pht0Choice = p1Suc ## p2Suc
 
-// update pht
+  // update pht
     when(io.fire & io.takenValid ){                                              /*EX 反馈信息, 更新相对应的PHT*/
       pht(0)(pht1WAddr) := LookupTreeDefault(pht0WData, defaultState(), List(
         "b00".U -> Mux(pht0Choice === "b01".U, "b01".U, "b00".U),     // Stronngly taken
@@ -234,7 +240,7 @@ import utils._
       ghr := ghr(BhtWidth-2, 0) ## io.exTakenPre
     }
 
-// update btb
+  // update btb
   // val upIndex = io.takenPC(11, 6)
   // val upIndex = io.takenPC(12, 7)
   // val upIndex = io.takenPC(8, 3)
