@@ -50,7 +50,7 @@ class FPGATop extends Module {
         }
 
         is(s_R) {
-            when(r.valid) {
+            when(r.valid && r.ready) {
                 state := s_IDLE
             }
         }
