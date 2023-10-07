@@ -19,6 +19,12 @@ trait Constant {
   val MTIME = "h0000_0000_0200_bff8".U     // offset: 0xbff8
 }
 
+trait HasZpnCoreParameter {
+  val addrBits = 32
+  val dataBits = 64
+}
+
+
 trait AxiParameters {
   val RwDataWidth = 64
   val RwAddrWidth = 32
