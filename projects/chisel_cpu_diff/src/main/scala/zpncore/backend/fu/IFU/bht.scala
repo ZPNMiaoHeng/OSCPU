@@ -3,7 +3,154 @@ import chisel3.util._
 import Constant._
 import utils._
 
-/** BTB 配置
+/**
+  * NOTE - BTB v1.000
+  * P1 Gshare:
+  * TODO -
+  - [] Gshare
+    - [] 流水线延迟更新
+  - [] Loacal
+  - [] Championship
+  - [] BTB
+  - [] RAS
+  */
+
+case class BHTParams(
+  nEntries: Int = 512,
+  counterLength: Int = 1,
+  historyLength: Int = 8,
+  historyBits: Int = 3)
+
+case class BTBParams(
+  nEntries: Int = 0,
+  nMatchBits: Int = 0,
+  nPages: Int = 1;
+  nRAS: Int = 0;
+  bhtParams: Option[BHTParams] = Some(BHTParams()))
+
+trait HasBHTParameters {
+  val addrBits = 32 
+  val btbParams = BTBParams
+  val entries = btbParams.nEntries
+  val nPages = (btbParams.nPages + 1)/ 2 *2
+}
+
+abstract class BtbModule(implicit val p: Parameters) extends Module with HasBtbParameters {
+  Annotated.params(this, btbParams)
+}
+
+abstract class BtbBundle(implicit val p: Parameters) extends Bundle with HasBtbParameters
+
+class BHTResp(implicit p: Parameters) extends BtbBundle()(p) {
+  val history = UInt(btbParams.bhtParams.map(_.historyLength).getOrElse(1).W)
+  val value = UInt(btbParams.bhtParams.map(_.counterLength).getOrElse(1).W)
+  def taken = value(0)
+  def strongly_taken = value === 1.U
+}
+
+class BHT(params: BHTParams)(implicit val p: Parameters) extends HasBHTParameters {
+  def index(addr: UInt, history: UInt) = {
+    def xorHash(addr: UInt) = {
+      val hash0 = data(0) ^ data(6)  ^ data(11)
+      val hash1 = data(6) ^ data(7)  ^ data(1)
+      val hash2 = data(2) ^ data(8)  ^ data(7)
+      val hash3 = data(3) ^ data(9)  ^ data(8)
+      val hash4 = data(4) ^ data(10) ^ data(9)
+      val hash5 = data(5) ^ data(11) ^ data(10)
+      hash5 ## hash4 ## hash3 ## hash2 ## hash1 ## hash0
+    }
+    xorHash(addr(13,2)) ^ history
+  }
+  def get(addr: UInt): BHTResp = {
+    val res = Wire(new BHTResp)
+    res.value := table(index(addr, history))   //TODO - Add pht reset
+    res.history := history
+    res
+  }
+  def updateTable(addr: UInt, d: BHTResp, taken: Bool): Unit = {
+    wen := true.B
+    waddr := index(addr, d.history)
+    wdata := (params.counterLength match {
+      case 1 => taken
+      case 2 => Cat(taken ^ d.value(0), d.value === 1.U || d.value(1) && taken)    // 2bits饱和预测器:0权重高
+    })
+  }
+  def resetHistory(d: BHTResp): Unit = {
+    history := d.history
+  } 
+  def updateHistory(addr: UInt, d: BHTResp, taken: Bool): Unit = { // 提前更新
+    history := Cat(taken, d.history >> 1)
+  }
+  def advanceHistory(taken: Bool): Unit = {                        // 当前pc更新,可能错误
+    history := Cat(taken, history >> 1)
+  }
+
+  private val table = Mem(params.nEntries, UInt(params.counterLength.W))
+  val history = RegInit(0.U(params.historyLength.W))
+
+  //TODO - reset bht
+}
+
+class BHTUpdate(implicit p: Parameters) extends BtbBundle()(p) {
+  val prediction = new BHTResp
+  val pc = UInt(addrBits.W)
+  val branch = Bool()
+  val taken = Bool()
+  val mispredict = Bool()
+}
+
+object CFIType {
+  def SZ = 2
+  def apply() = UInt(SZ.W)
+  def branch = 0.U
+  def jump = 1.U
+  def call = 2.U
+  def ret = 3.U
+}
+
+class BTBReq(implicit p: Parameters) extends BtbBundle()(p) {
+  val addr = UInt(addrBits.W)
+}
+
+class BTBResp(implicit p: Parameters) extends BtbBundle()(p) {
+  val cfiType = CFIType()
+  val taken = Bool()
+  val target = UInt(addrBits.W)
+  val entry = UInt(log2Up(entries + 1).W)
+  val bht = new BHTResp
+}
+
+class BTB(implicit p: Parameters) extends BtbModule {
+  val io = IO(new Bundle{
+    val req = Flipped(Valid(new BTBReq))
+    val resq = Valid(new BTBResp)
+    val bht_update = Flipped(Valid(new BHTUpdate))
+  })
+
+  io.resq.valid := DontCare
+  io.resq.bits.cfiType := DontCare
+  io.resq.bits.taken := DontCare
+  io.resq.bits.target := DontCare
+  io.resq.bits.entry := DontCare
+
+  val bht = new BHT(Annotated.params(this, btbParams.bhtParams.get))
+  val res = bht.get(io.req.bits.addr)
+
+  when(io.bht_update.valid) {
+    when(io.bht_update.bits.branch) {
+      bht.updateTable(io.bht_update.bits.pc, io.bht_update.bits.prediction, io.bht_update.bits.taken)
+      bht.updateHistory(io.bht_update.bits.taken)
+      // bht.updateHistory(io.bht_update.bits.pc, io.bht_update.bits.prediction, io.bht_update.bits.taken)
+      // when(io.bht_update.bits.mispredict) {
+        // bht.update
+      // }
+    }
+  }
+
+  io.resp.bits.bht := res
+
+}
+/** BTB v0.000 配置
   *  NOTE - BTB(分支预测器统称) v0.000
   * 1.BHT(分支预测方向),锦标赛分支预测器包含全局历史子预测器(P1)和局部历史子预测器(P2),2bit饱和预测器,PHT大小为1*64*2bit,历史寄存器6bit;
   *   1.P1:
