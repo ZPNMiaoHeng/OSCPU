@@ -23,6 +23,8 @@ class Execution extends Module {
         val mepc = Input(UInt(64.W))
         val mtvec = Input(UInt(64.W))
         val time_int = Input(Bool())
+
+        val bht_update = Valid(new BHTUpdate)
     })
     val alu = Module(new ALU)
     val nextPC = Module(new NextPC)
@@ -109,4 +111,11 @@ class Execution extends Module {
   
   io.exeX1En := io.in.rdEn && (io.in.rdAddr === 1.U)
   io.exeAluRes := alu.io.aluRes
+
+  io.bht_update.valid := (exeBranch =/= 0.U)  // 只有条件跳转指令
+  io.bht_update.bits.prediction := DontCare
+  io.bht_update.bits.pc := exePC
+  io.bht_update.bits.branch := exeBranch(2).asBool
+  io.bht_update.bits.taken := exePCSrc =/= 0.U
+  io.bht_update.bits.mispredict := Mux(exeTakenPre, exeTakenPrePC =/= exeNextPC, exePCSrc =/= 0.U)
 }

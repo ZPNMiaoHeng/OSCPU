@@ -48,9 +48,14 @@ class InstFetch extends Module {
     val wbRdData = Input(UInt(64.W))
 
     val coreEnd = Input(Bool())
+
+    val bht_update = Flipped(Valid(new BHTUpdate))
   })
   val minidec = Module(new minidec)
   val bht = Module(new bht)
+
+  val minidec_btb = Module(new minidec_BTB)
+  val btb = Module(new BTB)
 
   val pc = RegInit("h8000_0000".U(WLEN.W))
   val inst = RegInit(0.U(WLEN.W))
@@ -63,19 +68,29 @@ class InstFetch extends Module {
 
   val fire = io.imem.inst_valid && io.imem.inst_ready
   val ifIntr = io.intr
-  val bhtDone = bht.io.ready
+  // val bhtDone = bht.io.ready
+  val bhtDone = btb.io.resp.valid
 
   val ifInst = Mux(fire && !io.stall, io.imem.inst_read, inst)             //* stall，fire拉高，但inst也不能更
   val ifPcEn = bhtDone && !io.stall && !ifIntr
   val ifPC = Mux(ifPcEn,                         // 更新下一周期地址 :中断信号打一拍，防止下一周期pc+4
                 Mux(io.exc | io.takenMiss, io.nextPC,
-                  Mux(bht.io.takenPre & minidec.io.bjp, bht.io.takenPrePC, pc + 4.U)),
+                  // Mux(bht.io.takenPre & minidec.io.bjp, bht.io.takenPrePC, pc + 4.U)),
+                  Mux(btb.io.resp.bits.taken , btb.io.resp.bits.target, pc + 4.U)),
                 Mux(io.intr, io.nextPC, pc)
               )
   pc := ifPC
   inst := ifInst
 
   io.IFDone := Mux(io.stall, true.B, bhtDone)   // stall:让外部流水线运转
+
+// --------------------------------------------------
+  minidec_btb.io.req.instruction := ifInst
+
+  btb.io.req.valid := 
+  btb.io.req.bits.minidecReq.instruction := ifInst
+  btb.io.req.bits.minidecResp <> minidec_btb.io.resp
+  btb.io.bht_update <> io.bht_update
 // --------------------------------------------------
   minidec.io.inst := ifInst
 
@@ -134,7 +149,11 @@ class InstFetch extends Module {
   io.out.memData  := 0.U
 
   io.out.csrOp := 0.U
-  io.out.takenPre := bht.io.takenPre
-  io.out.takenPrePC := bht.io.takenPrePC
+  io.out.takenPre := btb.io.resp.bits.taken
+  io.out.takenPrePC := btb.io.resp.bits.target
+
+  // io.out.csrOp := 0.U
+  // io.out.takenPre := bht.io.takenPre
+  // io.out.takenPrePC := bht.io.takenPrePC
 }
 

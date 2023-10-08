@@ -32,10 +32,13 @@ class minidecResp extends minidecBundle {
   // val rs1Addr = UInt(5.W)
 }
 
+// Only decode instruction 
 class minidec_BTB extends minidecModule {
   val io = IO(new Bundle {
-    val req = Flipped(Valid(new minidecReq))
-    val resp = Valid(new minidecResp)
+    // val req = Flipped(Valid(new minidecReq))
+    // val resp = Valid(new minidecResp)
+    val req = Flipped(new minidecReq)
+    val resp = new minidecResp
   })
   def immGen(inst: UInt, cfiType: UInt) = {
     val imm = Mux(inst === JALR, Fill(52, inst(31)) ## inst(31,20),
@@ -44,7 +47,7 @@ class minidec_BTB extends minidecModule {
                     0.U)))
     imm
   }
-  def cfiType(inst: UInt) = {
+  def cfiTypeGen(inst: UInt) = {
     val res = LookupTreeDefault(inst, 0.U, List(
       BEQ -> CFIType.branch,
       BNE -> CFIType.branch,
@@ -60,10 +63,10 @@ class minidec_BTB extends minidecModule {
     res
   }
   
-  val cfiTypeRes = cfiType(io.req.bits.instruction)
-  io.resp.valid := true.B
-  io.resp.bits.cfiType := cfiTypeRes
-  io.resp.bits.imm := immGen(io.req.bits.instruction, cfiTypeRes)
+  val cfiType = cfiTypeGen(io.req.bits.instruction)
+  // io.resp.valid := true.B
+  io.resp.bits.cfiType := cfiType
+  io.resp.bits.imm := immGen(io.req.bits.instruction, cfiType)
   // io.resp.bits.rs1En := 
   // io.resp.bits.rs1Addr :=
 }

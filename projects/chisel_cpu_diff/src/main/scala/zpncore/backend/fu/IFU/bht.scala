@@ -99,21 +99,23 @@ class BHTUpdate(implicit p: Parameters) extends BtbBundle()(p) {
   val mispredict = Bool()
 }
 
-object CFIType {
-  def SZ = 2
-  def apply() = UInt(SZ.W)
-  def branch = 0.U
-  def jump = 1.U
-  def call = 2.U
-  def ret = 3.U
-}
+// object CFIType {
+//   def SZ = 2
+//   def apply() = UInt(SZ.W)
+//   def branch = 0.U
+//   def jump = 1.U
+//   def call = 2.U
+//   def ret = 3.U
+// }
 
 class BTBReq(implicit p: Parameters) extends BtbBundle()(p) {
   val addr = UInt(addrBits.W)
+  val minidecReq = new minidecReq
+  val minidecResp = new minidecResp
 }
 
 class BTBResp(implicit p: Parameters) extends BtbBundle()(p) {
-  val cfiType = CFIType()
+  // val cfiType = CFIType()
   val taken = Bool()
   val target = UInt(addrBits.W)
   val entry = UInt(log2Up(entries + 1).W)
@@ -123,33 +125,38 @@ class BTBResp(implicit p: Parameters) extends BtbBundle()(p) {
 class BTB(implicit p: Parameters) extends BtbModule {
   val io = IO(new Bundle{
     val req = Flipped(Valid(new BTBReq))
-    val resq = Valid(new BTBResp)
+    val resp = Valid(new BTBResp)
     val bht_update = Flipped(Valid(new BHTUpdate))
   })
 
-  io.resq.valid := DontCare
-  io.resq.bits.cfiType := DontCare
-  io.resq.bits.taken := DontCare
-  io.resq.bits.target := DontCare
-  io.resq.bits.entry := DontCare
+  io.resp.valid := valid // DontCare
+  // io.resp.bits.cfiType := DontCare
+  io.resp.bits.taken := false // DontCare
+  io.resp.bits.target := io.req.bits.addr + io.req.bits.minidecResp.imm // DontCare
+  io.resp.bits.entry := DontCare
 
-  val bht = new BHT(Annotated.params(this, btbParams.bhtParams.get))
-  val res = bht.get(io.req.bits.addr)
+  if (btbParams.bhtParams.nonEmpty) {
+    val bht = new BHT(Annotated.params(this, btbParams.bhtParams.get))
+    val isbranch = io.req.valid & (io.req.bits.minidecResp.cfiType === CFIType.branch)
+    val res = bht.get(io.req.bits.addr)
 
-  when(io.bht_update.valid) {
-    when(io.bht_update.bits.branch) {
-      bht.updateTable(io.bht_update.bits.pc, io.bht_update.bits.prediction, io.bht_update.bits.taken)
-      bht.updateHistory(io.bht_update.bits.taken)
-      // bht.updateHistory(io.bht_update.bits.pc, io.bht_update.bits.prediction, io.bht_update.bits.taken)
-      // when(io.bht_update.bits.mispredict) {
-        // bht.update
-      // }
+    when(io.bht_update.valid) {
+      when(io.bht_update.bits.branch) {
+        bht.updateTable(io.bht_update.bits.pc, io.bht_update.bits.prediction, io.bht_update.bits.taken)
+        bht.updateHistory(io.bht_update.bits.taken)
+        // bht.updateHistory(io.bht_update.bits.pc, io.bht_update.bits.prediction, io.bht_update.bits.taken)
+        // when(io.bht_update.bits.mispredict) {
+          // bht.update
+        // }
+      }
     }
+    when (res.taken && isbranch) { io.resp.bits.taken := true }
+    // when (!res.taken && isbranch) { io.resp.bits.taken := false}
+    io.resp.bits.bht := res
   }
 
-  io.resp.bits.bht := res
-
 }
+
 /** BTB v0.000 配置
   *  NOTE - BTB(分支预测器统称) v0.000
   * 1.BHT(分支预测方向),锦标赛分支预测器包含全局历史子预测器(P1)和局部历史子预测器(P2),2bit饱和预测器,PHT大小为1*64*2bit,历史寄存器6bit;
