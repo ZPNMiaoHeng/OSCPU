@@ -82,7 +82,7 @@ class ICache extends Module {
     }
 
     is(s_FILL_CACHE) {
-        state := s_READ_CACHE
+        state := RegNext(s_READ_CACHE)
     }
   }
 //*------------------------------------------------------------------------------------------//
