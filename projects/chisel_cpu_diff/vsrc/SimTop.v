@@ -13991,7 +13991,126 @@ module Mul(
   assign Wallace_131_io_in_srcIn = {{1'd0}, _wallceIn_131_T_62}; // @[Mul.scala 57:24 64:21]
   assign Wallace_131_io_in_cIn = Wallace_130_io_out_coutGroup; // @[Mul.scala 86:{26,26}]
 endmodule
+module Div(
+  input         clock,
+  input         reset,
+  input  [63:0] io_in_data1,
+  input  [63:0] io_in_data2,
+  input         io_in_isW,
+  output [63:0] io_out_resH
+);
+`ifdef RANDOMIZE_REG_INIT
+  reg [31:0] _RAND_0;
+  reg [127:0] _RAND_1;
+  reg [95:0] _RAND_2;
+  reg [63:0] _RAND_3;
+`endif // RANDOMIZE_REG_INIT
+  reg [6:0] value; // @[Counter.scala 62:40]
+  wire  wrap = value == 7'h41; // @[Counter.scala 74:24]
+  wire [6:0] _value_T_1 = value + 7'h1; // @[Counter.scala 78:24]
+  wire  divSignEn = value == 7'h0; // @[Div.scala 48:23]
+  wire  _divShiftEn_T = value > 7'h0; // @[Div.scala 49:34]
+  wire  _divShiftEn_T_5 = _divShiftEn_T & value < 7'h41; // @[Div.scala 50:18]
+  wire  divShiftEn = io_in_isW ? value > 7'h0 & value < 7'h21 : _divShiftEn_T_5; // @[Div.scala 49:23]
+  reg [127:0] a; // @[Div.scala 55:18]
+  reg [64:0] b; // @[Div.scala 57:18]
+  reg [63:0] s; // @[Div.scala 58:18]
+  wire [127:0] _dataA_T_1 = {64'h0,io_in_data1}; // @[Cat.scala 31:58]
+  wire [127:0] dataA = io_in_isW ? {{64'd0}, io_in_data1} : _dataA_T_1; // @[Div.scala 71:18]
+  wire [64:0] op1 = io_in_isW ? {{32'd0}, a[63:31]} : a[127:63]; // @[Div.scala 80:16]
+  wire  subResEn = op1 >= b & op1 != 65'h0; // @[Div.scala 81:29]
+  wire [64:0] _subRes_T_1 = op1 - b; // @[Div.scala 82:35]
+  wire [64:0] subRes = subResEn ? _subRes_T_1 : 65'h0; // @[Div.scala 82:19]
+  wire [95:0] _aTmp_T_1 = {subRes,a[30:0]}; // @[Cat.scala 31:58]
+  wire [127:0] _aTmp_T_2 = subResEn ? {{32'd0}, _aTmp_T_1} : a; // @[Div.scala 84:9]
+  wire [127:0] _aTmp_T_4 = {subRes,a[62:0]}; // @[Cat.scala 31:58]
+  wire [127:0] _aTmp_T_5 = subResEn ? _aTmp_T_4 : a; // @[Div.scala 85:11]
+  wire [127:0] aTmp = io_in_isW ? _aTmp_T_2 : _aTmp_T_5; // @[Div.scala 83:13]
+  wire [128:0] _a_T = {aTmp, 1'h0}; // @[Div.scala 75:30]
+  wire [128:0] _a_T_1 = divShiftEn ? _a_T : 129'h0; // @[Div.scala 75:12]
+  wire [128:0] _a_T_2 = divSignEn ? {{1'd0}, dataA} : _a_T_1; // @[Div.scala 74:11]
+  wire [64:0] _b_T_1 = {1'h0,io_in_data2}; // @[Cat.scala 31:58]
+  wire [64:0] _s_T = {s, 1'h0}; // @[Div.scala 87:29]
+  wire [64:0] _GEN_2 = {{64'd0}, subResEn}; // @[Div.scala 87:35]
+  wire [64:0] _s_T_2 = _s_T + _GEN_2; // @[Div.scala 87:35]
+  wire [64:0] _s_T_3 = divShiftEn ? _s_T_2 : {{1'd0}, s}; // @[Div.scala 87:12]
+  wire [64:0] _s_T_4 = divSignEn ? {{64'd0}, subResEn} : _s_T_3; // @[Div.scala 86:11]
+  wire [128:0] _GEN_3 = reset ? 129'h0 : _a_T_2; // @[Div.scala 55:{18,18} 74:5]
+  wire [64:0] _GEN_4 = reset ? 65'h0 : _s_T_4; // @[Div.scala 58:{18,18} 86:5]
+  assign io_out_resH = s; // @[Div.scala 93:21]
+  always @(posedge clock) begin
+    if (reset) begin // @[Counter.scala 62:40]
+      value <= 7'h0; // @[Counter.scala 62:40]
+    end else if (wrap) begin // @[Counter.scala 88:20]
+      value <= 7'h0; // @[Counter.scala 88:28]
+    end else begin
+      value <= _value_T_1; // @[Counter.scala 78:15]
+    end
+    a <= _GEN_3[127:0]; // @[Div.scala 55:{18,18} 74:5]
+    if (reset) begin // @[Div.scala 57:18]
+      b <= 65'h0; // @[Div.scala 57:18]
+    end else if (io_in_isW) begin // @[Div.scala 76:11]
+      b <= {{32'd0}, io_in_data2[32:0]};
+    end else begin
+      b <= _b_T_1;
+    end
+    s <= _GEN_4[63:0]; // @[Div.scala 58:{18,18} 86:5]
+  end
+// Register and memory initialization
+`ifdef RANDOMIZE_GARBAGE_ASSIGN
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_INVALID_ASSIGN
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_REG_INIT
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_MEM_INIT
+`define RANDOMIZE
+`endif
+`ifndef RANDOM
+`define RANDOM $random
+`endif
+`ifdef RANDOMIZE_MEM_INIT
+  integer initvar;
+`endif
+`ifndef SYNTHESIS
+`ifdef FIRRTL_BEFORE_INITIAL
+`FIRRTL_BEFORE_INITIAL
+`endif
+initial begin
+  `ifdef RANDOMIZE
+    `ifdef INIT_RANDOM
+      `INIT_RANDOM
+    `endif
+    `ifndef VERILATOR
+      `ifdef RANDOMIZE_DELAY
+        #`RANDOMIZE_DELAY begin end
+      `else
+        #0.002 begin end
+      `endif
+    `endif
+`ifdef RANDOMIZE_REG_INIT
+  _RAND_0 = {1{`RANDOM}};
+  value = _RAND_0[6:0];
+  _RAND_1 = {4{`RANDOM}};
+  a = _RAND_1[127:0];
+  _RAND_2 = {3{`RANDOM}};
+  b = _RAND_2[64:0];
+  _RAND_3 = {2{`RANDOM}};
+  s = _RAND_3[63:0];
+`endif // RANDOMIZE_REG_INIT
+  `endif // RANDOMIZE
+end // initial
+`ifdef FIRRTL_AFTER_INITIAL
+`FIRRTL_AFTER_INITIAL
+`endif
+`endif // SYNTHESIS
+endmodule
 module ALU(
+  input         clock,
+  input         reset,
   input  [1:0]  io_memtoReg,
   input  [31:0] io_pc,
   output [63:0] io_aluRes,
@@ -14007,6 +14126,12 @@ module ALU(
   wire [63:0] mul_io_in_bits_0; // @[ALU.scala 21:21]
   wire [63:0] mul_io_in_bits_1; // @[ALU.scala 21:21]
   wire [127:0] mul_io_out_bits; // @[ALU.scala 21:21]
+  wire  div_clock; // @[ALU.scala 22:21]
+  wire  div_reset; // @[ALU.scala 22:21]
+  wire [63:0] div_io_in_data1; // @[ALU.scala 22:21]
+  wire [63:0] div_io_in_data2; // @[ALU.scala 22:21]
+  wire  div_io_in_isW; // @[ALU.scala 22:21]
+  wire [63:0] div_io_out_resH; // @[ALU.scala 22:21]
   wire [63:0] Asrc = ~ctrl_aluA ? data_rData1 : {{32'd0}, io_pc}; // @[ALU.scala 26:19]
   wire  instW = io_memtoReg[1]; // @[ALU.scala 28:28]
   wire  in1_signBit = Asrc[31]; // @[BitUtils.scala 18:20]
@@ -14018,23 +14143,22 @@ module ALU(
   wire [63:0] _in2_T_1 = 2'h1 == ctrl_aluB ? data_imm : data_rData2; // @[Mux.scala 81:58]
   wire [63:0] _in2_T_3 = 2'h2 == ctrl_aluB ? 64'h4 : _in2_T_1; // @[Mux.scala 81:58]
   wire [63:0] in2 = 2'h3 == ctrl_aluB ? 64'h0 : _in2_T_3; // @[Mux.scala 81:58]
-  wire [5:0] shamt = instW ? {{1'd0}, in2[4:0]} : in2[5:0]; // @[ALU.scala 46:20]
-  wire [63:0] addRes = in1 + in2; // @[ALU.scala 48:25]
-  wire [63:0] subRes = in1 - in2; // @[ALU.scala 49:25]
-  wire [63:0] xorRes = in1 ^ in2; // @[ALU.scala 50:25]
-  wire [63:0] orRes = in1 | in2; // @[ALU.scala 51:25]
-  wire [63:0] andRes = in1 & in2; // @[ALU.scala 52:25]
-  wire [126:0] _GEN_0 = {{63'd0}, in1}; // @[ALU.scala 53:28]
-  wire [126:0] _sLRes_T = _GEN_0 << shamt; // @[ALU.scala 53:28]
-  wire [63:0] sLRes = _sLRes_T[63:0]; // @[ALU.scala 53:37]
-  wire [63:0] sRLRes = in1 >> shamt; // @[ALU.scala 54:27]
-  wire [63:0] _sRARes_T = instW ? _in1_T_7 : Asrc; // @[ALU.scala 55:33]
-  wire [63:0] sRARes = $signed(_sRARes_T) >>> shamt; // @[ALU.scala 55:52]
-  wire [63:0] _sLTRes_T_1 = 2'h3 == ctrl_aluB ? 64'h0 : _in2_T_3; // @[ALU.scala 57:48]
-  wire  sLTRes = $signed(_sRARes_T) < $signed(_sLTRes_T_1); // @[ALU.scala 57:36]
-  wire  sLTURes = in1 < in2; // @[ALU.scala 58:27]
-  wire [63:0] remwRes = $signed(_sRARes_T) % $signed(_sLTRes_T_1); // @[ALU.scala 60:48]
-  wire [63:0] divRes = in1 / in2; // @[ALU.scala 61:27]
+  wire [5:0] shamt = instW ? {{1'd0}, in2[4:0]} : in2[5:0]; // @[ALU.scala 51:20]
+  wire [63:0] addRes = in1 + in2; // @[ALU.scala 53:25]
+  wire [63:0] subRes = in1 - in2; // @[ALU.scala 54:25]
+  wire [63:0] xorRes = in1 ^ in2; // @[ALU.scala 55:25]
+  wire [63:0] orRes = in1 | in2; // @[ALU.scala 56:25]
+  wire [63:0] andRes = in1 & in2; // @[ALU.scala 57:25]
+  wire [126:0] _GEN_0 = {{63'd0}, in1}; // @[ALU.scala 58:28]
+  wire [126:0] _sLRes_T = _GEN_0 << shamt; // @[ALU.scala 58:28]
+  wire [63:0] sLRes = _sLRes_T[63:0]; // @[ALU.scala 58:37]
+  wire [63:0] sRLRes = in1 >> shamt; // @[ALU.scala 59:27]
+  wire [63:0] _sRARes_T = instW ? _in1_T_7 : Asrc; // @[ALU.scala 60:33]
+  wire [63:0] sRARes = $signed(_sRARes_T) >>> shamt; // @[ALU.scala 60:52]
+  wire [63:0] _sLTRes_T_1 = 2'h3 == ctrl_aluB ? 64'h0 : _in2_T_3; // @[ALU.scala 62:48]
+  wire  sLTRes = $signed(_sRARes_T) < $signed(_sLTRes_T_1); // @[ALU.scala 62:36]
+  wire  sLTURes = in1 < in2; // @[ALU.scala 63:27]
+  wire [63:0] remwRes = $signed(_sRARes_T) % $signed(_sLTRes_T_1); // @[ALU.scala 65:48]
   wire [63:0] _aluResult_T_1 = 4'h0 == ctrl_aluOp ? addRes : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _aluResult_T_3 = 4'h8 == ctrl_aluOp ? subRes : _aluResult_T_1; // @[Mux.scala 81:58]
   wire [63:0] _aluResult_T_5 = 4'h9 == ctrl_aluOp ? subRes : _aluResult_T_3; // @[Mux.scala 81:58]
@@ -14046,24 +14170,37 @@ module ALU(
   wire [63:0] _aluResult_T_17 = 4'h3 == ctrl_aluOp ? in2 : _aluResult_T_15; // @[Mux.scala 81:58]
   wire [63:0] _aluResult_T_19 = 4'hb == ctrl_aluOp ? remwRes : _aluResult_T_17; // @[Mux.scala 81:58]
   wire [63:0] _aluResult_T_21 = 4'h4 == ctrl_aluOp ? xorRes : _aluResult_T_19; // @[Mux.scala 81:58]
-  wire [63:0] _aluResult_T_23 = 4'hc == ctrl_aluOp ? divRes : _aluResult_T_21; // @[Mux.scala 81:58]
+  wire [63:0] _aluResult_T_23 = 4'hc == ctrl_aluOp ? div_io_out_resH : _aluResult_T_21; // @[Mux.scala 81:58]
   wire [63:0] _aluResult_T_25 = 4'h6 == ctrl_aluOp ? orRes : _aluResult_T_23; // @[Mux.scala 81:58]
   wire [127:0] _aluResult_T_27 = 4'he == ctrl_aluOp ? mul_io_out_bits : {{64'd0}, _aluResult_T_25}; // @[Mux.scala 81:58]
   wire [127:0] aluResult = 4'h7 == ctrl_aluOp ? {{64'd0}, andRes} : _aluResult_T_27; // @[Mux.scala 81:58]
   wire  io_aluRes_signBit = aluResult[31]; // @[BitUtils.scala 18:20]
   wire [31:0] _io_aluRes_T_2 = io_aluRes_signBit ? 32'hffffffff : 32'h0; // @[Bitwise.scala 74:12]
   wire [63:0] _io_aluRes_T_3 = {_io_aluRes_T_2,aluResult[31:0]}; // @[Cat.scala 31:58]
-  wire [127:0] _io_aluRes_T_4 = instW ? {{64'd0}, _io_aluRes_T_3} : aluResult; // @[ALU.scala 91:21]
+  wire [127:0] _io_aluRes_T_4 = instW ? {{64'd0}, _io_aluRes_T_3} : aluResult; // @[ALU.scala 98:21]
   Mul mul ( // @[ALU.scala 21:21]
     .io_in_bits_0(mul_io_in_bits_0),
     .io_in_bits_1(mul_io_in_bits_1),
     .io_out_bits(mul_io_out_bits)
   );
-  assign io_aluRes = _io_aluRes_T_4[63:0]; // @[ALU.scala 91:15]
-  assign io_less = ctrl_aluOp[3] ? sLTURes : sLTRes; // @[ALU.scala 89:19]
-  assign io_zero = aluResult == 128'h0; // @[ALU.scala 90:27]
+  Div div ( // @[ALU.scala 22:21]
+    .clock(div_clock),
+    .reset(div_reset),
+    .io_in_data1(div_io_in_data1),
+    .io_in_data2(div_io_in_data2),
+    .io_in_isW(div_io_in_isW),
+    .io_out_resH(div_io_out_resH)
+  );
+  assign io_aluRes = _io_aluRes_T_4[63:0]; // @[ALU.scala 98:15]
+  assign io_less = ctrl_aluOp[3] ? sLTURes : sLTRes; // @[ALU.scala 96:19]
+  assign io_zero = aluResult == 128'h0; // @[ALU.scala 97:27]
   assign mul_io_in_bits_0 = instW ? _in1_T_7 : Asrc; // @[ALU.scala 29:18]
   assign mul_io_in_bits_1 = 2'h3 == ctrl_aluB ? 64'h0 : _in2_T_3; // @[Mux.scala 81:58]
+  assign div_clock = clock;
+  assign div_reset = reset;
+  assign div_io_in_data1 = instW ? _in1_T_7 : Asrc; // @[ALU.scala 29:18]
+  assign div_io_in_data2 = 2'h3 == ctrl_aluB ? 64'h0 : _in2_T_3; // @[Mux.scala 81:58]
+  assign div_io_in_isW = io_memtoReg[1]; // @[ALU.scala 28:28]
 endmodule
 module NextPC(
   input  [31:0] io_pc,
@@ -14108,6 +14245,8 @@ module NextPC(
   assign io_pcSrc = _pcSrc_T_12 ? 2'h0 : _pcSrc_T_30; // @[Mux.scala 101:16]
 endmodule
 module Execution(
+  input         clock,
+  input         reset,
   input         io_in_valid,
   input  [31:0] io_in_pc,
   input  [31:0] io_in_inst,
@@ -14163,6 +14302,8 @@ module Execution(
   input  [63:0] io_mtvec,
   input         io_time_int
 );
+  wire  alu_clock; // @[Execution.scala 27:21]
+  wire  alu_reset; // @[Execution.scala 27:21]
   wire [1:0] alu_io_memtoReg; // @[Execution.scala 27:21]
   wire [31:0] alu_io_pc; // @[Execution.scala 27:21]
   wire [63:0] alu_io_aluRes; // @[Execution.scala 27:21]
@@ -14188,6 +14329,8 @@ module Execution(
   wire [31:0] nextPC_io_nextPC; // @[Execution.scala 28:24]
   wire [1:0] nextPC_io_pcSrc; // @[Execution.scala 28:24]
   ALU alu ( // @[Execution.scala 27:21]
+    .clock(alu_clock),
+    .reset(alu_reset),
     .io_memtoReg(alu_io_memtoReg),
     .io_pc(alu_io_pc),
     .io_aluRes(alu_io_aluRes),
@@ -14245,6 +14388,8 @@ module Execution(
   assign io_takenPC = io_in_pc; // @[Execution.scala 108:17]
   assign io_exeX1En = io_in_rdEn & io_in_rdAddr == 5'h1; // @[Execution.scala 110:28]
   assign io_exeAluRes = alu_io_aluRes; // @[Execution.scala 111:16]
+  assign alu_clock = clock;
+  assign alu_reset = reset;
   assign alu_io_memtoReg = io_in_memtoReg; // @[Execution.scala 36:21]
   assign alu_io_pc = io_in_pc; // @[Execution.scala 37:15]
   assign alu_ctrl_aluA = io_in_aluA; // @[Execution.scala 30:25]
@@ -15582,6 +15727,8 @@ module Core(
   wire [31:0] IdRegEx_io_out_takenPrePC; // @[Core.scala 19:23]
   wire  IdRegEx_io_flush; // @[Core.scala 19:23]
   wire  IdRegEx_io_stall; // @[Core.scala 19:23]
+  wire  EX_clock; // @[Core.scala 20:18]
+  wire  EX_reset; // @[Core.scala 20:18]
   wire  EX_io_in_valid; // @[Core.scala 20:18]
   wire [31:0] EX_io_in_pc; // @[Core.scala 20:18]
   wire [31:0] EX_io_in_inst; // @[Core.scala 20:18]
@@ -16079,6 +16226,8 @@ module Core(
     .io_stall(IdRegEx_io_stall)
   );
   Execution EX ( // @[Core.scala 20:18]
+    .clock(EX_clock),
+    .reset(EX_reset),
     .io_in_valid(EX_io_in_valid),
     .io_in_pc(EX_io_in_pc),
     .io_in_inst(EX_io_in_inst),
@@ -16481,6 +16630,8 @@ module Core(
   assign IdRegEx_io_in_takenPrePC = ID_io_out_takenPrePC; // @[Core.scala 121:17]
   assign IdRegEx_io_flush = ecallEn | IF_io_IFDone & (EX_io_takenMiss | EXLHitID | EXSHitIDEn); // @[Core.scala 52:25]
   assign IdRegEx_io_stall = _stallIfIdEn_T | _stallIfIdEn_T_1; // @[Core.scala 60:36]
+  assign EX_clock = clock;
+  assign EX_reset = reset;
   assign EX_io_in_valid = IdRegEx_io_out_valid; // @[Core.scala 125:12]
   assign EX_io_in_pc = IdRegEx_io_out_pc; // @[Core.scala 125:12]
   assign EX_io_in_inst = IdRegEx_io_out_inst; // @[Core.scala 125:12]

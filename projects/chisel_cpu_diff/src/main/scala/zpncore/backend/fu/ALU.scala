@@ -19,7 +19,7 @@ import utils._
          val zero   = Output(UInt(1.W))
      })
     val mul = Module(new Mul)
-    // val div = Module(new Div)
+    val div = Module(new Div)
 
     val aluIO = FlatIO(Flipped(new AluIO))
 
@@ -41,7 +41,12 @@ import utils._
     mul.io.in.bits(1) := in2
     mul.io.out.ready := true.B    
 
-    // val divres = div.io.
+    div.io.in.validD := aluIO.ctrl.aluOp === "b1100".U
+    div.io.in.data1 := in1
+    div.io.in.data2 := in2
+    div.io.in.isW := instW
+    div.io.in.sign := false.B
+    div.io.in.flush := false.B
 
     val shamt = Mux(instW, in2(4, 0).asUInt(), in2(5, 0))
   
@@ -58,9 +63,11 @@ import utils._
       val sLTURes  = (in1 < in2).asUInt()
       
       val remwRes  = (in1.asSInt % in2.asSInt).asUInt
-      val divRes   = (in1 / in2).asUInt
+      // val divRes   = (in1 / in2).asUInt
+      // val divRes   = Cat(div.io.out.resH , div.io.out.resL)
+      val divRes   = div.io.out.resH// , div.io.out.resL
       // val mulRes   = (in1 * in2).asUInt
-      val mulRes = mul.io.out.bits
+      val mulRes =  mul.io.out.bits
 
       val aluResult = MuxLookup(aluIO.ctrl.aluOp, 0.U, 
        List(
