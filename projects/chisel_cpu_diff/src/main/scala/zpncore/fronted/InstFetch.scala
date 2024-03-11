@@ -51,8 +51,8 @@ class InstFetch extends Module {
 
     val bht_update = Flipped(Valid(new BHTUpdate))
   })
-  val minidec = Module(new minidec)
-  val bht = Module(new bht)
+  // val minidec = Module(new minidec)
+  // val bht = Module(new bht)
 
   val minidec_btb = Module(new minidec_BTB)
   val btb = Module(new BTB)
@@ -92,39 +92,40 @@ class InstFetch extends Module {
   btb.io.req.bits.minidecResp <> minidec_btb.io.resp
   btb.io.bht_update <> io.bht_update
 // --------------------------------------------------
-  minidec.io.inst := ifInst
+  // minidec.io.inst := ifInst
 
-  bht.io.pc := pc
-  bht.io.valid := minidec.io.bjp                                 // 只有跳转指令时才工作
-  bht.io.fire := fire
-  bht.io.jal := minidec.io.jal
-  bht.io.jalr := minidec.io.jalr
-  bht.io.bxx := minidec.io.bxx
-  bht.io.imm := minidec.io.imm
-  bht.io.rs1Addr := minidec.io.rs1Addr
+  // bht.io.pc := pc
+  // bht.io.valid := minidec.io.bjp                                 // 只有跳转指令时才工作
+  // bht.io.fire := fire
+  // bht.io.jal := minidec.io.jal
+  // bht.io.jalr := minidec.io.jalr
+  // bht.io.bxx := minidec.io.bxx
+  // bht.io.imm := minidec.io.imm
+  // bht.io.rs1Addr := minidec.io.rs1Addr
 
-  bht.io.takenValid := io.takenValid
-  bht.io.takenValidJalr := io.takenValidJalr
-  bht.io.takenMiss := io.takenMiss
-  bht.io.exTakenPre := io.exTakenPre
-  bht.io.takenPC := io.takenPC
-  bht.io.nextPC := io.nextPC
-  bht.io.rs1Data := io.preRs1Data
-  bht.io.rs1x1Data := io.preRs1x1Data
-  bht.io.exeX1En := io.exeX1En
-  bht.io.exeAluRes := io.exeAluRes
-  bht.io.memX1En := io.memX1En
-  bht.io.memAluRes := io.memAluRes
-  bht.io.wbRdEn := io.wbRdEn
-  bht.io.wbRdAddr := io.wbRdAddr
-  bht.io.wbRdData := io.wbRdData
+  // bht.io.takenValid := io.takenValid
+  // bht.io.takenValidJalr := io.takenValidJalr
+  // bht.io.takenMiss := io.takenMiss
+  // bht.io.exTakenPre := io.exTakenPre
+  // bht.io.takenPC := io.takenPC
+  // bht.io.nextPC := io.nextPC
+  // bht.io.rs1Data := io.preRs1Data
+  // bht.io.rs1x1Data := io.preRs1x1Data
+  // bht.io.exeX1En := io.exeX1En
+  // bht.io.exeAluRes := io.exeAluRes
+  // bht.io.memX1En := io.memX1En
+  // bht.io.memAluRes := io.memAluRes
+  // bht.io.wbRdEn := io.wbRdEn
+  // bht.io.wbRdAddr := io.wbRdAddr
+  // bht.io.wbRdData := io.wbRdData
 
-  bht.io.coreEnd := io.coreEnd
+  // bht.io.coreEnd := io.coreEnd
 
-  io.preRs1En := minidec.io.rs1En
-  io.preRs1Addr := minidec.io.rs1Addr
+  // io.preRs1En := minidec.io.rs1En
+  // io.preRs1Addr := minidec.io.rs1Addr
 
-  val plInst = Mux(minidec.io.bxx, inst, io.imem.inst_read)
+  // val plInst = Mux(minidec.io.bxx, inst, io.imem.inst_read)
+  val plInst = io.imem.inst_read
 //------------------- IF ----------------------------
   io.out.valid    := bhtDone
   io.out.pc       := pc
