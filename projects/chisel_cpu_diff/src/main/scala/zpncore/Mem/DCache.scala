@@ -69,7 +69,8 @@ class DCache extends Module {
     "b1111_0000".U -> "hffffffff00000000".U,
     "b1111_1111".U -> "hffffffffffffffff".U   //sd
   ))
-  val valid_strb  = Mux(reqOff(3), Cat(strbT, 0.U(64.W)), Cat(0.U(64.W), strbT))
+  // val valid_strb  = Mux(reqOff(3), Cat(strbT, 0.U(64.W)), Cat(0.U(64.W), strbT))
+  val valid_strb  = Mux(reqOff(3), Cat(in.data_strb, 0.U(8.W)), Cat(0.U(8.W), in.data_strb))
   val valid_WData = WireInit(0.U(128.W))  // 写入cache line中数据
   val valid_BWEn  = WireInit(0.U(128.W))  // 写入cacheLine中掩码
 
@@ -175,8 +176,10 @@ class DCache extends Module {
   valid_WEn   := sCacheWEn || (sReadEn && out.data_ready)
   valid_WData := Mux(sReadEn && out.data_ready, out.data_read,       // Axi Read Data
                   Mux(in.data_req, cacheWData , out.data_read))      // store/load inst
-  valid_BWEn  := Mux(sReadEn && out.data_ready, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U,
-                  Mux(in.data_req, valid_strb , "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U))
+  // valid_BWEn  := Mux(sReadEn && out.data_ready, "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U,
+                  // Mux(in.data_req, valid_strb , "hffff_ffff_ffff_ffff_ffff_ffff_ffff_ffff".U))
+  valid_BWEn  := Mux(sReadEn && out.data_ready, "hffff_ffff".U,
+                  Mux(in.data_req, valid_strb , "hffff_ffff".U))
 
 //*------------------- update reg ----------------------------------------------------------------
   when(ageWay0En || way0Hit) {
