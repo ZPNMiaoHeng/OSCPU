@@ -54,8 +54,11 @@ class Mul(len: Int = 64) extends Module with mulConstant {
         booth(i).in.x := op2
     }
 //--------------------------- Switch -------------------------------------
-    val wallceIn = Wire(Vec(132, UInt(33.W)))  // 声明含有 132个32.W 值为 0 的 vec
-    val boothOutC = Wire(UInt(33.W))
+    // val wallceIn = Wire(Vec(132, UInt(33.W)))  // 声明含有 132个32.W 值为 0 的 vec
+    // val boothOutC = Wire(UInt(33.W))
+    
+    val wallceIn = Reg(Vec(132, UInt(33.W)))  // 声明含有 132个32.W 值为 0 的 vec
+    val boothOutC = Reg(UInt(33.W))
 //    val temp = Wire(Vec(132, UInt(33.W)))
 
 
@@ -93,7 +96,8 @@ class Mul(len: Int = 64) extends Module with mulConstant {
        }
     }
 
-    val adder = Wire(Vec(2,UInt(132.W)))
+    // val adder = Wire(Vec(2,UInt(132.W)))
+    val adder = Reg(Vec(2,UInt(132.W)))
 
     val adderCTmp = Cat(Seq.tabulate(131){ i => 
       wallace(i).out.cOut

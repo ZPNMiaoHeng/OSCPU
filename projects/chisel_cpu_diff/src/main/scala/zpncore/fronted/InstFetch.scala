@@ -54,6 +54,11 @@ class InstFetch extends Module {
 
   val pc = RegInit("h8000_0000".U(WLEN.W))
   val inst = RegInit(0.U(WLEN.W))
+  
+  val waterRegExeX1En = RegInit(false.B)
+  val waterRegExeAluRes = RegInit(0.U(64.W))
+  waterRegExeX1En := io.exeX1En
+  waterRegExeAluRes := io.exeAluRes
 
 //* --------------------- AXI -----------------------------
   io.imem.inst_valid := !io.stall
@@ -96,8 +101,8 @@ class InstFetch extends Module {
   bht.io.nextPC := io.nextPC
   bht.io.rs1Data := io.preRs1Data
   bht.io.rs1x1Data := io.preRs1x1Data
-  bht.io.exeX1En := io.exeX1En
-  bht.io.exeAluRes := io.exeAluRes
+  bht.io.exeX1En := waterRegExeX1En // io.exeX1En
+  bht.io.exeAluRes := waterRegExeAluRes //  io.exeAluRes
   bht.io.memX1En := io.memX1En
   bht.io.memAluRes := io.memAluRes
   bht.io.wbRdEn := io.wbRdEn
