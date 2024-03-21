@@ -144,7 +144,7 @@ import utils._
     val btbTag = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))
     val btbMeta = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
 
-    val btbCounter = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
+    // val btbCounter = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))
     val btbPC = RegInit(VecInit(Seq.fill(BTBSets)(0.U(BTBMeta.W))))     // 保存PC, 用以查看 冲突
     val hashCounter = RegInit(0.U(BTBMeta.W))
     // val btbTag = RegInit(VecInit(Seq.fill(BTBWays)(VecInit(Seq.fill(BTBSets)(0.U(BTBTag.W))))))   // 1 * 128 * 7 bits
@@ -247,17 +247,15 @@ import utils._
   // when((io.takenValid || io.takenValidJalr)) {
     btbV(upIndex) := true.B
     btbTag(upIndex) := btbAddr(io.takenPC)
-    // btbTag(upIndex) := bhtAddr(io.takenPC)
     btbMeta(upIndex) := io.nextPC
-    // btbCounter(upIndex) := btbCounter(upIndex) + 1.U
     btbPC(upIndex) := io.takenPC
     when(io.takenPC =/= btbPC(upIndex)) {
-      btbCounter(upIndex) := btbCounter(upIndex) + 1.U
+      // btbCounter(upIndex) := btbCounter(upIndex) + 1.U
       hashCounter := hashCounter + 1.U
     }
   }
 
-  when(RegNext(io.coreEnd)) {
+/*   when(RegNext(io.coreEnd)) {
    printf("BTB hit\t%d\n", hashCounter)
    printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(0), btbCounter(1), btbCounter(2), btbCounter(3), btbCounter(4), btbCounter(5), btbCounter(6), btbCounter(7))
    printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(8), btbCounter(9), btbCounter(10), btbCounter(11), btbCounter(12), btbCounter(13), btbCounter(14), btbCounter(15))
@@ -267,5 +265,5 @@ import utils._
    printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(40), btbCounter(41), btbCounter(42), btbCounter(43), btbCounter(44), btbCounter(45), btbCounter(46), btbCounter(47))
    printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(48), btbCounter(49), btbCounter(50), btbCounter(51), btbCounter(52), btbCounter(53), btbCounter(54), btbCounter(55))
    printf("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n", btbCounter(56), btbCounter(57), btbCounter(58), btbCounter(59), btbCounter(60), btbCounter(61), btbCounter(62), btbCounter(63))
-  }
-}
+   */}
+// }

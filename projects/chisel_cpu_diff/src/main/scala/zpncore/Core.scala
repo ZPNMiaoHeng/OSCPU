@@ -24,13 +24,13 @@ class Core extends Module {
   val WB = Module(new WriteBack)
 
 //*-----------------------------------------------------------------
-  val preDebug = Module(new preDebug)
+/*   val preDebug = Module(new preDebug)
   preDebug.io.exeBranch := EX.io.out.branch
   preDebug.io.takenMiss := EX.io.takenMiss
   preDebug.io.rs1Addr := EX.io.out.inst(19, 15)
   preDebug.io.coreEnd := WB.io.inst === "h0000006b".U
   preDebug.io.IFDone := IF.io.IFDone
-  preDebug.io.memDone := MEM.io.memDone
+  preDebug.io.memDone := MEM.io.memDon */
 //*-----------------------------------------------------------------
   val intr = WB.io.time_int
   val intr_no = Mux(intr, 7.U, 0.U)
