@@ -15418,29 +15418,30 @@ module CSR(
   reg [63:0] _RAND_4;
   reg [63:0] _RAND_5;
   reg [63:0] _RAND_6;
-  reg [63:0] _RAND_7;
+  reg [31:0] _RAND_7;
   reg [63:0] _RAND_8;
+  reg [63:0] _RAND_9;
 `endif // RANDOMIZE_REG_INIT
-  wire  dt_cs_clock; // @[CSR.scala 137:21]
-  wire [7:0] dt_cs_coreid; // @[CSR.scala 137:21]
-  wire [1:0] dt_cs_priviledgeMode; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_mstatus; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_sstatus; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_mepc; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_sepc; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_mtval; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_stval; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_mtvec; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_stvec; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_mcause; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_scause; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_satp; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_mip; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_mie; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_mscratch; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_sscratch; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_mideleg; // @[CSR.scala 137:21]
-  wire [63:0] dt_cs_medeleg; // @[CSR.scala 137:21]
+  wire  dt_cs_clock; // @[CSR.scala 142:21]
+  wire [7:0] dt_cs_coreid; // @[CSR.scala 142:21]
+  wire [1:0] dt_cs_priviledgeMode; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_mstatus; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_sstatus; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_mepc; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_sepc; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_mtval; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_stval; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_mtvec; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_stvec; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_mcause; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_scause; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_satp; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_mip; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_mie; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_mscratch; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_sscratch; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_mideleg; // @[CSR.scala 142:21]
+  wire [63:0] dt_cs_medeleg; // @[CSR.scala 142:21]
   reg [63:0] mstatus; // @[CSR.scala 29:24]
   reg [63:0] mtvec; // @[CSR.scala 30:24]
   reg [63:0] mepc; // @[CSR.scala 31:24]
@@ -15479,11 +15480,15 @@ module CSR(
   wire [63:0] _GEN_6 = io_csrOp == 4'h8 & io_csrEn ? 64'hb : _GEN_5; // @[CSR.scala 77:43 79:13]
   wire [63:0] _GEN_7 = io_csrOp == 4'h8 & io_csrEn ? {{32'd0}, io_pc} : _GEN_4; // @[CSR.scala 77:43 80:13]
   wire [63:0] _GEN_8 = io_csrOp == 4'h8 & io_csrEn ? _mstatus_T_5 : _GEN_3; // @[CSR.scala 77:43 81:13]
-  wire [63:0] _mcycle_T_1 = mcycle + 64'h1; // @[CSR.scala 92:19]
-  reg [63:0] mtvec_REG; // @[CSR.scala 99:23]
-  wire  _mstatus_T_24 = wdata[16] & wdata[15] | wdata[14] & wdata[13]; // @[CSR.scala 108:46]
+  reg [9:0] value; // @[Counter.scala 62:40]
+  wire  wrap = value == 10'h257; // @[Counter.scala 74:24]
+  wire [9:0] _value_T_1 = value + 10'h1; // @[Counter.scala 78:24]
+  wire [63:0] _mcycle_T_1 = mcycle + 64'h1; // @[CSR.scala 95:22]
+  wire [63:0] _GEN_10 = wrap ? _mcycle_T_1 : mcycle; // @[CSR.scala 94:34 95:12 38:26]
+  reg [63:0] mtvec_REG; // @[CSR.scala 104:23]
+  wire  _mstatus_T_24 = wdata[16] & wdata[15] | wdata[14] & wdata[13]; // @[CSR.scala 113:46]
   wire [63:0] _mstatus_T_26 = {_mstatus_T_24,wdata[62:0]}; // @[Cat.scala 31:58]
-  reg [63:0] mie_REG; // @[CSR.scala 111:21]
+  reg [63:0] mie_REG; // @[CSR.scala 116:21]
   wire [63:0] _io_rData_T_1 = 12'h300 == io_rAddr ? mstatus : 64'h0; // @[Mux.scala 81:58]
   wire [63:0] _io_rData_T_3 = 12'h342 == io_rAddr ? mcause : _io_rData_T_1; // @[Mux.scala 81:58]
   wire [63:0] _io_rData_T_5 = 12'h304 == io_rAddr ? mie : _io_rData_T_3; // @[Mux.scala 81:58]
@@ -15492,7 +15497,7 @@ module CSR(
   wire [63:0] _io_rData_T_11 = 12'h341 == io_rAddr ? mepc : _io_rData_T_9; // @[Mux.scala 81:58]
   wire [63:0] _io_rData_T_13 = 12'h344 == io_rAddr ? 64'h0 : _io_rData_T_11; // @[Mux.scala 81:58]
   wire [63:0] _io_rData_T_15 = 12'hb00 == io_rAddr ? mcycle : _io_rData_T_13; // @[Mux.scala 81:58]
-  DifftestCSRState dt_cs ( // @[CSR.scala 137:21]
+  DifftestCSRState dt_cs ( // @[CSR.scala 142:21]
     .clock(dt_cs_clock),
     .coreid(dt_cs_coreid),
     .priviledgeMode(dt_cs_priviledgeMode),
@@ -15515,36 +15520,36 @@ module CSR(
     .medeleg(dt_cs_medeleg)
   );
   assign io_rData = 12'hb02 == io_rAddr ? 64'h0 : _io_rData_T_15; // @[Mux.scala 81:58]
-  assign io_mepc = mepc; // @[CSR.scala 131:11]
-  assign io_mtvec = mtvec; // @[CSR.scala 132:12]
-  assign io_mie = mie; // @[CSR.scala 133:10]
-  assign io_mstatus = mstatus; // @[CSR.scala 134:14]
-  assign dt_cs_clock = clock; // @[CSR.scala 138:27]
-  assign dt_cs_coreid = 8'h0; // @[CSR.scala 139:27]
-  assign dt_cs_priviledgeMode = 2'h3; // @[CSR.scala 140:27]
-  assign dt_cs_mstatus = mstatus; // @[CSR.scala 141:27]
-  assign dt_cs_sstatus = mstatus & 64'h80000003000de122; // @[CSR.scala 142:38]
-  assign dt_cs_mepc = mepc; // @[CSR.scala 143:27]
-  assign dt_cs_sepc = 64'h0; // @[CSR.scala 144:27]
-  assign dt_cs_mtval = 64'h0; // @[CSR.scala 145:27]
-  assign dt_cs_stval = 64'h0; // @[CSR.scala 146:27]
-  assign dt_cs_mtvec = mtvec; // @[CSR.scala 147:27]
-  assign dt_cs_stvec = 64'h0; // @[CSR.scala 148:27]
-  assign dt_cs_mcause = mcause; // @[CSR.scala 149:27]
-  assign dt_cs_scause = 64'h0; // @[CSR.scala 150:27]
-  assign dt_cs_satp = 64'h0; // @[CSR.scala 151:27]
-  assign dt_cs_mip = 64'h0; // @[CSR.scala 152:27]
-  assign dt_cs_mie = mie; // @[CSR.scala 153:27]
-  assign dt_cs_mscratch = mscratch; // @[CSR.scala 154:27]
-  assign dt_cs_sscratch = 64'h0; // @[CSR.scala 155:27]
-  assign dt_cs_mideleg = 64'h0; // @[CSR.scala 156:27]
-  assign dt_cs_medeleg = 64'h0; // @[CSR.scala 157:27]
+  assign io_mepc = mepc; // @[CSR.scala 136:11]
+  assign io_mtvec = mtvec; // @[CSR.scala 137:12]
+  assign io_mie = mie; // @[CSR.scala 138:10]
+  assign io_mstatus = mstatus; // @[CSR.scala 139:14]
+  assign dt_cs_clock = clock; // @[CSR.scala 143:27]
+  assign dt_cs_coreid = 8'h0; // @[CSR.scala 144:27]
+  assign dt_cs_priviledgeMode = 2'h3; // @[CSR.scala 145:27]
+  assign dt_cs_mstatus = mstatus; // @[CSR.scala 146:27]
+  assign dt_cs_sstatus = mstatus & 64'h80000003000de122; // @[CSR.scala 147:38]
+  assign dt_cs_mepc = mepc; // @[CSR.scala 148:27]
+  assign dt_cs_sepc = 64'h0; // @[CSR.scala 149:27]
+  assign dt_cs_mtval = 64'h0; // @[CSR.scala 150:27]
+  assign dt_cs_stval = 64'h0; // @[CSR.scala 151:27]
+  assign dt_cs_mtvec = mtvec; // @[CSR.scala 152:27]
+  assign dt_cs_stvec = 64'h0; // @[CSR.scala 153:27]
+  assign dt_cs_mcause = mcause; // @[CSR.scala 154:27]
+  assign dt_cs_scause = 64'h0; // @[CSR.scala 155:27]
+  assign dt_cs_satp = 64'h0; // @[CSR.scala 156:27]
+  assign dt_cs_mip = 64'h0; // @[CSR.scala 157:27]
+  assign dt_cs_mie = mie; // @[CSR.scala 158:27]
+  assign dt_cs_mscratch = mscratch; // @[CSR.scala 159:27]
+  assign dt_cs_sscratch = 64'h0; // @[CSR.scala 160:27]
+  assign dt_cs_mideleg = 64'h0; // @[CSR.scala 161:27]
+  assign dt_cs_medeleg = 64'h0; // @[CSR.scala 162:27]
   always @(posedge clock) begin
     if (reset) begin // @[CSR.scala 29:24]
       mstatus <= 64'h1800; // @[CSR.scala 29:24]
-    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 94:36]
-      if (wAddr == 12'h300) begin // @[CSR.scala 107:34]
-        mstatus <= _mstatus_T_26; // @[CSR.scala 108:15]
+    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 99:36]
+      if (wAddr == 12'h300) begin // @[CSR.scala 112:34]
+        mstatus <= _mstatus_T_26; // @[CSR.scala 113:15]
       end else begin
         mstatus <= _GEN_8;
       end
@@ -15553,15 +15558,15 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 30:24]
       mtvec <= 64'h0; // @[CSR.scala 30:24]
-    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 94:36]
-      if (wAddr == 12'h305) begin // @[CSR.scala 98:32]
-        mtvec <= mtvec_REG; // @[CSR.scala 99:13]
+    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 99:36]
+      if (wAddr == 12'h305) begin // @[CSR.scala 103:32]
+        mtvec <= mtvec_REG; // @[CSR.scala 104:13]
       end
     end
     if (reset) begin // @[CSR.scala 31:24]
       mepc <= 64'h0; // @[CSR.scala 31:24]
-    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 94:36]
-      if (wAddr == 12'h341) begin // @[CSR.scala 101:31]
+    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 99:36]
+      if (wAddr == 12'h341) begin // @[CSR.scala 106:31]
         if (csrRW) begin // @[CSR.scala 68:18]
           mepc <= _wdata_T_9;
         end else begin
@@ -15575,8 +15580,8 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 32:24]
       mcause <= 64'h0; // @[CSR.scala 32:24]
-    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 94:36]
-      if (wAddr == 12'h342) begin // @[CSR.scala 104:33]
+    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 99:36]
+      if (wAddr == 12'h342) begin // @[CSR.scala 109:33]
         if (csrRW) begin // @[CSR.scala 68:18]
           mcause <= _wdata_T_9;
         end else begin
@@ -15590,15 +15595,15 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 35:26]
       mie <= 64'h0; // @[CSR.scala 35:26]
-    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 94:36]
-      if (wAddr == 12'h304) begin // @[CSR.scala 110:30]
-        mie <= mie_REG; // @[CSR.scala 111:11]
+    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 99:36]
+      if (wAddr == 12'h304) begin // @[CSR.scala 115:30]
+        mie <= mie_REG; // @[CSR.scala 116:11]
       end
     end
     if (reset) begin // @[CSR.scala 37:26]
       mscratch <= 64'h0; // @[CSR.scala 37:26]
-    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 94:36]
-      if (wAddr == 12'h340) begin // @[CSR.scala 113:35]
+    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 99:36]
+      if (wAddr == 12'h340) begin // @[CSR.scala 118:35]
         if (csrRW) begin // @[CSR.scala 68:18]
           mscratch <= _wdata_T_9;
         end else begin
@@ -15608,18 +15613,25 @@ module CSR(
     end
     if (reset) begin // @[CSR.scala 38:26]
       mcycle <= 64'h0; // @[CSR.scala 38:26]
-    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 94:36]
-      if (wAddr == 12'hb00) begin // @[CSR.scala 95:33]
+    end else if (csrRW & io_csrEn & ~io_intr) begin // @[CSR.scala 99:36]
+      if (wAddr == 12'hb00) begin // @[CSR.scala 100:33]
         if (csrRW) begin // @[CSR.scala 68:18]
           mcycle <= _wdata_T_9;
         end else begin
           mcycle <= 64'h0;
         end
       end else begin
-        mcycle <= _mcycle_T_1; // @[CSR.scala 92:9]
+        mcycle <= _GEN_10;
       end
     end else begin
-      mcycle <= _mcycle_T_1; // @[CSR.scala 92:9]
+      mcycle <= _GEN_10;
+    end
+    if (reset) begin // @[Counter.scala 62:40]
+      value <= 10'h0; // @[Counter.scala 62:40]
+    end else if (wrap) begin // @[Counter.scala 88:20]
+      value <= 10'h0; // @[Counter.scala 88:28]
+    end else begin
+      value <= _value_T_1; // @[Counter.scala 78:15]
     end
     if (csrRW) begin // @[CSR.scala 68:18]
       if (2'h3 == io_csrOp[1:0]) begin // @[Mux.scala 81:58]
@@ -15698,10 +15710,12 @@ initial begin
   mscratch = _RAND_5[63:0];
   _RAND_6 = {2{`RANDOM}};
   mcycle = _RAND_6[63:0];
-  _RAND_7 = {2{`RANDOM}};
-  mtvec_REG = _RAND_7[63:0];
+  _RAND_7 = {1{`RANDOM}};
+  value = _RAND_7[9:0];
   _RAND_8 = {2{`RANDOM}};
-  mie_REG = _RAND_8[63:0];
+  mtvec_REG = _RAND_8[63:0];
+  _RAND_9 = {2{`RANDOM}};
+  mie_REG = _RAND_9[63:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial

@@ -89,7 +89,12 @@ class CSR extends Module {
     mstatus := Cat(mstatus(63,13), "b11".U, mstatus(10,8), mstatus(3), mstatus(6, 4), "b0".U, mstatus(2, 0))
   }
 
- mcycle := mcycle + 1.U
+  val counter = Counter(600)
+  counter.inc()
+  when(counter.value === 599.U ) {
+    mcycle := mcycle + 1.U
+  }
+//  mcycle := mcycle + 1.U
 //* ------------------------------------- 写回寄存器 -------------------------------------------
   when(csrRW && csrEn && !io.intr) {
     when(wAddr === Csrs.mcycle) {
